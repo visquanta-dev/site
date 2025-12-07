@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
@@ -27,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${cormorant.variable} ${outfit.variable}`}>
+      <body className={`${spaceGrotesk.variable} ${inter.variable}`}>
         {children}
       </body>
     </html>

@@ -83,30 +83,110 @@ export default function Hero() {
               <svg fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>
-              <span>Watch Overview</span>
+              <span>Platform Overview</span>
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Metrics Bar */}
+      {/* Instrument Cluster Metrics Bar */}
       <div className="hero-metrics">
         <div className="metrics-bar">
           <div className="metric">
-            <div className="metric-value">$35<span>M+</span></div>
-            <div className="metric-label">Revenue Generated</div>
+            <div className="metric-gauge">
+              <svg viewBox="0 0 36 36" className="gauge-ring">
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="var(--gunmetal)"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="var(--amber)"
+                  strokeWidth="2"
+                  strokeDasharray="85, 100"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+            <div className="metric-data">
+              <div className="metric-value">$35<span>M+</span></div>
+              <div className="metric-label">Revenue Generated</div>
+            </div>
           </div>
           <div className="metric">
-            <div className="metric-value">&lt;60<span>s</span></div>
-            <div className="metric-label">Response Time</div>
+            <div className="metric-gauge">
+              <svg viewBox="0 0 36 36" className="gauge-ring">
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="var(--gunmetal)"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="var(--amber)"
+                  strokeWidth="2"
+                  strokeDasharray="95, 100"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+            <div className="metric-data">
+              <div className="metric-value">&lt;60<span>s</span></div>
+              <div className="metric-label">Response Time</div>
+            </div>
           </div>
           <div className="metric">
-            <div className="metric-value">30<span>%</span></div>
-            <div className="metric-label">Lead Reactivation</div>
+            <div className="metric-gauge">
+              <svg viewBox="0 0 36 36" className="gauge-ring">
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="var(--gunmetal)"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="var(--amber)"
+                  strokeWidth="2"
+                  strokeDasharray="30, 100"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+            <div className="metric-data">
+              <div className="metric-value">30<span>%</span></div>
+              <div className="metric-label">Lead Reactivation</div>
+            </div>
           </div>
           <div className="metric">
-            <div className="metric-value">500<span>%</span></div>
-            <div className="metric-label">Average ROI</div>
+            <div className="metric-gauge">
+              <svg viewBox="0 0 36 36" className="gauge-ring">
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="var(--gunmetal)"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="var(--amber)"
+                  strokeWidth="2"
+                  strokeDasharray="100, 100"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+            <div className="metric-data">
+              <div className="metric-value">500<span>%</span></div>
+              <div className="metric-label">Average ROI</div>
+            </div>
           </div>
         </div>
       </div>

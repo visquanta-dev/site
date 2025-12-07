@@ -17,7 +17,7 @@ export default function Navigation() {
         <Link href="#" className="nav-link">Company</Link>
       </div>
 
-      <Link href="#" className="nav-cta">Request Demo</Link>
+      <Link href="#" className="nav-cta">Request Assessment</Link>
     </nav>
   );
 }

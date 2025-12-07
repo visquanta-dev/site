@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import ProductCard from './ProductCard';
 
@@ -60,23 +63,51 @@ const products = [
 ];
 
 export default function PlatformSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="platform-section">
+    <section ref={sectionRef} className="platform-section">
       <div className="platform-header">
-        <div className="platform-eyebrow">
+        <div className={`platform-eyebrow ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
           <div className="platform-eyebrow-line"></div>
           <span className="platform-eyebrow-text">The Platform</span>
           <div className="platform-eyebrow-line"></div>
         </div>
-        <h2 className="platform-title">Five capabilities.<br />One system.</h2>
-        <p className="platform-subtitle">
+        <h2
+          className={`platform-title ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
+          style={{ animationDelay: '0.1s' }}
+        >
+          Five capabilities.<br />One system.
+        </h2>
+        <p
+          className={`platform-subtitle ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
+          style={{ animationDelay: '0.2s' }}
+        >
           Every tool your dealership needs to capture, convert, and retain customers —
           unified in a single platform with one dashboard and one dedicated success manager.
         </p>
       </div>
 
       <div className="products-grid">
-        {products.map((product) => (
+        {products.map((product, index) => (
           <ProductCard
             key={product.number}
             number={product.number}
@@ -84,18 +115,23 @@ export default function PlatformSection() {
             title={product.title}
             description={product.description}
             stat={product.stat}
+            isVisible={isVisible}
+            delay={0.3 + index * 0.1}
           />
         ))}
 
         {/* CTA Card */}
-        <div className="product-card cta-card">
-          <h3 className="cta-card-title">Experience the platform</h3>
+        <div
+          className={`product-card cta-card ${isVisible ? 'animate-fade-scale' : 'opacity-0'}`}
+          style={{ animationDelay: '0.8s' }}
+        >
+          <h3 className="cta-card-title">Request Your Assessment</h3>
           <p className="cta-card-text">
-            Schedule a consultation to see how AutoMaster Suite
-            transforms dealership performance.
+            Get a complimentary performance analysis and see how AutoMaster Suite
+            can transform your dealership operations.
           </p>
           <Link href="#" className="btn-primary">
-            <span>Request Demo</span>
+            <span>Schedule Consultation</span>
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
