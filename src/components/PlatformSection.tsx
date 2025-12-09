@@ -349,11 +349,9 @@ export default function PlatformSection() {
   return (
     <section 
       ref={sectionRef}
+      className="py-16 md:py-24 lg:py-32 relative overflow-hidden"
       style={{
-        padding: '120px 0',
         backgroundColor: '#0a0a0a',
-        position: 'relative',
-        overflow: 'hidden',
       }}
     >
       {/* Background radial glow */}
@@ -380,10 +378,7 @@ export default function PlatformSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          style={{
-            textAlign: 'center',
-            marginBottom: '80px',
-          }}
+          className="text-center mb-12 md:mb-16 lg:mb-20"
         >
           {/* Eyebrow with lines */}
           <div style={{
@@ -445,7 +440,7 @@ export default function PlatformSection() {
           animate={isVisible ? 'visible' : 'hidden'}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
             gap: '24px',
             marginBottom: '24px',
           }}
@@ -462,7 +457,7 @@ export default function PlatformSection() {
           animate={isVisible ? 'visible' : 'hidden'}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
             gap: '24px',
             maxWidth: '840px',
             margin: '0 auto',
