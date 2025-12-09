@@ -1,28 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
-
-// ===========================================
-// DATA
-// ===========================================
 
 const tabs = [
   { id: "lead-loss", label: "Lead Loss" },
   { id: "speed-to-lead", label: "Speed to Lead" },
-  { id: "service-drive", label: "Service Drive" },
   { id: "reviews", label: "Reviews" },
+  { id: "service-drive", label: "Service Drive" },
 ];
 
-const tabContent: Record<string, {
-  conversation: Array<{ sender: "ai" | "user" | "system"; text: string }>;
-  customerName: string;
-  headline: string;
-  body: string;
-  stats: string[];
-  cta: { label: string; href: string };
-}> = {
+const tabContent = {
   "lead-loss": {
     customerName: "John",
     conversation: [
@@ -40,12 +28,12 @@ const tabContent: Record<string, {
   "speed-to-lead": {
     customerName: "Maria",
     conversation: [
-      { sender: "system", text: "AutoTrader Lead • 9:47 PM" },
-      { sender: "ai", text: "Hi Maria! Saw your inquiry on the Tucson. Still interested?" },
-      { sender: "user", text: "Yes! Can I see it tomorrow?" },
-      { sender: "ai", text: "Absolutely! 11am or 3pm?" },
-      { sender: "user", text: "11am works" },
-      { sender: "ai", text: "Done! Ask for Mike 👍" },
+      { sender: "system", text: "Inbound AutoTrader Lead • 21:52" },
+      { sender: "ai", text: "Hi Maria, thanks for reaching out on AutoTrader about the Tucson. Thought I'd send you a quick text. Are you still interested in coming to see it?" },
+      { sender: "user", text: "Yes! Can I come tomorrow?" },
+      { sender: "ai", text: "Absolutely. We've got 11am or 3pm open." },
+      { sender: "user", text: "11am works." },
+      { sender: "ai", text: "Great, I'll pop that in. Ask for Mike when you arrive. 👍" },
     ],
     headline: "Respond in Seconds, Not Hours",
     body: "78% of buyers choose the first dealership to respond. AutoMaster engages every lead instantly — day or night — so you never lose to a faster competitor.",
@@ -54,26 +42,32 @@ const tabContent: Record<string, {
   },
   "service-drive": {
     customerName: "Tom",
+    isVoiceCall: true,
+    callDuration: "01:47",
     conversation: [
-      { sender: "ai", text: "Hi Tom, your Elantra is due for its 30K service. Want to schedule?" },
-      { sender: "user", text: "Yeah what's available?" },
-      { sender: "ai", text: "Friday 9am or Monday 2pm?" },
-      { sender: "user", text: "Friday works" },
-      { sender: "ai", text: "Confirmed for Friday 9am!" },
+      { sender: "ai", text: "Thanks for calling Norman Hyundai Service, this is Sarah. How can I help you today?" },
+      { sender: "user", text: "Hey, yeah I need to book in my Elantra for its 30,000 mile service." },
+      { sender: "ai", text: "Of course! Let me check what we have available. Can I get your name?" },
+      { sender: "user", text: "Tom Mitchell" },
+      { sender: "ai", text: "Thanks Tom. I've got Friday at 9am or Monday at 2pm. Which works better for you?" },
+      { sender: "user", text: "Friday morning works" },
+      { sender: "ai", text: "Perfect, you're all set for Friday at 9am. We'll send you a reminder the day before. Anything else I can help with?" },
+      { sender: "user", text: "No that's it, thanks" },
+      { sender: "ai", text: "Great, see you Friday Tom. Have a good day!" },
     ],
     headline: "Fill Your Service Bays on Autopilot",
-    body: "Automated service reminders and scheduling — no phone tag, no missed appointments. Keep customers coming back without lifting a finger.",
-    stats: ["Automated service reminders", "Self-scheduling via SMS", "Higher service retention"],
-    cta: { label: "Learn More About Service Drive", href: "/service-drive" },
+    body: "Our Voice AI answers every call instantly — 24/7. No hold times, no missed calls, no frustrated customers. Just seamless scheduling that sounds completely human.",
+    stats: ["Zero missed service calls", "24/7 instant answering", "Sounds 100% human"],
+    cta: { label: "Learn More About Voice AI", href: "/voice-ai" },
   },
   "reviews": {
     customerName: "Sarah",
     conversation: [
-      { sender: "ai", text: "Hi Sarah! How was your experience with your new GV70?" },
+      { sender: "ai", text: "Hi Sarah! Thanks for choosing us for your new GV70. How was your experience?" },
       { sender: "user", text: "Amazing! David was so helpful" },
-      { sender: "ai", text: "So glad! Would you leave us a quick Google review?" },
+      { sender: "ai", text: "So glad to hear that! Would you mind leaving us a quick Google review? It really helps us out." },
       { sender: "user", text: "Sure, happy to!" },
-      { sender: "ai", text: "Thanks Sarah! Here's the link 🙏" },
+      { sender: "ai", text: "Thanks so much Sarah! Here's the link: g.page/r/yourdealer/review 🙏" },
     ],
     headline: "Turn Happy Customers into 5-Star Reviews",
     body: "Automatically request reviews after every sale and service. Catch negative feedback before it goes public. Boost your CSI scores without manual follow-up.",
@@ -82,272 +76,338 @@ const tabContent: Record<string, {
   },
 };
 
-// ===========================================
-// AUTO-PLAYING CHAT COMPONENT
-// ===========================================
-
-function AutoPlayChat({ 
-  conversation,
-  tabId,
-  customerName
-}: { 
-  conversation: Array<{ sender: "ai" | "user" | "system"; text: string }>;
-  tabId: string;
-  customerName: string;
-}) {
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Double the conversation for seamless loop
-  const doubledConversation = [...conversation, ...conversation];
+export default function SeeItInAction() {
+  const [activeTab, setActiveTab] = useState("lead-loss");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const content = tabContent[activeTab as keyof typeof tabContent];
 
   return (
-    <div 
-      className="h-[320px] overflow-hidden relative"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      {/* Gradient fade at top */}
-      <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-[#0a0a0a] to-transparent z-10 pointer-events-none" />
+    <section style={{ padding: "80px 0", backgroundColor: "#0a0a0a" }}>
       
-      {/* Gradient fade at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#0a0a0a] to-transparent z-10 pointer-events-none" />
-      
-      {/* Scrolling container */}
-      <motion.div
-        className="flex flex-col gap-3 px-3 py-4"
-        animate={{
-          y: isPaused ? undefined : [0, "-50%"]
-        }}
-        transition={{
-          y: {
-            duration: 12,
-            repeat: Infinity,
-            ease: "linear",
-            repeatType: "loop"
-          }
-        }}
-        style={{ willChange: "transform" }}
-      >
-        {doubledConversation.map((message, index) => (
-          <div
-            key={`${tabId}-${index}`}
-            className={`flex ${
-              message.sender === "user" 
-                ? "justify-end" 
-                : message.sender === "system" 
-                  ? "justify-center" 
-                  : "justify-start"
-            }`}
-          >
-            {message.sender === "system" ? (
-              <span className="text-gray-500 text-[10px] py-1 px-3 bg-white/5 rounded-full">
-                {message.text}
-              </span>
-            ) : (
-              <div className={`flex gap-2 max-w-[90%] ${message.sender === "user" ? "flex-row-reverse" : "flex-row"}`}>
-                {/* Avatar */}
-                <div className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-bold ${
-                  message.sender === "ai" 
-                    ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white" 
-                    : "bg-zinc-500 text-white"
-                }`}>
-                  {message.sender === "ai" ? "AI" : customerName.charAt(0)}
-                </div>
-                
-                {/* Message Content */}
-                <div className={`flex flex-col gap-0.5 ${message.sender === "user" ? "items-end" : "items-start"}`}>
-                  {/* Name Label */}
-                  <span className={`text-[10px] font-medium px-1 ${
-                    message.sender === "ai" 
-                      ? "text-orange-400" 
-                      : "text-zinc-400"
-                  }`}>
-                    {message.sender === "ai" ? "AutoMaster AI" : customerName}
-                  </span>
-                  {/* Message Bubble */}
-                  <div
-                    className={`px-3 py-2 text-[12px] leading-relaxed ${
-                      message.sender === "ai"
-                        ? "bg-white text-black rounded-2xl rounded-tl-sm shadow-md"
-                        : "bg-zinc-600 text-white rounded-2xl rounded-tr-sm"
-                    }`}
-                  >
-                    {message.text}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
-// ===========================================
-// PHONE MOCKUP
-// ===========================================
-
-function PhoneMockup({ 
-  conversation,
-  tabId,
-  customerName
-}: { 
-  conversation: Array<{ sender: "ai" | "user" | "system"; text: string }>;
-  tabId: string;
-  customerName: string;
-}) {
-  return (
-    <div className="relative">
-      {/* Glow effect */}
-      <div className="absolute -inset-4 bg-orange-500/10 blur-3xl rounded-full" />
-      
-      {/* Phone Frame */}
-      <div 
-        className="relative w-[300px] sm:w-[320px] rounded-[50px] p-[4px]"
-        style={{
-          background: "linear-gradient(145deg, #2a2a2c 0%, #1a1a1c 50%, #0f0f10 100%)",
-          boxShadow: "0 50px 100px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255,255,255,0.05)"
-        }}
-      >
-        {/* Inner bezel */}
+      {/* Audio Modal */}
+      {isModalOpen && (
         <div 
-          className="rounded-[46px] p-[8px]"
-          style={{ background: "#0a0a0a" }}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(0,0,0,0.85)",
+            backdropFilter: "blur(10px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9999,
+            animation: "fadeIn 0.3s ease"
+          }}
+          onClick={() => setIsModalOpen(false)}
         >
-          {/* Screen */}
+          <style>{`
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+            @keyframes slideUp {
+              from { opacity: 0; transform: translateY(20px) scale(0.95); }
+              to { opacity: 1; transform: translateY(0) scale(1); }
+            }
+          `}</style>
+          
           <div 
-            className="rounded-[40px] overflow-hidden bg-[#0a0a0a]"
-            style={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.1)" }}
+            style={{
+              background: "linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%)",
+              borderRadius: "24px",
+              padding: "40px",
+              maxWidth: "500px",
+              width: "90%",
+              boxShadow: "0 40px 100px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1)",
+              animation: "slideUp 0.3s ease",
+              position: "relative"
+            }}
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Dynamic Island */}
-            <div className="flex justify-center pt-3 pb-1">
-              <div className="w-[90px] h-[26px] bg-black rounded-full flex items-center justify-center">
-                <div className="w-3 h-3 rounded-full bg-[#1a1a1a] mr-6" />
-              </div>
-            </div>
-
-            {/* Status Bar */}
-            <div className="flex justify-between items-center px-6 py-1">
-              <span className="text-white text-[13px] font-semibold">9:41</span>
-              <div className="flex items-center gap-1.5">
-                <svg width="16" height="11" viewBox="0 0 18 12" fill="white">
-                  <rect x="0" y="7" width="3" height="5" rx="0.5" fillOpacity="0.3"/>
-                  <rect x="5" y="4" width="3" height="8" rx="0.5" fillOpacity="0.5"/>
-                  <rect x="10" y="2" width="3" height="10" rx="0.5" fillOpacity="0.7"/>
-                  <rect x="15" y="0" width="3" height="12" rx="0.5"/>
+            {/* Close button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              style={{
+                position: "absolute",
+                top: "16px",
+                right: "16px",
+                width: "36px",
+                height: "36px",
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "rgba(255,255,255,0.5)",
+                fontSize: "20px",
+                transition: "all 0.2s"
+              }}
+            >
+              ×
+            </button>
+            
+            {/* Header */}
+            <div style={{ textAlign: "center", marginBottom: "32px" }}>
+              <div style={{
+                width: "64px",
+                height: "64px",
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "0 auto 20px",
+                boxShadow: "0 8px 30px rgba(249,115,22,0.4)"
+              }}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
                 </svg>
-                <svg width="14" height="10" viewBox="0 0 16 12" fill="white">
-                  <path d="M8 10a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5z"/>
-                  <path d="M4.5 7.5c1-.7 2.2-1.2 3.5-1.2s2.5.5 3.5 1.2" stroke="white" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-                  <path d="M1.5 4.5c1.8-1.2 4-1.9 6.5-1.9s4.7.7 6.5 1.9" stroke="white" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-                </svg>
-                <div className="flex items-center">
-                  <div className="w-[22px] h-[10px] rounded-sm border border-white/50 p-[1px]">
-                    <div className="w-[65%] h-full bg-white rounded-sm"/>
-                  </div>
-                </div>
               </div>
+              <h3 style={{
+                color: "white",
+                fontSize: "24px",
+                fontWeight: 600,
+                margin: "0 0 8px",
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+              }}>Voice AI Recording</h3>
+              <p style={{
+                color: "rgba(255,255,255,0.5)",
+                fontSize: "15px",
+                margin: 0,
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+              }}>Inbound Service Call • 01:47</p>
             </div>
-
-            {/* Chat Header */}
-            <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10">
-              <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
-                <span className="text-white font-bold text-xs">AI</span>
-              </div>
-              <div className="flex-1">
-                <p className="text-white font-semibold text-[14px]">AutoMaster AI</p>
-                <p className="text-green-500 text-[11px] flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                  Online
-                </p>
-              </div>
-              <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
+            
+            {/* Waveform visualization */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "4px",
+              height: "60px",
+              marginBottom: "24px"
+            }}>
+              {[4, 8, 12, 6, 14, 8, 10, 6, 12, 8, 14, 6, 10, 8, 12, 6, 8, 10, 6, 14, 8, 12, 6, 10, 4].map((h, i) => (
+                <div key={i} style={{
+                  width: "4px",
+                  height: `${h * 4}px`,
+                  background: "linear-gradient(180deg, #f97316 0%, rgba(249,115,22,0.3) 100%)",
+                  borderRadius: "2px",
+                  animation: `waveformModal 0.8s ease-in-out ${i * 0.05}s infinite alternate`
+                }} />
+              ))}
             </div>
-
-            {/* Auto-Playing Messages */}
-            <AutoPlayChat conversation={conversation} tabId={tabId} customerName={customerName} />
-
-            {/* Input Bar */}
-            <div className="px-3 py-2.5 border-t border-white/10">
-              <div className="flex items-center gap-2">
-                <button className="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                  </svg>
-                </button>
-                <div className="flex-1 bg-[#1c1c1e] rounded-full px-4 py-2 border border-white/10">
-                  <span className="text-gray-500 text-sm">Type a message...</span>
-                </div>
-                <button className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/30">
-                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-                  </svg>
-                </button>
-              </div>
+            <style>{`
+              @keyframes waveformModal {
+                0% { transform: scaleY(1); opacity: 1; }
+                100% { transform: scaleY(0.4); opacity: 0.5; }
+              }
+            `}</style>
+            
+            {/* Audio Player */}
+            <div style={{
+              background: "rgba(255,255,255,0.03)",
+              borderRadius: "16px",
+              padding: "20px",
+              border: "1px solid rgba(255,255,255,0.05)"
+            }}>
+              <audio 
+                controls 
+                style={{ width: "100%", height: "40px" }}
+                src="/audio/service-call.mp3"
+              >
+                Your browser does not support the audio element.
+              </audio>
+              <p style={{
+                color: "rgba(255,255,255,0.4)",
+                fontSize: "12px",
+                textAlign: "center",
+                margin: "12px 0 0",
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+              }}>Upload your audio file to /public/audio/service-call.mp3</p>
             </div>
-
-            {/* Home Indicator */}
-            <div className="flex justify-center py-2">
-              <div className="w-28 h-1 bg-white/30 rounded-full" />
+            
+            {/* Call details */}
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "16px",
+              marginTop: "24px"
+            }}>
+              <div style={{
+                background: "rgba(255,255,255,0.03)",
+                borderRadius: "12px",
+                padding: "16px",
+                border: "1px solid rgba(255,255,255,0.05)"
+              }}>
+                <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "12px", margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Caller</p>
+                <p style={{ color: "white", fontSize: "15px", margin: 0, fontWeight: 500 }}>Tom Mitchell</p>
+              </div>
+              <div style={{
+                background: "rgba(255,255,255,0.03)",
+                borderRadius: "12px",
+                padding: "16px",
+                border: "1px solid rgba(255,255,255,0.05)"
+              }}>
+                <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "12px", margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Result</p>
+                <p style={{ color: "#34c759", fontSize: "15px", margin: 0, fontWeight: 500 }}>Appointment Booked</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Side Buttons */}
-      <div className="absolute -right-[3px] top-[100px] w-[3px] h-[60px] bg-[#2a2a2a] rounded-r" />
-      <div className="absolute -left-[3px] top-[75px] w-[3px] h-[25px] bg-[#2a2a2a] rounded-l" />
-      <div className="absolute -left-[3px] top-[110px] w-[3px] h-[25px] bg-[#2a2a2a] rounded-l" />
-      <div className="absolute -left-[3px] top-[145px] w-[3px] h-[25px] bg-[#2a2a2a] rounded-l" />
-    </div>
-  );
-}
-
-// ===========================================
-// MAIN COMPONENT
-// ===========================================
-
-export function SeeItInAction() {
-  const [activeTab, setActiveTab] = useState("lead-loss");
-  const content = tabContent[activeTab];
-
-  return (
-    <section className="py-20 md:py-28 bg-[#0A0A0A] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      )}
+      
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
         
         {/* Header */}
-        <div className="text-center mb-12">
-          <span className="inline-block text-orange-500 text-sm font-semibold tracking-[0.2em] uppercase mb-3">
+        <div style={{ textAlign: "center", marginBottom: "64px", position: "relative" }}>
+          
+          {/* Background radial glow */}
+          <div style={{
+            position: "absolute",
+            top: "-100px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "600px",
+            height: "300px",
+            background: "radial-gradient(ellipse, rgba(249,115,22,0.08) 0%, transparent 70%)",
+            pointerEvents: "none"
+          }} />
+          
+          {/* Live Demo Badge */}
+          <div style={{ 
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            color: "#f97316", 
+            fontSize: "12px", 
+            fontWeight: 600, 
+            textTransform: "uppercase", 
+            letterSpacing: "0.2em", 
+            marginBottom: "20px",
+            padding: "10px 20px",
+            background: "rgba(249,115,22,0.1)",
+            borderRadius: "9999px",
+            border: "1px solid rgba(249,115,22,0.3)",
+            boxShadow: "0 0 30px rgba(249,115,22,0.2)",
+            position: "relative"
+          }}>
+            {/* Pulsing live dot */}
+            <span style={{
+              width: "8px",
+              height: "8px",
+              backgroundColor: "#f97316",
+              borderRadius: "50%",
+              animation: "livePulse 2s ease-in-out infinite",
+              boxShadow: "0 0 10px #f97316"
+            }} />
+            <style>{`
+              @keyframes livePulse {
+                0%, 100% { opacity: 1; transform: scale(1); }
+                50% { opacity: 0.5; transform: scale(0.8); }
+              }
+              @keyframes shimmer {
+                0% { background-position: -200% center; }
+                100% { background-position: 200% center; }
+              }
+            `}</style>
             Live Demo
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          </div>
+          
+          {/* Main Heading with shimmer */}
+          <h2 style={{ 
+            fontSize: "clamp(36px, 6vw, 56px)", 
+            fontWeight: 700, 
+            margin: "0 0 16px 0",
+            letterSpacing: "-0.03em",
+            lineHeight: 1.1,
+            background: "linear-gradient(90deg, #ffffff 0%, #ffffff 40%, #f97316 50%, #ffffff 60%, #ffffff 100%)",
+            backgroundSize: "200% auto",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: "shimmer 5s linear infinite"
+          }}>
             See It In Action
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          
+          <p style={{ 
+            color: "rgba(255,255,255,0.5)", 
+            fontSize: "18px", 
+            margin: 0,
+            fontWeight: 400
+          }}>
             Watch how AutoMaster Suite handles real conversations — 24/7
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex justify-center mb-12 md:mb-16">
-          <div className="inline-flex flex-wrap justify-center gap-2 p-1.5 bg-[#141414] rounded-full border border-[#2A2A2A]">
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: "80px" }}>
+          <style>{`
+            .premium-tab {
+              position: relative;
+              padding: 20px 40px;
+              font-size: 14px;
+              font-weight: 500;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              border: none;
+              cursor: pointer;
+              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              background: transparent;
+              color: rgba(255,255,255,0.35);
+              overflow: hidden;
+            }
+            .premium-tab::before {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%) scaleX(0);
+              width: 100%;
+              height: 2px;
+              background: linear-gradient(90deg, transparent, #f97316, transparent);
+              transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .premium-tab:hover {
+              color: rgba(255,255,255,0.7);
+            }
+            .premium-tab:hover::before {
+              transform: translateX(-50%) scaleX(0.5);
+            }
+            .premium-tab.active {
+              color: white;
+            }
+            .premium-tab.active::before {
+              transform: translateX(-50%) scaleX(1);
+              background: #f97316;
+            }
+            .premium-tab.active::after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 60%;
+              height: 20px;
+              background: rgba(249,115,22,0.3);
+              filter: blur(10px);
+            }
+          `}</style>
+          <div style={{ 
+            display: "flex", 
+            background: "linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%)",
+            borderRadius: "20px",
+            padding: "8px",
+            border: "1px solid rgba(255,255,255,0.05)"
+          }}>
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`
-                  px-5 sm:px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300
-                  ${activeTab === tab.id 
-                    ? "bg-orange-500 text-white shadow-lg shadow-orange-500/25" 
-                    : "text-gray-400 hover:text-white hover:bg-[#1A1A1A]"
-                  }
-                `}
+                className={`premium-tab ${activeTab === tab.id ? 'active' : ''}`}
               >
                 {tab.label}
               </button>
@@ -356,64 +416,563 @@ export function SeeItInAction() {
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}>
           
           {/* Phone */}
-          <div className="flex justify-center lg:justify-end">
-            <PhoneMockup 
-              conversation={content.conversation} 
-              tabId={activeTab}
-              customerName={content.customerName}
-            />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div style={{ position: "relative" }}>
+              
+              {/* Ambient glow layers */}
+              <div style={{ 
+                position: "absolute", 
+                inset: "-60px", 
+                background: "radial-gradient(circle at 50% 30%, rgba(249,115,22,0.15) 0%, transparent 60%)", 
+                filter: "blur(40px)",
+                pointerEvents: "none"
+              }} />
+              <div style={{ 
+                position: "absolute", 
+                inset: "-30px", 
+                background: "radial-gradient(circle at 50% 70%, rgba(249,115,22,0.1) 0%, transparent 50%)", 
+                filter: "blur(30px)",
+                pointerEvents: "none"
+              }} />
+              
+              {/* Listen pointer - only shows for voice call */}
+              {(content as any).isVoiceCall && (
+                <>
+                  <style>{`
+                    @keyframes bounceRight {
+                      0%, 100% { transform: translateX(0); }
+                      50% { transform: translateX(8px); }
+                    }
+                  `}</style>
+                  <div style={{
+                    position: "absolute",
+                    left: "-185px",
+                    top: "205px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    animation: "bounceRight 1.5s ease-in-out infinite",
+                    zIndex: 20
+                  }}>
+                    <span style={{ 
+                      color: "rgba(255,255,255,0.7)", 
+                      fontSize: "16px", 
+                      fontWeight: 500,
+                      whiteSpace: "nowrap",
+                      fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                    }}>Listen to a Call Here</span>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                      <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                  </div>
+                </>
+              )}
+              
+              {/* iPhone 15 Pro Frame */}
+              <div style={{ 
+                position: "relative",
+                width: "340px",
+                padding: "3px",
+                borderRadius: "55px",
+                background: "linear-gradient(145deg, #48484a 0%, #2c2c2e 20%, #1c1c1e 50%, #0a0a0a 100%)",
+                boxShadow: `
+                  0 80px 160px -40px rgba(0,0,0,0.9),
+                  0 40px 80px -20px rgba(0,0,0,0.7),
+                  0 0 0 1px rgba(255,255,255,0.1),
+                  inset 0 1px 0 rgba(255,255,255,0.1)
+                `
+              }}>
+                {/* Inner titanium bezel */}
+                <div style={{ 
+                  borderRadius: "52px", 
+                  padding: "10px",
+                  background: "linear-gradient(180deg, #1c1c1e 0%, #0f0f0f 100%)",
+                  boxShadow: "inset 0 0 20px rgba(0,0,0,0.5)"
+                }}>
+                  {/* Screen */}
+                  <div style={{ 
+                    borderRadius: "44px", 
+                    overflow: "hidden", 
+                    background: "linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%)",
+                    boxShadow: "inset 0 0 40px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05)"
+                  }}>
+                    
+                    {/* Dynamic Island */}
+                    <div style={{ display: "flex", justifyContent: "center", paddingTop: "14px", paddingBottom: "8px" }}>
+                      <div style={{ 
+                        width: "120px", 
+                        height: "36px", 
+                        backgroundColor: "#000", 
+                        borderRadius: "20px",
+                        boxShadow: "0 0 0 1px rgba(255,255,255,0.03), inset 0 2px 4px rgba(0,0,0,0.8)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-end",
+                        paddingRight: "14px",
+                        gap: "8px"
+                      }}>
+                        {/* Front camera */}
+                        <div style={{
+                          width: "12px",
+                          height: "12px",
+                          borderRadius: "50%",
+                          background: "radial-gradient(circle at 30% 30%, #1a1a3a, #000)",
+                          boxShadow: "inset 0 0 4px rgba(80,80,150,0.3), 0 0 1px rgba(0,0,0,0.8)"
+                        }} />
+                      </div>
+                    </div>
+
+                    {/* Status Bar */}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "4px 28px 10px" }}>
+                      <span style={{ 
+                        color: "white", 
+                        fontSize: "16px", 
+                        fontWeight: 600,
+                        fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                      }}>21:55</span>
+                      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                        {/* Cellular */}
+                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+                          <rect x="0" y="9" width="3" height="5" rx="1" fill="white"/>
+                          <rect x="5" y="6" width="3" height="8" rx="1" fill="white"/>
+                          <rect x="10" y="3" width="3" height="11" rx="1" fill="white"/>
+                          <rect x="15" y="0" width="3" height="14" rx="1" fill="rgba(255,255,255,0.3)"/>
+                        </svg>
+                        {/* WiFi */}
+                        <svg width="17" height="12" viewBox="0 0 17 12" fill="white">
+                          <path d="M8.5 10a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/>
+                          <path d="M5 7.5c1-.9 2.2-1.4 3.5-1.4s2.5.5 3.5 1.4" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
+                          <path d="M1.5 4c2-1.4 4.3-2.2 7-2.2s5 .8 7 2.2" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
+                        </svg>
+                        {/* Battery */}
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <div style={{ 
+                            width: "26px", 
+                            height: "13px", 
+                            borderRadius: "4px", 
+                            border: "1.5px solid rgba(255,255,255,0.5)",
+                            padding: "2px",
+                            display: "flex"
+                          }}>
+                            <div style={{ 
+                              width: "75%", 
+                              height: "100%", 
+                              backgroundColor: "#34c759", 
+                              borderRadius: "2px"
+                            }}/>
+                          </div>
+                          <div style={{ 
+                            width: "2px", 
+                            height: "6px", 
+                            backgroundColor: "rgba(255,255,255,0.5)", 
+                            borderRadius: "0 2px 2px 0", 
+                            marginLeft: "1px"
+                          }}/>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Chat Header */}
+                    <div style={{ 
+                      display: "flex", 
+                      alignItems: "center", 
+                      gap: "14px", 
+                      padding: "14px 18px",
+                      background: "rgba(255,255,255,0.02)",
+                      borderTop: "1px solid rgba(255,255,255,0.03)",
+                      borderBottom: "1px solid rgba(255,255,255,0.05)"
+                    }}>
+                      {/* Back chevron */}
+                      <svg width="10" height="18" viewBox="0 0 10 18" fill="none" stroke="#f97316" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 1L1 9L9 17"/>
+                      </svg>
+                      
+                      {/* Avatar */}
+                      <div style={{ 
+                        width: "44px", 
+                        height: "44px", 
+                        borderRadius: "50%", 
+                        background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
+                        display: "flex", 
+                        alignItems: "center", 
+                        justifyContent: "center",
+                        boxShadow: "0 4px 16px rgba(249,115,22,0.35)",
+                        border: "2px solid rgba(255,255,255,0.1)"
+                      }}>
+                        <span style={{ 
+                          color: "white", 
+                          fontWeight: 700, 
+                          fontSize: "15px",
+                          fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                        }}>AI</span>
+                      </div>
+                      
+                      <div style={{ flex: 1 }}>
+                        <p style={{ 
+                          color: "white", 
+                          fontWeight: 600, 
+                          fontSize: "17px", 
+                          margin: 0,
+                          fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                        }}>AutoMaster AI</p>
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "2px" }}>
+                          <span style={{ 
+                            width: "8px", 
+                            height: "8px", 
+                            backgroundColor: "#34c759", 
+                            borderRadius: "50%",
+                            boxShadow: "0 0 8px rgba(52,199,89,0.6)"
+                          }} />
+                          <span style={{ 
+                            color: "#34c759", 
+                            fontSize: "13px",
+                            fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                          }}>Online</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Voice Call Banner - only for service-drive */}
+                    {(content as any).isVoiceCall && (
+                      <div style={{ 
+                        display: "flex", 
+                        alignItems: "center", 
+                        justifyContent: "center",
+                        gap: "14px", 
+                        padding: "14px 18px",
+                        background: "linear-gradient(135deg, rgba(249,115,22,0.12) 0%, rgba(249,115,22,0.05) 100%)",
+                        borderBottom: "1px solid rgba(249,115,22,0.15)"
+                      }}>
+                        {/* Play button */}
+                        <div 
+                          onClick={() => setIsModalOpen(true)}
+                          style={{
+                            width: "42px",
+                            height: "42px",
+                            borderRadius: "50%",
+                            background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor: "pointer",
+                            boxShadow: "0 4px 20px rgba(249,115,22,0.5)",
+                            animation: "pulse 2s ease-in-out infinite"
+                          }}
+                        >
+                          <svg width="16" height="18" viewBox="0 0 16 18" fill="white">
+                            <path d="M14.5 8.13a1 1 0 010 1.74l-12 7A1 1 0 011 16V2a1 1 0 011.5-.87l12 7z"/>
+                          </svg>
+                        </div>
+                        <style>{`
+                          @keyframes pulse {
+                            0%, 100% { box-shadow: 0 4px 20px rgba(249,115,22,0.5); }
+                            50% { box-shadow: 0 4px 30px rgba(249,115,22,0.7), 0 0 0 10px rgba(249,115,22,0.1); }
+                          }
+                        `}</style>
+                        <div style={{ flex: 1 }}>
+                          <p style={{ 
+                            color: "white", 
+                            fontWeight: 600, 
+                            fontSize: "13px", 
+                            margin: 0, 
+                            textTransform: "uppercase", 
+                            letterSpacing: "0.08em",
+                            fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                          }}>Live Recording</p>
+                          <p style={{ 
+                            color: "rgba(255,255,255,0.5)", 
+                            fontSize: "12px", 
+                            margin: "2px 0 0",
+                            fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                          }}>{(content as any).callDuration} • Inbound Call</p>
+                        </div>
+                        {/* Animated waveform */}
+                        <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
+                          {[4, 7, 10, 5, 8, 4, 9, 6, 7, 5].map((h, i) => (
+                            <div key={i} style={{
+                              width: "3px",
+                              height: `${h * 2.5}px`,
+                              background: "linear-gradient(180deg, #f97316 0%, rgba(249,115,22,0.4) 100%)",
+                              borderRadius: "2px",
+                              animation: `waveform 1s ease-in-out ${i * 0.1}s infinite alternate`
+                            }} />
+                          ))}
+                        </div>
+                        <style>{`
+                          @keyframes waveform {
+                            0% { transform: scaleY(1); }
+                            100% { transform: scaleY(0.5); }
+                          }
+                        `}</style>
+                      </div>
+                    )}
+
+                    {/* Messages */}
+                    <div style={{ 
+                      height: (content as any).isVoiceCall ? "260px" : "340px", 
+                      overflow: "hidden", 
+                      padding: "20px 14px", 
+                      position: "relative",
+                      background: "linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.3) 100%)"
+                    }}>
+                      {/* Gradient fade at top */}
+                      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to bottom, rgba(13,13,13,1), transparent)", zIndex: 10, pointerEvents: "none" }} />
+                      {/* Gradient fade at bottom */}
+                      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to top, rgba(13,13,13,1), transparent)", zIndex: 10, pointerEvents: "none" }} />
+                      
+                      <div 
+                        style={{ 
+                          display: "flex", 
+                          flexDirection: "column",
+                          animation: `scrollUp ${content.conversation.length * 5}s linear infinite`,
+                        }}
+                      >
+                        <style>{`
+                          @keyframes scrollUp {
+                            0% { transform: translateY(0); }
+                            100% { transform: translateY(-50%); }
+                          }
+                        `}</style>
+                        {/* Double the messages for seamless loop */}
+                        {[...content.conversation, ...content.conversation].map((msg, i) => (
+                        <div key={i} style={{ 
+                          display: "flex", 
+                          justifyContent: msg.sender === "user" ? "flex-end" : msg.sender === "system" ? "center" : "flex-start",
+                          marginBottom: "16px"
+                        }}>
+                          {msg.sender === "system" ? (
+                            <span style={{ 
+                              color: "#f97316", 
+                              fontSize: "11px", 
+                              fontWeight: 600,
+                              padding: "8px 16px", 
+                              background: "linear-gradient(135deg, rgba(249,115,22,0.15) 0%, rgba(249,115,22,0.08) 100%)", 
+                              borderRadius: "20px",
+                              border: "1px solid rgba(249,115,22,0.25)",
+                              textTransform: "uppercase",
+                              letterSpacing: "0.08em",
+                              boxShadow: "0 2px 10px rgba(249,115,22,0.15)",
+                              fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                            }}>
+                              {msg.text}
+                            </span>
+                          ) : (
+                            <div style={{ 
+                              display: "flex", 
+                              gap: "10px", 
+                              maxWidth: "85%", 
+                              flexDirection: msg.sender === "user" ? "row-reverse" : "row",
+                              alignItems: "flex-end"
+                            }}>
+                              {/* Avatar */}
+                              <div style={{ 
+                                width: "32px", 
+                                height: "32px", 
+                                borderRadius: "50%", 
+                                flexShrink: 0,
+                                display: "flex", 
+                                alignItems: "center", 
+                                justifyContent: "center",
+                                fontSize: "11px",
+                                fontWeight: 700,
+                                background: msg.sender === "ai" 
+                                  ? "linear-gradient(135deg, #f97316 0%, #ea580c 100%)" 
+                                  : "linear-gradient(135deg, #4a4a4c 0%, #2c2c2e 100%)",
+                                color: "white",
+                                boxShadow: msg.sender === "ai" 
+                                  ? "0 3px 12px rgba(249,115,22,0.3)" 
+                                  : "0 2px 8px rgba(0,0,0,0.3)",
+                                border: "1px solid rgba(255,255,255,0.1)",
+                                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                              }}>
+                                {msg.sender === "ai" ? "AI" : content.customerName.charAt(0)}
+                              </div>
+                              
+                              {/* Message bubble */}
+                              <div style={{ 
+                                padding: "12px 16px", 
+                                fontSize: "14px", 
+                                lineHeight: 1.5,
+                                borderRadius: "20px",
+                                background: msg.sender === "ai" 
+                                  ? "linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%)" 
+                                  : "linear-gradient(135deg, #3a3a3c 0%, #2c2c2e 100%)",
+                                color: msg.sender === "ai" ? "#1a1a1a" : "white",
+                                borderBottomLeftRadius: msg.sender === "ai" ? "6px" : "20px",
+                                borderBottomRightRadius: msg.sender === "user" ? "6px" : "20px",
+                                boxShadow: msg.sender === "ai" 
+                                  ? "0 4px 16px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08)" 
+                                  : "0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)",
+                                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+                                fontWeight: 400
+                              }}>
+                                {msg.text}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                      </div>
+                    </div>
+
+                    {/* Input Bar */}
+                    <div style={{ 
+                      padding: "14px 16px", 
+                      background: "linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.02) 100%)",
+                      borderTop: "1px solid rgba(255,255,255,0.05)"
+                    }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                        <div style={{ 
+                          width: "36px", 
+                          height: "36px", 
+                          borderRadius: "50%", 
+                          background: "rgba(249,115,22,0.15)", 
+                          border: "1px solid rgba(249,115,22,0.2)",
+                          display: "flex", 
+                          alignItems: "center", 
+                          justifyContent: "center",
+                          cursor: "pointer"
+                        }}>
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                          </svg>
+                        </div>
+                        <div style={{ 
+                          flex: 1, 
+                          background: "rgba(255,255,255,0.05)", 
+                          borderRadius: "20px", 
+                          padding: "11px 18px",
+                          border: "1px solid rgba(255,255,255,0.08)"
+                        }}>
+                          <span style={{ 
+                            color: "rgba(255,255,255,0.35)", 
+                            fontSize: "15px",
+                            fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                          }}>Message</span>
+                        </div>
+                        <div style={{ 
+                          width: "36px", 
+                          height: "36px", 
+                          borderRadius: "50%", 
+                          background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
+                          display: "flex", 
+                          alignItems: "center", 
+                          justifyContent: "center",
+                          cursor: "pointer",
+                          boxShadow: "0 4px 16px rgba(249,115,22,0.4)"
+                        }}>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Home Indicator */}
+                    <div style={{ display: "flex", justifyContent: "center", padding: "10px 0 8px" }}>
+                      <div style={{ 
+                        width: "140px", 
+                        height: "5px", 
+                        backgroundColor: "rgba(255,255,255,0.15)", 
+                        borderRadius: "9999px" 
+                      }} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Content */}
-          <div className="space-y-6">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-6"
-              >
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
-                  {content.headline}
-                </h3>
-                
-                <p className="text-gray-400 text-lg leading-relaxed">
-                  {content.body}
-                </p>
-                
-                <ul className="space-y-4">
-                  {content.stats.map((stat) => (
-                    <li key={stat} className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center border border-orange-500/30">
-                        <Check className="w-3.5 h-3.5 text-orange-500" strokeWidth={3} />
-                      </div>
-                      <span className="text-white font-medium">{stat}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <a
-                  href={content.cta.href}
-                  className="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-400 transition-colors group pt-2"
-                >
-                  {content.cta.label}
-                  <svg 
-                    className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </motion.div>
-            </AnimatePresence>
+          <div style={{ paddingLeft: "20px" }}>
+            {/* Headline */}
+            <h3 style={{ 
+              color: "white", 
+              fontSize: "clamp(32px, 5vw, 52px)", 
+              fontWeight: 700, 
+              marginBottom: "24px", 
+              marginTop: 0,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
+              fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+            }}>
+              {content.headline}
+            </h3>
+            
+            {/* Body */}
+            <p style={{ 
+              color: "rgba(255,255,255,0.55)", 
+              fontSize: "18px", 
+              lineHeight: 1.8, 
+              marginBottom: "40px",
+              maxWidth: "480px",
+              fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+            }}>
+              {content.body}
+            </p>
+            
+            {/* Stats */}
+            <ul style={{ listStyle: "none", padding: 0, margin: "0 0 40px 0" }}>
+              {content.stats.map((stat, i) => (
+                <li key={i} style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: "16px", 
+                  marginBottom: "20px"
+                }}>
+                  <div style={{ 
+                    width: "28px", 
+                    height: "28px", 
+                    borderRadius: "50%", 
+                    background: "linear-gradient(135deg, rgba(249,115,22,0.2) 0%, rgba(249,115,22,0.1) 100%)",
+                    border: "1px solid rgba(249,115,22,0.3)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    boxShadow: "0 2px 10px rgba(249,115,22,0.15)"
+                  }}>
+                    <Check style={{ width: "16px", height: "16px", color: "#f97316" }} strokeWidth={2.5} />
+                  </div>
+                  <span style={{ 
+                    color: "rgba(255,255,255,0.9)", 
+                    fontWeight: 500, 
+                    fontSize: "17px",
+                    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+                  }}>{stat}</span>
+                </li>
+              ))}
+            </ul>
+            
+            {/* CTA Button */}
+            <a 
+              href={content.cta.href} 
+              style={{ 
+                display: "inline-flex", 
+                alignItems: "center", 
+                gap: "10px", 
+                color: "#f97316",
+                fontWeight: 500, 
+                textDecoration: "none", 
+                fontSize: "15px",
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+                letterSpacing: "0.01em",
+                transition: "all 0.3s ease",
+                paddingBottom: "2px",
+                borderBottom: "1px solid rgba(249,115,22,0.3)"
+              }}
+            >
+              {content.cta.label}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
           </div>
 
         </div>
@@ -421,5 +980,3 @@ export function SeeItInAction() {
     </section>
   );
 }
-
-export default SeeItInAction;
