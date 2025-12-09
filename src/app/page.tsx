@@ -5,7 +5,6 @@ import PlatformSection from '@/components/PlatformSection';
 import SeeItInAction from '@/components/SeeItInAction';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import TrustSection from '@/components/TrustSection';
-import AutoMasterSection from '@/components/AutoMasterSection';
 import ResultsProof from '@/components/ResultsProof';
 import IntegrationsSection from '@/components/IntegrationsSection';
 import FAQSection from '@/components/FAQSection';
@@ -29,7 +28,6 @@ export default function Home() {
       {/* 6. What's Costing Your Dealership Sales? */}
       <TrustSection />
       {/* 7. Built by Car People / Who We Are */}
-      <AutoMasterSection />
       {/* 8. Results & Proof (Bento Grid) */}
       <ResultsProof />
       {/* 9. Plug & Play Integrations */}
