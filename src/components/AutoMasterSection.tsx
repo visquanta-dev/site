@@ -6,13 +6,21 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 
 // Animation variants
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 }
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: "easeOut" as const } 
+  }
 };
 
 const fadeInScale = {
   hidden: { opacity: 0, scale: 0.95 },
-  visible: { opacity: 1, scale: 1 }
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" as const }
+  }
 };
 
 const staggerContainer = {
@@ -25,11 +33,13 @@ const staggerContainer = {
 
 const cardVariant = {
   hidden: { opacity: 0, y: 30, scale: 0.97 },
-  visible: { opacity: 1, y: 0, scale: 1 }
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" as const }
+  }
 };
-
-export default function AutoMasterSection() {
-  // ... rest of the file stays exactly the same
 
 export default function AutoMasterSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -83,7 +93,7 @@ export default function AutoMasterSection() {
             </motion.div>
 
             <h3 className="am-problem-headline">
-              What's <span className="am-text-gradient">Costing</span> Your<br />
+              What&apos;s <span className="am-text-gradient">Costing</span> Your<br />
               Dealership Sales?
             </h3>
 
@@ -108,7 +118,7 @@ export default function AutoMasterSection() {
               </div>
               <div className="am-card-number">01</div>
               <h4 className="am-card-title">Slow Inbound Response</h4>
-              <p className="am-card-text">You're paying for leads. Your team takes hours to respond. Competitors get there first.</p>
+              <p className="am-card-text">You&apos;re paying for leads. Your team takes hours to respond. Competitors get there first.</p>
               <div className="am-card-stat">
                 <span className="am-stat-number">78%</span>
                 <span className="am-stat-label">of leads buy from first responder</span>
@@ -196,16 +206,16 @@ export default function AutoMasterSection() {
                 <p className="wwa-lead">
                   Visquanta was founded by automotive veterans who spent years watching dealerships
                   struggle with the same problems: missed leads, disconnected tools, and vendors
-                  who don't understand the business.
+                  who don&apos;t understand the business.
                 </p>
                 <p>
-                  We've sat in your shoes. We know what it's like to lose a deal because
+                  We&apos;ve sat in your shoes. We know what it&apos;s like to lose a deal because
                   a lead sat in a queue for four hours. We know the frustration of paying
-                  five different vendors for tools that don't talk to each other.
+                  five different vendors for tools that don&apos;t talk to each other.
                 </p>
                 <p>
-                  That's why we built AutoMaster Suite—a single platform designed specifically
-                  for automotive retail, by people who've worked the desk, managed the BDC,
+                  That&apos;s why we built AutoMaster Suite—a single platform designed specifically
+                  for automotive retail, by people who&apos;ve worked the desk, managed the BDC,
                   and felt the pressure of month-end.
                 </p>
               </div>
