@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   /* Premium Automotive Palette */
@@ -119,7 +117,7 @@
 }
 
 body {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--carbon);
   color: var(--platinum);
   overflow-x: hidden;
@@ -188,7 +186,7 @@ body {
   padding: 10px 16px;
   background: transparent;
   border: none;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: var(--silver);
@@ -245,14 +243,14 @@ body {
 }
 
 .vq-dropdown-label {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: var(--white);
 }
 
 .vq-dropdown-desc {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   color: var(--chrome);
 }
@@ -267,7 +265,7 @@ body {
 
 .vq-nav-login {
   padding: 10px 20px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: var(--silver);
@@ -286,7 +284,7 @@ body {
   padding: 10px 20px;
   background: var(--amber);
   border-radius: 8px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--carbon);
@@ -371,7 +369,7 @@ body {
   padding: 16px 0;
   background: transparent;
   border: none;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   font-weight: 500;
   color: var(--silver);
@@ -402,7 +400,7 @@ body {
 .vq-mobile-dropdown-item {
   display: block;
   padding: 12px 16px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   color: var(--chrome);
   text-decoration: none;
@@ -427,7 +425,7 @@ body {
   display: block;
   padding: 14px 20px;
   text-align: center;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 500;
   color: var(--silver);
@@ -446,7 +444,7 @@ body {
   display: block;
   padding: 14px 20px;
   text-align: center;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 600;
   color: var(--carbon);
@@ -769,14 +767,14 @@ body {
 }
 
 .nav-logo-mark span {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 28px;
   font-weight: 700;
   color: var(--amber);
 }
 
 .nav-logo-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -791,7 +789,7 @@ body {
 }
 
 .nav-link {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.15em;
@@ -821,7 +819,7 @@ body {
   background: transparent;
   border: 1px solid var(--amber);
   color: var(--amber);
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -873,7 +871,7 @@ body {
 }
 
 .hero-eyebrow-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.35em;
@@ -882,7 +880,7 @@ body {
 }
 
 .hero-headline {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(52px, 8vw, 100px);
   font-weight: 500;
   line-height: 1.0;
@@ -898,7 +896,7 @@ body {
 }
 
 .hero-subheadline {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 300;
   line-height: 1.9;
@@ -928,7 +926,7 @@ body {
   background:
     linear-gradient(135deg, var(--amber-bright) 0%, var(--amber) 100%);
   color: var(--carbon);
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -992,7 +990,7 @@ body {
   background: transparent;
   border: 1px solid var(--titanium);
   color: var(--white);
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -1031,9 +1029,9 @@ body {
 }
 
 /* ========================================
-   HERO METRICS
+   HERO TRUST BAR - Social Proof
    ======================================== */
-.hero-metrics {
+.hero-trust-bar {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -1043,82 +1041,178 @@ body {
 }
 
 @media (max-width: 1024px) {
-  .hero-metrics { padding: 0 32px; }
+  .hero-trust-bar { padding: 0 32px; }
 }
 
-.metrics-bar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--gunmetal);
-  background: linear-gradient(180deg, rgba(5,5,5,0.95) 0%, var(--carbon) 100%);
-  backdrop-filter: blur(20px);
-}
-
-@media (max-width: 768px) {
-  .metrics-bar { grid-template-columns: repeat(2, 1fr); }
-}
-
-.metric {
-  padding: 36px 32px;
-  border-right: 1px solid var(--gunmetal);
-  position: relative;
+.trust-bar-inner {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 40px 56px;
+  border-top: 1px solid var(--gunmetal);
+  background: linear-gradient(180deg, rgba(5,5,5,0.97) 0%, var(--carbon) 100%);
+  backdrop-filter: blur(24px);
 }
-
-.metric:last-child { border-right: none; }
 
 @media (max-width: 768px) {
-  .metric { padding: 24px 20px; gap: 16px; }
-  .metric:nth-child(2) { border-right: none; }
-  .metric:nth-child(3),
-  .metric:nth-child(4) { border-top: 1px solid var(--gunmetal); }
+  .trust-bar-inner {
+    flex-direction: column;
+    gap: 32px;
+    padding: 32px 24px;
+    text-align: center;
+  }
 }
 
-/* Instrument Cluster Gauge */
-.metric-gauge {
-  width: 56px;
-  height: 56px;
-  flex-shrink: 0;
-  position: relative;
+/* Hero Stat - One Big Number */
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.gauge-ring {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-  filter: drop-shadow(0 0 8px rgba(255, 116, 4, 0.3));
-}
-
-.metric-data {
-  flex: 1;
-}
-
-.metric-value {
-  font-family: var(--font-body), 'Inter', sans-serif;
-  font-size: 42px;
-  font-weight: 300;
+.hero-stat-number {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 64px;
+  font-weight: 200;
   color: var(--white);
   line-height: 1;
-  margin-bottom: 6px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: baseline;
+}
+
+@media (max-width: 1024px) {
+  .hero-stat-number { font-size: 52px; }
 }
 
 @media (max-width: 768px) {
-  .metric-value { font-size: 32px; }
-  .metric-gauge { width: 44px; height: 44px; }
+  .hero-stat-number { font-size: 48px; justify-content: center; }
 }
 
-.metric-value span { color: var(--amber-bright); }
+.stat-prefix {
+  font-size: 0.6em;
+  font-weight: 300;
+  color: var(--amber);
+  margin-right: 4px;
+}
 
-.metric-label {
-  font-family: var(--font-body), 'Inter', sans-serif;
-  font-size: 10px;
+.stat-value {
+  background: linear-gradient(180deg, var(--white) 0%, var(--silver) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-suffix {
+  font-size: 0.45em;
+  font-weight: 500;
+  color: var(--amber-bright);
+  margin-left: 2px;
+  letter-spacing: 0;
+}
+
+.hero-stat-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--steel);
+}
+
+/* Divider */
+.trust-divider {
+  width: 2px;
+  height: 72px;
+  background: linear-gradient(180deg, transparent 0%, var(--amber) 30%, var(--amber) 70%, transparent 100%);
+  flex-shrink: 0;
+  opacity: 0.35;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .trust-divider {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--amber) 30%, var(--amber) 70%, transparent 100%);
+  }
+}
+
+/* Social Proof */
+.social-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+  .social-proof { align-items: center; }
+}
+
+.social-proof-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--silver);
+  letter-spacing: 0.01em;
+}
+
+.proof-highlight {
+  font-weight: 600;
+  color: var(--amber-bright);
+}
+
+.dealer-logos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-item {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, var(--graphite) 0%, var(--gunmetal) 100%);
+  border: 1px solid var(--gunmetal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.logo-item:hover {
+  border-color: var(--amber);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 116, 4, 0.15);
+}
+
+.dealer-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--steel);
+  transition: color 0.3s ease;
+}
+
+.logo-item:hover .dealer-icon {
+  color: var(--amber);
+}
+
+.logo-more {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, var(--amber-bright) 0%, var(--amber) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--carbon);
+  letter-spacing: -0.02em;
+  box-shadow: 0 4px 12px rgba(255, 116, 4, 0.3);
 }
 
 /* ========================================
@@ -1140,7 +1234,7 @@ body {
 }
 
 .trust-label {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.25em;
@@ -1159,7 +1253,7 @@ body {
 }
 
 .trust-logo {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.15em;
@@ -1214,7 +1308,7 @@ body {
 }
 
 .platform-eyebrow-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.35em;
@@ -1223,7 +1317,7 @@ body {
 }
 
 .platform-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(44px, 6vw, 72px);
   font-weight: 500;
   color: var(--white);
@@ -1233,7 +1327,7 @@ body {
 }
 
 .platform-subtitle {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 300;
   line-height: 1.8;
@@ -1318,7 +1412,7 @@ body {
 }
 
 .spec-badge-label {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 8px;
   font-weight: 600;
   letter-spacing: 0.3em;
@@ -1327,7 +1421,7 @@ body {
 }
 
 .spec-badge-number {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 48px;
   font-weight: 400;
   color: var(--gunmetal);
@@ -1356,7 +1450,7 @@ body {
 }
 
 .product-number {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 80px;
   font-weight: 400;
   color: var(--graphite);
@@ -1429,7 +1523,7 @@ body {
 }
 
 .product-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 32px;
   font-weight: 500;
   color: var(--white);
@@ -1438,7 +1532,7 @@ body {
 }
 
 .product-description {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 300;
   line-height: 1.8;
@@ -1467,7 +1561,7 @@ body {
   padding: 10px 18px;
   background: var(--graphite);
   border-left: none;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -1479,7 +1573,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -1508,7 +1602,7 @@ body {
 }
 
 .cta-card-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 36px;
   font-weight: 500;
   color: var(--white);
@@ -1516,7 +1610,7 @@ body {
 }
 
 .cta-card-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 300;
   line-height: 1.8;
@@ -1535,7 +1629,7 @@ body {
 }
 
 .footer-copyright {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -1719,7 +1813,7 @@ body {
 }
 
 .trust-label {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.35em;
@@ -1751,7 +1845,7 @@ body {
 }
 
 .trust-logo {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -1846,7 +1940,7 @@ body {
 }
 
 .platform-eyebrow-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.4em;
@@ -1855,7 +1949,7 @@ body {
 }
 
 .platform-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(48px, 7vw, 80px);
   font-weight: 500;
   color: var(--white);
@@ -1865,7 +1959,7 @@ body {
 }
 
 .platform-subtitle {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 19px;
   font-weight: 300;
   line-height: 1.9;
@@ -1963,7 +2057,7 @@ body {
 }
 
 .spec-badge-label {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.35em;
@@ -1972,7 +2066,7 @@ body {
 }
 
 .spec-badge-number {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 56px;
   font-weight: 300;
   color: var(--graphite);
@@ -2071,7 +2165,7 @@ body {
 }
 
 .product-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 34px;
   font-weight: 500;
   color: var(--white);
@@ -2085,7 +2179,7 @@ body {
 }
 
 .product-description {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 300;
   line-height: 1.9;
@@ -2120,7 +2214,7 @@ body {
   padding: 12px 20px;
   background: linear-gradient(135deg, var(--graphite) 0%, var(--obsidian) 100%);
   border-left: none;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -2138,7 +2232,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -2204,7 +2298,7 @@ body {
 }
 
 .cta-card-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 40px;
   font-weight: 500;
   color: var(--white);
@@ -2213,7 +2307,7 @@ body {
 }
 
 .cta-card-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   font-weight: 300;
   line-height: 1.9;
@@ -2301,14 +2395,14 @@ body {
 }
 
 .footer-logo-mark span {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 24px;
   font-weight: 700;
   color: var(--amber);
 }
 
 .footer-logo-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -2317,7 +2411,7 @@ body {
 }
 
 .footer-tagline {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 300;
   line-height: 1.7;
@@ -2337,7 +2431,7 @@ body {
 }
 
 .footer-column-title {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.3em;
@@ -2357,7 +2451,7 @@ body {
 }
 
 .footer-link-list a {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: var(--silver);
@@ -2404,7 +2498,7 @@ body {
 }
 
 .footer-copyright {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.08em;
@@ -2418,7 +2512,7 @@ body {
 }
 
 .footer-legal-links a {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -2502,7 +2596,7 @@ body {
   padding: 10px 20px;
   border: 1px solid var(--amber);
   background: rgba(255, 116, 4, 0.08);
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.25em;
@@ -2512,7 +2606,7 @@ body {
 }
 
 .am-headline {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(40px, 5vw, 64px);
   font-weight: 500;
   line-height: 1.05;
@@ -2528,7 +2622,7 @@ body {
 }
 
 .am-subheadline {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 300;
   line-height: 1.8;
@@ -2564,7 +2658,7 @@ body {
 }
 
 .am-stat-value {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 32px;
   font-weight: 500;
   color: var(--white);
@@ -2577,7 +2671,7 @@ body {
 }
 
 .am-stat-label {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -2594,7 +2688,7 @@ body {
 }
 
 .am-trust-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--steel);
   letter-spacing: 0.02em;
@@ -2631,7 +2725,7 @@ body {
   left: 24px;
   background: var(--carbon);
   padding: 4px 12px;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.3em;
@@ -2653,7 +2747,7 @@ body {
 
 .am-chat-bubble {
   padding: 14px 18px;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   line-height: 1.5;
   max-width: 85%;
@@ -2682,7 +2776,7 @@ body {
 }
 
 .am-integrations-label {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.3em;
@@ -2700,7 +2794,7 @@ body {
 }
 
 .am-logo {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.15em;
@@ -2734,7 +2828,7 @@ body {
 }
 
 .am-section-eyebrow span {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.35em;
@@ -2743,7 +2837,7 @@ body {
 }
 
 .am-section-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 500;
   color: var(--white);
@@ -2760,7 +2854,7 @@ body {
   background: linear-gradient(135deg, rgba(255, 116, 4, 0.08) 0%, rgba(255, 116, 4, 0.02) 100%);
   border-left: 3px solid var(--amber);
   padding: 20px 24px;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   line-height: 1.7;
   color: var(--platinum);
@@ -2844,7 +2938,7 @@ body {
 }
 
 .am-badge-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -2853,7 +2947,7 @@ body {
 }
 
 .am-problem-headline {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(36px, 5vw, 64px);
   font-weight: 600;
   color: var(--white);
@@ -2870,7 +2964,7 @@ body {
 }
 
 .am-problem-subtext {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   color: var(--silver);
   max-width: 500px;
@@ -2981,7 +3075,7 @@ body {
   position: absolute;
   top: 24px;
   right: 24px;
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--titanium);
@@ -2994,7 +3088,7 @@ body {
 }
 
 .am-card-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 20px;
   font-weight: 600;
   color: var(--white);
@@ -3003,7 +3097,7 @@ body {
 }
 
 .am-card-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   line-height: 1.7;
   color: var(--chrome);
@@ -3019,14 +3113,14 @@ body {
 }
 
 .am-stat-number {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 24px;
   font-weight: 700;
   color: var(--amber);
 }
 
 .am-stat-label {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   color: var(--steel);
   text-transform: uppercase;
@@ -3084,7 +3178,7 @@ body {
   position: absolute;
   top: 20px;
   right: 24px;
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 48px;
   font-weight: 300;
   color: var(--gunmetal);
@@ -3097,7 +3191,7 @@ body {
 }
 
 .am-problem-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 22px;
   font-weight: 500;
   color: var(--white);
@@ -3105,7 +3199,7 @@ body {
 }
 
 .am-problem-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   line-height: 1.7;
   color: var(--silver);
@@ -3170,7 +3264,7 @@ body {
 }
 
 .am-solution-headline {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(36px, 5vw, 64px);
   font-weight: 600;
   color: var(--white);
@@ -3187,7 +3281,7 @@ body {
 }
 
 .am-solution-subtext {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   color: var(--silver);
   max-width: 600px;
@@ -3267,7 +3361,7 @@ body {
 }
 
 .am-feature-content h4 {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: var(--white);
@@ -3275,7 +3369,7 @@ body {
 }
 
 .am-feature-content p {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   color: var(--chrome);
   line-height: 1.5;
@@ -3311,7 +3405,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -3356,7 +3450,7 @@ body {
 }
 
 .am-video-container .am-video-caption {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--chrome);
   text-align: center;
@@ -3397,7 +3491,7 @@ body {
 }
 
 .am-quote-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 20px;
   font-weight: 400;
   font-style: italic;
@@ -3420,7 +3514,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: white;
@@ -3433,14 +3527,14 @@ body {
 }
 
 .am-author-name {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: var(--white);
 }
 
 .am-author-title {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--chrome);
 }
@@ -3472,7 +3566,7 @@ body {
 }
 
 .am-solution-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   line-height: 1.8;
   color: var(--silver);
@@ -3489,7 +3583,7 @@ body {
   position: absolute;
   top: 0;
   left: 24px;
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 72px;
   color: var(--amber);
   opacity: 0.3;
@@ -3497,7 +3591,7 @@ body {
 }
 
 .am-quote p {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 17px;
   font-style: italic;
   line-height: 1.7;
@@ -3506,7 +3600,7 @@ body {
 }
 
 .am-quote cite {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-style: normal;
   color: var(--amber);
@@ -3568,7 +3662,7 @@ body {
 }
 
 .am-video-caption {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -3609,7 +3703,7 @@ body {
 }
 
 .am-product-number {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 64px;
   font-weight: 300;
   color: var(--gunmetal);
@@ -3618,7 +3712,7 @@ body {
 }
 
 .am-product-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 32px;
   font-weight: 500;
   color: var(--white);
@@ -3626,7 +3720,7 @@ body {
 }
 
 .am-product-text {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   line-height: 1.7;
   color: var(--silver);
@@ -3670,7 +3764,7 @@ body {
   padding: 16px;
   background: linear-gradient(135deg, rgba(255, 116, 4, 0.15) 0%, rgba(255, 116, 4, 0.05) 100%);
   border-left: 3px solid var(--amber);
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   color: var(--platinum);
 }
@@ -3689,7 +3783,7 @@ body {
   padding: 14px 18px;
   background: var(--amber);
   color: var(--carbon);
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   line-height: 1.5;
   border-radius: 16px 16px 4px 16px;
@@ -3705,7 +3799,7 @@ body {
 }
 
 .am-comparison-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 28px;
   font-weight: 500;
   color: var(--white);
@@ -3729,7 +3823,7 @@ body {
 
 .am-comparison-old h5,
 .am-comparison-new h5 {
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.25em;
@@ -3754,7 +3848,7 @@ body {
 .am-comparison-old li,
 .am-comparison-new li {
   padding: 14px 0;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   border-bottom: 1px solid var(--gunmetal);
   display: flex;
@@ -3785,7 +3879,7 @@ body {
 }
 
 .am-comparison-vs {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 24px;
   font-weight: 500;
   color: var(--amber);
@@ -3848,7 +3942,7 @@ body {
 
 .am-blog-tag {
   display: inline-block;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.25em;
@@ -3858,7 +3952,7 @@ body {
 }
 
 .am-blog-title {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 500;
   color: var(--white);
@@ -3875,7 +3969,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   color: var(--steel);
 }
@@ -3934,7 +4028,7 @@ body {
 }
 
 .am-cta-headline {
-  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 500;
   color: var(--white);
@@ -3957,7 +4051,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-body), 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 500;
   color: var(--platinum);
@@ -4008,7 +4102,7 @@ body {
   border: 1px solid var(--gunmetal);
   padding: 8px 20px;
   border-radius: 50px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: var(--chrome);
@@ -4031,7 +4125,7 @@ body {
 }
 
 .faq-title {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(32px, 5vw, 48px);
   font-weight: 500;
   color: var(--white);
@@ -4048,7 +4142,7 @@ body {
 }
 
 .faq-subtitle {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   color: var(--silver);
   max-width: 600px;
@@ -4092,7 +4186,7 @@ body {
 }
 
 .faq-question-text {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 17px;
   font-weight: 500;
   color: var(--platinum);
@@ -4141,7 +4235,7 @@ body {
 
 .faq-answer p {
   padding: 0 28px 24px 28px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   color: var(--silver);
   line-height: 1.8;
@@ -4156,7 +4250,7 @@ body {
 }
 
 .faq-cta-text {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   color: var(--chrome);
   margin-bottom: 16px;
@@ -4166,7 +4260,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: var(--amber);
@@ -4261,7 +4355,7 @@ body {
   border: 1px solid var(--gunmetal);
   padding: 8px 20px;
   border-radius: 50px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: var(--chrome);
@@ -4277,7 +4371,7 @@ body {
 }
 
 .testimonials-title {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(32px, 5vw, 48px);
   font-weight: 500;
   color: var(--white);
@@ -4294,7 +4388,7 @@ body {
 }
 
 .testimonials-subtitle {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   color: var(--silver);
   max-width: 600px;
@@ -4349,7 +4443,7 @@ body {
 }
 
 .testimonial-metric-value {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 24px;
   font-weight: 600;
   color: var(--amber);
@@ -4357,7 +4451,7 @@ body {
 }
 
 .testimonial-metric-label {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   color: var(--chrome);
   text-transform: uppercase;
@@ -4366,7 +4460,7 @@ body {
 }
 
 .testimonial-quote {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   color: var(--silver);
   line-height: 1.7;
@@ -4389,7 +4483,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--carbon);
@@ -4403,20 +4497,20 @@ body {
 }
 
 .testimonial-name {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 600;
   color: var(--white);
 }
 
 .testimonial-role {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--chrome);
 }
 
 .testimonial-company {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   color: var(--amber);
   font-weight: 500;
@@ -4438,7 +4532,7 @@ body {
 }
 
 .testimonials-stat-value {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 36px;
   font-weight: 600;
   color: var(--white);
@@ -4447,7 +4541,7 @@ body {
 }
 
 .testimonials-stat-label {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--chrome);
   text-transform: uppercase;
@@ -4533,7 +4627,7 @@ body {
   border: 1px solid var(--gunmetal);
   padding: 8px 20px;
   border-radius: 50px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: var(--chrome);
@@ -4549,7 +4643,7 @@ body {
 }
 
 .case-studies-title {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(32px, 5vw, 48px);
   font-weight: 500;
   color: var(--white);
@@ -4566,7 +4660,7 @@ body {
 }
 
 .case-studies-subtitle {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   color: var(--silver);
   max-width: 650px;
@@ -4613,7 +4707,7 @@ body {
 }
 
 .case-study-name {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: var(--white);
@@ -4621,13 +4715,13 @@ body {
 }
 
 .case-study-location {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--chrome);
 }
 
 .case-study-number {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--amber);
@@ -4650,7 +4744,7 @@ body {
 }
 
 .case-study-label {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   color: var(--amber);
@@ -4660,7 +4754,7 @@ body {
 }
 
 .case-study-text {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   color: var(--silver);
   line-height: 1.6;
@@ -4685,7 +4779,7 @@ body {
 }
 
 .case-study-metric-value {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 22px;
   font-weight: 600;
   color: var(--white);
@@ -4693,7 +4787,7 @@ body {
 }
 
 .case-study-metric-label {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   color: var(--chrome);
 }
@@ -4705,7 +4799,7 @@ body {
 }
 
 .case-study-quote p {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-style: italic;
   color: var(--silver);
@@ -4720,14 +4814,14 @@ body {
 }
 
 .case-study-quote-name {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 600;
   color: var(--platinum);
 }
 
 .case-study-quote-title {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   color: var(--chrome);
 }
@@ -4740,7 +4834,7 @@ body {
   padding: 16px 28px;
   background: var(--graphite);
   border-top: 1px solid var(--gunmetal);
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--amber);
@@ -4767,7 +4861,7 @@ body {
 }
 
 .case-studies-cta-text {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   color: var(--silver);
   margin-bottom: 20px;
@@ -4902,7 +4996,7 @@ body {
 }
 
 .hiw-eyebrow-text {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.25em;
@@ -4911,7 +5005,7 @@ body {
 }
 
 .hiw-title {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(36px, 5vw, 56px);
   font-weight: 500;
   color: var(--white);
@@ -4929,7 +5023,7 @@ body {
 }
 
 .hiw-subtitle {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 400;
   color: var(--silver);
@@ -5015,7 +5109,7 @@ body {
 }
 
 .hiw-marker-duration {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 500;
   color: var(--chrome);
@@ -5082,7 +5176,7 @@ body {
 }
 
 .hiw-step-number-badge span {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: var(--amber);
@@ -5096,7 +5190,7 @@ body {
 
 .hiw-step-subtitle {
   display: inline-block;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -5106,7 +5200,7 @@ body {
 }
 
 .hiw-step-title {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 26px;
   font-weight: 600;
   color: var(--white);
@@ -5115,7 +5209,7 @@ body {
 }
 
 .hiw-step-desc {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 400;
   color: var(--silver);
@@ -5150,7 +5244,7 @@ body {
 
 .hiw-stat-value {
   display: block;
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 42px;
   font-weight: 500;
   color: var(--amber);
@@ -5161,7 +5255,7 @@ body {
 
 .hiw-stat-label {
   display: block;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: var(--chrome);
@@ -5274,6 +5368,715 @@ body {
 
 
 /* ===========================================
+   HOW IT WORKS - HORIZONTAL TIMELINE LAYOUT
+   =========================================== */
+
+.hiw-section.hiw-horizontal {
+  padding: 140px 24px;
+}
+
+.hiw-section.hiw-horizontal .hiw-container {
+  max-width: 1400px;
+}
+
+/* Horizontal Timeline */
+.hiw-timeline {
+  position: relative;
+  margin-top: 60px;
+}
+
+/* Progress track - horizontal line */
+.hiw-timeline-track {
+  position: absolute;
+  top: 32px;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: linear-gradient(90deg,
+    var(--amber) 0%,
+    var(--amber-bright) 50%,
+    var(--amber) 100%
+  );
+  transform-origin: left center;
+  z-index: 1;
+}
+
+.hiw-timeline-track::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(90deg,
+    rgba(255, 116, 4, 0.3) 0%,
+    rgba(255, 116, 4, 0.1) 50%,
+    rgba(255, 116, 4, 0.3) 100%
+  );
+  filter: blur(8px);
+  border-radius: 4px;
+}
+
+/* Steps container - horizontal grid */
+.hiw-timeline-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Individual step */
+.hiw-timeline-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* Step marker circle */
+.hiw-timeline-marker {
+  width: 64px;
+  height: 64px;
+  background: var(--obsidian);
+  border: 2px solid var(--amber);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 3;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hiw-timeline-marker::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 116, 4, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hiw-timeline-step:hover .hiw-timeline-marker {
+  transform: scale(1.1);
+  border-color: var(--amber-bright);
+  box-shadow: 0 0 30px rgba(255, 116, 4, 0.4);
+}
+
+.hiw-timeline-step:hover .hiw-timeline-marker::before {
+  opacity: 1;
+}
+
+.hiw-timeline-number {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+}
+
+/* Step content */
+.hiw-timeline-content {
+  max-width: 200px;
+}
+
+.hiw-timeline-duration {
+  display: inline-block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  background: rgba(255, 116, 4, 0.1);
+  padding: 6px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.hiw-timeline-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin: 0 0 12px 0;
+  letter-spacing: -0.02em;
+}
+
+.hiw-timeline-desc {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--silver);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Connector arrows between steps - hidden, line is enough */
+.hiw-timeline-connector {
+  display: none;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1200px) {
+  .hiw-timeline-steps {
+    gap: 12px;
+  }
+
+  .hiw-timeline-content {
+    max-width: 160px;
+  }
+
+  .hiw-timeline-title {
+    font-size: 18px;
+  }
+
+  .hiw-timeline-desc {
+    font-size: 13px;
+  }
+
+  .hiw-timeline-connector {
+    display: none;
+  }
+}
+
+/* Responsive - Mobile: Stack vertically */
+@media (max-width: 900px) {
+  .hiw-section.hiw-horizontal {
+    padding: 100px 20px;
+  }
+
+  .hiw-timeline-track {
+    display: none;
+  }
+
+  .hiw-timeline-steps {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .hiw-timeline-step {
+    flex-direction: row;
+    text-align: left;
+    gap: 20px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+  }
+
+  .hiw-timeline-marker {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 0;
+  }
+
+  .hiw-timeline-content {
+    max-width: none;
+    flex: 1;
+  }
+
+  .hiw-timeline-duration {
+    margin-bottom: 8px;
+  }
+}
+
+
+/* ===========================================
+   JOURNEY SECTION - CINEMATIC CAR TIMELINE
+   Premium $150k design with scroll-driven car
+   =========================================== */
+
+.journey-section {
+  position: relative;
+  padding: 160px 24px 120px;
+  overflow: hidden;
+  background: #030303;
+  min-height: 100vh;
+}
+
+/* Cinematic background layers */
+.journey-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.journey-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 100%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 50% at 80% 20%, rgba(249, 115, 22, 0.05) 0%, transparent 40%),
+    linear-gradient(180deg, #030303 0%, #0a0a0a 50%, #030303 100%);
+}
+
+.journey-bg-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+.journey-road-glow {
+  position: absolute;
+  bottom: 35%;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: radial-gradient(ellipse 100% 100% at 50% 100%, rgba(249, 115, 22, 0.06) 0%, transparent 70%);
+}
+
+.journey-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.journey-header {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.journey-eyebrow {
+  display: inline-block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.journey-eyebrow::before,
+.journey-eyebrow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.5));
+}
+
+.journey-eyebrow::before {
+  right: calc(100% + 20px);
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.5));
+}
+
+.journey-eyebrow::after {
+  left: calc(100% + 20px);
+  background: linear-gradient(270deg, transparent, rgba(249, 115, 22, 0.5));
+}
+
+.journey-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 600;
+  color: white;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+
+.journey-title-accent {
+  background: linear-gradient(135deg, #f97316 0%, #fbbf24 50%, #f97316 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.journey-subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+}
+
+/* The Road */
+.journey-road {
+  position: relative;
+  padding: 80px 0 60px;
+  margin-bottom: 80px;
+}
+
+/* Road line - the actual path */
+.journey-road-line {
+  position: absolute;
+  top: 50px;
+  left: 5%;
+  right: 5%;
+  height: 3px;
+  background: linear-gradient(90deg,
+    rgba(249, 115, 22, 0.2) 0%,
+    rgba(249, 115, 22, 0.6) 20%,
+    rgba(249, 115, 22, 0.6) 80%,
+    rgba(249, 115, 22, 0.2) 100%
+  );
+  transform-origin: left center;
+  border-radius: 2px;
+}
+
+.journey-road-line::before {
+  content: '';
+  position: absolute;
+  inset: -8px -20px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(249, 115, 22, 0.15) 20%,
+    rgba(249, 115, 22, 0.15) 80%,
+    transparent 100%
+  );
+  filter: blur(12px);
+  border-radius: 20px;
+}
+
+/* The traveling car */
+.journey-car {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  z-index: 10;
+  transform: translateX(-50%);
+  will-change: left;
+}
+
+.journey-car-icon {
+  width: 80px;
+  height: 32px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.journey-car-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 60px;
+  background: radial-gradient(ellipse, rgba(249, 115, 22, 0.3) 0%, transparent 70%);
+  filter: blur(15px);
+  pointer-events: none;
+}
+
+.journey-car-trail {
+  position: absolute;
+  top: 50%;
+  right: 60px;
+  transform: translateY(-50%);
+  width: 150px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.4));
+  filter: blur(3px);
+  border-radius: 2px;
+}
+
+/* Milestone markers */
+.journey-milestones {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 5;
+}
+
+.journey-milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Milestone post/marker */
+.milestone-post {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.milestone-beacon {
+  width: 16px;
+  height: 16px;
+  background: var(--amber);
+  border-radius: 50%;
+  box-shadow:
+    0 0 20px rgba(249, 115, 22, 0.6),
+    0 0 40px rgba(249, 115, 22, 0.3);
+  animation: pulse-beacon 2s ease-in-out infinite;
+}
+
+@keyframes pulse-beacon {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(249, 115, 22, 0.6),
+      0 0 40px rgba(249, 115, 22, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(249, 115, 22, 0.8),
+      0 0 60px rgba(249, 115, 22, 0.4);
+  }
+}
+
+.milestone-number {
+  margin-top: 16px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.05em;
+}
+
+/* Milestone content card */
+.milestone-card {
+  text-align: center;
+  padding: 24px 16px;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  min-height: 160px;
+}
+
+.milestone-card:hover {
+  border-color: rgba(249, 115, 22, 0.3);
+  background: linear-gradient(180deg,
+    rgba(249, 115, 22, 0.08) 0%,
+    rgba(249, 115, 22, 0.02) 100%
+  );
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.milestone-day {
+  display: inline-block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--amber);
+  background: rgba(249, 115, 22, 0.15);
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.milestone-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+
+.milestone-desc {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Destination flag */
+.journey-destination {
+  position: absolute;
+  top: 20px;
+  right: 2%;
+  z-index: 6;
+}
+
+.destination-flag {
+  background: linear-gradient(135deg, var(--amber) 0%, #fbbf24 100%);
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 20px rgba(249, 115, 22, 0.4),
+    0 0 40px rgba(249, 115, 22, 0.2);
+  animation: flag-glow 2s ease-in-out infinite;
+}
+
+@keyframes flag-glow {
+  0%, 100% {
+    box-shadow:
+      0 4px 20px rgba(249, 115, 22, 0.4),
+      0 0 40px rgba(249, 115, 22, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 4px 30px rgba(249, 115, 22, 0.6),
+      0 0 60px rgba(249, 115, 22, 0.3);
+  }
+}
+
+.destination-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 0.1em;
+}
+
+/* Bottom stats */
+.journey-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+}
+
+.journey-stat {
+  text-align: center;
+}
+
+.journey-stat .stat-value {
+  display: block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: white;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.journey-stat .stat-label {
+  display: block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-top: 8px;
+}
+
+.journey-stat-divider {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .journey-milestones {
+    gap: 16px;
+  }
+
+  .milestone-card {
+    padding: 20px 12px;
+    min-height: 140px;
+  }
+
+  .milestone-title {
+    font-size: 18px;
+  }
+
+  .milestone-desc {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  .journey-section {
+    padding: 100px 20px 80px;
+  }
+
+  .journey-header {
+    margin-bottom: 60px;
+  }
+
+  .journey-road-line {
+    display: none;
+  }
+
+  .journey-car {
+    display: none;
+  }
+
+  .journey-destination {
+    display: none;
+  }
+
+  .journey-milestones {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .milestone-post {
+    display: none;
+  }
+
+  .milestone-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+    padding: 24px;
+    min-height: auto;
+  }
+
+  .milestone-card::before {
+    content: attr(data-number);
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(249, 115, 22, 0.15);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    border-radius: 12px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--amber);
+  }
+
+  .journey-stats {
+    gap: 32px;
+  }
+
+  .journey-stat .stat-value {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .journey-stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .journey-stat-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  }
+}
+
+
+/* ===========================================
    INTEGRATIONS SECTION
    =========================================== */
 
@@ -5311,7 +6114,7 @@ body {
   border: 1px solid var(--gunmetal);
   padding: 8px 20px;
   border-radius: 50px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: var(--chrome);
@@ -5327,7 +6130,7 @@ body {
 }
 
 .integrations-title {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(32px, 5vw, 48px);
   font-weight: 500;
   color: var(--white);
@@ -5344,7 +6147,7 @@ body {
 }
 
 .integrations-subtitle {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   color: var(--silver);
   max-width: 650px;
@@ -5378,7 +6181,7 @@ body {
 }
 
 .integration-category-title {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: var(--white);
@@ -5386,7 +6189,7 @@ body {
 }
 
 .integration-category-desc {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--chrome);
 }
@@ -5411,7 +6214,7 @@ body {
 }
 
 .integration-logo-text {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: var(--silver);
@@ -5457,7 +6260,7 @@ body {
 }
 
 .integrations-cta-text h4 {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: var(--white);
@@ -5465,7 +6268,7 @@ body {
 }
 
 .integrations-cta-text p {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   color: var(--silver);
   margin: 0;
@@ -5479,7 +6282,7 @@ body {
   color: var(--carbon);
   padding: 12px 24px;
   border-radius: 8px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
@@ -5608,7 +6411,7 @@ body {
 }
 
 .int-title {
-  font-family: "Outfit", "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(48px, 7vw, 80px);
   font-weight: 700;
   color: var(--white);
@@ -5630,7 +6433,7 @@ body {
 }
 
 .int-desc {
-  font-family: "DM Sans", "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   color: var(--silver);
   line-height: 1.7;
@@ -5655,7 +6458,7 @@ body {
 }
 
 .int-stat-num {
-  font-family: "Outfit", "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 32px;
   font-weight: 700;
   color: var(--white);
@@ -6255,7 +7058,7 @@ body {
 }
 
 .wwa-headline {
-  font-family: "Outfit", "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(36px, 5vw, 52px);
   font-weight: 600;
   color: var(--white);
@@ -6777,7 +7580,7 @@ body {
 
 .spb-label {
   text-align: center;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: var(--chrome);
@@ -6825,7 +7628,7 @@ body {
 }
 
 .spb-logo-text {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: var(--silver);
@@ -6889,7 +7692,7 @@ body {
 }
 
 .sia-eyebrow span {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -6898,7 +7701,7 @@ body {
 }
 
 .sia-title {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(36px, 5vw, 52px);
   font-weight: 500;
   color: var(--white);
@@ -6907,7 +7710,7 @@ body {
 }
 
 .sia-subtitle {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   color: var(--silver);
   max-width: 500px;
@@ -6929,7 +7732,7 @@ body {
   background: transparent;
   border: 1px solid var(--gunmetal);
   border-radius: 8px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: var(--chrome);
@@ -7360,7 +8163,7 @@ body {
 }
 
 .sia-info-headline {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 32px;
   font-weight: 600;
   color: var(--white);
@@ -7369,7 +8172,7 @@ body {
 }
 
 .sia-info-body {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   color: var(--silver);
   line-height: 1.7;
@@ -7389,7 +8192,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   color: var(--platinum);
 }
@@ -7409,7 +8212,7 @@ body {
   background: transparent;
   border: 1px solid var(--gunmetal);
   border-radius: 8px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: var(--white);
@@ -7507,7 +8310,7 @@ body {
 }
 
 .rp-eyebrow span {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -7516,7 +8319,7 @@ body {
 }
 
 .rp-title {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(36px, 5vw, 52px);
   font-weight: 500;
   color: var(--white);
@@ -7532,7 +8335,7 @@ body {
 }
 
 .rp-subtitle {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 18px;
   color: var(--silver);
   max-width: 500px;
@@ -7569,7 +8372,7 @@ body {
 
 .rp-stat-value {
   display: block;
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 40px;
   font-weight: 500;
   color: var(--amber);
@@ -7579,7 +8382,7 @@ body {
 
 .rp-stat-label {
   display: block;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 600;
   color: var(--white);
@@ -7588,7 +8391,7 @@ body {
 
 .rp-stat-sublabel {
   display: block;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--chrome);
 }
@@ -7627,7 +8430,7 @@ body {
 }
 
 .rp-testimonial-quote {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   color: var(--platinum);
   line-height: 1.7;
@@ -7642,14 +8445,14 @@ body {
 }
 
 .rp-author-name {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--white);
 }
 
 .rp-author-dealership {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--chrome);
 }
@@ -7666,7 +8469,7 @@ body {
 }
 
 .rp-cta-text {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   color: var(--silver);
   margin: 0;
@@ -7679,7 +8482,7 @@ body {
   padding: 14px 28px;
   background: var(--amber);
   border-radius: 8px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 600;
   color: var(--carbon);
@@ -7802,7 +8605,7 @@ body {
 }
 
 .fcta-badge span {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -7811,7 +8614,7 @@ body {
 }
 
 .fcta-headline {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 500;
   color: var(--white);
@@ -7821,7 +8624,7 @@ body {
 }
 
 .fcta-subtext {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 17px;
   color: var(--silver);
   margin: 0 0 32px 0;
@@ -7842,7 +8645,7 @@ body {
   padding: 16px 32px;
   background: var(--amber);
   border-radius: 10px;
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: var(--carbon);
@@ -7862,7 +8665,7 @@ body {
 }
 
 .fcta-disclaimer {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   color: var(--chrome);
 }
@@ -7887,7 +8690,7 @@ body {
 }
 
 .fcta-trust-item span {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--chrome);
 }
@@ -7911,7 +8714,7 @@ body {
 }
 
 .fcta-trust-item span {
-  font-family: var(--font-body), "Inter", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--chrome);
 }
@@ -8240,4 +9043,661 @@ body {
 .spb-section,
 .trust-section {
   padding-bottom: 80px !important;
+}
+
+/* ============================================
+   WHO'S IT FOR - DEALER SERVICES SECTION
+   $150K Premium automotive-inspired layout
+   ============================================ */
+
+.wif-section {
+  position: relative;
+  padding: 180px 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Layered premium background system */
+.wif-bg-base {
+  position: absolute;
+  inset: 0;
+  background: #020202;
+  z-index: -5;
+}
+
+.wif-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(249, 115, 22, 0.04) 0%, transparent 40%),
+    radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0, 0, 0, 0.6) 0%, transparent 50%);
+  z-index: -4;
+}
+
+.wif-bg-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: -3;
+  pointer-events: none;
+}
+
+.wif-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Animated ambient orbs */
+.wif-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.wif-orb-1 {
+  width: 700px;
+  height: 700px;
+  top: -250px;
+  right: -150px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+  animation: orb-float-1 25s ease-in-out infinite;
+}
+
+.wif-orb-2 {
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  left: -150px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+  animation: orb-float-2 30s ease-in-out infinite;
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  33% { transform: translate(-40px, 50px) scale(1.1); opacity: 0.8; }
+  66% { transform: translate(30px, -30px) scale(0.95); opacity: 0.5; }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  50% { transform: translate(50px, -40px) scale(1.2); opacity: 0.7; }
+}
+
+/* Subtle grid pattern */
+.wif-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 100px 100px;
+  mask-image: radial-gradient(ellipse 70% 60% at center, black 20%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.wif-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 64px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 120px;
+  align-items: start;
+  position: relative;
+}
+
+/* Left side - Header & Navigation */
+.wif-nav-side {
+  position: relative;
+  padding-top: 20px;
+}
+
+.wif-header {
+  margin-bottom: 56px;
+}
+
+.wif-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.wif-eyebrow span:not(.wif-eyebrow-line) {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.wif-eyebrow-line {
+  flex: 0 0 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.6), transparent);
+}
+
+.wif-eyebrow-line-right {
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.6), transparent);
+}
+
+.wif-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(40px, 4.5vw, 58px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.05;
+  margin: 0 0 24px;
+  letter-spacing: -0.03em;
+}
+
+.wif-title em {
+  font-style: italic;
+  background: linear-gradient(135deg, #f97316 0%, #fbbf24 50%, #f97316 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.wif-intro {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  max-width: 420px;
+}
+
+/* Navigation items - Ultra premium style */
+.wif-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wif-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 16px;
+  transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.wif-nav-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.wif-nav-item.active::before {
+  opacity: 1;
+}
+
+.wif-nav-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.3), transparent 50%) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.wif-nav-item.active::after {
+  opacity: 1;
+}
+
+.wif-nav-indicator {
+  width: 4px;
+  height: 40px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.wif-nav-indicator-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #f97316, #ea580c);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  border-radius: 2px;
+}
+
+.wif-nav-item.active .wif-nav-indicator-fill {
+  transform: scaleY(1);
+}
+
+.wif-nav-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.wif-nav-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.4s ease;
+}
+
+.wif-nav-item:hover .wif-nav-label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.wif-nav-item.active .wif-nav-label {
+  color: white;
+}
+
+.wif-nav-tagline {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.4s ease;
+}
+
+.wif-nav-item.active .wif-nav-tagline {
+  color: rgba(249, 115, 22, 0.9);
+}
+
+.wif-nav-arrow {
+  width: 24px;
+  height: 24px;
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  color: #f97316;
+  position: relative;
+  z-index: 1;
+}
+
+.wif-nav-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.wif-nav-item.active .wif-nav-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Right side - Premium display card */
+.wif-content-side {
+  position: relative;
+}
+
+.wif-display-card {
+  position: relative;
+  border-radius: 32px;
+  padding: 3px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(249, 115, 22, 0.1) 100%);
+}
+
+.wif-card-bezel {
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.wif-card-inner {
+  position: relative;
+  background: linear-gradient(180deg, rgba(15, 15, 15, 0.98) 0%, rgba(8, 8, 8, 0.99) 100%);
+  border-radius: 30px;
+  padding: 48px 40px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.wif-card-accent-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #f97316, transparent);
+  border-radius: 0 0 4px 4px;
+}
+
+/* Premium Gauge Component */
+.premium-gauge {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin: 20px auto 48px;
+}
+
+.gauge-ambient-glow {
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(circle at center, rgba(249, 115, 22, 0.15) 0%, transparent 60%);
+  filter: blur(40px);
+  animation: gauge-pulse 4s ease-in-out infinite;
+}
+
+@keyframes gauge-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.gauge-outer-ring,
+.gauge-main {
+  position: absolute;
+  inset: 0;
+}
+
+.gauge-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.gauge-center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gauge-stat {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-shadow: 0 0 30px rgba(249, 115, 22, 0.3);
+}
+
+.gauge-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 10px;
+  max-width: 90px;
+}
+
+.gauge-reflection {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+  border-radius: 50% 50% 0 0;
+  pointer-events: none;
+}
+
+/* Card content */
+.wif-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.wif-card-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.wif-card-description {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 36px;
+  max-width: 380px;
+}
+
+.wif-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  border-radius: 14px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  box-shadow:
+    0 4px 20px rgba(249, 115, 22, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.wif-card-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.wif-card-cta:hover::before {
+  opacity: 1;
+}
+
+.wif-card-cta:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 30px rgba(249, 115, 22, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.wif-cta-text {
+  position: relative;
+  z-index: 1;
+}
+
+.wif-cta-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease;
+}
+
+.wif-cta-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.wif-card-cta:hover .wif-cta-icon {
+  transform: translateX(4px);
+}
+
+/* Bottom brand mark */
+.wif-card-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.wif-brand-line {
+  flex: 0 0 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.wif-brand-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .wif-container {
+    gap: 80px;
+    padding: 0 48px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .wif-container {
+    grid-template-columns: 1fr;
+    gap: 64px;
+    padding: 0 32px;
+  }
+
+  .wif-section {
+    padding: 120px 0;
+  }
+
+  .wif-card-inner {
+    min-height: auto;
+    padding: 40px 32px;
+  }
+
+  .premium-gauge {
+    width: 200px;
+    height: 200px;
+  }
+
+  .gauge-stat {
+    font-size: 40px;
+  }
+
+  .wif-orb {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .wif-section {
+    padding: 80px 0;
+  }
+
+  .wif-container {
+    padding: 0 20px;
+    gap: 40px;
+  }
+
+  .wif-header {
+    margin-bottom: 40px;
+  }
+
+  .wif-title {
+    font-size: 36px;
+  }
+
+  .wif-intro {
+    font-size: 15px;
+  }
+
+  .wif-nav-item {
+    padding: 18px 20px;
+    gap: 16px;
+  }
+
+  .wif-nav-label {
+    font-size: 16px;
+  }
+
+  .wif-display-card {
+    border-radius: 24px;
+  }
+
+  .wif-card-inner {
+    border-radius: 22px;
+    padding: 32px 24px;
+  }
+
+  .premium-gauge {
+    width: 180px;
+    height: 180px;
+    margin: 10px auto 36px;
+  }
+
+  .gauge-stat {
+    font-size: 36px;
+  }
+
+  .gauge-label {
+    font-size: 9px;
+  }
+
+  .wif-card-title {
+    font-size: 26px;
+  }
+
+  .wif-card-description {
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+
+  .wif-card-cta {
+    padding: 14px 28px;
+    font-size: 14px;
+  }
+
+  .wif-card-brand {
+    padding-top: 24px;
+  }
 }

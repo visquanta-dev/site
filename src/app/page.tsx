@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import SocialProofBar from '@/components/SocialProofBar';
 import PlatformSection from '@/components/PlatformSection';
 import SeeItInAction from '@/components/SeeItInAction';
+import DealerServicesSection from '@/components/DealerServicesSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import TrustSection from '@/components/TrustSection';
 import ResultsProof from '@/components/ResultsProof';
@@ -23,11 +24,12 @@ export default function Home() {
       <PlatformSection />
       {/* 4. See It In Action (Tabbed Conversations) */}
       <SeeItInAction />
-      {/* 5. From Signup to ROI in Days */}
+      {/* 5. Who's It For - Dealer Services */}
+      <DealerServicesSection />
+      {/* 6. From Signup to ROI in Days */}
       <HowItWorksSection />
-      {/* 6. What's Costing Your Dealership Sales? */}
+      {/* 7. What's Costing Your Dealership Sales? */}
       <TrustSection />
-      {/* 7. Built by Car People / Who We Are */}
       {/* 8. Results & Proof (Bento Grid) */}
       <ResultsProof />
       {/* 9. Plug & Play Integrations */}

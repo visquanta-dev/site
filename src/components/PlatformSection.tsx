@@ -1,27 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Link from 'next/link';
 
+// Lead Reactivation is featured (index 0), Speed to Lead is secondary (index 1)
 const capabilities = [
   {
     number: '01',
-    title: 'Speed to Lead',
-    description: 'AutoTrader, Cars.com, CarGurus, Meta, any inbound leads get a personalized 60-sec response, so you never miss a lead again and qualify every prospect.',
-    stat: '21x',
-    statLabel: 'higher conversion',
-    stat2: '<60s',
-    stat2Label: 'response time',
-    link: '/products/speed-to-lead',
-    icon: (
-      <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
-  },
-  {
-    number: '02',
     title: 'Lead Reactivation',
     description: 'Conversational AI digs into your CRM, reactivates stalled prospects, rebuilds interest, and turns dead leads into booked appointments that generate new revenue without extra ad spend.',
     stat: '30%',
@@ -32,6 +18,22 @@ const capabilities = [
     icon: (
       <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
         <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+    ),
+    featured: true,
+  },
+  {
+    number: '02',
+    title: 'Speed to Lead',
+    description: 'AutoTrader, Cars.com, CarGurus, Meta, any inbound leads get a personalized 60-sec response, so you never miss a lead again and qualify every prospect.',
+    stat: '21x',
+    statLabel: 'higher conversion',
+    stat2: '<60s',
+    stat2Label: 'response time',
+    link: '/products/speed-to-lead',
+    icon: (
+      <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
   },
@@ -94,248 +96,492 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1],
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1] as const,
     },
   },
 };
 
-function CapabilityCard({ item, index }: { item: typeof capabilities[0]; index: number }) {
+// Animated counter component
+function AnimatedStat({ value, isVisible }: { value: string; isVisible: boolean }) {
+  const [displayValue, setDisplayValue] = useState(value);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    // Parse the value to check if it's a number we can animate
+    const numMatch = value.match(/^([<>]?)(\d+(?:\.\d+)?)(.*)/);
+    if (!numMatch) {
+      setDisplayValue(value);
+      return;
+    }
+
+    const prefix = numMatch[1];
+    const num = parseFloat(numMatch[2]);
+    const suffix = numMatch[3];
+
+    let start = 0;
+    const duration = 1500;
+    const startTime = Date.now();
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(num * eased);
+
+      setDisplayValue(`${prefix}${current}${suffix}`);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setDisplayValue(value);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isVisible, value]);
+
+  return <>{displayValue}</>;
+}
+
+// 3D Tilt Card wrapper
+function TiltCard({
+  children,
+  className = '',
+  featured = false,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  featured?: boolean;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 300, damping: 30 });
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    x.set((e.clientX - centerX) / rect.width);
+    y.set((e.clientY - centerY) / rect.height);
+  }, [x, y]);
+
+  const handleMouseLeave = useCallback(() => {
+    x.set(0);
+    y.set(0);
+    setIsHovered(false);
+  }, [x, y]);
+
   return (
     <motion.div
+      ref={cardRef}
+      className={`group ${className}`}
       variants={itemVariants}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
       style={{
-        position: 'relative',
-        padding: '32px',
-        borderRadius: '20px',
-        background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-        border: '1px solid rgba(255,255,255,0.1)',
-        transition: 'all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)',
-        cursor: 'pointer',
-        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+        perspective: '1000px',
       }}
-      whileHover={{
-        y: -4,
-        borderColor: 'rgba(249,115,22,0.3)',
-        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 48px -16px rgba(249,115,22,0.15)',
-      }}
-      className="group"
     >
-      {/* Shine sweep effect */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: '-100%',
-        width: '100%',
-        height: '100%',
-        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent)',
-        transform: 'skewX(-20deg)',
-        transition: 'left 0.6s ease',
-        pointerEvents: 'none',
-      }} className="group-hover:left-[100%]" />
-
-      {/* Corner accent */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0,
-        right: 0,
-        width: '140px',
-        height: '140px',
-        background: 'radial-gradient(circle at bottom right, rgba(249,115,22,0.1) 0%, transparent 70%)',
-        opacity: 0,
-        transition: 'opacity 0.4s ease',
-        pointerEvents: 'none',
-      }} className="group-hover:opacity-100" />
-
-      {/* Header row with icon and number */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-        marginBottom: '24px',
-      }}>
-        {/* Icon with glow */}
-        <div style={{ position: 'relative' }}>
-          <div style={{
+      <div
+        style={{
+          position: 'relative',
+          height: '100%',
+          padding: featured ? '48px' : '32px',
+          borderRadius: '28px',
+          background: featured
+            ? 'linear-gradient(180deg, rgba(249,115,22,0.1) 0%, rgba(20,20,20,0.95) 100%)'
+            : 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)',
+          border: featured
+            ? '1px solid rgba(249,115,22,0.3)'
+            : '1px solid rgba(255,255,255,0.06)',
+          transition: 'all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
+          boxShadow: isHovered
+            ? featured
+              ? '0 40px 80px -20px rgba(249,115,22,0.3), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(249,115,22,0.15)'
+              : '0 32px 64px -20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(249,115,22,0.1)'
+            : featured
+              ? 'inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 32px -8px rgba(0,0,0,0.3)'
+              : 'inset 0 1px 0 rgba(255,255,255,0.04)',
+          transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
+          backdropFilter: 'blur(12px)',
+        }}
+      >
+        {/* Glow effect on hover */}
+        <div
+          style={{
             position: 'absolute',
-            inset: '-8px',
-            background: 'rgba(249,115,22,0.25)',
-            borderRadius: '20px',
-            filter: 'blur(20px)',
-            opacity: 0,
+            inset: 0,
+            borderRadius: '24px',
+            background: 'radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(249,115,22,0.15) 0%, transparent 50%)',
+            opacity: isHovered ? 1 : 0,
             transition: 'opacity 0.4s ease',
-          }} className="group-hover:opacity-100" />
+            pointerEvents: 'none',
+          }}
+        />
+        {children}
+      </div>
+    </motion.div>
+  );
+}
+
+// Featured Hero Card (Lead Reactivation)
+function FeaturedCard({ item, isVisible }: { item: typeof capabilities[0]; isVisible: boolean }) {
+  return (
+    <TiltCard featured className="col-span-full">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', position: 'relative', zIndex: 1 }}>
+        {/* Decorative corner accents */}
+        <div style={{
+          position: 'absolute',
+          top: '-40px',
+          right: '-40px',
+          width: '200px',
+          height: '200px',
+          background: 'radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
+
+        {/* Top row: Icon + Badge + Number */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            {/* Icon with animated ring */}
+            <div style={{ position: 'relative' }}>
+              <div style={{
+                position: 'absolute',
+                inset: '-4px',
+                borderRadius: '20px',
+                background: 'conic-gradient(from 0deg, rgba(249,115,22,0.4), rgba(249,115,22,0.1), rgba(249,115,22,0.4))',
+                animation: 'spin 8s linear infinite',
+                opacity: 0.5,
+              }} />
+              <div style={{
+                position: 'relative',
+                width: '64px',
+                height: '64px',
+                borderRadius: '18px',
+                background: 'linear-gradient(135deg, rgba(249,115,22,0.25) 0%, rgba(249,115,22,0.1) 100%)',
+                border: '1px solid rgba(249,115,22,0.4)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#f97316',
+                backdropFilter: 'blur(8px)',
+              }}>
+                <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                  <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+            </div>
+            {/* Featured badge */}
+            <span style={{
+              padding: '8px 18px',
+              borderRadius: '100px',
+              background: 'linear-gradient(135deg, rgba(249,115,22,0.2) 0%, rgba(249,115,22,0.1) 100%)',
+              border: '1px solid rgba(249,115,22,0.35)',
+              color: '#fb923c',
+              fontSize: '11px',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.15em',
+              boxShadow: '0 2px 12px rgba(249,115,22,0.15)',
+            }}>
+              Most Popular
+            </span>
+          </div>
+          {/* Number watermark */}
+          <span style={{
+            fontSize: '120px',
+            fontWeight: 800,
+            background: 'linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            lineHeight: 0.75,
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+          }}>
+            {item.number}
+          </span>
+        </div>
+
+        {/* Content */}
+        <div style={{ maxWidth: '720px' }}>
+          <h3 style={{
+            color: 'white',
+            fontSize: 'clamp(36px, 4.5vw, 48px)',
+            fontWeight: 700,
+            margin: '0 0 20px',
+            letterSpacing: '-0.025em',
+            lineHeight: 1.1,
+          }}>
+            {item.title}
+          </h3>
+          <p style={{
+            color: 'rgba(255,255,255,0.55)',
+            fontSize: '18px',
+            lineHeight: 1.75,
+            margin: 0,
+            maxWidth: '640px',
+          }}>
+            {item.description}
+          </p>
+        </div>
+
+        {/* Stats row */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          gap: '64px',
+          paddingTop: '32px',
+          borderTop: '1px solid rgba(255,255,255,0.08)',
+        }}>
+          <div>
+            <div style={{
+              fontSize: 'clamp(52px, 6vw, 72px)',
+              fontWeight: 700,
+              background: 'linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              lineHeight: 1,
+              letterSpacing: '-0.03em',
+            }}>
+              <AnimatedStat value={item.stat} isVisible={isVisible} />
+            </div>
+            <div style={{
+              color: 'rgba(255,255,255,0.45)',
+              fontSize: '13px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.12em',
+              marginTop: '12px',
+            }}>
+              {item.statLabel}
+            </div>
+          </div>
+          <div>
+            <div style={{
+              fontSize: 'clamp(52px, 6vw, 72px)',
+              fontWeight: 700,
+              background: 'linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              lineHeight: 1,
+              letterSpacing: '-0.03em',
+            }}>
+              <AnimatedStat value={item.stat2} isVisible={isVisible} />
+            </div>
+            <div style={{
+              color: 'rgba(255,255,255,0.45)',
+              fontSize: '13px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.12em',
+              marginTop: '12px',
+            }}>
+              {item.stat2Label}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+            <Link
+              href={item.link}
+              className="group/btn"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '16px 32px',
+                borderRadius: '14px',
+                background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+                color: 'white',
+                fontSize: '15px',
+                fontWeight: 600,
+                textDecoration: 'none',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 8px 24px rgba(249,115,22,0.35), inset 0 1px 0 rgba(255,255,255,0.2)',
+              }}
+            >
+              Learn more
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover/btn:translate-x-1">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </TiltCard>
+  );
+}
+
+// Standard Card (for other capabilities)
+function StandardCard({ item, isVisible }: { item: typeof capabilities[0]; isVisible: boolean }) {
+  return (
+    <TiltCard>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 1 }}>
+        {/* Subtle corner glow */}
+        <div style={{
+          position: 'absolute',
+          top: '-20px',
+          right: '-20px',
+          width: '100px',
+          height: '100px',
+          background: 'radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          opacity: 0,
+          transition: 'opacity 0.4s ease',
+        }} className="group-hover:opacity-100" />
+
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '24px' }}>
           <div style={{
-            position: 'relative',
-            width: '48px',
-            height: '48px',
-            borderRadius: '12px',
-            background: 'rgba(249,115,22,0.15)',
-            border: '1px solid rgba(249,115,22,0.25)',
+            width: '52px',
+            height: '52px',
+            borderRadius: '14px',
+            background: 'linear-gradient(135deg, rgba(249,115,22,0.15) 0%, rgba(249,115,22,0.08) 100%)',
+            border: '1px solid rgba(249,115,22,0.2)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: '#f97316',
             transition: 'all 0.4s ease',
-          }} className="group-hover:border-orange-500/50 group-hover:bg-orange-500/20">
+            boxShadow: '0 4px 12px rgba(249,115,22,0.1)',
+          }} className="group-hover:bg-orange-500/25 group-hover:border-orange-500/40 group-hover:shadow-[0_8px_24px_rgba(249,115,22,0.2)]">
             {item.icon}
           </div>
+          <span style={{
+            fontSize: '72px',
+            fontWeight: 800,
+            background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            lineHeight: 0.75,
+          }}>
+            {item.number}
+          </span>
         </div>
 
-        {/* Watermark number */}
-        <span style={{
-          fontSize: '72px',
+        {/* Content */}
+        <h3 style={{
+          color: 'white',
+          fontSize: '24px',
           fontWeight: 700,
-          color: 'rgba(255,255,255,0.04)',
-          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-          lineHeight: 1,
-          transition: 'color 0.4s ease',
-        }} className="group-hover:!text-white/[0.06]">
-          {item.number}
-        </span>
-      </div>
+          margin: '0 0 14px',
+          letterSpacing: '-0.02em',
+          lineHeight: 1.2,
+        }}>
+          {item.title}
+        </h3>
+        <p style={{
+          color: 'rgba(255,255,255,0.5)',
+          fontSize: '15px',
+          lineHeight: 1.7,
+          margin: 0,
+          flex: 1,
+        }}>
+          {item.description}
+        </p>
 
-      {/* Title */}
-      <h3 style={{
-        color: 'white',
-        fontSize: '28px',
-        fontWeight: 700,
-        margin: '0 0 12px',
-        letterSpacing: '-0.02em',
-        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      }}>
-        {item.title}
-      </h3>
-
-      {/* Description */}
-      <p style={{
-        color: 'rgba(255,255,255,0.5)',
-        fontSize: '16px',
-        lineHeight: 1.7,
-        margin: '0',
-        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-        flex: 1,
-      }}>
-        {item.description}
-      </p>
-
-      {/* Stat block */}
-      <div style={{
-        paddingTop: '24px',
-        marginTop: '24px',
-        borderTop: '1px solid rgba(255,255,255,0.12)',
-        transition: 'border-color 0.4s ease',
-      }} className="group-hover:border-orange-500/30">
+        {/* Stats */}
         <div style={{
           display: 'flex',
-          justifyContent: 'center',
-          gap: '48px',
-        }}>
-          {/* Primary stat */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-            <span style={{
-              fontSize: '42px',
+          gap: '40px',
+          marginTop: '28px',
+          paddingTop: '24px',
+          borderTop: '1px solid rgba(255,255,255,0.06)',
+          transition: 'border-color 0.4s ease',
+        }} className="group-hover:border-orange-500/15">
+          <div>
+            <div style={{
+              fontSize: '36px',
               fontWeight: 700,
               background: 'linear-gradient(135deg, #f97316 0%, #fb923c 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-              letterSpacing: '-0.02em',
               lineHeight: 1,
+              letterSpacing: '-0.02em',
             }}>
-              {item.stat}
-            </span>
-            <span style={{
+              <AnimatedStat value={item.stat} isVisible={isVisible} />
+            </div>
+            <div style={{
               color: 'rgba(255,255,255,0.4)',
-              fontSize: '13px',
-              fontWeight: 500,
-              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+              fontSize: '11px',
+              fontWeight: 600,
               textTransform: 'uppercase',
-              letterSpacing: '0.05em',
+              letterSpacing: '0.1em',
+              marginTop: '8px',
             }}>
               {item.statLabel}
-            </span>
+            </div>
           </div>
-          
-          {/* Secondary stat */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-            <span style={{
-              fontSize: '42px',
+          <div>
+            <div style={{
+              fontSize: '36px',
               fontWeight: 700,
               background: 'linear-gradient(135deg, #f97316 0%, #fb923c 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-              letterSpacing: '-0.02em',
               lineHeight: 1,
+              letterSpacing: '-0.02em',
             }}>
-              {item.stat2}
-            </span>
-            <span style={{
+              <AnimatedStat value={item.stat2} isVisible={isVisible} />
+            </div>
+            <div style={{
               color: 'rgba(255,255,255,0.4)',
-              fontSize: '13px',
-              fontWeight: 500,
-              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+              fontSize: '11px',
+              fontWeight: 600,
               textTransform: 'uppercase',
-              letterSpacing: '0.05em',
+              letterSpacing: '0.1em',
+              marginTop: '8px',
             }}>
               {item.stat2Label}
-            </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Learn more link - always visible */}
-      <Link 
-        href={item.link}
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          marginTop: '20px',
-          paddingTop: '16px',
-          textDecoration: 'none',
-          transition: 'all 0.3s ease',
-          position: 'relative',
-          zIndex: 10,
-        }}
-      >
-        <span style={{
-          color: '#f97316',
-          fontSize: '14px',
-          fontWeight: 600,
-          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-          transition: 'color 0.3s ease',
-        }}>
-          Learn more
-        </span>
-        <svg 
-          width="18" 
-          height="18" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="#f97316" 
-          strokeWidth="2" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
+        {/* Link */}
+        <Link
+          href={item.link}
           style={{
-            transition: 'transform 0.3s ease',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginTop: '20px',
+            color: '#f97316',
+            fontSize: '14px',
+            fontWeight: 600,
+            textDecoration: 'none',
+            transition: 'all 0.3s ease',
           }}
         >
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </Link>
-    </motion.div>
+          <span className="group-hover:underline underline-offset-4">Learn more</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </Link>
+      </div>
+    </TiltCard>
   );
 }
 
@@ -360,128 +606,155 @@ export default function PlatformSection() {
     return () => observer.disconnect();
   }, []);
 
+  // Lead Reactivation (featured), then the rest
+  const featuredItem = capabilities[0];
+  const secondaryItems = capabilities.slice(1);
+
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40 relative overflow-hidden"
+      className="pt-32 pb-28 md:pt-40 md:pb-36 lg:pt-52 lg:pb-48 relative overflow-hidden"
       style={{
-        backgroundColor: '#0a0a0a',
+        backgroundColor: '#080808',
       }}
     >
-      {/* Background radial glow */}
+      {/* Background effects */}
       <div style={{
         position: 'absolute',
-        top: '50%',
+        top: '10%',
         left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '120%',
-        height: '120%',
-        background: 'radial-gradient(ellipse at center, rgba(249,115,22,0.04) 0%, transparent 60%)',
+        transform: 'translateX(-50%)',
+        width: '160%',
+        height: '90%',
+        background: 'radial-gradient(ellipse at center top, rgba(249,115,22,0.05) 0%, transparent 45%)',
         pointerEvents: 'none',
+      }} />
+      {/* Subtle grid pattern */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)
+        `,
+        backgroundSize: '64px 64px',
+        pointerEvents: 'none',
+        opacity: 0.5,
+      }} />
+      {/* Bottom border */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '1px',
+        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)',
       }} />
 
       <div style={{
-        maxWidth: '1280px',
+        maxWidth: '1240px',
         margin: '0 auto',
-        padding: '0 24px',
+        padding: '0 32px',
         position: 'relative',
         zIndex: 1,
       }}>
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          className="text-center mb-24 md:mb-32 lg:mb-40"
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          className="text-center mb-24 md:mb-32 lg:mb-36"
         >
-          {/* Eyebrow with lines */}
+          {/* Eyebrow */}
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '16px',
-            marginBottom: '24px',
+            gap: '20px',
+            marginBottom: '32px',
           }}>
             <div style={{
-              width: '40px',
+              width: '48px',
               height: '1px',
-              background: 'linear-gradient(90deg, transparent, rgba(249,115,22,0.5))',
+              background: 'linear-gradient(90deg, transparent, rgba(249,115,22,0.6))',
             }} />
             <span style={{
-              color: '#f97316',
-              fontSize: '13px',
-              fontWeight: 600,
+              color: '#fb923c',
+              fontSize: '11px',
+              fontWeight: 700,
               textTransform: 'uppercase',
-              letterSpacing: '0.2em',
-              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+              letterSpacing: '0.25em',
             }}>
               The AutoMaster Suite
             </span>
             <div style={{
-              width: '40px',
+              width: '48px',
               height: '1px',
-              background: 'linear-gradient(90deg, rgba(249,115,22,0.5), transparent)',
+              background: 'linear-gradient(90deg, rgba(249,115,22,0.6), transparent)',
             }} />
           </div>
-          
+
           <h2 style={{
             color: 'white',
             fontSize: 'clamp(36px, 5vw, 56px)',
             fontWeight: 700,
-            lineHeight: 1.15,
-            letterSpacing: '-0.03em',
-            margin: '0 0 24px',
-            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+            lineHeight: 1.08,
+            letterSpacing: '-0.035em',
+            margin: '0 0 28px',
           }}>
             Five AI Tools.<br />
-            <span style={{ color: 'white' }}>One Unified System.</span>
+            One Unified System.
           </h2>
           <p style={{
-            color: 'rgba(255,255,255,0.8)',
-            fontSize: '18px',
-            lineHeight: 1.7,
-            maxWidth: '680px',
-            margin: '0 auto 64px',
-            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+            color: 'rgba(255,255,255,0.5)',
+            fontSize: '19px',
+            lineHeight: 1.8,
+            maxWidth: '660px',
+            margin: '0 auto',
           }}>
-            An AI toolkit for car dealerships designed to drive more revenue by capturing more leads, converting more buyers, and retaining customers across sales and service.
+            An AI toolkit for car dealerships designed to drive more revenue by capturing more leads, converting more buyers, and retaining customers.
           </p>
         </motion.div>
 
-        {/* Cards Grid - Top Row */}
+        {/* Bento Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? 'visible' : 'hidden'}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-            gap: '24px',
-            marginBottom: '24px',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '28px',
           }}
+          className="bento-grid"
         >
-          {capabilities.slice(0, 3).map((item, index) => (
-            <CapabilityCard key={item.number} item={item} index={index} />
-          ))}
-        </motion.div>
+          {/* Featured Card - Lead Reactivation (Full Width) */}
+          <FeaturedCard item={featuredItem} isVisible={isVisible} />
 
-        {/* Cards Grid - Bottom Row (Centered) */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isVisible ? 'visible' : 'hidden'}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-            gap: '24px',
-            maxWidth: '840px',
-            margin: '0 auto',
-          }}
-        >
-          {capabilities.slice(3, 5).map((item, index) => (
-            <CapabilityCard key={item.number} item={item} index={index + 3} />
+          {/* Standard Cards - 2x2 Grid */}
+          {secondaryItems.map((item) => (
+            <StandardCard key={item.number} item={item} isVisible={isVisible} />
           ))}
         </motion.div>
       </div>
+
+      {/* Styles */}
+      <style jsx global>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        .bento-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 900px) {
+          .bento-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+        }
+      `}</style>
     </section>
   );
 }
