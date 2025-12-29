@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { CalendlyModalProvider } from "@/components/CalendlyModal";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -13,6 +14,9 @@ export const metadata: Metadata = {
   description: "AI-Powered Dealership Platform - The unfair advantage elite dealerships use",
 };
 
+// Calendly URL for demo scheduling
+const CALENDLY_URL = "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.variable} style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif' }} suppressHydrationWarning>
-        {children}
+        <CalendlyModalProvider calendlyUrl={CALENDLY_URL}>
+          {children}
+        </CalendlyModalProvider>
       </body>
     </html>
   );

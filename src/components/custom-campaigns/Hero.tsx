@@ -1,0 +1,191 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { ArrowRight, Check, MessageSquare, ShieldCheck } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+export default function Hero() {
+    const [activeSegment, setActiveSegment] = useState('10k');
+    const [statusIndex, setStatusIndex] = useState(0);
+
+    const statuses = ['Queued', 'Sending', 'Live Replies', 'Booked'];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setStatusIndex((prev) => (prev + 1) % statuses.length);
+        }, 2000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const campaigns: Record<string, { title: string, stats: { label: string, value: string, trend: string }[] }> = {
+        '1k': {
+            title: "Presidents' Day Flash Sale",
+            stats: [
+                { label: 'Replies', value: '28%', trend: 'High Intent' },
+                { label: 'Apps', value: '14', trend: 'Confirmed' },
+                { label: 'Rev', value: '$12k', trend: 'Est. Gross' }
+            ]
+        },
+        '10k': {
+            title: "Memorial Day Blockbuster",
+            stats: [
+                { label: 'Replies', value: '24%', trend: 'Above Avg' },
+                { label: 'Apps', value: '85', trend: 'Confirmed' },
+                { label: 'Rev', value: '$58k', trend: 'Est. Gross' }
+            ]
+        },
+        '50k': {
+            title: "Labor Day Pull-ahead",
+            stats: [
+                { label: 'Replies', value: '19%', trend: 'Volume Play' },
+                { label: 'Apps', value: '342', trend: 'Confirmed' },
+                { label: 'Rev', value: '$210k', trend: 'Est. Gross' }
+            ]
+        },
+        '100k+': {
+            title: "Black Friday Doorbusters",
+            stats: [
+                { label: 'Replies', value: '15%', trend: 'Mass Scale' },
+                { label: 'Apps', value: '620+', trend: 'Confirmed' },
+                { label: 'Rev', value: '$480k+', trend: 'Est. Gross' }
+            ]
+        }
+    };
+
+    return (
+        <section className="relative pt-32 pb-20 overflow-hidden bg-[#020202]">
+            {/* Premium Ambient Background */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute top-[-20%] left-[-10%] w-[1000px] h-[1000px] bg-gradient-to-r from-[#FF7404]/10 to-purple-900/10 rounded-full blur-[120px] mix-blend-screen" />
+                <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] bg-[#FF7404]/5 rounded-full blur-[100px] mix-blend-screen" />
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay" />
+            </div>
+
+            <div className="container mx-auto px-4 md:px-6 max-w-[1200px] relative z-10">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    {/* Left Column: Copy & CTA */}
+                    <div className="max-w-xl">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="inline-flex items-center gap-2 px-3 py-1 bg-white/[0.05] border border-white/10 rounded-full mb-8 backdrop-blur-sm"
+                        >
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#FF7404] animate-pulse" />
+                            <span className="text-xs font-medium text-white/80 tracking-wide">Enterprise Campaign Engine</span>
+                        </motion.div>
+
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.05]"
+                        >
+                            Promotions that <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] via-[#ff9040] to-[#FF7404]">sell units.</span>
+                        </motion.h1>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="text-lg text-white/60 mb-10 leading-relaxed max-w-md"
+                        >
+                            The done-for-you infrastructure that creates the offer, cleans the list, sends at scale, and hands you confirmed appointments.
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12"
+                        >
+                            <div className="flex flex-col gap-3">
+                                <button className="h-[52px] px-8 bg-gradient-to-r from-[#FF7404] to-[#ff8a3d] hover:to-[#ff9e5e] text-black font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2 shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)]">
+                                    <span className="relative z-10">Start Your Campaign</span>
+                                    <ArrowRight className="w-5 h-5 relative z-10" />
+                                </button>
+                                <span className="text-xs text-white/30 font-medium pl-1 tracking-wide">Ready for 1k to 1M+ volume</span>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    {/* Right Column: Campaign Launch Console */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="relative"
+                    >
+                        {/* Glass Console Card */}
+                        <div className="bg-[#0f0f0f]/80 backdrop-blur-xl border border-white/10 rounded-[32px] p-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.7)] relative overflow-hidden group">
+                            {/* Inner Highlight */}
+                            <div className="absolute inset-0 rounded-[32px] border border-white/5 pointer-events-none" />
+                            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50" />
+
+                            {/* Glow from active status */}
+                            <div className="absolute top-10 right-10 w-32 h-32 bg-[#FF7404]/10 rounded-full blur-[40px] pointer-events-none" />
+
+                            <div className="space-y-8 relative z-10">
+                                {/* Top Row: Campaign Status */}
+                                <div className="flex items-center justify-between pb-6 border-b border-white/5">
+                                    <div>
+                                        <div className="text-[10px] uppercase tracking-[0.2em] text-[#FF7404] font-bold mb-2">Active Production</div>
+                                        <div className="text-2xl font-bold text-white tracking-tight min-w-[300px]">{campaigns[activeSegment].title}</div>
+                                    </div>
+                                    <div className="px-4 py-1.5 bg-gradient-to-r from-green-500/10 to-green-500/5 border border-green-500/20 rounded-full flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(34,197,94,0.2)]">
+                                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_#22c55e]" />
+                                        <span className="text-xs font-bold text-green-400 uppercase tracking-wider">Live</span>
+                                    </div>
+                                </div>
+
+                                {/* Middle: Audience Selector */}
+                                <div>
+                                    <div className="text-[10px] text-white/40 font-bold mb-4 uppercase tracking-widest">Audience Segment Size</div>
+                                    <div className="grid grid-cols-4 bg-[#050505] p-1.5 rounded-2xl border border-white/5 shadow-inner">
+                                        {['1k', '10k', '50k', '100k+'].map((size) => (
+                                            <button
+                                                key={size}
+                                                onClick={() => setActiveSegment(size)}
+                                                className={`py-2.5 rounded-xl text-xs font-bold transition-all duration-300 ${activeSegment === size ? 'bg-[#FF7404] text-black shadow-[0_4px_12px_rgba(255,116,4,0.3)]' : 'text-white/30 hover:text-white hover:bg-white/5'}`}
+                                            >
+                                                {size}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* KPI Tiles */}
+                                <div className="grid grid-cols-3 gap-3">
+                                    {campaigns[activeSegment].stats.map((stat, i) => (
+                                        <div key={i} className="bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/5 rounded-2xl p-4 hover:border-[#FF7404]/30 transition-all duration-300 group/tile">
+                                            <div className="text-[9px] text-white/40 uppercase tracking-widest mb-1 group-hover/tile:text-white/60 transition-colors">{stat.label}</div>
+                                            <div className="text-2xl font-bold text-white mb-1 tracking-tight">{stat.value}</div>
+                                            <div className="text-[9px] text-[#FF7404] font-bold">{stat.trend}</div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Footer: Status Flow */}
+                                <div className="pt-6 border-t border-white/5">
+                                    <div className="flex justify-between items-center gap-2">
+                                        {statuses.map((status, i) => (
+                                            <div key={status} className={`flex-1 h-0.5 rounded-full overflow-hidden transition-all duration-500 ${i <= statusIndex ? 'bg-[#FF7404] shadow-[0_0_10px_#FF7404]' : 'bg-white/10'}`} />
+                                        ))}
+                                    </div>
+                                    <div className="flex justify-between mt-3">
+                                        <span className="text-[10px] text-white/50 uppercase tracking-widest animate-pulse font-medium">{statuses[statusIndex]}...</span>
+                                        <span className="text-[10px] text-white/30 uppercase tracking-widest font-mono">ID: 884-29X</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Glow effect behind console */}
+                        <div className="absolute -inset-1 bg-gradient-to-r from-[#FF7404]/20 to-transparent blur-2xl -z-10 opacity-30" />
+                    </motion.div>
+                </div>
+            </div>
+        </section>
+    );
+}

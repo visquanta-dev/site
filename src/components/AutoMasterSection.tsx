@@ -77,7 +77,7 @@ export default function AutoMasterSection() {
             <span className="am-logo">Toyota</span>
             <span className="am-logo">Kia</span>
             <span className="am-logo">Nissan</span>
-            <span className="am-logo">VinSolutions</span>
+            <span className="am-logo">VINSOLUTIONS</span>
             <span className="am-logo">CDK</span>
           </div>
         </motion.div>

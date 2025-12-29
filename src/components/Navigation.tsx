@@ -4,51 +4,104 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ChevronDown,
+  Menu,
+  X,
+  RefreshCcw,
+  Zap,
+  Star,
+  HeartHandshake,
+  Wrench,
+  Target,
+  Gauge,
+  Layers,
+  Lock,
+  Building2
+} from 'lucide-react';
+import { RequestDemoButton } from './CalendlyModal';
 
 interface NavItem {
   label: string;
   href?: string;
-  children?: { label: string; href: string; description?: string }[];
+  children?: {
+    label: string;
+    href: string;
+    description?: string;
+    icon?: any;
+  }[];
 }
 
 const navItems: NavItem[] = [
   {
     label: 'AutoMaster Suite',
+    href: '/auto-master-suite',
     children: [
-      { label: 'Lead Loss Mitigation', href: '/lead-loss-mitigation', description: 'Recover lost opportunities' },
-      { label: 'Speed to Lead', href: '/speed-to-lead', description: 'Instant lead response' },
-      { label: 'Reputation Management', href: '/reputation-management', description: 'Build trust at scale' },
-      { label: 'Dealer Success Solutions', href: '/dealer-success-solutions', description: 'Full-service support' },
-      { label: 'Service Drive Pro', href: '/service-drive', description: 'Maximize RO revenue' },
-      { label: 'IWAV Events', href: '/iwav', description: 'In-store engagement' },
+      {
+        label: 'Lead Loss Mitigation',
+        href: '/lead-loss-mitigation',
+        description: 'Unlock revenue from aged leads',
+        icon: RefreshCcw
+      },
+      {
+        label: 'Speed to Lead Services',
+        href: '/speed-to-lead',
+        description: 'Lead response in real time',
+        icon: Zap
+      },
+      {
+        label: 'Reputation Management',
+        href: '/reputation-management',
+        description: 'Stay ahead of online reviews',
+        icon: Star
+      },
+      {
+        label: 'Dealer Success',
+        href: '/dealer-success',
+        description: 'Personalized dealer support',
+        icon: HeartHandshake
+      },
+      {
+        label: 'Service Drive Pro',
+        href: '/service-drive',
+        description: 'Your service desk, on autopilot',
+        icon: Wrench
+      },
+      {
+        label: 'Custom Campaigns',
+        href: '/custom-campaigns',
+        description: 'Done-for-you SMS campaigns',
+        icon: Target
+      },
     ]
   },
   {
     label: 'Dealer Services',
+    href: '/dealers',
     children: [
-      { label: 'Independent Dealerships', href: '/independent-dealers', description: 'Solutions for independents' },
-      { label: 'Franchise Dealerships', href: '/franchise-dealers', description: 'Enterprise-grade tools' },
-      { label: 'Pre-Owned Dealers', href: '/pre-owned-dealers', description: 'Used car specialists' },
-      { label: 'Auto Groups', href: '/auto-group', description: 'Multi-rooftop management' },
+      { label: 'Independent Dealerships', href: '/dealers/independent', description: 'Maximize capital & time efficiency', icon: Target },
+      { label: 'Franchise Dealerships', href: '/dealers/franchise', description: 'Consistent performance across locations', icon: Star },
+      { label: 'Auto Groups', href: '/dealers/auto-groups', description: 'Group-wide control, local execution', icon: Zap },
+      { label: 'Pre-Owned', href: '/dealers/pre-owned', description: 'Lead reactivation & inventory velocity', icon: RefreshCcw },
     ]
   },
   {
     label: 'Company',
     children: [
-      { label: 'About VisQuanta', href: '/about-visquanta', description: 'Our mission & story' },
-      { label: 'Our Team', href: '/visquanta-team', description: 'Meet the experts' },
-      { label: 'Careers', href: '/careers', description: 'Join our team' },
-      { label: 'Contact Us', href: '/contact', description: 'Get in touch' },
+      { label: 'About VisQuanta', href: '/about-visquanta', description: 'Our mission to modernize ops', icon: Star },
+      { label: 'Our Team', href: '/team', description: 'The people behind the platform', icon: HeartHandshake },
+      { label: 'Careers', href: '/careers', description: 'Help shape the future', icon: Target },
+      { label: 'Contact Us', href: '/contact', description: 'Get in touch directly', icon: Zap },
     ]
   },
   {
     label: 'Resources',
     children: [
-      { label: "FAQ's", href: '/faq', description: 'Common questions' },
-      { label: 'Blog', href: '/blog', description: 'Industry insights' },
-      { label: 'Case Studies', href: '/case-studies', description: 'Success stories' },
-      { label: 'Partnerships', href: '/partnerships', description: 'Partner with us' },
-      { label: 'AMS Info Sheets', href: '/ams-guides', description: 'Product guides' },
+      { label: 'FAQ’s', href: '/faqs', description: 'Everything you need to know', icon: RefreshCcw },
+      { label: 'Our Blog', href: '/blog', description: 'Insights for forward-thinkers', icon: Layers },
+      { label: 'Case Studies', href: '/case-studies', description: 'Real results from top dealers', icon: Star },
+      { label: 'Partnerships', href: '/partnerships', description: 'Trusted integrations', icon: HeartHandshake },
+      { label: 'AMS Info Sheets', href: '/ams-guides', description: 'One-page solution overviews', icon: Layers },
     ]
   },
 ];
@@ -61,73 +114,162 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1024) {
-        setIsMobileMenuOpen(false);
-        setMobileActiveMenu(null);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
-    <header className={`vq-nav ${isScrolled ? 'vq-nav-scrolled' : ''}`}>
-      <div className="vq-nav-container">
+    <header
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 border-b ${isScrolled
+        ? 'bg-background/90 backdrop-blur-md border-border py-4'
+        : 'bg-transparent border-transparent py-5'
+        }`}
+    >
+      <div className="container-wide flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="vq-nav-logo">
-          <img
-            src="https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68067c86a4cc3f920b6fa90b_visquanta_logo_trimmed%20(1).avif"
+        <Link href="/" className="flex items-center z-50 relative group px-2 py-1">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404]/0 via-[#FF7404]/5 to-[#FF7404]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-lg" />
+          <Image
+            src="/images/visquanta-logo-white.png"
             alt="VisQuanta"
-            className="vq-logo-img"
+            width={180}
+            height={45}
+            className="h-8 w-auto brightness-100 group-hover:brightness-125 transition-all duration-500 relative z-10"
+            priority
           />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="vq-nav-menu">
+        <nav className="hidden lg:flex items-center gap-6 relative ml-12">
           {navItems.map((item) => (
             <div
               key={item.label}
-              className="vq-nav-item"
+              className="relative"
               onMouseEnter={() => setActiveDropdown(item.label)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="vq-nav-link">
-                <span>{item.label}</span>
-                <svg className="vq-nav-chevron" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
+              <Link
+                href={item.href || '#'}
+                className={`flex items-center gap-1.5 text-[15px] font-medium transition-colors ${activeDropdown === item.label ? 'text-white' : 'text-muted-foreground hover:text-white'
+                  }`}
+              >
+                {item.label}
+                {item.children && (
+                  <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
+                )}
+              </Link>
 
               <AnimatePresence>
                 {activeDropdown === item.label && item.children && (
                   <motion.div
-                    className="vq-dropdown"
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[700px]"
+                    initial={{ opacity: 0, y: 15, scale: 0.98, rotateX: -10 }}
+                    animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95, rotateX: -5 }}
+                    transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
                   >
-                    <div className="vq-dropdown-inner">
-                      {item.children.map((child) => (
+                    <div className="bg-[#030303]/95 border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden backdrop-blur-2xl ring-1 ring-white/5 relative">
+                      {/* Top Accent Gradient */}
+                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
+
+                      <div className="flex">
+                        {/* Side Context (Optional/Visual) */}
+                        <div className="w-[180px] bg-white/[0.02] border-r border-white/5 p-8 hidden md:flex flex-col justify-between">
+                          <div>
+                            <div className="text-[10px] font-black uppercase tracking-[0.25em] text-[#FF7404] mb-4">Module</div>
+                            <h3 className="text-white font-bold text-lg tracking-tighter leading-tight uppercase">
+                              {item.label}
+                            </h3>
+                          </div>
+                          <div className="text-[9px] text-zinc-600 font-mono uppercase tracking-widest leading-relaxed">
+                            v2.5.0 Deployment <br />
+                            Last sync: 12.24
+                          </div>
+                        </div>
+
+                        {/* Main Grid Content */}
+                        <div className="flex-1 p-6">
+                          <div className="grid grid-cols-2 gap-2">
+                            {item.children.map((child, idx) => {
+                              const Icon = child.icon;
+                              return (
+                                <motion.div
+                                  key={idx}
+                                  initial={{ opacity: 0, x: -10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: idx * 0.05 }}
+                                >
+                                  <Link
+                                    href={child.href}
+                                    className="group relative flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/5"
+                                  >
+                                    {Icon && (
+                                      <div className="relative z-10 w-11 h-11 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:bg-[#FF7404]/10 group-hover:border-[#FF7404]/30 group-hover:text-[#FF7404] transition-all duration-500 shadow-inner">
+                                        <Icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-500" />
+                                        <div className="absolute inset-0 bg-[#FF7404]/20 opacity-0 group-hover:opacity-40 blur-xl transition-opacity rounded-xl" />
+                                      </div>
+                                    )}
+                                    <div className="relative z-10 flex-1">
+                                      <div className="flex items-center gap-2 mb-1">
+                                        <div className="text-sm font-bold text-white group-hover:text-[#FF7404] transition-colors uppercase tracking-tight">
+                                          {child.label}
+                                        </div>
+                                        {idx === 0 && (
+                                          <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-[#FF7404]/20 text-[#FF7404] uppercase tracking-widest border border-[#FF7404]/20">Core</span>
+                                        )}
+                                      </div>
+                                      <div className="text-[11px] text-zinc-500 line-clamp-2 leading-snug font-light group-hover:text-zinc-400 transition-colors">
+                                        {child.description}
+                                      </div>
+                                    </div>
+                                    {/* Subtle hover reveal line */}
+                                    <div className="absolute bottom-2 left-4 right-8 h-px bg-gradient-to-r from-[#FF7404] to-transparent scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 opacity-30" />
+                                  </Link>
+                                </motion.div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Footer / Status Bar Upgrade */}
+                      <div className="bg-black/40 border-t border-white/5 p-4 flex items-center justify-between px-10 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-enterprise-grid opacity-[0.02] pointer-events-none" />
+
+                        <div className="flex items-center gap-8 relative z-10">
+                          <div className="flex items-center gap-3">
+                            <div className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-40"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+                            </div>
+                            <span className="text-[10px] uppercase font-black tracking-[0.2em] text-zinc-500">System Online</span>
+                          </div>
+
+                          <div className="hidden sm:flex items-center gap-4 border-l border-white/10 pl-8">
+                            <div className="flex flex-col">
+                              <span className="text-[8px] uppercase tracking-widest text-zinc-600 font-bold mb-0.5">Latency</span>
+                              <span className="text-[10px] font-mono text-zinc-400">22ms</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[8px] uppercase tracking-widest text-zinc-600 font-bold mb-0.5">Load</span>
+                              <span className="text-[10px] font-mono text-zinc-400">0.08%</span>
+                            </div>
+                          </div>
+                        </div>
+
                         <Link
-                          key={child.href}
-                          href={child.href}
-                          className="vq-dropdown-item"
+                          href={item.href || '#'}
+                          className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#FF7404] hover:text-white transition-all group relative z-10"
                         >
-                          <span className="vq-dropdown-label">{child.label}</span>
-                          {child.description && (
-                            <span className="vq-dropdown-desc">{child.description}</span>
-                          )}
+                          Access {item.label} Hub
+                          <div className="w-6 h-6 rounded-full border border-[#FF7404]/30 flex items-center justify-center group-hover:bg-[#FF7404] group-hover:text-black transition-all">
+                            <Gauge className="w-3 h-3" />
+                          </div>
                         </Link>
-                      ))}
+                      </div>
+
                     </div>
                   </motion.div>
                 )}
@@ -136,32 +278,33 @@ export default function Navigation() {
           ))}
         </nav>
 
-        {/* CTA Buttons */}
-        <div className="vq-nav-actions">
+        {/* Desktop Actions */}
+        <div className="hidden lg:flex items-center gap-8">
           <Link
-            href="https://dashboard.visquanta.com/"
-            target="_blank"
-            className="vq-nav-login"
+            href="https://portal.visquanta.com"
+            className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-white transition-colors"
           >
-            Login
+            <Lock className="w-4 h-4" />
+            Dealer Portal
           </Link>
-          <Link href="/book-demo" className="vq-nav-cta">
-            <span>Book a Demo</span>
-            <svg viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
-          </Link>
+          <RequestDemoButton
+            className="relative bg-[#FF7404] text-black hover:bg-white hover:text-black px-8 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-500 flex items-center gap-3 group overflow-hidden shadow-[0_0_20px_rgba(255,116,4,0.2)]"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+            Request a Demo
+            <div className="w-5 h-5 rounded-lg bg-black/10 flex items-center justify-center">
+              <Zap className="w-3 h-3 group-hover:rotate-12 transition-transform" />
+            </div>
+            <span className="absolute top-1.5 right-1.5 w-1 h-1 rounded-full bg-white animate-pulse" />
+          </RequestDemoButton>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Toggle */}
         <button
-          className={`vq-mobile-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+          className="lg:hidden p-2 text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
@@ -169,67 +312,96 @@ export default function Navigation() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="vq-mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            className="fixed inset-0 top-[80px] bg-background border-t border-border overflow-y-auto lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <nav className="vq-mobile-nav">
+            <div className="p-6 flex flex-col gap-2">
               {navItems.map((item) => (
-                <div key={item.label} className="vq-mobile-item">
-                  <button
-                    className={`vq-mobile-link ${mobileActiveMenu === item.label ? 'active' : ''}`}
-                    onClick={() => setMobileActiveMenu(mobileActiveMenu === item.label ? null : item.label)}
-                  >
-                    <span>{item.label}</span>
-                    <svg className="vq-mobile-chevron" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                  </button>
-
-                  <AnimatePresence>
-                    {mobileActiveMenu === item.label && item.children && (
-                      <motion.div
-                        className="vq-mobile-dropdown"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className="vq-mobile-dropdown-item"
-                            onClick={() => setIsMobileMenuOpen(false)}
+                <div key={item.label} className="border-b border-border last:border-0 pb-2 mb-2">
+                  {item.children ? (
+                    <div>
+                      <div className="flex items-center justify-between w-full py-3">
+                        <Link
+                          href={item.href || '#'}
+                          className="text-lg font-bold text-white"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                        <button
+                          onClick={() => setMobileActiveMenu(mobileActiveMenu === item.label ? null : item.label)}
+                          className="p-2"
+                        >
+                          <ChevronDown className={`w-5 h-5 transition-transform ${mobileActiveMenu === item.label ? 'rotate-180' : ''}`} />
+                        </button>
+                      </div>
+                      <AnimatePresence>
+                        {mobileActiveMenu === item.label && (
+                          <motion.div
+                            initial={{ height: 0 }}
+                            animate={{ height: 'auto' }}
+                            exit={{ height: 0 }}
+                            className="overflow-hidden"
                           >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                            <div className="pl-4 border-l border-border ml-2 space-y-4 py-2">
+                              {item.children.map((child, idx) => {
+                                const Icon = child.icon;
+                                return (
+                                  <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.1 }}
+                                  >
+                                    <Link
+                                      href={child.href}
+                                      className="flex items-center gap-4 py-3 group relative px-4 rounded-xl hover:bg-[#FF7404]/5 border border-transparent hover:border-[#FF7404]/10 transition-all font-inter"
+                                      onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                      {Icon && (
+                                        <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#FF7404] group-hover:bg-[#FF7404]/10 transition-all">
+                                          <Icon className="w-5 h-5" />
+                                        </div>
+                                      )}
+                                      <div className="flex flex-col">
+                                        <span className="text-[13px] font-bold text-zinc-400 group-hover:text-white transition-colors uppercase tracking-tight">{child.label}</span>
+                                        <span className="text-[10px] text-zinc-600 line-clamp-1">{child.description}</span>
+                                      </div>
+                                    </Link>
+                                  </motion.div>
+                                );
+                              })}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href || '#'}
+                      className="block py-3 text-lg font-bold text-white"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </div>
               ))}
-            </nav>
-
-            <div className="vq-mobile-actions">
-              <Link
-                href="https://dashboard.visquanta.com/"
-                target="_blank"
-                className="vq-mobile-login"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Login to Dashboard
-              </Link>
-              <Link
-                href="/book-demo"
-                className="vq-mobile-cta"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Book a Demo
-              </Link>
+              <div className="mt-8 flex flex-col gap-4">
+                <Link
+                  href="https://portal.visquanta.com"
+                  className="w-full text-center py-4 text-sm font-bold text-muted-foreground border border-border rounded-xl hover:bg-secondary hover:text-white transition-colors"
+                >
+                  Dealer Portal
+                </Link>
+                <RequestDemoButton
+                  className="w-full text-center py-4 text-sm font-bold text-black bg-primary rounded-xl hover:bg-primary/90 transition-colors"
+                >
+                  Request a Demo
+                </RequestDemoButton>
+              </div>
             </div>
           </motion.div>
         )}

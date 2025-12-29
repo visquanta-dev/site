@@ -1,107 +1,88 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ArrowRight, Sparkles, Calendar, CheckCircle } from 'lucide-react';
 
 export default function FinalCTA() {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-
   return (
-    <section className="fcta-section" ref={containerRef}>
-      <div className="fcta-container">
+    <section className="py-32 bg-[#080808] relative overflow-hidden">
+      {/* Premium Background Effects */}
+      <div className="absolute inset-0 bg-enterprise-grid opacity-10 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-[#ff7404]/10 rounded-full blur-[200px] pointer-events-none" />
+
+      {/* Gradient Line Top */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#ff7404]/50 to-transparent" />
+
+      <div className="container-wide relative z-10">
         <motion.div
-          className="fcta-card"
-          initial={{ opacity: 0, y: 40, scale: 0.98 }}
-          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-4xl mx-auto"
         >
-          {/* Background wireframe car */}
-          <div className="fcta-bg-car">
-            <img
-              src="/images/wireframes/transparent-suv.png"
-              alt=""
-              aria-hidden="true"
-            />
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/30 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-8">
+            <Sparkles className="w-3 h-3" />
+            Start Your Transformation
           </div>
 
-          {/* Gradient overlay */}
-          <div className="fcta-gradient"></div>
+          {/* Headline */}
+          <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter leading-[1.1]">
+            Ready to <span className="text-[#ff7404]">dominate</span>
+            <br />your market?
+          </h2>
 
-          {/* Content */}
-          <div className="fcta-content">
-            <motion.div
-              className="fcta-badge"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <span className="fcta-badge-dot"></span>
-              <span>Limited Availability</span>
-            </motion.div>
+          {/* Subheadline */}
+          <p className="text-xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed">
+            Join the elite dealerships using AutoMaster to automate operations and maximize revenue. Your competition is already here.
+          </p>
 
-            <motion.h2
-              className="fcta-headline"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 }}
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <Link
+              href="/book-demo"
+              className="group relative px-10 py-5 rounded-full font-bold text-lg overflow-hidden"
             >
-              Join the dealerships closing more deals with AutoMaster Suite.
-            </motion.h2>
+              {/* Button Glow */}
+              <div className="absolute inset-0 bg-[#ff7404] rounded-full" />
+              <div className="absolute inset-0 bg-[#ff7404] rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
 
-            <motion.p
-              className="fcta-subtext"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              See how we can add $100K+ in recovered revenue to your dealership.
-            </motion.p>
+              <span className="relative z-10 flex items-center gap-3 text-black">
+                <Calendar className="w-5 h-5" />
+                Book Your Demo
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
 
-            <motion.div
-              className="fcta-actions"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.5 }}
+            <Link
+              href="/pricing"
+              className="px-10 py-5 rounded-full font-bold text-lg text-white border border-white/20 hover:bg-white/10 hover:border-white/40 transition-all duration-300 flex items-center gap-3"
             >
-              <Link href="/book-demo" className="fcta-btn-primary">
-                <span>Request a Demo</span>
-                <svg viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </Link>
-              <span className="fcta-disclaimer">Takes 15 minutes. No pressure. Real results.</span>
-            </motion.div>
+              View Pricing
+            </Link>
+          </div>
 
-            {/* Trust indicators */}
-            <motion.div
-              className="fcta-trust"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <div className="fcta-trust-item">
-                <svg viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>No credit card required</span>
-              </div>
-              <div className="fcta-trust-item">
-                <svg viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>Setup in 7 days</span>
-              </div>
-              <div className="fcta-trust-item">
-                <svg viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>Dedicated success manager</span>
-              </div>
-            </motion.div>
+          {/* Trust Indicators */}
+          <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-white/30">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-[#ff7404]" />
+              <span>No Credit Card Required</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-[#ff7404]" />
+              <span>14-Day Implementation</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-[#ff7404]" />
+              <span>Cancel Anytime</span>
+            </div>
           </div>
         </motion.div>
+
+        {/* Bottom Accent */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#ff7404]/30 to-transparent" />
       </div>
     </section>
   );

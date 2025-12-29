@@ -60,6 +60,30 @@ const testimonials: Testimonial[] = [
     company: "Foster Nissan",
     metric: "78%",
     metricLabel: "Close rate increase"
+  },
+  {
+    quote: "VisQuanta gets to leads before anyone else. If you're even thinking about it, do it—it pays for itself fast.",
+    name: "Jo DaBrowski",
+    title: "General Manager",
+    company: "Seth Wadley of Pauls Valley",
+    metric: "Immediate",
+    metricLabel: "Lead response"
+  },
+  {
+    quote: "The only platform that actually understands the automotive sales cycle. Actual sales, not fluff.",
+    name: "Jone McWhirter",
+    title: "General Manager",
+    company: "Seth Wadley Ford PV",
+    metric: "Smoother",
+    metricLabel: "Store operations"
+  },
+  {
+    quote: "Our team thought it was one of the managers talking, not AI. We've closed deals we thought were long gone.",
+    name: "Cody Rutledge",
+    title: "General Manager",
+    company: "Street Smart Auto Brokers",
+    metric: "100%",
+    metricLabel: "Human feel"
   }
 ];
 

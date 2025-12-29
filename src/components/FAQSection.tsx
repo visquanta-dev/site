@@ -2,174 +2,137 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Script from 'next/script';
+import { ChevronDown, Plus, HelpCircle } from 'lucide-react';
 
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-const faqs: FAQItem[] = [
+const faqs = [
   {
-    question: "How fast can dealership AI respond to leads?",
-    answer: "AutoMaster Suite responds to inbound leads in under 60 seconds, 24/7. This instant response dramatically increases your chances of converting leads, since 78% of buyers choose the first dealership to respond. Our AI engages via SMS with natural, human-like conversations that qualify prospects and book appointments automatically."
+    question: "How long does implementation take?",
+    answer: "Most dealerships are fully operational within 14 days. Our white-glove onboarding process handles all integrations, training, and AI configuration so your team can focus on selling cars."
   },
   {
-    question: "Does AutoMaster Suite integrate with VinSolutions, CDK, and DealerSocket?",
-    answer: "Yes. We integrate with all major dealership CRMs and DMS platforms including VinSolutions, CDK, DealerSocket, Elead, ProMax, DriveCentric, Dealertrack, and 40+ others. Our team handles the entire setup for you — no IT resources required from your team. Integrations are read/write, meaning data syncs automatically both ways."
+    question: "Do I need to change my existing systems?",
+    answer: "No. AutoMaster integrates seamlessly with all major DMS platforms, CRMs, and lead sources. We work alongside your existing tools, not against them."
   },
   {
-    question: "How do car dealerships reactivate old CRM leads?",
-    answer: "AutoMaster Suite uses AI-driven SMS conversations to re-engage aged leads in your CRM. We analyze your database to identify cold leads with buying signals, then launch personalized outreach campaigns. We typically see 30%+ of dormant leads respond, with 5-11% booking appointments — all without adding staff or ad spend."
+    question: "What happens if I receive a call while the AI is responding?",
+    answer: "Our intelligent routing system ensures live calls always take priority. The AI seamlessly hands off to your team when a customer is ready to talk, with full conversation context."
   },
   {
-    question: "What ROI can dealerships expect from AI lead automation?",
-    answer: "Dealers using AutoMaster Suite have generated over $27.4M in additional revenue. On average, our clients see a 5-11% increase in monthly unit sales from lead reactivation alone, plus faster response times on new leads. One dealership group sold 17 extra cars in a single month from reactivated leads, recovering $425K in revenue."
+    question: "Is the AI customized for my dealership?",
+    answer: "Absolutely. During onboarding, we train the AI on your inventory, pricing, processes, and brand voice. It learns your dealership's unique personality and selling style."
   },
   {
-    question: "How long does AutoMaster Suite take to set up?",
-    answer: "We deliver your custom AutoMaster Suite within 7 business days. Setup includes CRM/DMS integration, AI training customized for your dealership's voice and inventory, and a dedicated Account Success Manager — no IT resources required from your team. Most dealerships are fully operational within the first week."
+    question: "What's your typical ROI?",
+    answer: "Dealers typically see 3-5x ROI within the first 90 days through recovered leads, faster response times, and increased service appointments. We provide transparent reporting so you can track every dollar."
   },
   {
-    question: "Is AutoMaster Suite compliant with TCPA and SMS regulations?",
-    answer: "Yes. We conduct monthly compliance audits to ensure all outreach meets state and federal TCPA standards. Our system includes proper opt-out mechanisms, consent tracking, and data retention policies built specifically for automotive. We maintain enterprise-grade security with encrypted data transmission and never sell or share your customer data."
-  },
-  {
-    question: "What is the cost of missed leads for car dealerships?",
-    answer: "Slow lead response costs dealerships an estimated 35% of potential sales. Studies show leads contacted in under 60 seconds are 21x more likely to convert than those contacted after 30 minutes. Additionally, the average dealership has $2.4M in potential revenue sitting untouched in aged CRM leads, and each missed service call costs approximately $340 in average RO value."
-  },
-  {
-    question: "Can AI handle service department appointment scheduling?",
-    answer: "Yes. Our Service Intelligence module uses voice AI to answer inbound service calls 24/7. It can schedule appointments, answer common questions about hours and services, send automated reminders, and route complex issues to your team. Dealerships using Service Intelligence capture 100% of calls with zero missed opportunities."
-  },
-  {
-    question: "How does reputation management work for dealerships?",
-    answer: "AutoMaster Suite automatically requests reviews after every sale and service via SMS. Our AI catches negative feedback before it goes public, allowing you to resolve issues proactively. Dealerships typically see a 75% increase in 5-star reviews and a 0.6 CSI score lift within 90 days — all without manual follow-up."
-  },
-  {
-    question: "What makes AutoMaster Suite different from other dealership AI solutions?",
-    answer: "Three things set us apart: First, we're built exclusively for automotive — our AI understands VINs, trade-ins, financing, and dealership workflows. Second, we're a unified platform with five modules in one system, not point solutions duct-taped together. Third, every client gets a dedicated success manager who knows the automotive industry and optimizes your results continuously."
+    question: "Can I cancel anytime?",
+    answer: "Yes. We offer month-to-month agreements with no long-term contracts. We're confident you'll stay because of results, not obligations."
   }
 ];
-
-// Generate FAQ Schema for SEO
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
-    }
-  }))
-};
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <>
-      {/* FAQ Schema for SEO */}
-      <Script
-        id="faq-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+    <section className="py-32 bg-[#080808] relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-enterprise-grid opacity-10 pointer-events-none" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <section className="faq-section">
-        <div className="faq-container">
+      {/* Ambient Glow */}
+      <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-[#ff7404]/5 rounded-full blur-[150px] pointer-events-none" />
+
+      <div className="container-wide relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+
+          {/* Left: Header */}
           <motion.div
-            className="faq-header"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            className="lg:w-1/3 lg:sticky lg:top-32 lg:self-start"
           >
-            <div className="faq-badge">
-              <span className="faq-badge-icon">?</span>
-              <span>Frequently Asked Questions</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-6">
+              <HelpCircle className="w-3 h-3" />
+              FAQ
             </div>
-            <h2 className="faq-title">
-              Everything You Need to Know About <span className="faq-highlight">AutoMaster Suite</span>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
+              Questions? <span className="text-[#ff7404]">Answers.</span>
             </h2>
-            <p className="faq-subtitle">
-              Get answers to common questions about AI-powered dealership solutions, implementation, integrations, and ROI.
+            <p className="text-white/70 text-lg leading-relaxed mb-8">
+              Everything you need to know about getting started with AutoMaster Suite.
             </p>
-          </motion.div>
 
-          <motion.div
-            className="faq-grid"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                className={`faq-item ${openIndex === index ? 'faq-item-open' : ''}`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+            {/* Contact CTA */}
+            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+              <p className="text-sm text-white/70 mb-4">Still have questions?</p>
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2 text-[#ff7404] font-bold hover:text-white transition-colors"
               >
-                <button
-                  className="faq-question"
-                  onClick={() => toggleFAQ(index)}
-                  aria-expanded={openIndex === index}
-                >
-                  <span className="faq-question-text">{faq.question}</span>
-                  <span className="faq-icon">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      className={openIndex === index ? 'faq-icon-rotate' : ''}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </button>
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      className="faq-answer"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <p>{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
+                Talk to our team
+                <ChevronDown className="w-4 h-4 -rotate-90" />
+              </a>
+            </div>
           </motion.div>
 
-          <motion.div
-            className="faq-cta"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <p className="faq-cta-text">Still have questions?</p>
-            <a href="#" className="faq-cta-link">
-              <span>Talk to our team</span>
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </motion.div>
+          {/* Right: Accordion */}
+          <div className="lg:w-2/3 space-y-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="group"
+                >
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className={`w-full text-left p-6 rounded-2xl transition-all duration-300 border
+                      ${isOpen
+                        ? 'bg-[#ff7404]/5 border-[#ff7404]/30'
+                        : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/10'
+                      }`}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <h3 className={`text-lg font-bold transition-colors ${isOpen ? 'text-white' : 'text-white/70'}`}>
+                        {faq.question}
+                      </h3>
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300
+                        ${isOpen ? 'bg-[#ff7404] text-black rotate-45' : 'bg-white/5 text-white/50'}`}
+                      >
+                        <Plus className="w-5 h-5" />
+                      </div>
+                    </div>
+
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <p className="text-white/70 leading-relaxed pt-4 pr-14">
+                            {faq.answer}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </button>
+                </motion.div>
+              );
+            })}
+          </div>
+
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
