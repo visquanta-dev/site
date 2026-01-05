@@ -13,7 +13,7 @@ const capabilities = [
     statLabel: 'Re-engagement',
     stat2: '11%',
     stat2Label: 'Sales Uplift',
-    link: '/products/lead-reactivation',
+    link: '/lead-reactivation',
     icon: RefreshCcw,
     featured: true,
   },
@@ -25,7 +25,7 @@ const capabilities = [
     statLabel: 'Higher Conversion',
     stat2: '<60s',
     stat2Label: 'Response Time',
-    link: '/products/speed-to-lead',
+    link: '/speed-to-lead',
     icon: Zap,
   },
   {
@@ -36,18 +36,18 @@ const capabilities = [
     statLabel: 'Availability',
     stat2: '3x',
     stat2Label: 'More Leads',
-    link: '/products/website-widget',
+    link: '/website-widget',
     icon: MessageSquare,
   },
   {
     number: '04',
-    title: 'Reputation',
+    title: 'Reputation Management',
     description: 'Monitor and respond to reviews across all platforms instantly.',
     stat: '100%',
     statLabel: 'Response Rate',
     stat2: '4.8',
     stat2Label: 'Avg Rating',
-    link: '/products/reputation-management',
+    link: '/reputation-management',
     icon: Star,
   },
   {
@@ -58,7 +58,7 @@ const capabilities = [
     statLabel: 'Success Rate',
     stat2: '0',
     stat2Label: 'Missed Calls',
-    link: '/products/service-drive-ai',
+    link: '/service-ai',
     icon: Phone,
   },
 ];
@@ -183,7 +183,7 @@ export default function PlatformSection() {
                 variants={itemVariants}
                 className="lg:col-span-6 xl:col-span-3 group"
               >
-                <div className="relative h-full bg-gradient-to-b from-[#0f0f0f] to-[#080808] border border-white/[0.08] rounded-3xl p-8 overflow-hidden transition-all duration-500 hover:border-[#ff7404]/30 hover:shadow-[0_0_60px_rgba(255,116,4,0.08)] hover:-translate-y-2">
+                <Link href={item.link} className="block relative h-full bg-gradient-to-b from-[#0f0f0f] to-[#080808] border border-white/[0.08] rounded-3xl p-8 overflow-hidden transition-all duration-500 hover:border-[#ff7404]/30 hover:shadow-[0_0_60px_rgba(255,116,4,0.08)] hover:-translate-y-2">
                   {/* Top shine */}
                   <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -214,7 +214,7 @@ export default function PlatformSection() {
 
                   {/* Bottom accent on hover */}
                   <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-[#ff7404] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
+                </Link>
               </motion.div>
             );
           })}

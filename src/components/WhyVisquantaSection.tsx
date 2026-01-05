@@ -105,10 +105,7 @@ export default function WhyVisquantaSection() {
                         <div className="grid grid-cols-4 gap-4 px-8 py-6 border-b border-white/[0.08] bg-white/[0.02]">
                             <div className="text-xs font-bold text-white/40 uppercase tracking-[0.2em]">Capability</div>
                             <div className="relative flex flex-col items-center justify-center">
-                                <div className="absolute -top-3 px-3 py-1 rounded-full bg-[#ff7404] text-[10px] text-black font-black uppercase tracking-widest shadow-lg shadow-[#ff7404]/40">
-                                    Recommended
-                                </div>
-                                <div className="text-base font-black text-[#ff7404] uppercase tracking-[0.15em] pt-3">VisQuanta</div>
+                                <div className="text-base font-black text-[#ff7404] uppercase tracking-[0.15em]">VisQuanta</div>
                             </div>
                             <div className="text-xs font-bold text-white/20 uppercase tracking-[0.15em] text-center flex items-center justify-center">Traditional BDC</div>
                             <div className="text-xs font-bold text-white/20 uppercase tracking-[0.15em] text-center flex items-center justify-center">Generic AI</div>

@@ -31,7 +31,7 @@ const cardData = [
   },
   {
     id: 'reputation',
-    title: 'Reputation Mgmnt',
+    title: 'Reputation Management',
     label: 'Brand Health',
     icon: Star,
     description: 'Monitor and respond to reviews across all platforms instantly.',

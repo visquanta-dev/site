@@ -123,7 +123,7 @@ const scenarios: Scenario[] = [
   {
     id: 'reputation',
     number: '04',
-    title: 'Reputation Guard',
+    title: 'Reputation Management',
     description: 'Automate your CSI. We detect happy customers post-purchase and text them a direct review link, while intercepting negative feedback before it goes public.',
     stats: [
       { value: '4.8', label: 'AVG STAR RATING' },
@@ -512,7 +512,7 @@ export default function SeeItInAction() {
             <span className="text-white/80">that convert.</span>
           </h2>
           <p className="text-white/40 text-xl lg:text-2xl leading-relaxed">
-            Experience the power of VisQuanta's AI in real-time. Scroll through the scenarios to see how our intelligent agents handle lead reactivation, speed-to-lead, and service drive coordination.
+            See how each VisQuanta product operates across lead reactivation, inbound response, SMS chat, review requests, and service drive coordination, shown through real dealership conversations.
           </p>
         </div>
 
