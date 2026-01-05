@@ -17,6 +17,7 @@ interface PhoneDemoProps {
     messages?: Message[];
     title?: string;
     subtitle?: string;
+    avatarImage?: string;
 }
 
 // --- Default Data ---
@@ -81,17 +82,13 @@ const ChatBubble = ({ message }: { message: Message }) => {
                 >
                     {message.content}
                 </div>
-                {isAgent && (
-                    <div className="text-[9px] text-white/30 text-right pr-1 font-bold uppercase tracking-widest">
-                        Human Monitored Outreach
-                    </div>
-                )}
+
             </div>
         </div>
     );
 };
 
-export default function PhoneDemo({ children, messages, title = "Amy (Specialist)", subtitle = "Managed Performance" }: PhoneDemoProps) {
+export default function PhoneDemo({ children, messages, title = "Amy (Specialist)", subtitle = "Managed Performance", avatarImage }: PhoneDemoProps) {
     const [visibleMessages, setVisibleMessages] = useState<Message[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -140,24 +137,49 @@ export default function PhoneDemo({ children, messages, title = "Amy (Specialist
     }, [children, activeMessages]);
 
     return (
-        <div className="relative w-full max-w-[380px] aspect-[9/18.5] bg-black rounded-[55px] border-[8px] border-[#1a1a1a] shadow-2xl overflow-hidden ring-1 ring-white/10 mx-auto transform scale-90 lg:scale-100 origin-top">
-            {/* Notch */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[30px] w-[120px] bg-[#1a1a1a] rounded-b-[20px] z-50 flex justify-center items-center">
-                <div className="w-16 h-4 bg-black rounded-full flex gap-2 items-center justify-center px-2">
-                    <div className="w-1 h-1 rounded-full bg-[#333]" />
-                    <div className="w-1 h-1 rounded-full bg-[#FF7404] animate-pulse" />
+        <div className="relative w-[380px] h-[760px] bg-black rounded-[55px] border-[6px] border-[#4a4a4a] shadow-2xl overflow-hidden ring-1 ring-white/20 select-none mx-auto transform scale-90 lg:scale-100 origin-top">
+            {/* Hardware Buttons */}
+            <div className="absolute -left-[8px] top-[120px] h-[26px] w-[4px] bg-[#3a3a3a] rounded-l-md" /> {/* Silent */}
+            <div className="absolute -left-[8px] top-[160px] h-[45px] w-[4px] bg-[#3a3a3a] rounded-l-md" /> {/* Vol Up */}
+            <div className="absolute -left-[8px] top-[215px] h-[45px] w-[4px] bg-[#3a3a3a] rounded-l-md" /> {/* Vol Down */}
+            <div className="absolute -right-[8px] top-[160px] h-[80px] w-[4px] bg-[#3a3a3a] rounded-r-md" /> {/* Power */}
+
+            {/* Status Bar */}
+            <div className="absolute top-4 left-0 right-0 px-7 flex justify-between items-center z-[60] text-white font-medium text-[14px]">
+                <span className="tracking-wide text-[14px]">9:41</span>
+                <div className="flex items-center gap-2 text-white">
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18 20h2v-6h-2v6zm-4 0h2v-10h-2v10zm-4 0h2v-14h-2v14zm-4 0h2v-17h-2v17z" /></svg> {/* Signal */}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0" /></svg> {/* Wifi */}
+                    <div className="w-6 h-[11px] rounded-[3px] border-[1.5px] border-white/40 flex items-center pr-[1px] relative ml-1">
+                        <div className="w-full h-full bg-white rounded-[1px]" />
+                        <div className="absolute -right-[3px] top-1/2 -translate-y-1/2 h-1 w-[2px] bg-white/40 rounded-r-[1px]" />
+                    </div>
                 </div>
             </div>
 
+            {/* Dynamic Island */}
+            <div className="absolute top-[11px] left-1/2 -translate-x-1/2 h-[36px] w-[120px] bg-black rounded-[24px] z-[70] flex justify-center items-center">
+                <div className="w-[40%] h-full bg-black rounded-full relative overflow-hidden">
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#1a1a1a] shadow-inner opacity-60" />
+                </div>
+            </div>
+
+            {/* Home Indicator */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[130px] h-[5px] bg-white/90 rounded-full z-[80]" />
+
             {/* Screen Content */}
-            <div className="w-full h-full bg-black flex flex-col pt-12">
+            <div className="w-full h-full bg-black flex flex-col pt-14">
 
                 {/* Chat Header */}
                 <div className="px-6 pb-4 border-b border-white/5 flex items-center justify-between bg-black/80 backdrop-blur-md z-10 transition-colors">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-[#111] border border-white/10 flex items-center justify-center text-[10px] text-white/50 font-bold">
-                            VQ
-                        </div>
+                        {avatarImage ? (
+                            <img src={avatarImage} alt={title} className="w-10 h-10 rounded-full border border-white/10 object-cover" />
+                        ) : (
+                            <div className="w-10 h-10 rounded-full bg-[#111] border border-white/10 flex items-center justify-center text-[10px] text-white/50 font-bold">
+                                VQ
+                            </div>
+                        )}
                         <div>
                             <div className="text-white text-sm font-bold">{title}</div>
                             <div className="text-white/40 text-[10px] uppercase tracking-wider">{subtitle}</div>

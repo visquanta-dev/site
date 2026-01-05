@@ -449,7 +449,7 @@ export default function DealerHub() {
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#FF9040]">themselves.</span>
                             </h2>
                             <p className="text-xl text-zinc-400 font-light max-w-2xl mx-auto">
-                                From CRM mining to Service Drive missed calls, we provide the absolute data-driven performance needed to maximize every profit center.
+                                From lead reactivation to Service Drive missed calls, we provide the absolute data-driven performance needed to maximize every profit center.
                             </p>
                         </motion.div>
                     </div>

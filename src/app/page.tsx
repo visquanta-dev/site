@@ -5,16 +5,12 @@ import PainPointSection from '@/components/PainPointSection';
 import PlatformSection from '@/components/PlatformSection';
 import WhyVisquantaSection from '@/components/WhyVisquantaSection';
 import SeeItInAction from '@/components/SeeItInAction';
-import WhoItsForSection from '@/components/WhoItsForSection';
 import DealerServicesSection from '@/components/DealerServicesSection';
 import ResultsProof from '@/components/ResultsProof';
-import FeaturedCaseStudySection from '@/components/FeaturedCaseStudySection';
 import HowItWorksSection from '@/components/HowItWorksSection';
-import CostOfWaitingSection from '@/components/CostOfWaitingSection';
-
-import AboutStorySection from '@/components/AboutStorySection';
 import IntegrationsSection from '@/components/IntegrationsSection';
 import FAQSection from '@/components/FAQSection';
+import LatestInsights from '@/components/LatestInsights';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 
@@ -23,60 +19,47 @@ export default function Home() {
     <main className="bg-background min-h-screen">
       <Navigation />
 
-      {/* 1. Hero */}
+      {/* 1. Hero - Value Proposition & Interactive Product Cards */}
       <Hero />
 
-      {/* 2. Social Proof Bar */}
+      {/* 2. Social Proof Bar - Trust Indicators */}
       <SocialProofBar />
 
-      {/* 3. The Problem (Copy-Rich) */}
+      {/* 3. The Problem - Dealer Pain Points */}
       <PainPointSection />
 
-      {/* 4. Platform Capabilities */}
+      {/* 4. Platform Capabilities - Detailed Product Breakdown */}
       <PlatformSection />
 
-      {/* 5. The Differentiator (Copy-Rich) */}
+      {/* 5. The Differentiator - Why VisQuanta + Comparison Table */}
       <WhyVisquantaSection />
 
-      {/* 6. Interactive Demo */}
+      {/* 5. Interactive Demo - See It In Action */}
       <SeeItInAction />
 
-      {/* 7. Audience Clarity (Copy-Rich) */}
-      <WhoItsForSection />
-
-      {/* 8. Dealer Services (Tabbed Interface) */}
+      {/* 6. Dealer Services - Tabbed Interface by Dealer Type */}
       <DealerServicesSection />
 
-
-
-      {/* 9. Results & Proof (Data Grid) */}
+      {/* 7. Results & Proof - Stats + Video Testimonials */}
       <ResultsProof />
 
-      {/* 10. Featured Case Study (Copy-Rich) */}
-      <FeaturedCaseStudySection />
-
-      {/* 11. How it Works (Process Steps) */}
+      {/* 8. How it Works - Onboarding Process */}
       <HowItWorksSection />
 
 
-      {/* 12. The Urgency (Copy-Rich) */}
-      <CostOfWaitingSection />
-
-
-
-      {/* 14. Our Story (Copy-Rich) */}
-      <AboutStorySection />
-
-      {/* 15. Integrations (Logo Marquee) */}
+      {/* 10. Integrations - Logo Marquee */}
       <IntegrationsSection />
 
-      {/* 16. FAQ (Accordion) */}
+      {/* 11. FAQ - Common Questions */}
       <FAQSection />
 
-      {/* 17. Final CTA */}
+      {/* 12. Latest Insights - Blog Articles */}
+      <LatestInsights />
+
+      {/* 13. Final CTA */}
       <FinalCTA />
 
-      {/* 18. Footer */}
+      {/* Footer */}
       <Footer />
     </main>
   );

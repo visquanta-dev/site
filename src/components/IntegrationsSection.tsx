@@ -56,9 +56,9 @@ export default function IntegrationsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-8">
-              <Zap className="w-3 h-3" />
-              Ecosystem
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/50 border border-[#ff7404]/30 shadow-[0_0_15px_-3px_rgba(255,116,4,0.3)] backdrop-blur-md text-xs font-bold uppercase tracking-widest mb-8">
+              <Zap className="w-3 h-3 text-[#ff7404] fill-[#ff7404]" />
+              <span className="bg-gradient-to-r from-[#ff7404] to-[#ff9b50] bg-clip-text text-transparent">Ecosystem</span>
             </div>
             <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
               Connects to <span className="text-[#ff7404]">Everything.</span>

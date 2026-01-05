@@ -34,7 +34,8 @@ const guides = [
         icon: Zap,
         stats: { rev: "v2.5.0", security: "Level 4", type: "Core Module" },
         id: "AMS-LLM-001",
-        accent: "#FF7404"
+        accent: "#FF7404",
+        downloadPath: "/guides/Lead Loss Mitigation.pdf"
     },
     {
         title: "Speed to Lead Services",
@@ -44,17 +45,19 @@ const guides = [
         icon: Gauge,
         stats: { rev: "v1.9.2", security: "Level 3", type: "Telemetry" },
         id: "AMS-STL-002",
-        accent: "#10B981"
+        accent: "#10B981",
+        downloadPath: "/guides/Speed to Lead.pdf"
     },
     {
         title: "Reputation Management",
-        subtitle: "Review Authority Framework",
+        subtitle: "CSI & Review Authority Framework",
         description: "Strategic defense and acquisition protocols for dealership sentiment. Automating the feedback loop to maintain a 4.8+ star rating across all Tier-1 directories.",
         category: "Authority",
         icon: Shield,
         stats: { rev: "v3.1.0", security: "Level 4", type: "Guard" },
         id: "AMS-RM-003",
-        accent: "#3B82F6"
+        accent: "#3B82F6",
+        downloadPath: "/guides/CSI & Reputation Managment.pdf"
     },
     {
         title: "Service Drive Pro",
@@ -64,27 +67,19 @@ const guides = [
         icon: Cpu,
         stats: { rev: "v2.2.4", security: "Level 3", type: "Optimization" },
         id: "AMS-SDP-004",
-        accent: "#A855F7"
+        accent: "#A855F7",
+        downloadPath: "/guides/Service Drive.pdf"
     },
     {
-        title: "DMS Terminal",
-        subtitle: "Universal Data Architecture",
-        description: "Deep-layer integration guide for secure DMS connectivity. Details the encryption standards and neural mapping of dealership data streams.",
-        category: "Infrastructure",
-        icon: Database,
-        stats: { rev: "v4.0.1", security: "Level 5", type: "Neural Link" },
-        id: "AMS-DMS-005",
-        accent: "#F43F5E"
-    },
-    {
-        title: "The AutoMaster Ecosystem",
-        subtitle: "Full Suite Overview",
-        description: "The holistic architecture of the VisQuanta platform. How individual modules synchronize to create the industry's most powerful revenue engine.",
-        category: "Master",
+        title: "Custom Campaigns",
+        subtitle: "IWAV Marketing Protocol",
+        description: "Advanced campaign orchestration for targeted dealership marketing. Deploy precision-engineered outreach sequences that convert prospects into scheduled appointments.",
+        category: "Growth",
         icon: Layers,
-        stats: { rev: "v5.0.0", security: "Level 5", type: "Full Stack" },
-        id: "AMS-ALL-006",
-        accent: "#EAB308"
+        stats: { rev: "v3.0.0", security: "Level 4", type: "Campaign Engine" },
+        id: "AMS-CC-005",
+        accent: "#EAB308",
+        downloadPath: "/guides/Custom Campaign - IWAV.pdf"
     }
 ];
 
@@ -323,13 +318,17 @@ export default function AMSGuidesPage() {
 
                                             {/* Footing / Download */}
                                             <div className="relative z-10 pt-8 mt-4 border-t border-white/5">
-                                                <button className="w-full relative group/btn overflow-hidden">
+                                                <a
+                                                    href={guide.downloadPath}
+                                                    download
+                                                    className="w-full relative group/btn overflow-hidden block"
+                                                >
                                                     <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-[#FF7404] translate-y-[101%] group-hover/btn:translate-y-0 transition-transform duration-500" />
                                                     <div className="relative w-full border border-white/10 rounded-2xl py-5 flex items-center justify-center gap-4 text-xs font-black uppercase tracking-[0.25em] text-white group-hover/btn:text-black group-hover/btn:border-[#FF7404] transition-all">
                                                         <Download className="w-4 h-4" />
                                                         Initialize Download
                                                     </div>
-                                                </button>
+                                                </a>
                                             </div>
 
                                             {/* Decorative Background Elements */}

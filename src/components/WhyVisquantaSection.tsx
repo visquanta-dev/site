@@ -4,26 +4,23 @@ import { motion } from 'framer-motion';
 import { Check, X, Sparkles, Bot, Users, Building2, Zap, Target, ShieldCheck } from 'lucide-react';
 
 const comparisons = [
-    { feature: 'Response Time', visquanta: 'Under 60 seconds', traditional: '24+ hours', generic: '2-5 minutes', detail: 'Instant engagement vs. waiting for a call back.' },
-    { feature: 'Personalization', visquanta: 'Inventory-aware, context-rich', traditional: 'Generic scripts', generic: 'Template responses', detail: 'Actual conversation vs. robotic templates.' },
-    { feature: 'Lead Qualification', visquanta: 'AI-powered scoring', traditional: 'Manual review', generic: 'Basic forms', detail: 'Strategic prioritization vs. manual sorting.' },
-    { feature: 'Multi-Channel', visquanta: 'SMS, Email, Voice, Chat', traditional: 'Phone only', generic: 'Chat only', detail: 'Meeting the customer where they are.' },
-    { feature: 'CRM Integration', visquanta: 'Deep, bi-directional sync', traditional: 'Manual entry', generic: 'Limited', detail: 'No more data silos or manual entry errors.' },
-    { feature: 'After-Hours Coverage', visquanta: '24/7/365 AI + Human', traditional: 'None', generic: 'Bot only', detail: 'Never miss a weekend or night lead again.' },
-    { feature: 'Service Department', visquanta: 'Full Voice AI support', traditional: 'Separate system', generic: 'Not supported', detail: 'Handle ROs and appointments automatically.' },
-    { feature: 'Cost per Appointment', visquanta: 'Fraction of BDC', traditional: '$150-300', generic: 'Variable', detail: 'Scale without adding payroll overhead.' },
+    { feature: 'Lead Response Time', visquanta: '<60 seconds', traditional: '24+ hours', generic: '2-5 minutes', detail: 'Speed wins deals.' },
+    { feature: 'Lead Reactivation', visquanta: 'SMS Conversational AI', traditional: 'Outbound calls', generic: '', detail: 'Prioritize, don\'t guess.' },
+    { feature: 'After-Hours Coverage', visquanta: '24/7/365 AI + Human', traditional: 'None', generic: 'Bot only', detail: 'Never miss a lead.' },
+    { feature: 'Service Department', visquanta: 'Full Voice AI', traditional: 'Separate system', generic: 'Not supported', detail: 'ROs on autopilot.' },
+    { feature: 'Cost per Appointment', visquanta: 'Fraction of BDC', traditional: '$150-300', generic: 'Variable', detail: 'Scale without payroll.' },
 ];
 
 const differentiators = [
     {
         icon: Bot,
-        title: 'AI That Actually Sells',
-        description: 'Not a chatbot. Not a script reader. Our AI understands automotive sales, speaks your language, and closes appointments like your best BDC rep.',
+        title: 'Conversations That Convert',
+        description: 'Our conversational AI is unlike any other tool on the market. It speaks automotive, understands buyer intent, and delivers qualified leads, not tire-kickers.',
     },
     {
         icon: Users,
-        title: 'Human When It Matters',
-        description: 'AI handles the volume. Humans handle the complexity. Seamless handoffs mean no lead ever feels like they\'re talking to a robot.',
+        title: 'Your Team Closes the Deal',
+        description: 'We qualify leads and book appointments. Your salespeople do what they do best: turn opportunities we bring them into sold units.',
     },
     {
         icon: Building2,
@@ -63,10 +60,10 @@ export default function WhyVisquantaSection() {
                         The Competitive Edge
                     </div>
                     <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
-                        Not another chatbot. <span className="text-[#ff7404]">A complete AI sales engine.</span>
+                        Bespoke automotive AI. <span className="text-[#ff7404]">Unmatched in the industry.</span>
                     </h2>
                     <p className="text-white/60 text-xl leading-relaxed">
-                        There's a reason the top-performing dealerships choose VisQuanta over generic AI solutions and traditional BDC teams.
+                        VisQuanta isn't here to replace your sales team. It's here to fill their pipeline with qualified, engaged buyers ready to make a decision.
                     </p>
                 </motion.div>
 
@@ -96,71 +93,97 @@ export default function WhyVisquantaSection() {
                 {/* Comparison Table - Premium Redesign */}
                 <div className="relative group/table">
                     {/* Glowing background behind the table */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff7404]/5 to-transparent blur-3xl opacity-0 group-hover/table:opacity-50 transition-opacity duration-1000 -z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff7404]/10 to-transparent blur-3xl opacity-50 -z-10" />
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="bg-black/40 backdrop-blur-xl border border-white/[0.08] rounded-[2rem] overflow-hidden shadow-2xl"
+                        className="bg-black/60 backdrop-blur-xl border border-white/[0.08] rounded-[2rem] overflow-hidden shadow-2xl"
                     >
                         {/* Table Header */}
-                        <div className="grid grid-cols-4 gap-4 p-10 border-b border-white/[0.08] bg-white/[0.02]">
-                            <div className="text-sm font-bold text-white/30 uppercase tracking-[0.2em]">Capability</div>
+                        <div className="grid grid-cols-4 gap-4 px-8 py-6 border-b border-white/[0.08] bg-white/[0.02]">
+                            <div className="text-xs font-bold text-white/40 uppercase tracking-[0.2em]">Capability</div>
                             <div className="relative flex flex-col items-center justify-center">
-                                <div className="absolute -top-6 px-4 py-1 rounded-full bg-[#ff7404] text-[11px] text-black font-black uppercase tracking-widest mb-2 shadow-lg shadow-[#ff7404]/30">
+                                <div className="absolute -top-3 px-3 py-1 rounded-full bg-[#ff7404] text-[10px] text-black font-black uppercase tracking-widest shadow-lg shadow-[#ff7404]/40">
                                     Recommended
                                 </div>
-                                <div className="text-lg font-black text-[#ff7404] uppercase tracking-[0.15em] pt-4">VisQuanta</div>
+                                <div className="text-base font-black text-[#ff7404] uppercase tracking-[0.15em] pt-3">VisQuanta</div>
                             </div>
-                            <div className="text-sm font-bold text-white/30 uppercase tracking-[0.2em] text-center flex items-center justify-center">Traditional BDC</div>
-                            <div className="text-sm font-bold text-white/30 uppercase tracking-[0.2em] text-center flex items-center justify-center">Generic AI</div>
+                            <div className="text-xs font-bold text-white/20 uppercase tracking-[0.15em] text-center flex items-center justify-center">Traditional BDC</div>
+                            <div className="text-xs font-bold text-white/20 uppercase tracking-[0.15em] text-center flex items-center justify-center">Generic AI</div>
                         </div>
 
                         {/* Table Content */}
                         <div className="divide-y divide-white/[0.04]">
-                            {comparisons.map((row, i) => (
-                                <div
-                                    key={i}
-                                    className="grid grid-cols-4 gap-4 px-10 py-9 hover:bg-white/[0.02] transition-colors relative group/row"
-                                >
-                                    {/* VisQuanta Column Highlight Effect */}
-                                    <div className="absolute top-0 bottom-0 left-[25%] right-[50%] bg-[#ff7404]/[0.02] border-x border-[#ff7404]/10 pointer-events-none group-hover/row:bg-[#ff7404]/[0.04] transition-colors" />
+                            {comparisons.map((row, i) => {
+                                const isWeakTraditional = ['None', 'Not supported', 'Bot only'].includes(row.traditional);
+                                const isWeakGeneric = ['None', 'Not supported', 'Bot only', 'Basic forms', ''].includes(row.generic);
 
-                                    {/* Feature Name */}
-                                    <div className="flex flex-col gap-2">
-                                        <div className="text-base lg:text-lg font-bold text-white group-hover/row:text-[#ff7404] transition-colors">{row.feature}</div>
-                                        <div className="text-xs lg:text-sm text-white/30 font-medium leading-relaxed max-w-[220px]">{row.detail}</div>
-                                    </div>
+                                return (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="grid grid-cols-4 gap-4 px-8 py-5 hover:bg-white/[0.02] transition-colors relative group/row"
+                                    >
+                                        {/* VisQuanta Column Highlight Effect */}
+                                        <div className="absolute top-0 bottom-0 left-[25%] right-[50%] bg-gradient-to-b from-[#ff7404]/[0.06] to-[#ff7404]/[0.02] border-x border-[#ff7404]/20 pointer-events-none" />
 
-                                    {/* VisQuanta Value */}
-                                    <div className="relative flex items-center justify-center gap-4">
-                                        <div className="w-6 h-6 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 flex items-center justify-center group-hover:bg-[#ff7404] transition-all">
-                                            <Check className="w-4 h-4 text-[#ff7404] group-hover:text-black" />
+                                        {/* Feature Name */}
+                                        <div className="flex items-center">
+                                            <div className="text-sm lg:text-base font-bold text-white group-hover/row:text-[#ff7404] transition-colors">{row.feature}</div>
                                         </div>
-                                        <div className="text-base lg:text-lg text-[#ff7404] font-black tracking-tight text-center leading-tight">{row.visquanta}</div>
-                                    </div>
 
-                                    {/* Traditional Value */}
-                                    <div className="text-base text-white/40 text-center flex items-center justify-center font-medium">
-                                        {row.traditional}
-                                    </div>
+                                        {/* VisQuanta Value */}
+                                        <div className="relative flex items-center justify-center gap-3">
+                                            <div className="w-5 h-5 rounded-full bg-[#ff7404] flex items-center justify-center shadow-lg shadow-[#ff7404]/30">
+                                                <Check className="w-3 h-3 text-black" />
+                                            </div>
+                                            <div className="text-sm lg:text-base text-[#ff7404] font-bold tracking-tight text-center">{row.visquanta}</div>
+                                        </div>
 
-                                    {/* Generic AI Value */}
-                                    <div className="text-base text-white/40 text-center flex items-center justify-center font-medium">
-                                        {row.generic}
-                                    </div>
-                                </div>
-                            ))}
+                                        {/* Traditional Value */}
+                                        <div className="flex items-center justify-center gap-2">
+                                            {isWeakTraditional ? (
+                                                <>
+                                                    <div className="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center">
+                                                        <X className="w-3 h-3 text-red-500" />
+                                                    </div>
+                                                    <span className="text-sm text-white/20 font-medium">{row.traditional}</span>
+                                                </>
+                                            ) : (
+                                                <span className="text-sm text-white/30 font-medium">{row.traditional}</span>
+                                            )}
+                                        </div>
+
+                                        {/* Generic AI Value */}
+                                        <div className="flex items-center justify-center gap-2">
+                                            {isWeakGeneric ? (
+                                                <>
+                                                    <div className="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center">
+                                                        <X className="w-3 h-3 text-red-500" />
+                                                    </div>
+                                                    <span className="text-sm text-white/20 font-medium">{row.generic}</span>
+                                                </>
+                                            ) : (
+                                                <span className="text-sm text-white/30 font-medium">{row.generic}</span>
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
                         </div>
 
                         {/* Table Footer / Summary */}
-                        <div className="p-10 bg-white/[0.02] border-t border-white/[0.06] text-center">
-                            <div className="inline-flex items-center gap-8 text-white/30 text-sm font-bold uppercase tracking-widest whitespace-nowrap">
+                        <div className="px-8 py-5 bg-white/[0.02] border-t border-white/[0.06] text-center">
+                            <div className="inline-flex items-center gap-6 text-white/30 text-xs font-bold uppercase tracking-widest">
                                 <span>Certified Integrations</span>
-                                <div className="w-2 h-2 rounded-full bg-white/10" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#ff7404]/50" />
                                 <span>SOC2 Type II</span>
-                                <div className="w-2 h-2 rounded-full bg-white/10" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#ff7404]/50" />
                                 <span>99.9% Uptime</span>
                             </div>
                         </div>

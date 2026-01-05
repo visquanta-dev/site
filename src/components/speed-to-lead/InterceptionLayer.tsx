@@ -246,13 +246,13 @@ export default function InterceptionLayer() {
                                 {/* Input node (left) - REF IS ON THIS DOT */}
                                 <div
                                     ref={centerLeftDotRef}
-                                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#111] border-4 border-[#FF7404] shadow-[0_0_20px_#FF7404] z-20"
+                                    className="absolute left-0 top-[68%] -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#111] border-4 border-[#FF7404] shadow-[0_0_20px_#FF7404] z-20"
                                 />
 
                                 {/* Output node (right) - REF IS ON THIS DOT */}
                                 <div
                                     ref={centerRightDotRef}
-                                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-8 h-8 rounded-full bg-[#111] border-4 border-green-500 shadow-[0_0_20px_#22c55e] z-20"
+                                    className="absolute right-0 top-[68%] -translate-y-1/2 translate-x-1/2 w-8 h-8 rounded-full bg-[#111] border-4 border-green-500 shadow-[0_0_20px_#22c55e] z-20"
                                 />
 
                                 <div className="relative z-10">

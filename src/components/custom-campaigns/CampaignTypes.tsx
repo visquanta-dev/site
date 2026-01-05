@@ -24,8 +24,8 @@ const campaigns = [
     },
     {
         icon: BarChart2,
-        title: "Equity Mining",
-        desc: "Activate owners in a positive position.",
+        title: "Lead Reactivation",
+        desc: "Re-engage cold CRM leads via AI-powered SMS.",
         color: "from-purple-500 to-pink-500"
     },
     {

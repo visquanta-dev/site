@@ -124,8 +124,30 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             className="relative z-10"
                         >
                             <PhoneDemo
-                                title="Westline Motors"
+                                title="David Brooks"
+                                subtitle="Inbound Lead"
+                                avatarImage="/images/nick.png"
                                 messages={[
+                                    {
+                                        id: '0',
+                                        sender: 'system',
+                                        type: 'notification',
+                                        content: (
+                                            <div className="w-full bg-[#1A1A1A]/80 backdrop-blur-sm rounded-xl p-3 flex items-center gap-3 border border-white/10 shadow-lg mb-2">
+                                                <div className="h-8 w-20 bg-white/90 rounded-md flex items-center justify-center border border-white/10 px-1">
+                                                    <img
+                                                        src="/images/autotrader.png"
+                                                        alt="AutoTrader"
+                                                        className="object-contain h-6 w-auto block"
+                                                    />
+                                                </div>
+                                                <div className="text-left">
+                                                    <div className="text-[10px] font-bold text-gray-300 uppercase tracking-wider leading-none">New Lead</div>
+                                                    <div className="text-[10px] text-gray-500 leading-none mt-1">Arrived: Just now</div>
+                                                </div>
+                                            </div>
+                                        )
+                                    },
                                     {
                                         id: '1',
                                         sender: 'agent',

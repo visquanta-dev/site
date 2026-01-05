@@ -55,8 +55,8 @@ const caseStudies = {
                     description: 'We ingested their 45k records into AutoMaster Suite, scrubbing for invalid contact info and cross-referencing with DMS data to remove customers who had recently purchased elsewhere.'
                 },
                 {
-                    title: 'Equity Mining & Trigger Identification',
-                    description: 'Our system identified 2,400 leads with high probability scores—based on vehicle equity positions, service history, and contract expiration dates.'
+                    title: 'AI-Powered Cold Lead Outreach',
+                    description: 'Our conversational AI reached out to 2,400 high-probability leads via SMS, qualifying their buying intent and identifying those actively in-market.'
                 },
                 {
                     title: 'Omnichannel Activation Campaign',

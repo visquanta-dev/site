@@ -7,35 +7,35 @@ const steps = [
   {
     number: "01",
     title: "Onboard",
-    description: "White-glove setup with your dedicated success manager.",
+    description: "White-glove setup with a dedicated dealership success manager.",
     day: "Day 1-2",
     icon: Rocket,
   },
   {
     number: "02",
     title: "Connect",
-    description: "Seamless DMS, CRM & lead source integration.",
+    description: "Seamless CRM, lead source, and existing dealership system integration.",
     day: "Day 3-5",
     icon: Settings,
   },
   {
     number: "03",
     title: "Configure",
-    description: "AI trained on your voice, inventory & processes.",
+    description: "Configured to match your dealership's voice, follow-up process, and customer expectations.",
     day: "Day 6-8",
     icon: Target,
   },
   {
     number: "04",
     title: "Convert",
-    description: "Go live with instant lead response & engagement.",
+    description: "Go live with faster response and consistent lead engagement.",
     day: "Day 9-11",
     icon: Zap,
   },
   {
     number: "05",
     title: "Scale",
-    description: "Continuous optimization as your results grow.",
+    description: "Ongoing optimization as lead volume and results increase.",
     day: "Day 12-14",
     icon: TrendingUp,
   }
@@ -43,7 +43,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="py-24 bg-[#050505] relative overflow-hidden">
+    <section id="how-it-works" className="py-24 bg-[#050505] relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-enterprise-grid opacity-10 pointer-events-none" />
 
@@ -57,15 +57,18 @@ export default function HowItWorksSection() {
             viewport={{ once: true }}
             className="lg:w-1/3"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-[10px] font-bold uppercase tracking-widest mb-6">
-              <Rocket className="w-3 h-3" />
-              The Journey
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/50 border border-[#ff7404]/30 shadow-[0_0_15px_-3px_rgba(255,116,4,0.3)] backdrop-blur-md text-xs font-bold uppercase tracking-widest mb-6">
+              <Rocket className="w-3 h-3 text-[#ff7404] fill-[#ff7404]" />
+              <span className="bg-gradient-to-r from-[#ff7404] to-[#ff9b50] bg-clip-text text-transparent">The Journey</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-black text-white mb-6 tracking-tight leading-[1.1]">
               From Signup to <br /><span className="text-[#ff7404]">ROI.</span>
             </h2>
-            <p className="text-white/40 text-sm lg:text-base mb-10 leading-relaxed max-w-sm">
-              14 days. Zero code. One dedicated success manager. We handle the heavy lifting so you can focus on closing deals.
+            <p className="text-white/40 text-sm lg:text-base mb-4 leading-relaxed max-w-sm">
+              14 days. Zero code. One dedicated success manager. We handle the heavy lifting so your team can stay focused on closing deals.
+            </p>
+            <p className="text-[#ff7404] text-sm font-semibold mb-10">
+              Built to maximize sales from the leads already in your CRM.
             </p>
 
             {/* Quick Stats */}
@@ -117,14 +120,14 @@ export default function HowItWorksSection() {
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-3 mb-1">
-                          <span className="text-[10px] font-bold text-white/20 tracking-wider">0{index + 1}</span>
-                          <h3 className="text-base font-bold text-white">{step.title}</h3>
-                          <span className="text-[9px] font-bold text-[#ff7404] px-1.5 py-0.5 rounded border border-[#ff7404]/20 bg-[#ff7404]/5">
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="text-xs font-bold text-white/20 tracking-wider">0{index + 1}</span>
+                          <h3 className="text-xl font-bold text-white">{step.title}</h3>
+                          <span className="text-xs font-bold text-[#ff7404] px-2 py-0.5 rounded border border-[#ff7404]/20 bg-[#ff7404]/5">
                             {step.day}
                           </span>
                         </div>
-                        <p className="text-white/40 text-xs leading-relaxed truncate group-hover/card:whitespace-normal group-hover/card:overflow-visible transition-all">
+                        <p className="text-white/40 text-sm leading-relaxed">
                           {step.description}
                         </p>
                       </div>

@@ -17,7 +17,7 @@ import { useState } from 'react';
 const cardData = [
     {
         id: 'crm',
-        title: 'Nexus CRM mining',
+        title: 'Nexus Lead Reactivation',
         label: 'Data Intelligence',
         icon: Database,
         description: 'Uncover hidden equity in your existing database with AI-driven mining.',

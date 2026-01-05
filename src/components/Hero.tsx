@@ -17,29 +17,16 @@ import {
 
 const cardData = [
   {
-    id: 'speed',
-    title: 'Speed to Lead',
-    label: 'Inbound Response',
-    icon: Zap,
-    description: 'Instant, human-quality engagement for every inbound lead, 24/7/365.',
-    color: '#ff7404',
-    initialX: -280,
-    initialY: -40,
-    rotate: -4,
-    delay: 0,
-    image: '/platform/speed-to-lead.jpg'
-  },
-  {
     id: 'widget',
     title: 'Website Widget',
     label: 'Conversion',
     icon: MessageSquare,
     description: 'Convert website visitors into qualified buyers with real-time engagement.',
     color: '#ff7404',
-    initialX: -140,
-    initialY: 40,
-    rotate: -2,
-    delay: 0.1,
+    initialX: -280,
+    initialY: -40,
+    rotate: -4,
+    delay: 0,
     image: '/platform/widget-sms-final.jpg'
   },
   {
@@ -49,10 +36,10 @@ const cardData = [
     icon: Star,
     description: 'Monitor and respond to reviews across all platforms instantly.',
     color: '#ff7404',
-    initialX: 0,
-    initialY: 0,
-    rotate: 0,
-    delay: 0.2,
+    initialX: -140,
+    initialY: 40,
+    rotate: -2,
+    delay: 0.1,
     image: '/platform/reputation-icons.png'
   },
   {
@@ -62,11 +49,24 @@ const cardData = [
     icon: Wrench,
     description: 'Handle service appointments and inquiries 24/7 with specialized Voice AI.',
     color: '#ff7404',
+    initialX: 0,
+    initialY: 0,
+    rotate: 0,
+    delay: 0.2,
+    image: '/platform/service-ai-customer.jpg'
+  },
+  {
+    id: 'speed',
+    title: 'Speed to Lead',
+    label: 'Inbound Response',
+    icon: Zap,
+    description: 'Instant, human-quality engagement for every inbound lead, 24/7/365.',
+    color: '#ff7404',
     initialX: 140,
     initialY: 40,
     rotate: 2,
     delay: 0.3,
-    image: '/platform/service-ai-customer.jpg'
+    image: '/platform/speed-to-lead.jpg'
   },
   {
     id: 'reactivation',
@@ -109,13 +109,13 @@ export default function Hero() {
 
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-8xl font-black text-white leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-              The AI Operating <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff7404] to-[#ff9040]">System for Dealers.</span>
+              The Revenue Operating <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff7404] to-[#ff9040]">System for Dealers</span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-xl md:text-2xl text-muted-foreground/80 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 font-medium">
-              Eliminate decentralized inefficiency. AutoMaster Suite unifies your CRM mining, lead response, and service drive RO generation into one high-performance revenue engine.
+              AutoMaster Suite is a car dealership AI platform designed to improve sales, service, and follow-up across your dealership.
             </p>
 
             {/* CTA Group */}
@@ -126,10 +126,10 @@ export default function Hero() {
                 Request a Demo
               </RequestDemoButton>
               <Link
-                href="/dealers/auto-groups"
+                href="#how-it-works"
                 className="px-10 py-5 rounded-xl font-black text-sm uppercase tracking-widest text-white border border-white/10 hover:bg-white/5 transition-all"
               >
-                Enterprise Solutions
+                See How It Works
               </Link>
             </div>
 

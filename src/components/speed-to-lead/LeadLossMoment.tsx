@@ -124,9 +124,9 @@ export default function LeadLossMoment() {
                                                         }`}>
                                                         <step.icon className={`w-5 h-5 ${step.success ? 'text-black fill-black/10' : 'text-[#FF7404]'}`} />
                                                     </div>
-                                                    <div className="absolute -bottom-11 left-1/2 -translate-x-1/2 text-center whitespace-nowrap">
-                                                        <div className={`text-[11px] font-bold ${step.success ? 'text-green-400' : 'text-[#FF7404]'}`}>{step.time}</div>
-                                                        <div className="text-[10px] text-white/40">{step.label}</div>
+                                                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-center whitespace-nowrap">
+                                                        <div className={`text-sm font-bold ${step.success ? 'text-green-400' : 'text-[#FF7404]'}`}>{step.time}</div>
+                                                        <div className="text-xs text-white/40 font-medium mt-0.5">{step.label}</div>
                                                     </div>
                                                 </motion.div>
                                             ))}
@@ -212,12 +212,12 @@ export default function LeadLossMoment() {
                                                                 'text-white/40'
                                                             }`} />
                                                     </div>
-                                                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-center whitespace-nowrap">
-                                                        <div className={`text-xs font-bold ${step.error ? 'text-red-400' :
+                                                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-center whitespace-nowrap">
+                                                        <div className={`text-sm font-bold ${step.error ? 'text-red-400' :
                                                             step.warning ? 'text-yellow-500' :
                                                                 'text-white/40'
                                                             }`}>{step.time}</div>
-                                                        <div className="text-[10px] text-white/50">{step.label}</div>
+                                                        <div className="text-xs text-white/50 font-medium mt-0.5">{step.label}</div>
                                                     </div>
                                                 </motion.div>
                                             ))}

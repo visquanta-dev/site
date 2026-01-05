@@ -8,7 +8,7 @@ const stats = [
   {
     value: "$37.8M",
     label: "Extra Revenue",
-    sublabel: "Generated for partners",
+    sublabel: "Generated for dealership partners",
     icon: DollarSign,
   },
   {
@@ -20,7 +20,7 @@ const stats = [
   {
     value: "11.6%",
     label: "More Sales",
-    sublabel: "Average vehicle sold increase",
+    sublabel: "Average lift in vehicles sold",
     icon: TrendingUp,
   },
   {
@@ -94,7 +94,7 @@ export default function ResultsProof() {
             Results that <span className="text-[#ff7404]">speak for themselves.</span>
           </h2>
           <p className="text-white/60 text-xl leading-relaxed">
-            From CRM mining to Service Drive missed calls, we provide the absolute data-driven performance needed to maximize every profit center in your dealership.
+            From lead reactivation to Service Drive missed calls, we provide the absolute data-driven performance needed to maximize every profit center in your dealership.
           </p>
         </motion.div>
 
@@ -104,31 +104,57 @@ export default function ResultsProof() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-20"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24"
         >
           {stats.map((stat, i) => (
             <motion.div
               key={i}
               variants={itemVariants}
+              whileHover={{ y: -8 }}
               className="group relative"
             >
-              <div className="relative bg-gradient-to-b from-[#0f0f0f] to-[#080808] border border-white/[0.08] rounded-2xl p-8 h-full transition-all duration-500 group-hover:border-[#ff7404]/30 group-hover:shadow-[0_0_60px_rgba(255,116,4,0.1)]">
-                {/* Top Icon */}
-                <div className="w-12 h-12 rounded-xl bg-[#ff7404]/10 border border-[#ff7404]/20 flex items-center justify-center text-[#ff7404] mb-6 group-hover:bg-[#ff7404] group-hover:text-black transition-all duration-300">
-                  <stat.icon className="w-6 h-6" />
+              {/* Card Container */}
+              <div className="relative h-full bg-[#0A0A0A] border border-white/5 rounded-[2rem] p-8 overflow-hidden transition-all duration-500 group-hover:border-[#ff7404]/30 group-hover:shadow-[0_20px_40px_-15px_rgba(255,116,4,0.15)] flex flex-col">
+
+                {/* Background Textures & Glows */}
+                <div className="absolute inset-0 bg-enterprise-grid opacity-5 pointer-events-none" />
+                <div className="absolute -right-20 -top-20 w-48 h-48 bg-[#ff7404]/5 rounded-full blur-[80px] group-hover:bg-[#ff7404]/15 transition-colors duration-700" />
+
+                {/* Icon Section */}
+                <div className="relative mb-8">
+                  <div className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center relative group-hover:border-[#ff7404]/50 transition-colors duration-500 overflow-hidden">
+                    {/* Animated Shine on hover */}
+                    <motion.div
+                      animate={{ x: ['-200%', '200%'] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                      className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
+                    />
+                    <stat.icon className="w-7 h-7 text-[#ff7404] transition-transform duration-500 group-hover:scale-110" />
+                  </div>
                 </div>
 
-                {/* Value */}
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 tracking-tight group-hover:text-[#ff7404] transition-colors duration-300">
-                  {stat.value}
+                {/* Content */}
+                <div className="relative z-10 mt-auto">
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="text-4xl lg:text-5xl font-black text-white tracking-tighter group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-white group-hover:to-white/50 transition-all duration-500">
+                      {stat.value}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5 border-l border-white/10 pl-4 transition-colors duration-500 group-hover:border-[#ff7404]/30">
+                    <span className="text-sm font-black uppercase tracking-[0.2em] text-[#ff7404]">
+                      {stat.label}
+                    </span>
+                    <span className="text-[13px] font-medium text-white/70 leading-relaxed group-hover:text-white transition-colors duration-500">
+                      {stat.sublabel}
+                    </span>
+                  </div>
                 </div>
 
-                {/* Labels */}
-                <div className="text-sm font-semibold text-white/80 mb-1">{stat.label}</div>
-                <div className="text-xs text-white/50">{stat.sublabel}</div>
-
-                {/* Corner accent on hover */}
-                <div className="absolute bottom-0 right-0 w-16 h-16 border-r border-b border-[#ff7404]/0 group-hover:border-[#ff7404]/40 rounded-br-2xl transition-all duration-500" />
+                {/* Decorative Elements */}
+                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                  <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#ff7404]/40" />
+                </div>
               </div>
             </motion.div>
           ))}

@@ -35,7 +35,7 @@ const itemVariants = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { type: "spring", stiffness: 50 }
+        transition: { type: "spring" as const, stiffness: 50 }
     }
 };
 
@@ -108,14 +108,13 @@ export default function CareersPage() {
                             variants={containerVariants}
                         >
                             {/* Badge */}
-                            <motion.div
-                                variants={itemVariants}
-                                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.05] border border-white/10 mb-12"
-                            >
-                                <Sparkles className="w-4 h-4 text-[#FF7404]" />
-                                <span className="text-zinc-400 text-sm font-bold uppercase tracking-[0.2em]">
-                                    Join Our Talent Network
-                                </span>
+                            <motion.div variants={itemVariants}>
+                                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.05] border border-white/10 mb-12">
+                                    <Sparkles className="w-4 h-4 text-[#FF7404]" />
+                                    <span className="text-zinc-400 text-sm font-bold uppercase tracking-[0.2em]">
+                                        Join Our Talent Network
+                                    </span>
+                                </div>
                             </motion.div>
 
                             {/* Headline */}

@@ -1,14 +1,16 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Users, PhoneOff, Database, TrendingDown, AlertCircle, ShieldAlert } from 'lucide-react';
+import { Users, PhoneOff, Database, TrendingDown, AlertCircle, ShieldAlert, ArrowRight } from 'lucide-react';
+import ROICalculatorModal from './ROICalculatorModal';
 
 const dealerPainPoints = [
     {
         icon: Database,
         stat: '84%',
         label: 'of CRM leads',
-        detail: 'are never reactivated after 30 days',
+        detail: 'are never re-engaged after 30 days',
         impact: 'Millions in latent revenue wasted.',
         color: 'text-[#ff7404]'
     },
@@ -39,6 +41,8 @@ const dealerPainPoints = [
 ];
 
 export default function PainPointSection() {
+    const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+
     return (
         <section className="py-32 bg-[#050505] relative overflow-hidden">
             {/* Background elements moved for clarity */}
@@ -70,7 +74,7 @@ export default function PainPointSection() {
                         </div>
 
                         <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-                            Your dealership is leaking <span className="text-[#ff7404]">hidden revenue</span> in every department.
+                            Most dealerships don’t realise how much <span className="text-[#ff7404]">revenue is being left behind</span> day-to-day.
                         </h2>
 
                         <div className="space-y-6 text-white/70 text-lg leading-relaxed mb-10">
@@ -96,6 +100,8 @@ export default function PainPointSection() {
                                 If your system isn't capturing every call, mining every CRM lead, and responding in seconds—you're paying for it every single day in lost units and service ROs.
                             </p>
                         </div>
+
+
                     </motion.div>
 
                     {/* Right: The 4 Horsemen of Dealer Inefficiency */}
@@ -104,37 +110,53 @@ export default function PainPointSection() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6"
+                        className="flex flex-col gap-6"
                     >
-                        {dealerPainPoints.map((point, i) => {
-                            const Icon = point.icon;
-                            return (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.3 + i * 0.1 }}
-                                    className="group"
-                                >
-                                    <div className="h-full bg-gradient-to-b from-[#111111] to-[#080808] border border-white/[0.08] rounded-2xl p-6 lg:p-8 transition-all duration-500 hover:border-[#ff7404]/30 hover:-translate-y-1">
-                                        <div className={`w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center ${point.color} mb-6 border border-white/10 group-hover:scale-110 transition-transform`}>
-                                            <Icon className="w-6 h-6" />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                            {dealerPainPoints.map((point, i) => {
+                                const Icon = point.icon;
+                                return (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.3 + i * 0.1 }}
+                                        className="group"
+                                    >
+                                        <div className="h-full bg-gradient-to-b from-[#111111] to-[#080808] border border-white/[0.08] rounded-2xl p-6 lg:p-8 transition-all duration-500 hover:border-[#ff7404]/30 hover:-translate-y-1">
+                                            <div className={`w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center ${point.color} mb-6 border border-white/10 group-hover:scale-110 transition-transform`}>
+                                                <Icon className="w-6 h-6" />
+                                            </div>
+                                            <div className="text-4xl font-bold text-white mb-2 tracking-tighter">{point.stat}</div>
+                                            <div className="text-sm font-bold text-white/90 mb-3 uppercase tracking-wider">{point.label}</div>
+                                            <div className="text-sm text-white/40 mb-4 font-medium italic">"{point.detail}"</div>
+                                            <div className="pt-4 border-t border-white/5 text-xs font-bold text-[#ff7404]/80 uppercase tracking-widest">
+                                                {point.impact}
+                                            </div>
                                         </div>
-                                        <div className="text-4xl font-bold text-white mb-2 tracking-tighter">{point.stat}</div>
-                                        <div className="text-sm font-bold text-white/90 mb-3 uppercase tracking-wider">{point.label}</div>
-                                        <div className="text-sm text-white/40 mb-4 font-medium italic">"{point.detail}"</div>
-                                        <div className="pt-4 border-t border-white/5 text-xs font-bold text-[#ff7404]/80 uppercase tracking-widest">
-                                            {point.impact}
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
-                    </motion.div>
+                                    </motion.div>
+                                );
+                            })}
+                        </div>
 
+                        <div className="w-full">
+                            <button
+                                onClick={() => setIsCalculatorOpen(true)}
+                                className="w-full py-5 rounded-xl bg-[#ff7404] hover:bg-[#ff8524] text-black font-black text-sm uppercase tracking-widest transition-all hover:scale-[1.02] shadow-[0_0_30px_-10px_rgba(255,116,4,0.4)] flex items-center justify-center gap-3 group"
+                            >
+                                See What This Looks Like in Your Dealership
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </button>
+                        </div>
+                    </motion.div>
                 </div>
             </div>
+
+            <ROICalculatorModal
+                isOpen={isCalculatorOpen}
+                onClose={() => setIsCalculatorOpen(false)}
+            />
         </section>
     );
 }

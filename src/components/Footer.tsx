@@ -24,7 +24,7 @@ const footerLinks = {
     { label: 'Reputation Management', href: '/reputation-management' },
     { label: 'Dealer Success', href: '/dealer-success-solutions' },
     { label: 'Service Drive Pro', href: '/service-drive', tag: 'New' },
-    { label: 'Custom Campaigns', href: '/iwav-events', tag: 'IWAV' },
+    { label: 'Custom Campaigns', href: '/custom-campaigns', tag: 'IWAV' },
   ],
   dealerServices: [
     { label: 'Independent Dealerships', href: '/independent-dealers' },

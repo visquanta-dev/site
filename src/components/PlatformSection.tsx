@@ -102,10 +102,10 @@ export default function PlatformSection() {
             Platform Capabilities
           </div>
           <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-            Five Capabilities. <span className="text-[#ff7404]">One System.</span>
+            Five Capabilities<br /><span className="text-[#ff7404]">One System</span>
           </h2>
           <p className="text-white/60 text-xl leading-relaxed">
-            A unified intelligence layer that connects marketing, sales, and service to maximize revenue.
+            The complete AI platform for automotive dealerships. Engage leads, answer calls, book appointments, and manage reputation. 24/7, without adding staff.
           </p>
         </motion.div>
 

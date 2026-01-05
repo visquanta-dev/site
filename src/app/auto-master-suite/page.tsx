@@ -120,7 +120,7 @@ const suiteProducts = [
 // Beating Heart Background Effect
 const HeartLine = () => (
     <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
-        <svg className="w-full h-[400px] opacity-[0.07]" viewBox="0 0 1000 200" preserveAspectRatio="none">
+        <svg className="w-full h-[400px] opacity-[0.3]" viewBox="0 0 1000 200" preserveAspectRatio="none">
             <motion.path
                 d="M -100 100 L 350 100 L 370 100 L 380 70 L 400 130 L 415 20 L 435 180 L 450 100 L 470 110 L 480 100 L 1100 100"
                 stroke="#FF7404"
@@ -196,8 +196,8 @@ export default function AutoMasterSuiteHub() {
                 {/* Visual Background Elements */}
                 <div className="absolute inset-0 pointer-events-none">
                     <HeartLine />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[#FF7404]/3 rounded-full blur-[150px]" />
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:80px_80px] opacity-[0.05]" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[#FF7404]/15 rounded-full blur-[150px]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:80px_80px] opacity-[0.15]" />
                 </div>
 
                 <div className="container px-4 mx-auto relative z-10">
