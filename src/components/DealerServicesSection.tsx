@@ -275,7 +275,7 @@ export default function DealerServicesSection() {
                   <div className="space-y-6">
                     <div className="space-y-5">
                       <div className="flex justify-between items-end">
-                        <label className="text-[11px] font-bold text-white/50 uppercase tracking-[0.15em]">Unworked & Inactive Leads / Month</label>
+                        <label htmlFor="dealer-leads-slider" className="text-[11px] font-bold text-white/50 uppercase tracking-[0.15em]">Unworked & Inactive Leads / Month</label>
                         <div className="text-3xl font-mono font-black text-white tabular-nums">{monthlyLeads}</div>
                       </div>
 
@@ -287,6 +287,7 @@ export default function DealerServicesSection() {
                           style={{ width: `${((monthlyLeads - 10) / 490) * 100}%` }}
                         />
                         <input
+                          id="dealer-leads-slider"
                           type="range"
                           min="10"
                           max="500"

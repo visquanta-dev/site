@@ -47,10 +47,11 @@ export default function CostOfWaitingSection() {
                                     {/* Slider */}
                                     <div className="space-y-4">
                                         <div className="flex justify-between items-end">
-                                            <label className="text-xs font-bold text-white/60 uppercase tracking-wider">Missed Leads / Month</label>
+                                            <label htmlFor="cost-leads-slider" className="text-xs font-bold text-white/60 uppercase tracking-wider">Missed Leads / Month</label>
                                             <div className="text-2xl font-mono font-bold text-white">{monthlyLeads}</div>
                                         </div>
                                         <input
+                                            id="cost-leads-slider"
                                             type="range"
                                             min="10"
                                             max="500"

@@ -54,11 +54,12 @@ export default function SpeedLossCalculator({ onOpenCalculator }: SpeedLossCalcu
                             {/* Slider Input */}
                             <div className="space-y-5 mb-12">
                                 <div className="flex justify-between items-end">
-                                    <label className="text-xs font-bold text-white/50 uppercase tracking-widest">Monthly Leads</label>
+                                    <label htmlFor="monthly-leads-slider" className="text-xs font-bold text-white/50 uppercase tracking-widest">Monthly Leads</label>
                                     <div className="text-3xl font-bold text-white font-mono tracking-tight">{monthlyLeads}</div>
                                 </div>
                                 <div className="relative h-6 flex items-center">
                                     <input
+                                        id="monthly-leads-slider"
                                         type="range"
                                         min="50"
                                         max="1000"
