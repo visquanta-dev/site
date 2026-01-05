@@ -162,7 +162,7 @@ export default function FAQPage() {
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                            transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] as const }}
                         >
                             <div className="p-6 pt-0 text-zinc-400 leading-relaxed">
                                 <div className="h-px w-full bg-gradient-to-r from-[#FF7404]/20 to-transparent mb-4" />

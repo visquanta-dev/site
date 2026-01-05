@@ -89,7 +89,7 @@ export default function ServiceFAQ() {
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: "auto", opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] as const }}
                                     >
                                         <div className="px-8 pb-8 pt-2">
                                             <p className="text-white/50 leading-relaxed font-light text-lg border-t border-white/5 pt-6">

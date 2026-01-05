@@ -20,7 +20,7 @@ export default function WhyItWorks() {
                         initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                     >
                         <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-full mb-10">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#FF7404]" />
@@ -89,7 +89,7 @@ export default function WhyItWorks() {
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                         className="relative"
                     >
                         {/* Ambient glow */}
@@ -126,7 +126,7 @@ export default function WhyItWorks() {
                                                     initial={{ width: 0 }}
                                                     whileInView={{ width: item.width }}
                                                     viewport={{ once: true }}
-                                                    transition={{ duration: 1, delay: 0.2 + i * 0.2, ease: [0.16, 1, 0.3, 1] }}
+                                                    transition={{ duration: 1, delay: 0.2 + i * 0.2, ease: [0.16, 1, 0.3, 1] as const }}
                                                     className={`h-full rounded-full ${item.colorClass}`}
                                                 />
                                             </div>

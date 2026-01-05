@@ -22,7 +22,7 @@ export default function LeadLossMoment() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                     className="text-center mb-24 max-w-3xl mx-auto"
                 >
                     <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-full mb-10">
@@ -69,7 +69,7 @@ export default function LeadLossMoment() {
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                             className="relative"
                         >
                             <div className="bg-gradient-to-r from-[#0a0a0a] via-[#111] to-[#0a0a0a] rounded-3xl border border-[#FF7404]/30 p-8 relative overflow-hidden shadow-[0_10px_40px_-10px_rgba(255,116,4,0.1)]">
@@ -98,7 +98,7 @@ export default function LeadLossMoment() {
                                             initial={{ width: 0 }}
                                             whileInView={{ width: '100%' }}
                                             viewport={{ once: true }}
-                                            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                                            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] as const, delay: 0.3 }}
                                             className="absolute top-1/2 left-0 h-1.5 bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-green-500 rounded-full -translate-y-1/2 shadow-[0_0_20px_#FF7404]"
                                         />
 
@@ -156,7 +156,7 @@ export default function LeadLossMoment() {
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
                             className="relative"
                         >
                             <div className="bg-[#0a0a0a] rounded-2xl border border-white/[0.08] p-6 relative overflow-hidden">

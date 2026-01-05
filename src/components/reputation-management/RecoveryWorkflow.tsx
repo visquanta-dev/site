@@ -21,7 +21,7 @@ export default function RecoveryWorkflow() {
                         initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                         className="group relative"
                     >
                         <div className="absolute inset-0 bg-white/[0.01] border border-white/5 rounded-[3rem] transition-all duration-500 group-hover:bg-white/[0.03] group-hover:border-white/10" />
@@ -70,7 +70,7 @@ export default function RecoveryWorkflow() {
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                         className="group relative"
                     >
                         <div className="absolute inset-0 bg-[#FF7404]/5 backdrop-blur-xl border border-[#FF7404]/30 rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(255,116,4,0.15)] transition-all duration-500 group-hover:bg-[#FF7404]/10 group-hover:border-[#FF7404]/50" />

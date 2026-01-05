@@ -58,7 +58,7 @@ export default function RequestTimeline() {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ delay: i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                                 className="relative z-10 group"
                             >
                                 <div className={`w-20 h-20 rounded-[1.5rem] mx-auto mb-8 flex items-center justify-center border transition-all duration-500 group-hover:scale-110 ${step.highlight ? 'bg-[#FF7404] text-black border-transparent shadow-[0_15px_30px_-5px_#FF7404]' : 'bg-white/[0.03] text-white/40 border-white/10 backdrop-blur-md group-hover:border-white/30'}`}>

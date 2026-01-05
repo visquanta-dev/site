@@ -54,7 +54,7 @@ export default function DecisionPattern() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
-                            transition={{ delay: i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ delay: i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                             className="relative z-10 w-full lg:w-48 group"
                         >
                             <div className={`w-28 h-28 rounded-[2rem] mx-auto mb-8 relative flex items-center justify-center transition-all duration-500 group-hover:scale-110`}>

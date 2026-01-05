@@ -51,7 +51,7 @@ export default function MetricsBand() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                             className="text-center group/item"
                         >
                             <div className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 tracking-tighter italic flex items-center justify-center gap-1 group-hover/item:text-[#FF7404] transition-colors duration-500">

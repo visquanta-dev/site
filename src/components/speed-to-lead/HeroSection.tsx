@@ -33,7 +33,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                             className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-full shadow-[0_0_30px_-12px_rgba(255,116,4,0.3)]"
                         >
                             <span className="relative flex h-2 w-2">
@@ -50,7 +50,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             <motion.h1
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
                                 className="text-6xl lg:text-[5.5rem] font-bold text-white tracking-[-0.03em] leading-[0.95]"
                             >
                                 <span className="block">The First <span className="font-mono text-[#FF7404]">60</span> Seconds</span>
@@ -68,7 +68,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
                                 className="text-xl lg:text-2xl text-white/45 max-w-lg leading-[1.6] font-normal"
                             >
                                 <span className="text-[#FF7404]">Respond instantly.</span> Capture every opportunity. Book calls before your competitors even know the lead exists.
@@ -79,7 +79,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
                             className="flex flex-wrap items-center gap-5"
                         >
                             <button className="group relative px-10 py-5 overflow-hidden rounded-xl shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)] transition-shadow duration-500">
@@ -120,7 +120,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9, rotateY: -8 }}
                             animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }}
                             className="relative z-10"
                         >
                             <PhoneDemo
@@ -197,7 +197,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                         <motion.div
                             initial={{ opacity: 0, x: 60, scale: 0.9 }}
                             animate={{ opacity: 1, x: 0, scale: 1 }}
-                            transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                             className="absolute -right-4 top-1/4 bg-[#0a0a0a]/80 backdrop-blur-2xl p-7 rounded-2xl border border-white/[0.08] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] z-20"
                         >
                             <div className="flex items-center gap-3 mb-4">

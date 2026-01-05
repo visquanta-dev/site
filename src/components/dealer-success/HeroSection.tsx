@@ -45,7 +45,7 @@ export default function HeroSection() {
                         <motion.h1
                             initial={{ opacity: 0, y: 100 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                             className="text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1]"
                         >
                             We Don't Just<br />

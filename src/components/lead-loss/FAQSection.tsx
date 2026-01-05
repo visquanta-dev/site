@@ -64,7 +64,7 @@ export default function FAQSection() {
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
                         className="lg:sticky lg:top-40 lg:self-start"
                     >
                         <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] rounded-full mb-10 shadow-[0_0_30px_-10px_rgba(255,116,4,0.2)]">
@@ -103,7 +103,7 @@ export default function FAQSection() {
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
                         className="space-y-3"
                     >
                         {faqs.map((faq, index) => (
@@ -147,7 +147,7 @@ export default function FAQSection() {
                                                 initial={{ height: 0, opacity: 0 }}
                                                 animate={{ height: 'auto', opacity: 1 }}
                                                 exit={{ height: 0, opacity: 0 }}
-                                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
                                                 className="overflow-hidden relative z-10"
                                             >
                                                 <p className="pt-6 text-white/40 leading-[1.9] text-[15px] pr-16">

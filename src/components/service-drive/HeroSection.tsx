@@ -27,7 +27,7 @@ export default function HeroSection() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                         className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-full shadow-[0_0_30px_-12px_rgba(255,116,4,0.3)]"
                     >
                         <span className="relative flex h-2 w-2">
@@ -45,7 +45,7 @@ export default function HeroSection() {
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
                         className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-white tracking-[-0.03em] leading-[0.95]"
                     >
                         <span className="block">Turn Missed Calls into</span>
@@ -58,7 +58,7 @@ export default function HeroSection() {
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
                         className="text-xl md:text-2xl text-white/45 text-center max-w-4xl mx-auto mb-12 leading-relaxed font-light"
                     >
                         Over 80% of dealership service calls go unanswered. <br className="hidden md:block" />
@@ -72,7 +72,7 @@ export default function HeroSection() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
                     className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-24"
                 >
                     <RequestDemoButton className="group relative px-10 py-5 overflow-hidden rounded-xl shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)] transition-shadow duration-500">

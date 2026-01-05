@@ -58,7 +58,7 @@ export default function WhereLeadsGetLost() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                     className="max-w-3xl mb-16"
                 >
                     <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-full mb-8">
@@ -82,7 +82,7 @@ export default function WhereLeadsGetLost() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
                             className="group relative bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-white/[0.06] rounded-2xl p-8 hover:border-red-500/30 transition-all duration-500 hover:shadow-[0_10px_40px_-10px_rgba(239,68,68,0.15)]"
                         >
                             {/* Hover glow */}

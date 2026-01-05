@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 import { Activity, Clock, Database, Globe, Layers, ShieldCheck, Zap } from 'lucide-react';
 
 const stats = [
-    { label: "Active Revenue Capture", icon: Zap },
-    { label: "Online Systems", icon: Globe },
-    { label: "< 2 Min Response", icon: Clock },
-    { label: "24/7/365 Coverage", icon: ShieldCheck },
-    { label: "100% CRM Sync", icon: Database },
-    { label: "Zero Ad Spend", icon: Activity },
+    { label: "Active Revenue Capture", value: "LIVE", icon: Zap },
+    { label: "Online Systems", value: "100%", icon: Globe },
+    { label: "< 2 Min Response", value: "<120s", icon: Clock },
+    { label: "24/7 Coverage", value: "24/7", icon: ShieldCheck },
+    { label: "CRM Sync", value: "SYNC", icon: Database },
+    { label: "Ad Spend", value: "$0", icon: Activity },
 ];
 
 export default function StatsTicker() {

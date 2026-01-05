@@ -168,7 +168,7 @@ export default function Navigation() {
                     initial={{ opacity: 0, y: 15, scale: 0.98, rotateX: -10 }}
                     animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95, rotateX: -5 }}
-                    transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                    transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] as const }}
                   >
                     <div className="bg-[#030303]/95 border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden backdrop-blur-2xl ring-1 ring-white/5 relative">
                       {/* Top Accent Gradient */}

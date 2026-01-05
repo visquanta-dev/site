@@ -85,7 +85,7 @@ function TimelineCard({ step, index }: { step: typeof steps[0]; index: number })
       transition={{ 
         duration: 0.6, 
         delay: index * 0.1,
-        ease: [0.25, 0.1, 0.25, 1] 
+        ease: [0.25, 0.1, 0.25, 1] as const 
       }}
       className="group"
       style={{
@@ -230,7 +230,7 @@ function TimelineDot({ index, days }: { index: number; days: string }) {
       ref={ref}
       initial={{ scale: 0, opacity: 0 }}
       animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 + 0.2, ease: [0.34, 1.56, 0.64, 1] }}
+      transition={{ duration: 0.5, delay: index * 0.1 + 0.2, ease: [0.34, 1.56, 0.64, 1] as const }}
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -366,7 +366,7 @@ export default function ImplementationSection() {
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as const }}
           style={{
             textAlign: 'center',
             marginBottom: '80px',
@@ -501,7 +501,7 @@ export default function ImplementationSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as const }}
           style={{
             marginTop: '100px',
             display: 'flex',

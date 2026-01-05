@@ -45,7 +45,6 @@ export function ProductFanPrototype() {
                             width: size,
                             height: size,
                             borderStyle: i % 2 === 0 ? 'solid' : 'dashed',
-                            borderDasharray: i % 2 === 0 ? 'none' : '10 20'
                         }}
                     />
                 ))}

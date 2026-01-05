@@ -68,7 +68,7 @@ export default function VideoSection() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={isVisible ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const }}
             >
               {/* Eyebrow */}
               <div style={{
@@ -198,7 +198,7 @@ export default function VideoSection() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={isVisible ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] as const }}
             >
               {/* Video Card */}
               <div

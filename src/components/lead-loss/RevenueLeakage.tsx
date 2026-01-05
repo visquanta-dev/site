@@ -33,7 +33,7 @@ export default function RevenueLeakage({ onOpenCalculator }: RevenueLeakageProps
                         initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                         className="relative"
                     >
                         {/* Ambient glow */}
@@ -123,7 +123,7 @@ export default function RevenueLeakage({ onOpenCalculator }: RevenueLeakageProps
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                         className="space-y-10 lg:pt-10"
                     >
                         <div className="inline-flex items-center gap-3 px-4 py-2 bg-red-500/[0.08] backdrop-blur-sm border border-red-500/20 rounded-full">

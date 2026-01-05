@@ -87,7 +87,7 @@ export default function RelatedResources() {
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
                     className="container-wide flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-16"
                 >
                     <div>
@@ -141,7 +141,7 @@ export default function RelatedResources() {
                                 initial={{ opacity: 0, x: 40 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: 0.1 + index * 0.08, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ delay: 0.1 + index * 0.08, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                                 className="flex-shrink-0 w-[340px] lg:w-[400px] h-[520px] snap-start group"
                             >
                                 <Link href={article.href} className="block h-full">

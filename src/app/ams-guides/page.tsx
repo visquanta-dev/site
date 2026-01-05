@@ -269,7 +269,7 @@ export default function AMSGuidesPage() {
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                                transition={{ delay: idx * 0.1, duration: 0.5, ease: [0.23, 1, 0.32, 1] as const }}
                             >
                                 <CardTilt>
                                     <div className="group relative h-full bg-gradient-to-b from-white/[0.04] to-transparent border border-white/10 rounded-[3rem] p-1 shadow-2xl transition-all duration-700 hover:border-[#FF7404]/40 hover:shadow-[#FF7404]/10" style={{ transformStyle: "preserve-3d" }}>
