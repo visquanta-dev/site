@@ -1,11 +1,6 @@
+'use client';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, FileText, HelpCircle, MessageSquare, Zap, LayoutGrid } from 'lucide-react';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-    title: 'Resources | VisQuanta',
-    description: 'Access the VisQuanta knowledge base. Case studies, guides, FAQs, and industry insights.',
-};
 
 const resourceLinks = [
     {
@@ -27,7 +22,7 @@ const resourceLinks = [
     {
         title: 'FAQ\'s',
         description: 'Answers to common questions about onboarding and integrations.',
-        href: '/faq', // Keeping consistent with folder name 'faq'
+        href: '/faqs',
         icon: HelpCircle,
         category: 'Support',
         color: 'blue',
