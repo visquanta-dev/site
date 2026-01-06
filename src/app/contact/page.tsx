@@ -466,8 +466,8 @@ export default function ContactPage() {
                                                 </motion.button>
 
                                                 {/* Privacy Note */}
-                                                <p className="text-center text-zinc-600 text-xs">
-                                                    By submitting, you agree to our privacy policy. We'll never share your information.
+                                                <p className="text-center text-zinc-600 text-[10px] uppercase tracking-widest leading-relaxed">
+                                                    By submitting, you agree to our <Link href="/trust" className="text-[#FF7404] hover:underline font-bold">Privacy & data handling</Link> practices.
                                                 </p>
                                             </form>
                                         </div>

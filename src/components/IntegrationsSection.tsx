@@ -1,7 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Share2, Database, MessageSquare, Zap, Globe, ArrowRight } from 'lucide-react';
+import { Share2, Database, MessageSquare, Zap, Globe, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const integrationCategories = [
   {
@@ -108,9 +109,16 @@ export default function IntegrationsSection() {
         <div className="relative pt-10 border-t border-white/[0.08]">
           <div className="flex items-center justify-between mb-10">
             <h4 className="text-sm font-bold uppercase tracking-widest text-white/30">Certified Partners</h4>
-            <div className="flex items-center gap-2 text-[#ff7404] text-sm font-bold">
-              <Globe className="w-4 h-4" />
-              50+ Integrations
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2 text-[#ff7404] text-sm font-bold">
+                <Globe className="w-4 h-4" />
+                50+ Integrations
+              </div>
+              <div className="w-px h-4 bg-white/10 hidden sm:block" />
+              <Link href="/trust#data-practices" className="flex items-center gap-2 text-white/30 hover:text-[#ff7404] text-xs font-bold transition-colors group/trust">
+                <ShieldCheck className="w-3 h-3" />
+                How we handle data
+              </Link>
             </div>
           </div>
 

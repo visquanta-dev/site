@@ -218,9 +218,13 @@ export default function PhoneDemo({ children, messages, title = "Amy (Specialist
                 {/* Input Area */}
                 <div className="px-4 pb-8 pt-2">
                     <div className="h-12 bg-[#1c1c1e] rounded-full border border-white/10 flex items-center px-4 justify-between">
-                        <span className="text-white/30 text-sm">iMessage</span>
+                        <div className="flex gap-1 items-center pl-1">
+                            <div className="w-1.5 h-1.5 bg-white/40 rounded-full animate-[bounce_1.4s_infinite]" />
+                            <div className="w-1.5 h-1.5 bg-white/40 rounded-full animate-[bounce_1.4s_infinite_0.2s]" />
+                            <div className="w-1.5 h-1.5 bg-white/40 rounded-full animate-[bounce_1.4s_infinite_0.4s]" />
+                        </div>
                         <div className="w-8 h-8 rounded-full bg-[#FF7404] flex items-center justify-center">
-                            <ArrowUp className="w-4 h-4 text-black" />
+                            <ArrowUp className="w-4 h-4 text-white" />
                         </div>
                     </div>
                 </div>

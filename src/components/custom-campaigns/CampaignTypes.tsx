@@ -7,38 +7,32 @@ const campaigns = [
     {
         icon: Target,
         title: "Model-Specific Offer",
-        desc: "Targeted incentives for specific VIN sets.",
-        color: "from-orange-500 to-red-500"
+        desc: "Targeted incentives for specific VIN sets."
     },
     {
         icon: Timer,
         title: "Aged Inventory Push",
-        desc: "Aggressive moves on 60+ day units.",
-        color: "from-[#FF7404] to-[#FF9040]"
+        desc: "Aggressive moves on 60+ day units."
     },
     {
         icon: ArrowRightLeft,
         title: "Lease Pull-Ahead",
-        desc: "Upgrade eligible lessees early.",
-        color: "from-green-500 to-emerald-500"
+        desc: "Upgrade eligible lessees early."
     },
     {
         icon: BarChart2,
         title: "Lead Reactivation",
-        desc: "Re-engage cold CRM leads via AI-powered SMS.",
-        color: "from-purple-500 to-pink-500"
+        desc: "Re-engage cold CRM leads via AI-powered SMS."
     },
     {
         icon: Settings2,
         title: "Service Special",
-        desc: "Drive ROs during slow periods.",
-        color: "from-[#FF7404] to-[#FF8A3D]"
+        desc: "Drive ROs during slow periods."
     },
     {
         icon: Megaphone,
         title: "New Event",
-        desc: "VIP sales and holiday events.",
-        color: "from-yellow-500 to-orange-500"
+        desc: "VIP sales and holiday events."
     }
 ];
 
@@ -76,10 +70,8 @@ export default function CampaignTypes() {
 
                             <div className="relative z-10">
                                 <div className="flex justify-between items-start mb-6">
-                                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${camp.color} p-[1px]`}>
-                                        <div className="w-full h-full bg-black rounded-2xl flex items-center justify-center">
-                                            <camp.icon className="w-7 h-7 text-white" />
-                                        </div>
+                                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#FF7404]/10 group-hover:border-[#FF7404]/30 transition-all duration-300">
+                                        <camp.icon className="w-7 h-7 text-white/60 group-hover:text-[#FF7404] transition-colors" />
                                     </div>
 
                                     <ArrowUpRight className="w-6 h-6 text-white/20 group-hover:text-[#FF7404] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />

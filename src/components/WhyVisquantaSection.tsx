@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Check, X, Sparkles, Bot, Users, Building2, Zap, Target, ShieldCheck } from 'lucide-react';
 
@@ -179,9 +180,9 @@ export default function WhyVisquantaSection() {
                             <div className="inline-flex items-center gap-6 text-white/30 text-xs font-bold uppercase tracking-widest">
                                 <span>Certified Integrations</span>
                                 <div className="w-1.5 h-1.5 rounded-full bg-[#ff7404]/50" />
-                                <span>SOC2 Type II</span>
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#ff7404]/50" />
                                 <span>99.9% Uptime</span>
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#ff7404]/50" />
+                                <Link href="/trust" className="hover:text-[#ff7404] transition-colors underline-offset-4 hover:underline">Privacy & data handling</Link>
                             </div>
                         </div>
                     </motion.div>

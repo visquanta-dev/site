@@ -10,7 +10,7 @@ import {
   Zap,
   Wrench,
   MessageSquare,
-  Star, // Added
+  Star,
   ArrowRight,
   RefreshCcw
 } from 'lucide-react';
@@ -27,7 +27,8 @@ const cardData = [
     initialY: -40,
     rotate: -4,
     delay: 0,
-    image: '/platform/widget-sms-final.jpg'
+    image: '/platform/widget-sms-final.jpg',
+    link: '/speed-to-lead'
   },
   {
     id: 'reputation',
@@ -40,7 +41,8 @@ const cardData = [
     initialY: 40,
     rotate: -2,
     delay: 0.1,
-    image: '/platform/reputation-icons.png'
+    image: '/platform/reputation-icons.png',
+    link: '/reputation-management'
   },
   {
     id: 'service',
@@ -53,7 +55,8 @@ const cardData = [
     initialY: 0,
     rotate: 0,
     delay: 0.2,
-    image: '/platform/service-ai-customer.jpg'
+    image: '/platform/service-ai-customer.jpg',
+    link: '/service-drive'
   },
   {
     id: 'speed',
@@ -66,7 +69,8 @@ const cardData = [
     initialY: 40,
     rotate: 2,
     delay: 0.3,
-    image: '/platform/speed-to-lead.jpg'
+    image: '/platform/speed-to-lead.jpg',
+    link: '/speed-to-lead'
   },
   {
     id: 'reactivation',
@@ -79,7 +83,8 @@ const cardData = [
     initialY: -40,
     rotate: 4,
     delay: 0.4,
-    image: '/platform/lead-reactivation.png'
+    image: '/platform/lead-reactivation.png',
+    link: '/lead-loss-mitigation'
   }
 ];
 
@@ -264,15 +269,23 @@ export default function Hero() {
 
                       {/* PRODUCT BUTTONS (Card-specific) */}
                       <div className="mt-auto flex items-center gap-2">
-                        <button className={`flex-1 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300
-                                 ${isHovered ? 'bg-[#ff7404] text-white shadow-[0_10px_20px_rgba(255,116,4,0.3)]' : 'bg-white/5 text-white/40 hover:bg-white/10'}
-                               `}>
-                          Find Out More
-                        </button>
-                        <button className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Go to next">
+                        <Link
+                          href={card.link || '#'}
+                          className={`flex-1 flex items-center justify-center text-center py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300
+                                  ${isHovered ? 'bg-[#ff7404] text-white shadow-[0_10px_20px_rgba(255,116,4,0.3)]' : 'bg-white/5 text-white/40 hover:bg-white/10'}
+                                `}
+                        >
+                          Explore Module
+                        </Link>
+                        <Link
+                          href={card.link || '#'}
+                          className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
+                          aria-label="Go to module"
+                        >
                           <ArrowRight className="w-4 h-4 text-white/40" />
-                        </button>
+                        </Link>
                       </div>
+
                     </div>
                   </div>
                 </motion.div>

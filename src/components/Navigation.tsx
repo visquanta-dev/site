@@ -17,7 +17,8 @@ import {
   Gauge,
   Layers,
   Lock,
-  Building2
+  Building2,
+  Shield
 } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
 
@@ -38,9 +39,9 @@ const navItems: NavItem[] = [
     href: '/auto-master-suite',
     children: [
       {
-        label: 'Lead Loss Mitigation',
+        label: 'Lead Reactivation',
         href: '/lead-loss-mitigation',
-        description: 'Unlock revenue from aged leads',
+        description: 'Re-engage and convert dormant leads',
         icon: RefreshCcw
       },
       {
@@ -87,20 +88,22 @@ const navItems: NavItem[] = [
   },
   {
     label: 'Company',
+    href: '/company',
     children: [
       { label: 'About VisQuanta', href: '/about-visquanta', description: 'Our mission to modernize ops', icon: Star },
       { label: 'Our Team', href: '/team', description: 'The people behind the platform', icon: HeartHandshake },
       { label: 'Careers', href: '/careers', description: 'Help shape the future', icon: Target },
+      { label: 'Trust Center', href: '/trust', description: 'Privacy & data handling', icon: Shield },
       { label: 'Contact Us', href: '/contact', description: 'Get in touch directly', icon: Zap },
     ]
   },
   {
     label: 'Resources',
+    href: '/resources',
     children: [
-      { label: 'FAQ’s', href: '/faqs', description: 'Everything you need to know', icon: RefreshCcw },
+      { label: 'FAQs', href: '/faqs', description: 'Everything you need to know', icon: RefreshCcw },
       { label: 'Our Blog', href: '/blog', description: 'Insights for forward-thinkers', icon: Layers },
       { label: 'Case Studies', href: '/case-studies', description: 'Real results from top dealers', icon: Star },
-      { label: 'Partnerships', href: '/partnerships', description: 'Trusted integrations', icon: HeartHandshake },
       { label: 'AMS Info Sheets', href: '/ams-guides', description: 'One-page solution overviews', icon: Layers },
     ]
   },
@@ -184,8 +187,8 @@ export default function Navigation() {
                             </h3>
                           </div>
                           <div className="text-[9px] text-zinc-600 font-mono uppercase tracking-widest leading-relaxed">
-                            v2.5.0 Deployment <br />
-                            Last sync: 12.24
+                            AVG. DEALER IMPACT <br />
+                            <span className="text-[#FF7404]">Revenue Lift: +24%</span>
                           </div>
                         </div>
 
@@ -249,25 +252,27 @@ export default function Navigation() {
 
                           <div className="hidden sm:flex items-center gap-4 border-l border-white/10 pl-8">
                             <div className="flex flex-col">
-                              <span className="text-[8px] uppercase tracking-widest text-zinc-600 font-bold mb-0.5">Latency</span>
-                              <span className="text-[10px] font-mono text-zinc-400">22ms</span>
+                              <span className="text-[8px] uppercase tracking-widest text-zinc-600 font-bold mb-0.5">Efficiency</span>
+                              <span className="text-[10px] font-mono text-zinc-400">MAXIMIZED</span>
                             </div>
                             <div className="flex flex-col">
-                              <span className="text-[8px] uppercase tracking-widest text-zinc-600 font-bold mb-0.5">Load</span>
-                              <span className="text-[10px] font-mono text-zinc-400">0.08%</span>
+                              <span className="text-[8px] uppercase tracking-widest text-zinc-600 font-bold mb-0.5">Conversion</span>
+                              <span className="text-[10px] font-mono text-emerald-500 font-bold">+18%</span>
                             </div>
                           </div>
                         </div>
 
-                        <Link
-                          href={item.href || '#'}
-                          className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#FF7404] hover:text-white transition-all group relative z-10"
-                        >
-                          Access {item.label} Hub
-                          <div className="w-6 h-6 rounded-full border border-[#FF7404]/30 flex items-center justify-center group-hover:bg-[#FF7404] group-hover:text-black transition-all">
-                            <Gauge className="w-3 h-3" />
-                          </div>
-                        </Link>
+                        {item.href && (
+                          <Link
+                            href={item.href}
+                            className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#FF7404] hover:text-white transition-all group relative z-10"
+                          >
+                            Access {item.label} Hub
+                            <div className="w-6 h-6 rounded-full border border-[#FF7404]/30 flex items-center justify-center group-hover:bg-[#FF7404] group-hover:text-black transition-all">
+                              <Gauge className="w-3 h-3" />
+                            </div>
+                          </Link>
+                        )}
                       </div>
 
                     </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Loader2 } from 'lucide-react';
 
@@ -150,7 +151,7 @@ function CalendlyModal({ isOpen, onClose, calendlyUrl }: CalendlyModalProps) {
                             <div className="px-6 py-3 border-t border-white/10 bg-[#0A0A0A] text-center">
                                 <p className="text-xs text-white/40">
                                     By scheduling, you agree to our{' '}
-                                    <a href="/privacy" className="text-[#ff7404] hover:underline">Privacy Policy</a>
+                                    <Link href="/trust" className="text-[#ff7404] hover:underline">Privacy & data handling</Link>
                                 </p>
                             </div>
                         </div>

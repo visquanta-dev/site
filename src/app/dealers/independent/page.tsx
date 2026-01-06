@@ -164,7 +164,7 @@ const ChatBubble = ({ message }: { message: any }) => {
                         />
                     </div>
                     <button className="w-full bg-[#ff7404] text-white text-xs font-bold py-2.5 rounded-lg shadow-lg">
-                        Click Here
+                        Leave a Review
                     </button>
                 </div>
             </div>
@@ -287,7 +287,7 @@ const solutions = [
         icon: MessageSquare,
         title: "SMS-First Widget",
         desc: "Webchat is where leads go to die. We instantly transition website visitors to SMS, capturing their real cell number and keeping the conversation alive.",
-        link: "/products/website-widget",
+        link: "/speed-to-lead",
         cta: "Convert More Visitors"
     },
     {
