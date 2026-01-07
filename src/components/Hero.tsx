@@ -108,19 +108,19 @@ export default function Hero() {
             <div className="flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-700">
               <div className="h-px w-8 bg-primary/60" />
               <span className="text-primary text-xs font-bold uppercase tracking-[0.2em]">
-                AI-Powered Dealership Platform
+                ABSOLUTE DOMINANCE
               </span>
             </div>
 
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-8xl font-black text-white leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-              The Revenue Operating <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff7404] to-[#ff9040]">System for Dealers</span>
+              STOP LOSING REVENUE. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff7404] to-[#ff9040]">START CLOSING CARS.</span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-xl md:text-2xl text-muted-foreground/80 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 font-medium">
-              AutoMaster Suite is a car dealership AI platform designed to improve sales, service, and follow-up across your dealership.
+              The only AI platform built by operators to reactivate your dead leads, automate your service drive, and own every lead 24/7. No excuses.
             </p>
 
             {/* CTA Group */}

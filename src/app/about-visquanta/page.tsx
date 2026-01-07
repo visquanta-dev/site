@@ -94,9 +94,9 @@ export default function AboutPage() {
                                 variants={itemVariants}
                                 className="text-6xl md:text-8xl lg:text-[10rem] font-black text-white mb-10 tracking-[-0.06em] leading-[0.85] uppercase"
                             >
-                                THE CODE <br />
+                                BUILT ON THE <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-white drop-shadow-[0_10px_40px_rgba(255,116,4,0.3)]">
-                                    OF COMMERCE.
+                                    SHOWROOM FLOOR.
                                 </span>
                             </motion.h1>
 

@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AutoMaster Suite | Visquanta",
+  title: "VisQuanta | The Dealer's Unfair Advantage",
   description: "AI-Powered Dealership Platform - The unfair advantage elite dealerships use",
 };
 
