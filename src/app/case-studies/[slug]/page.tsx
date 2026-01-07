@@ -242,6 +242,60 @@ const caseStudies = {
             author: "Bill Henderson",
             role: "Owner, Freedom Independent"
         }
+    },
+    'seth-wadley': {
+        client: 'Seth Wadley Auto Group',
+        location: 'Oklahoma, USA',
+        type: 'Auto Group',
+        logo: '/images/brands/ford-direct.jpg',
+        heroImage: '/images/seth-wadley-hero.jpg',
+        title: 'How Seth Wadley Auto Group Recovered $47k in 60 Days',
+        summary: 'Struggling with lead response times and missed opportunities on service calls, Seth Wadley implemented the full AutoMaster Suite. Within two months, the results were undeniable.',
+        metrics: [
+            { value: '$47k', label: 'Revenue Recovered', icon: DollarSign },
+            { value: '12', label: 'Extra Units Sold', icon: TrendingUp },
+            { value: '9x', label: 'ROI Achieved', icon: BarChart3 },
+            { value: '24/7', label: 'Automated Coverage', icon: Zap },
+        ],
+        challenge: {
+            title: 'The Challenge: Inefficient Lead Management',
+            content: [
+                "Seth Wadley Auto Group was facing significant challenges with response times for inbound leads.",
+                "Their service department was missing thousands of dollars in potential revenue due to unhandled inquiries.",
+                "The team was overwhelmed by the volume of interactions, leading to low conversion rates."
+            ]
+        },
+        solution: {
+            title: 'The Solution: Full Suite Deployment',
+            steps: [
+                {
+                    title: 'Lead Reactivation',
+                    description: 'Mining the CRM for dormant leads and using AI to re-engage them through personalized SMS campaigns.'
+                },
+                {
+                    title: 'Speed-to-Lead Automation',
+                    description: 'Ensuring every web lead was contacted within 60 seconds regardless of the time of day.'
+                },
+                {
+                    title: 'Service Drive Integration',
+                    description: 'Automating the appointment setting process for the service department.'
+                }
+            ]
+        },
+        results: {
+            title: 'The Impact: Measurable Success',
+            content: "The implementation of VisQuanta's solutions led to an immediate and significant impact on the group's bottom line.",
+            stats: [
+                "Recovered $47,000 in lost revenue within the first 60 days.",
+                "Sold 12 additional units directly attributed to AI engagement.",
+                "Achieved a 9x return on investment (ROI) within two months."
+            ]
+        },
+        testimonial: {
+            quote: "The ROI was obvious within the first month. VisQuanta didn't just fix our lead response—it reactivated our entire CRM and stabilized our service drive.",
+            author: "Michael Rodriguez",
+            role: "Operations Manager, Seth Wadley Auto Group"
+        }
     }
 };
 
