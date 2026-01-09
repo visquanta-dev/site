@@ -31,7 +31,7 @@ interface MobilePhoneMockupProps {
 
 // Simple chat bubble for mobile
 function MobileChatBubble({ message, onPlay }: { message: Message; onPlay?: (id: string) => void }) {
-  if (message.type === 'source_tag' && typeof message.content === 'object' && 'title' in message.content) {
+  if (message.type === 'source_tag' && message.content && typeof message.content === 'object' && 'title' in message.content) {
     return (
       <div className="flex justify-center">
         <div className="px-3 py-1.5 bg-white/5 rounded-full border border-white/10">
@@ -98,8 +98,8 @@ function MobileChatBubble({ message, onPlay }: { message: Message; onPlay?: (id:
     <div className={`flex ${isAgent ? 'justify-end' : 'justify-start'}`}>
       <div
         className={`max-w-[85%] px-3 py-2 text-[11px] leading-relaxed ${isAgent
-            ? 'bg-[#ff7404] text-white rounded-2xl rounded-tr-sm'
-            : 'bg-[#2a2a2a] text-white/90 rounded-2xl rounded-tl-sm'
+          ? 'bg-[#ff7404] text-white rounded-2xl rounded-tr-sm'
+          : 'bg-[#2a2a2a] text-white/90 rounded-2xl rounded-tl-sm'
           }`}
       >
         {content}
