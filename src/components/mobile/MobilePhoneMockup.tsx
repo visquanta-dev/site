@@ -31,16 +31,19 @@ interface MobilePhoneMockupProps {
 
 // Simple chat bubble for mobile
 function MobileChatBubble({ message, onPlay }: { message: Message; onPlay?: (id: string) => void }) {
-  if (message.type === 'source_tag' && message.content && typeof message.content === 'object' && 'title' in message.content) {
-    return (
-      <div className="flex justify-center">
-        <div className="px-3 py-1.5 bg-white/5 rounded-full border border-white/10">
-          <span className="text-[9px] font-bold text-white/40 uppercase tracking-wider">
-            {message.content.title}
-          </span>
+  if (message.type === 'source_tag' && message.content && typeof message.content === 'object') {
+    const content = message.content as any;
+    if ('title' in content) {
+      return (
+        <div className="flex justify-center">
+          <div className="px-3 py-1.5 bg-white/5 rounded-full border border-white/10">
+            <span className="text-[9px] font-bold text-white/40 uppercase tracking-wider">
+              {content.title}
+            </span>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   if (message.type === 'review') {
