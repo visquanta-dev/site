@@ -184,7 +184,7 @@ export default function LeadLossMoment() {
                                             whileInView={{ width: '45%' }}
                                             viewport={{ once: true }}
                                             transition={{ duration: 2, ease: 'easeOut', delay: 0.5 }}
-                                            className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-white/30 to-red-500/60 rounded-full -translate-y-1/2"
+                                            className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-white/30 to-white/10 rounded-full -translate-y-1/2"
                                         />
 
                                         {/* Milestones */}
@@ -203,21 +203,18 @@ export default function LeadLossMoment() {
                                                     transition={{ delay: step.delay, type: 'spring', stiffness: 200 }}
                                                     className="relative"
                                                 >
-                                                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${step.error ? 'bg-red-500/10 border-2 border-red-500/40' :
-                                                        step.warning ? 'bg-yellow-500/10 border-2 border-yellow-500/40' :
+                                                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${step.error ? 'bg-white/5 border-2 border-white/20' :
+                                                        step.warning ? 'bg-white/5 border-2 border-white/20' :
                                                             'bg-white/[0.05] border-2 border-white/[0.1]'
                                                         }`}>
-                                                        <step.icon className={`w-5 h-5 ${step.error ? 'text-red-500/80' :
-                                                            step.warning ? 'text-yellow-500/80' :
+                                                        <step.icon className={`w-5 h-5 ${step.error ? 'text-white/40' :
+                                                            step.warning ? 'text-white/40' :
                                                                 'text-white/40'
                                                             }`} />
                                                     </div>
                                                     <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-center whitespace-nowrap">
-                                                        <div className={`text-sm font-bold ${step.error ? 'text-red-400' :
-                                                            step.warning ? 'text-yellow-500' :
-                                                                'text-white/40'
-                                                            }`}>{step.time}</div>
-                                                        <div className="text-xs text-white/50 font-medium mt-0.5">{step.label}</div>
+                                                        <div className="text-sm font-bold text-white/40">{step.time}</div>
+                                                        <div className="text-xs text-white/20 font-medium mt-0.5">{step.label}</div>
                                                     </div>
                                                 </motion.div>
                                             ))}
@@ -232,10 +229,10 @@ export default function LeadLossMoment() {
                                         transition={{ delay: 2.5 }}
                                         className="flex-shrink-0 w-44"
                                     >
-                                        <div className="bg-red-500/[0.08] border border-red-500/20 rounded-xl p-4 text-center">
-                                            <X className="w-8 h-8 text-red-500/70 mx-auto mb-2" />
-                                            <div className="text-red-500/80 font-bold text-lg uppercase tracking-wider">Deal Lost</div>
-                                            <div className="text-[10px] text-red-400/60 mt-1">Too slow</div>
+                                        <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-4 text-center">
+                                            <X className="w-8 h-8 text-white/30 mx-auto mb-2" />
+                                            <div className="text-white/40 font-bold text-lg uppercase tracking-wider">Deal Lost</div>
+                                            <div className="text-[10px] text-white/25 mt-1 font-mono uppercase tracking-widest">Efficiency Gap</div>
                                         </div>
                                     </motion.div>
                                 </div>

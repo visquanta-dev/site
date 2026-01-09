@@ -28,7 +28,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     return (
-        <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303] pt-44 pb-32">
+        <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303] pt-28 pb-20 sm:pt-32 sm:pb-24 md:pt-36 md:pb-28 lg:pt-44 lg:pb-32">
 
             {/* 1. Premium Multi-Layer Background */}
             <div className="absolute inset-0 z-0">
@@ -80,10 +80,10 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
             />
 
             <motion.div style={{ opacity }} className="container-wide relative z-10">
-                <div className="grid lg:grid-cols-2 gap-20 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 md:gap-20 items-center">
 
                     {/* Left: Authority & Messaging */}
-                    <div className="text-left space-y-12">
+                    <div className="text-left space-y-8 sm:space-y-10 lg:space-y-12">
 
                         {/* Status Badge - Premium Glass */}
                         <motion.div
@@ -107,7 +107,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-                                className="text-5xl lg:text-[4.5rem] font-bold text-white tracking-[-0.03em] leading-[0.95]"
+                                className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.5rem] font-black text-white tracking-[-0.03em] leading-[0.95] uppercase"
                             >
                                 <span className="block">The Easiest Cars</span>
                                 <span className="block">You'll Sell</span>
@@ -119,7 +119,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
-                                className="text-xl text-white/45 max-w-lg leading-[1.8] font-normal"
+                                className="text-base sm:text-lg md:text-xl text-white/45 max-w-lg leading-[1.8] font-medium"
                             >
                                 We use managed conversational SMS to re-engage leads who went quiet—transforming dormant database entries into booked appointments and sold units.
                             </motion.p>
@@ -130,7 +130,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="grid grid-cols-3 gap-0 py-10 border-y border-white/[0.06]"
+                            className="grid grid-cols-3 gap-0 py-6 sm:py-8 lg:py-10 border-y border-white/[0.06]"
                         >
                             {[
                                 { value: "$35M+", label: "Total Revenue", sublabel: "Recovered" },
@@ -142,7 +142,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                         initial={{ scale: 0.8, opacity: 0 }}
                                         animate={{ scale: 1, opacity: 1 }}
                                         transition={{ delay: 0.4 + i * 0.1 }}
-                                        className="text-3xl lg:text-4xl font-bold text-white tracking-tight group-hover:text-[#FF7404] transition-colors duration-500"
+                                        className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight group-hover:text-[#FF7404] transition-colors duration-500"
                                     >
                                         {stat.value}
                                     </motion.div>
@@ -159,11 +159,11 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="flex flex-wrap items-center gap-5"
+                            className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-4 sm:gap-5"
                         >
                             <button
                                 onClick={onOpenCalculator}
-                                className="group relative px-10 py-5 overflow-hidden"
+                                className="group relative px-8 sm:px-10 py-5 overflow-hidden text-center"
                             >
                                 {/* Button gradient background */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-lg" />
@@ -171,16 +171,14 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-lg" />
                                 {/* Inner shadow for depth */}
                                 <div className="absolute inset-[1px] bg-gradient-to-b from-white/20 to-transparent rounded-[7px] opacity-50" />
-                                <span className="relative z-10 flex items-center gap-3 text-black font-bold text-sm uppercase tracking-widest">
+                                <span className="relative z-10 flex items-center justify-center gap-3 text-black font-black text-sm uppercase tracking-widest whitespace-nowrap">
                                     Start Revenue Audit
                                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </span>
                             </button>
 
-                            <button className="group relative px-8 py-5 rounded-lg overflow-hidden">
-                                <div className="absolute inset-0 border border-white/20 rounded-lg group-hover:border-[#FF7404]/50 transition-colors duration-300" />
-                                <div className="absolute inset-0 bg-white/[0.02] group-hover:bg-[#FF7404]/[0.05] transition-colors duration-300 rounded-lg" />
-                                <span className="relative z-10 flex items-center gap-3 text-white/80 group-hover:text-white font-semibold text-sm uppercase tracking-widest transition-colors">
+                            <button className="group relative px-8 py-5 rounded-lg overflow-hidden text-center border border-white/20 hover:border-[#FF7404]/50 hover:bg-[#FF7404]/[0.05] transition-all">
+                                <span className="relative z-10 flex items-center justify-center gap-3 text-white/80 group-hover:text-white font-black text-sm uppercase tracking-widest transition-colors">
                                     Request a Demo
                                 </span>
                             </button>
@@ -286,6 +284,20 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 <div className="text-[9px] text-white/40 uppercase tracking-wide">This Month</div>
                             </div>
                         </motion.div>
+                    </div>
+
+                    {/* Mobile Visual Demo (NEW) */}
+                    <div className="lg:hidden mt-8 sm:mt-12 flex justify-center">
+                        <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
+                            <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
+                                <img
+                                    src="/images/suite-bg/llm-bg.png"
+                                    alt="Lead Loss Mitigation Demo"
+                                    className="w-full h-auto"
+                                />
+                            </div>
+                            <div className="absolute inset-0 -z-10 bg-[#FF7404]/10 blur-3xl rounded-full scale-150 opacity-50" />
+                        </div>
                     </div>
 
                 </div>

@@ -15,7 +15,7 @@ export default function HeroSection() {
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     return (
-        <section ref={containerRef} className="relative min-h-[90vh] flex items-center bg-[#030303] overflow-hidden pt-20">
+        <section ref={containerRef} className="relative min-h-[90vh] flex items-center bg-[#030303] overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-36 lg:pt-44">
             {/* Dynamic Background Effects */}
             <motion.div style={{ y: y1, opacity }} className="absolute text-[20vw] font-bold text-white/[0.02] left-0 top-20 select-none pointer-events-none">
                 RESULTS
@@ -27,10 +27,10 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#FF7404]/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
 
-            <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div className="container-wide relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16 items-center">
 
                 {/* Left Content */}
-                <div className="space-y-10">
+                <div className="space-y-8 sm:space-y-10">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -46,7 +46,7 @@ export default function HeroSection() {
                             initial={{ opacity: 0, y: 100 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1]"
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.1] uppercase"
                         >
                             We Don't Just<br />
                             Give You a Login.<br />
@@ -66,7 +66,7 @@ export default function HeroSection() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.6 }}
-                        className="text-xl text-white/60 leading-relaxed max-w-lg"
+                        className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-lg font-medium"
                     >
                         The only AI platform backed by a dedicated team of automotive experts. Every conversation overseen by humans, every lead verified, every opportunity maximized.
                     </motion.p>
@@ -75,10 +75,10 @@ export default function HeroSection() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
-                        className="flex flex-wrap gap-6"
+                        className="flex flex-col sm:flex-row gap-4 sm:gap-6"
                     >
-                        <button className="group relative px-8 py-4 bg-[#FF7404] text-black font-bold uppercase tracking-widest rounded-xl overflow-hidden">
-                            <span className="relative z-10 flex items-center gap-2 group-hover:gap-4 transition-all">
+                        <button className="group relative px-8 py-5 bg-[#FF7404] text-black font-black uppercase text-sm tracking-widest rounded-xl overflow-hidden text-center">
+                            <span className="relative z-10 flex items-center justify-center gap-2 group-hover:gap-4 transition-all">
                                 Meet Your Team
                                 <ArrowRight className="w-4 h-4" />
                             </span>
@@ -87,7 +87,7 @@ export default function HeroSection() {
                     </motion.div>
 
                     {/* Trust Indicators */}
-                    <div className="grid grid-cols-2 gap-8 pt-12 mt-12 pb-4 border-t border-white/10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-10 sm:pt-12 mt-8 sm:mt-12 pb-4 border-t border-white/10">
                         {[{ label: "Monitored Interactions", value: "100%" }, { label: "Account Support", value: "24/7" }].map((item, i) => (
                             <motion.div
                                 key={i}
@@ -95,10 +95,24 @@ export default function HeroSection() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.6 + (i * 0.1) }}
                             >
-                                <div className="text-3xl font-bold text-white mb-1">{item.value}</div>
-                                <div className="text-xs text-white/40 uppercase tracking-widest">{item.label}</div>
+                                <div className="text-2xl sm:text-3xl font-black text-white mb-1 uppercase tracking-tight">{item.value}</div>
+                                <div className="text-[10px] text-white/40 uppercase tracking-widest font-bold">{item.label}</div>
                             </motion.div>
                         ))}
+                    </div>
+                </div>
+
+                {/* Mobile Visual Demo (NEW) */}
+                <div className="lg:hidden mt-8 sm:mt-12 flex justify-center">
+                    <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
+                        <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
+                            <img
+                                src="/images/suite-bg/ds-bg.png"
+                                alt="Dealer Success Demo"
+                                className="w-full h-auto"
+                            />
+                        </div>
+                        <div className="absolute inset-0 -z-10 bg-[#FF7404]/10 blur-3xl rounded-full scale-150 opacity-50" />
                     </div>
                 </div>
 
@@ -107,7 +121,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
-                    className="relative perspective-1000"
+                    className="relative perspective-1000 hidden lg:block"
                 >
                     <motion.div
                         animate={{ y: [-10, 10, -10] }}

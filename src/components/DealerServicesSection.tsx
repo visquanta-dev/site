@@ -87,7 +87,7 @@ export default function DealerServicesSection() {
             <Sparkles className="w-3 h-3" />
             Dealer Services
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
             Built for how <span className="text-[#ff7404]">your dealership</span> sells cars.
           </h2>
           <p className="text-white/70 text-lg leading-relaxed">
@@ -225,13 +225,13 @@ export default function DealerServicesSection() {
         <div className="mt-24 pt-24 border-t border-white/10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-            {/* Calculator Card - Premium Design */}
+            {/* Calculator Card - Premium Design (order-2 on mobile, order-1 on desktop) */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative order-2 lg:order-1"
             >
               {/* Outer Glow Ring */}
               <div className="absolute -inset-[1px] bg-gradient-to-br from-[#ff7404]/40 via-[#ff7404]/10 to-transparent rounded-[2rem] blur-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
@@ -265,10 +265,11 @@ export default function DealerServicesSection() {
                         <div className="text-white/50 text-sm">Estimate the revenue hidden in your CRM</div>
                       </div>
                     </div>
-                    <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20">
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20">
                       <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                       <span className="text-[10px] font-bold text-green-400 uppercase tracking-wider">Live Estimate</span>
                     </div>
+
                   </div>
 
                   {/* Slider Section */}
@@ -337,12 +338,13 @@ export default function DealerServicesSection() {
               </div>
             </motion.div>
 
-            {/* Urgency Copy */}
+            {/* Urgency Copy (order-1 on mobile, order-2 on desktop) */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="order-1 lg:order-2"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-6">
                 <TrendingUp className="w-3 h-3" />
@@ -362,7 +364,7 @@ export default function DealerServicesSection() {
                 </p>
               </div>
 
-              <div className="mt-10">
+              <div className="mt-10 hidden lg:block">
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#ff7404] hover:bg-[#ff8a2b] text-black font-bold text-lg rounded-xl shadow-[0_0_40px_rgba(255,116,4,0.4)] hover:shadow-[0_0_50px_rgba(255,116,4,0.6)] transition-all duration-300 group"
@@ -371,9 +373,11 @@ export default function DealerServicesSection() {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
+
             </motion.div>
           </div>
         </div>
+
 
         <ROICalculatorModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </div>

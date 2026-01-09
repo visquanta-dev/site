@@ -6,7 +6,7 @@ import { RequestDemoButton } from '../CalendlyModal';
 
 export default function HeroSection() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303] pt-44 pb-32">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303] pt-28 pb-20 sm:pt-32 sm:pb-24 md:pt-36 md:pb-28 lg:pt-44 lg:pb-32">
 
             {/* Premium Background */}
             <div className="absolute inset-0 z-0">
@@ -46,10 +46,10 @@ export default function HeroSection() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-                        className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-white tracking-[-0.03em] leading-[0.95]"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-[5.5rem] font-black text-white tracking-[-0.03em] leading-[0.95] uppercase"
                     >
                         <span className="block">Turn Missed Calls into</span>
-                        <span className="block mt-2 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF5500] bg-clip-text text-transparent filter drop-shadow-[0_0_30px_rgba(255,116,4,0.3)]">
+                        <span className="block mt-2 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF5500] bg-clip-text text-transparent filter drop-shadow-[0_0_30px_rgba(255,116,4,0.3)] uppercase">
                             Booked Service Jobs
                         </span>
                     </motion.h1>
@@ -59,7 +59,7 @@ export default function HeroSection() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
-                        className="text-xl md:text-2xl text-white/45 text-center max-w-4xl mx-auto mb-12 leading-relaxed font-light"
+                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/45 text-center max-w-4xl mx-auto mb-10 sm:mb-12 leading-relaxed font-medium"
                     >
                         Over 80% of dealership service calls go unanswered. <br className="hidden md:block" />
                         Every missed call results in <span className="text-white/80 font-medium">lost revenue</span>,
@@ -73,27 +73,41 @@ export default function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
-                    className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-24"
+                    className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-stretch sm:items-center mb-16 sm:mb-20 md:mb-24"
                 >
-                    <RequestDemoButton className="group relative px-10 py-5 overflow-hidden rounded-xl shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)] transition-shadow duration-500">
+                    <RequestDemoButton className="group relative px-8 sm:px-10 py-5 overflow-hidden rounded-xl shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)] transition-shadow duration-500 text-center uppercase">
                         <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-xl" />
                         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.3)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
-                        <span className="relative z-10 flex items-center gap-3 text-black font-bold text-sm uppercase tracking-widest">
+                        <span className="relative z-10 flex items-center justify-center gap-3 text-black font-black text-sm uppercase tracking-widest">
                             <Phone className="w-4 h-4" />
                             Request a Demo
                         </span>
                     </RequestDemoButton>
 
-                    <a href="#calculator" className="group px-10 py-5 bg-white/[0.03] border border-white/[0.08] rounded-xl hover:bg-white/[0.06] transition-all duration-300">
-                        <span className="flex items-center gap-3 text-white font-bold text-sm uppercase tracking-widest">
+                    <a href="#calculator" className="group px-8 sm:px-10 py-5 bg-white/[0.03] border border-white/[0.08] rounded-xl hover:bg-white/[0.06] transition-all duration-300 text-center">
+                        <span className="flex items-center justify-center gap-3 text-white font-black text-sm uppercase tracking-widest">
                             Calculate Potential
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#FF7404]" />
                         </span>
                     </a>
                 </motion.div>
 
+                {/* Mobile Visual Demo (NEW) */}
+                <div className="lg:hidden mb-16 sm:mb-20 flex justify-center">
+                    <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
+                        <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
+                            <img
+                                src="/images/suite-bg/sdp-bg.png"
+                                alt="Service Drive Pro Demo"
+                                className="w-full h-auto"
+                            />
+                        </div>
+                        <div className="absolute inset-0 -z-10 bg-[#FF7404]/10 blur-3xl rounded-full scale-150 opacity-50" />
+                    </div>
+                </div>
+
                 {/* Benefits Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                     {[
                         {
                             icon: Phone,
@@ -122,7 +136,7 @@ export default function HeroSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.4 + (idx * 0.1), duration: 0.8 }}
-                            className="group relative p-8 rounded-[2rem] bg-white/[0.02] border border-white/[0.05] hover:border-[#FF7404]/30 hover:bg-white/[0.04] transition-all duration-500"
+                            className="group relative p-6 sm:p-7 md:p-8 rounded-[2rem] bg-white/[0.02] border border-white/[0.05] hover:border-[#FF7404]/30 hover:bg-white/[0.04] transition-all duration-500"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/5 to-transparent rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="relative z-10">

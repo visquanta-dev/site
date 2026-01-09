@@ -3,10 +3,13 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import DealerCalculator from '@/components/dealers/DealerCalculator';
-import { RefreshCw, Zap, TrendingUp, Search, DollarSign, Clock, LayoutGrid, CheckCircle2, ArrowRight, Gauge, ShoppingCart, HelpCircle, Lightbulb, ChevronDown, Calendar, BookOpen, Target, BarChart3, Database, MessageSquare, Layers, Signal, Wifi, Battery, User } from 'lucide-react';
+import { RefreshCw, Zap, TrendingUp, Search, DollarSign, Clock, LayoutGrid, CheckCircle2, ArrowRight, Gauge, ShoppingCart, HelpCircle, Lightbulb, ChevronDown, Calendar, BookOpen, Target, BarChart3, Database, MessageSquare, Layers, Signal, Wifi, Battery, User, Star, Timer, PhoneIncoming, Play, ShieldCheck, Globe } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { RequestDemoButton } from '@/components/CalendlyModal';
+import Image from 'next/image';
+import { CapabilityTabs, CapabilityFeatureDisplay } from '@/components';
 
 // Animation variants
 const containerVariants = {
@@ -75,6 +78,360 @@ const articles = [
     }
 ];
 
+// --- Shared Components for Phone ---
+
+const TypingIndicator = () => (
+    <motion.div
+        initial={{ opacity: 0, y: 5 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        className="flex justify-end mb-2"
+    >
+        <div className="bg-[#ff7404] px-4 py-3 rounded-2xl rounded-tr-sm flex items-center gap-1.5 w-fit">
+            <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut", delay: 0 }}
+                className="w-1.5 h-1.5 bg-white rounded-full"
+            />
+            <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+                className="w-1.5 h-1.5 bg-white rounded-full"
+            />
+            <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut", delay: 0.4 }}
+                className="w-1.5 h-1.5 bg-white rounded-full"
+            />
+        </div>
+    </motion.div>
+);
+
+const ChatBubble = ({ message }: { message: any }) => {
+    // System / Tags
+    if (message.type === 'source_tag') {
+        const content = message.content;
+
+        if (typeof content === 'string') {
+            return (
+                <div className="flex justify-center my-6">
+                    <span className="text-[10px] font-medium text-gray-500 bg-[#1A1A1A] px-3 py-1.5 rounded-full border border-white/5 shadow-sm">
+                        {content}
+                    </span>
+                </div>
+            );
+        }
+
+        return (
+            <div className="flex justify-center my-6 w-full px-4">
+                {content.title === 'LEAD SOURCE: CARGURUS' ? (
+                    <div className="w-full bg-[#1A1A1A]/80 backdrop-blur-sm rounded-xl p-3 flex items-center gap-3 border border-white/10 shadow-lg">
+                        <div className="h-8 px-2 bg-white/90 rounded flex items-center justify-center border border-white/10">
+                            <Image
+                                src="/assets/cargurus-logo.png"
+                                alt="CarGurus"
+                                width={80}
+                                height={24}
+                                className="object-contain h-4 w-auto"
+                            />
+                        </div>
+                        <div className="text-left">
+                            <div className="text-[10px] font-bold text-gray-300 uppercase tracking-wider">New Lead</div>
+                            <div className="text-[10px] text-gray-500">Arrived: Just now</div>
+                        </div>
+                    </div>
+                ) : (content.title === 'Service Appointment' || content.title === 'Appointment Booked') ? (
+                    <div className="w-full bg-[#111] backdrop-blur-xl rounded-2xl p-5 flex flex-col gap-4 border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 blur-3xl rounded-full pointer-events-none" />
+                        <div className="flex items-center gap-4 relative z-10">
+                            <div className="w-10 h-10 bg-black/50 text-green-500 rounded-xl flex items-center justify-center border border-green-500/30 shadow-[0_0_15px_rgba(34,197,94,0.1)]">
+                                <Timer className="w-5 h-5" />
+                            </div>
+                            <div>
+                                <div className="text-[11px] font-bold text-white tracking-[0.2em] uppercase mb-0.5">Appointment Booked</div>
+                                {!content.appointments && <div className="text-[11px] text-white/40 font-mono tracking-wide">{content.subtitle}</div>}
+                            </div>
+                        </div>
+                        {content.appointments && (
+                            <div className="flex flex-col gap-2 relative z-10">
+                                {content.appointments.map((appt: string, i: number) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.1 * i }}
+                                        className="flex items-center gap-3 text-xs text-white/90 font-medium bg-white/[0.03] hover:bg-white/[0.06] px-4 py-3.5 rounded-xl border border-white/5 hover:border-green-500/30 transition-all duration-300 group cursor-default"
+                                    >
+                                        <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] group-hover:scale-125 transition-transform duration-300" />
+                                        <span className="font-mono tracking-wide">{appt}</span>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ) : (content.title === 'Inbound Call') ? (
+                    <div className="w-full bg-[#1A1A1A]/90 backdrop-blur rounded-xl p-3 flex items-center gap-3 border border-white/10 shadow-lg">
+                        <div className="w-8 h-8 bg-blue-500/20 text-blue-500 rounded flex items-center justify-center border border-blue-500/20">
+                            <PhoneIncoming className="w-4 h-4 animate-pulse" />
+                        </div>
+                        <div className="text-left">
+                            <div className="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Inbound Call Answered</div>
+                            <div className="text-[10px] text-gray-500 font-mono">{content.subtitle}</div>
+                        </div>
+                    </div>
+                ) : (content.title === 'Moved from Website') ? (
+                    <div className="relative overflow-hidden bg-gradient-to-r from-[#ff7404]/20 to-[#ff7404]/5 border border-[#ff7404]/50 text-[#ff7404] px-4 py-2 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(255,116,4,0.3)] backdrop-blur-md">
+                        <div className="absolute inset-0 bg-[#ff7404]/10 blur-md" />
+                        <Globe className="w-3.5 h-3.5 relative z-10 animate-pulse" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest relative z-10">Moved from Website</span>
+                    </div>
+                ) : (content.title === 'Purchase Verified' || content.title === 'CSI Pulse Check') ? (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className={`group relative flex items-center gap-2.5 px-4 py-2 rounded-full backdrop-blur-md overflow-hidden ${content.title === 'CSI Pulse Check'
+                            ? 'bg-blue-500/10 border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)]'
+                            : 'bg-emerald-500/10 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)]'}`}
+                    >
+                        <motion.div
+                            animate={{ x: ['-200%', '200%'] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                            className={`absolute inset-0 w-1/2 h-full -skew-x-12 pointer-events-none ${content.title === 'CSI Pulse Check'
+                                ? 'bg-gradient-to-r from-transparent via-blue-400/10 to-transparent'
+                                : 'bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent'}`}
+                        />
+                        <div className={`w-4 h-4 rounded-full flex items-center justify-center relative z-10 shadow-lg ${content.title === 'CSI Pulse Check'
+                            ? 'bg-blue-500 shadow-blue-500/50'
+                            : 'bg-emerald-500 shadow-emerald-500/50'}`}>
+                            {content.title === 'CSI Pulse Check' ? (
+                                <ShieldCheck className="w-2.5 h-2.5 text-white" />
+                            ) : (
+                                <svg className="w-2.5 h-2.5 text-[#050505] fill-current" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                            )}
+                        </div>
+                        <span className={`text-[10px] font-black uppercase tracking-[0.2em] relative z-10 ${content.title === 'CSI Pulse Check' ? 'text-blue-400' : 'text-emerald-400'}`}>
+                            {content.title}
+                        </span>
+                    </motion.div>
+                ) : (
+                    <div className="bg-[#1A1A1A]/90 backdrop-blur text-gray-400 border border-white/5 px-3 py-1.5 rounded-full text-[11px] font-medium shadow-sm">
+                        {content.title}
+                    </div>
+                )}
+            </div>
+        );
+    }
+
+    // Review Card
+    if (message.type === 'review') {
+        return (
+            <div className="flex justify-end mb-4">
+                <div className="bg-[#1A1A1A] rounded-2xl p-4 w-[240px] border border-white/10 shadow-xl overflow-hidden relative group">
+                    <div className="flex justify-center mb-4">
+                        <Image
+                            src="/assets/google-reviews.png"
+                            alt="Google Reviews"
+                            width={160}
+                            height={50}
+                            className="object-contain"
+                        />
+                    </div>
+                    <button className="w-full bg-[#ff7404] text-white text-xs font-bold py-2.5 rounded-lg shadow-lg">
+                        Leave a Review
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    // Audio Card
+    if (message.type === 'audio') {
+        return (
+            <div className="flex justify-center mb-8 w-full px-4 border-t border-b border-white/5 py-8">
+                <div className="w-full bg-gradient-to-br from-[#1a1a1a] to-black rounded-3xl p-6 border border-white/10 shadow-2xl relative overflow-hidden group cursor-pointer">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff7404]/10 blur-[80px] rounded-full pointer-events-none group-hover:bg-[#ff7404]/20 transition-all duration-500" />
+                    <div className="relative z-10 flex flex-col items-center text-center gap-6">
+                        <div className="relative">
+                            <div className="w-20 h-20 bg-[#1a1a1a] rounded-2xl flex items-center justify-center border border-white/10 shadow-xl group-hover:border-[#ff7404]/30 transition-colors">
+                                <div className="flex items-center gap-1">
+                                    <div className="w-1.5 h-6 bg-[#ff7404] rounded-full animate-[bounce_1s_infinite]" />
+                                    <div className="w-1.5 h-10 bg-[#ff7404] rounded-full animate-[bounce_1.2s_infinite]" />
+                                    <div className="w-1.5 h-6 bg-[#ff7404] rounded-full animate-[bounce_0.8s_infinite]" />
+                                </div>
+                            </div>
+                            <div className="absolute -top-2 -right-4 bg-[#ff7404] text-black text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg animate-pulse">
+                                LIVE AUDIO
+                            </div>
+                        </div>
+                        <div className="space-y-2">
+                            <h3 className="text-xl font-bold text-white tracking-tight">Hear It In Action</h3>
+                            <p className="text-sm text-gray-400 max-w-[260px] mx-auto leading-relaxed">
+                                Listen to how our AI handles a real Service Drive appointment booking.
+                            </p>
+                        </div>
+                        <div className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-bold text-sm shadow-[0_0_20px_rgba(255,255,255,0.2)] group-hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] group-hover:scale-105 transition-all">
+                            <Play className="w-4 h-4 fill-black" />
+                            <span>Play Service Demo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    const isAgent = message.sender === 'agent';
+
+    return (
+        <div className={`flex w-full mb-2 ${isAgent ? 'justify-end' : 'justify-start'}`}>
+            <div
+                className={`max-w-[85%] px-5 py-3 text-[14px] leading-snug relative tracking-normal font-medium shadow-md antialiased
+        ${isAgent
+                        ? 'bg-[#ff7404] text-white rounded-2xl rounded-tr-sm shadow-orange-900/10'
+                        : 'bg-[#262626] text-gray-100 rounded-2xl rounded-tl-sm border border-white/5'
+                    }`}
+            >
+                {message.content}
+            </div>
+        </div>
+    );
+};
+
+// Types
+interface Feature {
+    id: string;
+    tab: string;
+    title: string;
+    highlight: string;
+    description: string;
+    bullets: { title: string; desc: string; }[];
+    header: { name: string; sub: string; icon: any; };
+    avatarInitials: string;
+    avatarImage?: string;
+    messages: any[];
+}
+
+// Features Data for Pre-Owned Dealers (Strictly Preserving Text)
+const featuresData: Feature[] = [
+    {
+        id: 'reactivation',
+        tab: 'Lead Reactivation',
+        title: 'The Art of the',
+        highlight: "Pre-Owned Close.",
+        description: "Don't wait for the customer to chase you. AutoMaster identifies \"ready-to-buy\" signals from your old leads and reaches out the moment the right unit hits your front line.",
+        bullets: [
+            { title: "Lead Reactivation", desc: "We mine your 'dead' CRM data and re-engage buyers with inventory that matches their exact history." },
+            { title: "Trade-In Pre-Qualification", desc: "We identify potential trade units and psychological 'buy signals' before they even reach your lot." },
+            { title: "Dynamic Appointment Setting", desc: "Syncs with your used car manager's schedule to ensure zero double-booking or missed test drives." }
+        ],
+        header: { name: "Amy (Visquanta)", sub: "Reactivating: Mike", icon: Database },
+        avatarInitials: 'VQ',
+        avatarImage: undefined,
+        messages: [
+            { id: 'msg1', sender: 'agent', content: "Hi Mike, Sarah from the dealership here. I saw you were looking at Broncos with us a few months back. We just took in a 2021 Outer Banks that matches your search perfectly. Still looking?" },
+            { id: 'msg2', sender: 'user', content: "Oh hey Sarah! Yeah, I'm actually still in the market. Is it available for a test drive?" },
+            { id: 'msg3', sender: 'agent', content: "It is! It hasn't even hit our website frontline yet. Are you thinking of trading in that 2017 Escape we have on file for you?" },
+            { id: 'msg4', sender: 'user', content: "I was considering it, but it has pretty high miles now." },
+            { id: 'msg5', sender: 'agent', content: "No problem! We're short on Escapes for our value lot. If I can get you a guaranteed trade-in range in the next 10 mins, want to stop by at 4:30 PM?" },
+            { id: 'msg6', sender: 'user', content: "Yeah, that works for me. See you then." },
+            { id: 'msg7', sender: 'agent', content: "Perfect! I've reserved the keys. I'm having Sarah from our floor team call you in 5 mins to confirm that trade range. See you shortly! 🚙" }
+        ]
+    },
+    {
+        id: 'speed',
+        tab: 'Speed-to-Lead',
+        title: 'Portal Domination',
+        highlight: "Catch Them Instantly.",
+        description: "Be the first to respond to Autotrader, Cars.com, and Facebook leads in under 90 seconds. We capture the buyer before they move to your competitor.",
+        bullets: [
+            { title: "Instant Response", desc: "Every lead from 3rd party portals is engaged in under 90 seconds, securing the first appointment." },
+            { title: "Capture Scarcity", desc: "In the pre-owned market, speed is the only differentiator that matters for unique units." },
+            { title: "2.5x Conv. Rate", desc: "Vastly improve your appointment set rate compared to manual BDC follow-up." }
+        ],
+        header: { name: "David (Inbound Lead)", sub: "2024 Silverado 1500", icon: User },
+        avatarImage: undefined,
+        avatarInitials: 'David',
+        messages: [
+            { id: 'tag1', sender: 'system', content: { title: 'LEAD SOURCE: CARGURUS', subtitle: 'Arrived: Just now' }, type: 'source_tag' },
+            { id: 'msg1', sender: 'agent', content: "Hi David, VisQuanta Chevy here. Just saw your request on CarGurus. The 2024 Silverado you asked about is available." },
+            { id: 'msg2', sender: 'agent', content: "Are you looking to come by today or would tomorrow work better?" },
+            { id: 'msg3', sender: 'user', content: "Can I come by at 5?" },
+            { id: 'msg4', sender: 'agent', content: "5:00 PM works perfectly. I will have it pulled up front for you." },
+            { id: 'msg5', sender: 'agent', content: "Will you be driving yourself in or would you like directions sent over?" },
+            { id: 'msg6', sender: 'user', content: "I will drive myself." },
+            { id: 'msg7', sender: 'agent', content: "Perfect. I will text you the address and a quick pin now." }
+        ]
+    },
+    {
+        id: 'service',
+        tab: 'Service Drive AI',
+        title: 'Equity Catching',
+        highlight: "Source High-Margin Units.",
+        description: "The highest-margin pre-owned unit is the one sitting in your service lane. We automatically identify and engage high-equity service customers for buy-backs.",
+        bullets: [
+            { title: "Bypass Auctions", desc: "Acquire inventory directly from your loyalty base without high auction fees or blind bidding." },
+            { title: "Trade-In Pre-Qualification", desc: "We identify potential trade units and psychological 'buy signals' before they even reach your lot." },
+            { title: "Service History Known", desc: "Buy back cars you've already serviced, giving you 100% confidence in the reconditioning cost." }
+        ],
+        header: { name: "Mike (Service)", sub: "Inbound Call: 555-0123", icon: PhoneIncoming },
+        avatarInitials: 'Incoming',
+        avatarImage: undefined,
+        messages: [
+            { id: 'audio1', sender: 'agent', type: 'audio', content: 'audio_card' }
+        ]
+    },
+    {
+        id: 'reputation',
+        tab: 'Reputation',
+        title: 'Build Trust',
+        highlight: "On Autopilot.",
+        description: "90% of car buyers check reviews first. Ensure every review gets a professional response instantly, and catch negative feedback before it goes public.",
+        bullets: [
+            { title: "Instant Responses", desc: "Acknowledge every customer review instantly with brand-compliant messaging." },
+            { title: "Crisis Management", desc: "Flag negative sentiment immediately for GM escalation before it hurts your rating." },
+            { title: "Local SEO Boost", desc: "Active, consistent review activity improves your dealership's search rankings." }
+        ],
+        header: { name: "Claire", sub: "Sold: 2024 Tahoe", icon: Star },
+        avatarImage: undefined,
+        avatarInitials: 'Claire',
+        messages: [
+            { id: 'tag1', sender: 'system', content: { title: 'Purchase Verified' }, type: 'source_tag' },
+            { id: 'msg1', sender: 'agent', content: "Hi Claire! Huge congrats on the new Tahoe." },
+            { id: 'msg2', sender: 'agent', content: "Quick question - how would you rate your experience with us?" },
+            { id: 'msg3', sender: 'user', content: "Honestly it was great. Fast finance process." },
+            { id: 'msg4', sender: 'agent', content: "That's awesome! Would you mind sharing that on Google? It helps a ton." },
+            { id: 'rev1', sender: 'agent', type: 'review', content: 'review_card' },
+            { id: 'msg5', sender: 'user', content: "done, thanks again for everything 🙂" }
+        ]
+    },
+    {
+        id: 'widget',
+        tab: 'Site Widget',
+        title: 'Your 24/7',
+        highlight: "Digital Receptionist.",
+        description: "Convert more website visitors into showroom appointments. Our smart widget answers questions, values trades, and books test drives instantly.",
+        bullets: [
+            { title: "Instant Engagement", desc: "Greets every visitor immediately, preventing 'bounce' and capturing attention." },
+            { title: "Dynamic Appointment Setting", desc: "Syncs with your used car manager's schedule to ensure zero double-booking or missed test drives." },
+            { title: "Direct Booking", desc: "Schedules test drives directly into your CRM calendar without human intervention." }
+        ],
+        header: { name: "James (Web Widget)", sub: "Source: Website Widget", icon: MessageSquare },
+        avatarImage: undefined,
+        avatarInitials: 'James',
+        messages: [
+            { id: 'tag1', sender: 'system', content: { title: 'Moved from Website' }, type: 'source_tag' },
+            { id: 'msg1', sender: 'agent', content: "Hi James, you just reached out via our website, how can i help you today?" },
+            { id: 'msg2', sender: 'user', content: "Do you have any white Tahoes in stock?" },
+            { id: 'msg3', sender: 'agent', content: "We do, yes. We currently have a few white Tahoes available. Are you looking for a specific year, trim, or price range?" },
+            { id: 'msg4', sender: 'user', content: "I’m just starting to look." },
+            { id: 'msg5', sender: 'agent', content: "No problem at all. I can quickly go over what we have and help narrow it down. Would it be okay if I gave you a quick call?" },
+            { id: 'msg6', sender: 'user', content: "Sure." },
+            { id: 'msg7', sender: 'agent', content: "Great, what’s the best number to reach you on?" }
+        ]
+    }
+];
+
 export default function PreOwnedPage() {
     const heroRef = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -97,6 +454,48 @@ export default function PreOwnedPage() {
     };
 
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
+    const [activeFeature, setActiveFeature] = useState(0);
+    const [visibleMessages, setVisibleMessages] = useState<any[]>([]);
+    const [isTyping, setIsTyping] = useState(false);
+    const chatContainerRef = useRef<HTMLDivElement>(null);
+
+    // Message Sequencing Logic
+    useEffect(() => {
+        setVisibleMessages([]);
+        let timeouts: NodeJS.Timeout[] = [];
+        let accumulatedDelay = 0;
+        const currentData = featuresData[activeFeature];
+
+        const sequenceMessages = async () => {
+            for (const msg of currentData.messages) {
+                // @ts-ignore
+                const readingDelay = msg.type === 'source_tag' ? 300 : 700;
+                const typingDelay = msg.sender === 'agent' ? 1000 : 400;
+                const preDelay = accumulatedDelay;
+
+                // @ts-ignore
+                if (msg.sender === 'agent' && msg.type !== 'audio' && msg.type !== 'review') {
+                    timeouts.push(setTimeout(() => setIsTyping(true), preDelay));
+                    accumulatedDelay += typingDelay;
+                    timeouts.push(setTimeout(() => setIsTyping(false), accumulatedDelay));
+                } else {
+                    accumulatedDelay += readingDelay;
+                }
+
+                timeouts.push(setTimeout(() => {
+                    setVisibleMessages(prev => [...prev, msg]);
+                    if (chatContainerRef.current) {
+                        setTimeout(() => {
+                            chatContainerRef.current?.scrollTo({ top: chatContainerRef.current.scrollHeight, behavior: 'smooth' });
+                        }, 50);
+                    }
+                }, accumulatedDelay));
+            }
+        };
+
+        sequenceMessages();
+        return () => timeouts.forEach(clearTimeout);
+    }, [activeFeature]);
 
     return (
         <main className="bg-[#020202] min-h-screen selection:bg-[#FF7404] selection:text-black overflow-x-hidden">
@@ -297,155 +696,125 @@ export default function PreOwnedPage() {
             </section>
 
             {/* 3. THE ART OF THE CLOSE - Interactive Conversation Visual */}
-            <section className="py-24 bg-[#020202] relative">
-                <div className="container px-4 mx-auto">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <section className="py-32 bg-black relative overflow-hidden">
+                <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] bg-[#FF7404]/5 rounded-full blur-[150px] pointer-events-none" />
+                <div className="container px-4 mx-auto relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <div className="order-2 lg:order-1">
-                            <div className="relative w-full max-w-[380px] mx-auto">
-                                {/* Phone Mockup */}
-                                <div className="relative z-10 rounded-[45px] border-[8px] border-[#1A1A1A] bg-[#0A0A0A] p-4 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden aspect-[9/19.5]">
-                                    {/* Notch */}
-                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-[#1A1A1A] rounded-b-2xl z-20" />
+                            <div className="relative w-full max-w-[400px] mx-auto">
+                                {/* Phone Mockup - Premium Style */}
+                                <div className="relative z-10 w-full h-[800px] bg-black rounded-[60px] border-[8px] border-[#2a2a2a] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.7)] overflow-hidden ring-1 ring-white/10 select-none">
+                                    {/* Hardware Buttons */}
+                                    <div className="absolute -left-[8px] top-[120px] h-[26px] w-[4px] bg-[#3a3a3a] rounded-l-md" />
+                                    <div className="absolute -left-[8px] top-[160px] h-[45px] w-[4px] bg-[#3a3a3a] rounded-l-md" />
+                                    <div className="absolute -left-[8px] top-[215px] h-[45px] w-[4px] bg-[#3a3a3a] rounded-l-md" />
+                                    <div className="absolute -right-[8px] top-[160px] h-[80px] w-[4px] bg-[#3a3a3a] rounded-r-md" />
 
-                                    {/* Phone Status Bar */}
-                                    <div className="absolute top-0 left-0 right-0 h-10 flex items-center justify-between px-8 text-[10px] text-white/40 z-30">
-                                        <div className="font-bold">9:41</div>
-                                        <div className="flex gap-1 items-center">
-                                            <Signal className="w-2.5 h-2.5" />
-                                            <Wifi className="w-2.5 h-2.5" />
-                                            <Battery className="w-3 h-3 rotate-90" />
+                                    {/* Status Bar */}
+                                    <div className="absolute top-4 inset-x-0 h-6 px-8 flex justify-between items-center z-50">
+                                        <div className="text-[12px] font-bold text-white tracking-tight">9:41</div>
+                                        <div className="flex items-center gap-1.5">
+                                            <Signal className="w-3.5 h-3.5 text-white" />
+                                            <Wifi className="w-3.5 h-3.5 text-white" />
+                                            <Battery className="w-4 h-4 text-white" />
                                         </div>
                                     </div>
 
-                                    {/* UI Header */}
-                                    <div className="pt-10 pb-4 border-b border-white/10 mb-4 px-2">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF7404] to-[#FF9040] flex items-center justify-center font-bold text-black border border-white/10">
-                                                <User className="w-5 h-5" />
-                                            </div>
-                                            <div>
-                                                <div className="text-white font-bold text-sm">VisQuanta AI</div>
-                                                <div className="text-[10px] text-green-500/80 flex items-center gap-1 font-medium">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)] animate-pulse" />
-                                                    Active Reactivation
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {/* Dynamic Island */}
+                                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-7 bg-black rounded-3xl z-50 border border-white/5" />
 
-                                    {/* Messages Container */}
-                                    <div className="h-[calc(100%-120px)] overflow-hidden px-2 relative">
-                                        <AnimatePresence>
-                                            {/* Success Badge Overlay */}
+                                    {/* Phone Content Interface */}
+                                    <div className="h-full flex flex-col bg-[#050505]">
+                                        {/* Home Indicator */}
+                                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/20 rounded-full z-50" />
+
+                                        {/* Chat Header */}
+                                        <div className="pt-14 pb-4 px-6 border-b border-white/5 bg-black/80 backdrop-blur-md sticky top-0 z-40">
                                             <motion.div
-                                                initial={{ opacity: 0, scale: 0.8 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                transition={{ delay: 18.5, duration: 0.5, type: 'spring' }}
-                                                className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
+                                                key={featuresData[activeFeature].id}
+                                                initial={{ opacity: 0, x: -10 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                className="flex items-center justify-between"
                                             >
-                                                <div className="px-6 py-4 bg-green-500 rounded-2xl shadow-[0_20px_40px_rgba(34,197,94,0.3)] flex flex-col items-center gap-2 border border-white/20">
-                                                    <CheckCircle2 className="w-8 h-8 text-white" />
-                                                    <div className="text-white font-black text-xs uppercase tracking-widest text-center leading-tight">
-                                                        Appointment Booked<br />
-                                                        <span className="opacity-70 text-[10px]">Lead Handed to Sales</span>
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-10 h-10 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center overflow-hidden relative group">
+                                                        <div className="absolute inset-0 bg-[#ff7404]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                        {featuresData[activeFeature].avatarImage ? (
+                                                            <div className="relative w-full h-full">
+                                                                <Image
+                                                                    src={featuresData[activeFeature].avatarImage!}
+                                                                    alt="Avatar"
+                                                                    fill
+                                                                    className="object-contain"
+                                                                />
+                                                            </div>
+                                                        ) : featuresData[activeFeature].id === 'service' ? (
+                                                            <PhoneIncoming className="w-5 h-5 text-green-500 animate-pulse" />
+                                                        ) : (
+                                                            <span className="text-[10px] text-white/50 font-bold">{featuresData[activeFeature].avatarInitials}</span>
+                                                        )}
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-white text-sm font-bold">{featuresData[activeFeature].header.name}</div>
+                                                        <div className="text-white/40 text-[10px] uppercase tracking-wider font-medium">{featuresData[activeFeature].header.sub}</div>
                                                     </div>
                                                 </div>
+                                                <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 group cursor-pointer hover:border-[#ff7404]/50 transition-all">
+                                                    <ArrowRight className="w-4 h-4 text-[#ff7404] group-hover:translate-x-0.5 transition-transform" />
+                                                </div>
                                             </motion.div>
-                                        </AnimatePresence>
+                                        </div>
 
-                                        <motion.div
-                                            initial={{ y: 0 }}
-                                            whileInView={{
-                                                y: [0, 0, 0, -40, -100, -160, -220]
-                                            }}
-                                            viewport={{ once: true }}
-                                            transition={{
-                                                times: [0, 0.2, 0.4, 0.55, 0.7, 0.85, 1],
-                                                duration: 18,
-                                                ease: "easeInOut"
-                                            }}
-                                            className="space-y-4 pt-4"
+                                        {/* Messages Area */}
+                                        <div
+                                            ref={chatContainerRef}
+                                            className="flex-1 overflow-y-auto px-4 py-8 space-y-4 no-scrollbar scroll-smooth"
                                         >
-                                            {[
-                                                { role: 'ai', text: "Hi Mike, Sarah from the dealership here. I saw you were looking at Broncos with us a few months back. We just took in a 2021 Outer Banks that matches your search perfectly. Still looking?", delay: 1 },
-                                                { role: 'user', text: "Oh hey Sarah! Yeah, I'm actually still in the market. Is it available for a test drive?", delay: 3.5 },
-                                                { role: 'ai', text: "It is! It hasn't even hit our website frontline yet. Are you thinking of trading in that 2017 Escape we have on file for you?", delay: 6 },
-                                                { role: 'user', text: "I was considering it, but it has pretty high miles now.", delay: 8.5 },
-                                                { role: 'ai', text: "No problem! We're short on Escapes for our value lot. If I can get you a guaranteed trade-in range in the next 10 mins, want to stop by at 4:30 PM?", delay: 11 },
-                                                { role: 'user', text: "Yeah, that works for me. See you then.", delay: 13.5 },
-                                                { role: 'ai', text: "Perfect! I've reserved the keys. I'm having Sarah from our floor team call you in 5 mins to confirm that trade range. See you shortly! 🚙", delay: 15.5 },
-                                            ].map((msg, i) => (
-                                                <motion.div
-                                                    key={i}
-                                                    initial={{ opacity: 0, x: msg.role === 'user' ? 20 : -20, scale: 0.95 }}
-                                                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ delay: msg.delay, duration: 0.4 }}
-                                                    className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
-                                                >
-                                                    <div className={`max-w-[85%] p-3 rounded-2xl text-xs font-medium leading-relaxed shadow-lg ${msg.role === 'user'
-                                                        ? 'bg-[#1C1C1C] text-white rounded-tr-none border border-white/5'
-                                                        : 'bg-gradient-to-br from-[#FF7404] to-[#FF9040] text-black rounded-tl-none font-bold'
-                                                        }`}>
-                                                        {msg.text}
-                                                    </div>
-                                                    <div className="text-[9px] text-white/20 mt-1 px-1">
-                                                        {msg.role === 'ai' ? 'Delivered' : 'Just now'}
-                                                    </div>
-                                                </motion.div>
-                                            ))}
+                                            <AnimatePresence mode="popLayout">
+                                                {visibleMessages.map((msg, i) => (
+                                                    <motion.div
+                                                        key={featuresData[activeFeature].id + '-' + i}
+                                                        initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                        transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                                                    >
+                                                        <ChatBubble message={msg} />
+                                                    </motion.div>
+                                                ))}
+                                                {isTyping && <TypingIndicator key="typing" />}
+                                            </AnimatePresence>
+                                        </div>
 
-                                            {/* Typing Indicator */}
-                                            <motion.div
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: [0, 1, 0] }}
-                                                transition={{ duration: 1.5, repeat: Infinity, delay: 17 }}
-                                                className="flex gap-1 p-2"
-                                            >
-                                                <div className="w-1 h-1 rounded-full bg-zinc-500" />
-                                                <div className="w-1 h-1 rounded-full bg-zinc-500" />
-                                                <div className="w-1 h-1 rounded-full bg-zinc-500" />
-                                            </motion.div>
-                                        </motion.div>
+                                        {/* Input Bar Area */}
+                                        <div className="px-5 pb-10 pt-4 bg-gradient-to-t from-black via-black/95 to-transparent">
+                                            <div className="h-14 bg-zinc-900 rounded-[24px] border border-white/10 flex items-center px-5 justify-between shadow-2xl">
+                                                <div className="flex gap-1.5 items-center pl-1">
+                                                    <div className="w-2 h-2 bg-[#ff7404] rounded-full animate-pulse shadow-[0_0_8px_rgba(255,116,4,0.4)]" />
+                                                    <div className="text-[13px] text-zinc-500 font-medium">Customer responding...</div>
+                                                </div>
+                                                <div className="w-9 h-9 rounded-full bg-[#ff7404] flex items-center justify-center shadow-lg shadow-orange-900/20 active:scale-95 transition-transform">
+                                                    <ArrowRight className="w-5 h-5 text-white" />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                {/* Background Glow for Phone */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[80%] bg-[#FF7404]/10 blur-[100px] rounded-full z-0" />
+                                {/* Background Accents */}
+                                <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#ff7404]/20 rounded-full blur-[60px] animate-pulse" />
+                                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#ff7404]/10 rounded-full blur-[60px] animate-pulse" />
                             </div>
                         </div>
 
                         <div className="order-1 lg:order-2">
-                            <motion.div
-                                initial={{ opacity: 0, x: 30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                            >
-                                <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tight">
-                                    The Art of the <br />
-                                    <span className="text-[#FF7404]">Pre-Owned Close.</span>
-                                </h2>
-                                <p className="text-xl text-zinc-400 mb-8 leading-relaxed">
-                                    Don't wait for the customer to chase you. AutoMaster identifies "ready-to-buy" signals from your old leads and reaches out the moment the right unit hits your front line.
-                                </p>
-                                <div className="space-y-6">
-                                    {[
-                                        { title: "Lead Reactivation", desc: "We mine your 'dead' CRM data and re-engage buyers with inventory that matches their exact history." },
-                                        { title: "Trade-In Pre-Qualification", desc: "We identify potential trade units and psychological 'buy signals' before they even reach your lot." },
-                                        { title: "Dynamic Appointment Setting", desc: "Syncs with your used car manager's schedule to ensure zero double-booking or missed test drives." }
-                                    ].map((item, i) => (
-                                        <div key={i} className="flex gap-4">
-                                            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/30 flex items-center justify-center text-[#FF7404]">
-                                                <CheckCircle2 className="w-4 h-4" />
-                                            </div>
-                                            <div>
-                                                <h4 className="text-white font-bold mb-1">{item.title}</h4>
-                                                <p className="text-zinc-500 text-sm">{item.desc}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </motion.div>
+                            {/* Tabs */}
+                            <CapabilityTabs
+                                tabs={featuresData}
+                                activeFeature={activeFeature}
+                                setActiveFeature={setActiveFeature}
+                            />
+
+                            <CapabilityFeatureDisplay feature={featuresData[activeFeature]} />
                         </div>
                     </div>
                 </div>
@@ -833,6 +1202,6 @@ export default function PreOwnedPage() {
             />
 
             <Footer />
-        </main>
+        </main >
     );
 }

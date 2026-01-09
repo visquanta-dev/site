@@ -107,8 +107,8 @@ export default function WhyItWorks() {
                                 {/* Channel Comparison */}
                                 <div className="space-y-8">
                                     {[
-                                        { icon: PhoneOff, label: "Cold Calls", value: "3-5%", color: "red", width: "5%", colorClass: "bg-red-500/40" },
-                                        { icon: Mail, label: "Marketing Email", value: "1-2%", color: "red", width: "2%", colorClass: "bg-red-500/40" },
+                                        { icon: PhoneOff, label: "Cold Calls", value: "3-5%", color: "neutral", width: "5%", colorClass: "bg-white/10" },
+                                        { icon: Mail, label: "Marketing Email", value: "1-2%", color: "neutral", width: "2%", colorClass: "bg-white/10" },
                                         { icon: MessageSquare, label: "Conversational SMS", value: "39%+", color: "orange", width: "39%", colorClass: "bg-gradient-to-r from-[#FF7404] to-[#FF9040]", highlight: true }
                                     ].map((item, i) => (
                                         <div key={i} className="space-y-3">
@@ -117,7 +117,7 @@ export default function WhyItWorks() {
                                                     <item.icon className="w-4 h-4" />
                                                     {item.label}
                                                 </div>
-                                                <div className={`text-xs font-bold tracking-widest ${item.highlight ? 'text-green-400' : 'text-red-400/70'}`}>
+                                                <div className={`text-xs font-bold tracking-widest ${item.highlight ? 'text-[#FF7404]' : 'text-white/20'}`}>
                                                     {item.value} ENGAGEMENT
                                                 </div>
                                             </div>

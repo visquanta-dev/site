@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CalendlyModalProvider } from "@/components/CalendlyModal";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import FloatingShortsWidget from "@/components/FloatingShortsWidget";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -12,6 +15,12 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "VisQuanta | The Dealer's Unfair Advantage",
   description: "AI-Powered Dealership Platform - The unfair advantage elite dealerships use",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5, // Allow some zoom for accessibility while keeping initial scale clean
 };
 
 // Calendly URL for demo scheduling
@@ -25,9 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.variable} style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif' }} suppressHydrationWarning>
-        <CalendlyModalProvider calendlyUrl={CALENDLY_URL}>
-          {children}
-        </CalendlyModalProvider>
+        <SmoothScroll>
+          <CalendlyModalProvider calendlyUrl={CALENDLY_URL}>
+            {children}
+            <FloatingShortsWidget />
+            <Toaster />
+          </CalendlyModalProvider>
+        </SmoothScroll>
       </body>
     </html>
   );

@@ -247,7 +247,7 @@ function ServiceDriveCalculator() {
             <div className="pt-6 border-t border-white/10 space-y-4">
                 <div className="flex justify-between items-center">
                     <span className="text-zinc-400">Missed Calls/Month</span>
-                    <span className="text-red-400 font-bold">{monthlyMissedCalls}</span>
+                    <span className="text-white font-bold">{monthlyMissedCalls}</span>
                 </div>
                 <div className="flex justify-between items-center">
                     <span className="text-zinc-400">Recovered Appointments</span>

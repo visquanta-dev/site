@@ -162,18 +162,25 @@ function CalendlyModal({ isOpen, onClose, calendlyUrl }: CalendlyModalProps) {
     );
 }
 
+import { Slot } from '@radix-ui/react-slot';
+
+// ... (existing imports)
+
 // Simple button component that opens the modal
-interface RequestDemoButtonProps {
-    className?: string;
-    children?: ReactNode;
+interface RequestDemoButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    asChild?: boolean;
 }
 
-export function RequestDemoButton({ className, children }: RequestDemoButtonProps) {
+export function RequestDemoButton({ asChild, onClick, ...props }: RequestDemoButtonProps) {
     const { openModal } = useCalendlyModal();
+    const Comp = asChild ? Slot : "button";
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        openModal();
+        onClick?.(e);
+    };
 
     return (
-        <button onClick={openModal} className={className}>
-            {children || 'Request a Demo'}
-        </button>
+        <Comp onClick={handleClick} {...props} />
     );
 }

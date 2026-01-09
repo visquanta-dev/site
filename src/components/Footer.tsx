@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, ArrowUpRight, Linkedin, Youtube, Facebook, Instagram, Twitter } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
+import { Button } from "@/components/ui/button";
 
 // Custom TikTok Icon since it's not in standard Lucide set yet
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -78,11 +79,11 @@ export default function Footer() {
       <div className="container-wide relative z-10">
 
         {/* Main Footer Content */}
-        <div className="pt-20 pb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+        <div className="pt-12 pb-10 sm:pt-16 sm:pb-12 md:pt-20 md:pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 md:gap-16 lg:gap-8">
 
             {/* Brand Column */}
-            <div className="lg:col-span-4 space-y-8">
+            <div className="lg:col-span-4 space-y-6 sm:space-y-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -139,11 +140,13 @@ export default function Footer() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <RequestDemoButton
-                  className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF7404] to-[#FF8A3D] text-black font-bold text-sm rounded-xl hover:shadow-[0_0_30px_-5px_rgba(255,116,4,0.4)] transition-all duration-300"
-                >
-                  Request a Demo
-                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <RequestDemoButton asChild>
+                  <Button
+                    className="group inline-flex items-center gap-3 h-auto px-8 py-4 bg-gradient-to-r from-[#FF7404] to-[#FF8A3D] text-black font-bold text-sm rounded-xl hover:shadow-[0_0_30px_-5px_rgba(255,116,4,0.4)] transition-all duration-300 border-none"
+                  >
+                    Request a Demo
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </Button>
                 </RequestDemoButton>
               </motion.div>
             </div>
@@ -152,7 +155,7 @@ export default function Footer() {
             <div className="lg:col-span-8 flex flex-col justify-between gap-12">
 
               {/* Links Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 lg:gap-8">
                 {/* Auto Master Suite */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -260,9 +263,9 @@ export default function Footer() {
                       key={i}
                       href={social.href}
                       aria-label={social.label}
-                      className="group w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:bg-[#FF7404]/10 hover:border-[#FF7404]/30 transition-all duration-300"
+                      className="group w-10 h-10 sm:w-9 sm:h-9 rounded-lg bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:bg-[#FF7404]/10 hover:border-[#FF7404]/30 transition-all duration-300"
                     >
-                      <social.icon className="w-3.5 h-3.5 text-white/40 group-hover:text-[#FF7404] transition-colors" />
+                      <social.icon className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-white/40 group-hover:text-[#FF7404] transition-colors" />
                     </Link>
                   ))}
                 </div>
@@ -302,7 +305,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="py-8 border-t border-white/[0.06]">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-8">
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}

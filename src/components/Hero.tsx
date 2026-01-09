@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { RequestDemoButton } from './CalendlyModal';
+import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Database,
@@ -14,6 +15,8 @@ import {
   ArrowRight,
   RefreshCcw
 } from 'lucide-react';
+import HeroDashboardPreview from './mobile/HeroDashboardPreview';
+import MobileHeroTrust from './mobile/MobileHeroTrust';
 
 const cardData = [
   {
@@ -88,6 +91,136 @@ const cardData = [
   }
 ];
 
+/* ==========================================================================
+   MOBILE CARD CAROUSEL - Premium horizontal scroll
+   ========================================================================== */
+function MobileCardCarousel() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      const cardWidth = 280 + 16; // card width + gap
+      const newIndex = Math.round(scrollLeft / cardWidth);
+      setActiveIndex(Math.min(Math.max(newIndex, 0), cardData.length - 1));
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToCard = (index: number) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const cardWidth = 280 + 16;
+    container.scrollTo({ left: cardWidth * index, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="w-full">
+      {/* Carousel */}
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 -mx-4 px-4 scrollbar-hide"
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch'
+        }}
+      >
+        {cardData.map((card, index) => {
+          const Icon = card.icon;
+          return (
+            <motion.div
+              key={card.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 + 0.3 }}
+              className="flex-shrink-0 w-[280px] snap-center"
+            >
+              <Link href={card.link} className="block">
+                <div className="relative bg-[#0a0a0a] border border-white/[0.08] rounded-2xl overflow-hidden h-[360px] flex flex-col group active:scale-[0.98] transition-transform duration-200">
+                  {/* Top shine */}
+                  <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+                  {/* Image area */}
+                  <div className="relative h-36 w-full overflow-hidden bg-black/50">
+                    {card.image ? (
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="w-full h-full object-cover opacity-80"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <Icon className="w-12 h-12 text-white/20" />
+                      </div>
+                    )}
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent" />
+
+                    {/* Label badge */}
+                    <div className="absolute bottom-3 left-4">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ff7404]">
+                        {card.label}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 p-5 flex flex-col">
+                    <h3 className="text-lg font-bold text-white mb-2 tracking-tight">
+                      {card.title}
+                    </h3>
+                    <p className="text-white/50 text-sm leading-relaxed flex-1">
+                      {card.description}
+                    </p>
+
+                    {/* CTA */}
+                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/[0.06]">
+                      <span className="text-xs font-bold uppercase tracking-widest text-white/40 group-hover:text-[#ff7404] transition-colors">
+                        Explore
+                      </span>
+                      <div className="w-8 h-8 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center group-hover:bg-[#ff7404]/10 group-hover:border-[#ff7404]/30 transition-all">
+                        <ArrowRight className="w-3.5 h-3.5 text-white/40 group-hover:text-[#ff7404] transition-colors" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom accent */}
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-[#ff7404]/30 to-transparent" />
+                </div>
+              </Link>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Dot indicators */}
+      <div className="flex justify-center items-center gap-2 mt-2">
+        {cardData.map((card, index) => (
+          <button
+            key={card.id}
+            onClick={() => scrollToCard(index)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${activeIndex === index
+              ? 'bg-[#ff7404] w-6'
+              : 'bg-white/20 w-1.5 hover:bg-white/40'
+              }`}
+            aria-label={`Go to ${card.title}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================================================
+   MAIN HERO COMPONENT
+   ========================================================================== */
 export default function Hero() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
@@ -99,65 +232,163 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,116,4,0.05)_0%,rgba(5,5,5,0)_50%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--background)_100%)] pointer-events-none" />
 
-      <div className="container-wide w-full flex-1 flex flex-col justify-center relative z-10 pt-12 pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      <div className="container-wide w-full flex-1 flex flex-col justify-center relative z-10 pt-8 pb-12 lg:pt-12 lg:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center">
 
           {/* Left Content */}
-          <div className="lg:col-span-6 flex flex-col gap-8 text-left z-20">
+          <div className="lg:col-span-6 flex flex-col gap-5 sm:gap-6 lg:gap-8 text-left z-20">
             {/* Eyebrow */}
-            <div className="flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <div className="h-px w-8 bg-primary/60" />
-              <span className="text-primary text-xs font-bold uppercase tracking-[0.2em]">
-                ABSOLUTE DOMINANCE
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center gap-3"
+            >
+              <div className="h-px w-6 sm:w-8 bg-primary/60" />
+              <span className="text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em]">
+                AI-Powered Dealership Platform
               </span>
-            </div>
+            </motion.div>
 
-            {/* Headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-8xl font-black text-white leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-              STOP LOSING REVENUE. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff7404] to-[#ff9040]">START CLOSING CARS.</span>
-            </h1>
+            {/* Headline with Reveal Animation */}
+            <motion.h1
+              className="text-4xl leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white tracking-tighter"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.02
+                  }
+                }
+              }}
+            >
+              <span className="inline-block">
+                {"The Revenue Operating".split(" ").map((word, wi) => (
+                  <span key={wi} className="inline-block whitespace-nowrap mr-[0.2em]">
+                    {word.split("").map((char, ci) => (
+                      <motion.span
+                        key={ci}
+                        variants={{
+                          hidden: { opacity: 0, y: 20, rotateX: 40 },
+                          visible: { opacity: 1, y: 0, rotateX: 0 }
+                        }}
+                        transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
+                        className="inline-block whitespace-pre"
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </span>
+                ))}
+              </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff7404] to-[#ff9040] inline-block">
+                {"System for Dealers".split(" ").map((word, wi) => (
+                  <span key={wi} className="inline-block whitespace-nowrap mr-[0.2em]">
+                    {word.split("").map((char, ci) => (
+                      <motion.span
+                        key={ci}
+                        variants={{
+                          hidden: { opacity: 0, y: 20, rotateX: 40 },
+                          visible: { opacity: 1, y: 0, rotateX: 0 }
+                        }}
+                        transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
+                        className="inline-block whitespace-pre"
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </span>
+                ))}
+              </span>
+            </motion.h1>
+
+            {/* MOBILE DASHBOARD PREVIEW - Right after headline */}
+            <div className="lg:hidden w-full mt-6">
+              <HeroDashboardPreview />
+            </div>
 
             {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-muted-foreground/80 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 font-medium">
-              The only AI platform built by operators to reactivate your dead leads, automate your service drive, and own every lead 24/7. No excuses.
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-sm sm:text-lg md:text-xl lg:text-2xl text-muted-foreground/80 max-w-2xl leading-relaxed font-medium mt-4 lg:mt-0"
+            >
+              AutoMaster Suite is a car dealership AI platform designed to improve sales, service, and follow-up across your dealership.
+            </motion.p>
+
 
             {/* CTA Group */}
-            <div className="flex flex-wrap items-center gap-4 mt-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-              <RequestDemoButton
-                className="bg-primary text-black hover:bg-white px-10 py-5 rounded-xl font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_-10px_rgba(255,116,4,0.5)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.7)]"
-              >
-                Request a Demo
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 sm:mt-4 lg:mt-6"
+            >
+              <RequestDemoButton asChild>
+                <Button
+                  className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest shadow-[0_0_40px_-10px_rgba(255,116,4,0.5)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.7)] text-black bg-primary hover:bg-white"
+                >
+                  Request a Demo
+                </Button>
               </RequestDemoButton>
-              <Link
-                href="#how-it-works"
-                className="px-10 py-5 rounded-xl font-black text-sm uppercase tracking-widest text-white border border-white/10 hover:bg-white/5 transition-all"
+
+              <Button
+                asChild
+                variant="outline"
+                className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-white/10 hover:bg-white/5 bg-transparent text-white hover:text-white"
               >
-                See How It Works
-              </Link>
-            </div>
+                <Link href="#how-it-works">
+                  See How It Works
+                </Link>
+              </Button>
+            </motion.div>
 
             {/* Trust Signal */}
-            <div className="mt-10 pt-10 border-t border-border flex flex-wrap items-center gap-x-8 gap-y-4 text-sm text-muted-foreground animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400">
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span className="font-medium">System Online</span>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className=" lg:mt-10"
+            >
+              {/* Desktop Stats (Hidden on Mobile) */}
+              <div className="hidden lg:block pt-10 border-t border-border">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-x-8 sm:gap-y-3 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span className="font-medium">System Online</span>
+                  </div>
+                  <div className="flex items-center gap-4 sm:gap-8">
+                    <div>
+                      <span className="font-bold text-white">30%</span>
+                      <span className="text-muted-foreground/60 ml-1.5">avg. revenue increase</span>
+                    </div>
+                    <div>
+                      <span className="font-bold text-white">24/7</span>
+                      <span className="text-muted-foreground/60 ml-1.5">automated coverage</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <span className="font-medium text-foreground">30%</span> avg. revenue increase
-              </div>
-              <div>
-                <span className="font-medium text-foreground">24/7</span> automated coverage
-              </div>
-            </div>
+
+              {/* Mobile Trust Marquee (Removed to avoid duplication with main SocialProofBar) */}
+            </motion.div>
           </div>
 
-          {/* Right Visual - Interactive Cards (Layer 1) */}
-          <div className="lg:col-span-6 relative h-[600px] flex items-center justify-center -mr-20 lg:-mr-32 perspective-[2500px] pointer-events-auto z-10 scale-75 lg:scale-90 origin-center lg:origin-right">
+          {/* ================================================================
+              RIGHT SIDE - CARDS
+              Mobile: Dashboard preview is now in the left column after headline
+              Desktop: 3D interactive stack (UNCHANGED)
+              ================================================================ */}
+
+
+          {/* DESKTOP 3D CARD STACK - Only visible at lg and above */}
+          {/* ⚠️ THIS ENTIRE BLOCK IS UNCHANGED FROM ORIGINAL ⚠️ */}
+          <div className="hidden lg:flex lg:col-span-6 relative h-[600px] items-center justify-center -mr-20 lg:-mr-32 perspective-[2500px] pointer-events-auto z-10 scale-75 lg:scale-90 origin-center lg:origin-right">
 
             {/* Ambient Glow backing the cards */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ff7404]/10 rounded-full blur-[120px] pointer-events-none" />
@@ -186,7 +417,7 @@ export default function Hero() {
                     type: 'spring',
                     stiffness: 90,
                     damping: 22,
-                    delay: 0.2 + (card.delay * 1.5) // Added base delay to sync with text
+                    delay: 0.2 + (card.delay * 1.5)
                   }}
                   className={`absolute w-[340px] rounded-[3rem] cursor-pointer origin-center group
                     ${isHovered ? 'z-50' : 'z-10'}
@@ -292,6 +523,7 @@ export default function Hero() {
               );
             })}
           </div>
+          {/* ⚠️ END DESKTOP 3D CARD STACK ⚠️ */}
 
         </div>
       </div>

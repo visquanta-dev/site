@@ -53,7 +53,7 @@ export default function Hero() {
     };
 
     return (
-        <section className="relative pt-32 pb-20 overflow-hidden bg-[#020202]">
+        <section className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 lg:pt-44 overflow-hidden bg-[#020202]">
             {/* Premium Ambient Background */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute top-[-20%] left-[-10%] w-[1000px] h-[1000px] bg-gradient-to-r from-[#FF7404]/10 to-purple-900/10 rounded-full blur-[120px] mix-blend-screen" />
@@ -61,8 +61,8 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay" />
             </div>
 
-            <div className="container mx-auto px-4 md:px-6 max-w-[1200px] relative z-10">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="container-wide relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 items-center">
                     {/* Left Column: Copy & CTA */}
                     <div className="max-w-xl">
                         <motion.div
@@ -79,7 +79,7 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.1 }}
-                            className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.05]"
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 tracking-tight leading-[1.05] uppercase"
                         >
                             Promotions that <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] via-[#ff9040] to-[#FF7404]">sell units.</span>
@@ -89,7 +89,7 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-lg text-white/60 mb-10 leading-relaxed max-w-md"
+                            className="text-base sm:text-lg text-white/60 mb-10 leading-relaxed max-w-md font-medium"
                         >
                             The done-for-you infrastructure that creates the offer, cleans the list, sends at scale, and hands you confirmed appointments.
                         </motion.p>
@@ -98,16 +98,30 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
-                            className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12"
+                            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6 mb-12"
                         >
                             <div className="flex flex-col gap-3">
-                                <button className="h-[52px] px-8 bg-gradient-to-r from-[#FF7404] to-[#ff8a3d] hover:to-[#ff9e5e] text-black font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2 shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)]">
+                                <button className="h-[56px] px-8 bg-gradient-to-r from-[#FF7404] to-[#ff8a3d] hover:to-[#ff9e5e] text-black font-black uppercase text-sm rounded-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)]">
                                     <span className="relative z-10">Start Your Campaign</span>
                                     <ArrowRight className="w-5 h-5 relative z-10" />
                                 </button>
-                                <span className="text-xs text-white/30 font-medium pl-1 tracking-wide">Ready for 1k to 1M+ volume</span>
+                                <span className="text-[10px] text-white/30 font-bold pl-1 tracking-widest uppercase text-center sm:text-left">Ready for 1k to 1M+ volume</span>
                             </div>
                         </motion.div>
+                    </div>
+
+                    {/* Mobile Visual Demo (NEW) */}
+                    <div className="lg:hidden mt-8 sm:mt-12 flex justify-center">
+                        <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
+                            <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
+                                <img
+                                    src="/images/suite-bg/cc-bg.png"
+                                    alt="Custom Campaigns Demo"
+                                    className="w-full h-auto"
+                                />
+                            </div>
+                            <div className="absolute inset-0 -z-10 bg-[#FF7404]/10 blur-3xl rounded-full scale-150 opacity-50" />
+                        </div>
                     </div>
 
                     {/* Right Column: Campaign Launch Console */}
@@ -115,7 +129,7 @@ export default function Hero() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="relative"
+                        className="relative hidden lg:block"
                     >
                         {/* Glass Console Card */}
                         <div className="bg-[#0f0f0f]/80 backdrop-blur-xl border border-white/10 rounded-[32px] p-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.7)] relative overflow-hidden group">

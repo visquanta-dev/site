@@ -7,7 +7,7 @@ import { RequestDemoButton } from './CalendlyModal';
 
 export default function FinalCTA() {
   return (
-    <section className="py-32 bg-[#080808] relative overflow-hidden">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#080808] relative overflow-hidden">
       {/* Premium Background Effects */}
       <div className="absolute inset-0 bg-enterprise-grid opacity-[0.03] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-[#ff7404]/5 rounded-full blur-[200px] pointer-events-none" />
@@ -28,26 +28,26 @@ export default function FinalCTA() {
           className="text-center max-w-5xl mx-auto"
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 text-white/50 text-[10px] font-black uppercase tracking-[0.3em] mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 text-white/50 text-[10px] font-black uppercase tracking-[0.3em] mb-6 sm:mb-8">
             <Sparkles className="w-3 h-3 text-[#ff7404]" />
             Enterprise Deployment Ready
           </div>
 
           {/* Headline */}
-          <h2 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.95]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.95] uppercase">
             <span className="text-white/40">READY TO</span><br />
             DOMINATE <span className="text-[#ff7404]">YOUR MARKET?</span>
           </h2>
 
           {/* Subheadline */}
-          <p className="text-xl text-white/50 max-w-2xl mx-auto mb-16 leading-relaxed font-medium">
+          <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-xl sm:max-w-2xl mx-auto mb-10 sm:mb-12 md:mb-16 px-2 sm:px-0 leading-relaxed font-medium">
             Join the elite dealerships using AutoMaster to automate operations and maximize revenue. Your competition is already here.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex justify-center mb-20">
+          <div className="flex justify-center mb-12 sm:mb-16 md:mb-20">
             <RequestDemoButton
-              className="group relative px-12 py-6 rounded-full bg-white transition-all duration-500 hover:scale-105 active:scale-95"
+              className="group relative px-8 py-5 sm:px-10 sm:py-6 md:px-12 rounded-full bg-white transition-all duration-500 hover:scale-105 active:scale-95 w-full sm:w-auto"
             >
               <div className="absolute inset-0 rounded-full bg-[#ff7404] blur-2xl opacity-0 group-hover:opacity-20 transition-opacity" />
               <span className="relative text-black font-black text-sm uppercase tracking-[0.2em] flex items-center gap-3">
@@ -57,7 +57,7 @@ export default function FinalCTA() {
           </div>
 
           {/* Trust Indicators */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-12 max-w-4xl mx-auto">
             {[
               { label: "DMS SECURE SYNC", desc: "Automated real-time data integration" },
               { label: "CUSTOM DEPLOYMENT", desc: "Tailored to your store's specific workflow" },

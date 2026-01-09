@@ -2,7 +2,9 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Check, X, Sparkles, Bot, Users, Building2, Zap, Target, ShieldCheck } from 'lucide-react';
+import { Check, X, Sparkles, Bot, Users, Building2, Zap, Target, ShieldCheck, Smartphone } from 'lucide-react';
+import MobileComparisonCards from './mobile/MobileComparisonCards';
+import MobileDifferentiatorCards from './mobile/MobileDifferentiatorCards';
 
 const comparisons = [
     { feature: 'Lead Response Time', visquanta: '<60 seconds', traditional: '24+ hours', generic: '2-5 minutes', detail: 'Speed wins deals.' },
@@ -14,10 +16,11 @@ const comparisons = [
 
 const differentiators = [
     {
-        icon: Bot,
+        icon: Smartphone,
         title: 'Conversations That Convert',
         description: 'Our conversational AI is unlike any other tool on the market. It speaks automotive, understands buyer intent, and delivers qualified leads, not tire-kickers.',
     },
+
     {
         icon: Users,
         title: 'Your Team Closes the Deal',
@@ -32,7 +35,7 @@ const differentiators = [
 
 export default function WhyVisquantaSection() {
     return (
-        <section className="py-32 bg-[#080808] relative overflow-hidden">
+        <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#080808] relative overflow-hidden">
             {/* Background */}
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#ff7404]/20 to-transparent" />
             <div className="absolute inset-0 bg-enterprise-grid opacity-10 pointer-events-none" />
@@ -47,39 +50,40 @@ export default function WhyVisquantaSection() {
                 />
             </div>
 
-            <div className="container-wide relative z-10">
+            <div className="container-wide relative z-10 px-6 md:px-0">
 
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center max-w-3xl mx-auto mb-20"
+                    className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20"
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-8">
                         <ShieldCheck className="w-3 h-3" />
                         The Competitive Edge
                     </div>
-                    <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
                         Bespoke automotive AI. <span className="text-[#ff7404]">Unmatched in the industry.</span>
                     </h2>
-                    <p className="text-white/60 text-xl leading-relaxed">
+                    <p className="text-white/60 text-base sm:text-lg lg:text-xl leading-relaxed px-2 sm:px-0">
                         VisQuanta isn't here to replace your sales team. It's here to fill their pipeline with qualified, engaged buyers ready to make a decision.
                     </p>
                 </motion.div>
 
                 {/* Differentiators */}
+                {/* Desktop Grid (hidden on mobile) */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="grid md:grid-cols-3 gap-6 mb-24"
+                    className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-20 lg:mb-24"
                 >
                     {differentiators.map((item, i) => {
                         const Icon = item.icon;
                         return (
                             <div key={i} className="group">
-                                <div className="h-full bg-gradient-to-b from-[#111111] to-[#080808] border border-white/[0.08] rounded-3xl p-8 transition-all duration-500 hover:border-[#ff7404]/30">
+                                <div className="h-full bg-gradient-to-b from-[#111111] to-[#080808] border border-white/[0.08] rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 transition-all duration-500 hover:border-[#ff7404]/30">
                                     <div className="w-14 h-14 rounded-2xl bg-[#ff7404]/10 border border-[#ff7404]/20 flex items-center justify-center text-[#ff7404] mb-6 group-hover:bg-[#ff7404] group-hover:text-black transition-all duration-300">
                                         <Icon className="w-7 h-7" />
                                     </div>
@@ -91,8 +95,19 @@ export default function WhyVisquantaSection() {
                     })}
                 </motion.div>
 
+                {/* Mobile Accordion Cards */}
+                <div className="sm:hidden mb-16">
+                    <MobileDifferentiatorCards differentiators={differentiators} />
+                </div>
+
                 {/* Comparison Table - Premium Redesign */}
-                <div className="relative group/table">
+                {/* Mobile: Stacked Cards */}
+                <div className="lg:hidden">
+                    <MobileComparisonCards comparisons={comparisons} />
+                </div>
+
+                {/* Desktop: Full Table — PRESERVED EXACTLY */}
+                <div className="relative group/table hidden lg:block">
                     {/* Glowing background behind the table */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#ff7404]/10 to-transparent blur-3xl opacity-50 -z-10" />
 
@@ -193,7 +208,7 @@ export default function WhyVisquantaSection() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-16 text-center max-w-2xl mx-auto"
+                    className="mt-10 sm:mt-12 lg:mt-16 text-center max-w-2xl mx-auto"
                 >
                     <p className="text-white/60 text-lg leading-relaxed">
                         The best dealerships don't choose between AI and humans. They use <strong className="text-white">both</strong>—with VisQuanta as the intelligent layer that makes everything work together.

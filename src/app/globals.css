@@ -40,8 +40,8 @@
   --input: #262626;
   --ring: #ff7404;
 
-  --radius: 0.25rem;
-  /* 4px - Professional/Sharp */
+  --radius: 0.75rem;
+  /* 12px - Smooth/Premium */
 }
 
 @theme inline {
@@ -179,4 +179,48 @@ p {
   100% {
     transform: translateX(100%);
   }
+}
+
+/* ===========================================
+   MOBILE OPTIMIZATION UTILITIES
+   Added for responsive enhancement
+   =========================================== */
+
+/* Tighter container padding on mobile */
+@media (max-width: 639px) {
+  .container-wide {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Hide scrollbar for carousels */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Touch-friendly minimum tap target */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Safe area for notched phones */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }

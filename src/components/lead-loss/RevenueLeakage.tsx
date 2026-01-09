@@ -126,9 +126,9 @@ export default function RevenueLeakage({ onOpenCalculator }: RevenueLeakageProps
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                         className="space-y-10 lg:pt-10"
                     >
-                        <div className="inline-flex items-center gap-3 px-4 py-2 bg-red-500/[0.08] backdrop-blur-sm border border-red-500/20 rounded-full">
-                            <TrendingDown className="w-3.5 h-3.5 text-red-400" />
-                            <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-red-400">The Cost of Waiting</span>
+                        <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#FF7404]/[0.08] backdrop-blur-sm border border-[#FF7404]/20 rounded-full">
+                            <TrendingDown className="w-3.5 h-3.5 text-[#FF7404]/80" />
+                            <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#FF7404]/80">The Cost of Waiting</span>
                         </div>
 
                         <h2 className="text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight">
@@ -164,14 +164,14 @@ export default function RevenueLeakage({ onOpenCalculator }: RevenueLeakageProps
                     viewport={{ once: true }}
                     className="max-w-4xl mb-16"
                 >
-                    <div className="inline-flex items-center gap-3 px-4 py-2 bg-red-500/[0.08] backdrop-blur-sm border border-red-500/20 rounded-full mb-8">
-                        <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
-                        <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-red-400">Operational Risk Assessment</span>
+                    <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#FF7404]/[0.08] backdrop-blur-sm border border-[#FF7404]/20 rounded-full mb-8">
+                        <AlertTriangle className="w-3.5 h-3.5 text-[#FF7404]/80" />
+                        <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#FF7404]/80">Operational Risk Assessment</span>
                     </div>
 
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
                         Dealerships Lose Money They <br />
-                        <span className="text-red-400">Already Paid For.</span>
+                        <span className="text-[#FF7404]">Already Paid For.</span>
                     </h2>
 
                     <p className="text-xl text-white/40 leading-[1.8] max-w-2xl">
@@ -186,8 +186,8 @@ export default function RevenueLeakage({ onOpenCalculator }: RevenueLeakageProps
                             title: "Missed Follow-ups",
                             desc: "71% of leads are only followed up once. We ensure every contact is engaged until they convert or opt-out.",
                             icon: AlertTriangle,
-                            color: "text-red-400/60",
-                            borderHover: "hover:border-red-500/20"
+                            color: "text-[#FF7404]/60",
+                            borderHover: "hover:border-[#FF7404]/20"
                         },
                         {
                             title: "Unworked Opportunities",

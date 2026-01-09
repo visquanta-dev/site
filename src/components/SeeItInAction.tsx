@@ -18,6 +18,8 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import MobilePhoneMockup from './mobile/MobilePhoneMockup';
+import MobileVideoCarousel from './mobile/MobileVideoCarousel';
 
 // --- Types ---
 
@@ -496,7 +498,7 @@ export default function SeeItInAction() {
   }, [activeScenarioId]);
 
   return (
-    <section ref={sectionRef} className="bg-[#050505] py-24 lg:py-32 border-t border-white/5 relative selection:bg-amber-500/30">
+    <section ref={sectionRef} className="bg-[#050505] py-16 sm:py-20 lg:py-32 border-t border-white/5 relative selection:bg-amber-500/30">
 
       {/* Background FX */}
       <div className="absolute inset-0 pointer-events-none">
@@ -506,22 +508,22 @@ export default function SeeItInAction() {
       <div className="container-wide relative z-10">
 
         {/* Header */}
-        <div className="mb-24 max-w-3xl">
-          <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[0.9] mb-8">
+        <div className="mb-12 sm:mb-16 lg:mb-24 max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[0.9] mb-6 sm:mb-8">
             Conversations<br />
             <span className="text-white/80">that convert.</span>
           </h2>
-          <p className="text-white/40 text-xl lg:text-2xl leading-relaxed">
+          <p className="text-white/40 text-base sm:text-lg lg:text-2xl leading-relaxed">
             See how each VisQuanta product operates across lead reactivation, inbound response, SMS chat, review requests, and service drive coordination, shown through real dealership conversations.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-16">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
 
           {/* LEFT: Scrollable Feature List */}
-          <div className="lg:col-span-6 space-y-32 py-12">
-            {/* Top spacer for first scenario alignment */}
-            <div className="h-[20vh]" aria-hidden="true" />
+          <div className="lg:col-span-6 space-y-12 sm:space-y-16 lg:space-y-32 py-6 lg:py-12">
+            {/* Top spacer for first scenario alignment - DESKTOP ONLY */}
+            <div className="hidden lg:block h-[20vh]" aria-hidden="true" />
 
             {scenarios.map((scenario) => {
               const isActive = activeScenarioId === scenario.id;
@@ -530,55 +532,63 @@ export default function SeeItInAction() {
                 <div
                   key={scenario.id}
                   data-id={scenario.id}
-                  className="scenario-item group relative min-h-[400px] flex flex-col justify-center"
+                  className="scenario-item group relative min-h-0 lg:min-h-[400px] flex flex-col justify-center"
                 >
                   {/* Left Border Accent */}
                   <div className={`absolute left-0 top-0 bottom-0 w-1 transition-colors duration-500 ${isActive ? 'bg-[#ff7404]' : 'bg-white/5'}`} />
 
-                  <div className="pl-12">
-                    <div className="flex items-center gap-3 mb-6">
-                      <span className={`font-mono text-sm font-bold tracking-widest ${isActive ? 'text-[#ff7404]' : 'text-white/20'}`}>
+                  <div className="pl-6 sm:pl-8 lg:pl-12">
+                    <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                      <span className={`font-mono text-xs sm:text-sm font-bold tracking-widest ${isActive ? 'text-[#ff7404]' : 'text-white/20'}`}>
                         #{scenario.number}
                       </span>
-                      <h3 className={`text-3xl lg:text-4xl font-bold transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/20'}`}>
+                      <h3 className={`text-2xl sm:text-3xl lg:text-4xl font-bold transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/20'}`}>
                         {scenario.title}
                       </h3>
                     </div>
 
-                    <div className={`transition-all duration-500 ${isActive ? 'opacity-100' : 'opacity-30 blur-[1px]'}`}>
-                      <p className="text-white/60 text-lg leading-relaxed max-w-lg mb-8">
+                    <div className={`transition-all duration-500 ${isActive ? 'opacity-100' : 'opacity-30 lg:blur-[1px]'}`}>
+                      <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-lg mb-6 sm:mb-8">
                         {scenario.description}
                       </p>
 
-                      <div className="flex items-center gap-12">
+                      <div className="flex flex-wrap items-center gap-6 sm:gap-8 lg:gap-12">
                         {scenario.stats.map((stat, i) => (
                           <div key={i}>
-                            <div className={`text-4xl font-bold tracking-tighter mb-1 ${isActive ? 'text-white' : 'text-white/40'}`}>
+                            <div className={`text-3xl sm:text-4xl font-bold tracking-tighter mb-1 ${isActive ? 'text-white' : 'text-white/40'}`}>
                               {stat.value}
                             </div>
-                            <div className="text-[10px] font-bold text-white/30 tracking-[0.2em] uppercase">{stat.label}</div>
+                            <div className="text-[9px] sm:text-[10px] font-bold text-white/30 tracking-[0.15em] sm:tracking-[0.2em] uppercase">{stat.label}</div>
                           </div>
                         ))}
 
                         {/* Interactive Next Button */}
-                        {/* Interactive Next Button - Prominent CTA */}
                         <div className={`transition-all duration-500 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'}`}>
                           <Link
                             href={scenario.link}
-                            className="group/cta relative inline-flex items-center gap-3 px-6 py-3 border border-[#ff7404] text-[#ff7404] rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#ff7404] hover:text-black transition-all shadow-[0_0_15px_rgba(255,116,4,0.1)] hover:shadow-[0_0_25px_rgba(255,116,4,0.4)]"
+                            className="group/cta relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 border border-[#ff7404] text-[#ff7404] rounded-full font-bold uppercase tracking-widest text-[10px] sm:text-xs hover:bg-[#ff7404] hover:text-black transition-all shadow-[0_0_15px_rgba(255,116,4,0.1)] hover:shadow-[0_0_25px_rgba(255,116,4,0.4)]"
                           >
                             Learn More
-                            <ArrowRight className="w-3.5 h-3.5 group-hover/cta:translate-x-1 transition-transform" />
+                            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover/cta:translate-x-1 transition-transform" />
                           </Link>
                         </div>
+                      </div>
+
+                      {/* MOBILE PHONE MOCKUP - Show inline on mobile */}
+                      <div className="lg:hidden">
+                        <MobilePhoneMockup
+                          scenario={scenario}
+                          isActive={isActive}
+                          onPlay={setActiveVideo}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
               );
             })}
-            {/* Spacer for last scenario alignment */}
-            <div className="h-[40vh]" aria-hidden="true" />
+            {/* Spacer for last scenario alignment - DESKTOP ONLY */}
+            <div className="hidden lg:block h-[40vh]" aria-hidden="true" />
           </div>
 
           {/* RIGHT: Sticky Phone Mockup */}
@@ -712,206 +722,219 @@ export default function SeeItInAction() {
       {/* Ultra-Premium Video Modal */}
       <AnimatePresence>
         {activeVideo && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setActiveVideo(null)}
-              className="absolute inset-0 bg-black/90 backdrop-blur-xl"
-            />
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-6xl bg-[#050505] rounded-[2rem] border border-white/10 ring-1 ring-white/5 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col md:flex-row h-[85vh] md:h-[700px] max-h-[90vh]"
-            >
-              {/* Cinematic Glow Effect */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[100px] bg-[#ff7404]/10 blur-[100px] pointer-events-none mix-blend-screen" />
+          <>
+            {/* Mobile Carousel (below md) */}
+            <div className="md:hidden">
+              <MobileVideoCarousel
+                callExamples={callExamples}
+                activeVideoId={activeVideo}
+                onClose={() => setActiveVideo(null)}
+              />
+            </div>
 
-              {/* Close Button */}
-              <button
+            {/* Desktop Modal (md and above) */}
+            <div className="hidden md:flex fixed inset-0 z-[100] items-center justify-center px-4">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 onClick={() => setActiveVideo(null)}
-                className="absolute top-5 right-5 p-2 rounded-full bg-black/50 hover:bg-white/10 text-white/70 hover:text-white backdrop-blur-md transition-all z-50 group border border-white/10 hover:border-white/20"
+                className="absolute inset-0 bg-black/90 backdrop-blur-xl"
+              />
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-full max-w-6xl bg-[#050505] rounded-[2rem] border border-white/10 ring-1 ring-white/5 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col md:flex-row h-[85vh] md:h-[700px] max-h-[90vh]"
               >
-                <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
-              </button>
 
-              {/* Sidebar (Premium Playlist) */}
-              <div className="w-full md:w-[320px] border-r border-white/10 bg-[#0a0a0a] flex flex-col relative z-20">
-                <div className="p-6 pb-2 shrink-0">
-                  <div className="text-[10px] font-bold tracking-[0.2em] text-[#ff7404] uppercase mb-2">Library</div>
-                  <h3 className="text-xl font-bold text-white tracking-tight">Real Recordings</h3>
-                </div>
+                {/* Cinematic Glow Effect */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[100px] bg-[#ff7404]/10 blur-[100px] pointer-events-none mix-blend-screen" />
 
-                <div className="flex-1 overflow-y-auto px-4 py-2 space-y-3 custom-scrollbar">
-                  {callExamples.map((ex) => (
-                    <button
-                      key={ex.id}
-                      onClick={() => setActiveVideo(ex.id)}
-                      className={`w-full text-left p-4 rounded-xl border transition-all duration-300 group relative overflow-hidden ${activeVideo === ex.id
-                        ? 'bg-white/[0.03] border-amber-500/50 shadow-[0_4px_20px_rgba(0,0,0,0.4)]'
-                        : 'bg-white/[0.02] border-white/5 hover:border-white/10 hover:bg-white/[0.04]'
-                        }`}
-                    >
-                      {activeVideo === ex.id && (
-                        <motion.div
-                          layoutId="activeGlow"
-                          className="absolute inset-0 bg-gradient-to-r from-[#ff7404]/10 to-transparent pointer-events-none"
-                          transition={{ duration: 0.3 }}
-                        />
-                      )}
+                {/* Close Button */}
+                <button
+                  onClick={() => setActiveVideo(null)}
+                  className="absolute top-5 right-5 p-2 rounded-full bg-black/50 hover:bg-white/10 text-white/70 hover:text-white backdrop-blur-md transition-all z-50 group border border-white/10 hover:border-white/20"
+                >
+                  <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
+                </button>
 
-                      <div className="relative z-10">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className={`text-[9px] font-bold uppercase tracking-wider py-1 px-2 rounded-md transition-colors ${activeVideo === ex.id
-                            ? 'bg-[#ff7404] text-white shadow-[0_2px_8px_rgba(255,116,4,0.3)]'
-                            : 'bg-black/40 border border-white/10 text-white/50 group-hover:text-white/70'
-                            }`}>
-                            {ex.issue}
-                          </span>
-                          {activeVideo === ex.id && (
-                            <motion.div
-                              initial={{ scale: 0 }} animate={{ scale: 1 }}
-                              className="w-1.5 h-1.5 rounded-full bg-[#ff7404] shadow-[0_0_8px_#ff7404]"
-                            />
-                          )}
+                {/* Sidebar (Premium Playlist) */}
+                <div className="w-full md:w-[320px] border-r border-white/10 bg-[#0a0a0a] flex flex-col relative z-20">
+                  <div className="p-6 pb-2 shrink-0">
+                    <div className="text-[10px] font-bold tracking-[0.2em] text-[#ff7404] uppercase mb-2">Library</div>
+                    <h3 className="text-xl font-bold text-white tracking-tight">Real Recordings</h3>
+                  </div>
+
+                  <div className="flex-1 overflow-y-auto px-4 py-2 space-y-3 custom-scrollbar">
+                    {callExamples.map((ex) => (
+                      <button
+                        key={ex.id}
+                        onClick={() => setActiveVideo(ex.id)}
+                        className={`w-full text-left p-4 rounded-xl border transition-all duration-300 group relative overflow-hidden ${activeVideo === ex.id
+                          ? 'bg-white/[0.03] border-amber-500/50 shadow-[0_4px_20px_rgba(0,0,0,0.4)]'
+                          : 'bg-white/[0.02] border-white/5 hover:border-white/10 hover:bg-white/[0.04]'
+                          }`}
+                      >
+                        {activeVideo === ex.id && (
+                          <motion.div
+                            layoutId="activeGlow"
+                            className="absolute inset-0 bg-gradient-to-r from-[#ff7404]/10 to-transparent pointer-events-none"
+                            transition={{ duration: 0.3 }}
+                          />
+                        )}
+
+                        <div className="relative z-10">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className={`text-[9px] font-bold uppercase tracking-wider py-1 px-2 rounded-md transition-colors ${activeVideo === ex.id
+                              ? 'bg-[#ff7404] text-white shadow-[0_2px_8px_rgba(255,116,4,0.3)]'
+                              : 'bg-black/40 border border-white/10 text-white/50 group-hover:text-white/70'
+                              }`}>
+                              {ex.issue}
+                            </span>
+                            {activeVideo === ex.id && (
+                              <motion.div
+                                initial={{ scale: 0 }} animate={{ scale: 1 }}
+                                className="w-1.5 h-1.5 rounded-full bg-[#ff7404] shadow-[0_0_8px_#ff7404]"
+                              />
+                            )}
+                          </div>
+                          <div className={`font-bold text-sm transition-colors ${activeVideo === ex.id ? 'text-white' : 'text-white/60 group-hover:text-white/90'}`}>
+                            {ex.title}
+                          </div>
                         </div>
-                        <div className={`font-bold text-sm transition-colors ${activeVideo === ex.id ? 'text-white' : 'text-white/60 group-hover:text-white/90'}`}>
-                          {ex.title}
-                        </div>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Did You Know Card */}
+                  <div className="p-4 shrink-0">
+                    <div className="bg-[#1a1a1a] rounded-xl p-5 border border-white/5 shadow-2xl relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <Sparkles className="w-8 h-8 text-white" />
                       </div>
-                    </button>
-                  ))}
-                </div>
-
-                {/* Did You Know Card */}
-                <div className="p-4 shrink-0">
-                  <div className="bg-[#1a1a1a] rounded-xl p-5 border border-white/5 shadow-2xl relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
-                      <Sparkles className="w-8 h-8 text-white" />
+                      <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2">Did You Know?</div>
+                      <p className="text-xs text-white/70 leading-relaxed">
+                        Dealerships using VisQuanta see an average <span className="text-white font-bold">30% increase</span> in appointment set rates within the first 60 days.
+                      </p>
                     </div>
-                    <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2">Did You Know?</div>
-                    <p className="text-xs text-white/70 leading-relaxed">
-                      Dealerships using VisQuanta see an average <span className="text-white font-bold">30% increase</span> in appointment set rates within the first 60 days.
-                    </p>
                   </div>
                 </div>
-              </div>
 
-              {/* Content Area */}
-              <div className="flex-1 flex flex-col bg-[#050505] relative overflow-hidden">
-                {(() => {
-                  const selectedCall = callExamples.find(c => c.id === activeVideo) || callExamples[0];
-                  return (
-                    <>
-                      {/* Video Player - Compact Height */}
-                      <div className="w-full h-[45%] bg-black relative shadow-2xl z-10 shrink-0">
-                        <iframe
-                          key={selectedCall.id}
-                          src={`https://player.vimeo.com/video/${selectedCall.videoId}?autoplay=1&title=0&byline=0&portrait=0`}
-                          className="absolute inset-0 w-full h-full"
-                          allow="autoplay; fullscreen; picture-in-picture"
-                          allowFullScreen
-                        />
-                        {/* Gradient Overlay for seamless blend */}
-                        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none" />
-                      </div>
+                {/* Content Area */}
+                <div className="flex-1 flex flex-col bg-[#050505] relative overflow-hidden">
+                  {(() => {
+                    const selectedCall = callExamples.find(c => c.id === activeVideo) || callExamples[0];
+                    return (
+                      <>
+                        {/* Video Player - Compact Height */}
+                        <div className="w-full h-[45%] bg-black relative shadow-2xl z-10 shrink-0">
+                          <iframe
+                            key={selectedCall.id}
+                            src={`https://player.vimeo.com/video/${selectedCall.videoId}?autoplay=1&title=0&byline=0&portrait=0`}
+                            className="absolute inset-0 w-full h-full"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowFullScreen
+                          />
+                          {/* Gradient Overlay for seamless blend */}
+                          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none" />
+                        </div>
 
-                      {/* Details - Compact Cinematic Layout */}
-                      <div className="flex-1 relative p-8 overflow-y-auto custom-scrollbar flex flex-col">
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.1 }}
-                          className="max-w-3xl mx-auto w-full flex-1 flex flex-col"
-                        >
-                          <div className="flex items-center gap-3 mb-6 shrink-0">
-                            <div className="w-1 h-8 bg-gradient-to-b from-[#ff7404] to-transparent rounded-full" />
-                            <div>
-                              <h2 className="text-2xl font-bold text-white tracking-tight">{selectedCall.title}</h2>
-                              <p className="text-white/40 text-xs">Intervention Analysis</p>
+                        {/* Details - Compact Cinematic Layout */}
+                        <div className="flex-1 relative p-8 overflow-y-auto custom-scrollbar flex flex-col">
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="max-w-3xl mx-auto w-full flex-1 flex flex-col"
+                          >
+                            <div className="flex items-center gap-3 mb-6 shrink-0">
+                              <div className="w-1 h-8 bg-gradient-to-b from-[#ff7404] to-transparent rounded-full" />
+                              <div>
+                                <h2 className="text-2xl font-bold text-white tracking-tight">{selectedCall.title}</h2>
+                                <p className="text-white/40 text-xs">Intervention Analysis</p>
+                              </div>
                             </div>
-                          </div>
 
-                          <div className="space-y-6 relative pl-4 pb-4 flex-1">
-                            {/* Animated Timeline Line */}
-                            <motion.div
-                              initial={{ height: 0 }}
-                              animate={{ height: "100%" }}
-                              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-                              className="absolute left-[26px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-white/10 via-white/5 to-transparent origin-top"
-                            />
+                            <div className="space-y-6 relative pl-4 pb-4 flex-1">
+                              {/* Animated Timeline Line */}
+                              <motion.div
+                                initial={{ height: 0 }}
+                                animate={{ height: "100%" }}
+                                transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+                                className="absolute left-[26px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-white/10 via-white/5 to-transparent origin-top"
+                              />
 
-                            {/* Situation */}
-                            <motion.div
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.4 }}
-                              className="relative pl-10 group"
-                            >
-                              <div className="absolute left-0 top-1.5 w-[40px] h-[1px] bg-gradient-to-r from-amber-500/50 to-transparent" />
-                              <div className="absolute left-0 top-0 w-10 h-10 -ml-[18px] flex items-center justify-center">
-                                <div className="w-2.5 h-2.5 rounded-full bg-[#050505] border border-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.3)] z-10 relative">
-                                  <div className="absolute inset-0 bg-amber-500 animate-ping opacity-20 hover:opacity-100 rounded-full" />
+                              {/* Situation */}
+                              <motion.div
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.4 }}
+                                className="relative pl-10 group"
+                              >
+                                <div className="absolute left-0 top-1.5 w-[40px] h-[1px] bg-gradient-to-r from-amber-500/50 to-transparent" />
+                                <div className="absolute left-0 top-0 w-10 h-10 -ml-[18px] flex items-center justify-center">
+                                  <div className="w-2.5 h-2.5 rounded-full bg-[#050505] border border-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.3)] z-10 relative">
+                                    <div className="absolute inset-0 bg-amber-500 animate-ping opacity-20 hover:opacity-100 rounded-full" />
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="text-[9px] font-bold text-amber-500 uppercase tracking-[0.2em] mb-1.5 flex items-center gap-2">
-                                Situation
-                              </div>
-                              <p className="text-sm text-white/80 leading-relaxed font-light">{selectedCall.situation}</p>
-                            </motion.div>
+                                <div className="text-[9px] font-bold text-amber-500 uppercase tracking-[0.2em] mb-1.5 flex items-center gap-2">
+                                  Situation
+                                </div>
+                                <p className="text-sm text-white/80 leading-relaxed font-light">{selectedCall.situation}</p>
+                              </motion.div>
 
-                            {/* Action */}
-                            <motion.div
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.5 }}
-                              className="relative pl-10 group"
-                            >
-                              <div className="absolute left-0 top-1.5 w-[40px] h-[1px] bg-gradient-to-r from-[#ff7404]/50 to-transparent" />
-                              <div className="absolute left-0 top-0 w-10 h-10 -ml-[18px] flex items-center justify-center">
-                                <div className="w-2.5 h-2.5 rounded-full bg-[#050505] border border-[#ff7404] shadow-[0_0_10px_rgba(255,116,4,0.3)] z-10 relative" />
-                              </div>
-                              <div className="text-[9px] font-bold text-[#ff7404] uppercase tracking-[0.2em] mb-1.5 flex items-center gap-2">
-                                AI Agent Action
-                              </div>
-                              <p className="text-sm text-white/80 leading-relaxed font-light">{selectedCall.action}</p>
-                            </motion.div>
+                              {/* Action */}
+                              <motion.div
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.5 }}
+                                className="relative pl-10 group"
+                              >
+                                <div className="absolute left-0 top-1.5 w-[40px] h-[1px] bg-gradient-to-r from-[#ff7404]/50 to-transparent" />
+                                <div className="absolute left-0 top-0 w-10 h-10 -ml-[18px] flex items-center justify-center">
+                                  <div className="w-2.5 h-2.5 rounded-full bg-[#050505] border border-[#ff7404] shadow-[0_0_10px_rgba(255,116,4,0.3)] z-10 relative" />
+                                </div>
+                                <div className="text-[9px] font-bold text-[#ff7404] uppercase tracking-[0.2em] mb-1.5 flex items-center gap-2">
+                                  AI Agent Action
+                                </div>
+                                <p className="text-sm text-white/80 leading-relaxed font-light">{selectedCall.action}</p>
+                              </motion.div>
 
-                            {/* Result */}
-                            <motion.div
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.6 }}
-                              className="relative pl-10 group"
-                            >
-                              <div className="absolute left-0 top-1.5 w-[40px] h-[1px] bg-gradient-to-r from-emerald-500/50 to-transparent" />
-                              <div className="absolute left-0 top-0 w-10 h-10 -ml-[18px] flex items-center justify-center">
-                                <div className="w-2.5 h-2.5 rounded-full bg-[#050505] border border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)] z-10 relative" />
-                              </div>
-                              <div className="text-[9px] font-bold text-emerald-500 uppercase tracking-[0.2em] mb-1.5 flex items-center gap-2">
-                                Result
-                              </div>
-                              <p className="text-sm text-white/80 leading-relaxed font-light">{selectedCall.result}</p>
-                            </motion.div>
-                          </div>
+                              {/* Result */}
+                              <motion.div
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.6 }}
+                                className="relative pl-10 group"
+                              >
+                                <div className="absolute left-0 top-1.5 w-[40px] h-[1px] bg-gradient-to-r from-emerald-500/50 to-transparent" />
+                                <div className="absolute left-0 top-0 w-10 h-10 -ml-[18px] flex items-center justify-center">
+                                  <div className="w-2.5 h-2.5 rounded-full bg-[#050505] border border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)] z-10 relative" />
+                                </div>
+                                <div className="text-[9px] font-bold text-emerald-500 uppercase tracking-[0.2em] mb-1.5 flex items-center gap-2">
+                                  Result
+                                </div>
+                                <p className="text-sm text-white/80 leading-relaxed font-light">{selectedCall.result}</p>
+                              </motion.div>
+                            </div>
 
-                          {/* CTA Button */}
-                          <div className="mt-8 pt-6 border-t border-white/5 shrink-0 w-full">
-                            <button className="w-full py-4 bg-[#ff7404] hover:bg-[#ff8a2b] text-black font-bold text-lg rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(255,116,4,0.2)] hover:shadow-[0_0_30px_rgba(255,116,4,0.4)] active:scale-[0.98]">
-                              Book a Live Demo <ArrowRight className="w-5 h-5" />
-                            </button>
-                          </div>
-                        </motion.div>
-                      </div>
-                    </>
-                  );
-                })()}
-              </div>
-            </motion.div>
-          </div>
+                            {/* CTA Button */}
+                            <div className="mt-8 pt-6 border-t border-white/5 shrink-0 w-full">
+                              <button className="w-full py-4 bg-[#ff7404] hover:bg-[#ff8a2b] text-black font-bold text-lg rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(255,116,4,0.2)] hover:shadow-[0_0_30px_rgba(255,116,4,0.4)] active:scale-[0.98]">
+                                Book a Live Demo <ArrowRight className="w-5 h-5" />
+                              </button>
+                            </div>
+                          </motion.div>
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+              </motion.div>
+            </div>
+          </>
         )}
       </AnimatePresence>
     </section>

@@ -82,11 +82,11 @@ export default function SocialProofBar() {
   const duplicatedBrands = [...brands, ...brands];
 
   return (
-    <section className="bg-background border-b border-white/5 py-12 overflow-hidden border-t relative">
+    <section className="bg-background border-b border-white/5 py-6 sm:py-8 md:py-10 overflow-hidden border-t relative">
       {/* <div className="absolute inset-0 bg-primary/2 mix-blend-screen pointer-events-none" /> */}
       <div className="container-wide">
         <motion.p
-          className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground/60 mb-10"
+          className="text-center text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] text-muted-foreground/60 mb-6 sm:mb-8"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -96,7 +96,7 @@ export default function SocialProofBar() {
         </motion.p>
 
         <div className="relative w-full overflow-hidden mask-linear-fade">
-          <div className="flex gap-16 animate-infinite-scroll w-max">
+          <div className="flex gap-10 sm:gap-14 md:gap-16 animate-infinite-scroll w-max">
             {duplicatedBrands.map((brand, index) => (
               <div
                 key={`${brand.name}-${index}`}
@@ -123,7 +123,12 @@ export default function SocialProofBar() {
           100% { transform: translateX(-50%); }
         }
         .mask-linear-fade {
-          mask-image: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+          mask-image: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-infinite-scroll {
+            animation: none;
+          }
         }
       `}</style>
     </section>

@@ -32,12 +32,24 @@ import {
     Quote,
     PlayCircle,
     Activity,
-    Lock
+    Lock,
+    Database,
+    MessageSquare,
+    Timer,
+    PhoneIncoming,
+    Play,
+    Signal,
+    Wifi,
+    Battery,
+    User
 } from 'lucide-react';
 import MinimalQuote from '@/components/ui/MinimalQuote';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { RequestDemoButton } from '@/components/CalendlyModal';
+import { CapabilityTabs, CapabilityFeatureDisplay } from '@/components';
+import Image from 'next/image';
 
 // Animation variants
 const containerVariants = {
@@ -106,6 +118,328 @@ const articles = [
     }
 ];
 
+// --- Shared Components for Phone ---
+
+const TypingIndicator = () => (
+    <motion.div
+        initial={{ opacity: 0, y: 5 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        className="flex justify-end mb-2"
+    >
+        <div className="bg-[#ff7404] px-4 py-3 rounded-2xl rounded-tr-sm flex items-center gap-1.5 w-fit">
+            <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut", delay: 0 }}
+                className="w-1.5 h-1.5 bg-white rounded-full"
+            />
+            <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+                className="w-1.5 h-1.5 bg-white rounded-full"
+            />
+            <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut", delay: 0.4 }}
+                className="w-1.5 h-1.5 bg-white rounded-full"
+            />
+        </div>
+    </motion.div>
+);
+
+const ChatBubble = ({ message }: { message: any }) => {
+    // System / Tags
+    if (message.type === 'source_tag') {
+        const content = message.content;
+
+        if (typeof content === 'string') {
+            return (
+                <div className="flex justify-center my-6">
+                    <span className="text-[10px] font-medium text-gray-500 bg-[#1A1A1A] px-3 py-1.5 rounded-full border border-white/5 shadow-sm">
+                        {content}
+                    </span>
+                </div>
+            );
+        }
+
+        return (
+            <div className="flex justify-center my-6 w-full px-4">
+                {content.title === 'LEAD SOURCE: CARGURUS' ? (
+                    <div className="w-full bg-[#1A1A1A]/80 backdrop-blur-sm rounded-xl p-3 flex items-center gap-3 border border-white/10 shadow-lg">
+                        <div className="h-8 px-2 bg-white/90 rounded flex items-center justify-center border border-white/10">
+                            <Image
+                                src="/assets/cargurus-logo.png"
+                                alt="CarGurus"
+                                width={80}
+                                height={24}
+                                className="object-contain h-4 w-auto"
+                            />
+                        </div>
+                        <div className="text-left">
+                            <div className="text-[10px] font-bold text-gray-300 uppercase tracking-wider">New Lead</div>
+                            <div className="text-[10px] text-gray-500">Arrived: Just now</div>
+                        </div>
+                    </div>
+                ) : content.title === 'LEAD SOURCE: OEM PROGRAM' ? (
+                    <div className="w-full bg-[#1A1A1A]/80 backdrop-blur-sm rounded-xl p-3 flex items-center gap-3 border border-white/10 shadow-lg">
+                        <div className="h-8 px-2 bg-white/10 rounded flex items-center justify-center border border-white/10">
+                            <span className="text-[10px] font-black text-white italic tracking-tighter">OEM CERTIFIED</span>
+                        </div>
+                        <div className="text-left">
+                            <div className="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Manufacturer Lead</div>
+                            <div className="text-[10px] text-gray-500">Compliance Window: 15m</div>
+                        </div>
+                    </div>
+                ) : (content.title === 'Service Appointment' || content.title === 'Appointment Booked') ? (
+                    <div className="w-full bg-[#111] backdrop-blur-xl rounded-2xl p-5 flex flex-col gap-4 border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 blur-3xl rounded-full pointer-events-none" />
+                        <div className="flex items-center gap-4 relative z-10">
+                            <div className="w-10 h-10 bg-black/50 text-green-500 rounded-xl flex items-center justify-center border border-green-500/30 shadow-[0_0_15px_rgba(34,197,94,0.1)]">
+                                <Timer className="w-5 h-5" />
+                            </div>
+                            <div>
+                                <div className="text-[11px] font-bold text-white tracking-[0.2em] uppercase mb-0.5">Appointment Booked</div>
+                                {!content.appointments && <div className="text-[11px] text-white/40 font-mono tracking-wide">{content.subtitle}</div>}
+                            </div>
+                        </div>
+                        {content.appointments && (
+                            <div className="flex flex-col gap-2 relative z-10">
+                                {content.appointments.map((appt: string, i: number) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.1 * i }}
+                                        className="flex items-center gap-3 text-xs text-white/90 font-medium bg-white/[0.03] hover:bg-white/[0.06] px-4 py-3.5 rounded-xl border border-white/5 hover:border-green-500/30 transition-all duration-300 group cursor-default"
+                                    >
+                                        <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] group-hover:scale-125 transition-transform duration-300" />
+                                        <span className="font-mono tracking-wide">{appt}</span>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ) : (content.title === 'Inbound Call') ? (
+                    <div className="w-full bg-[#1A1A1A]/90 backdrop-blur rounded-xl p-3 flex items-center gap-3 border border-white/10 shadow-lg">
+                        <div className="w-8 h-8 bg-blue-500/20 text-blue-500 rounded flex items-center justify-center border border-blue-500/20">
+                            <PhoneIncoming className="w-4 h-4 animate-pulse" />
+                        </div>
+                        <div className="text-left">
+                            <div className="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Inbound Call Answered</div>
+                            <div className="text-[10px] text-gray-500 font-mono">{content.subtitle}</div>
+                        </div>
+                    </div>
+                ) : (content.title === 'Moved from Website') ? (
+                    <div className="relative overflow-hidden bg-gradient-to-r from-[#ff7404]/20 to-[#ff7404]/5 border border-[#ff7404]/50 text-[#ff7404] px-4 py-2 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(255,116,4,0.3)] backdrop-blur-md">
+                        <div className="absolute inset-0 bg-[#ff7404]/10 blur-md" />
+                        <Globe className="w-3.5 h-3.5 relative z-10 animate-pulse" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest relative z-10">Moved from Website</span>
+                    </div>
+                ) : (content.title === 'Purchase Verified' || content.title === 'CSI Pulse Check') ? (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className={`group relative flex items-center gap-2.5 px-4 py-2 rounded-full backdrop-blur-md overflow-hidden ${content.title === 'CSI Pulse Check'
+                            ? 'bg-blue-500/10 border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)]'
+                            : 'bg-emerald-500/10 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)]'}`}
+                    >
+                        <motion.div
+                            animate={{ x: ['-200%', '200%'] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                            className={`absolute inset-0 w-1/2 h-full -skew-x-12 pointer-events-none ${content.title === 'CSI Pulse Check'
+                                ? 'bg-gradient-to-r from-transparent via-blue-400/10 to-transparent'
+                                : 'bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent'}`}
+                        />
+                        <div className={`w-4 h-4 rounded-full flex items-center justify-center relative z-10 shadow-lg ${content.title === 'CSI Pulse Check'
+                            ? 'bg-blue-500 shadow-blue-500/50'
+                            : 'bg-emerald-500 shadow-emerald-500/50'}`}>
+                            {content.title === 'CSI Pulse Check' ? (
+                                <ShieldCheck className="w-2.5 h-2.5 text-white" />
+                            ) : (
+                                <svg className="w-2.5 h-2.5 text-[#050505] fill-current" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                            )}
+                        </div>
+                        <span className={`text-[10px] font-black uppercase tracking-[0.2em] relative z-10 ${content.title === 'CSI Pulse Check' ? 'text-blue-400' : 'text-emerald-400'}`}>
+                            {content.title}
+                        </span>
+                    </motion.div>
+                ) : (
+                    <div className="bg-[#1A1A1A]/90 backdrop-blur text-gray-400 border border-white/5 px-3 py-1.5 rounded-full text-[11px] font-medium shadow-sm">
+                        {content.title}
+                    </div>
+                )}
+            </div>
+        );
+    }
+
+    // Review Card
+    if (message.type === 'review') {
+        return (
+            <div className="flex justify-end mb-4">
+                <div className="bg-[#1A1A1A] rounded-2xl p-4 w-[240px] border border-white/10 shadow-xl overflow-hidden relative group">
+                    <div className="flex justify-center mb-4">
+                        <Image
+                            src="/assets/google-reviews.png"
+                            alt="Google Reviews"
+                            width={160}
+                            height={50}
+                            className="object-contain"
+                        />
+                    </div>
+                    <button className="w-full bg-[#ff7404] text-white text-xs font-bold py-2.5 rounded-lg shadow-lg">
+                        Leave a Review
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    const isAgent = message.sender === 'agent';
+
+    return (
+        <div className={`flex w-full mb-2 ${isAgent ? 'justify-end' : 'justify-start'}`}>
+            <div
+                className={`max-w-[85%] px-5 py-3 text-[14px] leading-snug relative tracking-normal font-medium shadow-md antialiased
+        ${isAgent
+                        ? 'bg-[#ff7404] text-white rounded-2xl rounded-tr-sm shadow-orange-900/10'
+                        : 'bg-[#262626] text-gray-100 rounded-2xl rounded-tl-sm border border-white/5'
+                    }`}
+            >
+                {message.content}
+            </div>
+        </div>
+    );
+};
+
+// Types
+interface Feature {
+    id: string;
+    tab: string;
+    title: string;
+    highlight: string;
+    description: string;
+    bullets: { title: string; desc: string; }[];
+    header: { name: string; sub: string; icon: any; };
+    avatarInitials: string;
+    avatarImage?: string;
+    messages: any[];
+}
+
+// Features Data for Auto Groups (Franchise-based)
+const featuresData: Feature[] = [
+    {
+        id: 'reactivation',
+        tab: 'Lead Reactivation',
+        title: 'Recover Dormant',
+        highlight: "Inventory Revenue.",
+        description: "Re-engage dormant leads from your CRM with personalized AI conversations. Recover 8-10% of 'dead' prospects—revenue from marketing you've already paid for.",
+        bullets: [
+            { title: "CRM Deep Cleansing", desc: "Our AI systematically works through thousands of cold leads to find active buyers." },
+            { title: "Personalized Outreach", desc: "Messaging that feels human, respectful, and brand-compliant." },
+            { title: "Attribution Tracking", desc: "Clear reporting on recovered sales directly tied to AI re-engagement." }
+        ],
+        header: { name: "Reactivation AI", sub: "CRM Database Sync", icon: Database },
+        avatarInitials: 'VQ',
+        avatarImage: undefined,
+        messages: [
+            { id: 'msg1', sender: 'agent', content: "Hi Sarah, it's Mark at Toyota of Dallas. You stopped by a few months ago looking at the Rav4. Just checking in to see if you're still in the market or if your needs changed?" },
+            { id: 'msg2', sender: 'user', content: "Hi! Actually still looking, just haven't had time to come back in." },
+            { id: 'msg3', sender: 'agent', content: "Understood! We actually just got in 3 certified pre-owned units this morning that match what you were after." },
+            { id: 'msg4', sender: 'agent', content: "If I set one aside for you to look at tomorrow morning, would that help?" },
+            { id: 'msg5', sender: 'user', content: "Tomorrow morning works! 10am?" }
+        ]
+    },
+    {
+        id: 'speed',
+        tab: 'Speed-to-Lead',
+        title: 'The "Instant Response"',
+        highlight: "Standard.",
+        description: "Stop worrying about OEM 15-minute response windows. AutoMaster engages every lead in under 90 seconds, securing the first appointment and protecting your CSI.",
+        bullets: [
+            { title: "OEM Verified Messaging", desc: "Maintain 100% brand compliance with manufacturer-approved templates." },
+            { title: "CSI Score Protection", desc: "Never lose points for slow follow-ups. Professional, instant engagement on every lead." },
+            { title: "24/7 BDC Support", desc: "Your BDC focus on the 'show', our AI handles the 'flow' of lead intake." }
+        ],
+        header: { name: "Concierge AI", sub: "OEM Compliance Mode", icon: ShieldCheck },
+        avatarInitials: 'AI',
+        avatarImage: undefined,
+        messages: [
+            { id: 'tag1', sender: 'system', content: { title: 'LEAD SOURCE: OEM PROGRAM' }, type: 'source_tag' },
+            { id: 'msg1', sender: 'agent', content: "Hey David! Sarah from the dealership here. I just saw your inquiry on the 2024 Honda Pilot. Since you're looking for a specific trim, are you thinking of trading in your current vehicle?" },
+            { id: 'msg2', sender: 'user', content: "Yes, I have an older Odyssey. Is the Pilot available today?" },
+            { id: 'msg3', sender: 'agent', content: "It is! I've reserved it for a VIP viewing. If I can get our appraiser to look at your Odyssey at 4:15 PM, would that work for you?" },
+            { id: 'msg4', sender: 'user', content: "That's a bit early. Maybe 5 PM?" },
+            { id: 'msg5', sender: 'agent', content: "No problem! I've moved the slot to 5:00 PM. I'll have the Pilot pulled to the front. To save you time, want to upload your trade photos now so we have numbers ready?" },
+            { id: 'msg6', sender: 'user', content: "Sure, send the link." },
+            { id: 'msg7', sender: 'agent', content: "Sent! Check your messages for the secure link. See you at 5:00 PM! 🚙" }
+        ]
+    },
+    {
+        id: 'service',
+        tab: 'Service AI',
+        title: 'Protect Fixed Ops',
+        highlight: "With 24/7 Voice.",
+        description: "Never miss a service call. AI answers every inbound call, routes correctly, or books appointments instantly. Protect your fixed ops revenue and CSI.",
+        bullets: [
+            { title: "Instant Routing", desc: "Seamlessly connect callers to the right service advisor without the long hold times." },
+            { title: "Smart Scheduling", desc: "AI understands your shop capacity and books appointments in real-time." },
+            { title: "Overflow Support", desc: "Acts as a safety net for your service BDC during peak morning rushes." }
+        ],
+        header: { name: "Service Voice", sub: "Inbound Call Routing", icon: PhoneIncoming },
+        avatarInitials: 'Incoming',
+        avatarImage: undefined,
+        messages: [
+            { id: 'audio1', sender: 'agent', type: 'audio', content: 'audio_card' }
+        ]
+    },
+    {
+        id: 'reputation',
+        tab: 'Reputation',
+        title: 'Safeguard Your',
+        highlight: "CSI Performance.",
+        description: "Flag negative reviews before factory surveys. AI responds to all reviews instantly, protecting your CSI scores and critical OEM bonuses.",
+        bullets: [
+            { title: "Crisis Detection", desc: "Instantly flags negative sentiment for GM escalation before it hits OEM surveys." },
+            { title: "Professional Response", desc: "AI generates brand-aligned responses to all positive and negative feedback." },
+            { title: "Local SEO Growth", desc: "Active, consistent review activity improves your dealership's search rankings." }
+        ],
+        header: { name: "CSI Protector", sub: "Reputation Sync", icon: Star },
+        avatarInitials: 'CSI',
+        avatarImage: undefined,
+        messages: [
+            { id: 'tag1', sender: 'system', content: { title: 'CSI Pulse Check' }, type: 'source_tag' },
+            { id: 'msg1', sender: 'agent', content: "Hi James! Thanks for choosing us for your new Honda. On a scale of 1-10, how likely are you to recommend our service to others?" },
+            { id: 'msg2', sender: 'user', content: "Honestly about a 6. The car is great but the wait in finance was way too long." },
+            { id: 'msg3', sender: 'agent', content: "I'm so sorry to hear that, James. We value your feedback. I'm flagging this for our GM now so we can make this right before your loyalty survey arrives." }
+        ]
+    },
+    {
+        id: 'widget',
+        tab: 'Site Widget',
+        title: 'Your 24/7',
+        highlight: "Digital Concierge.",
+        description: "Convert inventory shoppers into showroom appointments. Our smart widget qualifies trade-ins and books test drives during all hours, sync'd with your CRM.",
+        bullets: [
+            { title: "Instant Lead Qualification", desc: "Greets visitors immediately, capturing contact info and buying intent on autopilot." },
+            { title: "Trade-In Accuracy", desc: "Integrates with valuation tools to provide instant, realistic trade numbers during chat." },
+            { title: "CRM Integration", desc: "All conversations and lead data sync instantly with your franchise's software stack." }
+        ],
+        header: { name: "Web Concierge", sub: "Active Site Widget", icon: MessageSquare },
+        avatarInitials: 'WC',
+        avatarImage: undefined,
+        messages: [
+            { id: 'tag1', sender: 'system', content: { title: 'Moved from Website' }, type: 'source_tag' },
+            { id: 'msg1', sender: 'agent', content: "Hi! Thanks for visiting Toyota of Dallas. Are you looking at the new Tundra inventory or do you have a specific vehicle in mind?" },
+            { id: 'msg2', sender: 'user', content: "Looking at Tundras. Do you have any hybrids in stock?" },
+            { id: 'msg3', sender: 'agent', content: "We do! We have 2 Limited Hybrids on the lot right now. Would you like me to send over the spec sheets and a quick video tour?" },
+            { id: 'msg4', sender: 'user', content: "Yes please. Also what's my trade worth?" },
+            { id: 'msg5', sender: 'agent', content: "I can help with that. What's the year and mileage of your trade?" }
+        ]
+    }
+];
+
 export default function AutoGroupsPage() {
     const heroRef = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -128,6 +462,48 @@ export default function AutoGroupsPage() {
     };
 
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
+    const [activeFeature, setActiveFeature] = useState(0);
+    const [visibleMessages, setVisibleMessages] = useState<any[]>([]);
+    const [isTyping, setIsTyping] = useState(false);
+    const chatContainerRef = useRef<HTMLDivElement>(null);
+
+    // Message Sequencing Logic
+    useEffect(() => {
+        setVisibleMessages([]);
+        let timeouts: NodeJS.Timeout[] = [];
+        let accumulatedDelay = 0;
+        const currentData = featuresData[activeFeature];
+
+        const sequenceMessages = async () => {
+            for (const msg of currentData.messages) {
+                // @ts-ignore
+                const readingDelay = msg.type === 'source_tag' ? 300 : 700;
+                const typingDelay = msg.sender === 'agent' ? 1000 : 400;
+                const preDelay = accumulatedDelay;
+
+                // @ts-ignore
+                if (msg.sender === 'agent' && msg.type !== 'audio' && msg.type !== 'review') {
+                    timeouts.push(setTimeout(() => setIsTyping(true), preDelay));
+                    accumulatedDelay += typingDelay;
+                    timeouts.push(setTimeout(() => setIsTyping(false), accumulatedDelay));
+                } else {
+                    accumulatedDelay += readingDelay;
+                }
+
+                timeouts.push(setTimeout(() => {
+                    setVisibleMessages(prev => [...prev, msg]);
+                    if (chatContainerRef.current) {
+                        setTimeout(() => {
+                            chatContainerRef.current?.scrollTo({ top: chatContainerRef.current.scrollHeight, behavior: 'smooth' });
+                        }, 50);
+                    }
+                }, accumulatedDelay));
+            }
+        };
+
+        sequenceMessages();
+        return () => timeouts.forEach(clearTimeout);
+    }, [activeFeature]);
 
     return (
         <main className="bg-[#020202] min-h-screen selection:bg-[#FF7404] selection:text-black overflow-x-hidden">
@@ -400,6 +776,131 @@ export default function AutoGroupsPage() {
                 </div>
             </section>
 
+            {/* 2.6 INTERACTIVE SHOWCASE - THE CONVERSATION ENGINE */}
+            <section className="py-32 bg-black relative overflow-hidden">
+                <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] bg-[#FF7404]/5 rounded-full blur-[150px] pointer-events-none" />
+                <div className="container px-4 mx-auto relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-20 items-center">
+                        <div className="order-2 lg:order-1">
+                            <div className="relative w-full max-w-[400px] mx-auto">
+                                {/* Phone Mockup - Premium Style */}
+                                <div className="relative z-10 w-full h-[800px] bg-black rounded-[60px] border-[8px] border-[#2a2a2a] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.7)] overflow-hidden ring-1 ring-white/10 select-none">
+                                    {/* Hardware Buttons */}
+                                    <div className="absolute -left-[8px] top-[120px] h-[26px] w-[4px] bg-[#3a3a3a] rounded-l-md" />
+                                    <div className="absolute -left-[8px] top-[160px] h-[45px] w-[4px] bg-[#3a3a3a] rounded-l-md" />
+                                    <div className="absolute -left-[8px] top-[215px] h-[45px] w-[4px] bg-[#3a3a3a] rounded-l-md" />
+                                    <div className="absolute -right-[8px] top-[160px] h-[80px] w-[4px] bg-[#3a3a3a] rounded-r-md" />
+
+                                    {/* Status Bar */}
+                                    <div className="absolute top-4 inset-x-0 h-6 px-8 flex justify-between items-center z-50">
+                                        <div className="text-[12px] font-bold text-white tracking-tight">9:41</div>
+                                        <div className="flex items-center gap-1.5">
+                                            <Signal className="w-3.5 h-3.5 text-white" />
+                                            <Wifi className="w-3.5 h-3.5 text-white" />
+                                            <Battery className="w-4 h-4 text-white" />
+                                        </div>
+                                    </div>
+
+                                    {/* Dynamic Island */}
+                                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-7 bg-black rounded-3xl z-50 border border-white/5" />
+
+                                    {/* Phone Content Interface */}
+                                    <div className="h-full flex flex-col bg-[#050505]">
+                                        {/* Home Indicator */}
+                                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/20 rounded-full z-50" />
+
+                                        {/* Chat Header */}
+                                        <div className="pt-14 pb-4 px-6 border-b border-white/5 bg-black/80 backdrop-blur-md sticky top-0 z-40">
+                                            <motion.div
+                                                key={featuresData[activeFeature].id}
+                                                initial={{ opacity: 0, x: -10 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                className="flex items-center justify-between"
+                                            >
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-10 h-10 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center overflow-hidden relative group">
+                                                        <div className="absolute inset-0 bg-[#ff7404]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                        {featuresData[activeFeature].avatarImage ? (
+                                                            <div className="relative w-full h-full">
+                                                                <Image
+                                                                    src={featuresData[activeFeature].avatarImage!}
+                                                                    alt="Avatar"
+                                                                    fill
+                                                                    className="object-contain"
+                                                                />
+                                                            </div>
+                                                        ) : featuresData[activeFeature].id === 'service' ? (
+                                                            <PhoneIncoming className="w-5 h-5 text-green-500 animate-pulse" />
+                                                        ) : (
+                                                            <span className="text-[10px] text-white/50 font-bold">{featuresData[activeFeature].avatarInitials}</span>
+                                                        )}
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-white text-sm font-bold">{featuresData[activeFeature].header.name}</div>
+                                                        <div className="text-white/40 text-[10px] uppercase tracking-wider font-medium">{featuresData[activeFeature].header.sub}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 group cursor-pointer hover:border-[#ff7404]/50 transition-all">
+                                                    <ArrowRight className="w-4 h-4 text-[#ff7404] group-hover:translate-x-0.5 transition-transform" />
+                                                </div>
+                                            </motion.div>
+                                        </div>
+
+                                        {/* Messages Area */}
+                                        <div
+                                            ref={chatContainerRef}
+                                            className="flex-1 overflow-y-auto px-4 py-8 space-y-4 no-scrollbar scroll-smooth"
+                                        >
+                                            <AnimatePresence mode="popLayout">
+                                                {visibleMessages.map((msg, i) => (
+                                                    <motion.div
+                                                        key={featuresData[activeFeature].id + '-' + i}
+                                                        initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                        transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                                                    >
+                                                        <ChatBubble message={msg} />
+                                                    </motion.div>
+                                                ))}
+                                                {isTyping && <TypingIndicator key="typing" />}
+                                            </AnimatePresence>
+                                        </div>
+
+                                        {/* Input Bar Area */}
+                                        <div className="px-5 pb-10 pt-4 bg-gradient-to-t from-black via-black/95 to-transparent">
+                                            <div className="h-14 bg-zinc-900 rounded-[24px] border border-white/10 flex items-center px-5 justify-between shadow-2xl">
+                                                <div className="flex gap-1.5 items-center pl-1">
+                                                    <div className="w-2 h-2 bg-[#ff7404] rounded-full animate-pulse shadow-[0_0_8px_rgba(255,116,4,0.4)]" />
+                                                    <div className="text-[13px] text-zinc-500 font-medium">Customer responding...</div>
+                                                </div>
+                                                <div className="w-9 h-9 rounded-full bg-[#ff7404] flex items-center justify-center shadow-lg shadow-orange-900/20 active:scale-95 transition-transform">
+                                                    <ArrowRight className="w-5 h-5 text-white" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Background Accents */}
+                                <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#ff7404]/20 rounded-full blur-[60px] animate-pulse" />
+                                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#ff7404]/10 rounded-full blur-[60px] animate-pulse" />
+                            </div>
+                        </div>
+
+                        <div className="order-1 lg:order-2">
+                            {/* Tabs */}
+                            <CapabilityTabs
+                                tabs={featuresData}
+                                activeFeature={activeFeature}
+                                setActiveFeature={setActiveFeature}
+                            />
+
+                            <CapabilityFeatureDisplay feature={featuresData[activeFeature]} />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* 3. ENTERPRISE CHALLENGE */}
             <section className="py-24 bg-[#020202] relative overflow-hidden">
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:48px_48px]" />
@@ -444,7 +945,7 @@ export default function AutoGroupsPage() {
                             viewport={{ once: true, margin: "-100px" }}
                         >
                             {[
-                                { icon: Share2, title: 'Fragmented Data Silos', desc: 'Different rooftops using different systems, making group-wide reporting and lead sharing near impossible.', color: 'text-red-500', bg: 'bg-red-500/10' },
+                                { icon: Share2, title: 'Fragmented Data Silos', desc: 'Different rooftops using different systems, making group-wide reporting and lead sharing near impossible.', color: 'text-[#FF7404]', bg: 'bg-[#FF7404]/10' },
                                 { icon: LayoutGrid, title: 'Inconsistent Standards', desc: 'Success at your flagship store doesn\'t automatically translate to your newest acquisition without automated enforcement.', color: 'text-[#FF7404]', bg: 'bg-[#FF7404]/10' },
                                 { icon: BarChart2, title: 'Reporting Nightmares', desc: 'Trying to aggregate multi-CRM data into a single meaningful view for stakeholders takes weeks of manual work.', color: 'text-[#FF7404]', bg: 'bg-[#FF7404]/10' },
                             ].map((item, i) => (
@@ -552,39 +1053,6 @@ export default function AutoGroupsPage() {
                         ))}
                     </div>
 
-                    <div className="mt-20 p-10 rounded-[2.5rem] bg-white/[0.01] border border-white/5 max-w-5xl mx-auto grid md:grid-cols-3 gap-12 items-center">
-                        <div className="md:col-span-2">
-                            <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/10 bg-[#0A0A0A] shadow-2xl">
-                                <iframe
-                                    src="https://www.youtube.com/embed/epbB8eNUCfw?modestbranding=1&rel=0"
-                                    className="absolute inset-0 w-full h-full"
-                                    title="Auto Groups Testimonial"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                />
-                            </div>
-                        </div>
-                        <div className="bg-[#050505] p-8 rounded-3xl border border-white/10 space-y-6">
-                            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-500">
-                                <Activity className="w-3 h-3" />
-                                Group Metric Shift
-                            </div>
-                            <div className="space-y-4">
-                                <div className="flex justify-between items-end">
-                                    <span className="text-white/60 text-xs">Response Time</span>
-                                    <span className="text-white font-black">{'<'} 90s</span>
-                                </div>
-                                <div className="flex justify-between items-end">
-                                    <span className="text-white/60 text-xs">Lead Recovery</span>
-                                    <span className="text-green-500 font-black">+412%</span>
-                                </div>
-                                <div className="flex justify-between items-end">
-                                    <span className="text-white/60 text-xs">Cost/Appt</span>
-                                    <span className="text-[#FF7404] font-black">-35%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
 

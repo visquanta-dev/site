@@ -10,7 +10,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303] pt-44 pb-32">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303] pt-28 pb-20 sm:pt-32 sm:pb-24 md:pt-36 md:pb-28 lg:pt-44 lg:pb-32">
 
             {/* Premium Background */}
             <div className="absolute inset-0 z-0">
@@ -25,10 +25,10 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
             </div>
 
             <div className="container-wide relative z-10">
-                <div className="grid lg:grid-cols-2 gap-20 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 md:gap-20 items-center">
 
                     {/* Left: Copy */}
-                    <div className="text-left space-y-12">
+                    <div className="text-left space-y-8 sm:space-y-10 lg:space-y-12">
                         {/* Status Badge */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-                                className="text-6xl lg:text-[5.5rem] font-bold text-white tracking-[-0.03em] leading-[0.95]"
+                                className="text-3xl sm:text-4xl md:text-5xl lg:text-[5.5rem] font-black text-white tracking-[-0.03em] leading-[0.95] uppercase"
                             >
                                 <span className="block">The First <span className="font-mono text-[#FF7404]">60</span> Seconds</span>
                                 <motion.span
@@ -69,7 +69,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
-                                className="text-xl lg:text-2xl text-white/45 max-w-lg leading-[1.6] font-normal"
+                                className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/45 max-w-lg leading-[1.6] font-medium"
                             >
                                 <span className="text-[#FF7404]">Respond instantly.</span> Capture every opportunity. Book calls before your competitors even know the lead exists.
                             </motion.p>
@@ -80,9 +80,9 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="flex flex-wrap items-center gap-5"
+                            className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-4 sm:gap-5"
                         >
-                            <button className="group relative px-10 py-5 overflow-hidden rounded-xl shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)] transition-shadow duration-500">
+                            <button className="group relative px-8 sm:px-10 py-5 overflow-hidden rounded-xl shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)] transition-shadow duration-500 text-center">
                                 <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-xl" />
                                 <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.3)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
                                 <span className="relative z-10 flex items-center gap-3 text-black font-bold text-sm uppercase tracking-widest">
@@ -110,6 +110,20 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 </div>
                             ))}
                         </motion.div>
+                    </div>
+
+                    {/* Mobile Visual Demo (NEW) */}
+                    <div className="lg:hidden mt-8 sm:mt-12 flex justify-center">
+                        <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
+                            <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
+                                <img
+                                    src="/images/suite-bg/s2l-bg.png"
+                                    alt="Speed to Lead Demo"
+                                    className="w-full h-auto"
+                                />
+                            </div>
+                            <div className="absolute inset-0 -z-10 bg-[#FF7404]/10 blur-3xl rounded-full scale-150 opacity-50" />
+                        </div>
                     </div>
 
                     {/* Right: Phone Demo */}

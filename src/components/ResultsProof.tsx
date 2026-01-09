@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { DollarSign, Car, TrendingUp, Users, Star } from 'lucide-react';
 import Image from 'next/image';
+import MobileTestimonialCarousel from './mobile/MobileTestimonialCarousel';
 
 const stats = [
   {
@@ -90,7 +91,7 @@ export default function ResultsProof() {
           className="text-center max-w-3xl mx-auto mb-20"
         >
 
-          <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
             Results that <span className="text-[#ff7404]">speak for themselves.</span>
           </h2>
           <p className="text-white/60 text-xl leading-relaxed">
@@ -162,12 +163,13 @@ export default function ResultsProof() {
 
         {/* Expert Endorsements Videos */}
 
+        {/* Desktop Grid (hidden on mobile) */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {[
             { id: "epbB8eNUCfw", title: "It Makes Us Better at Being Humans" },
@@ -192,6 +194,18 @@ export default function ResultsProof() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Mobile Carousel (visible only on mobile) */}
+        <div className="md:hidden">
+          <MobileTestimonialCarousel
+            videos={[
+              { id: "epbB8eNUCfw", title: "It Makes Us Better at Being Humans" },
+              { id: "1jCd0Whojh4", title: "Cody Rutledge Recommendation" },
+              { id: "E1o2JTHlR7o", title: "Jo DaBrowski Recommendation" },
+              { id: "UssAxtB8DG4", title: "Jone McWhirter Recommendation" }
+            ]}
+          />
+        </div>
 
       </div>
 

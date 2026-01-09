@@ -7,7 +7,7 @@ import { AudiLogo, BMWLogo, VWLogo } from '@/components/brand-assets/CarLogos';
 
 export default function Hero() {
     return (
-        <section className="relative pt-32 pb-20 overflow-hidden bg-[#020202]">
+        <section className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 lg:pt-44 overflow-hidden bg-[#020202]">
             {/* Background Polish */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#FF7404]/[0.03] rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4" />
@@ -15,7 +15,7 @@ export default function Hero() {
             </div>
 
             <div className="container-wide relative z-10">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16 items-center">
                     {/* Left Content */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
@@ -27,19 +27,19 @@ export default function Hero() {
                             <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#FF7404]">Reputation Strategy</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.05]">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-6 sm:mb-8 tracking-tight leading-[1.05] uppercase">
                             Trust Wins <br />
                             <span className="bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-[#FF7404] bg-clip-text text-transparent italic">
                                 The Click.
                             </span>
                         </h1>
 
-                        <p className="text-xl text-white/60 leading-relaxed mb-10 max-w-xl">
+                        <p className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed mb-10 max-w-xl font-medium">
                             Turn your reputation into a revenue system. consistent review growth, automated 72-hour follow-up, and immediate escalation for negative feedback.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row items-center gap-6 mb-12">
-                            <button className="w-full sm:w-auto px-8 py-5 bg-gradient-to-r from-[#FF7404] to-[#FF8A3D] text-black font-bold rounded-xl shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)] hover:shadow-[0_25px_50px_-12px_rgba(255,116,4,0.4)] transition-all duration-300 transform hover:-translate-y-1">
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-12">
+                            <button className="px-8 py-5 bg-gradient-to-r from-[#FF7404] to-[#FF8A3D] text-black font-black uppercase text-sm rounded-xl shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)] hover:shadow-[0_25px_50px_-12px_rgba(255,116,4,0.4)] transition-all duration-300 transform hover:-translate-y-1 text-center">
                                 Request a Demo
                             </button>
                             <div className="flex items-center gap-4 text-white/40 text-sm font-medium">
@@ -59,7 +59,7 @@ export default function Hero() {
                         </div>
 
                         {/* Micro-proof Row */}
-                        <div className="grid grid-cols-3 gap-4 py-8 border-t border-white/5">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 py-6 sm:py-8 border-t border-white/5">
                             {[
                                 { icon: ShieldCheck, text: "Multi-platform" },
                                 { icon: Clock, text: "72h Requests" },
@@ -73,12 +73,26 @@ export default function Hero() {
                         </div>
                     </motion.div>
 
+                    {/* Mobile Visual Demo (NEW) */}
+                    <div className="lg:hidden mt-8 sm:mt-12 flex justify-center">
+                        <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
+                            <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
+                                <img
+                                    src="/images/suite-bg/rm-bg.png"
+                                    alt="Reputation Management Demo"
+                                    className="w-full h-auto"
+                                />
+                            </div>
+                            <div className="absolute inset-0 -z-10 bg-[#FF7404]/10 blur-3xl rounded-full scale-150 opacity-50" />
+                        </div>
+                    </div>
+
                     {/* Right Content - SERP Panel */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
-                        className="relative"
+                        className="relative hidden lg:block"
                     >
                         {/* Main Interface Box */}
                         <div className="relative backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden">

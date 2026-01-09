@@ -18,9 +18,11 @@ import {
   Layers,
   Lock,
   Building2,
-  Shield
+  Shield,
+  MonitorPlay
 } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
+import { Button } from "@/components/ui/button";
 
 interface NavItem {
   label: string;
@@ -78,7 +80,6 @@ const navItems: NavItem[] = [
   },
   {
     label: 'Dealer Services',
-    href: '/dealers',
     children: [
       { label: 'Independent Dealerships', href: '/dealers/independent', description: 'Maximize capital & time efficiency', icon: Target },
       { label: 'Franchise Dealerships', href: '/dealers/franchise', description: 'Consistent performance across locations', icon: Star },
@@ -88,18 +89,17 @@ const navItems: NavItem[] = [
   },
   {
     label: 'Company',
-    href: '/company',
     children: [
       { label: 'About VisQuanta', href: '/about-visquanta', description: 'Our mission to modernize ops', icon: Star },
       { label: 'Our Team', href: '/team', description: 'The people behind the platform', icon: HeartHandshake },
       { label: 'Careers', href: '/careers', description: 'Help shape the future', icon: Target },
       { label: 'Trust Center', href: '/trust', description: 'Privacy & data handling', icon: Shield },
+      { label: 'Book a Demo', href: '/book-demo', description: 'See VisQuanta in action', icon: MonitorPlay },
       { label: 'Contact Us', href: '/contact', description: 'Get in touch directly', icon: Zap },
     ]
   },
   {
     label: 'Resources',
-    href: '/resources',
     children: [
       { label: 'FAQs', href: '/faqs', description: 'Everything you need to know', icon: RefreshCcw },
       { label: 'Our Blog', href: '/blog', description: 'Insights for forward-thinkers', icon: Layers },
@@ -284,51 +284,53 @@ export default function Navigation() {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden lg:flex items-center gap-8">
-          <Link
-            href="https://portal.visquanta.com"
-            className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-white transition-colors"
-          >
-            <Lock className="w-4 h-4" />
-            Dealer Portal
-          </Link>
-          <RequestDemoButton
-            className="relative bg-[#FF7404] text-black hover:bg-white hover:text-black px-8 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-500 flex items-center gap-3 group overflow-hidden shadow-[0_0_20px_rgba(255,116,4,0.2)]"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-            Request a Demo
-            <div className="w-5 h-5 rounded-lg bg-black/10 flex items-center justify-center">
-              <Zap className="w-3 h-3 group-hover:rotate-12 transition-transform" />
-            </div>
-            <span className="absolute top-1.5 right-1.5 w-1 h-1 rounded-full bg-white animate-pulse" />
+        <div className="hidden lg:flex items-center gap-4">
+          <Button asChild variant="ghost" className="text-muted-foreground hover:text-white hover:bg-white/5 gap-2">
+            <Link href="https://portal.visquanta.com">
+              <Lock className="w-4 h-4" />
+              Dealer Portal
+            </Link>
+          </Button>
+
+          <RequestDemoButton asChild>
+            <Button className="relative bg-[#FF7404] text-black hover:bg-white hover:text-black h-12 px-8 rounded-xl font-black uppercase tracking-widest transition-all duration-500 overflow-hidden shadow-[0_0_20px_rgba(255,116,4,0.2)] group border-none">
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+              Request a Demo
+              <div className="w-5 h-5 rounded-lg bg-black/10 flex items-center justify-center ml-2">
+                <Zap className="w-3 h-3 group-hover:rotate-12 transition-transform" />
+              </div>
+              <span className="absolute top-1.5 right-1.5 w-1 h-1 rounded-full bg-white animate-pulse" />
+            </Button>
           </RequestDemoButton>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className="lg:hidden p-2 text-white"
+        <Button
+          variant="ghost"
+          size="icon"
+          className="lg:hidden text-white hover:bg-white/10 h-11 w-11"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        </Button>
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 top-[80px] bg-background border-t border-border overflow-y-auto lg:hidden"
+            className="fixed inset-0 top-[65px] sm:top-[73px] md:top-[80px] bg-background border-t border-border overflow-y-auto lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="p-6 flex flex-col gap-2">
+            <div className="p-4 sm:p-6 flex flex-col gap-2">
               {navItems.map((item) => (
                 <div key={item.label} className="border-b border-border last:border-0 pb-2 mb-2">
                   {item.children ? (
                     <div>
-                      <div className="flex items-center justify-between w-full py-3">
+                      <div className="flex items-center justify-between w-full py-3 min-h-[48px]">
                         <Link
                           href={item.href || '#'}
                           className="text-lg font-bold text-white"
@@ -338,7 +340,7 @@ export default function Navigation() {
                         </Link>
                         <button
                           onClick={() => setMobileActiveMenu(mobileActiveMenu === item.label ? null : item.label)}
-                          className="p-2"
+                          className="p-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
                         >
                           <ChevronDown className={`w-5 h-5 transition-transform ${mobileActiveMenu === item.label ? 'rotate-180' : ''}`} />
                         </button>
@@ -363,7 +365,7 @@ export default function Navigation() {
                                   >
                                     <Link
                                       href={child.href}
-                                      className="flex items-center gap-4 py-3 group relative px-4 rounded-xl hover:bg-[#FF7404]/5 border border-transparent hover:border-[#FF7404]/10 transition-all font-inter"
+                                      className="flex items-center gap-4 py-3 min-h-[48px] group relative px-4 rounded-xl hover:bg-[#FF7404]/5 border border-transparent hover:border-[#FF7404]/10 transition-all font-inter"
                                       onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                       {Icon && (
@@ -387,7 +389,7 @@ export default function Navigation() {
                   ) : (
                     <Link
                       href={item.href || '#'}
-                      className="block py-3 text-lg font-bold text-white"
+                      className="block py-3 min-h-[48px] text-lg font-bold text-white flex items-center"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.label}
@@ -396,16 +398,16 @@ export default function Navigation() {
                 </div>
               ))}
               <div className="mt-8 flex flex-col gap-4">
-                <Link
-                  href="https://portal.visquanta.com"
-                  className="w-full text-center py-4 text-sm font-bold text-muted-foreground border border-border rounded-xl hover:bg-secondary hover:text-white transition-colors"
-                >
-                  Dealer Portal
-                </Link>
-                <RequestDemoButton
-                  className="w-full text-center py-4 text-sm font-bold text-black bg-primary rounded-xl hover:bg-primary/90 transition-colors"
-                >
-                  Request a Demo
+                <Button asChild variant="outline" className="w-full h-12 rounded-xl text-muted-foreground hover:text-white bg-transparent border-border hover:bg-secondary">
+                  <Link href="https://portal.visquanta.com">
+                    Dealer Portal
+                  </Link>
+                </Button>
+
+                <RequestDemoButton asChild>
+                  <Button className="w-full h-12 rounded-xl bg-primary text-black hover:bg-primary/90 font-bold">
+                    Request a Demo
+                  </Button>
                 </RequestDemoButton>
               </div>
             </div>

@@ -75,7 +75,7 @@ const dealerSegments = [
         link: "/dealers/auto-groups",
         stat: "Enterprise Scale",
         status: "ESTABLISHED",
-        color: "from-orange-500 to-red-500"
+        color: "from-orange-500 to-orange-700"
     }
 ];
 
@@ -528,7 +528,7 @@ export default function DealerHub() {
 
                 <div className="container px-4 mx-auto relative z-10">
                     <div className="max-w-4xl mx-auto">
-                        <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 animate-pulse">
+                        <div className="inline-flex items-center gap-2 bg-[#FF7404]/10 border border-[#FF7404]/20 text-[#FF7404] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8">
                             <ShieldCheck className="w-3 h-3" />
                             Market Critical Warning
                         </div>

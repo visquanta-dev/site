@@ -61,7 +61,7 @@ export default function HowItWorksSection() {
               <Rocket className="w-3 h-3 text-[#ff7404] fill-[#ff7404]" />
               <span className="bg-gradient-to-r from-[#ff7404] to-[#ff9b50] bg-clip-text text-transparent">The Journey</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6 tracking-tight leading-[1.1]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6 tracking-tight leading-[1.1]">
               From Signup to <br /><span className="text-[#ff7404]">ROI.</span>
             </h2>
             <p className="text-white/40 text-sm lg:text-base mb-4 leading-relaxed max-w-sm">

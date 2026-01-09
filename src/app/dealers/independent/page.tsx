@@ -12,6 +12,7 @@ import ReviewCard from '@/components/ui/ReviewCard';
 import Link from 'next/link';
 import { useRef, useState, useEffect } from 'react';
 import { RequestDemoButton } from '@/components/CalendlyModal';
+import { CapabilityTabs, CapabilityFeatureDisplay } from '@/components';
 
 // --- Shared Components for Phone ---
 
@@ -736,57 +737,13 @@ export default function IndependentDealersPage() {
 
                         <div className="order-1 lg:order-2">
                             {/* Tabs */}
-                            <div className="flex flex-wrap gap-2 mb-10">
-                                {featuresData.map((f, i) => (
-                                    <button
-                                        key={f.id}
-                                        onClick={() => setActiveFeature(i)}
-                                        className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border ${activeFeature === i
-                                            ? 'bg-[#FF7404] text-black border-[#FF7404]'
-                                            : 'bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:border-white/20'
-                                            }`}
-                                    >
-                                        {f.tab}
-                                    </button>
-                                ))}
-                            </div>
+                            <CapabilityTabs
+                                tabs={featuresData}
+                                activeFeature={activeFeature}
+                                setActiveFeature={setActiveFeature}
+                            />
 
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={activeFeature}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -20 }}
-                                    transition={{ duration: 0.4 }}
-                                >
-                                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tight min-h-[1.2em]">
-                                        {featuresData[activeFeature].title} <br />
-                                        <span className="text-[#FF7404]">{featuresData[activeFeature].highlight}</span>
-                                    </h2>
-                                    <p className="text-xl text-zinc-400 mb-8 leading-relaxed min-h-[3em]">
-                                        {featuresData[activeFeature].description}
-                                    </p>
-                                    <div className="space-y-6">
-                                        {featuresData[activeFeature].bullets.map((item, i) => (
-                                            <div key={i} className="flex gap-4">
-                                                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/30 flex items-center justify-center text-[#FF7404]">
-                                                    <CheckCircle2 className="w-4 h-4" />
-                                                </div>
-                                                <div>
-                                                    <h4 className="text-white font-bold mb-1">{item.title}</h4>
-                                                    <p className="text-zinc-500 text-sm">{item.desc}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    <div className="mt-10">
-                                        <RequestDemoButton className="px-8 py-4 rounded-xl font-bold bg-white text-black hover:bg-zinc-200 transition-all flex items-center gap-2 shadow-[0_0_30px_-5px_rgba(255,255,255,0.1)]">
-                                            Book a Demo <ArrowRight className="w-4 h-4" />
-                                        </RequestDemoButton>
-                                    </div>
-                                </motion.div>
-                            </AnimatePresence>
+                            <CapabilityFeatureDisplay feature={featuresData[activeFeature]} />
                         </div>
                     </div>
                 </div>

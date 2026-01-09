@@ -113,9 +113,9 @@ export default function SystemOutcomes() {
                                             whileInView={{ opacity: 1, x: 0 }}
                                             viewport={{ once: true }}
                                             transition={{ delay: 0.3 + i * 0.08 }}
-                                            className="flex items-start gap-4 p-4 bg-white/[0.02] border border-white/[0.03] rounded-xl group hover:bg-red-500/[0.03] hover:border-red-500/10 transition-all duration-300"
+                                            className="flex items-start gap-4 p-4 bg-white/[0.02] border border-white/[0.03] rounded-xl group hover:bg-white/[0.04] hover:border-white/[0.1] transition-all duration-300"
                                         >
-                                            <XCircle className="w-5 h-5 text-red-500/30 group-hover:text-red-400 transition-colors flex-shrink-0 mt-0.5" />
+                                            <XCircle className="w-5 h-5 text-white/10 group-hover:text-white/20 transition-colors flex-shrink-0 mt-0.5" />
                                             <div>
                                                 <div className="text-white font-medium text-sm mb-1">{item.title}</div>
                                                 <p className="text-xs text-white/25">{item.desc}</p>

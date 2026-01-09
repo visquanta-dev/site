@@ -111,8 +111,8 @@ export default function WhoItIsFor() {
 
                         <div className="relative z-10 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
                             <div className="flex items-center gap-5 mb-10 pb-8 border-b border-white/[0.06]">
-                                <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group-hover:bg-red-500/10 group-hover:border-red-500/20 transition-all duration-300">
-                                    <XCircle className="w-8 h-8 text-white/30 group-hover:text-red-400 transition-colors" />
+                                <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group-hover:bg-white/[0.08] group-hover:border-white/[0.15] transition-all duration-300">
+                                    <XCircle className="w-8 h-8 text-white/10 group-hover:text-white/40 transition-colors" />
                                 </div>
                                 <div>
                                     <h3 className="text-white font-bold text-2xl tracking-tight">Not Ideal For</h3>
@@ -130,8 +130,8 @@ export default function WhoItIsFor() {
                                         transition={{ delay: 0.2 + i * 0.05 }}
                                         className="flex items-start gap-4 group/item"
                                     >
-                                        <div className="mt-1 w-6 h-6 rounded-full bg-white/[0.03] flex items-center justify-center flex-shrink-0 border border-white/[0.05] group-hover/item:border-red-500/30 transition-colors">
-                                            <XCircle className="w-3.5 h-3.5 text-white/20 group-hover/item:text-red-400/60 transition-colors" />
+                                        <div className="mt-1 w-6 h-6 rounded-full bg-white/[0.03] flex items-center justify-center flex-shrink-0 border border-white/[0.05] group-hover/item:border-white/[0.2] transition-colors">
+                                            <XCircle className="w-3.5 h-3.5 text-white/10 group-hover/item:text-white/40 transition-colors" />
                                         </div>
                                         <span className="text-white/40 text-lg group-hover/item:text-white/60 transition-colors">{item}</span>
                                     </motion.li>

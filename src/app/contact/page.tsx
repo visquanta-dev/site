@@ -5,41 +5,44 @@ import Footer from '@/components/Footer';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import {
     Mail,
-    Phone,
+    Phone as PhoneIcon,
     Send,
     ArrowRight,
     MessageSquare,
     Calendar,
-    Building2,
-    Headphones,
-    CheckCircle2,
     Zap,
     Globe,
-    MapPin,
-    Clock,
     Sparkles,
-    ChevronRight
+    ChevronRight,
+    CheckCircle2
 } from 'lucide-react';
 import Link from 'next/link';
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { toast } from 'sonner';
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.1, delayChildren: 0.2 }
-    }
-};
+import { Button } from '@/components/ui/button';
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
-const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
-    }
-};
-
+// --- Assets ---
 const inquiryTypes = [
     "Schedule a Demo",
     "Pricing Inquiry",
@@ -73,7 +76,18 @@ const offices = [
     }
 ];
 
+// --- Form Schema ---
+const formSchema = z.object({
+    name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+    email: z.string().email({ message: "Please enter a valid email address." }),
+    phone: z.string().optional(),
+    dealership: z.string().optional(),
+    inquiryType: z.string().min(1, { message: "Please select an inquiry type." }),
+    message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+});
+
 export default function ContactPage() {
+    // --- Scroll & Mouse Parsallax Logic ---
     const heroRef = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
     const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
@@ -93,31 +107,46 @@ export default function ContactPage() {
         mouseY.set(y);
     };
 
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        dealership: '',
-        inquiryType: '',
-        message: ''
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    // --- Form Logic ---
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [focusedField, setFocusedField] = useState<string | null>(null);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            phone: "",
+            dealership: "",
+            message: "",
+        },
+    });
+
+    const { isSubmitting } = form.formState;
+
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsSubmitting(false);
+        console.log(values);
         setIsSubmitted(true);
+        toast.success("Message sent successfully!");
+    }
+
+    // --- Animations ---
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+        }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setFormData(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }));
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
+        }
     };
 
     return (
@@ -221,45 +250,9 @@ export default function ContactPage() {
                                 <span className="text-white font-medium"> automotive industry veterans </span>
                                 is ready to show you what's possible.
                             </motion.p>
-
-                            {/* Quick Stats */}
-                            <motion.div
-                                variants={itemVariants}
-                                className="flex flex-wrap justify-center gap-8 md:gap-16"
-                            >
-                                {[
-                                    { value: "<2hr", label: "Avg Response" },
-                                    { value: "3", label: "Global Offices" },
-                                    { value: "24/7", label: "Client Support" }
-                                ].map((stat, i) => (
-                                    <motion.div
-                                        key={i}
-                                        whileHover={{ scale: 1.05 }}
-                                        className="text-center"
-                                    >
-                                        <div className="text-3xl md:text-4xl font-black text-white mb-1">{stat.value}</div>
-                                        <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em]">{stat.label}</div>
-                                    </motion.div>
-                                ))}
-                            </motion.div>
                         </motion.div>
                     </div>
                 </div>
-
-                {/* Scroll Indicator */}
-                <motion.div
-                    className="absolute bottom-8 left-1/2 -translate-x-1/2"
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                >
-                    <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2">
-                        <motion.div
-                            className="w-1 h-2 bg-[#FF7404] rounded-full"
-                            animate={{ y: [0, 12, 0] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                        />
-                    </div>
-                </motion.div>
             </motion.section>
 
             {/* MAIN CONTENT */}
@@ -307,13 +300,15 @@ export default function ContactPage() {
                                             <p className="text-zinc-400 text-lg mb-10 max-w-md mx-auto">
                                                 A member of our team will reach out within the next 2 hours.
                                             </p>
-                                            <Link
-                                                href="/"
-                                                className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition-all"
+                                            <Button
+                                                asChild
+                                                className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition-all h-auto"
                                             >
-                                                Return to Homepage
-                                                <ArrowRight className="w-4 h-4" />
-                                            </Link>
+                                                <Link href="/">
+                                                    Return to Homepage
+                                                    <ArrowRight className="w-4 h-4" />
+                                                </Link>
+                                            </Button>
                                         </motion.div>
                                     ) : (
                                         <div className="relative z-10">
@@ -330,146 +325,170 @@ export default function ContactPage() {
                                                 </div>
                                             </div>
 
-                                            <form onSubmit={handleSubmit} className="space-y-6">
-                                                <div className="grid md:grid-cols-2 gap-6">
-                                                    {/* Name Field */}
-                                                    <div className="relative group">
-                                                        <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3">
-                                                            Full Name <span className="text-[#FF7404]">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
+                                            <Form {...form}>
+                                                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                                                    <div className="grid md:grid-cols-2 gap-6">
+                                                        {/* Name Field */}
+                                                        <FormField
+                                                            control={form.control}
                                                             name="name"
-                                                            required
-                                                            value={formData.name}
-                                                            onChange={handleChange}
-                                                            onFocus={() => setFocusedField('name')}
-                                                            onBlur={() => setFocusedField(null)}
-                                                            className="w-full px-5 py-4 bg-white/[0.03] border border-white/10 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#FF7404]/50 focus:bg-white/[0.05] transition-all duration-300"
-                                                            placeholder="John Smith"
+                                                            render={({ field }) => (
+                                                                <FormItem className="group relative">
+                                                                    <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                                                                        Full Name <span className="text-[#FF7404]">*</span>
+                                                                    </FormLabel>
+                                                                    <FormControl>
+                                                                        <Input
+                                                                            placeholder="John Smith"
+                                                                            className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300"
+                                                                            {...field}
+                                                                        />
+                                                                    </FormControl>
+                                                                    <FormMessage />
+                                                                </FormItem>
+                                                            )}
                                                         />
-                                                        {focusedField === 'name' && (
-                                                            <motion.div
-                                                                layoutId="fieldHighlight"
-                                                                className="absolute inset-0 border-2 border-[#FF7404]/30 rounded-xl pointer-events-none"
-                                                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                                            />
-                                                        )}
-                                                    </div>
 
-                                                    {/* Email Field */}
-                                                    <div className="relative group">
-                                                        <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3">
-                                                            Email Address <span className="text-[#FF7404]">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="email"
+                                                        {/* Email Field */}
+                                                        <FormField
+                                                            control={form.control}
                                                             name="email"
-                                                            required
-                                                            value={formData.email}
-                                                            onChange={handleChange}
-                                                            onFocus={() => setFocusedField('email')}
-                                                            onBlur={() => setFocusedField(null)}
-                                                            className="w-full px-5 py-4 bg-white/[0.03] border border-white/10 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#FF7404]/50 focus:bg-white/[0.05] transition-all duration-300"
-                                                            placeholder="john@dealership.com"
+                                                            render={({ field }) => (
+                                                                <FormItem>
+                                                                    <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                                                                        Email Address <span className="text-[#FF7404]">*</span>
+                                                                    </FormLabel>
+                                                                    <FormControl>
+                                                                        <Input
+                                                                            placeholder="john@dealership.com"
+                                                                            className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300"
+                                                                            {...field}
+                                                                        />
+                                                                    </FormControl>
+                                                                    <FormMessage />
+                                                                </FormItem>
+                                                            )}
                                                         />
                                                     </div>
-                                                </div>
 
-                                                <div className="grid md:grid-cols-2 gap-6">
-                                                    {/* Phone Field */}
-                                                    <div className="relative">
-                                                        <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3">
-                                                            Phone Number
-                                                        </label>
-                                                        <input
-                                                            type="tel"
+                                                    <div className="grid md:grid-cols-2 gap-6">
+                                                        {/* Phone Field */}
+                                                        <FormField
+                                                            control={form.control}
                                                             name="phone"
-                                                            value={formData.phone}
-                                                            onChange={handleChange}
-                                                            className="w-full px-5 py-4 bg-white/[0.03] border border-white/10 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#FF7404]/50 focus:bg-white/[0.05] transition-all duration-300"
-                                                            placeholder="+1 (555) 123-4567"
+                                                            render={({ field }) => (
+                                                                <FormItem>
+                                                                    <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                                                                        Phone Number
+                                                                    </FormLabel>
+                                                                    <FormControl>
+                                                                        <Input
+                                                                            placeholder="+1 (555) 123-4567"
+                                                                            className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300"
+                                                                            {...field}
+                                                                        />
+                                                                    </FormControl>
+                                                                    <FormMessage />
+                                                                </FormItem>
+                                                            )}
                                                         />
-                                                    </div>
 
-                                                    {/* Dealership Field */}
-                                                    <div className="relative">
-                                                        <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3">
-                                                            Dealership / Company
-                                                        </label>
-                                                        <input
-                                                            type="text"
+                                                        {/* Dealership Field */}
+                                                        <FormField
+                                                            control={form.control}
                                                             name="dealership"
-                                                            value={formData.dealership}
-                                                            onChange={handleChange}
-                                                            className="w-full px-5 py-4 bg-white/[0.03] border border-white/10 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#FF7404]/50 focus:bg-white/[0.05] transition-all duration-300"
-                                                            placeholder="Premier Auto Group"
+                                                            render={({ field }) => (
+                                                                <FormItem>
+                                                                    <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                                                                        Dealership / Company
+                                                                    </FormLabel>
+                                                                    <FormControl>
+                                                                        <Input
+                                                                            placeholder="Premier Auto Group"
+                                                                            className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300"
+                                                                            {...field}
+                                                                        />
+                                                                    </FormControl>
+                                                                    <FormMessage />
+                                                                </FormItem>
+                                                            )}
                                                         />
                                                     </div>
-                                                </div>
 
-                                                {/* Inquiry Type */}
-                                                <div className="relative">
-                                                    <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3">
-                                                        How Can We Help? <span className="text-[#FF7404]">*</span>
-                                                    </label>
-                                                    <select
+                                                    {/* Inquiry Type */}
+                                                    <FormField
+                                                        control={form.control}
                                                         name="inquiryType"
-                                                        required
-                                                        value={formData.inquiryType}
-                                                        onChange={handleChange}
-                                                        className="w-full px-5 py-4 bg-white/[0.03] border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#FF7404]/50 focus:bg-white/[0.05] transition-all duration-300 appearance-none cursor-pointer"
-                                                    >
-                                                        <option value="" disabled className="bg-[#0A0A0A]">Select an option</option>
-                                                        {inquiryTypes.map((type, i) => (
-                                                            <option key={i} value={type} className="bg-[#0A0A0A]">{type}</option>
-                                                        ))}
-                                                    </select>
-                                                    <ChevronRight className="absolute right-5 top-1/2 translate-y-1 w-5 h-5 text-zinc-500 rotate-90 pointer-events-none" />
-                                                </div>
-
-                                                {/* Message */}
-                                                <div className="relative">
-                                                    <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3">
-                                                        Your Message <span className="text-[#FF7404]">*</span>
-                                                    </label>
-                                                    <textarea
-                                                        name="message"
-                                                        required
-                                                        rows={5}
-                                                        value={formData.message}
-                                                        onChange={handleChange}
-                                                        className="w-full px-5 py-4 bg-white/[0.03] border border-white/10 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#FF7404]/50 focus:bg-white/[0.05] transition-all duration-300 resize-none"
-                                                        placeholder="Tell us about your dealership, your goals, and how we can help accelerate your growth..."
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                                                                    How Can We Help? <span className="text-[#FF7404]">*</span>
+                                                                </FormLabel>
+                                                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                                    <FormControl>
+                                                                        <SelectTrigger className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white focus:ring-1 focus:ring-[#FF7404]/50 focus:bg-white/[0.05] focus:border-[#FF7404]/50 transition-all duration-300 h-auto">
+                                                                            <SelectValue placeholder="Select an option" />
+                                                                        </SelectTrigger>
+                                                                    </FormControl>
+                                                                    <SelectContent className="bg-[#0A0A0A] border-white/10 text-white">
+                                                                        {inquiryTypes.map((type, i) => (
+                                                                            <SelectItem key={i} value={type} className="focus:bg-[#FF7404]/20 focus:text-white cursor-pointer">
+                                                                                {type}
+                                                                            </SelectItem>
+                                                                        ))}
+                                                                    </SelectContent>
+                                                                </Select>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
                                                     />
-                                                </div>
 
-                                                {/* Submit Button */}
-                                                <motion.button
-                                                    type="submit"
-                                                    disabled={isSubmitting}
-                                                    whileHover={{ scale: 1.01, boxShadow: "0 0 50px -10px rgba(255,116,4,0.5)" }}
-                                                    whileTap={{ scale: 0.99 }}
-                                                    className="w-full px-8 py-5 bg-[#FF7404] hover:bg-[#ff8a2b] text-black font-bold text-lg rounded-xl flex items-center justify-center gap-3 transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] group"
-                                                >
-                                                    {isSubmitting ? (
-                                                        <>
-                                                            <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                                                            Sending...
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            Send Message
-                                                            <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                                        </>
-                                                    )}
-                                                </motion.button>
+                                                    {/* Message */}
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="message"
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                                                                    Your Message <span className="text-[#FF7404]">*</span>
+                                                                </FormLabel>
+                                                                <FormControl>
+                                                                    <Textarea
+                                                                        placeholder="Tell us about your dealership, your goals, and how we can help accelerate your growth..."
+                                                                        className="w-full px-5 py-4 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300 resize-none min-h-[140px]"
+                                                                        {...field}
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
 
-                                                {/* Privacy Note */}
-                                                <p className="text-center text-zinc-600 text-[10px] uppercase tracking-widest leading-relaxed">
-                                                    By submitting, you agree to our <Link href="/trust" className="text-[#FF7404] hover:underline font-bold">Privacy & data handling</Link> practices.
-                                                </p>
-                                            </form>
+                                                    {/* Submit Button */}
+                                                    <Button
+                                                        type="submit"
+                                                        disabled={isSubmitting}
+                                                        className="w-full px-8 py-7 bg-[#FF7404] hover:bg-[#ff8a2b] text-black font-bold text-lg rounded-xl flex items-center justify-center gap-3 transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.5)] h-auto"
+                                                    >
+                                                        {isSubmitting ? (
+                                                            <>
+                                                                <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                                                                Sending...
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                Send Message
+                                                                <Send className="w-5 h-5" />
+                                                            </>
+                                                        )}
+                                                    </Button>
+
+                                                    {/* Privacy Note */}
+                                                    <p className="text-center text-zinc-600 text-[10px] uppercase tracking-widest leading-relaxed">
+                                                        By submitting, you agree to our <Link href="/trust" className="text-[#FF7404] hover:underline font-bold">Privacy & data handling</Link> practices.
+                                                    </p>
+                                                </form>
+                                            </Form>
                                         </div>
                                     )}
                                 </div>
