@@ -8,7 +8,7 @@ import React from 'react';
 interface FlagCardProps {
     countryCode: string;
     countryName: string;
-    FlagComponent: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+    FlagComponent: React.ComponentType<any>;
     selected: boolean;
     onClick: () => void;
 }
