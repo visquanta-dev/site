@@ -14,7 +14,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "VisQuanta | The Dealer's Unfair Advantage",
-  description: "AI-Powered Dealership Platform - The unfair advantage elite dealerships use",
+  description: "BUILT FOR MODERN DEALERSHIPS - The unfair advantage elite dealerships use",
 };
 
 export const viewport = {

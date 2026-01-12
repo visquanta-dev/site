@@ -235,7 +235,7 @@ export default function Hero() {
       {/* Layer 3: Wireframe image - scaled up to fill space */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <Image
-          src="/images/wireframes/5.jpeg"
+          src="/images/wireframes/6.jpeg"
           alt=""
           fill
           priority
@@ -244,8 +244,11 @@ export default function Hero() {
         />
       </div>
 
-      {/* Layer 4: Gradient overlays for text readability (left side darker) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent pointer-events-none" />
+      {/* Layer 4: Full page dark overlay at 40% */}
+      <div className="absolute inset-0 bg-[#050505]/40 pointer-events-none" />
+
+      {/* Layer 5: Gradient overlays for text readability (left side darker) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/50 via-[#050505]/30 to-transparent pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/60 pointer-events-none" />
 
       {/* Background - Technical Grid & Ambient Light */}
@@ -266,7 +269,7 @@ export default function Hero() {
             >
               <div className="h-px w-6 sm:w-8 bg-primary/60" />
               <span className="text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em]">
-                AI-Powered Dealership Platform
+                BUILT FOR MODERN DEALERSHIPS
               </span>
             </motion.div>
 
@@ -348,16 +351,16 @@ export default function Hero() {
             >
               <RequestDemoButton asChild>
                 <Button
-                  className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest shadow-[0_0_40px_-10px_rgba(255,116,4,0.5)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.7)] text-black bg-primary hover:bg-white"
+                  className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border border-[#FF7404]/30 bg-[#FF7404]/10 hover:bg-[#FF7404]/20 hover:border-[#FF7404]/50 text-[#FF7404] hover:text-white transition-all shadow-[0_0_40px_-10px_rgba(255,116,4,0.1)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.3)]"
                 >
-                  Request a Demo
+                  Speak With Our Team
                 </Button>
               </RequestDemoButton>
 
               <Button
                 asChild
                 variant="outline"
-                className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-white/10 hover:bg-white/5 bg-transparent text-white hover:text-white"
+                className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-white/50 hover:bg-white/5 bg-transparent text-white hover:text-white"
               >
                 <Link href="#how-it-works">
                   See How It Works

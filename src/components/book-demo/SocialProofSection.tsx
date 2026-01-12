@@ -74,16 +74,52 @@ export default function SocialProofSection() {
                 ))}
             </div>
 
-            {/* Logos */}
-            <div className="border-t border-white/10 pt-12">
-                <p className="text-center text-white/20 text-xs uppercase tracking-[0.3em] font-bold mb-8">Trusted by Top Dealerships</p>
-                <div className="flex flex-wrap justify-center gap-12 sm:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-                    {/* Text fallbacks if logos not present, or assume generic style divs */}
-                    <div className="text-xl font-bold text-white tracking-tighter">GENESIS <span className="font-light">OF NORMAN</span></div>
-                    <div className="text-xl font-bold text-white tracking-tighter">OKC <span className="font-light">VOLKSWAGEN</span></div>
-                    <div className="text-xl font-bold text-white tracking-tighter">NORMAN <span className="font-light">HYUNDAI</span></div>
+            {/* Logos Carousel */}
+            <div className="border-t border-white/10 pt-12 overflow-hidden">
+                <p className="text-center text-[#ff7404] text-xs uppercase tracking-[0.3em] font-bold mb-8">Trusted by Dealerships Selling</p>
+
+                <div className="relative w-full">
+                    {/* Fade masks */}
+                    <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#050505] to-transparent z-10" />
+                    <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#050505] to-transparent z-10" />
+
+                    <div className="flex gap-12 sm:gap-20 animate-scroll w-max items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+                        {/* First Set */}
+                        <img src="/images/logos/ford-direct.jpg" alt="Ford" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/gm.jpg" alt="GM" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/honda.jpg" alt="Honda" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/toyota.jpg" alt="Toyota" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-1.png" alt="Hyundai" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-4.png" alt="Porsche" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+
+                        {/* Duplicated Set for infinite loop */}
+                        <img src="/images/logos/ford-direct.jpg" alt="Ford" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/gm.jpg" alt="GM" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/honda.jpg" alt="Honda" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/toyota.jpg" alt="Toyota" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-1.png" alt="Hyundai" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-4.png" alt="Porsche" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+
+                        {/* Triplicated Set for safety on wider screens */}
+                        <img src="/images/logos/ford-direct.jpg" alt="Ford" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/gm.jpg" alt="GM" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/honda.jpg" alt="Honda" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/toyota.jpg" alt="Toyota" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-1.png" alt="Hyundai" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-4.png" alt="Porsche" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                    </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                .animate-scroll {
+                    animation: scroll 40s linear infinite;
+                }
+                @keyframes scroll {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-33.33%); }
+                }
+            `}</style>
         </div>
     );
 }

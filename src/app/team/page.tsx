@@ -6,7 +6,22 @@ import { motion } from 'framer-motion';
 import { Linkedin, Mail, Twitter, Quote, Calendar } from 'lucide-react';
 import Image from 'next/image';
 
-const teamLayers = [
+interface TeamMember {
+    name: string;
+    role: string;
+    image: string;
+    link?: string;
+    email: string;
+    calendly?: string;
+}
+
+interface TeamLayer {
+    title: string;
+    badge: string;
+    members: TeamMember[];
+}
+
+const teamLayers: TeamLayer[] = [
     {
         title: "Executive Leadership",
         badge: "C-Level Strategy",
@@ -15,41 +30,42 @@ const teamLayers = [
                 name: "Christopher Wilson",
                 role: "Co-Founder & COO",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61f76c1b77bb770b669_christopher%2Cwilson%2Cheadshot%2Cvisquanta.webp",
-                link: "#",
-                email: "chris@visquanta.com",
-                calendly: "#"
+                link: "https://www.linkedin.com/in/christo4wilson/",
+                email: "christopher@visquanta.com",
+                calendly: "https://calendly.com/christopher-visquanta/30min"
             },
             {
                 name: "Aaron Rowley",
                 role: "Co-Founder & CTO",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61e609317cfb8b63364_aaron%2Crowley%2Cheadshot%2Cvisquanta.webp",
-                link: "#",
+                link: "https://www.linkedin.com/in/aaron-rowley-407341241/",
                 email: "aaron@visquanta.com",
-                calendly: "#"
-            },
-            {
-                name: "Lavar Harper",
-                role: "Co-Founder & CMO",
-                image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac64f14c562cf25aec7e4_lavar%2Charper%2Cheadshot%2Cvisquanta.webp",
-                link: "#",
-                email: "lavar@visquanta.com",
-                calendly: "#"
+                calendly: "https://calendly.com/aaron-visquanta/virtual_coffee"
             },
             {
                 name: "William Voyles",
                 role: "Co-Founder & CSO",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
-                link: "#",
+                link: "https://www.linkedin.com/in/wvoyles/",
                 email: "william@visquanta.com",
-                calendly: "#"
+                calendly: "https://calendly.com/william-visquanta/visquanta-discovery-call"
             },
+            {
+                name: "Lavar Harper",
+                role: "Co-Founder & CMO",
+                image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac64f14c562cf25aec7e4_lavar%2Charper%2Cheadshot%2Cvisquanta.webp",
+                link: "https://www.linkedin.com/in/lavar-harper-1681152a4/",
+                email: "lavar@visquanta.com",
+                calendly: "https://calendly.com/lavar-visquanta/30min"
+            },
+
             {
                 name: "Matt Nixon",
                 role: "Co-Founder & CFO",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61edcc6a5a093ce6245_matt%2Cnixon%2Cheadshot%2Cvisquanta.webp",
-                link: "#",
+                link: "https://www.linkedin.com/in/mattnixonmarketingguy/",
                 email: "matt@visquanta.com",
-                calendly: "#"
+                calendly: "https://calendly.com/matt-visquanta/30min"
             }
         ]
     },
@@ -61,25 +77,40 @@ const teamLayers = [
                 name: "Charles Snodgrass",
                 role: "Director of Client Success",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61fc9b8fa6d06815ceb_charles%2Csnodgrass%2Cheadshot%2Cvisquanta.webp",
-                link: "#",
-                email: "charles@visquanta.com",
-                calendly: "#"
+                link: "https://www.linkedin.com/in/charles-snodgrass-a99b947b/",
+                email: "csnodgrass@visquanta.com",
+                calendly: "https://calendly.com/csnodgrass-visquanta/visquanta-discovery-call"
             },
             {
                 name: "Sia Small",
                 role: "Director of Business Growth",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif",
-                link: "#",
-                email: "sia@visquanta.com",
-                calendly: "#"
+                link: "https://www.linkedin.com/in/sia-small-256329198/",
+                email: "ssmall@visquanta.com",
+                calendly: "https://calendly.com/ssmall-visquanta/discovery"
             },
             {
                 name: "Dwayne Roemer",
                 role: "Director of Canadian Operations",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4cd9a69563d82a59b270f_WhatsApp_Image_2025-10-07_at_01.28.06_8f1c8935-modified-removebg-preview.avif",
+                link: "https://www.linkedin.com/in/dwayne-roemer-ba29a79/",
+                email: "droemer@visquanta.com",
+                calendly: "https://calendly.com/droemer-visquanta/30min"
+            },
+            {
+                name: "Clint Annis",
+                role: "Integrations Lead",
+                image: "/team/clint-annis.png",
                 link: "#",
-                email: "dwayne@visquanta.com",
-                calendly: "#"
+                email: "cannis@visquanta.com",
+                calendly: "https://calendly.com/cannis-visquanta/30min"
+            },
+            {
+                name: "Kyle Roath",
+                role: "Systems Engineer",
+                image: "/team/kyle-roath.png",
+                email: "kroath@visquanta.com"
+
             }
         ]
     },
@@ -91,41 +122,32 @@ const teamLayers = [
                 name: "Chloe Johncock",
                 role: "Account Operations Manager",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/6850417609bb855d13026da3_Chloe_JohnCock_Visquanta.avif",
-                link: "#",
-                email: "chloe@visquanta.com",
-                calendly: "#"
+                link: "https://www.linkedin.com/in/chloe-johncock-a48114122/",
+                email: "cjohncock@visquanta.com",
+
             },
             {
                 name: "Marion Ueland",
                 role: "Account Operations",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4d024bdd582aff727d7f8_Screenshot_2025-08-28_180752-removebg-preview.avif",
-                link: "#",
-                email: "marion@visquanta.com",
-                calendly: "#"
+                email: "mueland@visquanta.com",
+
             },
+
             {
-                name: "Clint Annis",
-                role: "Integrations Lead",
-                image: "/team/clint-annis.png",
-                link: "#",
-                email: "clint@visquanta.com",
-                calendly: "#"
+                name: "Ellison Riviera",
+                role: "Client Account Lead",
+                image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/6850416b0314723f40a489d0_Ellison_Riviera-removebg-preview-modified.avif",
+                link: "https://www.linkedin.com/in/ellison-rivera-8162092a3/",
+                email: "e.rivera@visquanta.com",
+
             },
             {
                 name: "John Cabatingan",
                 role: "Client Account Specialist",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4d1ae44a7d738f878e7c6_20250806_173050-removebg-preview-modified.avif",
-                link: "#",
-                email: "john@visquanta.com",
-                calendly: "#"
-            },
-            {
-                name: "Ellison Riviera",
-                role: "Client Account Lead",
-                image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/6850416b0314723f40a489d0_Ellison_Riviera-removebg-preview-modified.avif",
-                link: "#",
-                email: "ellison@visquanta.com",
-                calendly: "#"
+                email: "jcabatingan@visquanta.com",
+
             }
         ]
     }
@@ -340,13 +362,15 @@ export default function TeamPage() {
                                                         </p>
 
                                                         <div className="flex items-center gap-2">
-                                                            <a
-                                                                href={member.link}
-                                                                title="LinkedIn Profile"
-                                                                className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-[#FF7404] hover:text-black hover:scale-110 transition-all duration-500"
-                                                            >
-                                                                <Linkedin className="w-3.5 h-3.5" />
-                                                            </a>
+                                                            {member.link && (
+                                                                <a
+                                                                    href={member.link}
+                                                                    title="LinkedIn Profile"
+                                                                    className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-[#FF7404] hover:text-black hover:scale-110 transition-all duration-500"
+                                                                >
+                                                                    <Linkedin className="w-3.5 h-3.5" />
+                                                                </a>
+                                                            )}
                                                             <a
                                                                 href={`mailto:${member.email}`}
                                                                 title="Send Email"
@@ -354,13 +378,15 @@ export default function TeamPage() {
                                                             >
                                                                 <Mail className="w-3.5 h-3.5" />
                                                             </a>
-                                                            <a
-                                                                href={member.calendly}
-                                                                title="Book Meeting"
-                                                                className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-[#FF7404] hover:text-black hover:scale-110 transition-all duration-500"
-                                                            >
-                                                                <Calendar className="w-3.5 h-3.5" />
-                                                            </a>
+                                                            {member.calendly && (
+                                                                <a
+                                                                    href={member.calendly}
+                                                                    title="Book Meeting"
+                                                                    className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-[#FF7404] hover:text-black hover:scale-110 transition-all duration-500"
+                                                                >
+                                                                    <Calendar className="w-3.5 h-3.5" />
+                                                                </a>
+                                                            )}
                                                         </div>
                                                     </div>
 

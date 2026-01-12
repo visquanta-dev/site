@@ -59,7 +59,7 @@ const capabilities = [
     statLabel: 'Success Rate',
     stat2: '0',
     stat2Label: 'Missed Calls',
-    link: '/service-ai',
+    link: '/service-drive',
     icon: Phone,
   },
 ];

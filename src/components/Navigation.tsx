@@ -285,23 +285,21 @@ export default function Navigation() {
 
         {/* Desktop Actions */}
         <div className="hidden lg:flex items-center gap-4">
-          <Button asChild variant="ghost" className="text-muted-foreground hover:text-white hover:bg-white/5 gap-2">
+          <RequestDemoButton asChild>
+            <Button className="relative h-9 px-6 rounded-lg border border-[#FF7404]/30 bg-[#FF7404]/10 hover:bg-[#FF7404]/20 hover:border-[#FF7404]/50 text-[#FF7404] hover:text-white transition-all uppercase tracking-widest text-[10px] font-black shadow-[0_0_20px_rgba(255,116,4,0.1)]">
+              <div className="w-4 h-4 rounded bg-[#FF7404]/20 flex items-center justify-center mr-2 text-[#FF7404]">
+                <Zap className="w-2.5 h-2.5 group-hover:rotate-12 transition-transform" />
+              </div>
+              Speak With Our Team
+            </Button>
+          </RequestDemoButton>
+
+          <Button asChild variant="outline" className="h-9 px-5 rounded-lg border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/30 text-white transition-all uppercase tracking-widest text-[10px] font-black">
             <Link href="https://portal.visquanta.com">
-              <Lock className="w-4 h-4" />
+              <Lock className="w-3 h-3 mr-2 text-[#FF7404]" />
               Dealer Portal
             </Link>
           </Button>
-
-          <RequestDemoButton asChild>
-            <Button className="relative bg-[#FF7404] text-black hover:bg-white hover:text-black h-12 px-8 rounded-xl font-black uppercase tracking-widest transition-all duration-500 overflow-hidden shadow-[0_0_20px_rgba(255,116,4,0.2)] group border-none">
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-              Request a Demo
-              <div className="w-5 h-5 rounded-lg bg-black/10 flex items-center justify-center ml-2">
-                <Zap className="w-3 h-3 group-hover:rotate-12 transition-transform" />
-              </div>
-              <span className="absolute top-1.5 right-1.5 w-1 h-1 rounded-full bg-white animate-pulse" />
-            </Button>
-          </RequestDemoButton>
         </div>
 
         {/* Mobile Toggle */}
@@ -320,96 +318,110 @@ export default function Navigation() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 top-[65px] sm:top-[73px] md:top-[80px] bg-background border-t border-border overflow-y-auto lg:hidden"
+            className="fixed inset-0 z-50 bg-[#000000]/80 backdrop-blur-2xl pt-28 px-8 overflow-y-auto lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="p-4 sm:p-6 flex flex-col gap-2">
-              {navItems.map((item) => (
-                <div key={item.label} className="border-b border-border last:border-0 pb-2 mb-2">
-                  {item.children ? (
-                    <div>
-                      <div className="flex items-center justify-between w-full py-3 min-h-[48px]">
-                        <Link
-                          href={item.href || '#'}
-                          className="text-lg font-bold text-white"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          {item.label}
-                        </Link>
+            {/* Ambient Background Effects */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#FF7404]/5 rounded-full blur-[120px] pointer-events-none translate-y-1/2 -translate-x-1/2" />
+
+            <div className="flex flex-col min-h-full pb-12 relative z-10">
+              <nav className="flex-1 space-y-8">
+                {navItems.map((item, idx) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                  >
+                    {item.children ? (
+                      <div className="group">
                         <button
                           onClick={() => setMobileActiveMenu(mobileActiveMenu === item.label ? null : item.label)}
-                          className="p-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                          className="flex items-center gap-4 text-3xl font-light text-white uppercase tracking-widest hover:text-[#FF7404] transition-colors"
                         >
-                          <ChevronDown className={`w-5 h-5 transition-transform ${mobileActiveMenu === item.label ? 'rotate-180' : ''}`} />
+                          {item.label}
+                          <ChevronDown
+                            className={`w-6 h-6 transition-transform duration-500 ${mobileActiveMenu === item.label ? 'rotate-180 text-[#FF7404]' : 'text-white/30'}`}
+                          />
                         </button>
-                      </div>
-                      <AnimatePresence>
-                        {mobileActiveMenu === item.label && (
-                          <motion.div
-                            initial={{ height: 0 }}
-                            animate={{ height: 'auto' }}
-                            exit={{ height: 0 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="pl-4 border-l border-border ml-2 space-y-4 py-2">
-                              {item.children.map((child, idx) => {
-                                const Icon = child.icon;
-                                return (
-                                  <motion.div
-                                    key={idx}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: idx * 0.1 }}
-                                  >
+
+                        <AnimatePresence>
+                          {mobileActiveMenu === item.label && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="pt-6 pl-2 space-y-6">
+                                {item.children.map((child, childIdx) => {
+                                  const Icon = child.icon;
+                                  return (
                                     <Link
+                                      key={childIdx}
                                       href={child.href}
-                                      className="flex items-center gap-4 py-3 min-h-[48px] group relative px-4 rounded-xl hover:bg-[#FF7404]/5 border border-transparent hover:border-[#FF7404]/10 transition-all font-inter"
                                       onClick={() => setIsMobileMenuOpen(false)}
+                                      className="flex items-start gap-4 group/child"
                                     >
                                       {Icon && (
-                                        <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#FF7404] group-hover:bg-[#FF7404]/10 transition-all">
-                                          <Icon className="w-5 h-5" />
+                                        <div className="mt-1 w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-zinc-500 group-hover/child:text-[#FF7404] group-hover/child:border-[#FF7404]/30 transition-all">
+                                          <Icon className="w-3.5 h-3.5" />
                                         </div>
                                       )}
-                                      <div className="flex flex-col">
-                                        <span className="text-[13px] font-bold text-zinc-400 group-hover:text-white transition-colors uppercase tracking-tight">{child.label}</span>
-                                        <span className="text-[10px] text-zinc-600 line-clamp-1">{child.description}</span>
+                                      <div>
+                                        <div className="text-lg text-zinc-300 group-hover/child:text-white transition-colors font-medium">
+                                          {child.label}
+                                        </div>
+                                        <div className="text-xs text-zinc-600 mt-1 uppercase tracking-wider font-medium">
+                                          {child.description}
+                                        </div>
                                       </div>
                                     </Link>
-                                  </motion.div>
-                                );
-                              })}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href || '#'}
-                      className="block py-3 min-h-[48px] text-lg font-bold text-white flex items-center"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
-              <div className="mt-8 flex flex-col gap-4">
-                <Button asChild variant="outline" className="w-full h-12 rounded-xl text-muted-foreground hover:text-white bg-transparent border-border hover:bg-secondary">
-                  <Link href="https://portal.visquanta.com">
+                                  );
+                                })}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href || '#'}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block text-3xl font-light text-white uppercase tracking-widest hover:text-[#FF7404] transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    )}
+                  </motion.div>
+                ))}
+              </nav>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="mt-16 flex flex-col gap-4"
+              >
+                <Link
+                  href="https://portal.visquanta.com"
+                  className="group flex items-center justify-between w-full p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all"
+                >
+                  <span className="text-sm font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white transition-colors">
                     Dealer Portal
-                  </Link>
-                </Button>
+                  </span>
+                  <Lock className="w-4 h-4 text-zinc-600 group-hover:text-white transition-colors" />
+                </Link>
 
                 <RequestDemoButton asChild>
-                  <Button className="w-full h-12 rounded-xl bg-primary text-black hover:bg-primary/90 font-bold">
-                    Request a Demo
-                  </Button>
+                  <button className="w-full py-6 rounded-2xl bg-[#FF7404] hover:bg-[#FF8520] text-black font-black uppercase tracking-widest text-sm shadow-[0_0_40px_-10px_rgba(255,116,4,0.3)] transition-all transform hover:scale-[1.02]">
+                    Speak With Our Team
+                  </button>
                 </RequestDemoButton>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         )}
