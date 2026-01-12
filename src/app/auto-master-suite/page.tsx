@@ -778,8 +778,6 @@ export default function AutoMasterSuiteHub() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto font-bold lowercase">
                         {[
-                            { id: "epbB8eNUCfw" },
-                            { id: "1jCd0Whojh4" },
                             { id: "E1o2JTHlR7o" },
                             { id: "UssAxtB8DG4" }
                         ].map((video, i) => (

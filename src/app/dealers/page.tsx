@@ -481,44 +481,7 @@ export default function DealerHub() {
                         ))}
                     </div>
 
-                    {/* Video Testimonials */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            { id: "epbB8eNUCfw", name: "Cody Rutledge", role: "General Manager", quote: "It makes us better at being humans." },
-                            { id: "1jCd0Whojh4", name: "Cody Rutledge", role: "General Manager", quote: "We've closed deals we thought were long gone." },
-                            { id: "E1o2JTHlR7o", name: "Jo DaBrowski", role: "General Manager", quote: "VisQuanta gets to leads before anyone else." },
-                            { id: "UssAxtB8DG4", name: "Jone McWhirter", role: "General Manager", quote: "Actual sales, not fluff." },
-                        ].map((video, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="flex flex-col gap-4"
-                            >
-                                <div className="aspect-[9/16] relative rounded-2xl overflow-hidden border border-white/10 bg-[#0A0A0A] shadow-2xl">
-                                    <iframe
-                                        src={`https://www.youtube.com/embed/${video.id}?modestbranding=1&rel=0`}
-                                        className="absolute inset-0 w-full h-full"
-                                        title={video.name}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    />
-                                </div>
-                                <div className="px-2">
-                                    <p className="text-white font-bold text-lg leading-tight mb-2">"{video.quote}"</p>
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-1 h-8 bg-[#FF7404]" />
-                                        <div>
-                                            <div className="text-xs font-bold text-white uppercase">{video.name}</div>
-                                            <div className="text-[10px] text-zinc-400 font-mono italic">{video.role}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+
                 </div>
             </section>
 

@@ -20,14 +20,6 @@ const testimonials = [
         quote: "The only platform that actually understands the automotive sales cycle from end to end. We've replaced several disjointed tools with VisQuanta, and our store has never run smoother. Actual sales, not fluff.",
         stars: 5,
         image: "/testimonials/placeholder-2.jpg" // Placeholder
-    },
-    {
-        name: "Cody Rutledge",
-        role: "General Manager",
-        dealer: "Street Smart Auto Brokers",
-        quote: "Absolutely amazing. Our team thought it was one of the managers talking, not AI. That's how real it feels. We've closed deals we thought were long gone.",
-        stars: 5,
-        image: "/testimonials/placeholder-3.jpg" // Placeholder
     }
 ];
 

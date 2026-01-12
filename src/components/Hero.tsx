@@ -222,15 +222,35 @@ function MobileCardCarousel() {
    MAIN HERO COMPONENT
    ========================================================================== */
 export default function Hero() {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
-    <section className="relative min-h-screen flex flex-col pt-20 bg-background overflow-hidden">
+    <section className="relative min-h-screen flex flex-col pt-20 bg-[#050505] overflow-hidden">
+      {/* Layer 1: Solid base background color */}
+      <div className="absolute inset-0 bg-[#050505]" />
+
+      {/* Layer 2: CSS gradient applied behind the wireframe */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#080808] to-[#030303]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_80%_50%,rgba(20,20,25,1),transparent)]" />
+
+      {/* Layer 3: Wireframe image - scaled up to fill space */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <Image
+          src="/images/wireframes/5.jpeg"
+          alt=""
+          fill
+          priority
+          className="object-cover opacity-50 scale-125 origin-center translate-x-[10%]"
+          style={{ objectPosition: '60% center' }}
+        />
+      </div>
+
+      {/* Layer 4: Gradient overlays for text readability (left side darker) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/60 pointer-events-none" />
+
       {/* Background - Technical Grid & Ambient Light */}
-      <div className="absolute inset-0 bg-enterprise-grid opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-enterprise-grid opacity-15 pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_-100px,#ff74041a,transparent)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,116,4,0.05)_0%,rgba(5,5,5,0)_50%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--background)_100%)] pointer-events-none" />
 
       <div className="container-wide w-full flex-1 flex flex-col justify-center relative z-10 pt-8 pb-12 lg:pt-12 lg:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center">
@@ -386,144 +406,8 @@ export default function Hero() {
               ================================================================ */}
 
 
-          {/* DESKTOP 3D CARD STACK - Only visible at lg and above */}
-          {/* ⚠️ THIS ENTIRE BLOCK IS UNCHANGED FROM ORIGINAL ⚠️ */}
-          <div className="hidden lg:flex lg:col-span-6 relative h-[600px] items-center justify-center -mr-20 lg:-mr-32 perspective-[2500px] pointer-events-auto z-10 scale-75 lg:scale-90 origin-center lg:origin-right">
-
-            {/* Ambient Glow backing the cards */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ff7404]/10 rounded-full blur-[120px] pointer-events-none" />
-
-            {cardData.map((card, i) => {
-              const isHovered = hoveredId === card.id;
-              const isAnyHovered = hoveredId !== null;
-
-              return (
-                <motion.div
-                  key={card.id}
-                  onMouseEnter={() => setHoveredId(card.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  initial={{ opacity: 0, y: 80, rotateX: 25 }}
-                  whileInView={{
-                    opacity: 1,
-                    rotateX: 0,
-                    x: card.initialX,
-                    y: isHovered ? card.initialY - 30 : card.initialY,
-                    rotateZ: isHovered ? 0 : card.rotate,
-                    z: isHovered ? 400 : (isAnyHovered ? -150 : 0),
-                    scale: isHovered ? 1.08 : 1
-                  }}
-                  viewport={{ once: true }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 90,
-                    damping: 22,
-                    delay: 0.2 + (card.delay * 1.5)
-                  }}
-                  className={`absolute w-[340px] rounded-[3rem] cursor-pointer origin-center group
-                    ${isHovered ? 'z-50' : 'z-10'}
-                  `}
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
-                  <div className={`relative h-[460px] rounded-[3rem] p-px overflow-hidden transition-all duration-700
-                    ${isHovered ? 'bg-gradient-to-br from-[#ff7404] to-[#ff7404]/20' : 'bg-white/10'}
-                  `}>
-                    {/* Inner Content Area */}
-                    <div className="relative h-full w-full bg-[#0d0d0d] rounded-[2.95rem] p-8 flex flex-col overflow-hidden">
-
-                      {/* Glossy Top Shimmer */}
-                      <div className="absolute top-0 left-0 right-0 h-44 bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none" />
-
-                      {/* THE VISUAL SURFACE */}
-                      <div className="relative w-full h-48 rounded-[2rem] bg-black/40 border border-white/5 mb-8 flex items-center justify-center overflow-hidden">
-                        {/* Abstract Data Texture or Custom Image */}
-                        {card.image ? (
-                          <img
-                            src={card.image}
-                            alt={card.title}
-                            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500
-                              ${isHovered ? 'opacity-100 mix-blend-normal saturate-100' : 'opacity-100 mix-blend-normal saturate-100'}
-                              contrast-125
-                            `}
-                          />
-                        ) : (
-                          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-                        )}
-
-                        <div className={`absolute inset-0 bg-gradient-to-br from-[#ff7404]/10 via-transparent to-transparent transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-20'}`} />
-
-                        {!card.image && (
-                          <>
-                            {/* Inner Glow Center */}
-                            <div className={`absolute w-32 h-32 bg-[#ff7404]/20 rounded-full blur-3xl transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
-
-                            <motion.div
-                              animate={isHovered ? { scale: 1.15, rotate: [0, 8, -8, 0] } : {}}
-                              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                              className="relative z-10"
-                            >
-                              <card.icon className={`w-20 h-20 transition-all duration-500 ${isHovered ? 'text-[#ff7404] drop-shadow-[0_0_20px_rgba(255,116,4,0.4)]' : 'text-white/20'}`} />
-                            </motion.div>
-                          </>
-                        )}
-
-                        {/* Performance Line Animation */}
-                        <motion.div
-                          animate={{ x: [-150, 350] }}
-                          transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-                          className="absolute bottom-12 left-0 w-32 h-px bg-gradient-to-r from-transparent via-[#ff7404]/40 to-transparent"
-                        />
-                      </div>
-
-                      {/* Text Group */}
-                      <div className="mb-6">
-                        <div className="flex items-center justify-between mb-3">
-                          <span className={`text-[10px] font-black uppercase tracking-[0.25em] transition-colors duration-500 ${isHovered ? 'text-[#ff7404]' : 'text-white/30'}`}>
-                            {card.label}
-                          </span>
-                          {isHovered && (
-                            <motion.span
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              className="text-[10px] text-[#ff7404] font-black uppercase tracking-widest flex items-center gap-1"
-                            >
-                              Deploying <Zap className="w-3 h-3 fill-[#ff7404]" />
-                            </motion.span>
-                          )}
-                        </div>
-                        <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">
-                          {card.title}
-                        </h3>
-                        <p className="text-white/40 text-[13px] leading-relaxed font-medium">
-                          {card.description}
-                        </p>
-                      </div>
-
-                      {/* PRODUCT BUTTONS (Card-specific) */}
-                      <div className="mt-auto flex items-center gap-2">
-                        <Link
-                          href={card.link || '#'}
-                          className={`flex-1 flex items-center justify-center text-center py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300
-                                  ${isHovered ? 'bg-[#ff7404] text-white shadow-[0_10px_20px_rgba(255,116,4,0.3)]' : 'bg-white/5 text-white/40 hover:bg-white/10'}
-                                `}
-                        >
-                          Explore Module
-                        </Link>
-                        <Link
-                          href={card.link || '#'}
-                          className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
-                          aria-label="Go to module"
-                        >
-                          <ArrowRight className="w-4 h-4 text-white/40" />
-                        </Link>
-                      </div>
-
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-          {/* ⚠️ END DESKTOP 3D CARD STACK ⚠️ */}
+          {/* Right side spacer for layout balance on desktop */}
+          <div className="hidden lg:block lg:col-span-6" />
 
         </div>
       </div>

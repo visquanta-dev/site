@@ -77,14 +77,7 @@ const testimonials: Testimonial[] = [
     metric: "Smoother",
     metricLabel: "Store operations"
   },
-  {
-    quote: "Our team thought it was one of the managers talking, not AI. We've closed deals we thought were long gone.",
-    name: "Cody Rutledge",
-    title: "General Manager",
-    company: "Street Smart Auto Brokers",
-    metric: "100%",
-    metricLabel: "Human feel"
-  }
+
 ];
 
 // Generate Review Schema for SEO

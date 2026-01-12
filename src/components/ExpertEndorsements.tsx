@@ -3,8 +3,6 @@
 import { motion } from 'framer-motion';
 
 const videos = [
-    { id: "epbB8eNUCfw", title: "It Makes Us Better at Being Humans" },
-    { id: "1jCd0Whojh4", title: "VisQuanta AI: A Game-Changer In the Auto Industry" },
     { id: "E1o2JTHlR7o", title: "Jo DaBrowski on How VisQuanta's AI Transformed Their Dealership's Sales Process" },
     { id: "UssAxtB8DG4", title: "A Seamless AI Solution for Dealerships" }
 ];

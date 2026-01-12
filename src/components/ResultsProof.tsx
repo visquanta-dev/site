@@ -48,14 +48,6 @@ const testimonials = [
     store: "Seth Wadley Ford PV",
     rating: 5.0,
     image: "/testimonials/jone-mcwhirter.png",
-  },
-  {
-    quote: "Absolutely amazing. Our team thought it was one of the managers talking, not AI. That's how real it feels. We've closed deals we thought were long gone.",
-    name: "Cody Rutledge",
-    role: "GM",
-    store: "Street Smart Auto Brokers",
-    rating: 5.0,
-    image: "/testimonials/cody-rutledge.png",
   }
 ];
 
@@ -161,51 +153,7 @@ export default function ResultsProof() {
           ))}
         </motion.div>
 
-        {/* Expert Endorsements Videos */}
 
-        {/* Desktop Grid (hidden on mobile) */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {[
-            { id: "epbB8eNUCfw", title: "It Makes Us Better at Being Humans" },
-            { id: "1jCd0Whojh4", title: "Cody Rutledge Recommendation" },
-            { id: "E1o2JTHlR7o", title: "Jo DaBrowski Recommendation" },
-            { id: "UssAxtB8DG4", title: "Jone McWhirter Recommendation" }
-          ].map((video, i) => (
-            <motion.div
-              key={i}
-              variants={itemVariants}
-              className="group relative"
-            >
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 bg-[#0A0A0A] shadow-2xl">
-                <iframe
-                  src={`https://www.youtube.com/embed/${video.id}?modestbranding=1&rel=0`}
-                  className="absolute inset-0 w-full h-full"
-                  title={video.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Mobile Carousel (visible only on mobile) */}
-        <div className="md:hidden">
-          <MobileTestimonialCarousel
-            videos={[
-              { id: "epbB8eNUCfw", title: "It Makes Us Better at Being Humans" },
-              { id: "1jCd0Whojh4", title: "Cody Rutledge Recommendation" },
-              { id: "E1o2JTHlR7o", title: "Jo DaBrowski Recommendation" },
-              { id: "UssAxtB8DG4", title: "Jone McWhirter Recommendation" }
-            ]}
-          />
-        </div>
 
       </div>
 

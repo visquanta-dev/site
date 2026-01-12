@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { CalendlyModalProvider } from "@/components/CalendlyModal";
 import SmoothScroll from "@/components/ui/SmoothScroll";
-import FloatingShortsWidget from "@/components/FloatingShortsWidget";
+
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
@@ -37,7 +37,7 @@ export default function RootLayout({
         <SmoothScroll>
           <CalendlyModalProvider calendlyUrl={CALENDLY_URL}>
             {children}
-            <FloatingShortsWidget />
+
             <Toaster />
           </CalendlyModalProvider>
         </SmoothScroll>

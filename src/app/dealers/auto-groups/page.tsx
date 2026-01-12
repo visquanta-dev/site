@@ -1019,42 +1019,7 @@ export default function AutoGroupsPage() {
                 </div>
             </section>
 
-            {/* 4.5 VIDEO TESTIMONIALS - SOCIAL PROOF */}
-            <section className="py-32 bg-[#020202] border-t border-white/5">
-                <div className="container px-4 mx-auto">
-                    <div className="text-center max-w-3xl mx-auto mb-20">
-                        <h2 className="text-4xl md:text-6xl font-black text-white mb-6">Expert <br /><span className="text-[#FF7404]">Endorsements.</span></h2>
-                        <p className="text-zinc-500 text-lg">The world's leading automotive groups run on AutoMaster Suite.</p>
-                    </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-bold lowercase">
-                        {[
-                            { id: "epbB8eNUCfw" },
-                            { id: "1jCd0Whojh4" },
-                            { id: "E1o2JTHlR7o" },
-                            { id: "UssAxtB8DG4" }
-                        ].map((video, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="relative aspect-[9/16] rounded-[2rem] overflow-hidden border border-white/10 bg-[#0A0A0A] shadow-3xl hover:border-[#FF7404]/30 transition-all group"
-                            >
-                                <iframe
-                                    src={`https://www.youtube.com/embed/${video.id}?modestbranding=1&rel=0`}
-                                    className="absolute inset-0 w-full h-full"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                            </motion.div>
-                        ))}
-                    </div>
-
-                </div>
-            </section>
 
             {/* 5. CALCULATOR */}
             <DealerCalculator />
