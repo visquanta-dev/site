@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, MessageSquare, Zap, CheckCircle2, Bot } from 'lucide-react';
+import { ArrowRight, Smartphone, MessageCircle, Info } from 'lucide-react';
 import Link from 'next/link';
 import { useRef } from 'react';
 
@@ -12,165 +12,215 @@ export default function HeroSection() {
         offset: ["start start", "end start"]
     });
 
-    const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+    const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     return (
         <section ref={containerRef} className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden bg-[#020202]">
-            {/* Background Elements */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:64px_64px]" />
-
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#FF7404]/5 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none" />
+            {/* Premium Background Atmosphere */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:32px_32px] opacity-20" />
+            <div className="absolute -top-[20%] right-[-10%] w-[800px] h-[800px] bg-[#FF7404]/5 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute bottom-[-20%] left-[-10%] w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[150px] pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                <div className="grid lg:grid-cols-2 gap-20 items-center">
 
                     {/* Left Column: Copy */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="space-y-8"
+                        className="space-y-10"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md">
-                            <Bot className="w-4 h-4 text-[#FF7404]" />
-                            <span className="text-zinc-400 text-xs font-bold uppercase tracking-widest">AI Sales Assistant</span>
+                        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-xl group cursor-default hover:bg-white/[0.05] transition-colors">
+                            <div className="flex items-center gap-2 relative">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF7404] opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF7404]"></span>
+                                </span>
+                                <span className="text-zinc-300 text-xs font-bold uppercase tracking-[0.2em]">SMS-First Technology</span>
+                            </div>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.1] tracking-tight">
-                            Turn Site Traffic into <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#FF9040]">
-                                Qualified Deals
-                            </span>
-                        </h1>
+                        <div className="relative">
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-6">
+                                Don't just chat. <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-[#FFB070]">
+                                    Text Them.
+                                </span>
+                            </h1>
+                            <p className="text-xl md:text-2xl text-zinc-400 max-w-xl leading-relaxed font-light">
+                                Web chats die when the tab closes. Our widget moves the conversation to
+                                <span className="text-white font-medium"> SMS instantly</span>,
+                                capturing real mobile numbers and keeping the deal alive forever.
+                            </p>
+                        </div>
 
-                        <p className="text-xl text-zinc-400 max-w-xl leading-relaxed">
-                            Stop letting 98% of your visitors leave without a trace. Our AI Widget engages every visitor instantly, answers questions, and books appointments directly into your CRM.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                            <Link href="/book-demo" className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#FF7404] text-black font-bold rounded-xl overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_40px_-10px_rgba(255,116,4,0.5)]">
-                                <span className="relative z-10">Get Your Widget</span>
+                        <div className="flex flex-col sm:flex-row gap-5">
+                            <Link href="/book-demo" className="group relative inline-flex items-center justify-center gap-3 px-8 py-5 bg-[#FF7404] text-black font-bold text-lg rounded-2xl overflow-hidden transition-all hover:scale-[1.02] shadow-[0_0_50px_-15px_rgba(255,116,4,0.5)]">
+                                <span className="relative z-10">Switch to SMS First</span>
                                 <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                             </Link>
-
-                            <Link href="#demo" className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 text-white font-bold rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                                See Live Demo
-                            </Link>
                         </div>
 
-                        <div className="flex items-center gap-8 pt-6 border-t border-white/10">
+                        <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/5">
                             {[
-                                { label: "Response Time", value: "< 2s" },
-                                { label: "Availability", value: "24/7/365" },
-                                { label: "CRM Sync", value: "Instant" }
+                                { label: "Open Rate", value: "98%" },
+                                { label: "Valid Phones", value: "100%" },
+                                { label: "Response Time", value: "< 90s" }
                             ].map((stat, i) => (
-                                <div key={i}>
-                                    <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                                    <div className="text-zinc-500 text-xs uppercase tracking-wider">{stat.label}</div>
+                                <div key={i} className="group cursor-default">
+                                    <div className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 mb-1 group-hover:to-white transition-all">{stat.value}</div>
+                                    <div className="text-zinc-600 text-xs font-bold uppercase tracking-widest group-hover:text-[#FF7404] transition-colors">{stat.label}</div>
                                 </div>
                             ))}
                         </div>
                     </motion.div>
 
-                    {/* Right Column: Visual */}
+                    {/* Right Column: Visual - Desktop to Mobile Transformation */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.2 }}
                         style={{ y, opacity }}
-                        className="relative hidden lg:block"
+                        className="relative h-[600px] w-full hidden lg:block"
                     >
-                        <div className="relative z-10 bg-[#0A0A0A] border border-white/10 rounded-3xl p-6 shadow-2xl shadow-black/50">
-                            {/* Fake Browser Header */}
-                            <div className="flex items-center gap-2 mb-6 border-b border-white/5 pb-4">
-                                <div className="w-3 h-3 rounded-full bg-red-500/20" />
-                                <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
-                                <div className="w-3 h-3 rounded-full bg-green-500/20" />
-                                <div className="ml-4 h-6 w-full max-w-[300px] bg-white/5 rounded-full" />
-                            </div>
+                        {/* Connection Line */}
+                        <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0" viewBox="0 0 600 400">
+                            <motion.path
+                                d="M 150 200 C 250 200, 350 200, 450 200"
+                                stroke="url(#gradient)"
+                                strokeWidth="2"
+                                fill="none"
+                                strokeDasharray="10 10"
+                                initial={{ pathLength: 0, opacity: 0 }}
+                                animate={{ pathLength: 1, opacity: 0.3 }}
+                                transition={{ duration: 1.5, delay: 0.5 }}
+                            />
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stopColor="#333" />
+                                    <stop offset="50%" stopColor="#FF7404" />
+                                    <stop offset="100%" stopColor="#333" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
 
-                            <div className="flex gap-6">
-                                {/* Mock Website Content */}
-                                <div className="flex-1 space-y-4 opacity-30">
-                                    <div className="h-40 bg-white/10 rounded-xl w-full" />
-                                    <div className="h-4 bg-white/10 rounded w-3/4" />
-                                    <div className="h-4 bg-white/10 rounded w-1/2" />
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="h-24 bg-white/10 rounded-xl" />
-                                        <div className="h-24 bg-white/10 rounded-xl" />
-                                    </div>
-                                </div>
-
-                                {/* The Widget Popup */}
-                                <div className="w-[320px] bg-[#111] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-[0_0_50px_-20px_rgba(255,116,4,0.3)] transform translate-y-8">
-                                    {/* Chat Header */}
-                                    <div className="p-4 bg-gradient-to-r from-[#FF7404] to-[#ff9040] flex items-center gap-3">
-                                        <div className="relative">
-                                            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                                                <Bot className="w-6 h-6 text-white" />
-                                            </div>
-                                            <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#FF7404] rounded-full" />
-                                        </div>
-                                        <div>
-                                            <div className="text-white font-bold text-sm">VisQuanta AI</div>
-                                            <div className="text-white/80 text-xs">Online & Ready to help</div>
-                                        </div>
-                                    </div>
-
-                                    {/* Chat Body */}
-                                    <div className="p-4 space-y-4 min-h-[300px] bg-[#111]">
-                                        <div className="flex gap-3">
-                                            <div className="w-8 h-8 rounded-full bg-[#FF7404]/10 flex items-center justify-center shrink-0">
-                                                <Bot className="w-4 h-4 text-[#FF7404]" />
-                                            </div>
-                                            <div className="p-3 bg-white/5 rounded-2xl rounded-tl-none border border-white/5 text-sm text-zinc-300">
-                                                Welcome to Premier Auto! Are you looking to buy, sell, or service a vehicle today?
-                                            </div>
-                                        </div>
-
-                                        <div className="flex gap-3 justify-end">
-                                            <div className="p-3 bg-[#FF7404] rounded-2xl rounded-tr-none text-sm text-black font-medium">
-                                                I'm interested in the 2024 SUV shown on the homepage.
-                                            </div>
-                                        </div>
-
-                                        <div className="flex gap-3">
-                                            <div className="w-8 h-8 rounded-full bg-[#FF7404]/10 flex items-center justify-center shrink-0">
-                                                <Bot className="w-4 h-4 text-[#FF7404]" />
-                                            </div>
-                                            <div className="p-3 bg-white/5 rounded-2xl rounded-tl-none border border-white/5 text-sm text-zinc-300">
-                                                Great choice! That model just arrived. Would you like to check availability or schedule a test drive?
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Input Area */}
-                                    <div className="p-4 border-t border-white/10">
-                                        <div className="h-10 bg-white/5 rounded-full border border-white/10 flex items-center px-4 text-xs text-zinc-500">
-                                            Type your message...
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Floating Elements */}
+                        {/* Desktop Widget Card (Left) */}
                         <motion.div
-                            animate={{ y: [0, -20, 0] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute -top-12 -right-8 p-4 bg-[#1a1a1a] border border-white/10 rounded-2xl shadow-xl flex items-center gap-3"
+                            initial={{ x: -50, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            className="absolute top-1/2 left-0 -translate-y-1/2 w-[280px] bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl p-4 z-10"
                         >
-                            <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
-                                <CheckCircle2 className="w-5 h-5 text-green-500" />
+                            <div className="flex items-center gap-3 mb-4 border-b border-white/5 pb-3">
+                                <div className="w-8 h-8 rounded-full bg-[#FF7404] flex items-center justify-center">
+                                    <MessageCircle className="w-4 h-4 text-black" />
+                                </div>
+                                <div>
+                                    <div className="text-xs font-bold text-white">Dealer Chat</div>
+                                    <div className="text-[10px] text-zinc-500">Online</div>
+                                </div>
                             </div>
-                            <div>
-                                <div className="text-white font-bold text-sm">Lead Captured</div>
-                                <div className="text-zinc-500 text-xs">Sent to CRM instantly</div>
+                            <div className="bg-white/5 rounded-lg p-3 mb-4">
+                                <div className="text-[10px] text-zinc-400 mb-1">VisQuanta AI</div>
+                                <div className="text-xs text-zinc-200">Hi! I can text you our inventory list. What's your mobile number?</div>
+                            </div>
+                            <div className="flex gap-2">
+                                <div className="flex-1 h-8 bg-black border border-white/10 rounded-lg flex items-center px-3 text-[10px] text-zinc-500">
+                                    555-0123
+                                </div>
+                                <div className="h-8 w-8 bg-[#FF7404] rounded-lg flex items-center justify-center">
+                                    <ArrowRight className="w-3 h-3 text-black" />
+                                </div>
+                            </div>
+
+                            {/* Badge */}
+                            <div className="absolute -top-3 -right-3 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-[9px] text-zinc-400 font-mono">
+                                WEB
                             </div>
                         </motion.div>
+
+                        {/* Mobile Phone (Right) */}
+                        <motion.div
+                            initial={{ x: 50, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.8 }}
+                            className="absolute top-1/2 right-0 -translate-y-1/2 w-[260px] h-[500px] bg-black border-[6px] border-[#1a1a1a] rounded-[3rem] shadow-[0_0_100px_-20px_rgba(255,116,4,0.3)] z-20 overflow-hidden"
+                        >
+                            {/* Dynamic Island */}
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-[#1a1a1a] rounded-b-xl z-30" />
+
+                            {/* Screen Content */}
+                            <div className="w-full h-full bg-zinc-950 p-4 pt-12 flex flex-col">
+                                <div className="text-center mb-6">
+                                    <div className="w-12 h-12 rounded-full bg-zinc-800 mx-auto mb-2 flex items-center justify-center">
+                                        <Smartphone className="w-5 h-5 text-zinc-400" />
+                                    </div>
+                                    <div className="text-[10px] text-zinc-500 font-medium">Messages • Now</div>
+                                </div>
+
+                                <motion.div
+                                    initial={{ y: 20, opacity: 0, scale: 0.9 }}
+                                    animate={{ y: 0, opacity: 1, scale: 1 }}
+                                    transition={{ delay: 1.5, type: "spring" }}
+                                    className="bg-[#222] rounded-2xl p-3 rounded-tl-none mb-2 max-w-[85%]"
+                                >
+                                    <div className="text-xs text-zinc-200 leading-relaxed">
+                                        Here is the link to our SUV inventory! 🚙
+                                        <span className="block text-[#FF7404] underline mt-1">visquanta.com/suvs</span>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ y: 20, opacity: 0, scale: 0.9 }}
+                                    animate={{ y: 0, opacity: 1, scale: 1 }}
+                                    transition={{ delay: 2.2, type: "spring" }}
+                                    className="bg-[#FF7404] rounded-2xl p-3 rounded-tr-none self-end max-w-[85%] text-black"
+                                >
+                                    <div className="text-xs font-medium leading-relaxed">
+                                        Thanks! Do you have that black Tahoe I saw online?
+                                    </div>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ y: 20, opacity: 0, scale: 0.9 }}
+                                    animate={{ y: 0, opacity: 1, scale: 1 }}
+                                    transition={{ delay: 3.5, type: "spring" }}
+                                    className="bg-[#222] rounded-2xl p-3 rounded-tl-none mt-2 max-w-[85%]"
+                                >
+                                    <div className="text-xs text-zinc-200 leading-relaxed">
+                                        Yes, we do! It's on the lot now. Want me to send a walkaround video? 🎥
+                                    </div>
+                                </motion.div>
+
+                                {/* Keyboard */}
+                                <div className="mt-auto bg-[#1a1a1a] rounded-t-xl -mx-4 -mb-4 p-4 h-48 opacity-50">
+                                    <div className="w-full h-8 bg-zinc-800 rounded mb-2" />
+                                    <div className="grid grid-cols-10 gap-1">
+                                        {[...Array(10)].map((_, i) => <div key={i} className="h-8 bg-zinc-800 rounded" />)}
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Glowing Connection Dot */}
+                        <motion.div
+                            animate={{
+                                offsetDistance: "100%",
+                                opacity: [0, 1, 0]
+                            }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "linear",
+                                delay: 1
+                            }}
+                            style={{ offsetPath: "path('M 150 200 C 250 200, 350 200, 450 200')" }}
+                            className="absolute w-3 h-3 bg-[#FF7404] rounded-full shadow-[0_0_10px_#FF7404] z-50"
+                        />
+
                     </motion.div>
                 </div>
             </div>

@@ -9,8 +9,8 @@ import FAQ from '@/components/website-widget/FAQ';
 import CTA from '@/components/website-widget/CTA';
 
 export const metadata: Metadata = {
-    title: 'AI Website Widget | 24/7 Lead Capture | VisQuanta',
-    description: 'Turn website visitors into qualified leads instantly. Our AI website widget engages, qualifies, and books appointments 24/7 without human intervention.',
+    title: 'SMS-First Website Widget | Capture Mobile Numbers Instantly | VisQuanta',
+    description: 'The only automotive chat widget designed to move conversations to SMS immediately. Capture real phone numbers, get 98% open rates, and close deals via text.',
     alternates: {
         canonical: '/website-widget',
     },
