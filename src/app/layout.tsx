@@ -52,7 +52,7 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "VisQuanta",
               "url": "https://visquanta.com",
-              "logo": "https://visquanta.com/images/logos/visquanta_logo.png",
+              "logo": "https://visquanta.com/images/visquanta-logo-white.png",
               "contactPoint": {
                 "@type": "ContactPoint",
                 "telephone": "+1-786-686-6554",
