@@ -300,8 +300,8 @@ function PhoneMockup() {
             >
               <div
                 className={`max-w-[85%] px-3 py-2 rounded-2xl text-[11px] leading-relaxed ${msg.type === 'user'
-                    ? 'bg-gray-700 text-white rounded-bl-md'
-                    : 'bg-orange-500 text-white rounded-br-md'
+                  ? 'bg-gray-700 text-white rounded-bl-md'
+                  : 'bg-orange-500 text-white rounded-br-md'
                   }`}
               >
                 {msg.text}
@@ -813,42 +813,59 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 function FinalCTASection() {
   return (
-    <section className="py-24 lg:py-32 bg-orange-500">
-      <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+    <section className="py-20 lg:py-32 px-4 bg-[#0a0a0a]">
+      <div className="max-w-6xl mx-auto relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#111] shadow-2xl">
 
-        {/* Icon */}
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-black/10 mb-8">
-          <MessageSquare className="w-8 h-8 text-black" />
-        </div>
+        {/* Ambient Glows */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[400px] bg-orange-500/20 blur-[120px] opacity-50 pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-orange-500/10 blur-[100px] opacity-30 pointer-events-none" />
 
-        {/* Headline */}
-        <h2 className="text-4xl lg:text-5xl font-bold text-black mb-6">
-          Stop Losing Leads to
-          <br />
-          <span className="text-white">Slow Responses</span>
-        </h2>
+        {/* Subtle Grid Pattern Overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
 
-        {/* Subheadline */}
-        <p className="text-xl text-black/70 mb-10 max-w-2xl mx-auto">
-          Install VisQuanta's SMS First Widget today and start capturing
-          3x more leads from your existing traffic.
-        </p>
+        <div className="relative z-10 flex flex-col items-center text-center py-20 px-6 lg:py-28">
+          {/* Icon Badge */}
+          <div className="mb-8 p-4 rounded-2xl bg-white/5 border border-white/10 shadow-2xl backdrop-blur-md rotate-3 hover:rotate-6 transition-transform duration-500">
+            <MessageSquare className="w-10 h-10 text-orange-500" />
+          </div>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/book-demo"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black text-white font-semibold rounded-lg hover:bg-gray-900 transition-all duration-300 group"
-          >
-            Speak With Our Team
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/20 text-black font-semibold rounded-lg hover:bg-white/30 transition-all duration-300"
-          >
-            Contact Sales
-          </Link>
+          {/* Headline */}
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-tight">
+            Stop losing leads to <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600">
+              slow responses.
+            </span>
+          </h2>
+
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-zinc-400 mb-12 max-w-2xl leading-relaxed font-light">
+            Install VisQuanta's SMS First Widget today and start capturing
+            <span className="text-white font-medium"> 3x more leads</span> from your existing traffic.
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
+            <Link
+              href="/book-demo"
+              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-orange-500 hover:bg-orange-400 text-black font-bold text-lg rounded-xl transition-all duration-300 shadow-[0_0_40px_-10px_rgba(249,115,22,0.4)] hover:shadow-[0_0_60px_-10px_rgba(249,115,22,0.6)]"
+            >
+              Speak With Our Team
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 text-white border border-white/10 font-semibold text-lg rounded-xl hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+            >
+              Contact Sales
+            </Link>
+          </div>
         </div>
       </div>
     </section>
