@@ -1,9 +1,11 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ShieldCheck, Users, ArrowRight, Linkedin, Mail, Calendar } from 'lucide-react';
+import { ShieldCheck, ArrowRight, Linkedin, Mail, Calendar } from 'lucide-react';
 import { useRef } from 'react';
 import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { RequestDemoButton } from '@/components/CalendlyModal';
 
 interface TeamMember {
     name: string;
@@ -21,54 +23,62 @@ export default function HeroSection() {
         target: containerRef,
         offset: ["start start", "end start"]
     });
+
+    // Parallax effects
     const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-    const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     return (
-        <section ref={containerRef} className="relative min-h-[90vh] flex items-center bg-[#030303] overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-36 lg:pt-44">
-            {/* Dynamic Background Effects */}
+        <section ref={containerRef} className="relative min-h-[90vh] flex items-center bg-[#050505] overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-36 lg:pt-44">
+
+            {/* ====================
+                BACKGROUND LAYERS (North Star Compliant)
+               ==================== */}
+            <div className="absolute inset-0 bg-[#050505]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#080808] to-[#030303]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_80%_50%,rgba(20,20,25,1),transparent)]" />
+
+            {/* Dynamic Text Background */}
             <motion.div style={{ y: y1, opacity }} className="absolute text-[20vw] font-bold text-white/[0.02] left-0 top-20 select-none pointer-events-none">
                 RESULTS
             </motion.div>
-            <motion.div style={{ y: y2, opacity }} className="absolute text-[20vw] font-bold text-white/[0.02] right-0 bottom-20 select-none pointer-events-none text-right">
-                DELIVERED
-            </motion.div>
 
             <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
+
+            {/* Ambient Light */}
             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#FF7404]/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
 
             <div className="container-wide relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16 items-center">
 
                 {/* Left Content */}
                 <div className="space-y-8 sm:space-y-10">
+
+                    {/* Eyebrow - North Star Style (Line + Text) */}
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md hover:border-[#FF7404]/50 transition-colors cursor-default"
+                        className="flex items-center gap-3"
                     >
-                        <ShieldCheck className="w-4 h-4 text-[#FF7404]" />
-                        <span className="text-xs font-bold text-white uppercase tracking-widest">The VisQuanta Difference</span>
+                        <div className="h-px w-6 sm:w-8 bg-[#FF7404]/60" />
+                        <span className="text-[#FF7404] text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em]">
+                            The VisQuanta Difference
+                        </span>
                     </motion.div>
 
                     <div className="overflow-hidden">
                         <motion.h1
-                            initial={{ opacity: 0, y: 100 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.1] uppercase"
+                            initial="hidden"
+                            animate="visible"
+                            variants={{
+                                visible: { transition: { staggerChildren: 0.02 } }
+                            }}
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white tracking-tighter leading-[1.1]"
                         >
                             We Don't Just<br />
                             Give You a Login.<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#ff9e4d] relative inline-block">
-                                We deliver results.
-                                <motion.span
-                                    initial={{ scaleX: 0 }}
-                                    animate={{ scaleX: 1 }}
-                                    transition={{ delay: 0.8, duration: 0.8, ease: "circOut" }}
-                                    className="absolute -bottom-2 left-0 w-full h-2 bg-[#FF7404]/20 -skew-x-12"
-                                />
+                                We Deliver Results.
                             </span>
                         </motion.h1>
                     </div>
@@ -77,24 +87,35 @@ export default function HeroSection() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.6 }}
-                        className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-lg font-medium"
+                        className="text-base sm:text-lg md:text-xl text-muted-foreground/80 leading-relaxed max-w-lg font-medium"
                     >
                         The only car dealership AI backed by a dedicated team of automotive experts. Every conversation verified. Every lead maximized.
                     </motion.p>
 
+                    {/* CTA Group (NEW) */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="flex flex-col sm:flex-row gap-4 sm:gap-6"
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                        className="flex flex-col sm:flex-row gap-3 sm:gap-4"
                     >
-                        <Link href="/team" className="group relative px-8 py-5 bg-[#FF7404] text-black font-black uppercase text-sm tracking-widest rounded-xl overflow-hidden text-center inline-block">
-                            <span className="relative z-10 flex items-center justify-center gap-2 group-hover:gap-4 transition-all">
-                                Meet Your Team
-                                <ArrowRight className="w-4 h-4" />
-                            </span>
-                            <div className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
-                        </Link>
+                        <RequestDemoButton asChild>
+                            <Button
+                                className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border border-[#FF7404]/30 bg-[#FF7404]/10 hover:bg-[#FF7404]/20 hover:border-[#FF7404]/50 text-[#FF7404] hover:text-white transition-all shadow-[0_0_40px_-10px_rgba(255,116,4,0.1)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.3)]"
+                            >
+                                Speak With Our Team
+                            </Button>
+                        </RequestDemoButton>
+
+                        <Button
+                            asChild
+                            variant="outline"
+                            className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-white/10 hover:bg-white/5 bg-transparent text-white hover:text-white"
+                        >
+                            <Link href="#how-it-works">
+                                See How It Works
+                            </Link>
+                        </Button>
                     </motion.div>
 
                     {/* Trust Indicators */}
@@ -113,7 +134,7 @@ export default function HeroSection() {
                     </div>
                 </div>
 
-                {/* Mobile Visual Demo (NEW) */}
+                {/* Mobile Visual Demo */}
                 <div className="lg:hidden mt-8 sm:mt-12 flex justify-center">
                     <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
                         <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
@@ -129,7 +150,6 @@ export default function HeroSection() {
 
                 {/* Right Visual - Team Hierarchy */}
                 <div className="relative w-full hidden lg:flex items-center justify-center py-10">
-                    {/* Background Watermark */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
                         <span className="text-[12rem] font-black text-white/[0.02] tracking-tighter transform -rotate-12 whitespace-nowrap">
                             VISQUANTA

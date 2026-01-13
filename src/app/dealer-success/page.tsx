@@ -2,6 +2,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import FinalCTA from '@/components/custom-campaigns/FinalCTA';
 import HeroSection from '@/components/dealer-success/HeroSection';
+import UnifiedDashboard from '@/components/dealer-success/UnifiedDashboard';
 import HumanInLoop from '@/components/dealer-success/HumanInLoop';
 import TeamExpertise from '@/components/dealer-success/TeamExpertise';
 import TrainingSection from '@/components/dealer-success/TrainingSection';
@@ -19,6 +20,7 @@ export default function DealerSuccessPage() {
             <Navigation />
             <main>
                 <HeroSection />
+                <UnifiedDashboard />
                 <HumanInLoop />
                 <TeamExpertise />
                 <TrainingSection />

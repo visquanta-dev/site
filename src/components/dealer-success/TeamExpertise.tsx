@@ -71,16 +71,31 @@ export default function TeamExpertise() {
                         </div>
 
                         <div className="relative">
-                            {/* Abstract Image Placeholder for Team */}
-                            <div className="h-full min-h-[400px] rounded-3xl bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center p-8 space-y-6">
-                                <Award className="w-16 h-16 text-[#FF7404]/50 mb-4" />
-                                <h3 className="text-2xl font-bold text-white">Your Dedicated Account Manager</h3>
-                                <p className="text-white/50 max-w-sm mx-auto">
-                                    Every dealer gets a dedicated point of contact. No support tickets, no robots. Just a car person who knows your name and your store.
-                                </p>
-                                <Link href="/team" className="px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white text-sm font-bold uppercase tracking-widest hover:bg-white/10 transition-colors inline-block">
-                                    Meet The Team
-                                </Link>
+                            <div className="h-full min-h-[400px] rounded-3xl bg-[#0d0b0a] border border-white/10 flex flex-col items-center justify-center text-center p-8 space-y-6 relative overflow-hidden group hover:border-[#FF7404]/50 transition-colors duration-500">
+                                {/* Ambient Background */}
+                                <div className="absolute inset-0 bg-gradient-to-b from-[#FF7404]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                                <div className="relative z-10">
+                                    <div className="w-32 h-32 rounded-full border-2 border-[#FF7404] p-1 mx-auto mb-6 shadow-[0_0_30px_rgba(255,116,4,0.2)]">
+                                        <div className="w-full h-full rounded-full overflow-hidden bg-zinc-800 relative">
+                                            <img
+                                                src="https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61fc9b8fa6d06815ceb_charles%2Csnodgrass%2Cheadshot%2Cvisquanta.webp"
+                                                alt="Charles Snodgrass"
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+
+                                    </div>
+
+                                    <h3 className="text-2xl font-bold text-white mb-1">Charles Snodgrass</h3>
+                                    <p className="text-[#FF7404] text-sm font-bold uppercase tracking-widest mb-4">Director of Client Success</p>
+
+                                    <p className="text-white/50 max-w-sm mx-auto mb-8 border-t border-white/10 pt-4">
+                                        "I've sat in your seat. I know the grind. My job is to ensure VisQuanta delivers actual ROI, not just software."
+                                    </p>
+
+
+                                </div>
                             </div>
                         </div>
 
