@@ -148,6 +148,20 @@ const teamLayers: TeamLayer[] = [
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4d1ae44a7d738f878e7c6_20250806_173050-removebg-preview-modified.avif",
                 email: "jcabatingan@visquanta.com",
 
+            },
+            {
+                name: "Jose Medrano",
+                role: "Client Account Specialist",
+                image: "https://randomuser.me/api/portraits/men/45.jpg",
+                email: "jmedrano@visquanta.com",
+
+            },
+            {
+                name: "Jonas Saycon",
+                role: "Client Account Specialist",
+                image: "https://randomuser.me/api/portraits/men/52.jpg",
+                email: "jsaycon@visquanta.com",
+
             }
         ]
     }

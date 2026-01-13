@@ -204,15 +204,15 @@ export default function HeroSection() {
                                     badge: "Client Success"
                                 },
                                 {
-                                    name: "David Chen",
+                                    name: "Jose Medrano",
                                     role: "Client Account Specialist",
-                                    image: "https://randomuser.me/api/portraits/men/32.jpg",
+                                    image: "https://randomuser.me/api/portraits/men/45.jpg",
                                     badge: "Client Success"
                                 },
                                 {
-                                    name: "Paul Weber",
+                                    name: "Jonas Saycon",
                                     role: "Client Account Specialist",
-                                    image: "https://randomuser.me/api/portraits/men/86.jpg",
+                                    image: "https://randomuser.me/api/portraits/men/52.jpg",
                                     badge: "Client Success"
                                 }
                             ]
