@@ -103,43 +103,79 @@ export default function HeroSection() {
                             initial={{ x: -100, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.8, delay: 0.4 }}
-                            className="absolute top-[40%] left-0 -translate-y-1/2 w-[380px] bg-[#0A0A0A] border border-white/10 rounded-3xl shadow-2xl p-6 z-20"
+                            className="absolute top-[50%] left-0 -translate-y-1/2 w-[340px] bg-[#111111] border border-white/10 rounded-xl shadow-2xl overflow-hidden z-20 font-sans"
                         >
-                            {/* Badge */}
-                            <div className="absolute -top-3 -right-3 px-3 py-1 bg-[#1a1a1a] border border-white/10 rounded-lg text-[10px] text-[#FF7404] font-black font-mono uppercase tracking-widest shadow-xl">
-                                WEB
+                            {/* Header */}
+                            <div className="bg-[#1a1a2e] p-4 flex items-center justify-between border-b border-white/5">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10">
+                                        <img src="/images/team/member-placeholder.jpg" alt="Agent" className="w-full h-full object-cover" />
+                                        {/* Fallback if image missing is handled by standard img behavior or we can use a colored div */}
+                                    </div>
+                                    <div className="text-white font-medium text-[15px]">Have a question?</div>
+                                </div>
+                                <div className="text-white/50">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                                </div>
                             </div>
 
-                            <div className="flex items-center gap-4 mb-8">
-                                <div className="w-12 h-12 rounded-full bg-[#FF7404] flex items-center justify-center shadow-[0_0_20px_rgba(255,116,4,0.3)]">
-                                    <MessageCircle className="w-6 h-6 text-black fill-black" />
-                                </div>
-                                <div>
-                                    <div className="text-lg font-bold text-white leading-none mb-1.5">Dealer Chat</div>
-                                    <div className="flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_5px_#22c55e]" />
-                                        <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest">Online</span>
+                            <div className="p-5 space-y-4">
+                                {/* Welcome Message */}
+                                <div className="flex gap-3">
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden border border-white/10 mt-1">
+                                        <div className="w-full h-full bg-[#FF7404] flex items-center justify-center text-black font-bold text-xs">AI</div>
+                                    </div>
+                                    <div className="bg-[#1a1a2e] text-zinc-300 text-sm p-3 rounded-lg rounded-tl-none border-l-2 border-[#FF7404] leading-relaxed shadow-sm">
+                                        Enter your question below and a representative will get right back to you.
                                     </div>
                                 </div>
-                            </div>
 
-                            <div className="bg-[#151515] rounded-2xl p-5 mb-6 border-l-[3px] border-[#FF7404] relative">
-                                <div className="text-[9px] text-zinc-500 mb-2 font-black uppercase tracking-[0.15em]">VisQuanta AI</div>
-                                <div className="text-[15px] text-white font-medium leading-relaxed">
-                                    Hi! I can text you our inventory list. <br />
-                                    What's your mobile number?
+                                {/* Form Fields */}
+                                <div className="space-y-3 pt-2">
+                                    <input
+                                        type="text"
+                                        placeholder="Name"
+                                        className="w-full h-10 bg-[#1a1a1a] border border-white/10 rounded-md px-3 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-[#FF7404]/50 transition-colors"
+                                    />
+
+                                    <div className="relative">
+                                        <div className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-1 border-r border-white/10 pr-2 mr-2">
+                                            <span className="text-lg">🇺🇸</span>
+                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-500"><path d="m6 9 6 6 6-6" /></svg>
+                                        </div>
+                                        <input
+                                            type="tel"
+                                            placeholder="Phone"
+                                            className="w-full h-10 bg-[#1a1a1a] border border-white/10 rounded-md pl-16 px-3 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-[#FF7404]/50 transition-colors"
+                                        />
+                                    </div>
+
+                                    <textarea
+                                        placeholder="I want to know more"
+                                        rows={3}
+                                        className="w-full bg-[#1a1a1a] border border-white/10 rounded-md px-3 py-2 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-[#FF7404]/50 transition-colors resize-none"
+                                    />
                                 </div>
-                            </div>
 
-                            <div className="relative flex items-center gap-3">
-                                <input
-                                    type="text"
-                                    placeholder="555-0123"
-                                    className="flex-1 h-14 bg-[#050505] border border-white/10 rounded-2xl px-5 text-lg text-white placeholder:text-zinc-700 focus:outline-none focus:border-[#FF7404]/50 transition-colors tracking-widest"
-                                    disabled
-                                />
-                                <div className="h-14 w-14 bg-[#FF7404] rounded-2xl flex items-center justify-center shadow-lg shadow-[#FF7404]/20 hover:scale-105 transition-transform">
-                                    <ArrowRight className="w-6 h-6 text-black stroke-[3px]" />
+                                {/* Consent */}
+                                <div className="flex gap-2 items-start py-1">
+                                    <div className="mt-0.5 w-4 h-4 rounded border border-[#FF7404] bg-[#FF7404] flex items-center justify-center flex-shrink-0">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                                    </div>
+                                    <p className="text-[10px] text-zinc-500 leading-tight">
+                                        By submitting you agree to receive SMS or e-mails for the provided channel. Rates may be applied.
+                                    </p>
+                                </div>
+
+                                {/* Submit Button */}
+                                <button className="w-full h-10 bg-[#1a1a2e] hover:bg-[#232340] text-white rounded-md flex items-center justify-center gap-2 transition-colors font-medium border border-white/5">
+                                    <span>Send</span>
+                                    <Send className="w-3.5 h-3.5" />
+                                </button>
+
+                                {/* Footer */}
+                                <div className="text-center pt-1">
+                                    <span className="text-[10px] text-zinc-600">Powered by <span className="text-[#FF7404] font-semibold">VisQuanta</span></span>
                                 </div>
                             </div>
                         </motion.div>
