@@ -92,7 +92,7 @@ export default function Footer() {
               >
                 <Link href="/" className="inline-block group">
                   <Image
-                    src="/images/visquanta-logo-white.png"
+                    src="/images/logos/visquanta_logo.png"
                     alt="VisQuanta"
                     width={220}
                     height={55}
