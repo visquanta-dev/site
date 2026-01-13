@@ -7,15 +7,18 @@ import { useRef } from 'react';
 import MobilePhoneMockup from '../mobile/MobilePhoneMockup';
 
 // Exact scenario from the request
+// Exact scenario from the request
 const DEMO_SCENARIO = {
     id: 'sms-first-hero',
-    contactName: 'VisQuanta Motors',
-    contactRole: 'SALES',
-    avatarInitials: 'VM',
+    contactName: 'James (Web Widget)',
+    contactRole: 'SOURCE: WEBSITE WIDGET',
+    avatarInitials: 'JA',
     messages: [
-        { id: '1', sender: 'agent' as const, content: "Here is the link to our SUV inventory! 🚗", type: 'text' as const },
-        { id: '2', sender: 'user' as const, content: "Thanks! Do you have that black Tahoe I saw online?", type: 'text' as const },
-        { id: '3', sender: 'agent' as const, content: "Yes we do! It's on the lot now. Want me to send a walkaround video? 📹", type: 'text' as const }
+        { id: '1', sender: 'agent' as const, content: "Thanks for reaching out via our website, how can I help you today?", type: 'text' as const },
+        { id: '2', sender: 'user' as const, content: "Do you have any white Tahoes in stock?", type: 'text' as const },
+        { id: '3', sender: 'agent' as const, content: "Yes, we have 3 available! Two 2024 RSTs and one Z71. Would you like to see photos?", type: 'text' as const },
+        { id: '4', sender: 'user' as const, content: "Send the Z71 please.", type: 'text' as const },
+        { id: '5', sender: 'agent' as const, content: "Sent! 📸 It just arrived yesterday. When can you stop by for a test drive?", type: 'text' as const }
     ]
 };
 
