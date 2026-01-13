@@ -6,7 +6,7 @@ import SocialProofSection from '@/components/book-demo/SocialProofSection';
 import FAQSection from '@/components/book-demo/FAQSection';
 
 export const metadata: Metadata = {
-    title: "Book a Demo | VisQuanta - AI for Dealerships",
+    title: "Chat with VisQuanta | AI for Dealerships",
     description: "Schedule a personalized demo of the AutoMaster Suite. See how AI can increase your dealership's revenue by 30%.",
 };
 

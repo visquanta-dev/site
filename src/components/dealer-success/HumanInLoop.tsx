@@ -41,7 +41,19 @@ export default function HumanInLoop() {
 
     return (
         <section className="py-32 bg-[#050505] relative border-t border-white/[0.05] overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6">
+            {/* Background Car Wireframe */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center opacity-[0.04]">
+                <motion.img
+                    src="/images/car-wireframe-complete.png"
+                    alt=""
+                    initial={{ scale: 1.1, opacity: 0, rotate: -2 }}
+                    whileInView={{ scale: 1.3, opacity: 1, rotate: 0 }}
+                    transition={{ duration: 2.5, ease: "easeOut" }}
+                    className="w-full h-full object-contain max-w-none grayscale"
+                />
+            </div>
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
 
                 <div className="grid lg:grid-cols-2 gap-20 items-center">
 

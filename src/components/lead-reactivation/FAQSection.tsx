@@ -80,7 +80,7 @@ export default function FAQSection() {
                         </h2>
 
                         <p className="text-xl text-white/35 leading-[1.9] max-w-md font-light">
-                            Everything you need to know about our managed revenue recovery service. Can't find the answer you're looking for?
+                            Everything you need to know about our managed lead reactivation service. Can't find the answer you're looking for?
                         </p>
 
                         <div className="mt-12">
@@ -118,8 +118,8 @@ export default function FAQSection() {
                                 <button
                                     onClick={() => toggleFAQ(index)}
                                     className={`w-full text-left p-7 rounded-2xl border transition-all duration-500 relative overflow-hidden ${openIndex === index
-                                            ? 'bg-gradient-to-br from-[#0a0a0a] to-[#050505] border-[#FF7404]/30 shadow-[0_10px_40px_-10px_rgba(255,116,4,0.15)]'
-                                            : 'bg-[#080808]/50 border-white/[0.03] hover:bg-[#0a0a0a] hover:border-white/[0.06]'
+                                        ? 'bg-gradient-to-br from-[#0a0a0a] to-[#050505] border-[#FF7404]/30 shadow-[0_10px_40px_-10px_rgba(255,116,4,0.15)]'
+                                        : 'bg-[#080808]/50 border-white/[0.03] hover:bg-[#0a0a0a] hover:border-white/[0.06]'
                                         }`}
                                 >
                                     {/* Subtle glow on active */}
@@ -133,8 +133,8 @@ export default function FAQSection() {
                                             {faq.question}
                                         </span>
                                         <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${openIndex === index
-                                                ? 'bg-gradient-to-br from-[#FF7404] to-[#FF9040] rotate-180 shadow-[0_0_20px_-5px_#FF7404]'
-                                                : 'bg-white/[0.04] border border-white/[0.06]'
+                                            ? 'bg-gradient-to-br from-[#FF7404] to-[#FF9040] rotate-180 shadow-[0_0_20px_-5px_#FF7404]'
+                                            : 'bg-white/[0.04] border border-white/[0.06]'
                                             }`}>
                                             <ChevronDown className={`w-5 h-5 transition-colors ${openIndex === index ? 'text-black' : 'text-white/40'
                                                 }`} />

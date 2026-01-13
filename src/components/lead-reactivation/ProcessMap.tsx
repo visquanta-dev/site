@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Database, Filter, MessageSquare, ShieldCheck, CalendarCheck, BarChart3, Users, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 const steps = [
     {
@@ -169,17 +170,20 @@ export default function ProcessMap({ onOpenCalculator }: ProcessMapProps) {
                         </div>
                     </div>
 
-                    <button
-                        onClick={onOpenCalculator}
+                    <Link
+                        href="/book-demo"
                         className="relative group px-10 py-5 overflow-hidden rounded-xl flex-shrink-0"
                     >
                         <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-xl" />
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-xl" />
                         <span className="relative z-10 flex items-center gap-3 text-black font-bold text-sm uppercase tracking-widest">
-                            Request a Demo
+                            {/* Desktop text */}
+                            <span className="hidden sm:inline">Request a Demo</span>
+                            {/* Mobile text */}
+                            <span className="inline sm:hidden">Chat With Us</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </span>
-                    </button>
+                    </Link>
                 </motion.div>
             </div>
         </section>

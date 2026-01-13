@@ -416,7 +416,7 @@ const solutions = [
         icon: RefreshCw,
         title: "Lead Loss Mitigation",
         desc: "Re-engage dormant leads from your CRM with personalized AI conversations. Recover 8-10% of 'dead' prospects—revenue from marketing you've already paid for.",
-        link: "/lead-loss-mitigation",
+        link: "/lead-reactivation",
         cta: "Recover Lost Revenue"
     },
     {

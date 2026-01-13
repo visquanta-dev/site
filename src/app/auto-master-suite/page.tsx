@@ -60,7 +60,7 @@ const suiteProducts = [
         title: "Lead Loss Mitigation",
         icon: RefreshCcw,
         desc: "Turn your 'dead' CRM leads into fresh appointments with AI-driven database reactivation.",
-        link: "/lead-loss-mitigation",
+        link: "/lead-reactivation",
         stats: "8-12% Recovery Rate",
         color: "from-orange-500 to-red-500",
         image: "/images/suite-bg/llm-bg.png"

@@ -237,7 +237,11 @@ export default function BookingWizard() {
                     <AnimatePresence mode="wait">
                         {step === 1 && (
                             <motion.div key="step1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                                <CountrySelectionStep selectedCountry={country} onSelect={handleCountrySelect} />
+                                <CountrySelectionStep
+                                    selectedCountry={country}
+                                    onSelect={handleCountrySelect}
+                                    onAlreadyClient={() => setStep(4)}
+                                />
                             </motion.div>
                         )}
 
@@ -294,7 +298,7 @@ export default function BookingWizard() {
                             <motion.div key="step6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                                 <div className="max-w-4xl mx-auto space-y-12">
                                     <div className="text-center space-y-8">
-                                        <h2 className="text-3xl font-black text-white tracking-tighter">You're Booking With</h2>
+                                        <h2 className="text-3xl font-black text-white tracking-tighter">You're Chatting with VisQuanta</h2>
                                         <div className="max-w-md mx-auto pointer-events-none">
                                             {/* Show the resolved rep card in a 'selected' state */}
                                             <SalesRepCard

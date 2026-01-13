@@ -171,6 +171,35 @@ export default function TeamPage() {
         <main className="bg-[#020202] min-h-screen selection:bg-[#FF7404] selection:text-black relative overflow-x-hidden">
             <Navigation />
 
+            {/* JSON-LD for E-E-A-T (Person Schema) */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "AboutPage",
+                        "name": "The VisQuanta Team",
+                        "description": "Meet the experts behind the automotive revenue engine.",
+                        "mainEntity": teamLayers.flatMap(layer =>
+                            layer.members.map(member => ({
+                                "@type": "Person",
+                                "name": member.name,
+                                "jobTitle": member.role,
+                                "image": member.image.startsWith('http') ? member.image : `https://visquanta.com${member.image}`,
+                                "email": member.email,
+                                "url": `https://visquanta.com/team#${member.name.toLowerCase().replace(/\s+/g, '-')}`,
+                                "sameAs": member.link && member.link !== "#" ? [member.link] : [],
+                                "affiliation": {
+                                    "@type": "Organization",
+                                    "name": "VisQuanta",
+                                    "url": "https://visquanta.com"
+                                }
+                            }))
+                        )
+                    })
+                }}
+            />
+
             {/* Premium Background Aura */}
             <div className="fixed inset-0 pointer-events-none z-0">
                 <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#FF7404]/5 rounded-full blur-[160px] animate-pulse" />

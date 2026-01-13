@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function FinalCTA() {
     return (
@@ -13,18 +14,18 @@ export default function FinalCTA() {
 
                     <div className="relative z-10">
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-                            Ready to launch your <br className="hidden md:block" />
-                            next campaign?
+                            Ready to put AI to work <br className="hidden md:block" />
+                            in your dealership?
                         </h2>
                         <p className="text-xl text-white/50 mb-12 max-w-2xl mx-auto">
                             No staff burnout. Just booked appointments delivered to your showroom.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
-                            <button className="h-[56px] px-10 bg-[#FF7404] hover:bg-[#ff8a3d] text-black text-lg font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)] flex items-center gap-3">
+                            <Link href="/book-demo" className="h-[56px] px-10 bg-[#FF7404] hover:bg-[#ff8a3d] text-black text-lg font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)] flex items-center gap-3">
                                 Speak to our team
                                 <ArrowRight className="w-5 h-5" />
-                            </button>
+                            </Link>
                         </div>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm font-medium text-white/40">

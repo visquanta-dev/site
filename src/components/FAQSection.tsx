@@ -36,6 +36,24 @@ export default function FAQSection() {
 
   return (
     <section className="py-32 bg-[#080808] relative overflow-hidden">
+      {/* FAQ Schema for AEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
+          })
+        }}
+      />
       {/* Background Effects */}
       <div className="absolute inset-0 bg-enterprise-grid opacity-10 pointer-events-none" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />

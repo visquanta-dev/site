@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Zap, Clock, CheckCircle2 } from 'lucide-react';
+import Link from 'next/link';
 
 interface CallToActionProps {
     onOpenCalculator?: () => void;
@@ -91,13 +92,19 @@ export default function CallToAction({ onOpenCalculator }: CallToActionProps) {
                             </button>
 
                             {/* Secondary CTA */}
-                            <button className="group relative px-10 py-6 rounded-xl overflow-hidden">
+                            <Link
+                                href="/book-demo"
+                                className="group relative px-10 py-6 rounded-xl overflow-hidden"
+                            >
                                 <div className="absolute inset-0 border border-white/[0.15] rounded-xl group-hover:border-[#FF7404]/40 transition-colors duration-300" />
                                 <div className="absolute inset-0 bg-white/[0.02] group-hover:bg-[#FF7404]/[0.05] transition-colors duration-300 rounded-xl" />
                                 <span className="relative z-10 flex items-center gap-3 text-white/70 group-hover:text-white font-semibold text-sm uppercase tracking-widest transition-colors">
-                                    Request a Demo
+                                    {/* Desktop text */}
+                                    <span className="hidden sm:inline">Request a Demo</span>
+                                    {/* Mobile text */}
+                                    <span className="inline sm:hidden">Chat With Us</span>
                                 </span>
-                            </button>
+                            </Link>
                         </div>
 
                         {/* Tertiary Link */}

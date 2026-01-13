@@ -1,8 +1,19 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ShieldCheck, Users, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Users, ArrowRight, Linkedin, Mail, Calendar } from 'lucide-react';
 import { useRef } from 'react';
+import Link from 'next/link';
+
+interface TeamMember {
+    name: string;
+    role: string;
+    image: string;
+    badge: string;
+    link?: string;
+    email?: string;
+    calendly?: string;
+}
 
 export default function HeroSection() {
     const containerRef = useRef(null);
@@ -68,7 +79,7 @@ export default function HeroSection() {
                         transition={{ delay: 0.4, duration: 0.6 }}
                         className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-lg font-medium"
                     >
-                        The only AI platform backed by a dedicated team of automotive experts. Every conversation overseen by humans, every lead verified, every opportunity maximized.
+                        The only car dealership AI backed by a dedicated team of automotive experts. Every conversation verified. Every lead maximized.
                     </motion.p>
 
                     <motion.div
@@ -77,13 +88,13 @@ export default function HeroSection() {
                         transition={{ delay: 0.5 }}
                         className="flex flex-col sm:flex-row gap-4 sm:gap-6"
                     >
-                        <button className="group relative px-8 py-5 bg-[#FF7404] text-black font-black uppercase text-sm tracking-widest rounded-xl overflow-hidden text-center">
+                        <Link href="/team" className="group relative px-8 py-5 bg-[#FF7404] text-black font-black uppercase text-sm tracking-widest rounded-xl overflow-hidden text-center inline-block">
                             <span className="relative z-10 flex items-center justify-center gap-2 group-hover:gap-4 transition-all">
                                 Meet Your Team
                                 <ArrowRight className="w-4 h-4" />
                             </span>
                             <div className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
-                        </button>
+                        </Link>
                     </motion.div>
 
                     {/* Trust Indicators */}
@@ -116,47 +127,146 @@ export default function HeroSection() {
                     </div>
                 </div>
 
-                {/* Right Visual - Animated & Interactive */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4, duration: 0.8 }}
-                    className="relative perspective-1000 hidden lg:block"
-                >
-                    <motion.div
-                        animate={{ y: [-10, 10, -10] }}
-                        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                        className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl group"
-                    >
-                        {/* Placeholder for High-End Team Image */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#050505] transition-transform duration-700 group-hover:scale-105">
-                            {/* Grid Overlay */}
-                            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-50" />
+                {/* Right Visual - Team Hierarchy */}
+                <div className="relative w-full hidden lg:flex items-center justify-center py-10">
+                    {/* Background Watermark */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+                        <span className="text-[12rem] font-black text-white/[0.02] tracking-tighter transform -rotate-12 whitespace-nowrap">
+                            VISQUANTA
+                        </span>
+                    </div>
 
-                            {/* Center Visual */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="relative w-64 h-64">
-                                    <div className="absolute inset-0 bg-[#FF7404] rounded-full opacity-20 blur-3xl animate-pulse-slow" />
-                                    <div className="relative z-10 w-full h-full bg-[#0a0a0a] border border-white/10 rounded-full flex items-center justify-center shadow-2xl group-hover:border-[#FF7404]/50 transition-colors duration-500">
-                                        <Users className="w-24 h-24 text-white/20 group-hover:text-white/40 transition-colors duration-500" />
-                                    </div>
-
-                                    {/* Orbiting Elements - Fixed Positioning */}
+                    <div className="relative z-10 flex flex-col items-center gap-6 -translate-y-[15%]">
+                        {[
+                            // Row 1: Leadership
+                            [{
+                                name: "Charles Snodgrass",
+                                role: "Director of Client Success",
+                                image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61fc9b8fa6d06815ceb_charles%2Csnodgrass%2Cheadshot%2Cvisquanta.webp",
+                                badge: "Leadership",
+                                link: "https://www.linkedin.com/in/charles-snodgrass-a99b947b/",
+                                email: "csnodgrass@visquanta.com",
+                                calendly: "https://calendly.com/csnodgrass-visquanta/visquanta-discovery-call"
+                            }],
+                            // Row 2: Management & Ops
+                            [
+                                {
+                                    name: "Clint Annis",
+                                    role: "Integrations Lead",
+                                    image: "/team/clint-annis.png",
+                                    badge: "Tech Ops"
+                                },
+                                {
+                                    name: "Chloe Johncock",
+                                    role: "Account Ops Manager",
+                                    image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/6850417609bb855d13026da3_Chloe_JohnCock_Visquanta.avif",
+                                    badge: "Dealer Ops"
+                                },
+                                {
+                                    name: "Marion Ueland",
+                                    role: "Account Operations",
+                                    image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4d024bdd582aff727d7f8_Screenshot_2025-08-28_180752-removebg-preview.avif",
+                                    badge: "Dealer Ops"
+                                }
+                            ],
+                            // Row 3: Execution
+                            [
+                                {
+                                    name: "Ellison Riviera",
+                                    role: "Client Account Lead",
+                                    image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/6850416b0314723f40a489d0_Ellison_Riviera-removebg-preview-modified.avif",
+                                    badge: "Client Success"
+                                },
+                                {
+                                    name: "John Cabatingan",
+                                    role: "Client Account Specialist",
+                                    image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4d1ae44a7d738f878e7c6_20250806_173050-removebg-preview-modified.avif",
+                                    badge: "Client Success"
+                                },
+                                {
+                                    name: "David Chen",
+                                    role: "Client Account Specialist",
+                                    image: "https://randomuser.me/api/portraits/men/32.jpg",
+                                    badge: "Client Success"
+                                },
+                                {
+                                    name: "Paul Weber",
+                                    role: "Client Account Specialist",
+                                    image: "https://randomuser.me/api/portraits/men/86.jpg",
+                                    badge: "Client Success"
+                                }
+                            ]
+                        ].map((row, rowIdx) => (
+                            <div key={rowIdx} className="flex items-center justify-center gap-4">
+                                {row.map((member: TeamMember, i) => (
                                     <motion.div
-                                        whileHover={{ scale: 1.05 }}
-                                        className="absolute -bottom-6 -right-6 z-20 bg-[#0a0a0a] border border-[#FF7404]/30 px-5 py-3 rounded-full flex items-center gap-3 shadow-[0_10px_30px_-5px_rgba(255,116,4,0.3)] backdrop-blur-md cursor-help"
+                                        key={member.name}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{
+                                            delay: (rowIdx * 0.2) + (i * 0.1),
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}
+                                        whileHover={{ y: -5, zIndex: 50 }}
+                                        className={`relative ${member.name === "Charles Snodgrass" ? 'w-[264px]' : 'w-[240px]'} bg-[#1a1a1a]/80 border border-white/10 rounded-2xl p-4 shadow-xl backdrop-blur-md group hover:border-[#FF7404]/30 hover:shadow-[#FF7404]/10 transition-all duration-300`}
                                     >
-                                        <span className="relative flex h-2 w-2">
-                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF7404] opacity-75"></span>
-                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF7404]"></span>
-                                        </span>
-                                        <span className="text-xs font-bold text-white uppercase tracking-wider">Human Verified</span>
+                                        {/* Top Badge */}
+                                        <div className="flex justify-between items-start mb-4">
+                                            <div className="inline-flex items-center px-2 py-0.5 rounded bg-[#FF7404]/10 border border-[#FF7404]/20 text-[#FF7404] text-[8px] font-black uppercase tracking-wider">
+                                                {member.badge}
+                                            </div>
+                                            <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] animate-pulse" />
+                                        </div>
+
+                                        <div className="flex items-center gap-3">
+                                            {/* Avatar */}
+                                            <div className="relative w-10 h-10 rounded-full border border-white/10 overflow-hidden bg-zinc-800 shrink-0 group-hover:border-[#FF7404]/50 transition-colors">
+                                                <img
+                                                    src={member.image}
+                                                    alt={member.name}
+                                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                                                />
+                                            </div>
+
+                                            {/* Info */}
+                                            <div className="min-w-0 flex-1">
+                                                <h3 className="text-sm font-bold text-white truncate group-hover:text-[#FF7404] transition-colors">{member.name}</h3>
+                                                <p className="text-[10px] text-zinc-500 uppercase tracking-wide truncate mb-2">{member.role}</p>
+
+                                                {(member.link || member.email || member.calendly) && (
+                                                    <div className="flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        {member.link && (
+                                                            <a href={member.link} target="_blank" rel="noopener noreferrer" className="p-1 rounded bg-white/5 hover:bg-[#FF7404]/20 text-zinc-500 hover:text-[#FF7404] transition-colors">
+                                                                <Linkedin className="w-3 h-3" />
+                                                            </a>
+                                                        )}
+                                                        {member.email && (
+                                                            <a href={`mailto:${member.email}`} className="p-1 rounded bg-white/5 hover:bg-[#FF7404]/20 text-zinc-500 hover:text-[#FF7404] transition-colors">
+                                                                <Mail className="w-3 h-3" />
+                                                            </a>
+                                                        )}
+                                                        {member.calendly && (
+                                                            <a href={member.calendly} target="_blank" rel="noopener noreferrer" className="p-1 rounded bg-white/5 hover:bg-[#FF7404]/20 text-zinc-500 hover:text-[#FF7404] transition-colors">
+                                                                <Calendar className="w-3 h-3" />
+                                                            </a>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        {/* Bottom Status */}
+                                        <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between">
+                                            <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest group-hover:text-zinc-400 transition-colors">Active Now</span>
+                                            <ArrowRight className="w-3 h-3 text-zinc-700 group-hover:text-[#FF7404] transition-colors -rotate-45" />
+                                        </div>
                                     </motion.div>
-                                </div>
+                                ))}
                             </div>
-                        </div>
-                    </motion.div>
-                </motion.div>
+                        ))}
+                    </div>
+                </div>
 
             </div>
         </section>

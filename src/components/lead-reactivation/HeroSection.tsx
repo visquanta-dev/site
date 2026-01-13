@@ -25,10 +25,9 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
     });
 
     const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     return (
-        <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303] pt-28 pb-20 sm:pt-32 sm:pb-24 md:pt-36 md:pb-28 lg:pt-44 lg:pb-32">
+        <section ref={containerRef} className="relative min-h-screen flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-center bg-[#030303] pt-28 pb-20 sm:pt-32 sm:pb-24 md:pt-36 md:pb-28 lg:pt-44 lg:pb-32">
 
             {/* 1. Premium Multi-Layer Background */}
             <div className="absolute inset-0 z-0">
@@ -79,7 +78,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                 className="absolute bottom-[20%] left-[20%] w-1.5 h-1.5 rounded-full bg-[#FF7404] blur-[3px]"
             />
 
-            <motion.div style={{ opacity }} className="container-wide relative z-10">
+            <motion.div className="container-wide relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 md:gap-20 items-center">
 
                     {/* Left: Authority & Messaging */}
@@ -97,7 +96,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 shadow-[0_0_10px_#22c55e]"></span>
                             </span>
                             <span className="text-white/70 text-[11px] font-semibold tracking-[0.15em] uppercase">
-                                Managed Revenue Recovery System
+                                Lead Reactivation System
                             </span>
                         </motion.div>
 
@@ -107,7 +106,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-                                className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.5rem] font-black text-white tracking-[-0.03em] leading-[0.95] uppercase"
+                                className="text-[2.75rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] font-black text-white tracking-[-0.04em] leading-[0.9] uppercase"
                             >
                                 <span className="block">The Easiest Cars</span>
                                 <span className="block">You'll Sell</span>
@@ -123,6 +122,19 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             >
                                 We use managed conversational SMS to re-engage leads who went quiet—transforming dormant database entries into booked appointments and sold units.
                             </motion.p>
+
+                            {/* Mobile Visual Demo - Right below subheading */}
+                            <div className="lg:hidden mt-8 mb-4 flex justify-center">
+                                <div className="relative scale-[0.7] sm:scale-[0.85] origin-top h-[560px] sm:h-[680px]">
+                                    {/* Ambient glow behind phone */}
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[#FF7404]/[0.1] rounded-full blur-[80px] pointer-events-none" />
+
+                                    <PhoneDemo
+                                        title="Amy (Visquanta)"
+                                        subtitle="REACTIVATING: JOHN"
+                                    />
+                                </div>
+                            </div>
                         </div>
 
                         {/* Authority Proof - Premium Stats */}
@@ -177,11 +189,17 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 </span>
                             </button>
 
-                            <button className="group relative px-8 py-5 rounded-lg overflow-hidden text-center border border-white/20 hover:border-[#FF7404]/50 hover:bg-[#FF7404]/[0.05] transition-all">
+                            <Link
+                                href="/book-demo"
+                                className="group relative px-8 py-5 rounded-lg overflow-hidden text-center border border-white/20 hover:border-[#FF7404]/50 hover:bg-[#FF7404]/[0.05] transition-all"
+                            >
                                 <span className="relative z-10 flex items-center justify-center gap-3 text-white/80 group-hover:text-white font-black text-sm uppercase tracking-widest transition-colors">
-                                    Request a Demo
+                                    {/* Desktop text */}
+                                    <span className="hidden sm:inline">Request a Demo</span>
+                                    {/* Mobile text */}
+                                    <span className="inline sm:hidden">Chat With Us</span>
                                 </span>
-                            </button>
+                            </Link>
                         </motion.div>
 
                         {/* Social Proof - Minimal Elegance */}
@@ -223,32 +241,8 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             className="relative z-10"
                         >
                             <PhoneDemo
-                                title="Sarah (Specialist)"
-                                messages={[
-                                    { id: '1', sender: 'agent', content: "Hi Mark, it's Sarah from Westline Motors. You popped in a while back to look at a Hyundai Tucson, so I just wanted to check if you're still considering one." },
-                                    { id: '2', sender: 'user', content: "Yeah, I might be, just starting to look again." },
-                                    { id: '3', sender: 'agent', content: "No problem at all. We've had some updated Tucson models come in recently. Would you be open to a quick call with one of our sales team to go over options?" },
-                                    { id: '4', sender: 'user', content: "Yes, that's fine." },
-                                    { id: '5', sender: 'agent', content: "Perfect. I can book a call back for Friday at 3pm. Does that work for you?" },
-                                    { id: '6', sender: 'user', content: "Yes." },
-                                    { id: '7', sender: 'agent', content: "Great, you're all set. One of the team will give you a call Friday at 3pm. Speak then." },
-                                    {
-                                        id: '8',
-                                        sender: 'system',
-                                        type: 'notification',
-                                        content: (
-                                            <div className="mt-3 p-5 rounded-2xl bg-gradient-to-r from-green-500/10 to-green-500/5 border border-green-500/20 flex items-center gap-4 backdrop-blur-sm">
-                                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center shadow-[0_0_30px_-5px_rgba(34,197,94,0.4)]">
-                                                    <BarChart3 className="w-6 h-6 text-white" />
-                                                </div>
-                                                <div>
-                                                    <div className="text-white font-bold text-sm uppercase tracking-wide">Appointment Booked</div>
-                                                    <div className="text-[11px] text-green-400/80 font-mono tracking-wide">SYNCED TO VINSOLUTIONS CRM</div>
-                                                </div>
-                                            </div>
-                                        )
-                                    }
-                                ]}
+                                title="Amy (Visquanta)"
+                                subtitle="REACTIVATING: JOHN"
                             />
                         </motion.div>
 
@@ -261,7 +255,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                         >
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="w-10 h-10 rounded-xl bg-[#FF7404]/10 flex items-center justify-center">
-                                    <TrendingUp className="w-5 h-5 text-[#FF7404]" />
+                                    <BarChart3 className="w-5 h-5 text-[#FF7404]" />
                                 </div>
                                 <div className="text-[9px] text-white/30 font-bold uppercase tracking-[0.2em]">Week 1 Results</div>
                             </div>
@@ -284,20 +278,6 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 <div className="text-[9px] text-white/40 uppercase tracking-wide">This Month</div>
                             </div>
                         </motion.div>
-                    </div>
-
-                    {/* Mobile Visual Demo (NEW) */}
-                    <div className="lg:hidden mt-8 sm:mt-12 flex justify-center">
-                        <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
-                            <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
-                                <img
-                                    src="/images/suite-bg/llm-bg.png"
-                                    alt="Lead Loss Mitigation Demo"
-                                    className="w-full h-auto"
-                                />
-                            </div>
-                            <div className="absolute inset-0 -z-10 bg-[#FF7404]/10 blur-3xl rounded-full scale-150 opacity-50" />
-                        </div>
                     </div>
 
                 </div>

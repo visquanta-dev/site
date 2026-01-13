@@ -87,7 +87,7 @@ const cardData = [
     rotate: 4,
     delay: 0.4,
     image: '/platform/lead-reactivation.png',
-    link: '/lead-loss-mitigation'
+    link: '/lead-reactivation'
   }
 ];
 

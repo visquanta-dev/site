@@ -281,7 +281,7 @@ const solutions = [
         icon: RefreshCw,
         title: "Lead Reactivation",
         desc: "Our Conversational AI works through your cold CRM leads via SMS, qualifying buyers and booking sales calls automatically. 35% engagement rate, 8% appointment conversion—without lifting a finger.",
-        link: "/lead-loss-mitigation",
+        link: "/lead-reactivation",
         cta: "Reactivate Your Leads"
     },
     {

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { UserCheck, Award, TrendingUp, Key } from 'lucide-react';
+import Link from 'next/link';
 
 const roles = [
     {
@@ -77,9 +78,9 @@ export default function TeamExpertise() {
                                 <p className="text-white/50 max-w-sm mx-auto">
                                     Every dealer gets a dedicated point of contact. No support tickets, no robots. Just a car person who knows your name and your store.
                                 </p>
-                                <button className="px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white text-sm font-bold uppercase tracking-widest hover:bg-white/10 transition-colors">
+                                <Link href="/team" className="px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white text-sm font-bold uppercase tracking-widest hover:bg-white/10 transition-colors inline-block">
                                     Meet The Team
-                                </button>
+                                </Link>
                             </div>
                         </div>
 

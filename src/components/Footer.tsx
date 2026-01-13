@@ -35,7 +35,7 @@ const socialLinks = [
 
 const footerLinks = {
   autoMasterSuite: [
-    { label: 'Lead Reactivation', href: '/lead-loss-mitigation' },
+    { label: 'Lead Reactivation', href: '/lead-reactivation' },
     { label: 'Speed to Lead', href: '/speed-to-lead' },
     { label: 'Reputation Management', href: '/reputation-management' },
     { label: 'Dealer Success', href: '/dealer-success' },

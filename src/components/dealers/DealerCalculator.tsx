@@ -14,7 +14,7 @@ const products = [
         color: 'from-[#FF7404] to-[#FF9040]',
         iconColor: 'text-[#FF7404]',
         description: 'Recover revenue from your existing CRM database',
-        link: '/lead-loss-mitigation'
+        link: '/lead-reactivation'
     },
     {
         id: 'speed-to-lead',

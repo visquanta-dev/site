@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Clock, Phone, Zap, BarChart3 } from 'lucide-react';
-import PhoneDemo from '@/components/lead-loss/PhoneDemo';
+import PhoneDemo from '@/components/lead-reactivation/PhoneDemo';
 
 interface HeroSectionProps {
     onOpenCalculator?: () => void;

@@ -19,7 +19,8 @@ import {
   Lock,
   Building2,
   Shield,
-  MonitorPlay
+  MonitorPlay,
+  MessageSquare
 } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
 import { Button } from "@/components/ui/button";
@@ -42,7 +43,7 @@ const navItems: NavItem[] = [
     children: [
       {
         label: 'Lead Reactivation',
-        href: '/lead-loss-mitigation',
+        href: '/lead-reactivation',
         description: 'Re-engage and convert dormant leads',
         icon: RefreshCcw
       },
@@ -94,7 +95,7 @@ const navItems: NavItem[] = [
       { label: 'Our Team', href: '/team', description: 'The people behind the platform', icon: HeartHandshake },
       { label: 'Careers', href: '/careers', description: 'Help shape the future', icon: Target },
       { label: 'Trust Center', href: '/trust', description: 'Privacy & data handling', icon: Shield },
-      { label: 'Book a Demo', href: '/book-demo', description: 'See VisQuanta in action', icon: MonitorPlay },
+      { label: 'Chat with VisQuanta', href: '/book-demo', description: 'Schedule a discovery session', icon: MessageSquare },
       { label: 'Contact Us', href: '/contact', description: 'Get in touch directly', icon: Zap },
     ]
   },
@@ -123,10 +124,22 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 border-b ${isScrolled
-        ? 'bg-background/90 backdrop-blur-md border-border py-4'
+      className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 border-b ${(isScrolled || isMobileMenuOpen)
+        ? 'bg-background/95 backdrop-blur-md border-border py-4'
         : 'bg-transparent border-transparent py-5'
         }`}
     >
@@ -306,45 +319,49 @@ export default function Navigation() {
         <Button
           variant="ghost"
           size="icon"
-          className="lg:hidden text-white hover:bg-white/10 h-11 w-11"
+          className="lg:hidden text-white hover:bg-white/10 h-11 w-11 relative z-[60]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? (
+            <X className="w-6 h-6 text-white" />
+          ) : (
+            <Menu className="w-6 h-6 text-white" />
+          )}
         </Button>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-50 bg-[#000000]/80 backdrop-blur-2xl pt-28 px-8 overflow-y-auto lg:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[999] bg-black backdrop-blur-3xl pt-24 px-6 overflow-y-auto lg:hidden flex flex-col"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: "circOut" }}
           >
             {/* Ambient Background Effects */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#FF7404]/5 rounded-full blur-[120px] pointer-events-none translate-y-1/2 -translate-x-1/2" />
+            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#FF7404]/10 rounded-full blur-[100px] pointer-events-none" />
 
-            <div className="flex flex-col min-h-full pb-12 relative z-10">
-              <nav className="flex-1 space-y-8">
+            <div className="flex flex-col flex-1 pb-12 relative z-10 mt-4">
+              <nav className="space-y-6">
                 {navItems.map((item, idx) => (
                   <motion.div
                     key={item.label}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.1 }}
+                    transition={{ delay: idx * 0.05 }}
                   >
                     {item.children ? (
-                      <div className="group">
+                      <div className="space-y-4">
                         <button
                           onClick={() => setMobileActiveMenu(mobileActiveMenu === item.label ? null : item.label)}
-                          className="flex items-center gap-4 text-3xl font-light text-white uppercase tracking-widest hover:text-[#FF7404] transition-colors"
+                          className="w-full flex items-center justify-between text-2xl font-bold text-white uppercase tracking-wider"
                         >
                           {item.label}
                           <ChevronDown
-                            className={`w-6 h-6 transition-transform duration-500 ${mobileActiveMenu === item.label ? 'rotate-180 text-[#FF7404]' : 'text-white/30'}`}
+                            className={`w-5 h-5 transition-transform duration-300 ${mobileActiveMenu === item.label ? 'rotate-180 text-[#FF7404]' : 'text-white/40'}`}
                           />
                         </button>
 
@@ -354,9 +371,9 @@ export default function Navigation() {
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: 'auto', opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden"
+                              className="overflow-hidden border-l border-white/10 ml-1"
                             >
-                              <div className="pt-6 pl-2 space-y-6">
+                              <div className="py-2 pl-6 space-y-4">
                                 {item.children.map((child, childIdx) => {
                                   const Icon = child.icon;
                                   return (
@@ -364,18 +381,18 @@ export default function Navigation() {
                                       key={childIdx}
                                       href={child.href}
                                       onClick={() => setIsMobileMenuOpen(false)}
-                                      className="flex items-start gap-4 group/child"
+                                      className="flex items-center gap-4 group/child py-1"
                                     >
                                       {Icon && (
-                                        <div className="mt-1 w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-zinc-500 group-hover/child:text-[#FF7404] group-hover/child:border-[#FF7404]/30 transition-all">
-                                          <Icon className="w-3.5 h-3.5" />
+                                        <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#FF7404]">
+                                          <Icon className="w-4 h-4" />
                                         </div>
                                       )}
                                       <div>
-                                        <div className="text-lg text-zinc-300 group-hover/child:text-white transition-colors font-medium">
+                                        <div className="text-base text-zinc-300 group-hover/child:text-white transition-colors font-semibold">
                                           {child.label}
                                         </div>
-                                        <div className="text-xs text-zinc-600 mt-1 uppercase tracking-wider font-medium">
+                                        <div className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
                                           {child.description}
                                         </div>
                                       </div>
@@ -391,7 +408,7 @@ export default function Navigation() {
                       <Link
                         href={item.href || '#'}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="block text-3xl font-light text-white uppercase tracking-widest hover:text-[#FF7404] transition-colors"
+                        className="block text-2xl font-bold text-white uppercase tracking-wider"
                       >
                         {item.label}
                       </Link>
@@ -401,23 +418,23 @@ export default function Navigation() {
               </nav>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="mt-16 flex flex-col gap-4"
+                transition={{ delay: 0.3 }}
+                className="mt-12 flex flex-col gap-4 mb-8"
               >
                 <Link
                   href="https://portal.visquanta.com"
-                  className="group flex items-center justify-between w-full p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all"
+                  className="flex items-center justify-between w-full p-5 rounded-2xl border border-white/10 bg-white/[0.03]"
                 >
-                  <span className="text-sm font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white transition-colors">
+                  <span className="text-sm font-bold uppercase tracking-widest text-[#FF7404]">
                     Dealer Portal
                   </span>
-                  <Lock className="w-4 h-4 text-zinc-600 group-hover:text-white transition-colors" />
+                  <Lock className="w-4 h-4 text-white" />
                 </Link>
 
                 <RequestDemoButton asChild>
-                  <button className="w-full py-6 rounded-2xl bg-[#FF7404] hover:bg-[#FF8520] text-black font-black uppercase tracking-widest text-sm shadow-[0_0_40px_-10px_rgba(255,116,4,0.3)] transition-all transform hover:scale-[1.02]">
+                  <button className="w-full py-5 rounded-2xl bg-[#FF7404] text-black font-black uppercase tracking-widest text-sm">
                     Speak With Our Team
                   </button>
                 </RequestDemoButton>
@@ -426,6 +443,6 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </header >
   );
 }

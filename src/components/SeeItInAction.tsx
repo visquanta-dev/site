@@ -70,7 +70,7 @@ const scenarios: Scenario[] = [
       { id: 'msg6', sender: 'user', content: "Ok, thanks for getting in touch." },
       { id: 'msg7', sender: 'agent', content: "You’re very welcome, John. Speak shortly and have a great day." }
     ],
-    link: "/lead-loss-mitigation"
+    link: "/lead-reactivation"
   },
   {
     id: 'speed_to_lead',

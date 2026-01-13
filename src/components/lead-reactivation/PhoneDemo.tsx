@@ -101,39 +101,60 @@ export default function PhoneDemo({ children, messages, title = "Amy (Specialist
 
         setVisibleMessages([]);
         let timeouts: NodeJS.Timeout[] = [];
-        let accumulatedDelay = 500; // Start delay
+        let accumulatedDelay = 500;
 
-        const sequenceMessages = async () => {
-            for (const msg of activeMessages) {
+        const sequenceMessages = () => {
+            activeMessages.forEach((msg, index) => {
                 const readingDelay = 1500;
-                const typingDelay = msg.sender === 'agent' ? 1200 : 800;
+                const typingDuration = 1200;
                 const preDelay = accumulatedDelay;
 
+                // 1. Show typing indicator (if agent)
                 if (msg.sender === 'agent' && msg.type !== 'notification') {
-                    timeouts.push(setTimeout(() => setIsTyping(true), preDelay));
-                    accumulatedDelay += typingDelay;
-                    timeouts.push(setTimeout(() => setIsTyping(false), accumulatedDelay));
+                    const typingStart = setTimeout(() => setIsTyping(true), preDelay);
+                    timeouts.push(typingStart);
+
+                    accumulatedDelay += typingDuration;
+
+                    const typingEnd = setTimeout(() => setIsTyping(false), accumulatedDelay);
+                    timeouts.push(typingEnd);
                 } else if (msg.sender === 'user') {
                     accumulatedDelay += readingDelay;
                 } else if (msg.type === 'notification') {
                     accumulatedDelay += 1000;
                 }
 
-                timeouts.push(setTimeout(() => {
-                    setVisibleMessages(prev => [...prev, msg]);
-                    if (chatContainerRef.current) {
-                        setTimeout(() => {
-                            if (chatContainerRef.current) {
-                                chatContainerRef.current.scrollTo({ top: chatContainerRef.current.scrollHeight, behavior: 'smooth' });
-                            }
-                        }, 50);
-                    }
-                }, accumulatedDelay));
-            }
+                // 2. Show the message
+                const showMsg = setTimeout(() => {
+                    setVisibleMessages(prev => {
+                        // Prevent duplicates on re-renders
+                        if (prev.some(m => m.id === msg.id)) return prev;
+                        return [...prev, msg];
+                    });
+
+                    // Extra small delay to ensure DOM is updated before scroll
+                    setTimeout(() => {
+                        if (chatContainerRef.current) {
+                            chatContainerRef.current.scrollTo({
+                                top: chatContainerRef.current.scrollHeight,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }, 100);
+                }, accumulatedDelay);
+
+                timeouts.push(showMsg);
+
+                // Add a small gap between messages
+                accumulatedDelay += 400;
+            });
         };
 
         sequenceMessages();
-        return () => timeouts.forEach(clearTimeout);
+        return () => {
+            timeouts.forEach(clearTimeout);
+            setIsTyping(false);
+        };
     }, [children, activeMessages]);
 
     return (

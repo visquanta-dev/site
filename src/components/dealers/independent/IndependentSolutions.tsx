@@ -25,7 +25,7 @@ const solutions = [
         bg: "bg-[#FF7404]/10",
         border: "border-[#FF7404]/20",
         glow: "group-hover:shadow-[0_0_30px_-5px_rgba(255,116,4,0.3)]",
-        link: "/lead-loss-mitigation",
+        link: "/lead-reactivation",
         cta: "Recover Lost Revenue"
     },
     {

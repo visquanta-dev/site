@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { Calendar, Check, Clock, User } from 'lucide-react';
-import PhoneDemo from '@/components/lead-loss/PhoneDemo';
-import type { Message } from '@/components/lead-loss/PhoneDemo';
+import PhoneDemo from '@/components/lead-reactivation/PhoneDemo';
+import type { Message } from '@/components/lead-reactivation/PhoneDemo';
 
 const messages: Message[] = [
     { id: '1', sender: 'agent', content: "Hi, this is Alex with Corwin Honda Colorado Springs. Is this still Jeffs number?" },

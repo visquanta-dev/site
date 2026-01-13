@@ -30,6 +30,46 @@ export default function SpeedToLeadPage() {
 
             <Navigation />
 
+            {/* JSON-LD for AEO (Service Schema) */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Service",
+                        "serviceType": "Lead Response Automation",
+                        "name": "VisQuanta Speed to Lead",
+                        "description": "Engage every inbound dealership inquiry in under 90 seconds. 24/7/365 coverage for your digital lot with AI-driven conversion.",
+                        "provider": {
+                            "@type": "Organization",
+                            "name": "VisQuanta",
+                            "url": "https://visquanta.com"
+                        },
+                        "areaServed": "US",
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "AI Revenue Solutions",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Instant Lead Engagement"
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "24/7 BDC Automation"
+                                    }
+                                }
+                            ]
+                        }
+                    })
+                }}
+            />
+
             {/* 1. HERO: Urgency & Frame */}
             <HeroSection />
 
