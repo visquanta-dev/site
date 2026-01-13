@@ -1,9 +1,22 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Smartphone, MessageCircle, Info } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useRef } from 'react';
+import MobilePhoneMockup from '../mobile/MobilePhoneMockup';
+
+const HERO_SCENARIO = {
+    id: 'hero-sms',
+    contactName: 'VisQuanta Motors',
+    contactRole: 'Sales',
+    avatarInitials: 'VM',
+    messages: [
+        { id: '1', sender: 'agent' as const, content: "Here is the link to our SUV inventory! 🚙", type: 'text' as const },
+        { id: '2', sender: 'user' as const, content: "Thanks! Do you have that black Tahoe I saw online?", type: 'text' as const },
+        { id: '3', sender: 'agent' as const, content: "Yes we do! It's on the lot now. Want me to send a walkaround video? 🎥", type: 'text' as const }
+    ]
+};
 
 export default function HeroSection() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -13,7 +26,6 @@ export default function HeroSection() {
     });
 
     const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     return (
         <section ref={containerRef} className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden bg-[#020202]">
@@ -83,7 +95,7 @@ export default function HeroSection() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1, delay: 0.2 }}
-                        style={{ y, opacity }}
+                        style={{ y, opacity: 1 }}
                         className="relative h-[600px] w-full hidden lg:block"
                     >
                         {/* Connection Line */}
@@ -142,68 +154,10 @@ export default function HeroSection() {
                             </div>
                         </motion.div>
 
-                        {/* Mobile Phone (Right) */}
-                        <motion.div
-                            initial={{ x: 50, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ duration: 0.8, delay: 0.8 }}
-                            className="absolute top-1/2 right-0 -translate-y-1/2 w-[260px] h-[500px] bg-black border-[6px] border-[#1a1a1a] rounded-[3rem] shadow-[0_0_100px_-20px_rgba(255,116,4,0.3)] z-20 overflow-hidden"
-                        >
-                            {/* Dynamic Island */}
-                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-[#1a1a1a] rounded-b-xl z-30" />
-
-                            {/* Screen Content */}
-                            <div className="w-full h-full bg-zinc-950 p-4 pt-12 flex flex-col">
-                                <div className="text-center mb-6">
-                                    <div className="w-12 h-12 rounded-full bg-zinc-800 mx-auto mb-2 flex items-center justify-center">
-                                        <Smartphone className="w-5 h-5 text-zinc-400" />
-                                    </div>
-                                    <div className="text-[10px] text-zinc-500 font-medium">Messages • Now</div>
-                                </div>
-
-                                <motion.div
-                                    initial={{ y: 20, opacity: 0, scale: 0.9 }}
-                                    animate={{ y: 0, opacity: 1, scale: 1 }}
-                                    transition={{ delay: 1.5, type: "spring" }}
-                                    className="bg-[#222] rounded-2xl p-3 rounded-tl-none mb-2 max-w-[85%]"
-                                >
-                                    <div className="text-xs text-zinc-200 leading-relaxed">
-                                        Here is the link to our SUV inventory! 🚙
-                                        <span className="block text-[#FF7404] underline mt-1">visquanta.com/suvs</span>
-                                    </div>
-                                </motion.div>
-
-                                <motion.div
-                                    initial={{ y: 20, opacity: 0, scale: 0.9 }}
-                                    animate={{ y: 0, opacity: 1, scale: 1 }}
-                                    transition={{ delay: 2.2, type: "spring" }}
-                                    className="bg-[#FF7404] rounded-2xl p-3 rounded-tr-none self-end max-w-[85%] text-black"
-                                >
-                                    <div className="text-xs font-medium leading-relaxed">
-                                        Thanks! Do you have that black Tahoe I saw online?
-                                    </div>
-                                </motion.div>
-
-                                <motion.div
-                                    initial={{ y: 20, opacity: 0, scale: 0.9 }}
-                                    animate={{ y: 0, opacity: 1, scale: 1 }}
-                                    transition={{ delay: 3.5, type: "spring" }}
-                                    className="bg-[#222] rounded-2xl p-3 rounded-tl-none mt-2 max-w-[85%]"
-                                >
-                                    <div className="text-xs text-zinc-200 leading-relaxed">
-                                        Yes, we do! It's on the lot now. Want me to send a walkaround video? 🎥
-                                    </div>
-                                </motion.div>
-
-                                {/* Keyboard */}
-                                <div className="mt-auto bg-[#1a1a1a] rounded-t-xl -mx-4 -mb-4 p-4 h-48 opacity-50">
-                                    <div className="w-full h-8 bg-zinc-800 rounded mb-2" />
-                                    <div className="grid grid-cols-10 gap-1">
-                                        {[...Array(10)].map((_, i) => <div key={i} className="h-8 bg-zinc-800 rounded" />)}
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
+                        {/* Mobile Phone (Right) - Using the Mockup Component */}
+                        <div className="absolute top-1/2 right-0 -translate-y-1/2 z-20">
+                            <MobilePhoneMockup scenario={HERO_SCENARIO} isActive={true} />
+                        </div>
 
                         {/* Glowing Connection Dot */}
                         <motion.div
