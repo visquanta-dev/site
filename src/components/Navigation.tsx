@@ -65,12 +65,7 @@ const navItems: NavItem[] = [
         description: 'Stay ahead of online reviews',
         icon: Star
       },
-      {
-        label: 'Dealer Success',
-        href: '/dealer-success',
-        description: 'Personalized dealer support',
-        icon: HeartHandshake
-      },
+
       {
         label: 'Service Drive Pro',
         href: '/service-drive',
@@ -92,6 +87,12 @@ const navItems: NavItem[] = [
       { label: 'Franchise Dealerships', href: '/dealers/franchise', description: 'Consistent performance across locations', icon: Star },
       { label: 'Auto Groups', href: '/dealers/auto-groups', description: 'Group-wide control, local execution', icon: Zap },
       { label: 'Pre-Owned', href: '/dealers/pre-owned', description: 'Lead reactivation & inventory velocity', icon: RefreshCcw },
+      {
+        label: 'Dealer Success',
+        href: '/dealer-success',
+        description: 'Personalized dealer support',
+        icon: HeartHandshake
+      },
     ]
   },
   {
