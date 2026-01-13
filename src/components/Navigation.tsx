@@ -157,9 +157,9 @@ export default function Navigation() {
           <Image
             src="/images/visquanta-logo-white.png"
             alt="VisQuanta"
-            width={450}
-            height={120}
-            className="h-[120px] w-auto brightness-100 group-hover:brightness-125 transition-all duration-500 relative z-10"
+            width={200}
+            height={53}
+            className="h-10 w-auto brightness-100 group-hover:brightness-125 transition-all duration-500 relative z-10"
             priority
           />
         </Link>
