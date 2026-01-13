@@ -838,16 +838,16 @@ function FinalCTASection() {
 
           {/* Headline */}
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-tight">
-            Stop losing leads to <br className="hidden md:block" />
+            Every Closed Tab is a <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600">
-              slow responses.
+              Lost Sale
             </span>
           </h2>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-zinc-400 mb-12 max-w-2xl leading-relaxed font-light">
-            Install VisQuanta's SMS First Widget today and start capturing
-            <span className="text-white font-medium"> 3x more leads</span> from your existing traffic.
+            Traditional chat dies the moment they leave. SMS stays in their pocket forever.
+            <span className="text-white font-medium"> Start capturing real phone numbers today.</span>
           </p>
 
           {/* Buttons */}
