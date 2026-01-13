@@ -106,16 +106,15 @@ export default function HeroSection() {
                             className="absolute top-[50%] left-0 -translate-y-1/2 w-[340px] bg-[#111111] border border-white/10 rounded-xl shadow-2xl overflow-hidden z-20 font-sans"
                         >
                             {/* Header */}
-                            <div className="bg-[#1a1a2e] p-4 flex items-center justify-between border-b border-white/5">
+                            <div className="bg-white p-4 flex items-center justify-between border-b border-black/5">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10">
-                                        <img src="/images/team/member-placeholder.jpg" alt="Agent" className="w-full h-full object-cover" />
-                                        {/* Fallback if image missing is handled by standard img behavior or we can use a colored div */}
+                                    <div className="w-9 h-9 rounded-full overflow-hidden border border-black/10 shadow-sm">
+                                        <img src="/images/nick.png" alt="Agent" className="w-full h-full object-cover" />
                                     </div>
-                                    <div className="text-white font-medium text-[15px]">Have a question?</div>
+                                    <div className="text-black font-bold text-[15px]">Have a question?</div>
                                 </div>
-                                <div className="text-white/50">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                                <div className="text-black/50">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                                 </div>
                             </div>
 
@@ -123,7 +122,7 @@ export default function HeroSection() {
                                 {/* Welcome Message */}
                                 <div className="flex gap-3">
                                     <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden border border-white/10 mt-1">
-                                        <div className="w-full h-full bg-[#FF7404] flex items-center justify-center text-black font-bold text-xs">AI</div>
+                                        <img src="/images/nick.png" alt="Agent" className="w-full h-full object-cover" />
                                     </div>
                                     <div className="bg-[#1a1a2e] text-zinc-300 text-sm p-3 rounded-lg rounded-tl-none border-l-2 border-[#FF7404] leading-relaxed shadow-sm">
                                         Enter your question below and a representative will get right back to you.
@@ -168,9 +167,9 @@ export default function HeroSection() {
                                 </div>
 
                                 {/* Submit Button */}
-                                <button className="w-full h-10 bg-[#1a1a2e] hover:bg-[#232340] text-white rounded-md flex items-center justify-center gap-2 transition-colors font-medium border border-white/5">
+                                <button className="w-full h-12 bg-white hover:bg-zinc-100 text-black rounded-lg flex items-center justify-center gap-2 transition-colors font-bold border border-transparent shadow-lg shadow-white/5">
                                     <span>Send</span>
-                                    <Send className="w-3.5 h-3.5" />
+                                    <Send className="w-4 h-4 ml-1" />
                                 </button>
 
                                 {/* Footer */}
