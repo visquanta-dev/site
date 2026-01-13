@@ -103,40 +103,43 @@ export default function HeroSection() {
                             initial={{ x: -100, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.8, delay: 0.4 }}
-                            className="absolute top-[40%] left-0 -translate-y-1/2 w-[340px] bg-[#0F0F0F] border border-white/10 rounded-2xl shadow-2xl p-5 z-20 backdrop-blur-xl"
+                            className="absolute top-[40%] left-0 -translate-y-1/2 w-[380px] bg-[#0A0A0A] border border-white/10 rounded-3xl shadow-2xl p-6 z-20"
                         >
                             {/* Badge */}
-                            <div className="absolute -top-3 -right-3 px-2 py-1 bg-[#1a1a1a] border border-white/10 rounded text-[9px] text-[#FF7404] font-bold font-mono uppercase tracking-wider shadow-lg">
+                            <div className="absolute -top-3 -right-3 px-3 py-1 bg-[#1a1a1a] border border-white/10 rounded-lg text-[10px] text-[#FF7404] font-black font-mono uppercase tracking-widest shadow-xl">
                                 WEB
                             </div>
 
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-10 h-10 rounded-full bg-[#FF7404] flex items-center justify-center shadow-lg shadow-[#FF7404]/20">
-                                    <MessageCircle className="w-5 h-5 text-black fill-black" />
+                            <div className="flex items-center gap-4 mb-8">
+                                <div className="w-12 h-12 rounded-full bg-[#FF7404] flex items-center justify-center shadow-[0_0_20px_rgba(255,116,4,0.3)]">
+                                    <MessageCircle className="w-6 h-6 text-black fill-black" />
                                 </div>
                                 <div>
-                                    <div className="text-sm font-bold text-white">Dealer Chat</div>
-                                    <div className="flex items-center gap-1.5">
-                                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                                        <span className="text-[10px] text-zinc-400 font-medium uppercase tracking-wide">Online</span>
+                                    <div className="text-lg font-bold text-white leading-none mb-1.5">Dealer Chat</div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_5px_#22c55e]" />
+                                        <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest">Online</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="bg-[#1a1a1a] rounded-xl p-4 mb-4 border-l-2 border-[#FF7404] relative">
-                                <div className="text-[10px] text-zinc-500 mb-1 font-bold uppercase tracking-wider">VisQuanta AI</div>
-                                <div className="text-sm text-zinc-200 leading-snug">Hi! I can text you our inventory list. What's your mobile number?</div>
+                            <div className="bg-[#151515] rounded-2xl p-5 mb-6 border-l-[3px] border-[#FF7404] relative">
+                                <div className="text-[9px] text-zinc-500 mb-2 font-black uppercase tracking-[0.15em]">VisQuanta AI</div>
+                                <div className="text-[15px] text-white font-medium leading-relaxed">
+                                    Hi! I can text you our inventory list. <br />
+                                    What's your mobile number?
+                                </div>
                             </div>
 
-                            <div className="relative">
+                            <div className="relative flex items-center gap-3">
                                 <input
                                     type="text"
                                     placeholder="555-0123"
-                                    className="w-full h-12 bg-black border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-[#FF7404]/50 transition-colors"
+                                    className="flex-1 h-14 bg-[#050505] border border-white/10 rounded-2xl px-5 text-lg text-white placeholder:text-zinc-700 focus:outline-none focus:border-[#FF7404]/50 transition-colors tracking-widest"
                                     disabled
                                 />
-                                <div className="absolute right-1 top-1 h-10 w-10 bg-[#FF7404] rounded-lg flex items-center justify-center shadow-lg shadow-[#FF7404]/20">
-                                    <ArrowRight className="w-5 h-5 text-black" />
+                                <div className="h-14 w-14 bg-[#FF7404] rounded-2xl flex items-center justify-center shadow-lg shadow-[#FF7404]/20 hover:scale-105 transition-transform">
+                                    <ArrowRight className="w-6 h-6 text-black stroke-[3px]" />
                                 </div>
                             </div>
                         </motion.div>
