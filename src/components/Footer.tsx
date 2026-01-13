@@ -53,6 +53,7 @@ const footerLinks = {
     { label: 'Blog', href: '/blog' },
     { label: 'Case Studies', href: '/case-studies' },
     { label: 'AMS Info Sheets', href: '/ams-guides' },
+    { label: 'Dealer Portal', href: 'https://portal.visquanta.com' },
   ],
   company: [
     { label: 'About VisQuanta', href: '/about-visquanta' },
@@ -113,7 +114,7 @@ export default function Footer() {
                     <MapPin className="w-4 h-4 text-[#FF7404]" />
                   </div>
                   <div className="text-sm text-white/50 leading-relaxed group-hover:text-white/70 transition-colors">
-                    2222 Ponce de Leon Blvd<br />3rd Floor<br />Miami, FL 33134 USA
+                    2222 Ponce de Leon Blvd<br />3rd Floor, Miami,<br />FL 33134 USA
                   </div>
                 </div>
                 <div className="flex items-center gap-4 group">
@@ -134,21 +135,7 @@ export default function Footer() {
                 </div>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <RequestDemoButton asChild>
-                  <Button
-                    className="group inline-flex items-center gap-3 h-auto px-8 py-4 bg-gradient-to-r from-[#FF7404] to-[#FF8A3D] text-black font-bold text-sm rounded-xl hover:shadow-[0_0_30px_-5px_rgba(255,116,4,0.4)] transition-all duration-300 border-none"
-                  >
-                    Request a Demo
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </Button>
-                </RequestDemoButton>
-              </motion.div>
+
             </div>
 
             {/* Links Columns Container */}
