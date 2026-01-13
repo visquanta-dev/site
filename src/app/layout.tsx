@@ -115,6 +115,8 @@ export default function RootLayout({
             `
           }}
         />
+        {/* Ahrefs Analytics */}
+        <script src="https://analytics.ahrefs.com/analytics.js" data-key="Wu9ybf2aliQUBBh9UHxyGQ" async></script>
       </head>
       <body className={inter.variable} style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif' }} suppressHydrationWarning>
         <SmoothScroll>
