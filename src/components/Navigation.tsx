@@ -24,6 +24,8 @@ import {
 } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
 import { Button } from "@/components/ui/button";
+import { usePathname } from 'next/navigation';
+import { useRef } from 'react';
 
 interface NavItem {
   label: string;
@@ -131,15 +133,65 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  const pathname = usePathname();
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Handle Escape key and Resize
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setIsMobileMenuOpen(false);
+    };
+
+    if (isMobileMenuOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('resize', handleResize);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Lock body scroll and Focus Trap
   useEffect(() => {
     if (isMobileMenuOpen) {
+      // Lock body
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+      // Focus trap
+      const focusableElements = mobileMenuRef.current?.querySelectorAll(
+        'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+      );
+      const firstElement = focusableElements?.[0] as HTMLElement;
+      // Focus the close button (which is effectively the trigger button in the fixed header or the first element inside)
+      // Actually, standard pattern is to focus the first interactive element IN the modal or the close button.
+      // In this design, the toggle button remains visible. 
+      // But let's try to focus the mobile menu container or the first link?
+      // Better: Focus the close button if it's inside? The close button is part of the header, which is technically outside the "mobile menu content" div but visible.
+      // Let's simply focus the container for screen readers to announce it.
+
+      mobileMenuRef.current?.focus();
+
     } else {
+      // Unlock body
       document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0px';
     }
     return () => {
       document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0px';
     };
   }, [isMobileMenuOpen]);
 
@@ -326,8 +378,10 @@ export default function Navigation() {
         <Button
           variant="ghost"
           size="icon"
-          className="lg:hidden text-white hover:bg-white/10 h-11 w-11 relative z-[60]"
+          className="lg:hidden text-white hover:bg-white/10 h-11 w-11 relative z-[1001]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-menu"
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMobileMenuOpen ? (
@@ -342,11 +396,44 @@ export default function Navigation() {
       <AnimatePresence mode="wait">
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-[999] bg-black backdrop-blur-3xl pt-24 px-6 overflow-y-auto lg:hidden flex flex-col"
+            id="mobile-menu"
+            ref={mobileMenuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation"
+            tabIndex={-1}
+            className="fixed inset-0 z-[999] bg-black/95 backdrop-blur-3xl pt-24 px-6 overflow-y-auto lg:hidden flex flex-col focus:outline-none"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: "circOut" }}
+            onKeyDown={(e) => {
+              if (e.key === 'Tab') {
+                const focusableElements = mobileMenuRef.current?.querySelectorAll(
+                  'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+                );
+                if (!focusableElements || focusableElements.length === 0) return;
+
+                const firstElement = focusableElements[0] as HTMLElement;
+                const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+                // If the toggle button is technically "outside" this div (it is in the header above), we need to be careful.
+                // But this div covers the screen. The toggle button is z-index 1001, this is 999.
+                // The toggle button is VISUALLY inside.
+                // If we tab backwards from first element, go to last.
+                if (e.shiftKey) {
+                  if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                  }
+                } else {
+                  if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                  }
+                }
+              }
+            }}
           >
             {/* Ambient Background Effects */}
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#FF7404]/10 rounded-full blur-[100px] pointer-events-none" />
