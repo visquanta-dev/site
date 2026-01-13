@@ -37,16 +37,17 @@ const footerLinks = {
   autoMasterSuite: [
     { label: 'Lead Reactivation', href: '/lead-reactivation' },
     { label: 'Speed to Lead', href: '/speed-to-lead' },
+    { label: 'SMS First Widget', href: '/website-widget' },
     { label: 'Reputation Management', href: '/reputation-management' },
-    { label: 'Dealer Success', href: '/dealer-success' },
     { label: 'Service Drive Pro', href: '/service-drive', tag: 'New' },
-    { label: 'Custom Campaigns', href: '/custom-campaigns', tag: 'IWAV' },
+    { label: 'Custom Campaigns', href: '/custom-campaigns' },
   ],
   dealerServices: [
     { label: 'Independent Dealerships', href: '/dealers/independent' },
     { label: 'Franchise Dealerships', href: '/dealers/franchise' },
     { label: 'Auto Groups', href: '/dealers/auto-groups' },
     { label: 'Pre-Owned', href: '/dealers/pre-owned' },
+    { label: 'Dealer Success', href: '/dealer-success' },
   ],
   resources: [
     { label: 'FAQs', href: '/faqs' },
