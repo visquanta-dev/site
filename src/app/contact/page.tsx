@@ -58,6 +58,7 @@ const offices = [
         country: "USA",
         isHQ: true,
         address: ["2222 Ponce de Leon Blvd", "3rd Floor", "Miami, FL 33134"],
+        phone: "+1 786-686-6554",
         timezone: "EST"
     },
     {
@@ -68,10 +69,11 @@ const offices = [
         timezone: "CST"
     },
     {
-        city: "London",
+        city: "Edinburgh",
         country: "UK",
         isHQ: false,
-        address: ["72 Shelton Street", "Covent Garden", "WC2H 9JQ"],
+        address: ["5 South Charlotte Street", "Edinburgh", "EH2 4AN"],
+        phone: "020 8058 5269",
         timezone: "GMT"
     }
 ];
@@ -577,6 +579,14 @@ export default function ContactPage() {
                                                                 <span key={j}>{line}{j < office.address.length - 1 && <br />}</span>
                                                             ))}
                                                         </div>
+                                                        {office.phone && (
+                                                            <div className="flex items-center gap-2 mt-2">
+                                                                <PhoneIcon className="w-3.5 h-3.5 text-[#FF7404]" />
+                                                                <a href={`tel:${office.phone.replace(/\s/g, '')}`} className="text-zinc-400 text-sm hover:text-[#FF7404] transition-colors">
+                                                                    {office.phone}
+                                                                </a>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                     <div className="text-[10px] font-mono text-zinc-600 bg-white/5 px-2 py-1 rounded">
                                                         {office.timezone}
