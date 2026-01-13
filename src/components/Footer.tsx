@@ -96,9 +96,9 @@ export default function Footer() {
                   <Image
                     src="/images/logos/visquanta_logo.png"
                     alt="VisQuanta"
-                    width={220}
-                    height={55}
-                    className="h-12 w-auto brightness-100 group-hover:brightness-110 transition-all duration-300"
+                    width={500}
+                    height={125}
+                    className="h-24 w-auto brightness-100 group-hover:brightness-110 transition-all duration-300"
                   />
                 </Link>
               </motion.div>
