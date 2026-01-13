@@ -5,19 +5,49 @@ import { Video, Phone } from 'lucide-react';
 import MobilePhoneMockup from '../mobile/MobilePhoneMockup';
 
 // SMS-style conversation
+// SMS-style conversation
 const DEMO_SCENARIO = {
     id: 'demo-full',
-    contactName: 'VisQuanta Motors',
-    contactRole: 'Sales',
-    avatarInitials: 'VM',
+    contactName: 'James (Web Widget)',
+    contactRole: 'SOURCE: WEBSITE WIDGET',
+    avatarInitials: 'JA',
     messages: [
-        { id: '1', sender: 'agent' as const, content: "Hi! This is Sarah from VisQuanta Motors. I saw you checking out the 2024 Explorer. Did you have any questions about the features?", type: 'text' as const },
-        { id: '2', sender: 'user' as const, content: "Yeah, does it have the tow package?", type: 'text' as const },
-        { id: '3', sender: 'agent' as const, content: "Yes, it does! Class IV trailer hitch and 5,600lb towing capacity. I actually have a walkaround video of that exact VIN. Want me to text it to you?", type: 'text' as const },
-        { id: '4', sender: 'user' as const, content: "That would be great, thanks.", type: 'text' as const },
-        { id: '5', sender: 'agent' as const, content: "Sent! 🎥 Let me know what you think. When are you free to come see it in person?", type: 'text' as const },
-        { id: '6', sender: 'user' as const, content: "Maybe Saturday morning?", type: 'text' as const },
-        { id: '7', sender: 'agent' as const, content: "Saturday works. I have an opening at 10:15 AM or 11:30 AM. Which one do you prefer?", type: 'text' as const }
+        {
+            id: '0',
+            sender: 'system' as const,
+            content: { title: 'MOVED FROM WEBSITE' },
+            type: 'source_tag' as const
+        },
+        {
+            id: '1',
+            sender: 'agent' as const,
+            content: "Hi James, you just reached out via our website, how can I help you today?",
+            type: 'text' as const
+        },
+        {
+            id: '2',
+            sender: 'user' as const,
+            content: "Do you have any white Tahoes in stock?",
+            type: 'text' as const
+        },
+        {
+            id: '3',
+            sender: 'agent' as const,
+            content: "Yes, we have 3 available! Two 2024 RSTs and one Z71. Would you like to see photos?",
+            type: 'text' as const
+        },
+        {
+            id: '4',
+            sender: 'user' as const,
+            content: "Send the Z71 please.",
+            type: 'text' as const
+        },
+        {
+            id: '5',
+            sender: 'agent' as const,
+            content: "Sent! 📸 It just arrived yesterday. When can you stop by for a test drive?",
+            type: 'text' as const
+        }
     ]
 };
 

@@ -54,6 +54,12 @@ const navItems: NavItem[] = [
         icon: Zap
       },
       {
+        label: 'SMS Website Widget',
+        href: '/website-widget',
+        description: 'Convert visitors to SMS leads',
+        icon: MessageSquare
+      },
+      {
         label: 'Reputation Management',
         href: '/reputation-management',
         description: 'Stay ahead of online reviews',
