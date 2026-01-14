@@ -1,8 +1,11 @@
 import { MetadataRoute } from 'next';
+import { getBlogPosts, getAllCategories, getAllTags } from '@/lib/seobot';
+import { getAllCaseStudySlugs } from '@/lib/case-studies';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://visquanta.com';
 
+    // Static main pages
     const mainPages = [
         '',
         '/about-visquanta',
@@ -30,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/cookie-policy',
     ];
 
+    // Dealer segment pages
     const dealerPages = [
         '/dealers',
         '/dealers/independent',
@@ -38,40 +42,72 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/dealers/pre-owned',
     ];
 
-    const blogSlugs = [
-        'math-5-minute-rule',
-        'sunday-leads-opportunity',
-        'ai-vs-human-bdc',
-        'promax-partnership',
-    ];
+    // Case study slugs from shared data module
+    const caseStudySlugs = getAllCaseStudySlugs();
 
-    const caseStudySlugs = [
-        'seth-wadley',
-        'metro-motors',
-        'bayside-honda',
-        'prestige-imports',
-        'freedom-independent'
-    ];
+    // Dynamically fetch blog posts, categories, and tags from Seobot API
+    let blogSlugs: string[] = [];
+    let categorySlugs: string[] = [];
+    let tagSlugs: string[] = [];
 
-    const routes = [
+    try {
+        // Fetch up to 100 blog posts for sitemap
+        const [{ posts }, categories, tags] = await Promise.all([
+            getBlogPosts(0, 100),
+            getAllCategories(),
+            getAllTags()
+        ]);
+
+        blogSlugs = posts.map(post => post.slug);
+        categorySlugs = categories.map(cat => cat.slug);
+        tagSlugs = tags.map(tag => tag.slug);
+    } catch (error) {
+        console.error('Error fetching dynamic content for sitemap:', error);
+        // Graceful degradation - sitemap will still include static pages
+    }
+
+    const routes: MetadataRoute.Sitemap = [
+        // Main pages
         ...mainPages.map(page => ({
             url: `${baseUrl}${page}`,
             lastModified: new Date(),
             changeFrequency: 'weekly' as const,
             priority: page === '' ? 1 : 0.8,
         })),
+
+        // Dealer pages
         ...dealerPages.map(page => ({
             url: `${baseUrl}${page}`,
             lastModified: new Date(),
             changeFrequency: 'monthly' as const,
             priority: 0.7,
         })),
+
+        // Blog posts (dynamic from Seobot)
         ...blogSlugs.map(slug => ({
             url: `${baseUrl}/blog/${slug}`,
             lastModified: new Date(),
             changeFrequency: 'monthly' as const,
             priority: 0.6,
         })),
+
+        // Blog categories (dynamic from Seobot)
+        ...categorySlugs.map(slug => ({
+            url: `${baseUrl}/blog/category/${slug}`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly' as const,
+            priority: 0.5,
+        })),
+
+        // Blog tags (dynamic from Seobot)
+        ...tagSlugs.map(slug => ({
+            url: `${baseUrl}/blog/tag/${slug}`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly' as const,
+            priority: 0.4,
+        })),
+
+        // Case studies
         ...caseStudySlugs.map(slug => ({
             url: `${baseUrl}/case-studies/${slug}`,
             lastModified: new Date(),

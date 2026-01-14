@@ -11,16 +11,39 @@ import VoicePrompts from '@/components/service-drive/VoicePrompts';
 import MinimalQuote from '@/components/ui/MinimalQuote';
 
 export const metadata = {
-    title: 'Service Drive AI | Automate After-Hours Calls & Book More Appointments | VisQuanta',
-    description: 'VisQuanta Service Drive solutions use AI to boost fixed-ops revenue with automated service bookings, inbound call handling, and CSI improvements. Turn missed calls into booked service jobs 24/7.',
+    title: 'Service Drive AI | 24/7 Appointment Automation | VisQuanta',
+    description: 'Boost fixed-ops revenue with AI-driven service bookings and 24/7 inbound call handling. Turn missed calls into booked service jobs and improve CSI scores.',
     alternates: {
         canonical: 'https://visquanta.com/service-drive',
     },
 };
 
 export default function ServiceDrivePage() {
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Home',
+                'item': 'https://visquanta.com'
+            },
+            {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Service Drive',
+                'item': 'https://visquanta.com/service-drive'
+            }
+        ]
+    };
+
     return (
         <div className="min-h-screen bg-[#030303]">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <Navigation />
             <main>
                 <HeroSection />

@@ -20,6 +20,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: category ? `${category.title} | VisQuanta Blog` : 'Category | VisQuanta Blog',
         description: `Browse articles in the ${category?.title || 'category'} category.`,
+        alternates: {
+            canonical: `https://visquanta.com/blog/category/${slug}`,
+        },
     };
 }
 
@@ -37,8 +40,37 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
     const { posts, total, totalPages, category } = await getBlogPostsByCategory(slug, page, 12);
     const categories = await getAllCategories();
 
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Home',
+                'item': 'https://visquanta.com'
+            },
+            {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Blog',
+                'item': 'https://visquanta.com/blog'
+            },
+            {
+                '@type': 'ListItem',
+                'position': 3,
+                'name': category?.title || 'Category',
+                'item': `https://visquanta.com/blog/category/${slug}`
+            }
+        ]
+    };
+
     return (
         <main className="bg-[#020202] min-h-screen selection:bg-[#FF7404] selection:text-black font-sans">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <Navigation />
 
             <section className="relative pt-32 pb-20 overflow-hidden">
@@ -81,11 +113,10 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
                                 <Link
                                     key={cat.slug}
                                     href={`/blog/category/${cat.slug}`}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                                        cat.slug === slug
-                                            ? 'bg-[#FF7404]/20 border border-[#FF7404]/40 text-[#FF7404]'
-                                            : 'bg-zinc-900/50 border border-white/10 text-zinc-400 hover:bg-zinc-900 hover:text-white hover:border-white/20'
-                                    }`}
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${cat.slug === slug
+                                        ? 'bg-[#FF7404]/20 border border-[#FF7404]/40 text-[#FF7404]'
+                                        : 'bg-zinc-900/50 border border-white/10 text-zinc-400 hover:bg-zinc-900 hover:text-white hover:border-white/20'
+                                        }`}
                                 >
                                     {cat.title} ({cat.count})
                                 </Link>

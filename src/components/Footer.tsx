@@ -52,7 +52,6 @@ const footerLinks = {
   resources: [
     { label: 'FAQs', href: '/faqs' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Case Studies', href: '/case-studies' },
     { label: 'AMS Info Sheets', href: '/ams-guides' },
     { label: 'Dealer Portal', href: 'https://portal.visquanta.com' },
   ],

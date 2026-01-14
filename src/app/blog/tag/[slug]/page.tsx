@@ -20,6 +20,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: tag ? `${tag.title} | VisQuanta Blog` : 'Tag | VisQuanta Blog',
         description: `Browse articles tagged with ${tag?.title || 'this tag'}.`,
+        alternates: {
+            canonical: `https://visquanta.com/blog/tag/${slug}`,
+        },
     };
 }
 
@@ -37,8 +40,37 @@ export default async function TagPage({ params, searchParams }: PageProps) {
     const { posts, total, totalPages, tag } = await getBlogPostsByTag(slug, page, 12);
     const allTags = await getAllTags();
 
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Home',
+                'item': 'https://visquanta.com'
+            },
+            {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Blog',
+                'item': 'https://visquanta.com/blog'
+            },
+            {
+                '@type': 'ListItem',
+                'position': 3,
+                'name': tag?.title || 'Tag',
+                'item': `https://visquanta.com/blog/tag/${slug}`
+            }
+        ]
+    };
+
     return (
         <main className="bg-[#020202] min-h-screen selection:bg-[#FF7404] selection:text-black font-sans">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <Navigation />
 
             <section className="relative pt-32 pb-20 overflow-hidden">
@@ -75,11 +107,10 @@ export default async function TagPage({ params, searchParams }: PageProps) {
                                 <Link
                                     key={t.slug}
                                     href={`/blog/tag/${t.slug}`}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                                        t.slug === slug
-                                            ? 'bg-[#FF7404]/20 border border-[#FF7404]/40 text-[#FF7404]'
-                                            : 'bg-zinc-900/50 border border-white/10 text-zinc-400 hover:bg-zinc-900 hover:text-white hover:border-white/20'
-                                    }`}
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${t.slug === slug
+                                        ? 'bg-[#FF7404]/20 border border-[#FF7404]/40 text-[#FF7404]'
+                                        : 'bg-zinc-900/50 border border-white/10 text-zinc-400 hover:bg-zinc-900 hover:text-white hover:border-white/20'
+                                        }`}
                                 >
                                     #{t.title}
                                 </Link>

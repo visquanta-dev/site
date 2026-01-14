@@ -74,8 +74,70 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         post.image = '/images/wireframes/7_lead_providers.jpeg';
     }
 
+    // Article Schema
+    const articleSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        'headline': post.headline,
+        'description': post.metaDescription,
+        'image': post.image,
+        'author': {
+            '@type': 'Organization',
+            'name': 'VisQuanta',
+            'url': 'https://visquanta.com'
+        },
+        'publisher': {
+            '@type': 'Organization',
+            'name': 'VisQuanta',
+            'logo': {
+                '@type': 'ImageObject',
+                'url': 'https://visquanta.com/logo-white.png'
+            }
+        },
+        'datePublished': post.createdAt,
+        'dateModified': post.updatedAt || post.createdAt,
+        'mainEntityOfPage': {
+            '@type': 'WebPage',
+            '@id': `https://visquanta.com/blog/${slug}`
+        }
+    };
+
+    // Breadcrumb Schema
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Home',
+                'item': 'https://visquanta.com'
+            },
+            {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Blog',
+                'item': 'https://visquanta.com/blog'
+            },
+            {
+                '@type': 'ListItem',
+                'position': 3,
+                'name': post.headline,
+                'item': `https://visquanta.com/blog/${slug}`
+            }
+        ]
+    };
+
     return (
         <main className="bg-[#050505] min-h-screen selection:bg-[#ff7404] selection:text-black font-sans">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <Navigation />
             <ReadingProgress />
             <BlogExitModal />

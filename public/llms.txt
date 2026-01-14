@@ -1,0 +1,83 @@
+# VisQuanta
+
+> VisQuanta is an AI-powered revenue operating system for automotive dealerships in the United States. The company provides lead reactivation, speed-to-lead response, reputation management, and service department automation through its flagship platform, AutoMaster Suite.
+
+## Important Notes
+
+- VisQuanta serves car dealerships exclusively in the United States
+- AutoMaster Suite is an all-in-one AI platform—not a single-feature tool
+- The company is headquartered in Miami, Florida
+- All services operate on month-to-month contracts with no long-term commitment required
+- Implementation takes 14 business days with a dedicated Dealer Success Manager
+- VisQuanta integrates with all major DMS and CRM platforms used by dealerships
+- The platform is TCPA-compliant for all SMS and voice communications
+- VisQuanta is BBB accredited
+
+## Core Products
+
+- [AutoMaster Suite](https://visquanta.com/auto-master-suite): The complete AI platform for dealership sales and service automation. Includes dashboard, real-time conversation monitoring, and all five core capabilities.
+- [Lead Reactivation (LLM)](https://visquanta.com/lead-reactivation): Conversational AI that systematically reactivates dormant CRM leads into booked sales appointments. Achieves 30%+ re-engagement rate and 11%+ revenue increase.
+- [Speed to Lead](https://visquanta.com/speed-to-lead): Sub-60-second AI response to all inbound leads via SMS. 21x higher conversion rate than traditional BDC response times.
+- [Website Widget](https://visquanta.com/website-widget): SMS-first web chat that captures real phone numbers and continues conversations beyond the browser session. 98% open rate.
+- [Reputation Management (ARM)](https://visquanta.com/reputation-management): Automated review request system that detects happy customers post-purchase and intercepts negative feedback before it goes public.
+- [Service Drive Pro](https://visquanta.com/service-drive): Voice AI for inbound service department calls. Handles appointment booking, recall reminders, and maintenance scheduling with zero missed calls.
+
+## Dealer Types Served
+
+- [Independent Dealers](https://visquanta.com/dealers/independent): Enterprise-grade AI for independent used car dealerships without the overhead or complexity.
+- [Franchise Dealers](https://visquanta.com/dealers/franchise): OEM-compliant solutions optimized for manufacturer requirements and CSI score improvement.
+- [Auto Groups](https://visquanta.com/dealers/auto-groups): Multi-rooftop deployment with unified dashboard, centralized reporting, and consistent processes across all locations.
+- [Pre-Owned Dealers](https://visquanta.com/dealers/pre-owned): Specialized solutions for high-turn pre-owned inventory operations.
+
+## Platform Integrations
+
+### DMS (Dealer Management Systems)
+- CDK Global
+- Dealertrack
+- Titan DMS
+- Frazer
+
+### CRM Platforms
+- VinSolutions
+- DealerSocket
+- eLead
+- DriveCentric
+
+### Lead Sources
+- Compatible with 100+ lead sources including OEM leads, third-party providers, and website forms
+
+## Key Statistics
+
+- $37.8M+ additional revenue generated for dealership partners
+- 7,192+ vehicles sold from reactivated leads
+- 11.6% average lift in vehicles sold
+- 98% dealer satisfaction rating
+- <60 second response time to inbound leads
+- 24/7/365 coverage including nights, weekends, and holidays
+
+## Company Information
+
+- [About VisQuanta](https://visquanta.com/about-visquanta): Company background, mission, and leadership team
+- [Our Team](https://visquanta.com/team): Meet the VisQuanta leadership and support staff
+- [Careers](https://visquanta.com/careers): Open positions in automation, API integration, and account management
+- [Trust Center](https://visquanta.com/trust): Data handling practices, compliance certifications, and security information
+- [Contact Us](https://visquanta.com/contact): Request a demo or speak with the team
+
+## Resources
+
+- [Blog](https://visquanta.com/blog): Industry insights, AI trends, and dealership optimization strategies
+- [Case Studies](https://visquanta.com/case-studies): Real results from dealership partners
+- [FAQs](https://visquanta.com/faqs): Common questions about implementation, pricing, and capabilities
+- [AMS Info Sheets](https://visquanta.com/ams-guides): Downloadable product documentation
+
+## Contact
+
+- Address: 2222 Ponce de Leon Blvd, 3rd Floor, Miami, FL 33134 USA
+- Phone: +1 786-686-6554
+- Email: info@visquanta.com
+- Dealer Portal: https://portal.visquanta.com
+
+## Optional
+
+- [Partnerships](https://visquanta.com/partnerships): Partner program for agencies, consultants, and industry professionals
+- [Dealer Success Solutions](https://visquanta.com/dealer-success): Information about dedicated account management and ongoing optimization

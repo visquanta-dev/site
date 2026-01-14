@@ -113,7 +113,6 @@ const navItems: NavItem[] = [
     children: [
       { label: 'FAQs', href: '/faqs', description: 'Everything you need to know', icon: RefreshCcw },
       { label: 'Our Blog', href: '/blog', description: 'Insights for forward-thinkers', icon: Layers },
-      { label: 'Case Studies', href: '/case-studies', description: 'Real results from top dealers', icon: Star },
       { label: 'AMS Info Sheets', href: '/ams-guides', description: 'One-page solution overviews', icon: Layers },
     ]
   },

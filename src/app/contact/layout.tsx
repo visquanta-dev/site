@@ -13,5 +13,56 @@ export default function ContactLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return <>{children}</>;
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Home',
+                'item': 'https://visquanta.com'
+            },
+            {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Contact',
+                'item': 'https://visquanta.com/contact'
+            }
+        ]
+    };
+
+    const localBusinessSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        'name': 'VisQuanta',
+        'image': 'https://visquanta.com/logo-white.png',
+        '@id': 'https://visquanta.com/#organization',
+        'url': 'https://visquanta.com',
+        'telephone': '',
+        'address': {
+            '@type': 'PostalAddress',
+            'addressLocality': 'USA',
+            'addressCountry': 'US'
+        },
+        'contactPoint': {
+            '@type': 'ContactPoint',
+            'contactType': 'customer support',
+            'email': 'support@visquanta.com'
+        }
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+            />
+            {children}
+        </>
+    );
 }

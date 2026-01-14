@@ -22,8 +22,31 @@ export const metadata = {
 };
 
 export default function ReputationManagementPage() {
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Home',
+                'item': 'https://visquanta.com'
+            },
+            {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Reputation Management',
+                'item': 'https://visquanta.com/reputation-management'
+            }
+        ]
+    };
+
     return (
         <main className="bg-[#020202] min-h-screen relative overflow-hidden selection:bg-[#FF7404]/30">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             {/* Global Premium Skin Elements */}
             <div className="fixed inset-0 pointer-events-none z-0">
                 {/* Grainy Texture */}
