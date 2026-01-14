@@ -4,8 +4,8 @@ const CACHE_TTL = 60000; // 60 seconds
 function getApiKey(): string {
   const key = process.env.SEOBOT_API_KEY;
   if (!key) {
-    console.error('SEOBOT_API_KEY is not set');
-    throw new Error('SEOBOT_API_KEY environment variable is required');
+    console.warn('⚠️ WARNING: SEOBOT_API_KEY is not set. Blog features may not work correctly.');
+    return '';
   }
   return key;
 }
@@ -116,6 +116,7 @@ async function fetchBase(): Promise<BasePost[]> {
   if (cached) return cached;
 
   const apiKey = getApiKey();
+  if (!apiKey) return [];
   const url = `https://seobot-blogs.s3.eu-north-1.amazonaws.com/${apiKey}/system/base.json`;
 
   const response = await fetch(url, { cache: 'no-store' });
@@ -138,6 +139,7 @@ async function fetchPost(id: string): Promise<BlogPost | null> {
 
   try {
     const apiKey = getApiKey();
+    if (!apiKey) return null;
     const url = `https://seobot-blogs.s3.eu-north-1.amazonaws.com/${apiKey}/blog/${id}.json`;
 
     const response = await fetch(url, { cache: 'no-store' });
