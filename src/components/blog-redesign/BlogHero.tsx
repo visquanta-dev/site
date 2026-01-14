@@ -17,7 +17,7 @@ export default function BlogHero() {
                     x: [0, 50, 0]
                 }}
                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[-10%] right-[10%] w-[800px] h-[800px] bg-[#D4A853]/[0.03] rounded-full blur-[120px] pointer-events-none"
+                className="absolute top-[-10%] right-[10%] w-[800px] h-[800px] bg-[#ff7404]/[0.03] rounded-full blur-[120px] pointer-events-none"
             />
             <motion.div
                 animate={{
@@ -38,8 +38,8 @@ export default function BlogHero() {
                     className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-md mb-8"
                 >
                     <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4A853]"></span>
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff7404] opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ff7404]"></span>
                     </span>
                     <span className="text-[11px] font-semibold tracking-[0.2em] text-white/50 uppercase font-sans">The Journal</span>
                 </motion.div>

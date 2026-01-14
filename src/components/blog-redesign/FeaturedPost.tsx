@@ -13,7 +13,7 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
             <motion.div
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="relative overflow-hidden rounded-2xl bg-[#111111] border border-white/[0.06] group-hover:border-[#D4A853]/25 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_30px_rgba(212,168,83,0.08)] grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] min-h-[500px] lg:min-h-[560px] "
+                className="relative overflow-hidden rounded-2xl bg-[#111111] border border-white/[0.06] group-hover:border-[#ff7404]/25 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_30px_rgba(255,116,4,0.08)] grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] min-h-[500px] lg:min-h-[560px] "
             >
                 {/* Image Section */}
                 <div className="relative h-full w-full overflow-hidden">
@@ -32,7 +32,7 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
                             src={post.image || '/images/blog/default.jpg'}
                             alt={post.headline}
                             fill
-                            className="object-cover"
+                            className="object-contain"
                             priority
                             sizes="(max-width: 768px) 100vw, 65vw"
                         />
@@ -49,11 +49,11 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
                 {/* Content Section */}
                 <div className="relative z-20 flex flex-col justify-center p-8 md:p-12 lg:pr-16 bg-[#111111]">
                     {/* Category Badge (Desktop) */}
-                    <span className="hidden lg:inline-block text-[11px] font-bold uppercase tracking-[0.05em] text-[#D4A853] mb-6">
+                    <span className="hidden lg:inline-block text-[11px] font-bold uppercase tracking-[0.05em] text-[#ff7404] mb-6">
                         {post.category?.title || 'Featured'}
                     </span>
 
-                    <h2 className="text-3xl md:text-4xl lg:text-[42px] font-semibold text-white leading-[1.15] tracking-[-0.02em] mb-6 group-hover:text-[#D4A853] transition-colors duration-300">
+                    <h2 className="text-3xl md:text-4xl lg:text-[42px] font-semibold text-white leading-[1.15] tracking-[-0.02em] mb-6 group-hover:text-[#ff7404] transition-colors duration-300">
                         {post.headline}
                     </h2>
 

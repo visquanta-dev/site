@@ -13,6 +13,9 @@ import MinimalQuote from '@/components/ui/MinimalQuote';
 export const metadata = {
     title: 'Service Drive AI | Automate After-Hours Calls & Book More Appointments | VisQuanta',
     description: 'VisQuanta Service Drive solutions use AI to boost fixed-ops revenue with automated service bookings, inbound call handling, and CSI improvements. Turn missed calls into booked service jobs 24/7.',
+    alternates: {
+        canonical: 'https://visquanta.com/service-drive',
+    },
 };
 
 export default function ServiceDrivePage() {

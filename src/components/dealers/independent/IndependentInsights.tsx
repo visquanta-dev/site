@@ -3,55 +3,60 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, Calendar, Lightbulb } from 'lucide-react';
-
-const articles = [
-    {
-        title: "ProMax x VisQuanta: A Game-Changing Partnership",
-        excerpt: "How our deep integration with ProMax's stack enables independent dealers to unlock enterprise-grade lead engagement without changing their workflow.",
-        link: "/blog/promax-partnership",
-        category: "Integration",
-        color: "from-[#FF7404] to-[#FF9040]",
-        bgGlow: "bg-[#FF7404]/20",
-        date: "Dec 18, 2024"
-    },
-    {
-        title: "The Ultimate Guide to CRM Reactivation",
-        excerpt: "Stop buying new leads until you've mined your gold. Learn the data-driven strategies to wake up dormant prospects and turn old leads into fresh opportunities.",
-        link: "/blog/crm-reactivation-guide",
-        category: "Strategy",
-        color: "from-[#FF7404] to-yellow-500",
-        bgGlow: "bg-[#FF7404]/20",
-        date: "Dec 12, 2024"
-    },
-    {
-        title: "Top 7 Third-Party Lead Providers for 2026",
-        excerpt: "Comparing Cars.com, AutoTrader, CarGurus, and more—ranked by cost-per-lead, close rate, and compatibility with AI engagement tools.",
-        link: "/blog/third-party-leads-2026",
-        category: "Research",
-        color: "from-purple-500 to-pink-500",
-        bgGlow: "bg-purple-500/20",
-        date: "Dec 5, 2024"
-    }
-];
-
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.15, delayChildren: 0.2 }
-    }
-};
-
-const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }
-    }
-};
+import { useState, useEffect } from 'react';
 
 export default function IndependentInsights() {
+    const [realArticles, setRealArticles] = useState<any[]>([]);
+
+    useEffect(() => {
+        fetch('/api/blog/latest?limit=3')
+            .then(res => res.json())
+            .then(data => {
+                if (data.posts && data.posts.length > 0) {
+                    const colors = [
+                        "from-[#FF7404] to-[#FF9040]",
+                        "from-[#FF7404] to-yellow-500",
+                        "from-purple-500 to-pink-500"
+                    ];
+                    const glows = [
+                        "bg-[#FF7404]/20",
+                        "bg-[#FF7404]/20",
+                        "bg-purple-500/20"
+                    ];
+
+                    const mapped = data.posts.map((post: any, i: number) => ({
+                        title: post.headline,
+                        excerpt: post.metaDescription,
+                        link: `/blog/${post.slug}`,
+                        category: post.category?.title || 'Industry',
+                        color: colors[i % colors.length],
+                        bgGlow: glows[i % glows.length],
+                        date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                    }));
+                    setRealArticles(mapped);
+                }
+            });
+    }, []);
+
+    if (realArticles.length === 0) return null;
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+        }
+    };
+
+    const cardVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }
+        }
+    };
+
     return (
         <section className="py-24 bg-[#020202] relative overflow-hidden">
             {/* Background Grid */}
@@ -98,7 +103,7 @@ export default function IndependentInsights() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
                 >
-                    {articles.map((article, i) => (
+                    {realArticles.map((article, i) => (
                         <motion.div key={i} variants={cardVariants}>
                             <Link
                                 href={article.link}

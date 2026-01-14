@@ -4,6 +4,6 @@ export { default as TrustSection } from './TrustSection';
 export { default as PlatformSection } from './PlatformSection';
 export { default as ProductCard } from './ProductCard';
 export { default as Footer } from './Footer';
-export { default as LatestInsights } from './LatestInsights';
+
 export { default as CapabilityTabs } from './CapabilityTabs';
 export { default as CapabilityFeatureDisplay } from './CapabilityFeatureDisplay';

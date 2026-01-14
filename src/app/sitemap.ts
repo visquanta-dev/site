@@ -11,7 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/book-demo',
         '/careers',
         '/case-studies',
+        '/company',
         '/contact',
+        '/custom-campaigns',
+        '/dealer-success',
         '/faqs',
         '/lead-reactivation',
         '/reputation-management',
@@ -19,11 +22,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/speed-to-lead',
         '/team',
         '/trust',
+        '/resources',
+        '/website-widget',
+        '/ams-guides',
         '/privacy-policy',
         '/terms-conditions',
+        '/cookie-policy',
     ];
 
     const dealerPages = [
+        '/dealers',
         '/dealers/independent',
         '/dealers/franchise',
         '/dealers/auto-groups',
@@ -35,12 +43,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
         'sunday-leads-opportunity',
         'ai-vs-human-bdc',
         'promax-partnership',
-        '1',
-        '2',
-        '3'
     ];
 
     const caseStudySlugs = [
+        'seth-wadley',
         'metro-motors',
         'bayside-honda',
         'prestige-imports',

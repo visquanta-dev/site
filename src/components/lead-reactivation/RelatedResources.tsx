@@ -1,60 +1,35 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
-const articles = [
-    {
-        category: "Digital Drive",
-        title: "The Ultimate Guide to CRM Database Reactivation",
-        date: "December 15, 2025",
-        readTime: "12 min read",
-        author: { name: "Lavar Harper", avatar: "/images/team/lavar.jpg" },
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-        href: "/blog/ultimate-guide-crm-database-reactivation"
-    },
-    {
-        category: "Digital Drive",
-        title: "Top 7 Third-Party Lead Providers for Dealerships",
-        date: "December 1, 2025",
-        readTime: "8 min read",
-        author: { name: "Lavar Harper", avatar: "/images/team/lavar.jpg" },
-        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop",
-        href: "/blog/top-7-third-party-lead-providers"
-    },
-    {
-        category: "Case Study",
-        title: "How Seth Wadley Sold 17 Extra Cars in One Month",
-        date: "November 28, 2025",
-        readTime: "5 min read",
-        author: { name: "Lavar Harper", avatar: "/images/team/lavar.jpg" },
-        image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop",
-        href: "/case-studies/seth-wadley-auto-group"
-    },
-    {
-        category: "Digital Drive",
-        title: "How AI Revives Dormant CRM Data",
-        date: "November 14, 2025",
-        readTime: "7 min read",
-        author: { name: "Lavar Harper", avatar: "/images/team/lavar.jpg" },
-        image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
-        href: "/blog/ai-revives-dormant-crm-data"
-    },
-    {
-        category: "Industry",
-        title: "Why Speed-to-Lead Matters More Than Ever in 2025",
-        date: "November 8, 2025",
-        readTime: "6 min read",
-        author: { name: "Lavar Harper", avatar: "/images/team/lavar.jpg" },
-        image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop",
-        href: "/blog/speed-to-lead-2025"
-    }
-];
-
 export default function RelatedResources() {
+    const [realArticles, setRealArticles] = useState<any[]>([]);
+
+    useEffect(() => {
+        fetch('/api/blog/latest?limit=6')
+            .then(res => res.json())
+            .then(data => {
+                if (data.posts && data.posts.length > 0) {
+                    const mapped = data.posts.map((post: any) => ({
+                        category: post.category?.title || 'Digital Drive',
+                        title: post.headline,
+                        date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+                        readTime: `${post.readingTime} min read`,
+                        author: { name: "VisQuanta Team", avatar: null },
+                        image: post.image,
+                        href: `/blog/${post.slug}`
+                    }));
+                    setRealArticles(mapped);
+                }
+            });
+    }, []);
+
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    if (realArticles.length === 0) return null;
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
@@ -135,7 +110,7 @@ export default function RelatedResources() {
                         className="flex gap-8 overflow-x-auto scrollbar-hide px-8 lg:px-20 pb-4 snap-x snap-mandatory"
                         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
-                        {articles.map((article, index) => (
+                        {realArticles.map((article, index) => (
                             <motion.article
                                 key={index}
                                 initial={{ opacity: 0, x: 40 }}

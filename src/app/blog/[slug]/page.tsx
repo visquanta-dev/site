@@ -36,6 +36,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
         title: `${post.headline} | VisQuanta`,
         description: post.metaDescription,
+        alternates: {
+            canonical: `https://visquanta.com/blog/${slug}`,
+        },
         openGraph: {
             title: post.headline,
             description: post.metaDescription,
@@ -63,8 +66,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         return notFound();
     }
 
+    // Manual override for the Featured image as requested
+    if (post.headline.includes('CRM Database Reactivation')) {
+        post.image = '/images/wireframes/ultimate-guide-crm-reactivation.jpeg';
+    }
+    if (post.headline.includes('Third-Party Lead Providers')) {
+        post.image = '/images/wireframes/7_lead_providers.jpeg';
+    }
+
     return (
-        <main className="bg-[#050505] min-h-screen selection:bg-[#FF7404] selection:text-black font-sans">
+        <main className="bg-[#050505] min-h-screen selection:bg-[#ff7404] selection:text-black font-sans">
             <Navigation />
             <ReadingProgress />
             <BlogExitModal />
@@ -173,7 +184,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                             src={post.image}
                                             alt={post.headline}
                                             fill
-                                            className="object-cover"
+                                            className="object-contain"
                                             priority
                                         />
                                         {/* Gradient overlay */}

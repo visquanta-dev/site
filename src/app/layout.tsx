@@ -16,9 +16,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://visquanta.com"),
   title: "VisQuanta | The Dealer's Unfair Advantage",
   description: "BUILT FOR MODERN DEALERSHIPS - The unfair advantage elite dealerships use",
-  alternates: {
-    canonical: "/",
-  },
 };
 
 export const viewport = {

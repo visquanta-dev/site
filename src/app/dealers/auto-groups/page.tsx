@@ -93,30 +93,7 @@ const faqs = [
     }
 ];
 
-// Blog/Insights Data for Auto Groups
-const articles = [
-    {
-        title: "Standardizing BDC Success at Scale",
-        excerpt: "How the top 100 auto groups are using AI to enforce process consistency across decentralised operations.",
-        link: "/blog/standardizing-bdc-scale",
-        category: "Operations",
-        date: "Dec 18, 2024"
-    },
-    {
-        title: "The ROI of Centralized Lead Recovery",
-        excerpt: "Why aggregating dormant CRM data across your entire group's portfolio uncovers millions in hidden revenue.",
-        link: "/blog/centralized-lead-recovery",
-        category: "Strategy",
-        date: "Dec 12, 2024"
-    },
-    {
-        title: "Eliminating Group-Wide Data Silos",
-        excerpt: "Breaking down the barriers between different CRM systems to get a true picture of your group's performance.",
-        link: "/blog/group-data-silos",
-        category: "Technology",
-        date: "Dec 5, 2024"
-    }
-];
+// Blog/Insights Data for Auto Groups will be fetched dynamically
 
 // --- Shared Components for Phone ---
 
@@ -461,11 +438,29 @@ export default function AutoGroupsPage() {
         mouseY.set(y);
     };
 
+    const [realArticles, setRealArticles] = useState<any[]>([]);
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
     const [activeFeature, setActiveFeature] = useState(0);
     const [visibleMessages, setVisibleMessages] = useState<any[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const chatContainerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        fetch('/api/blog/latest?limit=3')
+            .then(res => res.json())
+            .then(data => {
+                if (data.posts && data.posts.length > 0) {
+                    const mapped = data.posts.map((post: any) => ({
+                        title: post.headline,
+                        excerpt: post.metaDescription,
+                        link: `/blog/${post.slug}`,
+                        category: post.category?.title || 'Group Strategy',
+                        date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                    }));
+                    setRealArticles(mapped);
+                }
+            });
+    }, []);
 
     // Message Sequencing Logic
     useEffect(() => {
@@ -1145,7 +1140,7 @@ export default function AutoGroupsPage() {
                         whileInView="visible"
                         viewport={{ once: true, margin: "-50px" }}
                     >
-                        {articles.map((article, i) => (
+                        {realArticles.map((article, i) => (
                             <motion.div key={i} variants={itemVariants}>
                                 <Link
                                     href={article.link}

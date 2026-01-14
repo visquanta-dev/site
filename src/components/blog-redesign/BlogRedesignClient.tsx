@@ -27,17 +27,36 @@ export default function BlogRedesignClient({ posts, categories, totalPosts }: Bl
     const [activeCategory, setActiveCategory] = useState<string>('all');
     const [currentPage, setCurrentPage] = useState<number>(1);
 
+    // Apply manual image overrides
+    const processedPosts = useMemo(() => {
+        return posts.map(post => {
+            if (post.headline.includes('CRM Database Reactivation')) {
+                return {
+                    ...post,
+                    image: '/images/wireframes/ultimate-guide-crm-reactivation.jpeg'
+                };
+            }
+            if (post.headline.includes('Third-Party Lead Providers')) {
+                return {
+                    ...post,
+                    image: '/images/wireframes/7_lead_providers.jpeg'
+                };
+            }
+            return post;
+        });
+    }, [posts]);
+
     // Featured post is the first one (only shown on page 1)
-    const featuredPost = posts[0];
+    const featuredPost = processedPosts[0];
     const isFirstPage = currentPage === 1;
 
     // Filter posts based on category
     const filteredPosts = useMemo(() => {
         if (activeCategory === 'all') {
-            return posts;
+            return processedPosts;
         }
-        return posts.filter(post => post.category?.slug === activeCategory);
-    }, [posts, activeCategory]);
+        return processedPosts.filter(post => post.category?.slug === activeCategory);
+    }, [processedPosts, activeCategory]);
 
     // Calculate pagination
     const paginatedPosts = useMemo(() => {
@@ -161,8 +180,8 @@ export default function BlogRedesignClient({ posts, categories, totalPosts }: Bl
                                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                                     disabled={currentPage === 1}
                                     className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all ${currentPage === 1
-                                            ? 'text-white/20 cursor-not-allowed'
-                                            : 'text-white/50 hover:bg-white/5 hover:text-white'
+                                        ? 'text-white/20 cursor-not-allowed'
+                                        : 'text-white/50 hover:bg-white/5 hover:text-white'
                                         }`}
                                 >
                                     <ChevronLeft size={20} />
@@ -175,8 +194,8 @@ export default function BlogRedesignClient({ posts, categories, totalPosts }: Bl
                                             key={index}
                                             onClick={() => setCurrentPage(page)}
                                             className={`w-10 h-10 rounded-lg font-medium text-sm flex items-center justify-center transition-all ${currentPage === page
-                                                    ? 'bg-[#D4A853] text-black font-semibold'
-                                                    : 'text-white/50 hover:bg-white/5 hover:text-white'
+                                                ? 'bg-[#ff7404] text-black font-semibold'
+                                                : 'text-white/50 hover:bg-white/5 hover:text-white'
                                                 }`}
                                         >
                                             {page}
@@ -191,8 +210,8 @@ export default function BlogRedesignClient({ posts, categories, totalPosts }: Bl
                                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                                     disabled={currentPage === totalPages}
                                     className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all ${currentPage === totalPages
-                                            ? 'text-white/20 cursor-not-allowed'
-                                            : 'text-white/50 hover:bg-white/5 hover:text-white'
+                                        ? 'text-white/20 cursor-not-allowed'
+                                        : 'text-white/50 hover:bg-white/5 hover:text-white'
                                         }`}
                                 >
                                     <ChevronRight size={20} />

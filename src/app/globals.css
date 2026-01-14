@@ -488,3 +488,43 @@ iframe[src*="/banner/inline"] {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* ===========================================
+   ANIMATED BORDER EFFECT (Featured Card)
+   =========================================== */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes borderRotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.featured-card-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  /* Matches card radius */
+  padding: 2px;
+  /* Border width */
+  background: conic-gradient(from var(--angle),
+      transparent 30%,
+      #ff7404 45%,
+      #ff9d4d 50%,
+      #ff7404 55%,
+      transparent 70%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderRotate 4s linear infinite;
+  pointer-events: none;
+  /* Click pass-through */
+  filter: drop-shadow(0 0 15px rgba(255, 116, 4, 0.4));
+  z-index: 2;
+}

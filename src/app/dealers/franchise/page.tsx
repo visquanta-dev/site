@@ -378,30 +378,7 @@ const faqs = [
     }
 ];
 
-// Blog/Insights Data
-const articles = [
-    {
-        title: "How AI Protects Your CSI Scores",
-        excerpt: "Understanding the connection between response time, customer satisfaction, and OEM performance bonuses. Learn how automation keeps your scores high.",
-        link: "/blog/ai-csi-protection",
-        category: "Compliance",
-        date: "Dec 20, 2024"
-    },
-    {
-        title: "OEM Lead Program Optimization",
-        excerpt: "Maximize your return from Cars.com, AutoTrader, and manufacturer lead programs with instant AI-powered engagement that beats the competition.",
-        link: "/blog/oem-lead-optimization",
-        category: "Strategy",
-        date: "Dec 15, 2024"
-    },
-    {
-        title: "Reducing BDC Turnover with AI",
-        excerpt: "With 80% annual turnover in BDC roles, AI automation provides stable, consistent customer engagement while reducing hiring pressure.",
-        link: "/blog/bdc-turnover-reduction",
-        category: "Operations",
-        date: "Dec 10, 2024"
-    }
-];
+// Blog/Insights Data will be fetched dynamically
 
 // Solutions for franchise dealers
 const solutions = [
@@ -457,11 +434,29 @@ export default function FranchisePage() {
     };
 
     // FAQ state
+    const [realArticles, setRealArticles] = useState<any[]>([]);
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
     const [activeFeature, setActiveFeature] = useState(0);
     const [visibleMessages, setVisibleMessages] = useState<any[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const chatContainerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        fetch('/api/blog/latest?limit=3')
+            .then(res => res.json())
+            .then(data => {
+                if (data.posts && data.posts.length > 0) {
+                    const mapped = data.posts.map((post: any) => ({
+                        title: post.headline,
+                        excerpt: post.metaDescription,
+                        link: `/blog/${post.slug}`,
+                        category: post.category?.title || 'Strategy',
+                        date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                    }));
+                    setRealArticles(mapped);
+                }
+            });
+    }, []);
 
     // Message Sequencing Logic
     useEffect(() => {
@@ -1114,7 +1109,7 @@ export default function FranchisePage() {
                         whileInView="visible"
                         viewport={{ once: true, margin: "-50px" }}
                     >
-                        {articles.map((article, i) => (
+                        {realArticles.map((article, i) => (
                             <motion.div key={i} variants={itemVariants}>
                                 <Link
                                     href={article.link}

@@ -8,6 +8,9 @@ export const revalidate = 60;
 export const metadata = {
     title: 'The Journal | VisQuanta',
     description: 'Industry insights, strategies, data, and trends for modern automotive retail.',
+    alternates: {
+        canonical: 'https://visquanta.com/blog',
+    },
 };
 
 export default async function BlogPage() {

@@ -53,30 +53,7 @@ const faqs = [
     }
 ];
 
-// Blog/Insights Data for Pre-Owned
-const articles = [
-    {
-        title: "Mining the 'Dead' Lead Database",
-        excerpt: "Why your CRM contains a buyer for every used car on your lot, and how to find them without manual cold calling.",
-        link: "/blog/crm-mining-for-used",
-        category: "Revenue Strategy",
-        date: "Dec 21, 2024"
-    },
-    {
-        title: "The First 90 Seconds",
-        excerpt: "Quantifying the revenue loss of delayed responses to pre-owned portal inquiries.",
-        link: "/blog/speed-to-lead-impact",
-        category: "Sales Velocity",
-        date: "Dec 15, 2024"
-    },
-    {
-        title: "Acquiring Inventory from the Lane",
-        excerpt: "Using AI to turn your service drive into your most profitable used car sourcing channel.",
-        link: "/blog/service-drive-acquisition",
-        category: "Acquisition",
-        date: "Dec 10, 2024"
-    }
-];
+// Blog/Insights Data for Pre-Owned will be fetched dynamically
 
 // --- Shared Components for Phone ---
 
@@ -453,11 +430,29 @@ export default function PreOwnedPage() {
         mouseY.set(y);
     };
 
+    const [realArticles, setRealArticles] = useState<any[]>([]);
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
     const [activeFeature, setActiveFeature] = useState(0);
     const [visibleMessages, setVisibleMessages] = useState<any[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const chatContainerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        fetch('/api/blog/latest?limit=3')
+            .then(res => res.json())
+            .then(data => {
+                if (data.posts && data.posts.length > 0) {
+                    const mapped = data.posts.map((post: any) => ({
+                        title: post.headline,
+                        excerpt: post.metaDescription,
+                        link: `/blog/${post.slug}`,
+                        category: post.category?.title || 'Used Strategy',
+                        date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                    }));
+                    setRealArticles(mapped);
+                }
+            });
+    }, []);
 
     // Message Sequencing Logic
     useEffect(() => {
@@ -1110,7 +1105,7 @@ export default function PreOwnedPage() {
                         whileInView="visible"
                         viewport={{ once: true, margin: "-50px" }}
                     >
-                        {articles.map((article, i) => (
+                        {realArticles.map((article, i) => (
                             <motion.div key={i} variants={itemVariants}>
                                 <div className="group h-full rounded-3xl bg-[#080808] border border-white/5 hover:border-[#FF7404]/30 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_50px_-20px_rgba(255,116,4,0.15)]">
                                     <div className="h-1.5 bg-gradient-to-r from-[#FF7404] to-[#FF9040] opacity-30 group-hover:opacity-100 transition-opacity" />

@@ -31,7 +31,7 @@ export function ParallaxHero({ src, alt }: ParallaxHeroProps) {
                     src={src}
                     alt={alt}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     priority
                 />
             </motion.div>

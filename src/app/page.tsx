@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://visquanta.com',
+  },
+};
 import Hero from '@/components/Hero';
 import SocialProofBar from '@/components/SocialProofBar';
 import PainPointSection from '@/components/PainPointSection';
@@ -10,7 +17,7 @@ import ResultsProof from '@/components/ResultsProof';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import IntegrationsSection from '@/components/IntegrationsSection';
 import FAQSection from '@/components/FAQSection';
-import LatestInsights from '@/components/LatestInsights';
+import HomeBlogSection from '@/components/home/HomeBlogSection';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 
@@ -54,7 +61,7 @@ export default function Home() {
       <FAQSection />
 
       {/* 12. Latest Insights - Blog Articles */}
-      <LatestInsights />
+      <HomeBlogSection />
 
       {/* 13. Final CTA */}
       <FinalCTA />

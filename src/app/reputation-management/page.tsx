@@ -16,6 +16,9 @@ import MinimalQuote from '@/components/ui/MinimalQuote';
 export const metadata = {
     title: 'Reputation Management | Visquanta Automotive Growth',
     description: 'Build an elite dealership reputation with Visquanta. Our 72-hour review growth engine and conversational SMS resolution protect your store and OEM scores.',
+    alternates: {
+        canonical: 'https://visquanta.com/reputation-management',
+    },
 };
 
 export default function ReputationManagementPage() {

@@ -4,57 +4,33 @@ import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-
-const articles = [
-    {
-        category: "Strategy",
-        title: "The Math of the 5-Minute Rule: Why Speed Is Non-Negotiable",
-        date: "December 20, 2025",
-        readTime: "8 min read",
-        author: { name: "Lavar Harper", avatar: "/images/team/lavar.jpg" },
-        image: "https://images.unsplash.com/photo-1626243615417-64b18c545305",
-        href: "/blog/math-5-minute-rule"
-    },
-    {
-        category: "Sales",
-        title: "Why Sunday Leads Are Your Most Ignore Assets",
-        date: "December 12, 2025",
-        readTime: "6 min read",
-        author: { name: "Lavar Harper", avatar: "/images/team/lavar.jpg" },
-        image: "https://images.unsplash.com/photo-1543269865-cbf427effbad",
-        href: "/blog/sunday-leads-opportunity"
-    },
-    {
-        category: "Case Study",
-        title: "How Westline Motors Increased Contact Rate by 300%",
-        date: "November 25, 2025",
-        readTime: "5 min read",
-        author: { name: "Lavar Harper", avatar: "/images/team/lavar.jpg" },
-        image: "https://images.unsplash.com/photo-1550355291-bbee04a92027",
-        href: "/case-studies/westline-motors"
-    },
-    {
-        category: "Technology",
-        title: "AI vs. Human BDC: Finding the Perfect Balance",
-        date: "November 18, 2025",
-        readTime: "10 min read",
-        author: { name: "Lavar Harper", avatar: "/images/team/lavar.jpg" },
-        image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a",
-        href: "/blog/ai-vs-human-bdc"
-    },
-    {
-        category: "Operations",
-        title: "Stop 'Cherry Picking': Enforcing Process Consistency",
-        date: "November 05, 2025",
-        readTime: "7 min read",
-        author: { name: "Lavar Harper", avatar: "/images/team/lavar.jpg" },
-        image: "https://images.unsplash.com/photo-1556155092-490a1ba16284",
-        href: "/blog/stop-cherry-picking"
-    }
-];
+import { useState, useEffect } from 'react';
 
 export default function RelatedResources() {
+    const [realArticles, setRealArticles] = useState<any[]>([]);
+
+    useEffect(() => {
+        fetch('/api/blog/latest?limit=6')
+            .then(res => res.json())
+            .then(data => {
+                if (data.posts && data.posts.length > 0) {
+                    const mapped = data.posts.map((post: any) => ({
+                        category: post.category?.title || 'Strategy',
+                        title: post.headline,
+                        date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+                        readTime: `${post.readingTime} min read`,
+                        author: { name: "VisQuanta Team", avatar: null },
+                        image: post.image,
+                        href: `/blog/${post.slug}`
+                    }));
+                    setRealArticles(mapped);
+                }
+            });
+    }, []);
+
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    if (realArticles.length === 0) return null;
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
@@ -135,7 +111,7 @@ export default function RelatedResources() {
                         className="flex gap-8 overflow-x-auto scrollbar-hide px-8 lg:px-20 pb-4 snap-x snap-mandatory"
                         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
-                        {articles.map((article, index) => (
+                        {realArticles.map((article, index) => (
                             <motion.article
                                 key={index}
                                 initial={{ opacity: 0, x: 40 }}
