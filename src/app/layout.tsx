@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { CalendlyModalProvider } from "@/components/CalendlyModal";
 import SmoothScroll from "@/components/ui/SmoothScroll";
@@ -10,12 +10,6 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -130,7 +124,7 @@ export default function RootLayout({
         {/* Ahrefs Analytics */}
         <script src="https://analytics.ahrefs.com/analytics.js" data-key="Wu9ybf2aliQUBBh9UHxyGQ" async></script>
       </head>
-      <body className={`${inter.variable} ${playfair.variable}`} style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif' }} suppressHydrationWarning>
+      <body className={inter.variable} style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif' }} suppressHydrationWarning>
         <SmoothScroll>
           <CalendlyModalProvider calendlyUrl={CALENDLY_URL}>
             {children}

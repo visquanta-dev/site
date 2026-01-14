@@ -1,20 +1,29 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Clock, Calendar, Linkedin, Twitter, Copy } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Share2, Tag, BookOpen, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
-import { getBlogPost, getBlogPosts } from '@/lib/seobot';
-import BlogPostClient, { ParallaxHero, ReadingProgress, TableOfContents, ExecutiveSummary } from './BlogPostClient';
-import type { Metadata } from 'next';
 import Image from 'next/image';
+import { getBlogPost, getBlogPosts } from '@/lib/seobot';
+import BlogPostClient, { ReadingProgress, TableOfContents, ExecutiveSummary } from './BlogPostClient';
 
 export const revalidate = 60;
 
-interface PageProps {
-    params: Promise<{ slug: string }>;
+// Generate static params for SSG
+export async function generateStaticParams() {
+    try {
+        const { posts } = await getBlogPosts(0, 100);
+        return posts.map((post) => ({
+            slug: post.slug,
+        }));
+    } catch (error) {
+        console.error('Error generating static params:', error);
+        return [];
+    }
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+// Generate metadata dynamically
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const post = await getBlogPost(slug);
 
@@ -25,32 +34,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return {
-        title: `${post.headline} | VisQuanta Strategic Insights`,
+        title: `${post.headline} | VisQuanta`,
         description: post.metaDescription,
         openGraph: {
             title: post.headline,
             description: post.metaDescription,
             images: post.image ? [post.image] : [],
-            type: 'article',
-            publishedTime: post.createdAt,
-            modifiedTime: post.updatedAt,
-            authors: ['VisQuanta Editorial'],
-            siteName: 'VisQuanta',
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: post.headline,
-            description: post.metaDescription,
-            images: post.image ? [post.image] : [],
         },
     };
-}
-
-export async function generateStaticParams() {
-    const { posts } = await getBlogPosts(0, 100);
-    return posts.map((post) => ({
-        slug: post.slug,
-    }));
 }
 
 function formatDate(dateString: string): string {
@@ -62,254 +53,295 @@ function formatDate(dateString: string): string {
     });
 }
 
-export default async function BlogPostPage({ params }: PageProps) {
+import BlogExitModal from '@/components/blog/BlogExitModal';
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const post = await getBlogPost(slug);
 
-    if (!post) return notFound();
+    if (!post) {
+        return notFound();
+    }
 
     return (
-        <main className="bg-[#050505] min-h-screen selection:bg-[#FF7404]/30 selection:text-white font-sans text-zinc-300">
-            <ReadingProgress />
+        <main className="bg-[#050505] min-h-screen selection:bg-[#FF7404] selection:text-black font-sans">
             <Navigation />
+            <ReadingProgress />
+            <BlogExitModal />
 
-            <article className="pt-32 pb-24 relative overflow-hidden">
-                {/* Background Ambience */}
-                <div className="absolute top-0 left-0 w-full h-[800px] bg-[radial-gradient(circle_at_50%_0%,rgba(255,116,4,0.08),transparent_70%)] pointer-events-none" />
+            {/* Hero Section with Premium Background */}
+            <section className="relative pt-32 pb-16 lg:pb-24 overflow-hidden">
+                {/* Background Layers - matching VisQuanta style */}
+                <div className="absolute inset-0 bg-[#050505]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#080808] to-[#030303]" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,116,4,0.08),transparent)]" />
 
-                <div className="container px-4 mx-auto max-w-screen-xl relative z-10">
-                    <BlogPostClient>
-                        {/* Header Section */}
-                        <div className="max-w-4xl mx-auto mb-16 text-center">
-                            {/* Breadcrumb / Category */}
-                            <div className="flex items-center justify-center gap-4 mb-8">
+                {/* Technical Grid */}
+                <div className="absolute inset-0 bg-enterprise-grid opacity-10 pointer-events-none" />
+
+                {/* Gradient overlays */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050505] pointer-events-none" />
+
+                <div className="container px-4 mx-auto relative z-10">
+                    <div className="max-w-4xl mx-auto">
+                        <BlogPostClient delay={0}>
+                            {/* Breadcrumb with premium styling */}
+                            <div className="flex items-center gap-3 mb-10">
                                 <Link
                                     href="/blog"
-                                    className="group flex items-center gap-2 text-sm text-zinc-500 hover:text-white transition-all duration-300"
+                                    className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:border-white/20 transition-all text-sm"
                                 >
-                                    <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-                                    <span>Insights Hub</span>
+                                    <ArrowRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" />
+                                    <span>Back to Journal</span>
                                 </Link>
-                                <span className="text-zinc-800">/</span>
-                                <Link
-                                    href={`/blog/category/${post.category?.slug}`}
-                                    className="text-[#FF7404] text-xs font-bold uppercase tracking-[0.2em] hover:text-[#ff9248] transition-colors"
-                                >
-                                    {post.category?.title || 'Strategic Insight'}
-                                </Link>
+                                {post.category && (
+                                    <>
+                                        <div className="h-px w-8 bg-white/10" />
+                                        <Link
+                                            href={`/blog/category/${post.category.slug}`}
+                                            className="px-4 py-2 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 text-[#FF7404] text-xs font-bold uppercase tracking-widest hover:bg-[#FF7404]/20 transition-all"
+                                        >
+                                            {post.category.title}
+                                        </Link>
+                                    </>
+                                )}
                             </div>
 
-                            {/* Headline */}
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-white mb-8 leading-[1.1] tracking-tight">
+                            {/* Headline with premium typography */}
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-8 leading-[1.05] tracking-tighter">
                                 {post.headline}
                             </h1>
 
-                            {/* Meta Data */}
-                            <div className="flex items-center justify-center gap-8 text-sm text-zinc-500 border-t border-b border-white/5 py-6 w-full max-w-xl mx-auto">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/10 flex items-center justify-center text-xs font-bold text-white">
-                                        V
+                            {/* Meta Info Bar - Premium glass styling */}
+                            <div className="flex flex-wrap items-center gap-6 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-sm">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 flex items-center justify-center">
+                                        <Calendar className="w-4 h-4 text-[#FF7404]" />
                                     </div>
-                                    <span className="text-zinc-300">VisQuanta Editorial</span>
+                                    <div>
+                                        <span className="block text-[10px] uppercase tracking-widest text-zinc-500">Published</span>
+                                        <span className="text-white text-sm font-medium">{formatDate(post.createdAt)}</span>
+                                    </div>
                                 </div>
-                                <div className="w-px h-4 bg-white/10" />
-                                <div className="flex items-center gap-2">
-                                    <Calendar className="w-4 h-4" />
-                                    {formatDate(post.createdAt)}
-                                </div>
-                                <div className="w-px h-4 bg-white/10" />
-                                <div className="flex items-center gap-2">
-                                    <Clock className="w-4 h-4" />
-                                    {post.readingTime} min read
-                                </div>
-                            </div>
-                        </div>
 
-                        {/* Parallax Hero Image */}
-                        {post.image && (
-                            <ParallaxHero src={post.image} alt={post.headline} />
-                        )}
-                    </BlogPostClient>
+                                <div className="h-8 w-px bg-white/10 hidden sm:block" />
 
-                    {/* Content Layout */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
-                        {/* Left Sidebar (Share) */}
-                        <div className="hidden lg:block col-span-1 relative">
-                            <div className="sticky top-32 flex flex-col gap-6 items-center">
-                                <span className="text-xs uppercase tracking-widest text-zinc-600 rotate-180 writing-vertical-lr mb-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center">
+                                        <Clock className="w-4 h-4 text-zinc-400" />
+                                    </div>
+                                    <div>
+                                        <span className="block text-[10px] uppercase tracking-widest text-zinc-500">Read Time</span>
+                                        <span className="text-white text-sm font-medium">{post.readingTime} minutes</span>
+                                    </div>
+                                </div>
+
+                                <div className="h-8 w-px bg-white/10 hidden sm:block" />
+
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center">
+                                        <BookOpen className="w-4 h-4 text-zinc-400" />
+                                    </div>
+                                    <div>
+                                        <span className="block text-[10px] uppercase tracking-widest text-zinc-500">Type</span>
+                                        <span className="text-white text-sm font-medium">Industry Report</span>
+                                    </div>
+                                </div>
+
+                                <button className="ml-auto flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.05] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.08] hover:border-white/20 transition-all text-sm font-medium">
+                                    <Share2 className="w-4 h-4" />
                                     Share
-                                </span>
-                                <button className="p-3 rounded-full bg-zinc-900/50 border border-white/5 text-zinc-400 hover:text-white hover:bg-[#0077b5] hover:border-transparent transition-all group">
-                                    <Linkedin className="w-5 h-5" />
-                                </button>
-                                <button className="p-3 rounded-full bg-zinc-900/50 border border-white/5 text-zinc-400 hover:text-white hover:bg-black hover:border-transparent transition-all group">
-                                    <Twitter className="w-5 h-5" />
-                                </button>
-                                <div className="w-px h-12 bg-zinc-800 my-2" />
-                                <button className="p-3 rounded-full bg-zinc-900/50 border border-white/5 text-zinc-400 hover:text-[#FF7404] transition-all">
-                                    <Copy className="w-5 h-5" />
                                 </button>
                             </div>
+                        </BlogPostClient>
+                    </div>
+                </div>
+            </section>
+
+            {/* Hero Image Section */}
+            {post.image && (
+                <section className="relative pb-16 lg:pb-24">
+                    <div className="container px-4 mx-auto">
+                        <div className="max-w-6xl mx-auto">
+                            <BlogPostClient delay={0.1}>
+                                <div className="relative rounded-3xl overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/50 group">
+                                    {/* Top shine effect */}
+                                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
+
+                                    <div className="relative aspect-[21/9] w-full">
+                                        <Image
+                                            src={post.image}
+                                            alt={post.headline}
+                                            fill
+                                            className="object-cover"
+                                            priority
+                                        />
+                                        {/* Gradient overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
+                                    </div>
+
+                                    {/* Bottom accent */}
+                                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
+                                </div>
+                            </BlogPostClient>
                         </div>
+                    </div>
+                </section>
+            )}
 
+            {/* Main Content Section */}
+            <article className="relative pb-20">
+                {/* Subtle ambient glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#FF7404]/[0.02] rounded-[100%] blur-[120px] pointer-events-none" />
+
+                <div className="container px-4 mx-auto relative z-10">
+                    <div className="max-w-6xl mx-auto grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-16">
                         {/* Main Content Column */}
-                        <div className="col-span-1 lg:col-span-8">
+                        <div className="max-w-4xl">
+                            {/* Executive Summary */}
+                            <ExecutiveSummary summary={post.metaDescription} />
+
+                            {/* Article Body */}
                             <BlogPostClient delay={0.2}>
-                                {/* Executive Summary Card */}
-                                <ExecutiveSummary summary={post.metaDescription} />
-
                                 <div
-                                    className="
-                                        prose prose-lg prose-invert max-w-none
-                                        
-                                        /* 
-                                         * SPACING REPAIR & HIERARCHY
-                                         * The goal: Radical separation of distinct ideas.
-                                         */
-
-                                        /* Body Text - Breathing Room */
-                                        prose-p:text-zinc-300 prose-p:leading-[2] prose-p:font-light prose-p:text-[1.125rem] prose-p:mb-10 prose-p:mt-0
-                                        prose-strong:text-white prose-strong:font-semibold
-                                        
-                                        /* Headings - Visual Anchors */
-                                        prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-tight prose-headings:text-white prose-headings:scroll-mt-32
-                                        
-                                        /* H2 - Chapter Breaks (Massive Spacing) */
-                                        prose-h2:text-3xl md:prose-h2:text-4xl 
-                                        prose-h2:mt-32 prose-h2:mb-12 prose-h2:pb-8
-                                        prose-h2:border-b prose-h2:border-white/10
-                                        prose-h2:leading-tight
-                                        
-                                        /* H3 - Sub-sections */
-                                        prose-h3:text-xl md:prose-h3:text-2xl 
-                                        prose-h3:mt-20 prose-h3:mb-8
-                                        prose-h3:text-zinc-50
-                                        prose-h3:font-sans prose-h3:font-normal
-                                        
-                                        /* H4 - Labels */
-                                        prose-h4:text-lg prose-h4:mt-12 prose-h4:mb-6
-                                        prose-h4:uppercase prose-h4:tracking-widest prose-h4:font-bold prose-h4:text-[#FF7404]
-                                        
-                                        /* Links */
-                                        prose-a:text-[#FF7404] prose-a:no-underline prose-a:border-b prose-a:border-[#FF7404]/30 
-                                        hover:prose-a:border-[#FF7404] hover:prose-a:text-[#ff8a2b] prose-a:transition-all
-                                        
-                                        /* Lists */
-                                        prose-ul:text-zinc-300 prose-ul:my-10 prose-ul:list-none prose-ul:pl-0
-                                        prose-li:my-4 prose-li:leading-loose prose-li:relative prose-li:pl-8
-                                        prose-li:before:content-[''] prose-li:before:absolute prose-li:before:left-0 prose-li:before:top-[0.7em] prose-li:before:w-1.5 prose-li:before:h-1.5 prose-li:before:bg-[#FF7404] prose-li:before:rounded-full
-                                        
-                                        /* Images */
-                                        prose-img:rounded-2xl prose-img:shadow-2xl prose-img:shadow-black/50 prose-img:border prose-img:border-white/5 prose-img:my-20
-                                        
-                                        /* Blockquotes */
-                                        prose-blockquote:border-l-[4px] prose-blockquote:border-[#FF7404] 
-                                        prose-blockquote:bg-zinc-900/40 prose-blockquote:py-10 prose-blockquote:px-12 
-                                        prose-blockquote:text-2xl prose-blockquote:font-serif 
-                                        prose-blockquote:text-white prose-blockquote:leading-relaxed
-                                        prose-blockquote:rounded-r-2xl prose-blockquote:not-italic prose-blockquote:my-24
-                                        
-                                        /* Dividers */
-                                        prose-hr:border-white/10 prose-hr:my-24
-                                    "
+                                    suppressHydrationWarning
+                                    className="blog-content"
                                     dangerouslySetInnerHTML={{ __html: post.html }}
                                 />
                             </BlogPostClient>
 
-                            {/* Tags */}
+                            {/* Tags Section */}
                             {post.tags && post.tags.length > 0 && (
-                                <div className="mt-16 pt-8 border-t border-white/5">
-                                    <div className="flex flex-wrap items-center gap-3">
-                                        <span className="text-zinc-500 text-sm mr-2">Topics:</span>
-                                        {post.tags.map((tag) => (
-                                            <Link
-                                                key={tag.slug}
-                                                href={`/blog/tag/${tag.slug}`}
-                                                className="px-4 py-1.5 rounded-full bg-zinc-900 border border-white/5 text-zinc-400 text-sm hover:bg-white hover:text-black hover:border-white transition-all duration-300"
-                                            >
-                                                {tag.title}
-                                            </Link>
-                                        ))}
+                                <BlogPostClient delay={0.3}>
+                                    <div className="mt-20 pt-10 border-t border-white/[0.06]">
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <div className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/[0.08] flex items-center justify-center">
+                                                <Tag className="w-4 h-4 text-zinc-500" />
+                                            </div>
+                                            <span className="text-sm font-bold uppercase tracking-widest text-zinc-500">Related Topics</span>
+                                        </div>
+                                        <div className="flex flex-wrap gap-3">
+                                            {post.tags.map((tag) => (
+                                                <Link
+                                                    key={tag.slug}
+                                                    href={`/blog/tag/${tag.slug}`}
+                                                    className="px-5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-zinc-400 text-sm font-medium hover:bg-white/[0.06] hover:text-white hover:border-white/20 transition-all"
+                                                >
+                                                    {tag.title}
+                                                </Link>
+                                            ))}
+                                        </div>
                                     </div>
+                                </BlogPostClient>
+                            )}
+
+                            {/* Premium CTA Section */}
+                            <BlogPostClient delay={0.4}>
+                                <div className="mt-24 relative overflow-hidden rounded-[2rem] border border-[#FF7404]/20">
+                                    {/* Background layers */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/15 via-[#FF7404]/5 to-transparent" />
+                                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,116,4,0.15),transparent)]" />
+
+                                    {/* Top shine */}
+                                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
+
+                                    <div className="relative p-10 md:p-16 text-center">
+                                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 mb-8">
+                                            <TrendingUp className="w-4 h-4 text-[#FF7404]" />
+                                            <span className="text-[#FF7404] text-xs font-bold uppercase tracking-widest">Transform Your Dealership</span>
+                                        </div>
+
+                                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 tracking-tight">
+                                            Ready to see it in action?
+                                        </h2>
+                                        <p className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+                                            Join hundreds of high-performance dealerships using VisQuanta to automate their growth and maximize revenue.
+                                        </p>
+                                        <Link href="/book-demo">
+                                            <button className="group px-10 py-5 bg-[#FF7404] hover:bg-[#ff8a2b] text-black font-black uppercase tracking-widest rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-[0_0_60px_-15px_rgba(255,116,4,0.5)] hover:shadow-[0_0_80px_-10px_rgba(255,116,4,0.6)]">
+                                                <span className="flex items-center gap-3">
+                                                    Request a Strategy Call
+                                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                                </span>
+                                            </button>
+                                        </Link>
+                                    </div>
+
+                                    {/* Bottom accent */}
+                                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
                                 </div>
+                            </BlogPostClient>
+
+                            {/* Related Posts */}
+                            {post.relatedPosts && post.relatedPosts.length > 0 && (
+                                <BlogPostClient delay={0.5}>
+                                    <div className="mt-24">
+                                        <div className="flex items-center gap-3 mb-10">
+                                            <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+                                            <span className="text-sm font-bold uppercase tracking-widest text-zinc-500">Continue Reading</span>
+                                            <div className="h-px flex-1 bg-gradient-to-l from-white/10 to-transparent" />
+                                        </div>
+
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            {post.relatedPosts.slice(0, 2).map((related) => (
+                                                <Link
+                                                    key={related.id}
+                                                    href={`/blog/${related.slug}`}
+                                                    className="group relative p-8 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-white/[0.04] hover:border-[#FF7404]/30 transition-all overflow-hidden"
+                                                >
+                                                    {/* Top shine */}
+                                                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                                                    <span className="inline-block px-3 py-1 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 text-[10px] text-[#FF7404] font-bold uppercase tracking-widest mb-4">
+                                                        {related.category?.title}
+                                                    </span>
+                                                    <h4 className="text-xl font-bold text-white mb-3 group-hover:text-[#FF7404] transition-colors line-clamp-2 tracking-tight">
+                                                        {related.headline}
+                                                    </h4>
+                                                    <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2 mb-6">
+                                                        {related.metaDescription}
+                                                    </p>
+
+                                                    <div className="flex items-center gap-2 text-sm font-bold text-zinc-400 group-hover:text-[#FF7404] transition-colors">
+                                                        <span>Read Article</span>
+                                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                    </div>
+
+                                                    {/* Bottom accent */}
+                                                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF7404]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </BlogPostClient>
                             )}
                         </div>
 
-                        {/* Right Sidebar (Table of Contents) */}
-                        <div className="hidden lg:block col-span-3 h-full relative">
-                            <TableOfContents />
-                        </div>
-                    </div>
+                        {/* Sidebar with Table of Contents */}
+                        <aside className="hidden xl:block">
+                            <div className="sticky top-32">
+                                <TableOfContents />
 
-                    {/* Strategic CTA Section */}
-                    <div className="max-w-4xl mx-auto mt-24 mb-12">
-                        <div className="relative overflow-hidden rounded-3xl bg-zinc-900/50 border border-white/5 p-12 text-center md:text-left md:flex items-center justify-between gap-12 group">
-                            {/* CTA Background Gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                            <div className="relative z-10 max-w-lg">
-                                <h3 className="text-2xl font-serif text-white mb-4">
-                                    From Insight to Implementation
-                                </h3>
-                                <p className="text-zinc-400 text-lg">
-                                    See how VisQuanta's Revenue OS transforms these concepts into automated execution for your dealership.
-                                </p>
-                            </div>
-
-                            <div className="relative z-10 mt-8 md:mt-0 flex-shrink-0">
-                                <Link href="/book-demo">
-                                    <button className="px-8 py-4 bg-white hover:bg-zinc-200 text-black font-semibold rounded-lg transition-all flex items-center gap-3 group/btn">
-                                        Schedule Executive Briefing
-                                        <ArrowLeft className="w-4 h-4 rotate-180 transition-transform group-hover/btn:translate-x-1" />
-                                    </button>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Related Wisdom */}
-                    {post.relatedPosts && post.relatedPosts.length > 0 && (
-                        <div className="mt-32 max-w-6xl mx-auto">
-                            <div className="flex items-center justify-between mb-12">
-                                <h3 className="text-2xl font-serif text-white">More Strategic Insights</h3>
-                                <Link href="/blog" className="text-[#FF7404] hover:text-white transition-colors flex items-center gap-2 text-sm font-medium">
-                                    View All Articles <ArrowLeft className="w-4 h-4 rotate-180" />
-                                </Link>
-                            </div>
-
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {post.relatedPosts.slice(0, 3).map((related) => (
+                                {/* Additional sidebar CTA */}
+                                <div className="mt-10 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">System Online</span>
+                                    </div>
+                                    <p className="text-zinc-400 text-sm mb-4 leading-relaxed">
+                                        Ready to transform your dealership operations?
+                                    </p>
                                     <Link
-                                        key={related.id}
-                                        href={`/blog/${related.slug}`}
-                                        className="group flex flex-col h-full"
+                                        href="/book-demo"
+                                        className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-[#FF7404]/10 border border-[#FF7404]/20 text-[#FF7404] text-sm font-bold hover:bg-[#FF7404]/20 transition-all"
                                     >
-                                        <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl mb-6 bg-zinc-900">
-                                            {related.image && (
-                                                <Image
-                                                    src={related.image}
-                                                    alt={related.headline}
-                                                    fill
-                                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                                />
-                                            )}
-                                        </div>
-                                        <div className="flex-1">
-                                            <span className="text-[10px] text-[#FF7404] font-bold uppercase tracking-widest mb-3 block">
-                                                {related.category?.title}
-                                            </span>
-                                            <h4 className="text-xl font-serif font-medium text-zinc-100 group-hover:text-[#FF7404] transition-colors mb-3 leading-snug">
-                                                {related.headline}
-                                            </h4>
-                                            <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2">
-                                                {related.metaDescription}
-                                            </p>
-                                        </div>
+                                        <span>Book a Demo</span>
+                                        <ArrowRight className="w-4 h-4" />
                                     </Link>
-                                ))}
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        </aside>
+                    </div>
                 </div>
             </article>
 

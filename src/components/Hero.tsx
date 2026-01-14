@@ -306,7 +306,7 @@ export default function Hero() {
                 ))}
               </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff7404] to-[#ff9040] inline-block">
-                {"System for Dealers".split(" ").map((word, wi) => (
+                {"System for Dealerships".split(" ").map((word, wi) => (
                   <span key={wi} className="inline-block whitespace-nowrap mr-[0.2em]">
                     {word.split("").map((char, ci) => (
                       <motion.span

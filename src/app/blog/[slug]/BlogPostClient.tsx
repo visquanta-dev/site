@@ -5,6 +5,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { CheckCircle2, ChevronRight, BarChart3, Clock, ArrowDown, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import { createRoot } from 'react-dom/client';
+import BlogInlineCTA from '@/components/blog/BlogInlineCTA';
 
 interface BlogPostClientProps {
     children: ReactNode;
@@ -124,8 +125,8 @@ export function TableOfContents() {
                             setActiveId(heading.id);
                         }}
                         className={`text-left text-sm transition-all duration-300 relative pl-4 ${activeId === heading.id
-                                ? 'text-white font-medium translate-x-1'
-                                : 'text-zinc-600 hover:text-zinc-400'
+                            ? 'text-white font-medium translate-x-1'
+                            : 'text-zinc-600 hover:text-zinc-400'
                             }`}
                         style={{
                             marginLeft: heading.level === 3 ? '12px' : '0px',
@@ -202,7 +203,7 @@ export function ExecutiveSummary({ summary }: ExecutiveSummaryProps) {
 export default function BlogPostClient({ children, delay = 0 }: BlogPostClientProps) {
     useEffect(() => {
         // ENHANCEMENT: Automated External Link Detection & Styling
-        const links = document.querySelectorAll('.prose a');
+        const links = document.querySelectorAll('.blog-content a');
         links.forEach(link => {
             const anchor = link as HTMLAnchorElement;
             const isExternal = anchor.hostname !== window.location.hostname;
@@ -223,6 +224,53 @@ export default function BlogPostClient({ children, delay = 0 }: BlogPostClientPr
                 }
             }
         });
+
+        // OPTIMIZED REPLACEMENT: MutationObserver for Async Loaded Iframes
+        // We need to watch for the iframe because it's injected asynchronously by an external script
+        const replaceInlineCTA = () => {
+            const inlineBanners = document.querySelectorAll('iframe[src*="/banner/inline"]');
+            inlineBanners.forEach((iframe) => {
+                // Check if we already injected (to avoid double renders on re-runs)
+                if (iframe.nextElementSibling?.classList.contains('visquanta-inline-cta-wrapper')) return;
+
+                const container = document.createElement('div');
+                container.className = 'visquanta-inline-cta-wrapper';
+
+                if (iframe.parentNode) {
+                    iframe.parentNode.insertBefore(container, iframe.nextSibling);
+
+                    // Hide original
+                    (iframe as HTMLElement).style.display = 'none';
+                    (iframe as HTMLElement).style.visibility = 'hidden';
+
+                    const root = createRoot(container);
+                    root.render(<BlogInlineCTA />);
+                }
+            });
+        };
+
+        // 1. Initial check
+        replaceInlineCTA();
+
+        // 2. Setup Observer
+        const observer = new MutationObserver((mutations) => {
+            // Performance: Only run check if nodes were actually added
+            const hasAddedNodes = mutations.some(m => m.addedNodes.length > 0);
+            if (hasAddedNodes) {
+                replaceInlineCTA();
+            }
+        });
+
+        // Observe the blog content area (or body as fallback)
+        const targetNode = document.querySelector('.blog-content') || document.body;
+        if (targetNode) {
+            observer.observe(targetNode, {
+                childList: true,
+                subtree: true
+            });
+        }
+
+        return () => observer.disconnect();
     }, [children]);
 
     return (
