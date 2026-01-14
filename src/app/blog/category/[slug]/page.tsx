@@ -1,25 +1,40 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import { Calendar, User, ArrowRight, LayoutGrid, Clock } from 'lucide-react';
-import { getBlogPosts, getAllCategories } from '@/lib/seobot';
-import BlogPageClient from './BlogPageClient';
+import { ArrowRight, LayoutGrid } from 'lucide-react';
+import { getBlogPostsByCategory, getAllCategories } from '@/lib/seobot';
+import BlogPageClient from '../../BlogPageClient';
+import type { Metadata } from 'next';
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const revalidate = 60;
 
-export const metadata = {
-    title: 'Blog | VisQuanta - Industry Insights',
-    description: 'Strategies, data, and trends for modern automotive retail. Learn how AI and automation are transforming dealership operations.',
-};
+interface PageProps {
+    params: Promise<{ slug: string }>;
+    searchParams: Promise<{ page?: string }>;
+}
 
-export default async function BlogPage({
-    searchParams
-}: {
-    searchParams: Promise<{ page?: string }>
-}) {
-    const params = await searchParams;
-    const page = parseInt(params.page || '0', 10);
-    const { posts, total, totalPages } = await getBlogPosts(page, 12);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const { category } = await getBlogPostsByCategory(slug, 0, 1);
+
+    return {
+        title: category ? `${category.title} | VisQuanta Blog` : 'Category | VisQuanta Blog',
+        description: `Browse articles in the ${category?.title || 'category'} category.`,
+    };
+}
+
+export async function generateStaticParams() {
+    const categories = await getAllCategories();
+    return categories.map((category) => ({
+        slug: category.slug,
+    }));
+}
+
+export default async function CategoryPage({ params, searchParams }: PageProps) {
+    const { slug } = await params;
+    const resolvedSearchParams = await searchParams;
+    const page = parseInt(resolvedSearchParams.page || '0', 10);
+    const { posts, total, totalPages, category } = await getBlogPostsByCategory(slug, page, 12);
     const categories = await getAllCategories();
 
     return (
@@ -27,22 +42,29 @@ export default async function BlogPage({
             <Navigation />
 
             <section className="relative pt-32 pb-20 overflow-hidden">
-                {/* Background Effects */}
                 <div className="absolute top-0 right-1/2 translate-x-1/2 w-[1000px] h-[500px] bg-[#FF7404]/5 rounded-[100%] blur-[120px] pointer-events-none" />
 
                 <div className="container px-4 mx-auto relative z-10">
                     <div className="max-w-4xl mx-auto text-center mb-16">
+                        <Link
+                            href="/blog"
+                            className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm mb-8"
+                        >
+                            <ArrowRight className="w-4 h-4 rotate-180" />
+                            Back to all articles
+                        </Link>
+
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 mb-8 backdrop-blur-sm">
                             <LayoutGrid className="w-4 h-4 text-[#FF7404]" />
-                            <span className="text-[#FF7404] text-xs font-bold uppercase tracking-wider">The Journal</span>
+                            <span className="text-[#FF7404] text-xs font-bold uppercase tracking-wider">Category</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
-                            Industry <span className="text-[#FF7404]">Insights.</span>
+                        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
+                            {category?.title || 'Category'}
                         </h1>
 
                         <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-                            Strategies, data, and trends for modern automotive retail.
+                            {total} article{total !== 1 ? 's' : ''} in this category
                         </p>
                     </div>
 
@@ -51,31 +73,33 @@ export default async function BlogPage({
                         <div className="flex flex-wrap justify-center gap-3 mb-12">
                             <Link
                                 href="/blog"
-                                className="px-4 py-2 rounded-full bg-[#FF7404]/20 border border-[#FF7404]/40 text-[#FF7404] text-sm font-medium hover:bg-[#FF7404]/30 transition-colors"
+                                className="px-4 py-2 rounded-full bg-zinc-900/50 border border-white/10 text-zinc-400 text-sm font-medium hover:bg-zinc-900 hover:text-white hover:border-white/20 transition-colors"
                             >
                                 All Posts
                             </Link>
-                            {categories.slice(0, 6).map((category) => (
+                            {categories.slice(0, 6).map((cat) => (
                                 <Link
-                                    key={category.slug}
-                                    href={`/blog/category/${category.slug}`}
-                                    className="px-4 py-2 rounded-full bg-zinc-900/50 border border-white/10 text-zinc-400 text-sm font-medium hover:bg-zinc-900 hover:text-white hover:border-white/20 transition-colors"
+                                    key={cat.slug}
+                                    href={`/blog/category/${cat.slug}`}
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                                        cat.slug === slug
+                                            ? 'bg-[#FF7404]/20 border border-[#FF7404]/40 text-[#FF7404]'
+                                            : 'bg-zinc-900/50 border border-white/10 text-zinc-400 hover:bg-zinc-900 hover:text-white hover:border-white/20'
+                                    }`}
                                 >
-                                    {category.title} ({category.count})
+                                    {cat.title} ({cat.count})
                                 </Link>
                             ))}
                         </div>
                     )}
 
-                    {/* Blog Grid */}
                     <BlogPageClient posts={posts} />
 
-                    {/* Pagination */}
                     {totalPages > 1 && (
                         <div className="flex justify-center items-center gap-4 mt-16">
                             {page > 0 && (
                                 <Link
-                                    href={`/blog?page=${page - 1}`}
+                                    href={`/blog/category/${slug}?page=${page - 1}`}
                                     className="px-6 py-3 rounded-xl bg-zinc-900 border border-white/10 text-white font-medium hover:bg-zinc-800 hover:border-white/20 transition-colors flex items-center gap-2"
                                 >
                                     <ArrowRight className="w-4 h-4 rotate-180" />
@@ -89,7 +113,7 @@ export default async function BlogPage({
 
                             {page < totalPages - 1 && (
                                 <Link
-                                    href={`/blog?page=${page + 1}`}
+                                    href={`/blog/category/${slug}?page=${page + 1}`}
                                     className="px-6 py-3 rounded-xl bg-zinc-900 border border-white/10 text-white font-medium hover:bg-zinc-800 hover:border-white/20 transition-colors flex items-center gap-2"
                                 >
                                     Next
@@ -98,13 +122,6 @@ export default async function BlogPage({
                             )}
                         </div>
                     )}
-
-                    {/* Total count */}
-                    <div className="text-center mt-8">
-                        <p className="text-zinc-500 text-sm">
-                            {total} articles available
-                        </p>
-                    </div>
                 </div>
             </section>
 
