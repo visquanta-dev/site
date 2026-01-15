@@ -2,8 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, BookOpen, Calendar, Lightbulb } from 'lucide-react';
+import { ArrowRight, Lightbulb } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { BlogCard } from '@/components/blog/BlogCard';
 
 export default function IndependentInsights() {
     const [realArticles, setRealArticles] = useState<any[]>([]);
@@ -13,27 +14,7 @@ export default function IndependentInsights() {
             .then(res => res.json())
             .then(data => {
                 if (data.posts && data.posts.length > 0) {
-                    const colors = [
-                        "from-[#FF7404] to-[#FF9040]",
-                        "from-[#FF7404] to-yellow-500",
-                        "from-purple-500 to-pink-500"
-                    ];
-                    const glows = [
-                        "bg-[#FF7404]/20",
-                        "bg-[#FF7404]/20",
-                        "bg-purple-500/20"
-                    ];
-
-                    const mapped = data.posts.map((post: any, i: number) => ({
-                        title: post.headline,
-                        excerpt: post.metaDescription,
-                        link: `/blog/${post.slug}`,
-                        category: post.category?.title || 'Industry',
-                        color: colors[i % colors.length],
-                        bgGlow: glows[i % glows.length],
-                        date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-                    }));
-                    setRealArticles(mapped);
+                    setRealArticles(data.posts);
                 }
             });
     }, []);
@@ -104,46 +85,8 @@ export default function IndependentInsights() {
                     viewport={{ once: true, margin: "-50px" }}
                 >
                     {realArticles.map((article, i) => (
-                        <motion.div key={i} variants={cardVariants}>
-                            <Link
-                                href={article.link}
-                                className="group block h-full rounded-2xl bg-[#080808] border border-white/5 hover:border-white/20 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_50px_-20px_rgba(255,116,4,0.15)]"
-                            >
-                                {/* Gradient Header */}
-                                <div className={`h-2 bg-gradient-to-r ${article.color}`} />
-
-                                <div className="relative">
-                                    {/* Hover Glow */}
-                                    <motion.div
-                                        className={`absolute top-0 right-0 w-32 h-32 ${article.bgGlow} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                                    />
-
-                                    <div className="p-8 relative">
-                                        <div className="flex items-center gap-4 text-xs text-zinc-500 mb-4 font-mono">
-                                            <span className="flex items-center gap-1">
-                                                <Calendar className="w-3 h-3" />
-                                                {article.date}
-                                            </span>
-                                            <span className={`px-2 py-0.5 rounded-full bg-gradient-to-r ${article.color} text-white font-bold`}>
-                                                {article.category}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#FF7404] transition-colors duration-300 line-clamp-2">
-                                            {article.title}
-                                        </h3>
-                                        <p className="text-zinc-500 text-sm leading-relaxed mb-6 line-clamp-3">
-                                            {article.excerpt}
-                                        </p>
-                                        <div className="flex items-center gap-2 text-sm font-bold text-white group-hover:gap-3 transition-all">
-                                            <BookOpen className="w-4 h-4 text-[#FF7404]" />
-                                            Read Article
-                                            <motion.div whileHover={{ x: 5 }}>
-                                                <ArrowRight className="w-4 h-4" />
-                                            </motion.div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
+                        <motion.div key={i} variants={cardVariants} className="h-full">
+                            <BlogCard article={article} />
                         </motion.div>
                     ))}
                 </motion.div>

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getBlogPost, getBlogPosts } from '@/lib/seobot';
 import BlogPostClient, { ReadingProgress, TableOfContents, ExecutiveSummary } from './BlogPostClient';
+import { BlogArticleHeader } from '@/components/blog/BlogArticleHeader';
 
 export const revalidate = 60;
 
@@ -72,6 +73,41 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     }
     if (post.headline.includes('Third-Party Lead Providers')) {
         post.image = '/images/wireframes/7_lead_providers.jpeg';
+    }
+
+    // Apply similar overrides to related posts to ensure they have images
+    if (post.relatedPosts) {
+        post.relatedPosts = post.relatedPosts.map(related => {
+            const headline = related.headline || '';
+            let image = related.image;
+            let category = related.category;
+
+            if (headline.includes('CRM Database Reactivation')) {
+                image = '/images/wireframes/ultimate-guide-crm-reactivation.jpeg';
+            } else if (headline.includes('Third-Party Lead Providers')) {
+                image = '/images/wireframes/7_lead_providers.jpeg';
+            } else if (headline.includes('First Contact Rates')) {
+                image = '/images/wireframes/6.jpeg'; // Use the generic dealership wireframe
+            } else if (headline.includes('AI in Auto Sales')) {
+                image = '/images/wireframes/6.jpeg'; // Re-use generic for now
+            } else if (headline.includes('Lead Response Time')) {
+                image = '/images/wireframes/6.jpeg';
+            }
+
+            // Ensure category exists for the label
+            if (!category) {
+                category = {
+                    title: 'Industry Insights',
+                    slug: 'industry-insights'
+                };
+            }
+
+            return {
+                ...related,
+                image,
+                category
+            };
+        });
     }
 
     // Article Schema
@@ -158,74 +194,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <div className="container px-4 mx-auto relative z-10">
                     <div className="max-w-4xl mx-auto">
                         <BlogPostClient delay={0}>
-                            {/* Breadcrumb with premium styling */}
-                            <div className="flex items-center gap-3 mb-10">
-                                <Link
-                                    href="/blog"
-                                    className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:border-white/20 transition-all text-sm"
-                                >
-                                    <ArrowRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" />
-                                    <span>Back to Journal</span>
-                                </Link>
-                                {post.category && (
-                                    <>
-                                        <div className="h-px w-8 bg-white/10" />
-                                        <Link
-                                            href={`/blog/category/${post.category.slug}`}
-                                            className="px-4 py-2 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 text-[#FF7404] text-xs font-bold uppercase tracking-widest hover:bg-[#FF7404]/20 transition-all"
-                                        >
-                                            {post.category.title}
-                                        </Link>
-                                    </>
-                                )}
-                            </div>
-
-                            {/* Headline with premium typography */}
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-8 leading-[1.05] tracking-tighter">
-                                {post.headline}
-                            </h1>
-
-                            {/* Meta Info Bar - Premium glass styling */}
-                            <div className="flex flex-wrap items-center gap-6 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-sm">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 flex items-center justify-center">
-                                        <Calendar className="w-4 h-4 text-[#FF7404]" />
-                                    </div>
-                                    <div>
-                                        <span className="block text-[10px] uppercase tracking-widest text-zinc-500">Published</span>
-                                        <span className="text-white text-sm font-medium">{formatDate(post.createdAt)}</span>
-                                    </div>
-                                </div>
-
-                                <div className="h-8 w-px bg-white/10 hidden sm:block" />
-
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center">
-                                        <Clock className="w-4 h-4 text-zinc-400" />
-                                    </div>
-                                    <div>
-                                        <span className="block text-[10px] uppercase tracking-widest text-zinc-500">Read Time</span>
-                                        <span className="text-white text-sm font-medium">{post.readingTime} minutes</span>
-                                    </div>
-                                </div>
-
-                                <div className="h-8 w-px bg-white/10 hidden sm:block" />
-
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center">
-                                        <BookOpen className="w-4 h-4 text-zinc-400" />
-                                    </div>
-                                    <div>
-                                        <span className="block text-[10px] uppercase tracking-widest text-zinc-500">Type</span>
-                                        <span className="text-white text-sm font-medium">Industry Report</span>
-                                    </div>
-                                </div>
-
-                                <button className="ml-auto flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.05] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.08] hover:border-white/20 transition-all text-sm font-medium">
-                                    <Share2 className="w-4 h-4" />
-                                    Share
-                                </button>
-                            </div>
+                            <BlogArticleHeader article={{
+                                title: post.headline,
+                                publishedAt: post.createdAt,
+                                readTime: Number(post.readingTime || 5)
+                            }} />
                         </BlogPostClient>
                     </div>
                 </div>
@@ -237,7 +210,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     <div className="container px-4 mx-auto">
                         <div className="max-w-6xl mx-auto">
                             <BlogPostClient delay={0.1}>
-                                <div className="relative rounded-3xl overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/50 group">
+                                <div className="relative rounded-[20px] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/50 group featured-card-border">
                                     {/* Top shine effect */}
                                     <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
 
@@ -346,42 +319,70 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             </BlogPostClient>
 
                             {/* Related Posts */}
+                            {/* Related Posts */}
                             {post.relatedPosts && post.relatedPosts.length > 0 && (
                                 <BlogPostClient delay={0.5}>
                                     <div className="mt-24">
-                                        <div className="flex items-center gap-3 mb-10">
-                                            <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
-                                            <span className="text-sm font-bold uppercase tracking-widest text-zinc-500">Continue Reading</span>
-                                            <div className="h-px flex-1 bg-gradient-to-l from-white/10 to-transparent" />
+                                        {/* Refined Section Header */}
+                                        <div className="flex items-center gap-4 mb-8">
+                                            <div className="h-px flex-1 bg-zinc-800" />
+                                            <span className="text-sm uppercase tracking-widest text-zinc-500">
+                                                Continue Reading
+                                            </span>
+                                            <div className="h-px flex-1 bg-zinc-800" />
                                         </div>
 
-                                        <div className="grid md:grid-cols-2 gap-6">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             {post.relatedPosts.slice(0, 2).map((related) => (
                                                 <Link
                                                     key={related.id}
                                                     href={`/blog/${related.slug}`}
-                                                    className="group relative p-8 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-white/[0.04] hover:border-[#FF7404]/30 transition-all overflow-hidden"
+                                                    className="group flex flex-col h-full bg-zinc-900/80 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-zinc-700 hover:shadow-xl hover:shadow-black/50 hover:-translate-y-1"
                                                 >
-                                                    {/* Top shine */}
-                                                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                                                    <span className="inline-block px-3 py-1 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 text-[10px] text-[#FF7404] font-bold uppercase tracking-widest mb-4">
-                                                        {related.category?.title}
-                                                    </span>
-                                                    <h4 className="text-xl font-bold text-white mb-3 group-hover:text-[#FF7404] transition-colors line-clamp-2 tracking-tight">
-                                                        {related.headline}
-                                                    </h4>
-                                                    <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2 mb-6">
-                                                        {related.metaDescription}
-                                                    </p>
-
-                                                    <div className="flex items-center gap-2 text-sm font-bold text-zinc-400 group-hover:text-[#FF7404] transition-colors">
-                                                        <span>Read Article</span>
-                                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                    {/* Image Section */}
+                                                    <div className="aspect-video w-full overflow-hidden relative">
+                                                        {related.image ? (
+                                                            <Image
+                                                                src={related.image}
+                                                                alt={related.headline}
+                                                                fill
+                                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                            />
+                                                        ) : (
+                                                            <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
+                                                                <span className="text-zinc-700 font-serif text-4xl font-bold opacity-20">V</span>
+                                                            </div>
+                                                        )}
+                                                        {/* Subtle gradient overlay at bottom for depth */}
+                                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
                                                     </div>
 
-                                                    {/* Bottom accent */}
-                                                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF7404]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                    {/* Content Section */}
+                                                    <div className="p-6 flex flex-col flex-1">
+                                                        {/* Category */}
+                                                        {related.category && (
+                                                            <span className="text-xs font-bold uppercase tracking-wider text-[#FF7404] mb-3">
+                                                                {related.category.title}
+                                                            </span>
+                                                        )}
+
+                                                        {/* Title */}
+                                                        <h3 className="text-xl font-serif font-semibold text-white leading-tight line-clamp-2 mb-4 group-hover:text-[#FF7404] transition-colors">
+                                                            {related.headline}
+                                                        </h3>
+
+                                                        {/* Meta Row */}
+                                                        <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
+                                                            <div className="flex items-center gap-2 text-sm text-zinc-500">
+                                                                <Clock className="w-3.5 h-3.5" />
+                                                                <span>{related.readingTime || 5} min read</span>
+                                                            </div>
+                                                            <span className="text-sm font-medium text-[#FF7404] group-hover:underline flex items-center gap-1">
+                                                                Read Article
+                                                                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                 </Link>
                                             ))}
                                         </div>

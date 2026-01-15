@@ -1,32 +1,24 @@
-import { getBlogPosts } from '@/lib/seobot';
+import { getLatestArticles } from '@/lib/blog';
 import HomeBlogBentoGrid from './HomeBlogBentoGrid';
 
 export default async function HomeBlogSection() {
-    // Fetch 3 posts for the bento grid
-    // The layout requires exactly 3 items for the perfect grid:
-    // 1. Featured (Large)
-    // 2. Compact
-    // 3. Compact
-    const { posts } = await getBlogPosts(0, 3);
+    // Fetch a larger batch to ensure we find the featured post and others
+    const posts = await getLatestArticles(10);
 
-    // Manual override for the Featured image as requested
-    const processedPosts = posts?.map(post => {
-        if (post.headline.includes('CRM Database Reactivation')) {
-            return {
-                ...post,
-                image: '/images/wireframes/ultimate-guide-crm-reactivation.jpeg'
-            };
-        }
-        if (post.headline.includes('Third-Party Lead Providers')) {
-            return {
-                ...post,
-                image: '/images/wireframes/7_lead_providers.jpeg'
-            };
-        }
-        return post;
-    });
+    const featuredSlug = 'crm-database-reactivation-guide';
+    const featuredPost = posts.find(p => p.slug === featuredSlug);
+    const otherPosts = posts.filter(p => p.slug !== featuredSlug);
 
-    if (!processedPosts || processedPosts.length === 0) return null;
+    let displayPosts = [];
+
+    if (featuredPost) {
+        displayPosts = [featuredPost, ...otherPosts.slice(0, 3)];
+    } else {
+        displayPosts = posts.slice(0, 4);
+    }
+
+    if (!displayPosts || displayPosts.length === 0) return null;
+
 
     return (
         <section className="relative py-20 lg:py-24 overflow-hidden">
@@ -52,7 +44,7 @@ export default async function HomeBlogSection() {
             />
 
             <div className="container px-4 mx-auto relative z-10">
-                <HomeBlogBentoGrid posts={processedPosts} />
+                <HomeBlogBentoGrid posts={displayPosts} />
             </div>
         </section>
     );

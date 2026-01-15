@@ -783,22 +783,7 @@ export default function FranchisePage() {
                 </div>
             </section>
 
-            {/* Testimonial Feature */}
-            <section className="py-24 bg-[#020202]">
-                <div className="container px-4 mx-auto">
-                    <div className="max-w-[350px] mx-auto">
-                        <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 bg-[#0A0A0A] shadow-2xl group">
-                            <iframe
-                                src="https://www.youtube.com/embed/E1o2JTHlR7o?modestbranding=1&rel=0"
-                                className="absolute inset-0 w-full h-full"
-                                title="Jo DaBrowski Testimonial"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
+
 
             {/* 4. THE ART OF THE COMPLIANT CLOSE - Interactive Conversation Visual */}
             <section className="py-24 bg-[#020202] relative border-t border-white/5">

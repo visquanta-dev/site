@@ -2,30 +2,19 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-
-interface BlogPost {
-    slug: string;
-    headline: string;
-    metaDescription: string;
-    image?: string;
-    category?: { title: string };
-    readingTime?: number;
-    createdAt: string;
-}
+import { BlogArticle } from '@/lib/blog';
 
 interface HomeBlogBentoGridProps {
-    posts: BlogPost[];
+    posts: BlogArticle[];
 }
 
 export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
     if (!posts || posts.length === 0) return null;
 
-    // We need 3 posts to fill the grid effectively.
+    // We take the first as featured, and the next 3 for the bottom grid
     const featured = posts[0];
-    const compact1 = posts[1];
-    const compact2 = posts[2];
+    const gridPosts = posts.slice(1, 4);
 
     // Helper for date formatting
     const formatDate = (dateString: string) => {
@@ -50,69 +39,131 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                 </h2>
             </motion.div>
 
-            {/* Bento Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-min">
+            <div className="flex flex-col gap-8 md:gap-12">
 
-                {/* 1. FEATURED CARD (Spans 2 cols, 2 rows on Desktop) */}
+                {/* 1. FEATURED CARD - Hero Style */}
                 {featured && (
                     <motion.div
-                        className="md:col-span-2 lg:col-span-2 lg:row-span-2 group relative rounded-[20px] bg-[#111] border border-white/[0.06] hover:border-[#ff7404]/25 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1 hover:shadow-[0_25px_50px_rgba(0,0,0,0.4),0_0_40px_rgba(255,116,4,0.1)] cursor-pointer h-[450px] md:h-auto featured-card-border"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
+                        className="w-full relative group"
                     >
-                        <Link href={`/blog/${featured.slug}`} className="block h-full w-full relative overflow-hidden rounded-[20px]">
-                            {/* Image */}
-                            <div className="absolute inset-0 w-full h-full">
-                                {featured.image && (
-                                    <Image
-                                        src={featured.image}
-                                        alt={featured.headline}
-                                        fill
-                                        className="object-cover transition-transform duration-[10s] ease-linear scale-100 group-hover:scale-105 group-hover:duration-[0.5s]"
-                                        onLoadingComplete={(img) => {
-                                            img.style.transform = "scale(1.03)";
-                                        }}
-                                    />
-                                )}
-                                {/* Bottom gradient only for text readability - removed top/full overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90" />
-                            </div>
+                        {/* Animated Orange Glow */}
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.05, 1],
+                                opacity: [0.2, 0.4, 0.2]
+                            }}
+                            transition={{
+                                duration: 4,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className="absolute -inset-2 bg-[#ff7404] rounded-[32px] blur-3xl z-0 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity"
+                        />
 
+                        {/* Moving Border Light (The "Motion") - Handled by CSS class 'featured-card-border' below */}
 
+                        <Link href={`/blog/${featured.slug}`} className="relative z-10 group block w-full bg-[#111] rounded-[20px] overflow-hidden border border-white/[0.06] hover:border-[#ff7404]/30 transition-all duration-300 featured-card-border">
+                            <div className="grid grid-cols-1 lg:grid-cols-2">
+                                {/* Image Section - Large & Cinematic */}
+                                <div className="relative aspect-video lg:aspect-auto lg:h-full overflow-hidden border-b lg:border-b-0 lg:border-r border-white/[0.06]">
+                                    {featured.heroImage && (
+                                        <Image
+                                            src={featured.heroImage}
+                                            alt={featured.title}
+                                            fill
+                                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                        />
+                                    )}
+                                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
 
-
-                            {/* Content Overlay */}
-                            <div className="absolute bottom-0 left-0 w-full p-8 flex flex-col justify-end z-10">
-                                <div className="mb-4">
-                                    <span className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#ff7404]">
-                                        {featured.category?.title || 'Insight'}
-                                    </span>
+                                    {/* Data Tab Overlay - Only visible if it's the specific CRM article or we want it on all featured */}
+                                    <div className="absolute bottom-4 right-4 bg-[#0a0a0a]/90 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-2xl hidden sm:block">
+                                        <div className="flex flex-col gap-2 mb-3">
+                                            <div className="flex items-center justify-between gap-6 text-[10px]">
+                                                <span className="text-zinc-500 uppercase tracking-wider">Oct 2025</span>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-white font-bold">$12K</span>
+                                                    <div className="w-3 h-3 bg-zinc-700 rounded-[1px]" />
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-6 text-[10px]">
+                                                <span className="text-zinc-500 uppercase tracking-wider">Nov 2025</span>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-white font-bold">$67K</span>
+                                                    <div className="w-8 h-3 bg-[#e6b95ce7] rounded-[1px]" />
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-6 text-[10px]">
+                                                <span className="text-zinc-500 uppercase tracking-wider">Ad Spend</span>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-green-500 font-bold">$0</span>
+                                                    <svg className="w-3 h-3 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="border-t border-white/10 pt-2 flex items-center justify-between gap-3">
+                                            <span className="text-[#e6b95ce7] text-lg font-bold tracking-tight">+$55K</span>
+                                            <div className="flex flex-col leading-none">
+                                                <span className="text-[#e6b95ce7] text-[9px] font-bold uppercase tracking-wider">Recovered</span>
+                                                <span className="text-[#e6b95ce7] text-[9px] font-bold uppercase tracking-wider">Revenue</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h3 className="text-2xl md:text-4xl font-semibold text-white mb-3 leading-tight max-w-lg">
-                                    {featured.headline}
-                                </h3>
-                                <p className="text-[15px] text-white/70 line-clamp-2 md:line-clamp-2 mb-4 max-w-lg">
-                                    {featured.metaDescription}
-                                </p>
-                                <div className="text-[12px] text-white/50 font-medium">
-                                    {formatDate(featured.createdAt)} • {featured.readingTime} min read
+
+                                {/* Content Section */}
+                                <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+                                    <div className="mb-6 flex items-center gap-3">
+                                        <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#ff7404] bg-[#ff7404]/10 px-3 py-1.5 rounded-full border border-[#ff7404]/20">
+                                            {featured.category || 'Featured'}
+                                        </span>
+                                        <span className="text-zinc-500 text-sm">•</span>
+                                        <span className="text-zinc-500 text-sm font-medium">
+                                            {formatDate(featured.publishedAt)}
+                                        </span>
+                                    </div>
+
+                                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.1] group-hover:text-[#ff7404] transition-colors">
+                                        {featured.title}
+                                    </h3>
+
+                                    <p className="text-lg text-zinc-400 leading-relaxed mb-8 line-clamp-3">
+                                        {featured.excerpt}
+                                    </p>
+
+                                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-[10px] font-bold text-zinc-400">
+                                                VQ
+                                            </div>
+                                            <div className="text-xs">
+                                                <span className="block text-white font-medium">VisQuanta Team</span>
+                                                <span className="block text-zinc-500">{featured.readTime} min read</span>
+                                            </div>
+                                        </div>
+                                        <span className="text-[#ff7404] text-sm font-bold tracking-wide group-hover:translate-x-1 transition-transform inline-flex items-center gap-2">
+                                            READ NOW →
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </Link>
                     </motion.div>
                 )}
 
-                {/* 2. COMPACT CARD (Top Right) */}
-                {compact1 && (
-                    <CompactCard post={compact1} delay={0.1} />
-                )}
+                {/* 2. BOTTOM GRID - 3 Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {gridPosts.map((post, idx) => (
+                        <StandardCard key={post.slug} post={post} delay={0.1 * (idx + 1)} />
+                    ))}
+                </div>
 
-                {/* 3. COMPACT CARD (Middle Right - or Bottom Right in grid flow) */}
-                {compact2 && (
-                    <CompactCard post={compact2} delay={0.2} />
-                )}
             </div>
 
             {/* View All CTA */}
@@ -120,13 +171,13 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="mt-12 text-center"
+                className="mt-16 text-center"
             >
                 <Link
                     href="/blog"
-                    className="inline-flex items-center px-7 py-3.5 bg-gradient-to-br from-[#ff7404] to-[#e66000] text-[#0a0a0a] text-[15px] font-bold rounded-lg shadow-[0_4px_20px_rgba(255,116,4,0.3)] hover:shadow-[0_6px_25px_rgba(255,116,4,0.45)] hover:-translate-y-[2px] hover:brightness-110 transition-all duration-300 group"
+                    className="inline-flex items-center px-8 py-4 bg-white/5 border border-white/10 hover:bg-white/10 text-white text-[15px] font-medium rounded-full transition-all duration-300 group"
                 >
-                    View All Articles
+                    Explore all articles
                     <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </Link>
             </motion.div>
@@ -134,11 +185,9 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
     );
 }
 
-// Sub-component for Compact Cards to ensure consistency
-function CompactCard({ post, delay, className = "" }: { post: BlogPost, delay: number, className?: string }) {
+function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
     if (!post) return null;
 
-    // Date formatter
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('en-US', {
             month: 'short',
@@ -149,67 +198,38 @@ function CompactCard({ post, delay, className = "" }: { post: BlogPost, delay: n
 
     return (
         <motion.div
-            className={`group relative rounded-[16px] overflow-hidden bg-[#111] border border-white/[0.06] hover:border-[#ff7404]/25 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3),0_0_30px_rgba(255,116,4,0.08)] cursor-pointer flex flex-col h-[213px] ${className}`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay }}
         >
-            <Link href={`/blog/${post.slug}`} className="flex flex-row h-full">
-                {/* Image - reduced width for compact horizontal feel or keep vertical? 
-                   Request says: "Compact Cards: Height ~150px each, Image aspect ratio 16:9". 
-                   Wait, 16:9 image in a 150px high card means the image drives the width or it's a vertical stack?
-                   Original CompactCard was a vertical stack (Image Top, Content Bottom). 
-                   If height is fixed ~150px, vertical stack is tight. 
-                   Let's check layout: "1+2 layout ... Compact cards stacked vertically".
-                   If compact cards are stacked vertically on the right, and the *total* height matches the Featured card (320px), then each compact card should be ~150-160px high.
-                   Layout:
-                   [ Featured (320px) ] [ Compact 1 (150px) ]
-                                        [ Compact 2 (150px) ]
-                   With 16px gap. 150+150+16 = 316px. Matches featured perfectly.
-                   So Compact 1 is a horizontal card? Or vertical?
-                   "Image aspect ratio: 16:9". 
-                   If vertical: Image height ~84px (150 width?), Content height ~66px. Very tight.
-                   If horizontal: Image Left, Content Right. But user specs don't explicitly say "horizontal" for compact.
-                   Wait, "Wide Card" logic from before was horizontal.
-                   But "Compact Cards" usually imply vertical stack in a grid column.
-                   If I make them horizontal (Image Left 40%, Content Right 60%), they fit nicely in 150px height.
-                   Let's stick to the visual: "Compact cards... stacked vertically".
-                   "Image aspect ratio: 16:9". 
-                   Let's try to make them horizontal flex row if possible, or vertical if constraints allow.
-                   Actually, if the column width is ~350px (1/3 of 1100), 16:9 image is ~196px height. That's taller than the whole card!
-                   So the image CANNOT be full width 16:9 if the card is only 150px high.
-                   UNLESS the image is small.
-                   OR... the user means the image *container* is 16:9.
-                   Let's switch Compact cards to Horizontal layout (Image Left ~100-120px width, Content Right).
-                   Wait, the user specs "Image aspect ratio: 16:9". This usually applies to the image asset itself.
-                   Let's go with a horizontal card layout for the compact ones to ensure they fit the 150px height constraint comfortably.
-                   Structure: Flex Row. Image Width ~35-40%. Content ~60-65%.
-                */}
-                <div className="relative w-[40%] h-full overflow-hidden border-r border-white/[0.06]">
-                    {post.image && (
+            <Link href={`/blog/${post.slug}`} className="group block bg-[#111] border border-white/[0.06] rounded-[20px] overflow-hidden hover:border-[#ff7404]/30 hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                <div className="relative aspect-video w-full overflow-hidden border-b border-white/[0.06]">
+                    {post.heroImage && (
                         <Image
-                            src={post.image}
-                            alt={post.headline}
+                            src={post.heroImage}
+                            alt={post.title}
                             fill
-                            className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-105"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                     )}
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                 </div>
 
-                {/* Content */}
-                <div className="flex-1 p-6 flex flex-col justify-center bg-[#111]">
-                    <div className="mb-2">
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.05em] text-[#ff7404]">
-                            {post.category?.title || 'Insight'}
-                        </span>
+                <div className="p-6 flex-1 flex flex-col">
+                    <div className="mb-4 flex items-center gap-2 text-xs font-medium text-zinc-500">
+                        <span className="text-[#ff7404]">{post.category || 'Insight'}</span>
+                        <span>•</span>
+                        <span>{formatDate(post.publishedAt)}</span>
                     </div>
-                    <h3 className="text-[16px] md:text-[17px] font-semibold text-white mb-3 leading-snug line-clamp-3">
-                        {post.headline}
+
+                    <h3 className="text-xl font-bold text-white mb-3 leading-snug group-hover:text-[#ff7404] transition-colors line-clamp-2">
+                        {post.title}
                     </h3>
-                    <div className="text-[12px] text-white/50 font-medium mt-auto">
-                        {formatDate(post.createdAt)} • {post.readingTime} min
+
+                    <div className="mt-auto pt-4 flex items-center justify-between text-xs font-medium text-zinc-400 border-t border-white/5">
+                        <span>{post.readTime} min read</span>
+                        <span className="text-white group-hover:text-[#ff7404] transition-colors">Read →</span>
                     </div>
                 </div>
             </Link>

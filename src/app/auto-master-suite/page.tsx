@@ -759,64 +759,7 @@ export default function AutoMasterSuiteHub() {
                 </div>
             </section>
 
-            {/* 4.5 VIDEO TESTIMONIALS - SOCIAL PROOF */}
-            <section className="py-24 bg-[#010101] border-t border-white/5">
-                <div className="container px-4 mx-auto">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 text-[#FF7404] text-[10px] font-bold uppercase tracking-widest mb-4"
-                        >
-                            <Quote className="w-3 h-3" />
-                            Industry Voice
-                        </motion.div>
-                        <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Expert <span className="text-[#FF7404]">Endorsements.</span></h2>
-                        <p className="text-zinc-500 text-lg">Hear from industry leaders on why unified revenue automation is the standard for modern retail automotive.</p>
-                    </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto font-bold lowercase">
-                        {[
-                            { id: "E1o2JTHlR7o" },
-                            { id: "UssAxtB8DG4" }
-                        ].map((video, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="relative aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 bg-[#0A0A0A] shadow-2xl group"
-                            >
-                                <iframe
-                                    src={`https://www.youtube.com/embed/${video.id}?modestbranding=1&rel=0`}
-                                    className="absolute inset-0 w-full h-full"
-                                    title="YouTube video player"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                />
-                                {/* Overlay to prevent accidental clicks before intent */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    <div className="mt-16 p-8 rounded-3xl bg-white/[0.02] border border-white/5 max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
-                        <div className="shrink-0 w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center border border-white/10">
-                            <Quote className="w-8 h-8 text-[#FF7404]" />
-                        </div>
-                        <div className="flex-grow">
-                            <MinimalQuote
-                                quote="The ROI was visible within the first month. We went from responding in hours to responding in seconds."
-                                author="Michael Rodriguez"
-                                role="General Manager, Premier Auto Group"
-                                className="bg-transparent border-none p-0 backdrop-blur-none shadow-none"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* 5. FINAL CTA */}
             <section className="py-24 bg-[#050505] relative overflow-hidden">

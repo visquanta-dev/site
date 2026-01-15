@@ -148,52 +148,168 @@ export function TableOfContents() {
 }
 
 // --- Executive Summary Card ---
+// --- Executive Summary Card (Rotational Logic) ---
 interface ExecutiveSummaryProps {
-    summary: string;
+    summary: string; // fallback in case no random match (not really used in this new logic but good for prop compatibility)
 }
 
+const BRIEF_VARIATIONS = [
+    {
+        id: 1,
+        title: "Executive Brief: The Hidden Revenue Problem",
+        body: "84% of CRM leads go untouched after 30 days—that's millions in latent revenue sitting idle. AI reactivation recovers $50K-$200K monthly from existing databases without new ad spend.",
+        impactArea: "Revenue Recovery",
+        implementation: "Rapid (1-2 Weeks)",
+        roiTimeline: "Immediate (14 Days)"
+    },
+    {
+        id: 2,
+        title: "Executive Brief: The 60-Second Window",
+        body: "22-minute average response times cost dealerships $8,500+ weekly. Sub-60-second AI response captures leads before competitors—converting at 21x the industry average.",
+        impactArea: "Lead Conversion",
+        implementation: "Standard (2-4 Weeks)",
+        roiTimeline: "Immediate (7 Days)"
+    },
+    {
+        id: 3,
+        title: "Executive Brief: Missed Calls, Missed Revenue",
+        body: "1 in 4 service calls go to voicemail—$340+ lost per missed RO. Voice AI captures every inquiry 24/7, books appointments automatically, and protects CSI scores.",
+        impactArea: "Fixed Operations",
+        implementation: "Rapid (1-2 Weeks)",
+        roiTimeline: "Immediate (30 Days)"
+    },
+    {
+        id: 4,
+        title: "Executive Brief: The BDC Consistency Problem",
+        body: "45% annual BDC turnover means constant retraining and lost consistency. AI handles first-touch engagement and qualification—your closers focus on selling cars.",
+        impactArea: "Sales Operations",
+        implementation: "Standard (2-4 Weeks)",
+        roiTimeline: "Accelerated (60 Days)"
+    },
+    {
+        id: 5,
+        title: "Executive Brief: The Speed Gap",
+        body: "While your team handles floor traffic, leads go to voicemail. Your competitors respond in under 60 seconds. Every delayed response is a customer lost to the dealer down the street.",
+        impactArea: "Market Position",
+        implementation: "Standard (2-4 Weeks)",
+        roiTimeline: "Immediate (30 Days)"
+    },
+    {
+        id: 6,
+        title: "Executive Brief: Reviews Drive Revenue",
+        body: "4.8★ dealerships close 23% more sales. AI monitors and responds to reviews instantly across all platforms—protecting CSI and converting satisfied customers into advocates.",
+        impactArea: "Reputation & CSI",
+        implementation: "Rapid (1-2 Weeks)",
+        roiTimeline: "Ongoing"
+    },
+    {
+        id: 7,
+        title: "Executive Brief: The After-Hours Opportunity",
+        body: "67% of leads come after 6PM. Your showroom closes—your competitors' AI doesn't. 24/7 conversational AI captures every evening and weekend inquiry automatically.",
+        impactArea: "Lead Capture",
+        implementation: "Rapid (1-2 Weeks)",
+        roiTimeline: "Immediate (7 Days)"
+    },
+    {
+        id: 8,
+        title: "Executive Brief: One System, Five Capabilities",
+        body: "Stop juggling vendors. Unify lead reactivation, speed to lead, service AI, reputation management, and website engagement in one automotive-specific platform.",
+        impactArea: "Operations Efficiency",
+        implementation: "Standard (2-4 Weeks)",
+        roiTimeline: "Immediate (30 Days)"
+    },
+    {
+        id: 9,
+        title: "Executive Brief: The Cost of Inaction",
+        body: "Every day without automation: 12+ missed service calls, 15+ leads going cold, $8,500 in lost weekly revenue. Your CRM is becoming a graveyard of opportunity.",
+        impactArea: "Revenue Operations",
+        implementation: "Standard (2-4 Weeks)",
+        roiTimeline: "Immediate (30 Days)"
+    },
+    {
+        id: 10,
+        title: "Executive Brief: Measurable Impact",
+        body: "Dealerships on AutoMaster Suite average 30% revenue increase within 30 days—higher lead conversion, zero missed service calls, and recovered database revenue.",
+        impactArea: "Overall Performance",
+        implementation: "Standard (2-4 Weeks)",
+        roiTimeline: "Immediate (30 Days)"
+    }
+];
+
 export function ExecutiveSummary({ summary }: ExecutiveSummaryProps) {
+    const [brief, setBrief] = useState(BRIEF_VARIATIONS[0]);
+
+    useEffect(() => {
+        // Simple random rotation on mount
+        const randomIndex = Math.floor(Math.random() * BRIEF_VARIATIONS.length);
+        setBrief(BRIEF_VARIATIONS[randomIndex]);
+    }, []);
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mb-16 relative overflow-hidden rounded-2xl bg-zinc-900/40 border-l-4 border-[#FF7404] p-8 md:p-10 backdrop-blur-sm"
+            className="mb-16 relative overflow-hidden rounded-[20px] bg-[#0F0F0F] border border-white/[0.06] p-8 md:p-10 shadow-2xl"
         >
-            <div className="absolute top-0 right-0 p-4 opacity-5">
-                <BarChart3 className="w-32 h-32" />
+            {/* Top glass gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+
+            {/* Animated graphic in top right */}
+            <div className="absolute top-0 right-0 p-8 opacity-20 pointer-events-none">
+                <div className="flex items-end gap-1 h-16">
+                    <motion.div
+                        animate={{ height: ["40%", "80%", "40%"] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-2 bg-[#FF7404] rounded-t-sm"
+                    />
+                    <motion.div
+                        animate={{ height: ["60%", "30%", "60%"] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                        className="w-2 bg-[#FF7404]/50 rounded-t-sm"
+                    />
+                    <motion.div
+                        animate={{ height: ["30%", "90%", "30%"] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                        className="w-2 bg-[#FF7404]/30 rounded-t-sm"
+                    />
+                </div>
             </div>
 
-            <div className="relative z-10">
-                <h3 className="text-lg font-serif font-bold text-white mb-6 flex items-center gap-3">
-                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#FF7404]/10 text-[#FF7404]">
-                        <CheckCircle2 className="w-5 h-5" />
+            <div className="relative z-10 text-left">
+                <div className="flex items-center gap-3 mb-6">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#FF7404]/10 text-[#FF7404] ring-1 ring-[#FF7404]/20">
+                        <CheckCircle2 className="w-4 h-4" />
                     </span>
-                    Executive Brief: Key Strategic Takeaways
-                </h3>
+                    <h3 className="text-xl md:text-2xl font-serif font-semibold text-white tracking-tight">
+                        {brief.title.replace('Executive Brief: ', '')}
+                    </h3>
+                </div>
 
-                <div className="space-y-4">
-                    {/* Transforming the meta description into bullet points if it's long, or just displaying key sentences */}
-                    <p className="text-xl text-zinc-200 leading-relaxed font-light">
-                        {summary}
+                <div className="space-y-6">
+                    <p className="text-lg md:text-xl text-zinc-300 leading-relaxed font-light max-w-2xl">
+                        {brief.body}
                     </p>
 
-                    <div className="pt-6 mt-6 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="flex flex-col">
-                            <span className="text-[10px] uppercase tracking-widest text-zinc-500 mb-1">Impact Area</span>
-                            <span className="text-sm font-medium text-white">Revenue Operations</span>
+                    <div className="pt-6 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div className="flex flex-col gap-1">
+                            <span className="text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-semibold">Impact Area</span>
+                            <span className="text-sm font-medium text-white">{brief.impactArea}</span>
                         </div>
-                        <div className="flex flex-col">
-                            <span className="text-[10px] uppercase tracking-widest text-zinc-500 mb-1">Implementation</span>
-                            <span className="text-sm font-medium text-white">Standard (2-4 Weeks)</span>
+                        <div className="flex flex-col gap-1">
+                            <span className="text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-semibold">Implementation</span>
+                            <span className="text-sm font-medium text-white">{brief.implementation}</span>
                         </div>
-                        <div className="flex flex-col">
-                            <span className="text-[10px] uppercase tracking-widest text-zinc-500 mb-1">ROI Timeline</span>
-                            <span className="text-sm font-medium text-[#FF7404]">Immediate (30 Days)</span>
+                        <div className="flex flex-col gap-1">
+                            <span className="text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-semibold">ROI Timeline</span>
+                            <span className="text-sm font-bold text-[#FF7404]">{brief.roiTimeline}</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Bottom orange accent line */}
+            <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#FF7404] via-[#FF7404]/20 to-transparent opacity-80" />
         </motion.div>
     );
 }

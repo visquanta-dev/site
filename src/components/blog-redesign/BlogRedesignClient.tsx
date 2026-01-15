@@ -27,36 +27,19 @@ export default function BlogRedesignClient({ posts, categories, totalPosts }: Bl
     const [activeCategory, setActiveCategory] = useState<string>('all');
     const [currentPage, setCurrentPage] = useState<number>(1);
 
-    // Apply manual image overrides
-    const processedPosts = useMemo(() => {
-        return posts.map(post => {
-            if (post.headline.includes('CRM Database Reactivation')) {
-                return {
-                    ...post,
-                    image: '/images/wireframes/ultimate-guide-crm-reactivation.jpeg'
-                };
-            }
-            if (post.headline.includes('Third-Party Lead Providers')) {
-                return {
-                    ...post,
-                    image: '/images/wireframes/7_lead_providers.jpeg'
-                };
-            }
-            return post;
-        });
-    }, [posts]);
+
 
     // Featured post is the first one (only shown on page 1)
-    const featuredPost = processedPosts[0];
+    const featuredPost = posts[0];
     const isFirstPage = currentPage === 1;
 
     // Filter posts based on category
     const filteredPosts = useMemo(() => {
         if (activeCategory === 'all') {
-            return processedPosts;
+            return posts;
         }
-        return processedPosts.filter(post => post.category?.slug === activeCategory);
-    }, [processedPosts, activeCategory]);
+        return posts.filter(post => post.category?.slug === activeCategory);
+    }, [posts, activeCategory]);
 
     // Calculate pagination
     const paginatedPosts = useMemo(() => {

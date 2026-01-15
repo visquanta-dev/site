@@ -72,7 +72,7 @@ interface BasePostRaw {
   }>;
 }
 
-interface BasePost {
+export interface BasePost {
   id: string;
   slug: string;
   headline: string;
@@ -128,6 +128,12 @@ async function fetchBase(): Promise<BasePost[]> {
 
   const rawData: BasePostRaw[] = await response.json();
   const normalizedData = rawData.map(normalizeBasePost);
+
+  // Sort by date descending (newest first)
+  normalizedData.sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+
   setCache(cacheKey, normalizedData);
   return normalizedData;
 }
@@ -364,4 +370,8 @@ export async function getAllTags(): Promise<Array<{ slug: string; title: string;
     console.error('Error fetching tags:', error);
     return [];
   }
+}
+
+export async function getAllPostsMeta(): Promise<BasePost[]> {
+  return fetchBase();
 }
