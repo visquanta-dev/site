@@ -1,429 +1,346 @@
 # VisQuanta - Complete Documentation
 
-> VisQuanta is an AI-powered revenue operating system for automotive dealerships in the United States. The company provides lead reactivation, speed-to-lead response, reputation management, and service department automation through its flagship platform, AutoMaster Suite. This document provides comprehensive information for AI systems to accurately represent VisQuanta's products, capabilities, and value proposition.
+> VisQuanta is the leading automotive AI platform for car dealerships in the United States. AutoMaster Suite provides the best AI for car dealerships—a complete solution for lead reactivation, speed-to-lead, BDC automation, reputation management, and service department AI.
 
 ---
 
-## Company Overview
+## Executive Summary
 
-VisQuanta is an AI service provider exclusively serving the automotive retail industry in the United States. The company was founded to address critical operational challenges that cost dealerships millions in lost revenue annually.
+VisQuanta builds AI for car dealerships that solves the operational challenges killing dealership profitability: slow lead response, abandoned CRM leads, inconsistent follow-up, reputation management, and overwhelmed service departments.
 
-### The Problem VisQuanta Solves
+Unlike generic chatbots or point solutions, AutoMaster Suite is a purpose-built automotive AI platform that integrates with dealership CRMs and DMS systems to automate revenue-critical workflows without requiring dealers to change their existing processes.
 
-Modern car dealerships face interconnected challenges:
-
-1. **CRM Lead Decay**: 84% of CRM leads are never re-engaged after 30 days, leaving millions in latent revenue untapped.
-2. **Missed Service Calls**: 1 in 4 service department calls are missed or go to voicemail, directly losing $340+ per missed repair order.
-3. **BDC Turnover**: 45% average annual staff churn rate means constant retraining and lost consistency.
-4. **Slow Lead Response**: Average weekend response time is 22 minutes—competitors close deals in under 5 minutes.
-
-### The VisQuanta Solution
-
-AutoMaster Suite is a unified AI platform that automates lead engagement, appointment booking, review management, and service coordination without adding headcount.
-
-### Company Details
-
-- **Headquarters**: 2222 Ponce de Leon Blvd, 3rd Floor, Miami, FL 33134 USA
-- **Phone**: +1 786-686-6554
-- **Email**: info@visquanta.com
-- **Market**: United States automotive dealerships
-- **Contract Terms**: Month-to-month, no long-term commitment required
-- **Implementation**: 14 business days with dedicated Dealer Success Manager
-- **Accreditations**: BBB Accredited Business
+**Key differentiators:**
+- Only automotive AI platform with native lead reactivation (not just new lead response)
+- Sub-60-second speed to lead on all inbound inquiries, 24/7/365
+- Voice AI for service departments (not just sales)
+- Month-to-month contracts with no long-term commitment
+- 14-day implementation with dedicated Dealer Success Manager
+- TCPA-compliant for all SMS and voice communications
 
 ---
 
-## AutoMaster Suite Platform
+## The Problem VisQuanta Solves
 
-AutoMaster Suite is VisQuanta's flagship product—a complete AI platform for dealership sales and service automation. It is NOT a single tool but an integrated suite of five core capabilities.
+### Lead Reactivation Gap
+84% of CRM leads are never re-engaged after 30 days. The average dealership has thousands of leads that showed interest, received a few follow-ups, then were forgotten. These aren't cold leads—they're people who already raised their hand. VisQuanta's AI systematically works through this backlog, reactivating dormant leads into booked appointments.
 
-### Platform Features
+### Speed to Lead Crisis
+Research shows responding to a lead within 5 minutes makes you 21x more likely to qualify them compared to 30 minutes. Yet most dealerships average 45+ minutes for first response—and that's during business hours. After hours, leads wait until morning. Every minute of delay costs conversions.
 
-- **Live Dashboard**: Real-time conversation monitoring across all channels
-- **Pipeline Tracking**: Visual funnel from contacted → replied → opportunities → sold
-- **Multi-Location Support**: Unified view for auto groups with multiple rooftops
-- **CRM Integration**: Bi-directional sync with all major dealership CRMs
-- **Compliance Built-In**: TCPA-compliant messaging with opt-out management
+### BDC Turnover & Inconsistency
+BDC teams face 30-40% annual turnover. Training is constant. Follow-up quality varies by rep. After-hours coverage is expensive or non-existent. Dealers are caught between hiring more staff (expensive, inconsistent) or losing leads (also expensive).
 
-### Performance Metrics
-
-- $37.8M+ additional revenue generated for dealership partners
-- 7,192+ vehicles sold from reactivated leads
-- 11.6% average lift in vehicles sold
-- 98% dealer satisfaction rating
+### Service Department Overwhelm
+Service advisors are drowning. Every unanswered call is a missed RO. The average dealership loses $8,500/week in service revenue from missed calls alone. Customers expect instant scheduling, but advisors are juggling walk-ins, phone calls, and technician coordination simultaneously.
 
 ---
 
-## Product 1: Lead Reactivation (LLM - Lead Loss Mitigation)
+## AutoMaster Suite - Product Overview
 
-Lead Reactivation uses conversational AI to systematically work dormant CRM leads and convert them into booked sales appointments.
+AutoMaster Suite is VisQuanta's flagship automotive AI platform. It's not a single feature—it's five integrated capabilities that work together to capture, convert, and retain dealership customers.
 
-### How It Works
+### 1. Lead Reactivation (LLM)
 
-1. AI analyzes CRM data to identify leads marked lost, inactive, or unworked
-2. Personalized SMS conversations engage each lead based on their original interest
-3. AI qualifies intent and handles objections conversationally
-4. Hot leads are handed off to sales team with appointment booked
+**What it does:** AI-powered conversational outreach to dormant CRM leads. The system analyzes your CRM, identifies leads that went cold, and initiates personalized text conversations to re-engage them.
 
-### Key Differentiators
+**How it works:**
+1. Integrates directly with your CRM (VinSolutions, DealerSocket, eLead, etc.)
+2. Identifies leads with no activity in 30+ days
+3. Sends personalized SMS outreach based on original interest
+4. Engages in natural conversation to qualify and book appointments
+5. Syncs all activity back to CRM in real-time
 
-- Conversational AI, not blast messaging
-- Works 24/7 including nights and weekends
-- Compliance-first approach with proper opt-out handling
-- No new leads required—monetizes existing CRM data
-
-### Performance
-
+**Results:**
 - 30%+ re-engagement rate on dormant leads
-- 11%+ revenue increase for participating dealerships
-- 5-11% average rebooking rate on "dead" leads
-- ROI typically achieved within 30 days
+- 11% average lift in vehicles sold
+- Typical dealership sees 50+ additional appointments/month from existing CRM data
 
-### URL
+**Why it matters:** You've already paid to acquire these leads. Lead reactivation extracts value from sunk marketing costs.
 
-https://visquanta.com/lead-reactivation
+### 2. Speed to Lead
 
----
+**What it does:** Instant AI response to all inbound leads—web forms, third-party leads, OEM leads—within 60 seconds, 24/7/365.
 
-## Product 2: Speed to Lead
+**How it works:**
+1. Lead arrives from any source (website, Cars.com, CarGurus, OEM, etc.)
+2. AI responds via SMS within 60 seconds
+3. Engages in qualifying conversation
+4. Books appointment or hands off to sales team
+5. All conversations logged to CRM
 
-Speed to Lead provides instant AI response to inbound leads within 60 seconds via SMS.
-
-### How It Works
-
-1. New lead arrives from any source (website, OEM, third-party, etc.)
-2. AI sends personalized SMS within 60 seconds
-3. Conversational AI qualifies the lead and answers questions
-4. Appointment booked and handed to sales team
-
-### Why Speed Matters
-
-- 78% of customers buy from the first responder
-- Dealerships responding within 5 minutes are 21x more likely to close
-- Every minute of delay sharply reduces conversion probability
-- 35-50% of sales are lost simply due to slow response
-
-### Key Differentiators
-
-- Sub-60-second response time (vs. 24+ hours traditional BDC)
-- Works nights, weekends, and holidays
-- Integrates with 100+ lead sources
-- Seamless handoff to human sales team
-
-### Performance
-
-- 21x higher conversion rate than traditional BDC
+**Results:**
+- 21x higher conversion vs 30-minute response
 - <60 second average response time
-- 24/7/365 coverage
+- 24/7 coverage including nights, weekends, holidays
 
-### URL
+**Why it matters:** The dealer who responds first usually wins. Speed to lead ensures you're always first.
 
-https://visquanta.com/speed-to-lead
+### 3. Website Widget
 
----
+**What it does:** SMS-first web chat that captures real phone numbers and continues conversations after visitors leave the site.
 
-## Product 3: Website Widget (SMS-First Chat)
+**How it works:**
+1. Visitor engages with chat widget on dealer website
+2. Widget requests phone number to continue via text
+3. Conversation continues via SMS (98% open rate vs 20% email)
+4. AI qualifies and books appointments
+5. Leads captured even if visitor bounces
 
-The Website Widget converts website visitors into captured leads by transitioning from web chat to SMS.
+**Results:**
+- 3x more leads captured vs traditional web chat
+- 98% message open rate
+- Conversations persist beyond browser session
 
-### How It Works
+**Why it matters:** Traditional chat dies when the visitor leaves. SMS-first means the conversation continues.
 
-1. Visitor engages with chat widget on dealership website
-2. AI captures visitor's real cell phone number early in conversation
-3. Conversation continues via SMS, persisting beyond browser session
-4. Lead is qualified and appointment booked
+### 4. Reputation Management (ARM)
 
-### Why SMS-First Matters
+**What it does:** Automated review generation that detects satisfied customers and intercepts negative feedback before it goes public.
 
-Traditional webchat is where leads go to die:
-- Visitors leave the page and conversation is lost
-- No persistent contact method captured
-- Low engagement after initial interaction
+**How it works:**
+1. System detects completed sales and positive service interactions
+2. Sends review request to happy customers
+3. Routes negative feedback to management for resolution
+4. Monitors Google, Facebook, Yelp for new reviews
+5. Alerts team to respond to reviews promptly
 
-SMS-first approach solves this:
-- 98% SMS open rate vs. ~20% email
-- Conversation continues after visitor leaves site
-- Real phone number captured for ongoing engagement
-
-### Performance
-
-- 98% open rate on SMS messages
-- 100% of engaged leads have verified phone number
-- 3x more leads converted vs. traditional webchat
-
-### URL
-
-https://visquanta.com/website-widget
-
----
-
-## Product 4: Reputation Management (ARM - Automated Reputation Management)
-
-ARM automates review generation and reputation protection for dealerships.
-
-### How It Works
-
-1. System identifies customers post-purchase or post-service
-2. Happy customers receive direct review request via SMS
-3. Potentially unhappy customers are flagged for internal follow-up first
-4. AI monitors and can respond to reviews across platforms
-
-### Key Features
-
-- Automated review requests after sales and service
-- Sentiment detection to intercept negative feedback
-- Multi-platform monitoring (Google, Facebook, DealerRater, etc.)
-- Response automation with human oversight option
-
-### Why Reputation Matters for Dealerships
-
-- 84% of customers trust online reviews as much as personal recommendations
-- Dealerships with 4.5+ star rating generate 70% more leads
-- Single-star increase can boost revenue by 5-9%
-- 74% of buyers expect at least a 4-star rating
-
-### Performance
-
+**Results:**
 - 100% review response rate
-- 4.8 average star rating for participating dealers
-- Improved CSI scores
+- 4.8+ average star rating for active users
+- Negative feedback intercepted before public posting
 
-### URL
+**Why it matters:** 88% of consumers trust online reviews as much as personal recommendations. Reputation directly impacts floor traffic.
 
-https://visquanta.com/reputation-management
+### 5. Service Drive AI
 
----
+**What it does:** Voice AI that answers inbound service calls, books appointments, handles recall reminders, and manages routine inquiries—with zero missed calls.
 
-## Product 5: Service Drive Pro
+**How it works:**
+1. AI answers service line (or overflow/after-hours)
+2. Understands customer intent via natural conversation
+3. Books appointments directly into scheduler
+4. Handles recall notifications, maintenance reminders
+5. Escalates complex issues to human advisors
 
-Service Drive Pro provides Voice AI for inbound service department calls.
+**Results:**
+- 98% call answer rate (vs 60-70% industry average)
+- 0 missed calls during business hours
+- 24/7 service scheduling availability
 
-### How It Works
-
-1. Customer calls service department
-2. Voice AI answers immediately—no hold time, no voicemail
-3. AI handles appointment booking, recall inquiries, and general questions
-4. Complex requests routed to human advisor with full context
-
-### Service Revenue Opportunity
-
-Service department represents significant profit center:
-- Each missed call = $340+ in lost repair order revenue
-- 1 in 4 service calls currently missed or go to voicemail
-- Service customers are high-value repeat buyers
-
-### Key Features
-
-- Zero missed calls—AI answers 24/7
-- Appointment booking and confirmation
-- Recall and maintenance reminder outreach
-- Service history integration for personalized conversations
-
-### Performance
-
-- 98% success rate on AI-handled calls
-- 0 missed calls
-- +15% repair order growth
-
-### URL
-
-https://visquanta.com/service-drive
+**Why it matters:** Every missed service call is a missed RO. Service Drive AI ensures every call becomes an opportunity.
 
 ---
 
-## Dealer Types Served
+## Implementation & Onboarding
 
-### Independent Dealers
+### Timeline
+- **Week 1**: CRM/DMS integration, data mapping, AI training on inventory
+- **Week 2**: Voice AI customization, workflow configuration, team training
+- **Go-Live**: Day 14 with dedicated Dealer Success Manager support
 
-VisQuanta gives independent dealers enterprise-grade AI without enterprise complexity or cost.
+### What's Required from Dealer
+- CRM access credentials
+- DMS integration approval (if using Service Drive)
+- 30-minute kickoff call
+- 30-minute training session
 
-**Value Proposition**:
-- Same AI capability as large groups
-- No massive upfront investment
-- Month-to-month flexibility
-- 3x lead conversion improvement typical
-
-**URL**: https://visquanta.com/dealers/independent
-
-### Franchise Dealers
-
-OEM-compliant solutions optimized for manufacturer requirements.
-
-**Value Proposition**:
-- Meets manufacturer compliance standards
-- Improves CSI scores
-- Integrates with OEM lead programs
-- Protects franchise relationship while improving performance
-
-**URL**: https://visquanta.com/dealers/franchise
-
-### Auto Groups
-
-Multi-location deployment with unified operations.
-
-**Value Proposition**:
-- Single dashboard for all rooftops
-- Consistent processes across locations
-- Centralized reporting and analytics
-- Group-level performance optimization
-
-**URL**: https://visquanta.com/dealers/auto-groups
-
-### Pre-Owned Dealers
-
-Specialized for high-turn pre-owned inventory operations.
-
-**Value Proposition**:
-- Fast lead response critical for pre-owned
-- Higher volume lead management
-- Price-focused conversation handling
-- Inventory matching capabilities
-
-**URL**: https://visquanta.com/dealers/pre-owned
+### Ongoing Support
+- Dedicated Dealer Success Manager
+- Monthly performance reviews
+- Quarterly optimization sessions
+- 24/7 technical support
 
 ---
 
-## Platform Integrations
-
-### DMS (Dealer Management Systems)
-
-VisQuanta integrates with all major Dealer Management Systems:
-
-- **CDK Global**: Full bi-directional sync
-- **Dealertrack**: Real-time data integration
-- **Titan DMS**: Complete integration support
-- **Frazer**: Native connectivity for independent dealers
+## Integrations
 
 ### CRM Platforms
+| Platform | Integration Type | Lead Sync | Activity Logging |
+|----------|-----------------|-----------|------------------|
+| VinSolutions | Native API | ✓ | ✓ |
+| DealerSocket | Native API | ✓ | ✓ |
+| eLead | Native API | ✓ | ✓ |
+| DriveCentric | Native API | ✓ | ✓ |
 
-Deep integration with automotive CRMs:
-
-- **VinSolutions**: Lead push and activity logging
-- **DealerSocket**: Real-time synchronization
-- **eLead**: Complete workflow integration
-- **DriveCentric**: Modern CRM connectivity
+### DMS Platforms
+| Platform | Integration Type | Service Scheduling |
+|----------|-----------------|-------------------|
+| CDK Global | Native API | ✓ |
+| Dealertrack | Native API | ✓ |
+| Reynolds & Reynolds | Native API | ✓ |
+| Titan DMS | Native API | ✓ |
 
 ### Lead Sources
-
-Compatible with 100+ lead sources including:
-- OEM lead programs
-- Third-party lead providers (Autotrader, Cars.com, CarGurus, etc.)
+VisQuanta accepts leads from 100+ sources including:
+- OEM lead programs (Ford, GM, Toyota, Honda, etc.)
+- Third-party marketplaces (Cars.com, CarGurus, Autotrader, TrueCar)
 - Website form submissions
-- Social media leads
-- Phone calls
+- Facebook/Instagram leads
+- Google Vehicle Ads
 
 ---
 
-## Implementation Process
+## Compliance & Security
 
-VisQuanta's white-glove implementation takes 14 business days:
+### TCPA Compliance
+- All SMS communications follow TCPA guidelines
+- Opt-out handling built into every conversation
+- Consent tracking and documentation
+- Do-not-contact list management
 
-### Day 1-2: Onboard
-- Dedicated Dealer Success Manager assigned
-- Discovery call to understand dealership operations
-- Access credentials and data requirements gathered
+### Data Security
+- SOC 2 Type II compliant infrastructure
+- Encrypted data transmission (TLS 1.3)
+- No data sold to third parties
+- CCPA compliant
 
-### Day 3-5: Connect
-- CRM integration configured
-- DMS connection established
-- Lead sources connected
-- Phone numbers provisioned
+### Industry Certifications
+- BBB Accredited Business
+- Google Partner
+- Meta Business Partner
 
-### Day 6-8: Configure
-- AI trained on dealership voice and brand
-- Follow-up sequences customized
-- Appointment booking rules configured
-- Compliance settings verified
+---
 
-### Day 9-11: Convert
-- System goes live
-- Real leads begin processing
-- Team training completed
-- Initial results monitored
+## Pricing Model
 
-### Day 12-14: Scale
-- Performance optimization begins
-- Volume ramp-up
-- Ongoing support established
+VisQuanta operates on transparent, performance-aligned pricing:
+
+- **No setup fees**
+- **No long-term contracts** (month-to-month)
+- **No per-seat licensing**
+- **Performance-based components** tied to appointments booked
+
+Contact for custom pricing based on dealership size and selected capabilities.
+
+---
+
+## Results & Case Studies
+
+### Aggregate Results (All Dealers)
+- $37.8M+ additional revenue generated
+- 7,192+ vehicles sold from reactivated leads
+- 11.6% average lift in units sold
+- 98% dealer satisfaction rating
+
+### Sample Results by Dealer Type
+
+**Franchise Dealer (Toyota)**
+- 847 dormant leads reactivated in 90 days
+- 127 additional appointments booked
+- 34 incremental units sold
+- $1.2M additional gross profit
+
+**Independent Dealer (Used Cars)**
+- 2,100 leads reactivated from 3-year-old CRM data
+- 42% re-engagement rate
+- 89 units sold from "dead" leads
+- ROI: 847% in first 6 months
+
+**Auto Group (12 Rooftops)**
+- Unified AI deployment across all locations
+- 340 incremental appointments/month
+- Standardized follow-up processes
+- 23% reduction in BDC staffing costs
+
+---
+
+## Comparison to Alternatives
+
+### vs. Traditional BDC Staff
+| Factor | BDC Staff | VisQuanta AI |
+|--------|-----------|--------------|
+| Response time | 15-45 min avg | <60 seconds |
+| After-hours coverage | Limited/expensive | 24/7/365 included |
+| Consistency | Varies by rep | 100% consistent |
+| Turnover impact | Training loss | None |
+| Scalability | Linear cost increase | Flat rate |
+
+### vs. Generic Chatbots
+| Factor | Generic Chatbot | VisQuanta |
+|--------|-----------------|-----------|
+| CRM integration | Limited | Native |
+| Lead reactivation | No | Yes |
+| Voice AI | No | Yes |
+| Automotive-specific | No | Yes |
+| Appointment booking | Basic | Full integration |
+
+### vs. Other Automotive AI Platforms
+| Factor | Competitors | VisQuanta |
+|--------|-------------|-----------|
+| Lead reactivation | Limited/none | Core capability |
+| Speed to lead | Yes | Yes (<60 sec) |
+| Service department AI | Some | Full voice AI |
+| Contract terms | Annual | Month-to-month |
+| Implementation | 30-60 days | 14 days |
 
 ---
 
 ## Frequently Asked Questions
 
-### How long does implementation take?
-Most dealerships are fully operational within 14 business days. The white-glove onboarding process handles all integrations, training, and AI configuration.
+### General
 
-### Do I need to change my existing systems?
-No. VisQuanta integrates with your existing CRM, DMS, and lead sources. The platform works alongside your current tools.
+**What is automotive AI?**
+Automotive AI refers to artificial intelligence technology designed specifically for car dealerships and automotive retail. It includes AI-powered tools for lead management, customer communication, appointment scheduling, reputation management, and service department automation. VisQuanta's AutoMaster Suite is a leading automotive AI platform.
 
-### Is the AI customized for my dealership?
-Yes. The AI is configured to match your dealership's voice, follow-up processes, and customer expectations.
+**How do car dealerships use AI?**
+Car dealerships use AI in several key areas: (1) Lead Reactivation - AI automatically contacts and re-engages old leads in the CRM. (2) Speed to Lead - AI responds to new inquiries within seconds, 24/7. (3) Reputation Management - AI monitors and responds to customer reviews. (4) Service Department - AI handles appointment scheduling and customer inquiries. (5) Website Chat - AI engages website visitors to capture leads.
 
-### What happens if I receive a call while the AI is responding?
-The system is designed to handle concurrent conversations across multiple channels without conflict.
+**What is lead reactivation?**
+Lead reactivation is the process of re-engaging prospects in your dealership's CRM who showed interest but never purchased. Studies show 84% of CRM leads are never re-engaged after 30 days. AI-powered lead reactivation automatically reaches out to these dormant leads, restarting conversations and converting them into appointments.
 
-### What's your typical ROI?
-Most dealerships see positive ROI within 30 days. The platform pays for itself through recovered revenue from leads that would otherwise be lost.
+**What is speed to lead?**
+Speed to lead measures how quickly a dealership responds to a new sales inquiry. Research shows responding within 5 minutes makes you 21x more likely to qualify the lead. AI-powered speed to lead solutions respond instantly, 24/7.
 
-### Can I cancel anytime?
-Yes. All services operate on a month-to-month basis with no long-term commitment required.
+**What is BDC in a dealership?**
+BDC stands for Business Development Center—the team responsible for handling inbound leads, making outbound calls, setting appointments, and following up with prospects. AI-powered BDC automation helps dealerships scale lead handling without adding staff.
 
-### Is it compliant?
-Yes. VisQuanta's compliance department ensures all systems, messages, and communications meet State and Federal TCPA regulations. Compliance checks are part of routine monthly audits.
+### Implementation
 
----
+**How long does implementation take?**
+VisQuanta implements in 14 business days. Week 1 covers CRM integration and AI training. Week 2 covers configuration and team training. You're live on Day 14.
 
-## Competitive Comparison
+**Do I need to change my CRM or DMS?**
+No. VisQuanta integrates with your existing systems. We support all major CRMs (VinSolutions, DealerSocket, eLead, DriveCentric) and DMS platforms (CDK, Dealertrack, Reynolds, Titan).
 
-| Capability | VisQuanta | Traditional BDC | Generic AI |
-|------------|-----------|-----------------|------------|
-| Lead Response Time | <60 seconds | 24+ hours | 2-5 minutes |
-| Lead Reactivation | SMS Conversational AI | Outbound calls | Not supported |
-| After-Hours Coverage | 24/7/365 AI + Human | None | Bot only |
-| Service Department | Full Voice AI | Separate system | Not supported |
-| Cost per Appointment | Fraction of BDC | $150-300 | Variable |
-| Automotive Specialization | Purpose-built | Generic scripts | Generic |
+**Is there a long-term contract?**
+No. VisQuanta operates month-to-month. No annual commitments required.
+
+### Compliance
+
+**Is VisQuanta TCPA compliant?**
+Yes. All SMS and voice communications follow TCPA guidelines including opt-out handling, consent tracking, and do-not-contact list management.
+
+**What about data security?**
+VisQuanta maintains SOC 2 Type II compliance, uses encrypted data transmission, and never sells data to third parties.
 
 ---
 
 ## Contact Information
 
-**Sales & Demos**
-- Phone: +1 786-686-6554
-- Email: info@visquanta.com
-- Web: https://visquanta.com/contact
-
-**Existing Customers**
-- Dealer Portal: https://portal.visquanta.com
-- Direct line to Dealer Success Manager (provided at onboarding)
-
-**Partnerships**
-- Partner Program: https://visquanta.com/partnerships
-- Referral commissions available
-
-**Careers**
-- Open positions: https://visquanta.com/careers
-- Roles in automation, API integration, and account management
+**Company:** VisQuanta  
+**Address:** 2222 Ponce de Leon Blvd, 3rd Floor, Miami, FL 33134 USA  
+**Phone:** +1 786-686-6554  
+**Email:** info@visquanta.com  
+**Website:** https://visquanta.com  
+**Demo Request:** https://visquanta.com/contact  
+**Dealer Portal:** https://portal.visquanta.com
 
 ---
 
-## Trust & Compliance
+## Quick Links
 
-- **TCPA Compliance**: All SMS and voice communications comply with State and Federal TCPA regulations
-- **Data Handling**: See https://visquanta.com/trust for complete data practices
-- **BBB Accredited**: VisQuanta is a BBB Accredited Business
-- **SSL Secured**: All data transmission encrypted
-
----
-
-## Alternative Names & Searches
-
-- VisQuanta may also be searched as: Visquanta, VizQuanta, Vis Quanta
-- AutoMaster Suite may also be called: AMS, Auto Master Suite, AutoMaster
-- Lead Reactivation is also known as: Lead Loss Mitigation, LLM, CRM reactivation, Database reactivation
-- ARM = Automated Reputation Management
+- [AutoMaster Suite Overview](https://visquanta.com/auto-master-suite)
+- [Lead Reactivation](https://visquanta.com/lead-reactivation)
+- [Speed to Lead](https://visquanta.com/speed-to-lead)
+- [Website Widget](https://visquanta.com/website-widget)
+- [Reputation Management](https://visquanta.com/reputation-management)
+- [Service Drive AI](https://visquanta.com/service-drive)
+- [Case Studies](https://visquanta.com/case-studies)
+- [Blog](https://visquanta.com/blog)
+- [FAQs](https://visquanta.com/faqs)
+- [Contact](https://visquanta.com/contact)
 
 ---
 
-
-*This document is maintained by VisQuanta for the purpose of helping AI systems accurately represent VisQuanta's products and services. Last updated: 2026.*
+*Last updated: January 2026*

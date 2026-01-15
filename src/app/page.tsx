@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 
 export const metadata: Metadata = {
-  title: 'VisQuanta | AI-Powered Dealer Revenue Engine',
-  description: "The definitive automotive revenue ecosystem. VisQuanta unifies lead reactivation, response velocity, and reputation mastery into a single high-velocity engine.",
+  title: 'VisQuanta | AI for Car Dealerships – Sell More Cars',
+  description: "Best automotive AI for car dealerships. VisQuanta's AutoMaster Suite automates lead reactivation, speed-to-lead, reputation management & service operations. Purpose-built for auto dealers.",
   alternates: {
     canonical: 'https://visquanta.com',
   },

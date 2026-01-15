@@ -269,7 +269,7 @@ export default function Hero() {
             >
               <div className="h-px w-6 sm:w-8 bg-primary/60" />
               <span className="text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em]">
-                BUILT FOR MODERN DEALERSHIPS
+                AUTOMOTIVE AI · BUILT FOR DEALERSHIPS
               </span>
             </motion.div>
 
