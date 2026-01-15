@@ -1,13 +1,9 @@
-import type { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
+// src/app/page.tsx
+// UPDATED: Homepage with keyword-optimized metadata and page-specific schema
 
-export const metadata: Metadata = {
-  title: 'VisQuanta | AI for Car Dealerships – Sell More Cars',
-  description: "Best automotive AI for car dealerships. VisQuanta's AutoMaster Suite automates lead reactivation, speed-to-lead, reputation management & service operations. Purpose-built for auto dealers.",
-  alternates: {
-    canonical: 'https://visquanta.com',
-  },
-};
+import type { Metadata } from 'next';
+import Script from "next/script";
+import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import SocialProofBar from '@/components/SocialProofBar';
 import PainPointSection from '@/components/PainPointSection';
@@ -22,10 +18,99 @@ import FAQSection from '@/components/FAQSection';
 import HomeBlogSection from '@/components/home/HomeBlogSection';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
+import { homepageSchema } from "@/lib/schema/homepage";
+
+// =============================================================================
+// HOMEPAGE METADATA
+// Keyword-optimized for "AI for car dealerships" (primary target)
+// =============================================================================
+export const metadata: Metadata = {
+  // Title: Primary keyword FIRST, then brand
+  title: "AI for Car Dealerships | Lead Reactivation & Speed to Lead",
+
+  // Description: Front-load keywords, include differentiators, add trust signals
+  description:
+    "VisQuanta's AI platform helps car dealerships reactivate dormant CRM leads, respond to inbound leads in under 60 seconds, and never miss a service call. Trusted by dealerships selling Audi, Toyota, Honda, Ford, and more. 14-day implementation.",
+
+  // Page-specific keywords
+  keywords: [
+    "AI for car dealerships",
+    "dealership AI",
+    "automotive AI",
+    "lead reactivation",
+    "speed to lead",
+    "Voice AI for dealerships",
+    "dealership lead reactivation",
+    "car dealer AI",
+    "BDC automation",
+    "automotive sales AI",
+    "dealership CRM AI",
+    "service department AI",
+  ],
+
+  // Canonical URL (with www for consistency)
+  alternates: {
+    canonical: "https://www.visquanta.com/",
+  },
+
+  // Open Graph - Homepage specific
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.visquanta.com/",
+    siteName: "VisQuanta",
+    title: "AI for Car Dealerships | Lead Reactivation & Speed to Lead | VisQuanta",
+    description:
+      "Reactivate dormant CRM leads. Respond to inbound leads in under 60 seconds. Never miss a service call. VisQuanta's AI platform drives dealership revenue 24/7.",
+    images: [
+      {
+        url: "https://www.visquanta.com/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "VisQuanta - AI for Car Dealerships - Lead Reactivation and Speed to Lead Platform",
+        type: "image/png",
+      },
+    ],
+  },
+
+  // Twitter Card - Homepage specific
+  twitter: {
+    card: "summary_large_image",
+    site: "@VisQuanta",
+    creator: "@VisQuanta",
+    title: "AI for Car Dealerships | Lead Reactivation & Speed to Lead",
+    description:
+      "Reactivate dormant leads. Respond in under 60 seconds. Never miss a service call. VisQuanta's AI platform drives dealership revenue 24/7.",
+    images: ["https://www.visquanta.com/images/og-image.png"],
+  },
+
+  // Robots - ensure homepage is fully indexed
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 export default function Home() {
   return (
     <main className="bg-background min-h-screen">
+      {/* Page-Specific Schema: WebPage + SoftwareApplication + FAQPage */}
+      <Script
+        id="homepage-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homepageSchema),
+        }}
+        strategy="afterInteractive"
+      />
+
       <Navigation />
 
       {/* 1. Hero - Value Proposition & Interactive Product Cards */}
