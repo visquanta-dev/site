@@ -35,6 +35,55 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/blog-details/:slug',
+        destination: '/blog/:slug',
+        permanent: true,
+      },
+      {
+        source: '/visquanta-team',
+        destination: '/team',
+        permanent: true,
+      },
+      {
+        source: '/dealer-success-solutions',
+        destination: '/dealer-success',
+        permanent: true,
+      },
+      {
+        source: '/auto-master-suite-technical-guides',
+        destination: '/ams-guides',
+        permanent: true,
+      },
+      {
+        source: '/promo',
+        destination: '/auto-master-suite',
+        permanent: true,
+      },
+      {
+        source: '/lead-loss-mitigation',
+        destination: '/lead-reactivation',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/westline-motors', // Specific legacy case study
+        destination: '/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/blog/:page(\\d+)', // Handle /blog/1, /blog/2 legacy pagination
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/how-it-works',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

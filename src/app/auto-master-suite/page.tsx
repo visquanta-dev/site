@@ -837,12 +837,6 @@ export default function AutoMasterSuiteHub() {
                             >
                                 Request Suite Demo
                             </Link>
-                            <Link
-                                href="/pricing"
-                                className="px-12 py-5 bg-white/5 hover:bg-white/10 text-white font-bold text-xl rounded-2xl border border-white/10 transition-all"
-                            >
-                                View Suite Pricing
-                            </Link>
                         </div>
                         <div className="mt-12 flex items-center justify-center gap-8 opacity-40 grayscale">
                             <CheckCircle2 className="w-5 h-5 text-white" />
