@@ -104,7 +104,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/partnerships',
-        destination: '/contact',
+        destination: '/book-demo',
         permanent: true,
       },
       {
@@ -118,12 +118,27 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/independent',
+        destination: '/dealers/independent',
+        permanent: true,
+      },
+      {
         source: '/auto-group',
         destination: '/dealers/auto-groups',
         permanent: true,
       },
       {
+        source: '/auto-groups',
+        destination: '/dealers/auto-groups',
+        permanent: true,
+      },
+      {
         source: '/franchise-dealers',
+        destination: '/dealers/franchise',
+        permanent: true,
+      },
+      {
+        source: '/franchise',
         destination: '/dealers/franchise',
         permanent: true,
       },
