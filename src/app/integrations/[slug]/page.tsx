@@ -59,8 +59,8 @@ export default async function IntegrationPage({ params }: PageProps) {
                 title={`VisQuanta + ${integration.name}`}
                 subtitle={integration.description}
                 primaryCtaText="See It In Action"
-                secondaryCtaText="View Documentation"
-                secondaryCtaLink="#"
+                secondaryCtaText="View Solution Guide"
+                secondaryCtaLink="/ams-guides"
                 trustBadge={integration.status === 'Native Integration' ? `Certified ${integration.name} Partner` : 'Secure Integration'}
                 visual={
                     <IntegrationConnectionVisual
@@ -222,8 +222,8 @@ export default async function IntegrationPage({ params }: PageProps) {
                 title={`Ready to Connect ${integration.name}?`}
                 description="Get up and running in under 5 minutes. No IT required."
                 ctaText="Book Your Demo"
-                secondaryCtaText="View Setup Guide"
-                secondaryCtaLink="#"
+                secondaryCtaText="View Solution Guide"
+                secondaryCtaLink="/ams-guides"
             />
 
             <Footer />

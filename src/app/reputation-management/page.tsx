@@ -78,10 +78,9 @@ export default function ReputationManagementPage() {
                 <FeaturesGrid />
                 <FAQ />
 
-                {/* SEO Strengthening: Link to Orphan Page */}
                 <div className="py-12 text-center">
                     <a
-                        href="/blog/reputation-is-revenue-why-dealers-need-ai-to-manage-online-reviews"
+                        href="/blog/feedback-impacts-dealership-reputation"
                         className="text-xs font-bold text-white/20 uppercase tracking-[0.2em] hover:text-[#FF7404] transition-colors duration-300"
                     >
                         Read our analysis on <span className="underline decoration-white/10 underline-offset-8">Why AI is Essential for Online Reviews</span>

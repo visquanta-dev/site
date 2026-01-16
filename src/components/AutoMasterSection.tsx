@@ -515,7 +515,7 @@ export default function AutoMasterSection() {
                 <h4 className="am-blog-title">Ultimate Guide to CRM Database Reactivation</h4>
                 <div className="am-blog-meta">
                   <span>Dec 2024</span>
-                  <Link href="#" className="am-blog-link">
+                  <Link href="/blog/crm-database-reactivation-guide" className="am-blog-link">
                     Read More →
                   </Link>
                 </div>
@@ -532,7 +532,7 @@ export default function AutoMasterSection() {
                 <h4 className="am-blog-title">Top 7 Third Party Lead Providers</h4>
                 <div className="am-blog-meta">
                   <span>Dec 2024</span>
-                  <Link href="#" className="am-blog-link">
+                  <Link href="/blog/third-party-lead-providers-dealerships" className="am-blog-link">
                     Read More →
                   </Link>
                 </div>
@@ -549,7 +549,7 @@ export default function AutoMasterSection() {
                 <h4 className="am-blog-title">How AI Revives Cold CRM Data</h4>
                 <div className="am-blog-meta">
                   <span>Nov 2024</span>
-                  <Link href="#" className="am-blog-link">
+                  <Link href="/blog/ai-revives-dormant-crm-data" className="am-blog-link">
                     Read More →
                   </Link>
                 </div>
@@ -558,7 +558,7 @@ export default function AutoMasterSection() {
           </motion.div>
 
           <div className="am-center">
-            <Link href="#" className="btn-secondary">
+            <Link href="/blog" className="btn-secondary">
               <span>View All Posts</span>
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -586,7 +586,7 @@ export default function AutoMasterSection() {
             Zero Leads Left Behind.
           </h3>
           <div className="am-cta-actions">
-            <Link href="#" className="btn-primary">
+            <Link href="/book-demo" className="btn-primary">
               <span>Book a Discovery Call</span>
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path

@@ -159,7 +159,7 @@ export default function CaseStudiesSection() {
                 </div>
               )}
 
-              <Link href="#" className="case-study-link">
+              <Link href="/case-studies/seth-wadley-auto-group" className="case-study-link">
                 <span>Read Full Case Study</span>
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -177,7 +177,7 @@ export default function CaseStudiesSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <p className="case-studies-cta-text">Ready to become our next success story?</p>
-          <Link href="#" className="btn-primary">
+          <Link href="/book-demo" className="btn-primary">
             <span>Get Your Free Assessment</span>
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
