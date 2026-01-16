@@ -29,8 +29,8 @@ import Footer from '@/components/Footer';
 
 const policies = [
     { title: 'Privacy Policy', type: 'Link', href: '/privacy-policy', icon: Lock },
-    { title: 'Terms & Conditions', type: 'Link', href: '/terms', icon: FileText },
-    { title: 'Cookie Policy', type: 'Link', href: '/cookies', icon: Cookie },
+    { title: 'Terms & Conditions', type: 'Link', href: '/terms-conditions', icon: FileText },
+    { title: 'Cookie Policy', type: 'Link', href: '/cookie-policy', icon: Cookie },
 ];
 
 const dataPractices = [
