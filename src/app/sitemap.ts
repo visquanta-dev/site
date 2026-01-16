@@ -2,6 +2,12 @@ import { MetadataRoute } from 'next';
 import { getBlogPosts, getAllCategories, getAllTags } from '@/lib/seobot';
 import { getAllCaseStudySlugs } from '@/lib/case-studies';
 
+// Revalidate sitemap every hour
+export const revalidate = 3600;
+
+// Allow dynamic generation
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://www.visquanta.com';
 
