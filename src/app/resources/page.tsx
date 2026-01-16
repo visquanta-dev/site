@@ -70,8 +70,7 @@ export default function ResourcesHubPage() {
                         <Link
                             key={item.title}
                             href={item.href}
-                            className={`group relative p-10 rounded-3xl bg-[#0a0a0a] border border-white/10 hover:border-[#FF7404]/50 hover:bg-[#0f0f0f] transition-all duration-500 overflow-hidden ${item.comingSoon ? 'cursor-not-allowed opacity-70' : ''}`}
-                            onClick={(e) => item.comingSoon && e.preventDefault()}
+                            className="group relative p-10 rounded-3xl bg-[#0a0a0a] border border-white/10 hover:border-[#FF7404]/50 hover:bg-[#0f0f0f] transition-all duration-500 overflow-hidden"
                         >
                             <div className="relative z-10 flex flex-col h-full justify-between">
                                 <div className="flex justify-between items-start mb-8">
@@ -79,7 +78,7 @@ export default function ResourcesHubPage() {
                                         <item.icon className="w-7 h-7" />
                                     </div>
                                     <div className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-white/50">
-                                        {item.comingSoon ? 'Coming Soon' : item.category}
+                                        {item.category}
                                     </div>
                                 </div>
 
@@ -92,11 +91,9 @@ export default function ResourcesHubPage() {
                                     </p>
                                 </div>
 
-                                {!item.comingSoon && (
-                                    <div className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500">
-                                        <ArrowRight className="w-6 h-6 text-[#FF7404]" />
-                                    </div>
-                                )}
+                                <div className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500">
+                                    <ArrowRight className="w-6 h-6 text-[#FF7404]" />
+                                </div>
                             </div>
                         </Link>
                     ))}
