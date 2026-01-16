@@ -6,28 +6,48 @@ import { ChevronDown, Plus, HelpCircle } from 'lucide-react';
 
 const faqs = [
   {
+    question: "What is AI for car dealerships?",
+    answer: "AI for car dealerships refers to artificial intelligence software designed specifically for automotive retail operations. This includes lead reactivation systems that re-engage dormant CRM contacts via SMS, speed-to-lead automation that responds to inquiries in under 60 seconds, Voice AI that answers service calls 24/7, SMS-first chat widgets, and reputation management tools. VisQuanta's AutoMaster Suite combines all five capabilities in one platform."
+  },
+  {
+    question: "How does lead reactivation work?",
+    answer: "Lead reactivation uses conversational AI to re-engage dormant leads sitting in your CRM. The AI identifies prospects who showed interest but never purchased — typically 84% of CRM leads are never re-contacted after 30 days. VisQuanta's AI initiates personalized SMS conversations with these cold leads, restarting the sales process automatically. Dealerships typically see 30%+ re-engagement rates and 11% sales uplift."
+  },
+  {
+    question: "What is speed to lead and why does it matter?",
+    answer: "Speed to lead measures how quickly a dealership responds to a new sales inquiry. Research shows 78% of customers buy from the first responder. The average dealership takes 22+ minutes to respond on weekends. VisQuanta's AI responds to every inbound lead in under 60 seconds via SMS, 24/7/365."
+  },
+  {
+    question: "How does Voice AI help service departments?",
+    answer: "VisQuanta's Voice AI answers inbound service calls 24/7, including after-hours and weekends when 80% of calls typically go unanswered. The AI schedules appointments, captures vehicle information, handles diagnostic inquiries, and routes complex calls to advisors. The average dealership loses $8,500+ weekly from missed service calls."
+  },
+  {
+    question: "What is an SMS-first website widget?",
+    answer: "Traditional webchat loses leads when visitors leave the page. VisQuanta's SMS-first widget instantly transitions website conversations to text messaging, capturing the visitor's real phone number. SMS achieves 98% open rates compared to email's 20%, keeping conversations alive after visitors leave your site."
+  },
+  {
+    question: "How does VisQuanta handle reputation management?",
+    answer: "VisQuanta automates review collection by detecting satisfied customers after purchase or service and texting them a direct review link. Negative feedback is intercepted before going public, alerting your team to resolve issues. Dealerships using VisQuanta average 4.8-star ratings."
+  },
+  {
+    question: "What DMS and CRM systems does VisQuanta integrate with?",
+    answer: "VisQuanta integrates with major DMS platforms including CDK Global, Reynolds & Reynolds, Tekion, Dealertrack, and Frazer. For CRM, we support VinSolutions, DriveCentric, eLead, and DealerSocket. We offer 50+ integrations total."
+  },
+  {
     question: "How long does implementation take?",
-    answer: "Most dealerships are fully operational within 14 days. Our white-glove onboarding process handles all integrations, training, and AI configuration so your team can focus on selling cars."
+    answer: "Most dealerships are fully operational within 14 days. This includes CRM and DMS integration, AI configuration for your specific processes, and team training. A dedicated success manager handles the entire onboarding — zero code changes required on your end."
   },
   {
-    question: "Do I need to change my existing systems?",
-    answer: "No. AutoMaster integrates seamlessly with all major DMS platforms, CRMs, and lead sources. We work alongside your existing tools, not against them."
+    question: "What results can dealerships expect from VisQuanta?",
+    answer: "VisQuanta partner dealerships have generated $37.8 million in additional revenue, sold 7,192+ vehicles from reactivated leads, and seen an average 11.6% increase in vehicles sold. Most dealerships see positive ROI within 30 days."
   },
   {
-    question: "What happens if I receive a call while the AI is responding?",
-    answer: "Our intelligent routing system ensures live calls always take priority. The AI seamlessly hands off to your team when a customer is ready to talk, with full conversation context."
+    question: "What is BDC in a car dealership?",
+    answer: "BDC stands for Business Development Center — the team responsible for handling inbound leads, making outbound calls, and setting appointments. BDCs struggle with 45% annual turnover and limited hours. VisQuanta provides 24/7 AI coverage alongside your existing team, not as a replacement."
   },
   {
-    question: "Is the AI customized for my dealership?",
-    answer: "Absolutely. During onboarding, we train the AI on your inventory, pricing, processes, and brand voice. It learns your dealership's unique personality and selling style."
-  },
-  {
-    question: "What's your typical ROI?",
-    answer: "Dealers typically see 3-5x ROI within the first 90 days through recovered leads, faster response times, and increased service appointments. We provide transparent reporting so you can track every dollar."
-  },
-  {
-    question: "Can I cancel anytime?",
-    answer: "Yes. We offer month-to-month agreements with no long-term contracts. We're confident you'll stay because of results, not obligations."
+    question: "How much does VisQuanta cost?",
+    answer: "VisQuanta pricing is customized based on dealership size and which AutoMaster Suite modules you need. Contact our team for a quote. Most dealerships see positive ROI within 30 days, with cost per appointment significantly lower than traditional BDC operations."
   }
 ];
 
@@ -37,23 +57,7 @@ export default function FAQSection() {
   return (
     <section className="py-32 bg-[#080808] relative overflow-hidden">
       {/* FAQ Schema for AEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": faqs.map(faq => ({
-              "@type": "Question",
-              "name": faq.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": faq.answer
-              }
-            }))
-          })
-        }}
-      />
+
       {/* Background Effects */}
       <div className="absolute inset-0 bg-enterprise-grid opacity-10 pointer-events-none" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />

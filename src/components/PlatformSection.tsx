@@ -96,18 +96,24 @@ export default function PlatformSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20 max-w-3xl mx-auto"
+          className="text-center mb-16 max-w-4xl mx-auto"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-8">
             <Sparkles className="w-3 h-3" />
             Platform Capabilities
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight uppercase">
-            Five Capabilities<br /><span className="text-[#ff7404]">One System</span>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 tracking-tighter uppercase leading-[0.9]">
+            AI for Car Dealerships:<br /><span className="text-[#ff7404]">Five Capabilities, One Platform</span>
           </h2>
-          <p className="text-white/60 text-lg sm:text-xl leading-relaxed font-medium">
-            The complete AI platform for automotive dealerships. Engage leads, answer calls, book appointments, and manage reputation. 24/7, without adding staff.
-          </p>
+
+          <div className="space-y-6 text-white/70 text-lg sm:text-xl leading-relaxed font-medium">
+            <p>
+              VisQuanta is an AI platform built specifically for car dealerships in the United States.
+              Founded in Miami, Florida, VisQuanta's <span className="text-white">AutoMaster Suite</span> provides
+              the complete revenue operating system for your dealership.
+            </p>
+          </div>
         </motion.div>
 
         {/* Bento Grid */}

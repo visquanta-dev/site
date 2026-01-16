@@ -7,6 +7,7 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import SocialProofBar from '@/components/SocialProofBar';
 import PainPointSection from '@/components/PainPointSection';
+import WhatIsAIDealerships from '@/components/home/WhatIsAIDealerships';
 import PlatformSection from '@/components/PlatformSection';
 import WhyVisquantaSection from '@/components/WhyVisquantaSection';
 import SeeItInAction from '@/components/SeeItInAction';
@@ -121,6 +122,9 @@ export default function Home() {
 
       {/* 3. The Problem - Dealer Pain Points */}
       <PainPointSection />
+
+      {/* 3b. What is AI for Car Dealerships? - Category Definition */}
+      <WhatIsAIDealerships />
 
       {/* 4. Platform Capabilities - Detailed Product Breakdown */}
       <PlatformSection />

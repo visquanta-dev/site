@@ -177,98 +177,108 @@ export default function MobilePhoneMockup({ scenario, isActive, onPlay }: Mobile
       className="w-full flex justify-center mt-8"
     >
       {/* Phone Frame - Compact Mobile Version */}
-      <div className="relative w-[260px] h-[480px] bg-black rounded-[36px] border-[4px] border-[#3a3a3a] shadow-2xl overflow-hidden ring-1 ring-white/10">
+      <div className="relative group">
+        {/* Animated Gradient Border Layer */}
+        <div className="absolute -inset-[3px] rounded-[39px] bg-gradient-to-b from-[#ff7404] via-[#ff7404]/0 to-[#ff7404] opacity-20 blur-sm group-hover:opacity-40 transition-opacity duration-500" />
 
-        {/* Status Bar */}
-        <div className="absolute top-2 left-0 right-0 px-5 flex justify-between items-center z-[60] text-white font-medium text-[11px]">
-          <span>9:41</span>
-          <div className="flex items-center gap-1.5">
-            <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
-              <path d="M18 20h2v-6h-2v6zm-4 0h2v-10h-2v10zm-4 0h2v-14h-2v14zm-4 0h2v-17h-2v17z" />
-            </svg>
-            <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24">
-              <path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0" />
-            </svg>
-            <div className="w-5 h-[9px] rounded-[2px] border border-white/40 flex items-center pr-[1px]">
-              <div className="w-full h-full bg-white rounded-[1px]" />
-            </div>
-          </div>
+        {/* Moving Line / Conic Light Effect */}
+        <div className="absolute -inset-[3px] rounded-[39px] overflow-hidden">
+          <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0_340deg,#ff7404_360deg)] animate-[spin_4s_linear_infinite] opacity-50" />
         </div>
 
-        {/* Dynamic Island */}
-        <div className="absolute top-[8px] left-1/2 -translate-x-1/2 h-[24px] w-[80px] bg-black rounded-[16px] z-[70]" />
+        {/* Dynamic Island Connector - Optional Aesthetic */}
+        <div className="absolute top-[8px] left-1/2 -translate-x-1/2 h-[24px] w-[80px] bg-black rounded-[16px] z-[70] shadow-[0_0_15px_-5px_#ff7404]" />
 
-        {/* Home Indicator */}
-        <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-[90px] h-[4px] bg-white/80 rounded-full z-[80]" />
+        <div className="relative w-[260px] h-[480px] bg-black rounded-[36px] border-[4px] border-[#3a3a3a] shadow-2xl overflow-hidden ring-1 ring-white/10 z-10">
 
-        {/* Screen Content */}
-        <div className="w-full h-full bg-black flex flex-col pt-10">
-
-          {/* Chat Header */}
-          <div className="px-4 pb-3 border-b border-white/5 flex items-center justify-between bg-black/80">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-[#111] border border-white/20 flex items-center justify-center overflow-hidden">
-                {scenario.avatarImage ? (
-                  <Image
-                    src={scenario.avatarImage}
-                    alt={scenario.contactName}
-                    width={32}
-                    height={32}
-                    className="object-cover"
-                  />
-                ) : scenario.id === 'reactivation' ? (
-                  <Image
-                    src="/images/logo-black.jpg"
-                    alt="VisQuanta"
-                    width={20}
-                    height={20}
-                    className="object-contain"
-                  />
-                ) : scenario.id === 'service' ? (
-                  <PhoneIncoming className="w-4 h-4 text-green-500" />
-                ) : (
-                  <span className="text-[8px] text-white/50 font-bold">{scenario.avatarInitials}</span>
-                )}
-              </div>
-              <div>
-                <div className="text-white text-[11px] font-bold">{scenario.contactName}</div>
-                <div className="text-white/40 text-[8px] uppercase tracking-wider">{scenario.contactRole}</div>
+          {/* Status Bar */}
+          <div className="absolute top-2 left-0 right-0 px-5 flex justify-between items-center z-[60] text-white font-medium text-[11px]">
+            <span>9:41</span>
+            <div className="flex items-center gap-1.5">
+              <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                <path d="M18 20h2v-6h-2v6zm-4 0h2v-10h-2v10zm-4 0h2v-14h-2v14zm-4 0h2v-17h-2v17z" />
+              </svg>
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0" />
+              </svg>
+              <div className="w-5 h-[9px] rounded-[2px] border border-white/40 flex items-center pr-[1px]">
+                <div className="w-full h-full bg-white rounded-[1px]" />
               </div>
             </div>
-            <Info className="w-4 h-4 text-[#ff7404]" />
           </div>
 
-          {/* Messages Area */}
-          <div
-            ref={chatRef}
-            className="flex-1 overflow-y-auto px-3 py-4 space-y-2.5"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            <AnimatePresence mode="popLayout">
-              {visibleMessages.map((msg) => (
-                <motion.div
-                  key={msg.id}
-                  initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                >
-                  <MobileChatBubble message={msg} onPlay={onPlay} />
-                </motion.div>
-              ))}
-              {isTyping && <MobileTypingIndicator key="typing" />}
-            </AnimatePresence>
-          </div>
+          {/* Home Indicator */}
+          <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-[90px] h-[4px] bg-white/80 rounded-full z-[80]" />
 
-          {/* Input Area */}
-          <div className="px-3 pb-6 pt-1">
-            <div className="h-9 bg-[#1c1c1e] rounded-full border border-white/10 flex items-center px-3 justify-between">
-              <div className="flex gap-0.5 items-center">
-                <div className="w-1 h-1 bg-white/40 rounded-full animate-[bounce_1.4s_infinite]" />
-                <div className="w-1 h-1 bg-white/40 rounded-full animate-[bounce_1.4s_infinite_0.2s]" />
-                <div className="w-1 h-1 bg-white/40 rounded-full animate-[bounce_1.4s_infinite_0.4s]" />
+          {/* Screen Content */}
+          <div className="w-full h-full bg-black flex flex-col pt-10">
+
+            {/* Chat Header */}
+            <div className="px-4 pb-3 border-b border-white/5 flex items-center justify-between bg-black/80">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-[#111] border border-white/20 flex items-center justify-center overflow-hidden">
+                  {scenario.avatarImage ? (
+                    <Image
+                      src={scenario.avatarImage}
+                      alt={scenario.contactName}
+                      width={32}
+                      height={32}
+                      className="object-cover"
+                    />
+                  ) : scenario.id === 'reactivation' ? (
+                    <Image
+                      src="/images/logo-black.jpg"
+                      alt="VisQuanta"
+                      width={20}
+                      height={20}
+                      className="object-contain"
+                    />
+                  ) : scenario.id === 'service' ? (
+                    <PhoneIncoming className="w-4 h-4 text-green-500" />
+                  ) : (
+                    <span className="text-[8px] text-white/50 font-bold">{scenario.avatarInitials}</span>
+                  )}
+                </div>
+                <div>
+                  <div className="text-white text-[11px] font-bold">{scenario.contactName}</div>
+                  <div className="text-white/40 text-[8px] uppercase tracking-wider">{scenario.contactRole}</div>
+                </div>
               </div>
-              <div className="w-6 h-6 rounded-full bg-[#ff7404] flex items-center justify-center">
-                <ArrowUp className="w-3 h-3 text-white" />
+              <Info className="w-4 h-4 text-[#ff7404]" />
+            </div>
+
+            {/* Messages Area */}
+            <div
+              ref={chatRef}
+              className="flex-1 overflow-y-auto px-3 py-4 space-y-2.5"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              <AnimatePresence mode="popLayout">
+                {visibleMessages.map((msg) => (
+                  <motion.div
+                    key={msg.id}
+                    initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  >
+                    <MobileChatBubble message={msg} onPlay={onPlay} />
+                  </motion.div>
+                ))}
+                {isTyping && <MobileTypingIndicator key="typing" />}
+              </AnimatePresence>
+            </div>
+
+            {/* Input Area */}
+            <div className="px-3 pb-6 pt-1">
+              <div className="h-9 bg-[#1c1c1e] rounded-full border border-white/10 flex items-center px-3 justify-between">
+                <div className="flex gap-0.5 items-center">
+                  <div className="w-1 h-1 bg-white/40 rounded-full animate-[bounce_1.4s_infinite]" />
+                  <div className="w-1 h-1 bg-white/40 rounded-full animate-[bounce_1.4s_infinite_0.2s]" />
+                  <div className="w-1 h-1 bg-white/40 rounded-full animate-[bounce_1.4s_infinite_0.4s]" />
+                </div>
+                <div className="w-6 h-6 rounded-full bg-[#ff7404] flex items-center justify-center">
+                  <ArrowUp className="w-3 h-3 text-white" />
+                </div>
               </div>
             </div>
           </div>

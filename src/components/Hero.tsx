@@ -287,7 +287,7 @@ export default function Hero() {
               }}
             >
               <span className="inline-block">
-                {"The Revenue Operating".split(" ").map((word, wi) => (
+                {"AI for Car Dealerships".split(" ").map((word, wi) => (
                   <span key={wi} className="inline-block whitespace-nowrap mr-[0.2em]">
                     {word.split("").map((char, ci) => (
                       <motion.span
@@ -306,7 +306,7 @@ export default function Hero() {
                 ))}
               </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff7404] to-[#ff9040] inline-block">
-                {"System for Dealerships".split(" ").map((word, wi) => (
+                {"That Drives Revenue".split(" ").map((word, wi) => (
                   <span key={wi} className="inline-block whitespace-nowrap mr-[0.2em]">
                     {word.split("").map((char, ci) => (
                       <motion.span
@@ -338,7 +338,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-sm sm:text-lg md:text-xl lg:text-2xl text-muted-foreground/80 max-w-2xl leading-relaxed font-medium mt-4 lg:mt-0"
             >
-              AutoMaster Suite is a car dealership AI platform designed to improve sales, service, and follow-up across your dealership.
+              VisQuanta automates lead reactivation, responds to new leads in under 60 seconds, protects your reputation, & ensures your service department never misses a call.
             </motion.p>
 
 
