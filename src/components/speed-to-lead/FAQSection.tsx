@@ -6,6 +6,10 @@ import { ChevronDown, HelpCircle, Zap } from 'lucide-react';
 
 const faqs = [
     {
+        question: "What is Automotive Speed to Lead?",
+        answer: "Automotive Speed to Lead refers to the time it takes for a dealership to respond to a new inbound inquiry. VisQuanta's AI automates this process, ensuring every lead receives a personalized, human-quality SMS response in under 60 seconds, 24/7/365."
+    },
+    {
         question: "How fast is the response really?",
         answer: "We aim for under 60 seconds from lead submission to first contact. Our AI monitors your lead sources 24/7/365 and initiates engagement immediately, often before the prospective buyer has even left the listing page."
     },

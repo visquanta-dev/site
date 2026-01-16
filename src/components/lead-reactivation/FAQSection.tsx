@@ -6,6 +6,10 @@ import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react';
 
 const faqs = [
     {
+        question: "What is Automotive Lead Reactivation?",
+        answer: "Automotive Lead Reactivation is the process of re-engaging dormant CRM leads (typically 90+ days old) using AI-driven conversational SMS. Unlike traditional mass blasts, VisQuanta's system initiates 1-on-1 conversations to identify customers who are back in the market, converting 'dead' data into fresh showroom appointments."
+    },
+    {
         question: "How long does it take to see results?",
         answer: "Most dealerships see their first booked appointment within the first 48-72 hours of launch. Full campaign momentum typically builds within 2-3 weeks as we optimize your playbooks and response patterns. Our fastest result was 17 additional vehicle sales in the first month for Seth Wadley Auto Group."
     },
