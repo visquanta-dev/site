@@ -97,6 +97,46 @@ const nextConfig: NextConfig = {
         destination: '/blog',
         permanent: true,
       },
+      {
+        source: '/enterprise-groups',
+        destination: '/dealers/auto-groups',
+        permanent: true,
+      },
+      {
+        source: '/partnerships',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/blog-home',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/independent-dealers',
+        destination: '/dealers/independent',
+        permanent: true,
+      },
+      {
+        source: '/auto-group',
+        destination: '/dealers/auto-groups',
+        permanent: true,
+      },
+      {
+        source: '/franchise-dealers',
+        destination: '/dealers/franchise',
+        permanent: true,
+      },
+      {
+        source: '/blog/sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-car-dealerships',
+        destination: '/blog/sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-dealerships',
+        permanent: true,
+      },
+      {
+        source: '/blog/5-reasons-car-buyers-prefer-sms-over-phone-calls-in-2025',
+        destination: '/blog/5-reasons-car-buyers-prefer-sms-over-phone-calls-from-dealerships',
+        permanent: true,
+      },
     ];
   },
 };

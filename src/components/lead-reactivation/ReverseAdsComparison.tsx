@@ -151,13 +151,13 @@ export default function WhyItWorks() {
                                 {/* SEO Strengthening: Link to Orphan Page */}
                                 <div className="mt-8 text-center flex flex-col gap-4">
                                     <a
-                                        href="/blog/sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-car-dealerships"
+                                        href="/blog/sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-dealerships"
                                         className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] hover:text-[#FF7404] transition-colors duration-300 inline-block"
                                     >
                                         Deep Dive: <span className="underline decoration-white/10 underline-offset-4">SMS vs Email vs Chatbots</span>
                                     </a>
                                     <a
-                                        href="/blog/5-reasons-car-buyers-prefer-sms-over-phone-calls-in-2025"
+                                        href="/blog/5-reasons-car-buyers-prefer-sms-over-phone-calls-from-dealerships"
                                         className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] hover:text-[#FF7404] transition-colors duration-300 inline-block"
                                     >
                                         Analysis: <span className="underline decoration-white/10 underline-offset-4">Why Buyers Prefer SMS in 2025</span>

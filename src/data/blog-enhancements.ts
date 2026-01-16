@@ -25,7 +25,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     // ============================================
 
     // 1. SMS vs Email vs AI Chatbot Guide
-    'sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-car-dealerships': {
+    'sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-dealerships': {
         executivePoV: {
             title: "The 'Quiet Abandonment' Problem",
             body: "Most dealerships obsess over open rates and click-through rates. But the metric that actually kills deals is what we call 'Quiet Abandonment'—when a customer opens your email, intends to respond, gets distracted, and never comes back. SMS works because it lives in a persistent, low-friction thread that doesn't require the customer's undivided attention. That's the real competitive advantage.",
@@ -197,7 +197,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     },
 
     // 8. Car Buyers Prefer SMS Over Phone Calls
-    'car-buyers-prefer-sms-phone-calls-2025': {
+    '5-reasons-car-buyers-prefer-sms-over-phone-calls-from-dealerships': {
         executivePoV: {
             title: "The Generational Shift Nobody Talks About",
             body: "Millennials and Gen Z now represent over 60% of car buyers. These generations screen unknown calls—they don't answer them. Yet most dealerships still lead with phone calls from unfamiliar numbers. You're not just losing leads; you're actively training customers to ignore you. Meet them where they actually communicate: in text threads.",
