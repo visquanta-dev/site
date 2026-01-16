@@ -1,5 +1,6 @@
+'use client';
+
 import Navigation from '@/components/Navigation';
-import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
 import Hero from '@/components/reputation-management/Hero';
 import DecisionPattern from '@/components/reputation-management/DecisionPattern';
@@ -13,17 +14,6 @@ import FeaturesGrid from '@/components/reputation-management/FeaturesGrid';
 import FAQ from '@/components/reputation-management/FAQ';
 import FinalCTA from '@/components/reputation-management/FinalCTA';
 import MinimalQuote from '@/components/ui/MinimalQuote';
-
-export const metadata = {
-    title: 'Reputation Management | Visquanta Automotive Growth',
-    description: 'Build an elite dealership reputation with Visquanta. Our 72-hour review growth engine and conversational SMS resolution protect your store and OEM scores.',
-    alternates: {
-        canonical: 'https://www.visquanta.com/reputation-management',
-    },
-    openGraph: {
-        url: 'https://www.visquanta.com/reputation-management',
-    },
-};
 
 export default function ReputationManagementPage() {
     const breadcrumbSchema = {
@@ -89,19 +79,14 @@ export default function ReputationManagementPage() {
                 <FAQ />
 
                 {/* SEO Strengthening: Link to Orphan Page */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="py-12 text-center"
-                >
+                <div className="py-12 text-center">
                     <a
                         href="/blog/reputation-is-revenue-why-dealers-need-ai-to-manage-online-reviews"
                         className="text-xs font-bold text-white/20 uppercase tracking-[0.2em] hover:text-[#FF7404] transition-colors duration-300"
                     >
                         Read our analysis on <span className="underline decoration-white/10 underline-offset-8">Why AI is Essential for Online Reviews</span>
                     </a>
-                </motion.div>
+                </div>
 
                 <FinalCTA />
 

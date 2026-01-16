@@ -1,0 +1,590 @@
+﻿"PR"	"URL"	"Title"	"Content type"	"Is rendered page"	"HTTP status code"	"Organic traffic"	"Open graph URL"	"Canonical URL"	"Canonical URL code"	"Canonical URL patch"	"Canonical URL patch status"	"Is valid Open graph"	"Open graph attributes"	"Open graph values"	"Depth"	"Is indexable page"	"No. of all inlinks"
+"40"	"https://visquanta.com/about-visquanta"	"About VisQuanta | Our Vision & Mission | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/about-visquanta"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/cookie-policy"	"Cookie Policy | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/cookie-policy"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/dealer-success"	"Dealer Success | Automotive AI with a Human Touch | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/dealer-success"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/faqs"	"FAQ | Frequently Asked Questions | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/faqs"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"65"
+"40"	"https://visquanta.com/terms-conditions"	"Terms & Conditions | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/terms-conditions"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/website-widget"	"Website Widget | Intelligent Conversational AI | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/website-widget"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/team"	"Meet the Team | VisQuanta Leadership & Experts | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/team"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/careers"	"Careers | Join the VisQuanta Team | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/careers"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/privacy-policy"	"Privacy Policy | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/privacy-policy"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/custom-campaigns"	"Custom Campaigns | Targeted Dealership Marketing | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/custom-campaigns"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/dealers/franchise"	"Solutions for Franchise Dealers | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/dealers/franchise"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/reputation-management"	"Reputation Management | Visquanta Automotive Growth | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/reputation-management"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/speed-to-lead"	"Speed to Lead | Instant AI Response | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/speed-to-lead"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/lead-reactivation"	"Lead Reactivation AI | Recover Lost CRM Revenue | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/lead-reactivation"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/trust"	"Trust Center | Security, Privacy, and Reliability | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/trust"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/dealers/auto-groups"	"Solutions for Auto Groups | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/dealers/auto-groups"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/dealers/independent"	"Solutions for Independent Dealers | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/dealers/independent"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/ams-guides"	"AMS Technical Blueprints | Resource Library | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/ams-guides"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"65"
+"40"	"https://visquanta.com/blog"	"The Journal | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/blog"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/contact"	"Contact Us | VisQuanta Support & Inquiries | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/contact"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/dealers/pre-owned"	"Solutions for Pre-Owned Dealers | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/dealers/pre-owned"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"40"	"https://visquanta.com/service-drive"	"Service Drive AI | 24/7 Appointment Automation | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/service-drive"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"64"
+"39"	"https://visquanta.com/auto-master-suite"	"AutoMaster Suite | AI Revenue Platform | VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/auto-master-suite"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"63"
+"35"	"https://visquanta.com/book-demo"	"Chat with VisQuanta | AI for Dealerships | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/book-demo"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"48"
+"20"	"https://visquanta.com/dealers"	"Dealer Solutions | VisQuanta Automotive Growth Platform | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/dealers"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"0"
+"20"	"https://visquanta.com/company"	"Company | About VisQuanta | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/company"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"0"
+"20"	"https://visquanta.com/case-studies"	"Case Studies | VisQuanta Success Stories | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/case-studies"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"1"
+"20"	"https://visquanta.com/resources"	"Resource Center | VisQuanta Automotive Growth | VisQuanta"	"text/html; charset=utf-8"	"false"	"200"	"0"	"https://www.visquanta.com"	"https://visquanta.com/resources"	"200"	""	""	"true"	"og:type
+og:image:type
+og:image:alt
+og:image:height
+og:image:width
+og:image
+og:locale
+og:site_name
+og:url
+og:description
+og:title"	"website
+image/png
+VisQuanta - AI for Car Dealerships
+630
+1200
+https://www.visquanta.com/images/og-image.png
+en_US
+VisQuanta
+https://www.visquanta.com
+AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.
+VisQuanta | AI for Car Dealerships"	"0"	"true"	"0"
+

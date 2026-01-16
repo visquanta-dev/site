@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Custom AI Outreach Campaigns | Targeted Conversion | VisQuanta',
+    title: 'Custom AI Outreach | Targeted Conversion | VisQuanta',
     description: 'Deploy precision-engineered outreach sequences that convert cold prospects into booked appointments. Tailor your dealership\'s message for maximum conversion.',
     alternates: {
         canonical: 'https://www.visquanta.com/custom-campaigns',
