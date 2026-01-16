@@ -15,6 +15,9 @@ export const metadata = {
     alternates: {
         canonical: 'https://www.visquanta.com/dealer-success',
     },
+    openGraph: {
+        url: 'https://www.visquanta.com/dealer-success',
+    },
 };
 
 export default function DealerSuccessPage() {
@@ -29,6 +32,18 @@ export default function DealerSuccessPage() {
                 <TrainingSection />
                 <SuccessStories />
                 <DealerFAQ />
+
+                {/* SEO Strengthening: Link to Orphan Page */}
+                <div className="py-12 bg-black border-y border-white/5">
+                    <div className="container-wide text-center">
+                        <a
+                            href="/blog/dealerships-ai-improve-csi-scores"
+                            className="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em] hover:text-[#FF7404] transition-colors duration-300 inline-block group"
+                        >
+                            Read our guide: <span className="underline decoration-white/10 underline-offset-4 group-hover:decoration-[#FF7404]/50">How AI Improves CSI Scores</span>
+                        </a>
+                    </div>
+                </div>
 
                 {/* Custom CTA Text Override */}
                 <div className="bg-[#030303]">

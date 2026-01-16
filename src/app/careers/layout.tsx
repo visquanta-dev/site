@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: 'Careers | Join the VisQuanta Team',
-    description: 'Help us shape the future of automotive retail intelligence. Explore career opportunities at VisQuanta.',
+    description: 'Help us shape the future of automotive retail intelligence. Explore career opportunities at VisQuanta and join a team dedicated to transforming the industry.',
     alternates: {
         canonical: 'https://www.visquanta.com/careers',
+    },
+    openGraph: {
+        url: 'https://www.visquanta.com/careers',
     },
 };
 

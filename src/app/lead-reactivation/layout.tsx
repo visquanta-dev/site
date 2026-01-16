@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: 'https://www.visquanta.com/lead-reactivation',
     },
+    openGraph: {
+        url: 'https://www.visquanta.com/lead-reactivation',
+    },
 };
 
 export default function LeadReactivationLayout({

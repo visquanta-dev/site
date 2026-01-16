@@ -756,8 +756,21 @@ export default function AutoMasterSuiteHub() {
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
+
+            {/* SEO Strengthening: Link to Orphan Page */}
+            <div className="py-12 bg-[#020202] border-y border-white/5">
+                <div className="container px-4 mx-auto text-center">
+                    <a
+                        href="/blog/boost-dealership-sales-with-automaster-suite"
+                        className="text-[10px] font-bold text-white/20 uppercase tracking-[0.4em] hover:text-[#FF7404] transition-colors duration-300 inline-flex items-center gap-4"
+                    >
+                        <Zap className="w-3 h-3" />
+                        Intelligence Report: Boosting Sales with AutoMaster Suite
+                        <Zap className="w-3 h-3" />
+                    </a>
+                </div>
+            </div>
 
 
 

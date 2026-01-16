@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: 'FAQ | Frequently Asked Questions | VisQuanta',
-    description: 'Find answers to common questions about the VisQuanta platform, integration, and pricing.',
+    description: 'Find answers to FAQs about the VisQuanta platform, CRM integrations, onboarding, and pricing. Get the information your dealership needs to get started today.',
     alternates: {
         canonical: 'https://www.visquanta.com/faqs',
+    },
+    openGraph: {
+        url: 'https://www.visquanta.com/faqs',
     },
 };
 

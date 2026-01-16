@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
   // Description: Front-load keywords, include differentiators, add trust signals
   description:
-    "VisQuanta's AI platform helps car dealerships reactivate dormant CRM leads, respond to inbound leads in under 60 seconds, and never miss a service call. Trusted by dealerships selling Audi, Toyota, Honda, Ford, and more. 14-day implementation.",
+    "Reactivate CRM leads, handle inbound inquiries in under 60s, and automate service calls with VisQuanta AI. The elite revenue engine for car dealerships.",
 
   // Page-specific keywords
   keywords: [

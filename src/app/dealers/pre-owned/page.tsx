@@ -1135,6 +1135,20 @@ export default function PreOwnedPage() {
                 </div>
             </section>
 
+            {/* SEO Strengthening: Link to Orphan Page */}
+            <div className="py-12 bg-[#050505] border-y border-white/5">
+                <div className="container px-4 mx-auto text-center">
+                    <a
+                        href="/blog/ai-powered-solutions-pre-owned-car-dealers"
+                        className="text-xs font-bold text-white/20 uppercase tracking-[0.3em] hover:text-[#FF7404] transition-colors duration-300 flex items-center justify-center gap-4"
+                    >
+                        <Layers className="w-4 h-4" />
+                        Explore: AI Solutions for Pre-Owned Inventory
+                        <ArrowRight className="w-4 h-4" />
+                    </a>
+                </div>
+            </div>
+
             {/* 9. FINAL CTA */}
             <section className="py-24 bg-[#020202] relative overflow-hidden">
                 <motion.div

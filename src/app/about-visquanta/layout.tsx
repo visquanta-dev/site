@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: "https://www.visquanta.com/about-visquanta",
     },
+    openGraph: {
+        url: "https://www.visquanta.com/about-visquanta",
+    },
 };
 
 export default function AboutLayout({

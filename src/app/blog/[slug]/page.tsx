@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { getBlogPost, getBlogPosts } from '@/lib/seobot';
 import BlogPostClient, { ReadingProgress, TableOfContents, ExecutiveSummary } from './BlogPostClient';
 import { BlogArticleHeader } from '@/components/blog/BlogArticleHeader';
+import { BLOG_ENHANCEMENTS } from '@/data/blog-enhancements';
+import { ExpertInsight, KnowledgeCards, ProofPoint } from '@/components/blog/BlogEnhancements';
 
 export const revalidate = 60;
 
@@ -34,16 +36,59 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
+    // Ensure image URL is absolute
+    const imageUrl = post.image?.startsWith('http')
+        ? post.image
+        : post.image
+            ? `https://www.visquanta.com${post.image}`
+            : 'https://www.visquanta.com/images/og-image.png';
+
+    // Sanitize and expand meta description if too short (for SEO)
+    let description = post.metaDescription || '';
+    if (description.length > 0 && description.length < 120) {
+        const filler = ' Explore how VisQuanta is transforming automotive retail with advanced AI lead reactivation and voice automation.';
+        description = `${description}${filler}`.substring(0, 158).trim();
+    }
+
     return {
         title: `${post.headline} | VisQuanta`,
-        description: post.metaDescription,
+        description: description,
+        authors: [{ name: 'VisQuanta', url: 'https://www.visquanta.com' }],
         alternates: {
             canonical: `https://visquanta.com/blog/${slug}`,
         },
+        // Complete Open Graph for articles (10/10 compliance)
         openGraph: {
+            type: 'article',
+            url: `https://www.visquanta.com/blog/${slug}`,
+            siteName: 'VisQuanta',
+            locale: 'en_US',
             title: post.headline,
-            description: post.metaDescription,
-            images: post.image ? [post.image] : [],
+            description: description,
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: post.headline,
+                    type: 'image/jpeg',
+                }
+            ],
+            // Article-specific OG properties
+            publishedTime: post.createdAt,
+            modifiedTime: post.updatedAt || post.createdAt,
+            authors: ['VisQuanta'],
+            section: post.category?.title || 'Automotive AI',
+            tags: post.tags?.map(t => t.title) || [],
+        },
+        // Twitter Card
+        twitter: {
+            card: 'summary_large_image',
+            site: '@VisQuanta',
+            creator: '@VisQuanta',
+            title: post.headline,
+            description: description,
+            images: [imageUrl],
         },
     };
 }
@@ -66,6 +111,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     if (!post) {
         return notFound();
     }
+
+    const enhancement = BLOG_ENHANCEMENTS[slug];
 
     // Manual override for the Featured image as requested
     if (post.headline.includes('CRM Database Reactivation')) {
@@ -249,11 +296,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
                             {/* Article Body */}
                             <BlogPostClient delay={0.2}>
+                                {enhancement?.executivePoV && (
+                                    <ExpertInsight
+                                        {...enhancement.executivePoV}
+                                    />
+                                )}
+
                                 <div
                                     suppressHydrationWarning
                                     className="blog-content"
                                     dangerouslySetInnerHTML={{ __html: post.html }}
                                 />
+
+                                {enhancement?.glossaryTerms && (
+                                    <KnowledgeCards terms={enhancement.glossaryTerms} />
+                                )}
+
+                                {enhancement?.caseStudyProof && (
+                                    <ProofPoint {...enhancement.caseStudyProof} />
+                                )}
                             </BlogPostClient>
 
                             {/* Tags Section */}

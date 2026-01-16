@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: 'https://www.visquanta.com/dealers/franchise',
     },
+    openGraph: {
+        url: 'https://www.visquanta.com/dealers/franchise',
+    },
 };
 
 export default function FranchiseLayout({

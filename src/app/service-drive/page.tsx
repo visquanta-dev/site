@@ -16,6 +16,9 @@ export const metadata = {
     alternates: {
         canonical: 'https://www.visquanta.com/service-drive',
     },
+    openGraph: {
+        url: 'https://www.visquanta.com/service-drive',
+    },
 };
 
 export default function ServiceDrivePage() {
@@ -64,6 +67,29 @@ export default function ServiceDrivePage() {
                 <ServiceFAQ />
                 <VoicePrompts />
                 <VoiceAgent />
+
+                {/* SEO Strengthening: Link to Orphan Pages */}
+                <div className="py-20 bg-black/40 border-t border-white/5">
+                    <div className="container-wide text-center">
+                        <h4 className="text-xs font-bold text-white/20 uppercase tracking-[0.2em] mb-8">Service Operations Insights</h4>
+                        <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20">
+                            <a
+                                href="/blog/whats-killing-retention-in-your-service-department-missed-calls"
+                                className="text-sm font-semibold text-white/40 hover:text-[#FF7404] transition-colors group"
+                            >
+                                <span className="underline decoration-white/10 underline-offset-8">What's Killing Your Retention?</span>
+                                <span className="block text-[10px] text-white/10 mt-2 uppercase tracking-widest font-bold">Deep Dive into Missed Calls</span>
+                            </a>
+                            <a
+                                href="/blog/why-your-service-department-needs-24-7-call-answering-not-just-voicemail"
+                                className="text-sm font-semibold text-white/40 hover:text-[#FF7404] transition-colors group"
+                            >
+                                <span className="underline decoration-white/10 underline-offset-8">24/7 Answering vs Voicemail</span>
+                                <span className="block text-[10px] text-white/10 mt-2 uppercase tracking-widest font-bold">The ROI Guide</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </main>
             <Footer />
         </div>

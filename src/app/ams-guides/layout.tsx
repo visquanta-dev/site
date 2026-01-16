@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'AMS Technical Blueprints | Resource Library | VisQuanta',
-    description: 'Access technical documentation and operational blueprints for the AutoMaster Suite modules.',
+    title: 'AutoMaster Suite Guides | Documentation & Optimization | VisQuanta',
+    description: 'Access comprehensive guides and technical documentation for the AutoMaster Suite. Learn how to configure and optimize your AI tools for maximum dealership impact.',
     alternates: {
         canonical: 'https://www.visquanta.com/ams-guides',
+    },
+    openGraph: {
+        url: 'https://www.visquanta.com/ams-guides',
     },
 };
 

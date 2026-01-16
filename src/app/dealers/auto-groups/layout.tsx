@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Solutions for Auto Groups | VisQuanta',
-    description: 'Scalable AI-powered growth engines for enterprise-level automotive groups.',
+    title: 'Auto Group AI Solutions | Enterprise Lead Management | VisQuanta',
+    description: 'Empower your auto group with enterprise-grade AI lead management and centralized performance tracking. Orchestrate revenue growth across all your rooftops.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealers/auto-groups',
+    },
+    openGraph: {
+        url: 'https://www.visquanta.com/dealers/auto-groups',
     },
 };
 

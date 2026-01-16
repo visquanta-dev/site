@@ -98,6 +98,88 @@ export default function ResourcesHubPage() {
                         </Link>
                     ))}
                 </div>
+
+                {/* SEO Strengthening: Featured Insights (Linking remaining orphans) */}
+                <div className="mt-32 pt-20 border-t border-white/5">
+                    <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+                        <div className="max-w-xl">
+                            <h3 className="text-2xl font-bold text-white mb-4">Strategic Insights</h3>
+                            <p className="text-white/40 leading-relaxed italic">
+                                Expert analysis on the intersection of artificial intelligence and automotive retail.
+                            </p>
+                        </div>
+                        <Link href="/blog" className="text-xs font-bold text-[#FF7404] uppercase tracking-widest border-b border-[#FF7404]/30 pb-1 hover:border-[#FF7404] transition-all">
+                            Browse All Articles
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <a
+                            href="/blog/ai-isnt-replacing-car-dealership-jobs-its-transforming-them"
+                            className="group space-y-4"
+                        >
+                            <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest">Future of Work</div>
+                            <h4 className="text-lg font-bold text-white group-hover:text-[#FF7404] transition-colors leading-tight">AI Isn't Replacing Jobs – It's Transforming the BDC</h4>
+                            <p className="text-sm text-white/30 truncate">How automation empowers teams to focus on high-value closing.</p>
+                        </a>
+                        <a
+                            href="/blog/ultimate-guide-to-dealership-reputation-metrics"
+                            className="group space-y-4"
+                        >
+                            <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest">Digital Health</div>
+                            <h4 className="text-lg font-bold text-white group-hover:text-[#FF7404] transition-colors leading-tight">The Ultimate Guide to Reputation Metrics</h4>
+                            <p className="text-sm text-white/30 truncate">Beyond 5 stars: What actually drives unit volume and growth.</p>
+                        </a>
+                        <a
+                            href="/blog/5-ai-tools-that-will-increase-car-dealership-sales-in-q4-2025"
+                            className="group space-y-4"
+                        >
+                            <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest">Growth Tech</div>
+                            <h4 className="text-lg font-bold text-white group-hover:text-[#FF7404] transition-colors leading-tight">5 AI Tools for Sales Dominance in 2025</h4>
+                            <p className="text-sm text-white/30 truncate">The technology stack every high-volume dealer needs today.</p>
+                        </a>
+                        <a
+                            href="/blog/top-pitfalls-when-car-dealerships-rush-to-adopt-ai-solutions"
+                            className="group space-y-4"
+                        >
+                            <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest">Strategy</div>
+                            <h4 className="text-lg font-bold text-white group-hover:text-[#FF7404] transition-colors leading-tight">Avoid the AI Implementation Speed Trap</h4>
+                            <p className="text-sm text-white/30 truncate">Common mistakes when rolling out dealership automation.</p>
+                        </a>
+                        <a
+                            href="/blog/car-dealership-roi-calculator"
+                            className="group space-y-4"
+                        >
+                            <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest">Finance</div>
+                            <h4 className="text-lg font-bold text-white group-hover:text-[#FF7404] transition-colors leading-tight">Measuring Revenue Recovery ROI</h4>
+                            <p className="text-sm text-white/30 truncate">Calculating the real financial impact of CRM reactivation.</p>
+                        </a>
+                        <a
+                            href="/blog/feedback-impacts-dealership-reputation"
+                            className="group space-y-4"
+                        >
+                            <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest">Reputation Management</div>
+                            <h4 className="text-lg font-bold text-white group-hover:text-[#FF7404] transition-colors leading-tight">Feedback & Market Reputation</h4>
+                            <p className="text-sm text-white/30 truncate">How customer feedback loops impact long-term unit volume.</p>
+                        </a>
+                        <a
+                            href="/blog/dealership-call-management-strategies"
+                            className="group space-y-4"
+                        >
+                            <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest">Operations</div>
+                            <h4 className="text-lg font-bold text-white group-hover:text-[#FF7404] transition-colors leading-tight">Modern Call Management Strategies</h4>
+                            <p className="text-sm text-white/30 truncate">Optimizing inbound flow for higher service and sales conversion.</p>
+                        </a>
+                        <a
+                            href="/blog/7-ai-tools-that-boost-car-dealership-sales-performance"
+                            className="group space-y-4"
+                        >
+                            <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest">Sales Tech</div>
+                            <h4 className="text-lg font-bold text-white group-hover:text-[#FF7404] transition-colors leading-tight">7 AI Tools Boosting Sales Performance</h4>
+                            <p className="text-sm text-white/30 truncate">The competitive edge in inventory moving and lead handling.</p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </main>
     );

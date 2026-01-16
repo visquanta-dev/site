@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             title: caseStudy.title,
             description: caseStudy.summary,
             type: 'article',
+            url: `https://visquanta.com/case-studies/${slug}`,
         },
     };
 }

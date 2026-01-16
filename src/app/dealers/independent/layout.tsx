@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Solutions for Independent Dealers | VisQuanta',
-    description: 'Grow your independent dealership with AI-powered lead management and inventory turn optimization.',
+    title: 'Independent Dealer AI | Scalable Growth | VisQuanta',
+    description: 'Accelerate growth for your independent dealership with AI-powered lead management, inventory turn optimization, and 24/7 automated customer engagement tools.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealers/independent',
     },
+    openGraph: {
+        url: 'https://www.visquanta.com/dealers/independent',
+    },
 };
 
-export default function IndependentLayout({
+export default function IndependentDealerLayout({
     children,
 }: {
     children: React.ReactNode;

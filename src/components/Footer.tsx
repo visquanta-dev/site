@@ -151,7 +151,9 @@ export default function Footer() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="space-y-6"
                 >
-                  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">AutoMaster Suite</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+                    <Link href="/auto-master-suite" className="hover:text-[#FF7404] transition-colors">AutoMaster Suite</Link>
+                  </h4>
                   <ul className="space-y-4">
                     {footerLinks.autoMasterSuite.map((link, i) => (
                       <li key={i}>
@@ -180,7 +182,9 @@ export default function Footer() {
                   transition={{ duration: 0.6, delay: 0.15 }}
                   className="space-y-6"
                 >
-                  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">Dealer Services</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+                    <Link href="/dealers" className="hover:text-[#FF7404] transition-colors">Dealer Services</Link>
+                  </h4>
                   <ul className="space-y-4">
                     {footerLinks.dealerServices.map((link, i) => (
                       <li key={i}>
@@ -203,7 +207,9 @@ export default function Footer() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="space-y-6"
                 >
-                  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">Resources</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+                    <Link href="/resources" className="hover:text-[#FF7404] transition-colors">Resources</Link>
+                  </h4>
                   <ul className="space-y-4">
                     {footerLinks.resources.map((link, i) => (
                       <li key={i}>
@@ -226,7 +232,9 @@ export default function Footer() {
                   transition={{ duration: 0.6, delay: 0.25 }}
                   className="space-y-6"
                 >
-                  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">Company</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+                    <Link href="/company" className="hover:text-[#FF7404] transition-colors">Company</Link>
+                  </h4>
                   <ul className="space-y-4">
                     {footerLinks.company.map((link, i) => (
                       <li key={i}>

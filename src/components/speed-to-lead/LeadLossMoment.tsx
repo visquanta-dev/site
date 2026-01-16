@@ -267,6 +267,21 @@ export default function LeadLossMoment() {
                             </div>
                         ))}
                     </motion.div>
+
+                    {/* SEO Strengthening: Link to Orphan Page */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 1 }}
+                        className="mt-16 text-center"
+                    >
+                        <a
+                            href="/blog/speed-to-lead-slow-follow-up-sales-impact"
+                            className="text-xs font-bold text-white/20 uppercase tracking-[0.2em] hover:text-[#FF7404] transition-colors duration-300"
+                        >
+                            Read our deep dive on <span className="underline decoration-white/10 underline-offset-8">The Sales Impact of Slow Follow-Up</span>
+                        </a>
+                    </motion.div>
                 </div>
             </div>
         </section>

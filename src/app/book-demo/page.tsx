@@ -7,9 +7,12 @@ import FAQSection from '@/components/book-demo/FAQSection';
 
 export const metadata: Metadata = {
     title: "Chat with VisQuanta | AI for Dealerships",
-    description: "Schedule a personalized demo of the AutoMaster Suite. See how AI can increase your dealership's revenue by 30%.",
+    description: "Schedule a personalized demo of the AutoMaster Suite. See how VisQuanta's automotive AI can increase your dealership's revenue through intelligent automation.",
     alternates: {
         canonical: "https://www.visquanta.com/book-demo",
+    },
+    openGraph: {
+        url: "https://www.visquanta.com/book-demo",
     },
 };
 

@@ -133,7 +133,6 @@ export default function WhyItWorks() {
                                         </div>
                                     ))}
                                 </div>
-
                                 {/* Insight Box */}
                                 <div className="bg-gradient-to-br from-[#FF7404]/[0.08] to-[#FF7404]/[0.02] rounded-2xl p-6 border border-[#FF7404]/10">
                                     <div className="flex gap-4 items-start">
@@ -148,10 +147,25 @@ export default function WhyItWorks() {
                                         </div>
                                     </div>
                                 </div>
+
+                                {/* SEO Strengthening: Link to Orphan Page */}
+                                <div className="mt-8 text-center flex flex-col gap-4">
+                                    <a
+                                        href="/blog/sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-car-dealerships"
+                                        className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] hover:text-[#FF7404] transition-colors duration-300 inline-block"
+                                    >
+                                        Deep Dive: <span className="underline decoration-white/10 underline-offset-4">SMS vs Email vs Chatbots</span>
+                                    </a>
+                                    <a
+                                        href="/blog/5-reasons-car-buyers-prefer-sms-over-phone-calls-in-2025"
+                                        className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] hover:text-[#FF7404] transition-colors duration-300 inline-block"
+                                    >
+                                        Analysis: <span className="underline decoration-white/10 underline-offset-4">Why Buyers Prefer SMS in 2025</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </motion.div>
-
                 </div>
             </div>
         </section>
