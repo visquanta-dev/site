@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Contact Us | VisQuanta Support & Inquiries',
     description: 'Get in touch with the VisQuanta team for sales inquiries, dealer support, or general questions.',
     alternates: {
-        canonical: 'https://visquanta.com/contact',
+        canonical: 'https://www.visquanta.com/contact',
     },
 };
 
@@ -21,13 +21,13 @@ export default function ContactLayout({
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://visquanta.com'
+                'item': 'https://www.visquanta.com'
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Contact',
-                'item': 'https://visquanta.com/contact'
+                'item': 'https://www.visquanta.com/contact'
             }
         ]
     };
@@ -36,9 +36,9 @@ export default function ContactLayout({
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
         'name': 'VisQuanta',
-        'image': 'https://visquanta.com/logo-white.png',
-        '@id': 'https://visquanta.com/#organization',
-        'url': 'https://visquanta.com',
+        'image': 'https://www.visquanta.com/logo-white.png',
+        '@id': 'https://www.visquanta.com/#organization',
+        'url': 'https://www.visquanta.com',
         'telephone': '',
         'address': {
             '@type': 'PostalAddress',

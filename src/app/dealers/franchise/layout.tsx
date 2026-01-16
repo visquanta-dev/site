@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Solutions for Franchise Dealers | VisQuanta',
     description: 'Optimize franchise dealership operations with our intelligent revenue recovery and speed-to-lead modules.',
     alternates: {
-        canonical: 'https://visquanta.com/dealers/franchise',
+        canonical: 'https://www.visquanta.com/dealers/franchise',
     },
 };
 

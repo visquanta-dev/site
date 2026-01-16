@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Resource Center | VisQuanta Automotive Growth',
     description: 'Explore the resource center for guides, videos, and articles to help your dealership thrive.',
     alternates: {
-        canonical: 'https://visquanta.com/resources',
+        canonical: 'https://www.visquanta.com/resources',
     },
 };
 

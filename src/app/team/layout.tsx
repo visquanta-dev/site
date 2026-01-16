@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Meet the Team | VisQuanta Leadership & Experts',
     description: 'The veterans and technologists behind the VisQuanta platform.',
     alternates: {
-        canonical: 'https://visquanta.com/team',
+        canonical: 'https://www.visquanta.com/team',
     },
 };
 

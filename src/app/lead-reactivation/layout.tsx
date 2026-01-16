@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Lead Reactivation AI | Recover Lost CRM Revenue | VisQuanta',
     description: 'Transform dormant CRM leads into active showroom appointments. VisQuanta AI re-engages cold prospects with conversion-optimized SMS campaigns.',
     alternates: {
-        canonical: 'https://visquanta.com/lead-reactivation',
+        canonical: 'https://www.visquanta.com/lead-reactivation',
     },
 };
 
@@ -21,13 +21,13 @@ export default function LeadReactivationLayout({
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://visquanta.com'
+                'item': 'https://www.visquanta.com'
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Lead Reactivation',
-                'item': 'https://visquanta.com/lead-reactivation'
+                'item': 'https://www.visquanta.com/lead-reactivation'
             }
         ]
     };

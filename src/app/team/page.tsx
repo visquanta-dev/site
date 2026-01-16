@@ -199,14 +199,14 @@ export default function TeamPage() {
                                 "@type": "Person",
                                 "name": member.name,
                                 "jobTitle": member.role,
-                                "image": member.image.startsWith('http') ? member.image : `https://visquanta.com${member.image}`,
+                                "image": member.image.startsWith('http') ? member.image : `https://www.visquanta.com${member.image}`,
                                 "email": member.email,
-                                "url": `https://visquanta.com/team#${member.name.toLowerCase().replace(/\s+/g, '-')}`,
+                                "url": `https://www.visquanta.com/team#${member.name.toLowerCase().replace(/\s+/g, '-')}`,
                                 "sameAs": member.link && member.link !== "#" ? [member.link] : [],
                                 "affiliation": {
                                     "@type": "Organization",
                                     "name": "VisQuanta",
-                                    "url": "https://visquanta.com"
+                                    "url": "https://www.visquanta.com"
                                 }
                             }))
                         )

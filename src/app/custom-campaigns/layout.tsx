@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Custom Campaigns | Targeted Dealership Marketing | VisQuanta',
     description: 'Precision-engineered outreach sequences that convert prospects into scheduled appointments.',
     alternates: {
-        canonical: 'https://visquanta.com/custom-campaigns',
+        canonical: 'https://www.visquanta.com/custom-campaigns',
     },
 };
 

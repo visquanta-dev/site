@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Chat with VisQuanta | AI for Dealerships",
     description: "Schedule a personalized demo of the AutoMaster Suite. See how AI can increase your dealership's revenue by 30%.",
     alternates: {
-        canonical: "https://visquanta.com/book-demo",
+        canonical: "https://www.visquanta.com/book-demo",
     },
 };
 

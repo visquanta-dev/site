@@ -3,7 +3,7 @@ import { getBlogPosts, getAllCategories, getAllTags } from '@/lib/seobot';
 import { getAllCaseStudySlugs } from '@/lib/case-studies';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://visquanta.com';
+    const baseUrl = 'https://www.visquanta.com';
 
     // Static main pages
     const mainPages = [

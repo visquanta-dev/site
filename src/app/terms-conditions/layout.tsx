@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Terms & Conditions | VisQuanta',
     description: 'The terms and conditions governing the use of the VisQuanta platform.',
     alternates: {
-        canonical: 'https://visquanta.com/terms-conditions',
+        canonical: 'https://www.visquanta.com/terms-conditions',
     },
 };
 

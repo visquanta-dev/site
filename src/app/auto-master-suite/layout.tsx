@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'AutoMaster Suite | AI Revenue Platform | VisQuanta',
     description: 'A unified platform of AI-powered modules designed to automate dealership operations and maximize gross profit.',
     alternates: {
-        canonical: 'https://visquanta.com/auto-master-suite',
+        canonical: 'https://www.visquanta.com/auto-master-suite',
     },
 };
 
@@ -21,13 +21,13 @@ export default function AMSLayout({
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://visquanta.com'
+                'item': 'https://www.visquanta.com'
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'AutoMaster Suite',
-                'item': 'https://visquanta.com/auto-master-suite'
+                'item': 'https://www.visquanta.com/auto-master-suite'
             }
         ]
     };

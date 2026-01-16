@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Cookie Policy | VisQuanta',
     description: 'How we use cookies to improve your experience on our platform.',
     alternates: {
-        canonical: 'https://visquanta.com/cookie-policy',
+        canonical: 'https://www.visquanta.com/cookie-policy',
     },
 };
 

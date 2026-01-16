@@ -17,7 +17,7 @@ export const metadata = {
     title: 'Reputation Management | Visquanta Automotive Growth',
     description: 'Build an elite dealership reputation with Visquanta. Our 72-hour review growth engine and conversational SMS resolution protect your store and OEM scores.',
     alternates: {
-        canonical: 'https://visquanta.com/reputation-management',
+        canonical: 'https://www.visquanta.com/reputation-management',
     },
 };
 
@@ -30,13 +30,13 @@ export default function ReputationManagementPage() {
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://visquanta.com'
+                'item': 'https://www.visquanta.com'
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Reputation Management',
-                'item': 'https://visquanta.com/reputation-management'
+                'item': 'https://www.visquanta.com/reputation-management'
             }
         ]
     };

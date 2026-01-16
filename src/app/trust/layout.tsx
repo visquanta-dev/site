@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Trust Center | Security, Privacy, and Reliability | VisQuanta',
     description: 'Learn about VisQuanta\'s commitment to data security, privacy compliance, and system reliability.',
     alternates: {
-        canonical: 'https://visquanta.com/trust',
+        canonical: 'https://www.visquanta.com/trust',
     },
 };
 

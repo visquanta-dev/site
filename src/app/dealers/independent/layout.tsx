@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Solutions for Independent Dealers | VisQuanta',
     description: 'Grow your independent dealership with AI-powered lead management and inventory turn optimization.',
     alternates: {
-        canonical: 'https://visquanta.com/dealers/independent',
+        canonical: 'https://www.visquanta.com/dealers/independent',
     },
 };
 

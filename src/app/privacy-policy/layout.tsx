@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Privacy Policy | VisQuanta',
     description: 'Our commitment to protecting your data and privacy.',
     alternates: {
-        canonical: 'https://visquanta.com/privacy-policy',
+        canonical: 'https://www.visquanta.com/privacy-policy',
     },
 };
 

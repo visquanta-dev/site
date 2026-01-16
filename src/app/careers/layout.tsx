@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Careers | Join the VisQuanta Team',
     description: 'Help us shape the future of automotive retail intelligence. Explore career opportunities at VisQuanta.',
     alternates: {
-        canonical: 'https://visquanta.com/careers',
+        canonical: 'https://www.visquanta.com/careers',
     },
 };
 

@@ -97,13 +97,13 @@ export default function ContactPage() {
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://visquanta.com'
+                'item': 'https://www.visquanta.com'
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Contact',
-                'item': 'https://visquanta.com/contact'
+                'item': 'https://www.visquanta.com/contact'
             }
         ]
     };
@@ -112,9 +112,9 @@ export default function ContactPage() {
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
         'name': 'VisQuanta',
-        'image': 'https://visquanta.com/logo-white.png',
-        '@id': 'https://visquanta.com/#organization',
-        'url': 'https://visquanta.com',
+        'image': 'https://www.visquanta.com/logo-white.png',
+        '@id': 'https://www.visquanta.com/#organization',
+        'url': 'https://www.visquanta.com',
         'telephone': '',
         'address': {
             '@type': 'PostalAddress',

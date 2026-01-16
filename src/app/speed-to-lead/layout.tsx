@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Speed to Lead | Instant AI Response | VisQuanta',
     description: 'Contact every lead instantly. VisQuanta Speed to Lead AI handles inbound inquiries in under 60 seconds.',
     alternates: {
-        canonical: 'https://visquanta.com/speed-to-lead',
+        canonical: 'https://www.visquanta.com/speed-to-lead',
     },
 };
 

@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Solutions for Auto Groups | VisQuanta',
     description: 'Scalable AI-powered growth engines for enterprise-level automotive groups.',
     alternates: {
-        canonical: 'https://visquanta.com/dealers/auto-groups',
+        canonical: 'https://www.visquanta.com/dealers/auto-groups',
     },
 };
 

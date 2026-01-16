@@ -14,7 +14,7 @@ export const metadata = {
     title: 'Service Drive AI | 24/7 Appointment Automation | VisQuanta',
     description: 'Boost fixed-ops revenue with AI-driven service bookings and 24/7 inbound call handling. Turn missed calls into booked service jobs and improve CSI scores.',
     alternates: {
-        canonical: 'https://visquanta.com/service-drive',
+        canonical: 'https://www.visquanta.com/service-drive',
     },
 };
 
@@ -27,13 +27,13 @@ export default function ServiceDrivePage() {
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://visquanta.com'
+                'item': 'https://www.visquanta.com'
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Service Drive',
-                'item': 'https://visquanta.com/service-drive'
+                'item': 'https://www.visquanta.com/service-drive'
             }
         ]
     };

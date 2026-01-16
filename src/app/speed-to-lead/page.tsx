@@ -43,7 +43,7 @@ export default function SpeedToLeadPage() {
                         "provider": {
                             "@type": "Organization",
                             "name": "VisQuanta",
-                            "url": "https://visquanta.com"
+                            "url": "https://www.visquanta.com"
                         },
                         "areaServed": "US",
                         "hasOfferCatalog": {

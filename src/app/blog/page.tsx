@@ -9,7 +9,7 @@ export const metadata = {
     title: 'The Journal | VisQuanta',
     description: 'Industry insights, strategies, data, and trends for modern automotive retail.',
     alternates: {
-        canonical: 'https://visquanta.com/blog',
+        canonical: 'https://www.visquanta.com/blog',
     },
 };
 

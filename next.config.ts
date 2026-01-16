@@ -82,6 +82,21 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/faq',
+        destination: '/faqs',
+        permanent: true,
+      },
+      {
+        source: '/blog/ai-mvp-car-sales-teams',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blog/promax-visquanta-partner',
+        destination: '/blog',
+        permanent: true,
+      },
     ];
   },
 };

@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Case Studies | VisQuanta Success Stories',
     description: 'Real-world results from elite dealerships using AutoMaster Suite.',
     alternates: {
-        canonical: 'https://visquanta.com/case-studies',
+        canonical: 'https://www.visquanta.com/case-studies',
     },
 };
 

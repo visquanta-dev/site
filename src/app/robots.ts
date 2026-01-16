@@ -14,6 +14,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/_next/', '/static/', '/admin/', '/portal/'],
       },
     ],
-    sitemap: 'https://visquanta.com/sitemap.xml',
+    sitemap: 'https://www.visquanta.com/sitemap.xml',
   };
 }

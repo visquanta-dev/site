@@ -159,7 +159,7 @@ export default function IntegrationsHubPage() {
                             "@type": "ListItem",
                             "position": index + 1,
                             "name": integration.name,
-                            "url": `https://visquanta.com/integrations/${integration.slug}`
+                            "url": `https://www.visquanta.com/integrations/${integration.slug}`
                         }))
                     })
                 }}

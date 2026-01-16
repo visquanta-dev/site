@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Website Widget | Intelligent Conversational AI | VisQuanta',
     description: 'Convert more website visitors into booked appointments with our intelligent conversational AI widget.',
     alternates: {
-        canonical: 'https://visquanta.com/website-widget',
+        canonical: 'https://www.visquanta.com/website-widget',
     },
 };
 

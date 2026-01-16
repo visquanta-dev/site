@@ -31,11 +31,10 @@ const resourceLinks = [
     {
         title: 'Our Blog',
         description: 'Trends, data analysis, and insights from the edge of retail.',
-        href: '#', // Placeholder until created
+        href: '/blog',
         icon: BookOpen,
         category: 'Insights',
         color: 'purple',
-        comingSoon: true,
     },
 ];
 
