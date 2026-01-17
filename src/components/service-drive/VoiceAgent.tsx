@@ -29,6 +29,7 @@ export default function VoiceAgent() {
             // Start the conversation with your agent
             await conversation.startSession({
                 agentId: 'agent_4501k4d2eehvf0p8axd56y4a0d45',
+                connectionType: 'websocket',
             });
         } catch (error) {
             console.error('Failed to start conversation:', error);
@@ -43,6 +44,7 @@ export default function VoiceAgent() {
             await navigator.mediaDevices.getUserMedia({ audio: true });
             await conversation.startSession({
                 agentId: 'agent_4501k4d2eehvf0p8axd56y4a0d45',
+                connectionType: 'websocket',
             });
         } catch (error) {
             console.error('Failed to start conversation:', error);
@@ -125,14 +127,14 @@ export default function VoiceAgent() {
                                 onClick={isConnected ? handleEndConversation : handleStartConversation}
                                 disabled={isConnecting}
                                 className={`flex items-center gap-4 bg-[#0a0a0a] border pl-4 pr-5 py-3 rounded-full backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-all duration-300 cursor-pointer group/card ${isConnected
-                                        ? 'border-[#FF7404]/50 shadow-[0_0_30px_rgba(255,116,4,0.2)]'
-                                        : 'border-white/[0.08] hover:border-[#FF7404]/30'
+                                    ? 'border-[#FF7404]/50 shadow-[0_0_30px_rgba(255,116,4,0.2)]'
+                                    : 'border-white/[0.08] hover:border-[#FF7404]/30'
                                     } ${isConnecting ? 'opacity-70 cursor-wait' : ''}`}
                             >
                                 {/* Animated Icon */}
                                 <div className={`relative w-11 h-11 rounded-full flex items-center justify-center transition-all ${isConnected
-                                        ? 'bg-[#FF7404] shadow-[0_0_24px_rgba(255,116,4,0.5)]'
-                                        : 'bg-gradient-to-br from-[#FF7404] to-[#FF7404]/70 shadow-[0_0_24px_rgba(255,116,4,0.35)] group-hover/card:shadow-[0_0_32px_rgba(255,116,4,0.5)]'
+                                    ? 'bg-[#FF7404] shadow-[0_0_24px_rgba(255,116,4,0.5)]'
+                                    : 'bg-gradient-to-br from-[#FF7404] to-[#FF7404]/70 shadow-[0_0_24px_rgba(255,116,4,0.35)] group-hover/card:shadow-[0_0_32px_rgba(255,116,4,0.5)]'
                                     }`}>
                                     {isConnected ? (
                                         <>
@@ -187,8 +189,8 @@ export default function VoiceAgent() {
                                             {isConnected ? 'Voice AI Active' : isConnecting ? 'Connecting...' : 'Test Drive Our Voice AI'}
                                         </span>
                                         <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full border ${isConnected
-                                                ? 'bg-green-500/10 border-green-500/20'
-                                                : 'bg-[#FF7404]/10 border-[#FF7404]/20'
+                                            ? 'bg-green-500/10 border-green-500/20'
+                                            : 'bg-[#FF7404]/10 border-[#FF7404]/20'
                                             }`}>
                                             <span className="relative flex h-1.5 w-1.5">
                                                 <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isConnected ? 'bg-green-500' : 'bg-[#FF7404]'
