@@ -26,6 +26,18 @@ import { RequestDemoButton } from './CalendlyModal';
 import { Button } from "@/components/ui/button";
 import { usePathname } from 'next/navigation';
 import { useRef } from 'react';
+import { createPortal } from 'react-dom';
+
+// Portal helper to ensure client-side rendering
+const Portal = ({ children }: { children: React.ReactNode }) => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+  return createPortal(children, document.body);
+};
 
 interface NavItem {
   label: string;
@@ -391,149 +403,169 @@ export default function Navigation() {
         </Button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Rendered via Portal to avoid header clipping */}
       <AnimatePresence mode="wait">
         {isMobileMenuOpen && (
-          <motion.div
-            id="mobile-menu"
-            ref={mobileMenuRef}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile Navigation"
-            tabIndex={-1}
-            className="fixed inset-0 z-[999] bg-black/95 backdrop-blur-3xl pt-24 px-6 overflow-y-auto lg:hidden flex flex-col focus:outline-none"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3, ease: "circOut" }}
-            onKeyDown={(e) => {
-              if (e.key === 'Tab') {
-                const focusableElements = mobileMenuRef.current?.querySelectorAll(
-                  'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-                );
-                if (!focusableElements || focusableElements.length === 0) return;
+          <Portal>
+            <motion.div
+              id="mobile-menu"
+              ref={mobileMenuRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile Navigation"
+              tabIndex={-1}
+              // position: fixed, inset: 0, z-index: 2000 (above header)
+              className="fixed inset-0 z-[2000] bg-black/95 backdrop-blur-3xl overflow-y-auto lg:hidden flex flex-col focus:outline-none"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: "circOut" }}
+              onKeyDown={(e) => {
+                if (e.key === 'Tab') {
+                  const focusableElements = mobileMenuRef.current?.querySelectorAll(
+                    'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+                  );
+                  if (!focusableElements || focusableElements.length === 0) return;
 
-                const firstElement = focusableElements[0] as HTMLElement;
-                const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+                  const firstElement = focusableElements[0] as HTMLElement;
+                  const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
 
-                // If the toggle button is technically "outside" this div (it is in the header above), we need to be careful.
-                // But this div covers the screen. The toggle button is z-index 1001, this is 999.
-                // The toggle button is VISUALLY inside.
-                // If we tab backwards from first element, go to last.
-                if (e.shiftKey) {
-                  if (document.activeElement === firstElement) {
-                    lastElement.focus();
-                    e.preventDefault();
-                  }
-                } else {
-                  if (document.activeElement === lastElement) {
-                    firstElement.focus();
-                    e.preventDefault();
+                  if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                      lastElement.focus();
+                      e.preventDefault();
+                    }
+                  } else {
+                    if (document.activeElement === lastElement) {
+                      firstElement.focus();
+                      e.preventDefault();
+                    }
                   }
                 }
-              }
-            }}
-          >
-            {/* Ambient Background Effects */}
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#FF7404]/10 rounded-full blur-[100px] pointer-events-none" />
+              }}
+            >
+              {/* Header inside Portal to maintain visual consistency and provide "X" button */}
+              <div className="sticky top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 bg-black/20 backdrop-blur-md border-b border-white/5">
+                <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center">
+                  <Image
+                    src="/images/visquanta-logo-white.png"
+                    alt="VisQuanta"
+                    width={150}
+                    height={40}
+                    className="h-8 w-auto"
+                  />
+                </Link>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white hover:bg-white/10 h-11 w-11"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <X className="w-6 h-6" />
+                </Button>
+              </div>
 
-            <div className="flex flex-col flex-1 pb-12 relative z-10 mt-4">
-              <nav className="space-y-6">
-                {navItems.map((item, idx) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.05 }}
-                  >
-                    {item.children ? (
-                      <div className="space-y-4">
-                        <button
-                          onClick={() => setMobileActiveMenu(mobileActiveMenu === item.label ? null : item.label)}
-                          className="w-full flex items-center justify-between text-2xl font-bold text-white uppercase tracking-wider"
+              {/* Ambient Background Effects */}
+              <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#FF7404]/10 rounded-full blur-[100px] pointer-events-none" />
+
+              <div className="flex flex-col flex-1 px-6 pb-12 relative z-10 mt-8">
+                <nav className="space-y-6">
+                  {navItems.map((item, idx) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.05 }}
+                    >
+                      {item.children ? (
+                        <div className="space-y-4">
+                          <button
+                            onClick={() => setMobileActiveMenu(mobileActiveMenu === item.label ? null : item.label)}
+                            className="w-full flex items-center justify-between text-2xl font-bold text-white uppercase tracking-wider text-left"
+                          >
+                            {item.label}
+                            <ChevronDown
+                              className={`w-5 h-5 transition-transform duration-300 ${mobileActiveMenu === item.label ? 'rotate-180 text-[#FF7404]' : 'text-white/40'}`}
+                            />
+                          </button>
+
+                          <AnimatePresence>
+                            {mobileActiveMenu === item.label && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="overflow-hidden border-l border-white/10 ml-1"
+                              >
+                                <div className="py-2 pl-6 space-y-4">
+                                  {item.children.map((child, childIdx) => {
+                                    const Icon = child.icon;
+                                    return (
+                                      <Link
+                                        key={childIdx}
+                                        href={child.href}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="flex items-center gap-4 group/child py-1"
+                                      >
+                                        {Icon && (
+                                          <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#FF7404]">
+                                            <Icon className="w-4 h-4" />
+                                          </div>
+                                        )}
+                                        <div>
+                                          <div className="text-base text-zinc-300 group-hover/child:text-white transition-colors font-semibold">
+                                            {child.label}
+                                          </div>
+                                          <div className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
+                                            {child.description}
+                                          </div>
+                                        </div>
+                                      </Link>
+                                    );
+                                  })}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          href={item.href || '#'}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block text-2xl font-bold text-white uppercase tracking-wider"
                         >
                           {item.label}
-                          <ChevronDown
-                            className={`w-5 h-5 transition-transform duration-300 ${mobileActiveMenu === item.label ? 'rotate-180 text-[#FF7404]' : 'text-white/40'}`}
-                          />
-                        </button>
+                        </Link>
+                      )}
+                    </motion.div>
+                  ))}
+                </nav>
 
-                        <AnimatePresence>
-                          {mobileActiveMenu === item.label && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden border-l border-white/10 ml-1"
-                            >
-                              <div className="py-2 pl-6 space-y-4">
-                                {item.children.map((child, childIdx) => {
-                                  const Icon = child.icon;
-                                  return (
-                                    <Link
-                                      key={childIdx}
-                                      href={child.href}
-                                      onClick={() => setIsMobileMenuOpen(false)}
-                                      className="flex items-center gap-4 group/child py-1"
-                                    >
-                                      {Icon && (
-                                        <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#FF7404]">
-                                          <Icon className="w-4 h-4" />
-                                        </div>
-                                      )}
-                                      <div>
-                                        <div className="text-base text-zinc-300 group-hover/child:text-white transition-colors font-semibold">
-                                          {child.label}
-                                        </div>
-                                        <div className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
-                                          {child.description}
-                                        </div>
-                                      </div>
-                                    </Link>
-                                  );
-                                })}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ) : (
-                      <Link
-                        href={item.href || '#'}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="block text-2xl font-bold text-white uppercase tracking-wider"
-                      >
-                        {item.label}
-                      </Link>
-                    )}
-                  </motion.div>
-                ))}
-              </nav>
-
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="mt-12 flex flex-col gap-4 mb-8"
-              >
-                <Link
-                  href="https://portal.visquanta.com"
-                  className="flex items-center justify-between w-full p-5 rounded-2xl border border-white/10 bg-white/[0.03]"
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="mt-12 flex flex-col gap-4 mb-8"
                 >
-                  <span className="text-sm font-bold uppercase tracking-widest text-[#FF7404]">
-                    VQonsole Access
-                  </span>
-                  <Lock className="w-4 h-4 text-white" />
-                </Link>
+                  <Link
+                    href="https://portal.visquanta.com"
+                    className="flex items-center justify-between w-full p-5 rounded-2xl border border-white/10 bg-white/[0.03]"
+                  >
+                    <span className="text-sm font-bold uppercase tracking-widest text-[#FF7404]">
+                      VQonsole Access
+                    </span>
+                    <Lock className="w-4 h-4 text-white" />
+                  </Link>
 
-                <RequestDemoButton asChild>
-                  <button className="w-full py-5 rounded-2xl bg-[#FF7404] text-black font-black uppercase tracking-widest text-sm">
-                    Speak With Our Team
-                  </button>
-                </RequestDemoButton>
-              </motion.div>
-            </div>
-          </motion.div>
+                  <RequestDemoButton asChild>
+                    <button className="w-full py-5 rounded-2xl bg-[#FF7404] text-black font-black uppercase tracking-widest text-sm">
+                      Speak With Our Team
+                    </button>
+                  </RequestDemoButton>
+                </motion.div>
+              </div>
+            </motion.div>
+          </Portal>
         )}
       </AnimatePresence>
     </header >
