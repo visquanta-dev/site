@@ -12,6 +12,7 @@ interface CallExample {
     result: string;
     time: string;
     videoId: string;
+    videoType?: 'vimeo' | 'veed';
     thumbnailUrl: string;
     issue: string;
 }
@@ -25,7 +26,7 @@ const callExamples: CallExample[] = [
         result: 'Vehicle was towed in overnight, customer contacted promptly.',
         time: '20:11',
         videoId: '1128516515',
-        thumbnailUrl: 'https://i.vimeocdn.com/video/2071602704-cda0eea924b6f3a686ef80d7b5321b6e59350c55a480b1db34dcf66d7250a53f-d_960',
+        thumbnailUrl: '/images/call-examples/epc-warning-custom.png',
         issue: 'Emergency Diagnostic'
     },
     {
@@ -36,7 +37,7 @@ const callExamples: CallExample[] = [
         result: 'Advisor contacted customer first thing to confirm appointment.',
         time: '19:58',
         videoId: '1128816533',
-        thumbnailUrl: 'https://i.vimeocdn.com/video/2072000373-76d7ccecdf7303421bd954c84b67439841e934b19a040a84cc8323f378edf708-d_1280',
+        thumbnailUrl: '/images/call-examples/book-service-custom.jpg',
         issue: 'After-Hours Booking'
     },
     {
@@ -46,14 +47,17 @@ const callExamples: CallExample[] = [
         action: 'Service Drive Agent™ captured details and scheduled callback.',
         result: 'Advisor contacted customer next morning, inspection arranged.',
         time: '22:16',
-        videoId: '1128816504',
-        thumbnailUrl: 'https://i.vimeocdn.com/video/2072000310-5e5969bf5129b5a61ea15f7a38e7bad5ae205c063d52bceecfd96d770dbd6801-d_1280',
+        videoId: '1155497997',
+        thumbnailUrl: '/images/call-examples/brake-light-custom.png',
         issue: 'Safety Concern'
     }
 ];
 
 export default function CallExamples() {
     const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+
+    const getActiveCall = () => callExamples.find(c => c.id === activeVideoId);
+    const activeCall = getActiveCall();
 
     return (
         <section className="relative py-32 bg-[#020202] overflow-hidden">
@@ -118,10 +122,13 @@ export default function CallExamples() {
                                             className="absolute inset-0 z-20"
                                         >
                                             <iframe
-                                                src={`https://player.vimeo.com/video/${call.videoId}?autoplay=1&title=0&byline=0&portrait=0`}
+                                                src={call.videoType === 'veed'
+                                                    ? `https://www.veed.io/embed/${call.videoId}`
+                                                    : `https://player.vimeo.com/video/${call.videoId}?autoplay=1&title=0&byline=0&portrait=0`}
                                                 className="w-full h-full"
                                                 allow="autoplay; fullscreen; picture-in-picture"
                                                 allowFullScreen
+                                                title={call.title}
                                             />
                                             <button
                                                 onClick={() => setActiveVideoId(null)}

@@ -107,47 +107,69 @@ export default function HeroSection() {
                 </div>
 
                 {/* Benefits Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                    {[
-                        {
-                            icon: Phone,
-                            title: 'No More Missed Calls',
-                            subtitle: 'Higher Customer Satisfaction (CSI)',
-                        },
-                        {
-                            icon: Clock,
-                            title: 'Real-Time Updates',
-                            subtitle: 'Customers Stop Chasing You',
-                        },
-                        {
-                            icon: TrendingUp,
-                            title: 'Instant Scheduling',
-                            subtitle: 'Advisors Stay Focused on Service',
-                        },
-                        {
-                            icon: CheckCircle,
-                            title: 'Retain More Customers',
-                            subtitle: 'Beat Independents Down the Street',
-                        }
-                    ].map((benefit, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.4 + (idx * 0.1), duration: 0.8 }}
-                            className="group relative p-6 sm:p-7 md:p-8 rounded-[2rem] bg-white/[0.02] border border-white/[0.05] hover:border-[#FF7404]/30 hover:bg-white/[0.04] transition-all duration-500"
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/5 to-transparent rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            <div className="relative z-10">
-                                <div className="w-12 h-12 rounded-xl bg-white/[0.05] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-white/[0.05] group-hover:border-[#FF7404]/20">
-                                    <benefit.icon className="w-5 h-5 text-white/60 group-hover:text-[#FF7404] transition-colors duration-500" />
+                {/* Benefits List (Premium Enterprise Style) */}
+                <div className="max-w-4xl mx-auto mt-32">
+                    <div className="text-center mb-16">
+                        <h3 className="text-xs font-bold text-white/30 uppercase tracking-[0.2em] mb-4">Enterprise Grade</h3>
+                        <div className="h-px w-24 bg-gradient-to-r from-transparent via-[#FF7404] to-transparent mx-auto" />
+                    </div>
+
+                    <div className="space-y-0 border-t border-white/[0.08]">
+                        {[
+                            {
+                                icon: Phone,
+                                title: 'No More Missed Calls',
+                                subtitle: 'Capture 100% of inbound service inquiries, 24/7/365.',
+                                stat: '100% Capture'
+                            },
+                            {
+                                icon: Clock,
+                                title: 'Real-Time Updates',
+                                subtitle: 'Automated status updates keep customers informed without staff intervention.',
+                                stat: '-40% Inbound Calls'
+                            },
+                            {
+                                icon: TrendingUp,
+                                title: 'Instant Scheduling',
+                                subtitle: 'Direct integration with your DMS for real-time appointment booking.',
+                                stat: '+25% Bookings'
+                            },
+                            {
+                                icon: CheckCircle,
+                                title: 'Customer Retention',
+                                subtitle: 'Provide the seamless, instant experience modern customers demand.',
+                                stat: '+15% Retention'
+                            }
+                        ].map((benefit, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 + (idx * 0.1), duration: 0.6 }}
+                                className="group relative border-b border-white/[0.08] hover:bg-white/[0.02] transition-colors duration-500"
+                            >
+                                <div className="flex flex-col md:flex-row items-start md:items-center py-10 px-6 md:px-10 gap-6 md:gap-10">
+                                    <div className="shrink-0">
+                                        <div className="w-12 h-12 rounded-full border border-white/[0.1] flex items-center justify-center group-hover:border-[#FF7404] group-hover:scale-110 transition-all duration-500">
+                                            <benefit.icon className="w-5 h-5 text-white/50 group-hover:text-[#FF7404] transition-colors duration-500" />
+                                        </div>
+                                    </div>
+
+                                    <div className="grow">
+                                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FF7404] transition-colors duration-300">{benefit.title}</h3>
+                                        <p className="text-base text-white/40 font-light max-w-xl group-hover:text-white/60 transition-colors duration-300">{benefit.subtitle}</p>
+                                    </div>
+
+                                    <div className="shrink-0 flex items-center justify-start md:justify-end min-w-[140px]">
+                                        <span className="inline-block px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-mono text-[#FF7404] tracking-widest uppercase">
+                                            {benefit.stat}
+                                        </span>
+                                    </div>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-3 tracking-tight">{benefit.title}</h3>
-                                <p className="text-sm text-white/40 leading-relaxed font-light">{benefit.subtitle}</p>
-                            </div>
-                        </motion.div>
-                    ))}
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

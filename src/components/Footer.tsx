@@ -53,7 +53,7 @@ const footerLinks = {
     { label: 'FAQs', href: '/faqs' },
     { label: 'Blog', href: '/blog' },
     { label: 'AMS Info Sheets', href: '/ams-guides' },
-    { label: 'Dealer Portal', href: 'https://portal.visquanta.com' },
+    { label: 'VQonsole Access', href: 'https://portal.visquanta.com' },
   ],
   company: [
     { label: 'About VisQuanta', href: '/about-visquanta' },

@@ -368,7 +368,7 @@ export default function Navigation() {
           <Button asChild variant="outline" className="h-9 px-5 rounded-lg border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/30 text-white transition-all uppercase tracking-widest text-[10px] font-black">
             <Link href="https://portal.visquanta.com">
               <Lock className="w-3 h-3 mr-2 text-[#FF7404]" />
-              Dealer Portal
+              VQonsole Access
             </Link>
           </Button>
         </div>
@@ -521,7 +521,7 @@ export default function Navigation() {
                   className="flex items-center justify-between w-full p-5 rounded-2xl border border-white/10 bg-white/[0.03]"
                 >
                   <span className="text-sm font-bold uppercase tracking-widest text-[#FF7404]">
-                    Dealer Portal
+                    VQonsole Access
                   </span>
                   <Lock className="w-4 h-4 text-white" />
                 </Link>

@@ -65,7 +65,6 @@ export default function ServiceDrivePage() {
                 </div>
 
                 <ServiceFAQ />
-                <VoicePrompts />
                 <VoiceAgent />
 
                 {/* SEO Strengthening: Link to Orphan Pages */}
