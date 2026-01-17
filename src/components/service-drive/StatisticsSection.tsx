@@ -84,70 +84,93 @@ export default function StatisticsSection() {
                     </motion.div>
                 </div>
 
-                {/* VisQuanta Solution Stats */}
+                {/* VisQuanta Solution Stats - PREMIUM "OBSIDIAN" DESIGN */}
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="relative p-12 md:p-20 rounded-[3rem] bg-[#0a0a0a] border border-white/[0.08] overflow-hidden"
+                    className="relative group rounded-[3rem] p-[1px] overflow-hidden"
                 >
-                    {/* Decorative Glows */}
-                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF7404]/[0.05] rounded-full blur-[120px] pointer-events-none" />
-                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#FF7404]/[0.03] rounded-full blur-[100px] pointer-events-none" />
+                    {/* Animated Border Gradient */}
+                    <div className="absolute inset-[-200%] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_50%,#FF7404_50%,#00000000_100%)] animate-[spin_4s_linear_infinite] opacity-30" />
 
-                    <div className="relative z-10 text-center">
-                        <h3 className="text-3xl font-bold text-white mb-16 tracking-tight">
-                            VisQuanta Service Drive Agent™ Guarantees
-                        </h3>
+                    {/* Inner Container */}
+                    <div className="relative rounded-[3rem] bg-[#030303] overflow-hidden h-full">
+                        {/* Premium Background Effects */}
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(255,255,255,0.03),_transparent_70%)]" />
+                        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.15] mix-blend-overlay" />
 
-                        <div className="grid md:grid-cols-4 gap-12 relative">
-                            {/* Horizontal Divider Line for desktop */}
-                            <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                            {/* Vertical Divider Lines would be complex, keeping it clean instead */}
+                        {/* Content Wrapper */}
+                        <div className="relative z-10 p-12 md:pt-24 md:px-24 md:pb-24">
 
-                            {[
-                                {
-                                    icon: Clock,
-                                    metric: '<60s',
-                                    title: 'Avg Response Time',
-                                    description: 'Ensures no waiting and no missed opportunities.',
-                                    color: 'text-[#FF7404]'
-                                },
-                                {
-                                    icon: Zap,
-                                    metric: '24/7',
-                                    title: 'Always On',
-                                    description: 'Engage leads instantly on every platform, any time.',
-                                    color: 'text-white'
-                                },
-                                {
-                                    icon: Target,
-                                    metric: '+98%',
-                                    title: 'After-Hours Conversion',
-                                    description: 'Convert more leads outside business hours.',
-                                    color: 'text-[#FF7404]'
-                                },
-                                {
-                                    icon: Award,
-                                    metric: '1 in 4',
-                                    title: 'Booking Rate',
-                                    description: 'Leads book an appointment in under 15 minutes.',
-                                    color: 'text-white'
-                                }
-                            ].map((stat, idx) => (
-                                <div key={idx} className="relative group bg-[#0a0a0a] md:bg-transparent p-4 rounded-2xl md:rounded-none z-10">
-                                    <div className={`text-5xl font-black ${stat.color} mb-4 tracking-tighter group-hover:scale-110 transition-transform duration-300`}>
-                                        {stat.metric}
-                                    </div>
-                                    <h4 className="text-sm font-bold text-white/90 uppercase tracking-widest mb-3">
-                                        {stat.title}
-                                    </h4>
-                                    <p className="text-sm text-white/40 font-light leading-relaxed">
-                                        {stat.description}
-                                    </p>
+                            {/* Header Section */}
+                            <div className="text-center mb-20 relative">
+                                <div className="inline-flex items-center justify-center relative mb-6">
+                                    <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-[#FF7404]/30 to-transparent" />
+                                    <span className="relative z-10 bg-[#030303] px-6">
+                                        <div className="w-2 h-2 rounded-full bg-[#FF7404] shadow-[0_0_10px_#FF7404]" />
+                                    </span>
                                 </div>
-                            ))}
+                                <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-2">
+                                    VisQuanta Service Drive Agent<span className="text-[#FF7404]">™</span>
+                                </h3>
+                                <p className="text-white/40 font-medium tracking-[0.2em] text-sm uppercase">Operational Standards</p>
+                            </div>
+
+                            {/* Metrics Grid with "Etched Glass" Dividers */}
+                            <div className="grid md:grid-cols-4 relative">
+                                {/* Desktop Vertical Dividers */}
+                                <div className="hidden md:block absolute top-4 bottom-4 left-1/4 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+                                <div className="hidden md:block absolute top-4 bottom-4 left-2/4 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+                                <div className="hidden md:block absolute top-4 bottom-4 left-3/4 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+
+                                {[
+                                    {
+                                        metric: '<60s',
+                                        title: 'Avg Response Time',
+                                        subtitle: 'Answer every call instantly',
+                                        gradient: 'from-[#FF7404] to-[#ff9e4f]'
+                                    },
+                                    {
+                                        metric: '24/7',
+                                        title: 'Always On Coverage',
+                                        subtitle: 'Zero downtime, ever',
+                                        gradient: 'from-white to-white/70'
+                                    },
+                                    {
+                                        metric: '98%',
+                                        title: 'Engagement Rate',
+                                        subtitle: 'After-hours conversion',
+                                        gradient: 'from-[#FF7404] to-[#ff9e4f]'
+                                    },
+                                    {
+                                        metric: '1 in 4',
+                                        title: 'Booking Rate',
+                                        subtitle: 'Calls converted to appts',
+                                        gradient: 'from-white to-white/70'
+                                    }
+                                ].map((stat, idx) => (
+                                    <div key={idx} className="relative group/item p-8 text-center transition-all duration-500 hover:bg-white/[0.02] rounded-2xl md:rounded-none">
+                                        {/* Hover Spotlight element could go here */}
+
+                                        {/* Metric Number */}
+                                        <div className={`text-6xl md:text-[4rem] font-bold mb-6 tracking-tighter bg-gradient-to-b ${stat.gradient} bg-clip-text text-transparent filter drop-shadow-lg transform transition-transform duration-500 group-hover/item:scale-105`}>
+                                            {stat.metric}
+                                        </div>
+
+                                        {/* Label */}
+                                        <div className="flex flex-col gap-2">
+                                            <h4 className="text-sm font-bold text-white uppercase tracking-[0.15em]">
+                                                {stat.title}
+                                            </h4>
+                                            <p className="text-xs text-white/30 font-medium">
+                                                {stat.subtitle}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </motion.div>

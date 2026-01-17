@@ -119,7 +119,7 @@ async function fetchBase(): Promise<BasePost[]> {
   if (!apiKey) return [];
   const url = `https://seobot-blogs.s3.eu-north-1.amazonaws.com/${apiKey}/system/base.json`;
 
-  const response = await fetch(url, { cache: 'no-store' });
+  const response = await fetch(url, { next: { revalidate: 60 } });
 
   if (!response.ok) {
     console.error(`Failed to fetch base.json: ${response.status} ${response.statusText}`);
@@ -148,7 +148,7 @@ async function fetchPost(id: string): Promise<BlogPost | null> {
     if (!apiKey) return null;
     const url = `https://seobot-blogs.s3.eu-north-1.amazonaws.com/${apiKey}/blog/${id}.json`;
 
-    const response = await fetch(url, { cache: 'no-store' });
+    const response = await fetch(url, { next: { revalidate: 60 } });
 
     if (!response.ok) {
       console.error(`Failed to fetch post ${id}: ${response.status}`);
