@@ -2,6 +2,8 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import DealerInsights from '@/components/dealers/shared/DealerInsights';
+
 import DealerCalculator from '@/components/dealers/DealerCalculator';
 import {
     Users,
@@ -438,29 +440,12 @@ export default function AutoGroupsPage() {
         mouseY.set(y);
     };
 
-    const [realArticles, setRealArticles] = useState<any[]>([]);
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
     const [activeFeature, setActiveFeature] = useState(0);
     const [visibleMessages, setVisibleMessages] = useState<any[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const chatContainerRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        fetch('/api/blog/latest?limit=3')
-            .then(res => res.json())
-            .then(data => {
-                if (data.posts && data.posts.length > 0) {
-                    const mapped = data.posts.map((post: any) => ({
-                        title: post.headline,
-                        excerpt: post.metaDescription,
-                        link: `/blog/${post.slug}`,
-                        category: post.category?.title || 'Group Strategy',
-                        date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-                    }));
-                    setRealArticles(mapped);
-                }
-            });
-    }, []);
 
     // Message Sequencing Logic
     useEffect(() => {
@@ -1102,79 +1087,11 @@ export default function AutoGroupsPage() {
             </section>
 
             {/* 7. INSIGHTS/BLOG */}
-            <section className="py-24 bg-[#020202] relative overflow-hidden text-zinc-400">
-                <div className="container px-4 mx-auto relative z-10">
-                    <motion.div
-                        className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <div>
-                            <motion.div
-                                initial={{ scale: 0 }}
-                                whileInView={{ scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-                                className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF7404]/10 border border-[#FF7404]/20 mb-6"
-                            >
-                                <Lightbulb className="w-6 h-6 text-[#FF7404]" />
-                            </motion.div>
-                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                                Portfolio <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#FF9040]">Insights</span>
-                            </h2>
-                            <p className="text-zinc-400 text-lg max-w-xl">
-                                High-level strategies for managing enterprise automotive operations.
-                            </p>
-                        </div>
-                        <Link href="/blog" className="group flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
-                            View all articles
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                    </motion.div>
+            <DealerInsights
+                title="Portfolio Insight"
+                description="High-level strategies for managing enterprise automotive operations."
+            />
 
-                    <motion.div
-                        className="grid md:grid-cols-3 gap-8"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
-                    >
-                        {realArticles.map((article, i) => (
-                            <motion.div key={i} variants={itemVariants}>
-                                <Link
-                                    href={article.link}
-                                    className="group block h-full rounded-2xl bg-[#080808] border border-white/5 hover:border-white/20 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_50px_-20px_rgba(255,116,4,0.15)]"
-                                >
-                                    <div className="h-2 bg-gradient-to-r from-[#FF7404] to-[#FF9040]" />
-                                    <div className="p-8">
-                                        <div className="flex items-center gap-4 text-xs text-zinc-500 mb-4 font-mono">
-                                            <span className="flex items-center gap-1">
-                                                <Calendar className="w-3 h-3" />
-                                                {article.date}
-                                            </span>
-                                            <span className="px-2 py-0.5 rounded-full bg-[#FF7404]/10 text-[#FF7404] font-bold">
-                                                {article.category}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#FF7404] transition-colors line-clamp-2">
-                                            {article.title}
-                                        </h3>
-                                        <p className="text-zinc-500 text-sm leading-relaxed mb-6 line-clamp-3">
-                                            {article.excerpt}
-                                        </p>
-                                        <div className="flex items-center gap-2 text-sm font-bold text-white group-hover:gap-3 transition-all">
-                                            <BookOpen className="w-4 h-4 text-[#FF7404]" />
-                                            Read Article
-                                            <ArrowRight className="w-4 h-4" />
-                                        </div>
-                                    </div>
-                                </Link>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
 
             {/* 8. CTA */}
             <section className="py-32 bg-[#020202] relative overflow-hidden">

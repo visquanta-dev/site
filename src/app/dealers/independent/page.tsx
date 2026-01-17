@@ -3,7 +3,7 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import IndependentCalculator from '@/components/dealers/independent/IndependentCalculator';
-import IndependentInsights from '@/components/dealers/independent/IndependentInsights';
+import DealerInsights from '@/components/dealers/shared/DealerInsights';
 
 import { RefreshCw, Zap, TrendingUp, Search, DollarSign, Clock, LayoutGrid, CheckCircle2, ArrowRight, Gauge, ShoppingCart, HelpCircle, Lightbulb, ChevronDown, Calendar, BookOpen, Target, BarChart3, Database, MessageSquare, Layers, Signal, Wifi, Battery, User, Phone, Star, Timer, Globe, PhoneIncoming, Play } from 'lucide-react';
 import Image from 'next/image';
@@ -934,7 +934,10 @@ export default function IndependentDealersPage() {
 
 
             {/* 6. INSIGHTS */}
-            <IndependentInsights />
+            <DealerInsights
+                title="Independent Insight"
+                description="Strategies and insights for independents who refuse to be outpaced."
+            />
 
             {/* 7. FAQ SECTION */}
             <section className="py-24 bg-black">

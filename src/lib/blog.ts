@@ -90,6 +90,6 @@ export async function getFeaturedArticles(limit = 4) {
     return getArticles({ featured: true, limit });
 }
 
-export async function getLatestArticles(limit = 6) {
-    return getArticles({ limit });
+export async function getLatestArticles(limit = 6, category?: string) {
+    return getArticles({ limit, category });
 }

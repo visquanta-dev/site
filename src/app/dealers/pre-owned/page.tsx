@@ -2,6 +2,8 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import DealerInsights from '@/components/dealers/shared/DealerInsights';
+
 import DealerCalculator from '@/components/dealers/DealerCalculator';
 import { RefreshCw, Zap, TrendingUp, Search, DollarSign, Clock, LayoutGrid, CheckCircle2, ArrowRight, Gauge, ShoppingCart, HelpCircle, Lightbulb, ChevronDown, Calendar, BookOpen, Target, BarChart3, Database, MessageSquare, Layers, Signal, Wifi, Battery, User, Star, Timer, PhoneIncoming, Play, ShieldCheck, Globe } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
@@ -430,29 +432,12 @@ export default function PreOwnedPage() {
         mouseY.set(y);
     };
 
-    const [realArticles, setRealArticles] = useState<any[]>([]);
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
     const [activeFeature, setActiveFeature] = useState(0);
     const [visibleMessages, setVisibleMessages] = useState<any[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const chatContainerRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        fetch('/api/blog/latest?limit=3')
-            .then(res => res.json())
-            .then(data => {
-                if (data.posts && data.posts.length > 0) {
-                    const mapped = data.posts.map((post: any) => ({
-                        title: post.headline,
-                        excerpt: post.metaDescription,
-                        link: `/blog/${post.slug}`,
-                        category: post.category?.title || 'Used Strategy',
-                        date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-                    }));
-                    setRealArticles(mapped);
-                }
-            });
-    }, []);
 
     // Message Sequencing Logic
     useEffect(() => {
@@ -1080,60 +1065,11 @@ export default function PreOwnedPage() {
             </section>
 
             {/* 8. INSIGHTS */}
-            <section className="py-24 bg-[#020202] relative overflow-hidden">
-                <div className="container px-4 mx-auto relative z-10">
-                    <motion.div
-                        className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <div>
-                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                                Revenue <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#FF9040]">Insights</span>
-                            </h2>
-                            <p className="text-zinc-400 text-lg max-w-xl">
-                                Practical strategies for maximizing your current pre-owned and used car revenue potential.
-                            </p>
-                        </div>
-                    </motion.div>
+            <DealerInsights
+                title="Pre-Owned Insight"
+                description="Practical strategies for maximizing your current pre-owned and used car revenue potential."
+            />
 
-                    <motion.div
-                        className="grid md:grid-cols-3 gap-8"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
-                    >
-                        {realArticles.map((article, i) => (
-                            <motion.div key={i} variants={itemVariants}>
-                                <div className="group h-full rounded-3xl bg-[#080808] border border-white/5 hover:border-[#FF7404]/30 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_50px_-20px_rgba(255,116,4,0.15)]">
-                                    <div className="h-1.5 bg-gradient-to-r from-[#FF7404] to-[#FF9040] opacity-30 group-hover:opacity-100 transition-opacity" />
-                                    <div className="p-8">
-                                        <div className="flex items-center gap-4 text-xs text-zinc-500 mb-4 font-mono">
-                                            <Calendar className="w-3 h-3" />
-                                            {article.date}
-                                            <span className="px-2 py-0.5 rounded-full bg-[#FF7404]/10 text-[#FF7404] font-bold">
-                                                {article.category}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#FF7404] transition-colors">
-                                            {article.title}
-                                        </h3>
-                                        <p className="text-zinc-500 text-sm leading-relaxed mb-6">
-                                            {article.excerpt}
-                                        </p>
-                                        <div className="flex items-center gap-2 text-sm font-bold text-white group-hover:gap-4 transition-all">
-                                            Read Article
-                                            <ArrowRight className="w-4 h-4 text-[#FF7404]" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
 
             {/* SEO Strengthening: Link to Orphan Page */}
             <div className="py-12 bg-[#050505] border-y border-white/5">

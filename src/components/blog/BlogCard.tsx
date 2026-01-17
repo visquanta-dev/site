@@ -6,7 +6,7 @@ interface BlogCardProps {
     article: {
         slug: string;
         title: string;
-        heroImage: string;
+        heroImage?: string;
         category?: string;
         readTime?: number;
         publishedAt?: string;
@@ -16,6 +16,22 @@ interface BlogCardProps {
     variant?: 'default' | 'compact' | 'featured' | 'horizontal';
     className?: string;
 }
+
+const FALLBACK_IMAGE = '/images/wireframes/6.jpeg'; // High-quality automotive wireframe as default
+
+const CATEGORY_MAPPING: Record<string, string> = {
+    'Strategy': 'Strategy',
+    'Group Strategy': 'Strategy',
+    'Used Strategy': 'Strategy',
+    'BDC Optimization': 'BDC Strategy',
+    'Lead Reactivation': 'Lead Strategy',
+};
+
+const normalizeCategory = (cat?: string) => {
+    if (!cat) return 'Strategy';
+    return CATEGORY_MAPPING[cat] || cat;
+};
+
 
 export function BlogCard({ article, variant = 'default', className }: BlogCardProps) {
     return (
@@ -34,30 +50,25 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                     variant === 'featured' && "w-full aspect-video md:aspect-[21/9] border-b border-white/5",
                     variant === 'horizontal' && "w-[40%] h-full border-r border-white/5"
                 )}>
-                    {article.heroImage ? (
-                        <Image
-                            src={article.heroImage}
-                            alt={article.title}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                    ) : (
-                        <div className="w-full h-full bg-zinc-900 flex items-center justify-center">
-                            <span className="text-zinc-700 text-sm">No image</span>
-                        </div>
-                    )}
+                    <Image
+                        src={article.heroImage || FALLBACK_IMAGE}
+                        alt={article.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
 
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-60 pointer-events-none" />
 
                     {/* Category Badge - Over Image for default/compact */}
-                    {article.category && variant !== 'featured' && variant !== 'horizontal' && (
-                        <span className="absolute top-4 left-4 px-3 py-1.5 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-semibold uppercase tracking-wider text-white/90">
-                            {article.category}
+                    {variant !== 'featured' && variant !== 'horizontal' && (
+                        <span className="absolute top-4 left-4 px-3 py-1.5 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-semibold uppercase tracking-wider text-[#FF7404]">
+                            {normalizeCategory(article.category)}
                         </span>
                     )}
                 </div>
+
 
                 {/* Content */}
                 <div className={cn(
@@ -68,22 +79,33 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                 )}>
                     {/* Meta */}
                     <div className="flex items-center gap-2 text-[13px] text-zinc-500 font-medium tracking-wide mb-3">
-                        {article.publishedAt && (
-                            <>
-                                <time dateTime={article.publishedAt}>
-                                    {new Date(article.publishedAt).toLocaleDateString('en-US', {
-                                        month: 'short',
-                                        day: 'numeric',
-                                        year: 'numeric'
-                                    })}
-                                </time>
-                                <span className="w-0.5 h-0.5 rounded-full bg-zinc-700" />
-                            </>
-                        )}
-                        {article.readTime && (
+                        {(() => {
+                            const date = article.publishedAt ? new Date(article.publishedAt) : null;
+                            const isValidDate = date && !isNaN(date.getTime());
+
+                            if (isValidDate) {
+                                return (
+                                    <>
+                                        <time dateTime={article.publishedAt}>
+                                            {date.toLocaleDateString('en-US', {
+                                                month: 'short',
+                                                day: 'numeric',
+                                                year: 'numeric'
+                                            })}
+                                        </time>
+                                        <span className="w-0.5 h-0.5 rounded-full bg-zinc-700" />
+                                    </>
+                                );
+                            }
+                            return null;
+                        })()}
+                        {article.readTime ? (
                             <span>{article.readTime} min read</span>
+                        ) : (
+                            <span>5 min read</span>
                         )}
                     </div>
+
 
                     {/* Title */}
                     <h3 className={cn(
