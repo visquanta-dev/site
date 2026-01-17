@@ -399,7 +399,7 @@ export default function VoiceAgent() {
                                                                     y1={y1}
                                                                     x2={120 + Math.cos(angle) * (95 + baseLength)}
                                                                     y2={120 + Math.sin(angle) * (95 + baseLength)}
-                                                                    stroke={currentState === 'ENDED' ? '#52525b' : '#FF7404'}
+                                                                    stroke="#FF7404"
                                                                     strokeWidth="2"
                                                                     strokeLinecap="round"
                                                                     initial={{ opacity: 0.3 }}
