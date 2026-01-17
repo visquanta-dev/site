@@ -62,7 +62,7 @@ const caseStudies = [
         color: 'from-emerald-500/20 to-green-500/20',
         borderColor: 'group-hover:border-emerald-500/50',
         icon: BarChart3,
-        image: '/images/suite-bg/sdp-bg.png', // Reusing relevant asset
+        image: '', // Removed sdp-bg.png globally
         link: '/case-studies/prestige-imports'
     },
     {
@@ -196,12 +196,14 @@ export default function CaseStudiesPage() {
 
                                         {/* Cinematic Background Glow & Image */}
                                         <div className="absolute inset-0 opacity-20 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                                            <Image
-                                                src={study.image}
-                                                alt=""
-                                                fill
-                                                className="object-cover opacity-50 mix-blend-overlay"
-                                            />
+                                            {study.image && (
+                                                <Image
+                                                    src={study.image}
+                                                    alt=""
+                                                    fill
+                                                    className="object-cover opacity-50 mix-blend-overlay"
+                                                />
+                                            )}
                                             <div className={`absolute inset-0 bg-gradient-to-br ${study.color.replace('/20', '/10')} to-black/90`} />
                                         </div>
                                         <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${study.color.replace('/20', '/5')} to-transparent pointer-events-none`} />

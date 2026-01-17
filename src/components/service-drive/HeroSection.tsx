@@ -6,7 +6,7 @@ import { RequestDemoButton } from '../CalendlyModal';
 
 export default function HeroSection() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303] pt-28 pb-20 sm:pt-32 sm:pb-24 md:pt-36 md:pb-28 lg:pt-44 lg:pb-32">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303] pt-20 pb-16 sm:pt-24 sm:pb-20 md:pt-28 md:pb-24 lg:pt-36 lg:pb-28">
 
             {/* Premium Background */}
             <div className="absolute inset-0 z-0">
@@ -73,7 +73,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
-                    className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-stretch sm:items-center mb-16 sm:mb-20 md:mb-24"
+                    className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-stretch sm:items-center mb-10 md:mb-16"
                 >
                     <RequestDemoButton className="group relative px-8 sm:px-10 py-5 overflow-hidden rounded-xl shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)] transition-shadow duration-500 text-center uppercase">
                         <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-xl" />
@@ -92,23 +92,9 @@ export default function HeroSection() {
                     </a>
                 </motion.div>
 
-                {/* Mobile Visual Demo (NEW) */}
-                <div className="lg:hidden mb-16 sm:mb-20 flex justify-center">
-                    <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
-                        <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
-                            <img
-                                src="/images/suite-bg/sdp-bg.png"
-                                alt="Service Drive Pro Demo"
-                                className="w-full h-auto"
-                            />
-                        </div>
-                        <div className="absolute inset-0 -z-10 bg-[#FF7404]/10 blur-3xl rounded-full scale-150 opacity-50" />
-                    </div>
-                </div>
-
                 {/* Benefits Grid */}
                 {/* Benefits List (Premium Enterprise Style) */}
-                <div className="max-w-4xl mx-auto mt-32">
+                <div className="max-w-4xl mx-auto mt-16 md:mt-24">
                     <div className="text-center mb-16">
                         <h3 className="text-xs font-bold text-white/30 uppercase tracking-[0.2em] mb-4">Enterprise Grade</h3>
                         <div className="h-px w-24 bg-gradient-to-r from-transparent via-[#FF7404] to-transparent mx-auto" />

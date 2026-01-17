@@ -93,7 +93,7 @@ const suiteProducts = [
         link: "/service-drive",
         stats: "+15% RO Volume",
         color: "from-green-400 to-emerald-600",
-        image: "/images/suite-bg/sdp-bg.png"
+        image: ""
     },
     {
         id: 'cc',
@@ -365,12 +365,14 @@ export default function AutoMasterSuiteHub() {
                             >
                                 {/* Cinematic Background Glow & Image */}
                                 <div className="absolute inset-0 opacity-20 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                                    <Image
-                                        src={product.image}
-                                        alt=""
-                                        fill
-                                        className="object-cover opacity-50 mix-blend-overlay"
-                                    />
+                                    {product.image && (
+                                        <Image
+                                            src={product.image}
+                                            alt=""
+                                            fill
+                                            className="object-cover opacity-50 mix-blend-overlay"
+                                        />
+                                    )}
                                     <div className={`absolute inset-0 bg-gradient-to-br ${product.color.replace('from-', 'from-').replace('to-', 'to-').replace('500', '500/10').replace('400', '400/10').replace('600', '600/10')} to-black/90`} />
                                 </div>
                                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${product.color.replace('from-', 'from-').replace('to-', 'to-').replace('500', '500/10').replace('400', '400/10').replace('600', '600/10')} to-transparent pointer-events-none`} />

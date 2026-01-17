@@ -47,7 +47,7 @@ const callExamples: CallExample[] = [
         action: 'Service Drive Agent™ captured details and scheduled callback.',
         result: 'Advisor contacted customer next morning, inspection arranged.',
         time: '22:16',
-        videoId: '1155497997',
+        videoId: '1155498758',
         thumbnailUrl: '/images/call-examples/brake-light-custom.png',
         issue: 'Safety Concern'
     }
