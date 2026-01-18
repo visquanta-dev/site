@@ -5,8 +5,7 @@ export { baseSchema, organizationSchema, websiteSchema } from "./base";
 export {
     homepageSchema,
     webPageSchema,
-    softwareApplicationSchema,
-    faqPageSchema
+    softwareApplicationSchema
 } from "./homepage";
 
 // =============================================================================
