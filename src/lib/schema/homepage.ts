@@ -121,7 +121,61 @@ export const homepageSchema = {
             ]
         },
 
-    ]
+        // FAQPage - Homepage specific
+        {
+            "@type": "FAQPage",
+            "@id": "https://www.visquanta.com/#faq",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "How long does implementation take?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Most dealerships are fully operational within 14 days. Our white-glove onboarding process handles all integrations, training, and AI configuration so your team can focus on selling cars."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do I need to change my existing systems?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "No. AutoMaster integrates seamlessly with all major DMS platforms, CRMs, and lead sources. We work alongside your existing tools, not against them."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What happens if I receive a call while the AI is responding?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Our intelligent routing system ensures live calls always take priority. The AI seamlessly hands off to your team when a customer is ready to talk, with full conversation context."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is the AI customized for my dealership?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Absolutely. During onboarding, we train the AI on your inventory, pricing, processes, and brand voice. It learns your dealership's unique personality and selling style."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What's your typical ROI?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Dealers typically see 3-5x ROI within the first 90 days through recovered leads, faster response times, and increased service appointments. We provide transparent reporting so you can track every dollar."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can I cancel anytime?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. We offer month-to-month agreements with no long-term contracts. We're confident you'll stay because of results, not obligations."
+                    }
+                }
+            ]
+        }]
 };
 
 // Export individual schemas if needed separately
