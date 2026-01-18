@@ -300,6 +300,30 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  // Add headers to control indexing of non-HTML assets
+  async headers() {
+    return [
+      {
+        source: '/guides/:path*.pdf',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex',
+          },
+        ],
+      },
+      {
+        source: '/:path*.pdf',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
