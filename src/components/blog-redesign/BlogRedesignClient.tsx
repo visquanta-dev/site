@@ -7,7 +7,7 @@ import BlogHero from '@/components/blog-redesign/BlogHero';
 import BlogFilters from '@/components/blog-redesign/BlogFilters';
 import FeaturedPost from '@/components/blog-redesign/FeaturedPost';
 import BlogGrid from '@/components/blog-redesign/BlogGrid';
-import { BlogPost } from '@/lib/seobot';
+import { BlogArticle } from '@/lib/blog';
 
 const POSTS_PER_PAGE = 6;
 
@@ -18,7 +18,7 @@ interface Category {
 }
 
 interface BlogRedesignClientProps {
-    posts: BlogPost[];
+    posts: BlogArticle[];
     categories: Category[];
     totalPosts: number;
 }

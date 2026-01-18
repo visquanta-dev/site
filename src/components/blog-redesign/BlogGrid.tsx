@@ -1,11 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import BlogCard from './BlogCard';
-import { BlogPost } from '@/lib/seobot';
+import { BlogCard } from '@/components/blog/BlogCard';
+import { BlogArticle } from '@/lib/blog';
 
 interface BlogGridProps {
-    posts: BlogPost[];
+    posts: BlogArticle[];
 }
 
 export default function BlogGrid({ posts }: BlogGridProps) {
@@ -48,8 +48,8 @@ export default function BlogGrid({ posts }: BlogGridProps) {
             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-x-8 xl:gap-y-10"
         >
             {posts.map((post) => (
-                <motion.div key={post.id} variants={itemVariants}>
-                    <BlogCard post={post} />
+                <motion.div key={post.slug} variants={itemVariants}>
+                    <BlogCard article={post} />
                 </motion.div>
             ))}
         </motion.div>

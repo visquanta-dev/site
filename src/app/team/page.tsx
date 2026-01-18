@@ -149,13 +149,7 @@ const teamLayers: TeamLayer[] = [
                 email: "jcabatingan@visquanta.com",
 
             },
-            {
-                name: "Jose Medrano",
-                role: "Client Account Specialist",
-                image: "https://randomuser.me/api/portraits/men/45.jpg",
-                email: "jmedrano@visquanta.com",
 
-            },
             {
                 name: "Jonas Saycon",
                 role: "Client Account Specialist",

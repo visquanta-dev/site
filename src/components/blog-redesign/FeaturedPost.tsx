@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { BlogPost } from '@/lib/seobot';
+import { BlogArticle } from '@/lib/blog';
 
-export default function FeaturedPost({ post }: { post: BlogPost }) {
+export default function FeaturedPost({ post }: { post: BlogArticle }) {
     if (!post) return null;
 
     return (
@@ -29,8 +29,8 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
                         whileHover={{ scale: 1.05, transition: { duration: 0.6 } }}
                     >
                         <Image
-                            src={post.image || '/images/blog/default.jpg'}
-                            alt={post.headline}
+                            src={post.featuredImage}
+                            alt={post.title}
                             fill
                             className="object-contain"
                             priority
@@ -54,17 +54,17 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
                     </span>
 
                     <h2 className="text-3xl md:text-4xl lg:text-[42px] font-semibold text-white leading-[1.15] tracking-[-0.02em] mb-6 group-hover:text-[#ff7404] transition-colors duration-300">
-                        {post.headline}
+                        {post.title}
                     </h2>
 
                     <p className="text-lg text-white/60 mb-8 line-clamp-3 leading-relaxed lg:max-w-md">
-                        {post.metaDescription}
+                        {post.excerpt}
                     </p>
 
                     <div className="flex items-center gap-3 text-[13px] text-white/50 font-medium tracking-[0.02em] mt-auto lg:mt-0">
-                        <span>{new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                        <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                         <span className="w-1 h-1 rounded-full bg-white/30" />
-                        <span>{post.readingTime} min read</span>
+                        <span>{post.readTime} min read</span>
                     </div>
                 </div>
             </motion.div>

@@ -6,8 +6,11 @@ interface BlogCardProps {
     article: {
         slug: string;
         title: string;
-        heroImage?: string;
-        category?: string;
+        featuredImage?: string;
+        category?: string | {
+            slug: string;
+            title: string;
+        };
         readTime?: number;
         publishedAt?: string;
         author?: string;
@@ -51,7 +54,7 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                     variant === 'horizontal' && "w-[40%] h-full border-r border-white/5"
                 )}>
                     <Image
-                        src={article.heroImage || FALLBACK_IMAGE}
+                        src={article.featuredImage || FALLBACK_IMAGE}
                         alt={article.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -64,7 +67,7 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                     {/* Category Badge - Over Image for default/compact */}
                     {variant !== 'featured' && variant !== 'horizontal' && (
                         <span className="absolute top-4 left-4 px-3 py-1.5 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-semibold uppercase tracking-wider text-[#FF7404]">
-                            {normalizeCategory(article.category)}
+                            {normalizeCategory(typeof article.category === 'object' ? article.category.title : article.category)}
                         </span>
                     )}
                 </div>

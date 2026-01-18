@@ -1,14 +1,35 @@
 import { getAllPostsMeta } from './seobot';
 
 export interface BlogArticle {
+    id: string;
     slug: string;
     title: string;
-    heroImage: string;        // ALWAYS include
-    category: string;
+    featuredImage: string;        // ALWAYS include
+    category: {
+        slug: string;
+        title: string;
+    };
     readTime: number;
     publishedAt: string;
     excerpt?: string;
     author?: string;
+}
+
+// Single source of truth for post images to avoid visual drift
+export function getPostFeaturedImage(headline: string, defaultImage: string): string {
+    const h = headline || '';
+    if (h.includes('CRM Database Reactivation')) {
+        return '/images/wireframes/ultimate-guide-crm-reactivation.jpeg';
+    }
+    if (h.includes('Third-Party Lead Providers')) {
+        return '/images/wireframes/7_lead_providers.jpeg';
+    }
+    if (h.includes('First Contact Rates') ||
+        h.includes('AI in Auto Sales') ||
+        h.includes('Lead Response Time')) {
+        return '/images/wireframes/6.jpeg';
+    }
+    return defaultImage || '/images/blog/default.jpg';
 }
 
 // Single source of truth for fetching articles
@@ -36,14 +57,7 @@ export async function getArticles(options?: {
         filtered = filtered.filter(p => p.slug !== options.excludeSlug);
     }
 
-    // Handling 'featured' flag - currently defaulting to latest as we lack a specific field in BasePost
-    // If we had a tag 'featured', we could filter by that:
-    if (options?.featured) {
-        // filtered = filtered.filter(p => p.tags.some(t => t.slug === 'featured'));
-        // For now, just taking the top ones (latest) is the safest bet without knowing tag taxonomy
-    }
-
-    // Sort by date desc (already sorted in getAllPostsMeta but good to be safe)
+    // Sort by date desc
     filtered.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     // Limit
@@ -51,34 +65,20 @@ export async function getArticles(options?: {
         filtered = filtered.slice(0, options.limit);
     }
 
-    return filtered.map(post => {
-        // Manual override for specific wireframes (matching logic in [slug]/page.tsx)
-        let heroImage = post.image;
-        const headline = post.headline || '';
-
-        if (headline.includes('CRM Database Reactivation')) {
-            heroImage = '/images/crm-reactivation-featured.jpg';
-        } else if (headline.includes('Third-Party Lead Providers')) {
-            heroImage = '/images/wireframes/7_lead_providers.jpeg';
-        } else if (headline.includes('First Contact Rates')) {
-            heroImage = '/images/wireframes/6.jpeg';
-        } else if (headline.includes('AI in Auto Sales')) {
-            heroImage = '/images/wireframes/6.jpeg';
-        } else if (headline.includes('Lead Response Time')) {
-            heroImage = '/images/wireframes/6.jpeg';
-        }
-
-        return {
-            slug: post.slug,
-            title: post.headline,
-            heroImage: heroImage,
-            category: post.category.title,
-            readTime: post.readingTime,
-            publishedAt: post.createdAt,
-            excerpt: post.metaDescription,
-            author: 'VisQuanta Team'
-        };
-    });
+    return filtered.map(post => ({
+        id: post.id,
+        slug: post.slug,
+        title: post.headline,
+        featuredImage: getPostFeaturedImage(post.headline, post.image),
+        category: {
+            slug: post.category.slug,
+            title: post.category.title
+        },
+        readTime: post.readingTime,
+        publishedAt: post.createdAt,
+        excerpt: post.metaDescription,
+        author: 'VisQuanta Team'
+    }));
 }
 
 // Convenience functions that use the main function

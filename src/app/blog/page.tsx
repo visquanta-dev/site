@@ -1,7 +1,8 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import BlogRedesignClient from '@/components/blog-redesign/BlogRedesignClient';
-import { getBlogPosts, getAllCategories } from '@/lib/seobot';
+import { getAllCategories } from '@/lib/seobot';
+import { getArticles } from '@/lib/blog';
 
 export const revalidate = 60;
 
@@ -17,11 +18,12 @@ export const metadata = {
 };
 
 export default async function BlogPage() {
-    // Fetch all posts and categories
-    const [{ posts, total }, categories] = await Promise.all([
-        getBlogPosts(0, 50), // Get up to 50 posts for now
+    // Fetch all posts and categories using the standardized getArticles
+    const [posts, categories] = await Promise.all([
+        getArticles({ limit: 50 }),
         getAllCategories()
     ]);
+    const total = posts.length;
 
     return (
         <main className="bg-[#0a0a0a] min-h-screen selection:bg-[#D4A853] selection:text-black font-sans">

@@ -5,6 +5,8 @@ import { Calendar, Clock, ArrowRight, Share2, Tag, BookOpen, TrendingUp } from '
 import Link from 'next/link';
 import Image from 'next/image';
 import { getBlogPost, getBlogPosts } from '@/lib/seobot';
+import { getArticles, getPostFeaturedImage, getRelatedArticles } from '@/lib/blog';
+import { BlogCard } from '@/components/blog/BlogCard';
 import BlogPostClient, { ReadingProgress, TableOfContents, ExecutiveSummary } from './BlogPostClient';
 import { BlogArticleHeader } from '@/components/blog/BlogArticleHeader';
 import { BLOG_ENHANCEMENTS } from '@/data/blog-enhancements';
@@ -36,11 +38,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
+    // Use standardized featured image mapping to avoid visual drift in social previews
+    const featuredImage = getPostFeaturedImage(post.headline, post.image);
+
     // Ensure image URL is absolute
-    const imageUrl = post.image?.startsWith('http')
-        ? post.image
-        : post.image
-            ? `https://www.visquanta.com${post.image}`
+    const imageUrl = featuredImage?.startsWith('http')
+        ? featuredImage
+        : featuredImage
+            ? `https://www.visquanta.com${featuredImage}`
             : 'https://www.visquanta.com/images/og-image.png';
 
     // Sanitize and expand meta description if too short (for SEO)
@@ -114,48 +119,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
     const enhancement = BLOG_ENHANCEMENTS[slug];
 
-    // Manual override for the Featured image as requested
-    if (post.headline.includes('CRM Database Reactivation')) {
-        post.image = '/images/wireframes/ultimate-guide-crm-reactivation.jpeg';
-    }
-    if (post.headline.includes('Third-Party Lead Providers')) {
-        post.image = '/images/wireframes/7_lead_providers.jpeg';
-    }
+    // Standardized current post image mapping
+    post.image = getPostFeaturedImage(post.headline, post.image);
 
-    // Apply similar overrides to related posts to ensure they have images
-    if (post.relatedPosts) {
-        post.relatedPosts = post.relatedPosts.map(related => {
-            const headline = related.headline || '';
-            let image = related.image;
-            let category = related.category;
-
-            if (headline.includes('CRM Database Reactivation')) {
-                image = '/images/wireframes/ultimate-guide-crm-reactivation.jpeg';
-            } else if (headline.includes('Third-Party Lead Providers')) {
-                image = '/images/wireframes/7_lead_providers.jpeg';
-            } else if (headline.includes('First Contact Rates')) {
-                image = '/images/wireframes/6.jpeg'; // Use the generic dealership wireframe
-            } else if (headline.includes('AI in Auto Sales')) {
-                image = '/images/wireframes/6.jpeg'; // Re-use generic for now
-            } else if (headline.includes('Lead Response Time')) {
-                image = '/images/wireframes/6.jpeg';
-            }
-
-            // Ensure category exists for the label
-            if (!category) {
-                category = {
-                    title: 'Industry Insights',
-                    slug: 'industry-insights'
-                };
-            }
-
-            return {
-                ...related,
-                image,
-                category
-            };
-        });
-    }
+    // Standardized Related Articles fetching
+    const relatedArticles = await getRelatedArticles(post.category?.slug || 'industry-insights', slug, 2);
 
     // Article Schema
     const articleSchema = {
@@ -393,60 +361,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                             <div className="h-px flex-1 bg-zinc-800" />
                                         </div>
 
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            {post.relatedPosts.slice(0, 2).map((related) => (
-                                                <Link
-                                                    key={related.id}
-                                                    href={`/blog/${related.slug}`}
-                                                    className="group flex flex-col h-full bg-zinc-900/80 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-zinc-700 hover:shadow-xl hover:shadow-black/50 hover:-translate-y-1"
-                                                >
-                                                    {/* Image Section */}
-                                                    <div className="aspect-video w-full overflow-hidden relative">
-                                                        {related.image ? (
-                                                            <Image
-                                                                src={related.image}
-                                                                alt={related.headline}
-                                                                fill
-                                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                                            />
-                                                        ) : (
-                                                            <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
-                                                                <span className="text-zinc-700 font-serif text-4xl font-bold opacity-20">V</span>
-                                                            </div>
-                                                        )}
-                                                        {/* Subtle gradient overlay at bottom for depth */}
-                                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
-                                                    </div>
-
-                                                    {/* Content Section */}
-                                                    <div className="p-6 flex flex-col flex-1">
-                                                        {/* Category */}
-                                                        {related.category && (
-                                                            <span className="text-xs font-bold uppercase tracking-wider text-[#FF7404] mb-3">
-                                                                {related.category.title}
-                                                            </span>
-                                                        )}
-
-                                                        {/* Title */}
-                                                        <h3 className="text-xl font-serif font-semibold text-white leading-tight line-clamp-2 mb-4 group-hover:text-[#FF7404] transition-colors">
-                                                            {related.headline}
-                                                        </h3>
-
-                                                        {/* Meta Row */}
-                                                        <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
-                                                            <div className="flex items-center gap-2 text-sm text-zinc-500">
-                                                                <Clock className="w-3.5 h-3.5" />
-                                                                <span>{related.readingTime || 5} min read</span>
-                                                            </div>
-                                                            <span className="text-sm font-medium text-[#FF7404] group-hover:underline flex items-center gap-1">
-                                                                Read Article
-                                                                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            ))}
-                                        </div>
+                                        {relatedArticles && relatedArticles.length > 0 && (
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                {relatedArticles.map((article) => (
+                                                    <BlogCard
+                                                        key={article.slug}
+                                                        article={article}
+                                                        className="hover:-translate-y-2 transition-transform duration-300"
+                                                    />
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 </BlogPostClient>
                             )}

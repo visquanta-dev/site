@@ -203,12 +203,7 @@ export default function HeroSection() {
                                     image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4d1ae44a7d738f878e7c6_20250806_173050-removebg-preview-modified.avif",
                                     badge: "Client Success"
                                 },
-                                {
-                                    name: "Jose Medrano",
-                                    role: "Client Account Specialist",
-                                    image: "https://randomuser.me/api/portraits/men/45.jpg",
-                                    badge: "Client Success"
-                                },
+
                                 {
                                     name: "Jonas Saycon",
                                     role: "Client Account Specialist",

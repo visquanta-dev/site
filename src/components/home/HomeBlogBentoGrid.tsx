@@ -70,9 +70,9 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                             <div className="grid grid-cols-1 lg:grid-cols-2">
                                 {/* Image Section - Large & Cinematic */}
                                 <div className="relative aspect-video lg:aspect-auto lg:h-full overflow-hidden border-b lg:border-b-0 lg:border-r border-white/[0.06]">
-                                    {featured.heroImage && (
+                                    {featured.featuredImage && (
                                         <Image
-                                            src={featured.heroImage}
+                                            src={featured.featuredImage}
                                             alt={featured.title}
                                             fill
                                             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -121,7 +121,7 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                                 <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
                                     <div className="mb-6 flex items-center gap-3">
                                         <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#ff7404] bg-[#ff7404]/10 px-3 py-1.5 rounded-full border border-[#ff7404]/20">
-                                            {featured.category || 'Featured'}
+                                            {typeof featured.category === 'object' ? featured.category.title : (featured.category || 'Featured')}
                                         </span>
                                         <span className="text-zinc-500 text-sm">•</span>
                                         <span className="text-zinc-500 text-sm font-medium">
@@ -205,9 +205,9 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
         >
             <Link href={`/blog/${post.slug}`} className="group block bg-[#111] border border-white/[0.06] rounded-[20px] overflow-hidden hover:border-[#ff7404]/30 hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
                 <div className="relative aspect-video w-full overflow-hidden border-b border-white/[0.06]">
-                    {post.heroImage && (
+                    {post.featuredImage && (
                         <Image
-                            src={post.heroImage}
+                            src={post.featuredImage}
                             alt={post.title}
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -218,7 +218,7 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
 
                 <div className="p-6 flex-1 flex flex-col">
                     <div className="mb-4 flex items-center gap-2 text-xs font-medium text-zinc-500">
-                        <span className="text-[#ff7404]">{post.category || 'Insight'}</span>
+                        <span className="text-[#ff7404]">{typeof post.category === 'object' ? post.category.title : (post.category || 'Insight')}</span>
                         <span>•</span>
                         <span>{formatDate(post.publishedAt)}</span>
                     </div>
