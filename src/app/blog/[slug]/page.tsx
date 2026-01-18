@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         description: description,
         authors: [{ name: 'VisQuanta', url: 'https://www.visquanta.com' }],
         alternates: {
-            canonical: `https://visquanta.com/blog/${slug}`,
+            canonical: `https://www.visquanta.com/blog/${slug}`,
         },
         // Complete Open Graph for articles (10/10 compliance)
         openGraph: {
@@ -135,21 +135,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         'author': {
             '@type': 'Organization',
             'name': 'VisQuanta',
-            'url': 'https://visquanta.com'
+            'url': 'https://www.visquanta.com'
         },
         'publisher': {
             '@type': 'Organization',
             'name': 'VisQuanta',
             'logo': {
                 '@type': 'ImageObject',
-                'url': 'https://visquanta.com/logo-white.png'
+                'url': 'https://www.visquanta.com/logo-white.png'
             }
         },
         'datePublished': post.createdAt,
         'dateModified': post.updatedAt || post.createdAt,
         'mainEntityOfPage': {
             '@type': 'WebPage',
-            '@id': `https://visquanta.com/blog/${slug}`
+            '@id': `https://www.visquanta.com/blog/${slug}`
         }
     };
 
@@ -162,19 +162,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://visquanta.com'
+                'item': 'https://www.visquanta.com'
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Blog',
-                'item': 'https://visquanta.com/blog'
+                'item': 'https://www.visquanta.com/blog'
             },
             {
                 '@type': 'ListItem',
                 'position': 3,
                 'name': post.headline,
-                'item': `https://visquanta.com/blog/${slug}`
+                'item': `https://www.visquanta.com/blog/${slug}`
             }
         ]
     };

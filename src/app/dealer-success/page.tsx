@@ -37,7 +37,7 @@ export default function DealerSuccessPage() {
                 <div className="py-12 bg-black border-y border-white/5">
                     <div className="container-wide text-center">
                         <a
-                            href="/blog/ai-mvp-car-sales-teams-csi-scores"
+                            href="/reputation-management"
                             className="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em] hover:text-[#FF7404] transition-colors duration-300 inline-block group"
                         >
                             Read our guide: <span className="underline decoration-white/10 underline-offset-4 group-hover:decoration-[#FF7404]/50">How AI Improves CSI Scores</span>
