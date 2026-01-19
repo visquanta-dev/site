@@ -414,8 +414,11 @@ export default function Navigation() {
               aria-modal="true"
               aria-label="Mobile Navigation"
               tabIndex={-1}
-              // position: fixed, inset: 0, z-index: 2000 (above header)
-              className="fixed inset-0 z-[2000] bg-black/95 backdrop-blur-3xl overflow-y-auto lg:hidden flex flex-col focus:outline-none"
+              className="fixed inset-0 z-[2000] bg-black/95 backdrop-blur-xl overflow-y-auto lg:hidden flex flex-col focus:outline-none"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                touchAction: 'pan-y'
+              }}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -444,9 +447,22 @@ export default function Navigation() {
                 }
               }}
             >
+              {/* Ambient Background Effects - MUST be first and isolated */}
+              <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#FF7404]/10 rounded-full blur-[100px]" />
+              </div>
+
               {/* Header inside Portal to maintain visual consistency and provide "X" button */}
-              <div className="sticky top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 bg-black/20 backdrop-blur-md border-b border-white/5">
-                <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center">
+              <div
+                className="sticky top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 bg-black/80 backdrop-blur-md border-b border-white/5"
+                style={{ WebkitTapHighlightColor: 'transparent' }}
+              >
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center"
+                  style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
+                >
                   <Image
                     src="/images/visquanta-logo-white.png"
                     alt="VisQuanta"
@@ -460,15 +476,16 @@ export default function Navigation() {
                   size="icon"
                   className="text-white hover:bg-white/10 h-11 w-11"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
                 >
                   <X className="w-6 h-6" />
                 </Button>
               </div>
 
-              {/* Ambient Background Effects */}
-              <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#FF7404]/10 rounded-full blur-[100px] pointer-events-none" />
-
-              <div className="flex flex-col flex-1 px-6 pb-12 relative z-10 mt-8">
+              <div
+                className="flex flex-col flex-1 px-6 pb-12 relative z-10 mt-8"
+                style={{ touchAction: 'pan-y' }}
+              >
                 <nav className="space-y-6">
                   {navItems.map((item, idx) => (
                     <motion.div
@@ -482,6 +499,7 @@ export default function Navigation() {
                           <button
                             onClick={() => setMobileActiveMenu(mobileActiveMenu === item.label ? null : item.label)}
                             className="w-full flex items-center justify-between text-2xl font-bold text-white uppercase tracking-wider text-left"
+                            style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
                           >
                             {item.label}
                             <ChevronDown
@@ -505,7 +523,8 @@ export default function Navigation() {
                                         key={childIdx}
                                         href={child.href}
                                         onClick={() => setIsMobileMenuOpen(false)}
-                                        className="flex items-center gap-4 group/child py-1"
+                                        className="flex items-center gap-4 group/child py-2 -mx-2 px-2 rounded-lg active:bg-white/5"
+                                        style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
                                       >
                                         {Icon && (
                                           <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#FF7404]">
@@ -532,7 +551,8 @@ export default function Navigation() {
                         <Link
                           href={item.href || '#'}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="block text-2xl font-bold text-white uppercase tracking-wider"
+                          className="block text-2xl font-bold text-white uppercase tracking-wider py-1 -mx-2 px-2 rounded-lg active:bg-white/5"
+                          style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
                         >
                           {item.label}
                         </Link>
@@ -549,7 +569,9 @@ export default function Navigation() {
                 >
                   <Link
                     href="https://portal.visquanta.com"
-                    className="flex items-center justify-between w-full p-5 rounded-2xl border border-white/10 bg-white/[0.03]"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between w-full p-5 rounded-2xl border border-white/10 bg-white/[0.03] active:bg-white/10"
+                    style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
                   >
                     <span className="text-sm font-bold uppercase tracking-widest text-[#FF7404]">
                       VQonsole Access
@@ -558,7 +580,11 @@ export default function Navigation() {
                   </Link>
 
                   <RequestDemoButton asChild>
-                    <button className="w-full py-5 rounded-2xl bg-[#FF7404] text-black font-black uppercase tracking-widest text-sm">
+                    <button
+                      className="w-full py-5 rounded-2xl bg-[#FF7404] text-black font-black uppercase tracking-widest text-sm active:bg-[#FF8C5A]"
+                      style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
                       Speak With Our Team
                     </button>
                   </RequestDemoButton>
