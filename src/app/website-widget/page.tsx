@@ -19,6 +19,7 @@ import {
   Bot,
   Lock
 } from 'lucide-react'
+import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
 // ============================================================================
@@ -28,6 +29,7 @@ import Footer from '@/components/Footer'
 export default function WebsiteWidgetPage() {
   return (
     <main className="bg-[#0a0a0a] min-h-screen">
+      <Navigation />
       <HeroSection />
       <ProblemSection />
       <HowItWorksSection />
