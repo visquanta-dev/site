@@ -95,3 +95,10 @@ Speed to lead measures how fast a dealership responds to new inquiries. Respondi
 
 **What is BDC in a dealership?**
 BDC stands for Business Development Center—the team responsible for handling inbound leads, making outbound calls, and setting appointments. AI-powered BDC automation helps dealerships scale lead handling without adding staff.
+
+## Service Drive - Voice AI for Dealerships
+- Voice AI that answers 100% of service calls
+- Integrates with DMS for real-time appointment booking
+- 24/7/365 coverage
+- <60 second response time
+- 25% call-to-appointment conversion

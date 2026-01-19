@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Clock, ArrowRight, X } from 'lucide-react';
 
+import Image from 'next/image';
+import MobileCarousel from './MobileCarousel';
+
 interface CallExample {
     id: string;
     title: string;
@@ -26,7 +29,7 @@ const callExamples: CallExample[] = [
         result: 'Vehicle was towed in overnight, customer contacted promptly.',
         time: '20:11',
         videoId: '1128516515',
-        thumbnailUrl: '/images/call-examples/epc-warning-custom.png',
+        thumbnailUrl: '/images/call-examples/epc-warning-custom-opt.png',
         issue: 'Emergency Diagnostic'
     },
     {
@@ -37,7 +40,7 @@ const callExamples: CallExample[] = [
         result: 'Advisor contacted customer first thing to confirm appointment.',
         time: '19:58',
         videoId: '1128816533',
-        thumbnailUrl: '/images/call-examples/book-service-custom.jpg',
+        thumbnailUrl: '/images/call-examples/book-service-custom-opt.png',
         issue: 'After-Hours Booking'
     },
     {
@@ -48,7 +51,7 @@ const callExamples: CallExample[] = [
         result: 'Advisor contacted customer next morning, inspection arranged.',
         time: '22:16',
         videoId: '1155498758',
-        thumbnailUrl: '/images/call-examples/brake-light-custom.png',
+        thumbnailUrl: '/images/call-examples/brake-light-custom-opt.png',
         issue: 'Safety Concern'
     }
 ];
@@ -84,7 +87,7 @@ export default function CallExamples() {
                         transition={{ delay: 0.1 }}
                         className="text-4xl md:text-6xl font-bold mb-6 text-white tracking-tight"
                     >
-                        Listen to the <span className="text-[#FF7404]">Difference</span>
+                        Hear <span className="text-[#FF7404]">Voice AI</span> Handle Real Calls
                     </motion.h2>
 
                     <motion.p
@@ -100,7 +103,7 @@ export default function CallExamples() {
                 </div>
 
                 {/* Call Cards Grid */}
-                <div className="grid md:grid-cols-3 gap-8">
+                <MobileCarousel gridClassName="md:grid-cols-3" slideClassName="w-[85vw]">
                     {callExamples.map((call, idx) => (
                         <motion.div
                             key={call.id}
@@ -108,10 +111,10 @@ export default function CallExamples() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.15, duration: 0.8 }}
-                            className={`group relative rounded-[2rem] bg-white/[0.02] border ${activeVideoId === call.id ? 'border-[#FF7404]/50' : 'border-white/[0.05]'} overflow-hidden transition-all duration-500 hover:bg-white/[0.04]`}
+                            className={`group h-full relative rounded-[2rem] bg-black border ${activeVideoId === call.id ? 'border-[#FF7404]/50' : 'border-white/[0.05]'} overflow-hidden transition-all duration-500 hover:bg-white/[0.04]`}
                         >
                             {/* Video Player / Thumbnail Area */}
-                            <div className="relative aspect-[4/3] bg-slate-900 overflow-hidden">
+                            <div className="relative aspect-[4/3] bg-[#020202] overflow-hidden">
                                 <AnimatePresence mode="wait">
                                     {activeVideoId === call.id ? (
                                         <motion.div
@@ -145,10 +148,12 @@ export default function CallExamples() {
                                             exit={{ opacity: 0 }}
                                             className="absolute inset-0"
                                         >
-                                            <img
+                                            <Image
                                                 src={call.thumbnailUrl}
-                                                alt={call.title}
-                                                className="w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
+                                                alt={`Voice AI handling ${call.title} call`}
+                                                fill
+                                                className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent" />
 
@@ -219,7 +224,7 @@ export default function CallExamples() {
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </MobileCarousel>
 
                 {/* Bottom CTA */}
                 <motion.div
@@ -230,7 +235,7 @@ export default function CallExamples() {
                     className="mt-20 text-center"
                 >
                     <p className="text-lg text-white/40 mb-8 max-w-2xl mx-auto font-light">
-                        Every one of these calls would have gone to voicemail without Service Drive Agent™
+                        These calls were answered by Voice AI, after hours, instantly, no staff needed. How many are you missing?
                     </p>
                     <a href="/book-demo" className="group relative inline-flex items-center gap-3 px-8 py-4 overflow-hidden rounded-xl shadow-[0_0_40px_-10px_rgba(255,116,4,0.3)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.5)] transition-shadow duration-500">
                         <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-xl" />

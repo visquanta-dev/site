@@ -80,6 +80,18 @@ export default function VoiceAgent() {
         setIsReady(true);
     }, []);
 
+    // Event listener for external triggers (e.g., Hero Button)
+    useEffect(() => {
+        const handleExternalTrigger = () => {
+            // Ensure it's visible if hidden
+            setIsVisible(true);
+            handleStartConversation();
+        };
+
+        window.addEventListener('open-voice-demo', handleExternalTrigger);
+        return () => window.removeEventListener('open-voice-demo', handleExternalTrigger);
+    }, [handleStartConversation]);
+
     const handleConnect = useCallback(async () => {
         try {
             await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -368,18 +380,7 @@ export default function VoiceAgent() {
                                                 />
                                             )}
 
-                                            {/* Audio Visualizer Ring - Only when LISTENING (Connected and not 'processing' in terms of speaking, but usually visualizer is for AI speaking? Spec says 'No waveform' for PROCESSING... wait.
-                                             Spec: STATE 3 (Listening): "Subtle waveform or signal animation".
-                                             Spec: STATE 4 (Processing): "No mic waveform". "Slow rotational glow".
-                                             Actually, ElevenLabs `isSpeaking` usually means AI IS TALKING.
-                                             If AI is talking -> User sees "Processing" (State 4)? No, User sees "AI is Speaking".
-                                             Wait. User spec: "STATE 4: PROCESSING / RESPONDING ... Purpose: Indicate system is handling or responding ... Text: Processing ... Subtext: Handling your request".
-                                             This implies the delay *before* the AI speaks? Or while it speaks?
-                                             Usually "Processing" is the gap. "Responding" is speech.
-                                             If `isSpeaking` is true, AI is responding.
-                                             Let's treat `isSpeaking` as State 4 ("Responding").
-                                             If `!isSpeaking` (and connected) -> State 3 ("Listening").
-                                             */}
+                                            {/* Audio Visualizer Ring */}
                                             {(currentState === 'LISTENING' || currentState === 'PROCESSING') && (
                                                 <div className="absolute inset-0 flex items-center justify-center" style={{ width: 200, height: 200 }}>
                                                     <svg className="absolute w-[220px] h-[220px] -left-[10px] -top-[10px]" viewBox="0 0 240 240">
@@ -387,8 +388,6 @@ export default function VoiceAgent() {
                                                             const angle = (i * 10) * Math.PI / 180;
                                                             const x1 = 120 + Math.cos(angle) * 95;
                                                             const y1 = 120 + Math.sin(angle) * 95;
-                                                            // Active waveform only when AI is speaking (Processing/Responding State) or User is speaking (we don't have user VAD exposed easily in this hook, but we can fake 'signal animation' in Listening state)
-                                                            // Spec for Listening: "Subtle waveform or signal animation".
                                                             const isActive = currentState === 'LISTENING' || currentState === 'PROCESSING';
                                                             const baseLength = currentState === 'PROCESSING' ? 12 + Math.sin(i * 0.5) * 8 : (currentState === 'LISTENING' ? 4 + Math.random() * 4 : 4);
 
@@ -612,14 +611,13 @@ export default function VoiceAgent() {
                                     <X className="w-2.5 h-2.5" />
                                 </button>
 
-                                {/* Main Card */}
+                                {/* Launcher Card - Premium Design (All screens) */}
                                 <button
                                     onClick={handleStartConversation}
                                     disabled={isConnecting}
                                     className={`flex items-center gap-4 bg-[#0a0a0a] border border-white/[0.08] pl-4 pr-5 py-3 rounded-full backdrop-blur-xl transition-all duration-300 cursor-pointer group/card ${isConnecting ? 'opacity-70 cursor-wait' : ''
                                         } animate-[pulse-shadow_2s_ease-in-out_infinite]`}
                                 >
-                                    {/* Animated Icon */}
                                     <div className="relative w-11 h-11 rounded-full bg-gradient-to-br from-[#FF7404] to-[#FF7404]/70 flex items-center justify-center shadow-[0_0_24px_rgba(255,116,4,0.35)] group-hover/card:shadow-[0_0_32px_rgba(255,116,4,0.5)] transition-shadow">
                                         {isConnecting ? (
                                             <motion.div
@@ -649,7 +647,6 @@ export default function VoiceAgent() {
                                         )}
                                     </div>
 
-                                    {/* Text Content */}
                                     <div className="flex flex-col items-start">
                                         <div className="flex items-center gap-2">
                                             <span className="text-white text-sm font-semibold tracking-wide">
