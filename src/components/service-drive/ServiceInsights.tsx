@@ -51,40 +51,38 @@ export default function ServiceInsights() {
                             className="h-full" // Ensure full height in flex container
                         >
                             <Link href={article.href} className="group block h-full">
-                                <div className="relative h-full rounded-2xl overflow-hidden border border-white/10 bg-[#111] transition-all duration-300 hover:border-[#FF6B35]/30 hover:shadow-[0_0_30px_-5px_rgba(255,107,53,0.15)] hover:-translate-y-1">
+                                <div className="relative h-full rounded-[2rem] bg-black border border-white/[0.05] overflow-hidden transition-all duration-500 hover:border-[#FF7404]/50 hover:bg-white/[0.04]">
 
                                     {/* Image Container */}
-                                    <div className="relative aspect-video w-full overflow-hidden">
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent z-10 opacity-80" />
-                                        <div className="absolute inset-0 bg-black/40 z-0 transition-opacity duration-300 group-hover:opacity-30" />
-
+                                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#020202]">
                                         <Image
                                             src={article.image}
                                             alt={article.title}
                                             fill
                                             unoptimized
-                                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                            className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
                                         />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent" />
                                     </div>
 
                                     {/* Content */}
                                     <div className="p-8 relative">
                                         <div className="mb-4">
-                                            <span className="text-xs font-bold text-[#FF6B35] tracking-widest uppercase">
+                                            <span className="text-[10px] font-bold text-[#FF7404] tracking-widest uppercase px-3 py-1 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20">
                                                 {article.category}
                                             </span>
                                         </div>
 
-                                        <h3 className="text-2xl font-bold text-white mb-3 leading-tight group-hover:text-[#FF6B35] transition-colors duration-300">
+                                        <h3 className="text-2xl font-bold text-white mb-3 leading-tight group-hover:text-[#FF7404] transition-colors duration-300">
                                             {article.title}
                                         </h3>
 
-                                        <p className="text-[#A1A1AA] mb-6 line-clamp-2">
+                                        <p className="text-white/50 mb-6 line-clamp-2 text-sm font-light leading-relaxed">
                                             {article.description}
                                         </p>
 
-                                        <div className="flex items-center text-sm font-bold text-white group-hover:text-[#FF6B35] transition-colors gap-2">
-                                            READ ARTICLE
+                                        <div className="flex items-center text-xs font-bold text-white group-hover:text-[#FF7404] transition-colors gap-2 uppercase tracking-widest">
+                                            Read Article
                                             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                                         </div>
                                     </div>

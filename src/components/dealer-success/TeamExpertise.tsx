@@ -70,33 +70,45 @@ export default function TeamExpertise() {
                             </div>
                         </div>
 
-                        <div className="relative">
-                            <div className="h-full min-h-[400px] rounded-3xl bg-[#0d0b0a] border border-white/10 flex flex-col items-center justify-center text-center p-8 space-y-6 relative overflow-hidden group hover:border-[#FF7404]/50 transition-colors duration-500">
-                                {/* Ambient Background */}
-                                <div className="absolute inset-0 bg-gradient-to-b from-[#FF7404]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="flex flex-col gap-6">
+                            {[
+                                {
+                                    name: "Charles Snodgrass",
+                                    role: "Director of Client Success",
+                                    image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61fc9b8fa6d06815ceb_charles%2Csnodgrass%2Cheadshot%2Cvisquanta.webp",
+                                    quote: "I've sat in your seat. I know the grind. My job is to ensure VisQuanta delivers actual ROI, not just software."
+                                },
+                                {
+                                    name: "Jonas Saycon",
+                                    role: "Client Account Specialist",
+                                    image: "/team/jonas-saycon.png",
+                                    quote: "Every dealership is unique. I focus on fine-tuning our solutions to fit your specific workflows and goals."
+                                }
+                            ].map((expert, i) => (
+                                <div key={i} className="rounded-3xl bg-[#0d0b0a] border border-white/10 flex flex-col items-center justify-center text-center p-8 space-y-4 relative overflow-hidden group hover:border-[#FF7404]/50 transition-colors duration-500">
+                                    {/* Ambient Background */}
+                                    <div className="absolute inset-0 bg-gradient-to-b from-[#FF7404]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                <div className="relative z-10">
-                                    <div className="w-32 h-32 rounded-full border-2 border-[#FF7404] p-1 mx-auto mb-6 shadow-[0_0_30px_rgba(255,116,4,0.2)]">
-                                        <div className="w-full h-full rounded-full overflow-hidden bg-zinc-800 relative">
-                                            <img
-                                                src="https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61fc9b8fa6d06815ceb_charles%2Csnodgrass%2Cheadshot%2Cvisquanta.webp"
-                                                alt="Charles Snodgrass"
-                                                className="w-full h-full object-cover"
-                                            />
+                                    <div className="relative z-10 w-full">
+                                        <div className="w-24 h-24 rounded-full border-2 border-[#FF7404] p-1 mx-auto mb-4 shadow-[0_0_30px_rgba(255,116,4,0.2)]">
+                                            <div className="w-full h-full rounded-full overflow-hidden bg-zinc-800 relative">
+                                                <img
+                                                    src={expert.image}
+                                                    alt={expert.name}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
                                         </div>
 
+                                        <h3 className="text-xl font-bold text-white mb-1">{expert.name}</h3>
+                                        <p className="text-[#FF7404] text-xs font-bold uppercase tracking-widest mb-4">{expert.role}</p>
+
+                                        <p className="text-white/50 text-sm max-w-sm mx-auto border-t border-white/10 pt-4 italic">
+                                            "{expert.quote}"
+                                        </p>
                                     </div>
-
-                                    <h3 className="text-2xl font-bold text-white mb-1">Charles Snodgrass</h3>
-                                    <p className="text-[#FF7404] text-sm font-bold uppercase tracking-widest mb-4">Director of Client Success</p>
-
-                                    <p className="text-white/50 max-w-sm mx-auto mb-8 border-t border-white/10 pt-4">
-                                        "I've sat in your seat. I know the grind. My job is to ensure VisQuanta delivers actual ROI, not just software."
-                                    </p>
-
-
                                 </div>
-                            </div>
+                            ))}
                         </div>
 
                     </div>

@@ -40,15 +40,15 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
     return (
         <Link href={`/blog/${article.slug}`} className={cn("group block h-full", className)}>
             <article className={cn(
-                "flex flex-col h-full bg-[#080808] border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#FF7404]/30 hover:shadow-[0_20px_40px_-20px_rgba(255,116,4,0.15)] group-hover:-translate-y-1",
+                "flex flex-col h-full bg-black border border-white/[0.05] rounded-[2rem] overflow-hidden transition-all duration-500 hover:border-[#FF7404]/50 hover:bg-white/[0.04]",
                 variant === 'featured' && "md:flex-col",
                 variant === 'horizontal' && "flex-row"
             )}>
 
                 {/* Image */}
                 <div className={cn(
-                    "relative overflow-hidden bg-[#151515]",
-                    variant === 'default' && "aspect-video w-full",
+                    "relative overflow-hidden bg-[#020202]",
+                    variant === 'default' && "aspect-[4/3] w-full",
                     variant === 'compact' && "aspect-[3/2] w-full",
                     variant === 'featured' && "w-full aspect-video md:aspect-[21/9] border-b border-white/5",
                     variant === 'horizontal' && "w-[40%] h-full border-r border-white/5"
@@ -57,16 +57,17 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                         src={article.featuredImage || FALLBACK_IMAGE}
                         alt={article.title}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
 
                     {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-60 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent pointer-events-none" />
 
-                    {/* Category Badge - Over Image for default/compact */}
-                    {variant !== 'featured' && variant !== 'horizontal' && (
-                        <span className="absolute top-4 left-4 px-3 py-1.5 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-semibold uppercase tracking-wider text-[#FF7404]">
+                    {/* Category Badge - Keep absolute only for horizontal/featured/compact if needed, or unify. 
+                        Moving to body for default to match ServiceInsights */}
+                    {variant !== 'default' && (
+                        <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-bold uppercase tracking-wider text-[#FF7404]">
                             {normalizeCategory(typeof article.category === 'object' ? article.category.title : article.category)}
                         </span>
                     )}
@@ -76,12 +77,23 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                 {/* Content */}
                 <div className={cn(
                     "flex flex-col flex-1",
-                    (variant === 'default' || variant === 'compact') && "p-6",
-                    variant === 'featured' && "p-8",
-                    variant === 'horizontal' && "p-6 bg-[#111] justify-center"
+                    (variant === 'default' || variant === 'compact') && "p-8",
+                    variant === 'featured' && "p-10",
+                    variant === 'horizontal' && "p-8 bg-transparent justify-center"
                 )}>
-                    {/* Meta */}
-                    <div className="flex items-center gap-2 text-[13px] text-zinc-500 font-medium tracking-wide mb-3">
+
+                    {/* Category Pill (Default Variant) */}
+                    {variant === 'default' && (
+                        <div className="mb-4">
+                            <span className="inline-block text-[10px] font-bold text-[#FF7404] tracking-widest uppercase px-3 py-1 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20">
+                                {normalizeCategory(typeof article.category === 'object' ? article.category.title : article.category)}
+                            </span>
+                        </div>
+                    )}
+
+                    {/* Meta for non-default or just keep it? ServiceInsights doesn't show date/time, but Blog probably should. 
+                        I'll keep it but style it subtly. */}
+                    <div className="flex items-center gap-2 text-[11px] text-zinc-500 font-bold uppercase tracking-wider mb-3">
                         {(() => {
                             const date = article.publishedAt ? new Date(article.publishedAt) : null;
                             const isValidDate = date && !isNaN(date.getTime());
@@ -112,28 +124,30 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
 
                     {/* Title */}
                     <h3 className={cn(
-                        "font-semibold text-white group-hover:text-[#FF7404] transition-colors leading-tight mb-3 line-clamp-2",
-                        variant === 'featured' ? "text-2xl md:text-4xl" : "text-lg"
+                        "font-bold text-white group-hover:text-[#FF7404] transition-colors leading-tight mb-3 line-clamp-2",
+                        variant === 'featured' ? "text-2xl md:text-4xl" : "text-2xl"
                     )}>
                         {article.title}
                     </h3>
 
-                    {/* Excerpt (Optional based on design, but good for featured) */}
-                    {variant === 'featured' && article.excerpt && (
-                        <p className="text-zinc-400 leading-relaxed line-clamp-3 mb-6">
+                    {/* Excerpt */}
+                    {article.excerpt && (
+                        <p className="text-white/50 text-sm font-light leading-relaxed mb-6 line-clamp-2 md:line-clamp-3">
                             {article.excerpt}
                         </p>
                     )}
 
                     {/* CTA */}
                     <div className={cn(
-                        "pt-2 flex items-center text-[#FF7404] text-sm font-bold uppercase tracking-wider",
+                        "pt-2 flex items-center text-[#FF7404] text-xs font-bold uppercase tracking-widest gap-2",
                         variant === 'featured' ? "mt-8" : "mt-auto"
                     )}>
-                        <span className="relative inline-block pb-1">
-                            Read Article
-                            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#FF7404] origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-                        </span>
+                        Read Article
+                        {/* Arrow Right if I had the icon, but I can use CSS or just text. 
+                            The import might not be available if I don't import standard lucide-react.
+                            Actually, BlogCard didn't have lucide icons imported. I'll stick to text styling or simple arrow.
+                        */}
+                        <span className="text-lg leading-none transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </div>
                 </div>
 

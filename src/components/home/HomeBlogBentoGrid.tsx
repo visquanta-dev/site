@@ -66,55 +66,22 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
 
                         {/* Moving Border Light (The "Motion") - Handled by CSS class 'featured-card-border' below */}
 
-                        <Link href={`/blog/${featured.slug}`} className="relative z-10 group block w-full bg-[#111] rounded-[20px] overflow-hidden border border-white/[0.06] hover:border-[#ff7404]/30 transition-all duration-300 featured-card-border">
+                        <Link href={`/blog/${featured.slug}`} className="relative z-10 group block w-full bg-black rounded-[2rem] overflow-hidden border border-white/[0.05] hover:border-[#ff7404]/50 hover:bg-white/[0.04] transition-all duration-500 featured-card-border">
                             <div className="grid grid-cols-1 lg:grid-cols-2">
                                 {/* Image Section - Large & Cinematic */}
-                                <div className="relative aspect-video lg:aspect-auto lg:h-full overflow-hidden border-b lg:border-b-0 lg:border-r border-white/[0.06]">
+                                <div className="relative aspect-video lg:aspect-auto lg:h-full overflow-hidden border-b lg:border-b-0 lg:border-r border-white/[0.06] bg-[#020202]">
                                     {featured.featuredImage && (
                                         <Image
                                             src={featured.featuredImage}
                                             alt={featured.title}
                                             fill
-                                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                            className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
                                         />
                                     )}
-                                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent pointer-events-none" />
 
                                     {/* Data Tab Overlay - Only visible if it's the specific CRM article or we want it on all featured */}
-                                    <div className="absolute bottom-4 right-4 bg-[#0a0a0a]/90 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-2xl hidden sm:block">
-                                        <div className="flex flex-col gap-2 mb-3">
-                                            <div className="flex items-center justify-between gap-6 text-[10px]">
-                                                <span className="text-zinc-500 uppercase tracking-wider">Oct 2025</span>
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-white font-bold">$12K</span>
-                                                    <div className="w-3 h-3 bg-zinc-700 rounded-[1px]" />
-                                                </div>
-                                            </div>
-                                            <div className="flex items-center justify-between gap-6 text-[10px]">
-                                                <span className="text-zinc-500 uppercase tracking-wider">Nov 2025</span>
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-white font-bold">$67K</span>
-                                                    <div className="w-8 h-3 bg-[#e6b95ce7] rounded-[1px]" />
-                                                </div>
-                                            </div>
-                                            <div className="flex items-center justify-between gap-6 text-[10px]">
-                                                <span className="text-zinc-500 uppercase tracking-wider">Ad Spend</span>
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-green-500 font-bold">$0</span>
-                                                    <svg className="w-3 h-3 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="border-t border-white/10 pt-2 flex items-center justify-between gap-3">
-                                            <span className="text-[#e6b95ce7] text-lg font-bold tracking-tight">+$55K</span>
-                                            <div className="flex flex-col leading-none">
-                                                <span className="text-[#e6b95ce7] text-[9px] font-bold uppercase tracking-wider">Recovered</span>
-                                                <span className="text-[#e6b95ce7] text-[9px] font-bold uppercase tracking-wider">Revenue</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {/* Data Tab Overlay Removed */}
                                 </div>
 
                                 {/* Content Section */}
@@ -203,32 +170,32 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay }}
         >
-            <Link href={`/blog/${post.slug}`} className="group block bg-[#111] border border-white/[0.06] rounded-[20px] overflow-hidden hover:border-[#ff7404]/30 hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
-                <div className="relative aspect-video w-full overflow-hidden border-b border-white/[0.06]">
+            <Link href={`/blog/${post.slug}`} className="group block bg-black border border-white/[0.05] rounded-[2rem] overflow-hidden hover:border-[#ff7404]/50 hover:bg-white/[0.04] transition-all duration-500 h-full flex flex-col">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#020202]">
                     {post.featuredImage && (
                         <Image
                             src={post.featuredImage}
                             alt={post.title}
                             fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
                         />
                     )}
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent" />
                 </div>
 
-                <div className="p-6 flex-1 flex flex-col">
-                    <div className="mb-4 flex items-center gap-2 text-xs font-medium text-zinc-500">
-                        <span className="text-[#ff7404]">{typeof post.category === 'object' ? post.category.title : (post.category || 'Insight')}</span>
-                        <span>•</span>
-                        <span>{formatDate(post.publishedAt)}</span>
+                <div className="p-8 flex-1 flex flex-col">
+                    <div className="mb-4">
+                        <span className="inline-block px-3 py-1 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 text-[10px] font-bold text-[#ff7404] tracking-widest uppercase">
+                            {typeof post.category === 'object' ? post.category.title : (post.category || 'Insight')}
+                        </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-white mb-3 leading-snug group-hover:text-[#ff7404] transition-colors line-clamp-2">
+                    <h3 className="text-xl font-bold text-white mb-3 leading-tight group-hover:text-[#ff7404] transition-colors line-clamp-2">
                         {post.title}
                     </h3>
 
-                    <div className="mt-auto pt-4 flex items-center justify-between text-xs font-medium text-zinc-400 border-t border-white/5">
-                        <span>{post.readTime} min read</span>
+                    <div className="mt-auto pt-4 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-zinc-500 border-t border-white/5">
+                        <span>{formatDate(post.publishedAt)} • {post.readTime} min read</span>
                         <span className="text-white group-hover:text-[#ff7404] transition-colors">Read →</span>
                     </div>
                 </div>

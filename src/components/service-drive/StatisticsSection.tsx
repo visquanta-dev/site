@@ -42,20 +42,6 @@ const AnimatedCounter = ({ value, suffix = '', prefix = '', duration = 2 }: { va
 };
 
 export default function StatisticsSection() {
-    const scrollRef = useRef<HTMLDivElement>(null);
-    const [activeIndex, setActiveIndex] = useState(0);
-
-    const onScroll = () => {
-        if (!scrollRef.current) return;
-        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-        const maxScroll = scrollWidth - clientWidth;
-        if (maxScroll <= 0) return;
-
-        // 4 items
-        const index = Math.round((scrollLeft / maxScroll) * 3);
-        setActiveIndex(Math.min(Math.max(index, 0), 3));
-    };
-
     return (
         <section className="relative py-20 md:py-32 bg-[#030303] overflow-hidden">
             {/* Background Effects */}
@@ -152,110 +138,159 @@ export default function StatisticsSection() {
                                 <div className="w-2 h-2 rounded-full bg-[#FF7404] shadow-[0_0_10px_#FF7404]" />
                             </span>
                         </div>
-                        <h3 className="text-2xl md:text-5xl font-bold text-white tracking-tight mb-2">
+                        <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-2">
                             VisQuanta Service Drive Agent<span className="text-[#FF7404]">™</span>
                         </h3>
-                        <p className="text-white/40 font-medium tracking-[0.2em] text-xs md:text-sm uppercase">SERVICE SCHEDULING PERFORMANCE</p>
+                        <p className="text-zinc-500 font-bold tracking-[0.2em] text-xs md:text-sm uppercase">SERVICE SCHEDULING PERFORMANCE</p>
                     </div>
 
-                    {/* Bento Grid / Carousel */}
-                    <div
-                        ref={scrollRef}
-                        onScroll={onScroll}
-                        className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-6 pb-8 -mx-6 md:mx-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:pb-0 md:px-0 scrollbar-hide"
-                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                    >
-                        {/* Hide scrollbar for Chrome/Safari */}
-                        <style jsx>{`
-                            div::-webkit-scrollbar {
-                                display: none;
-                            }
-                        `}</style>
-
-                        {/* Stat 1: Main Metric */}
+                    {/* Unified Glass Dashboard */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-white/[0.02] border border-white/[0.08] rounded-[32px] overflow-hidden backdrop-blur-2xl divide-y md:divide-y-0 md:divide-x divide-white/[0.08] relative z-10">
+                        {/* Stat 1: <60s */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-3xl p-8 relative overflow-hidden group hover:border-[#FF7404]/30 transition-colors duration-500 snap-center shrink-0 w-[75vw] md:w-auto lg:col-span-2 h-full"
+                            className="group relative p-8 lg:p-10 flex flex-col justify-between h-[360px] md:h-[400px] hover:bg-white/[0.02] transition-all duration-500"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute inset-0 bg-gradient-to-b from-[#FF7404]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                            <div className="flex items-center justify-between relative z-10">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-[#FF7404]" />
+                                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">Response</span>
+                                </div>
+                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div className="w-4 h-4 rounded-full border border-[#FF7404]/30 flex items-center justify-center">
+                                        <div className="w-1 h-1 bg-[#FF7404] rounded-full animate-pulse" />
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className="relative z-10">
-                                <div className="text-6xl font-bold text-white mb-4 tracking-tighter">
+                                <div className="text-7xl lg:text-8xl font-medium tracking-tighter text-white mb-4 group-hover:translate-x-2 transition-transform duration-500">
                                     &lt;60s
                                 </div>
-                                <h4 className="text-sm font-bold text-[#FF7404] uppercase tracking-widest mb-2">AVG RESPONSE TIME</h4>
-                                <p className="text-white/50 text-sm leading-relaxed">Picks up in under 60 seconds</p>
+                                <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <div className="h-full bg-[#FF7404] w-[85%] rounded-full shadow-[0_0_20px_#FF7404]" />
+                                </div>
+                            </div>
+
+                            <div className="relative z-10">
+                                <h4 className="text-white font-medium text-lg mb-2">Instant Pickup</h4>
+                                <p className="text-zinc-500 text-sm leading-relaxed">
+                                    Calls answered immediately. No voicemails, no hold times.
+                                </p>
                             </div>
                         </motion.div>
 
-                        {/* Stat 2 */}
+                        {/* Stat 2: 24/7 */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-3xl p-8 relative overflow-hidden group hover:border-[#FF7404]/30 transition-colors duration-500 snap-center shrink-0 w-[75vw] md:w-auto h-full"
+                            className="group relative p-8 lg:p-10 flex flex-col justify-between h-[360px] md:h-[400px] hover:bg-white/[0.02] transition-all duration-500"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.03),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                            <div className="flex items-center justify-between relative z-10">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-green-500 transition-colors" />
+                                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">Uptime</span>
+                                </div>
+                                <span className="px-2 py-1 rounded bg-green-500/10 border border-green-500/20 text-[9px] font-bold text-green-500 uppercase tracking-wider opacity-60 group-hover:opacity-100 transition-opacity">
+                                    Live
+                                </span>
+                            </div>
+
                             <div className="relative z-10">
-                                <div className="text-6xl font-bold text-white mb-4 tracking-tighter">
+                                <div className="text-7xl lg:text-8xl font-medium tracking-tighter text-white mb-4 group-hover:translate-x-2 transition-transform duration-500">
                                     24/7
                                 </div>
-                                <h4 className="text-sm font-bold text-white uppercase tracking-widest mb-2">ALWAYS ON COVERAGE</h4>
-                                <p className="text-white/50 text-sm leading-relaxed">Zero downtime, ever</p>
+                                <div className="flex gap-1 h-3">
+                                    {[...Array(12)].map((_, i) => (
+                                        <div key={i} className={`h-full w-1 rounded-sm bg-white/${i % 3 === 0 ? '20' : '5'}`} />
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="relative z-10">
+                                <h4 className="text-white font-medium text-lg mb-2">Always On</h4>
+                                <p className="text-zinc-500 text-sm leading-relaxed">
+                                    Zero downtime. Service handling nights, weekends, and holidays.
+                                </p>
                             </div>
                         </motion.div>
 
-                        {/* Stat 3 */}
+                        {/* Stat 3: 98% */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
-                            className="bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-3xl p-8 relative overflow-hidden group hover:border-[#FF7404]/30 transition-colors duration-500 snap-center shrink-0 w-[75vw] md:w-auto h-full"
+                            className="group relative p-8 lg:p-10 flex flex-col justify-between h-[360px] md:h-[400px] hover:bg-white/[0.02] transition-all duration-500"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute right-0 bottom-1/2 translate-y-1/2 w-[1px] h-32 bg-gradient-to-b from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            <div className="flex items-center gap-2 relative z-10">
+                                <div className="w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-blue-500 transition-colors" />
+                                <span className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">Quality</span>
+                            </div>
+
                             <div className="relative z-10">
-                                <div className="text-6xl font-bold text-white mb-4 tracking-tighter">
+                                <div className="text-7xl lg:text-8xl font-medium tracking-tighter text-white mb-4 group-hover:translate-x-2 transition-transform duration-500">
                                     98%
                                 </div>
-                                <h4 className="text-sm font-bold text-[#FF7404] uppercase tracking-widest mb-2">CALLER ENGAGEMENT</h4>
-                                <p className="text-white/50 text-sm leading-relaxed">After-hours conversion</p>
+                                <div className="flex items-end gap-1 h-8">
+                                    <div className="w-2 h-3 bg-zinc-800 rounded-[1px]" />
+                                    <div className="w-2 h-4 bg-zinc-800 rounded-[1px]" />
+                                    <div className="w-2 h-6 bg-zinc-700 rounded-[1px]" />
+                                    <div className="w-2 h-full bg-white rounded-[1px]" />
+                                </div>
+                            </div>
+
+                            <div className="relative z-10">
+                                <h4 className="text-white font-medium text-lg mb-2">Caller Engagement</h4>
+                                <p className="text-zinc-500 text-sm leading-relaxed">
+                                    Industry-leading retention and conversion rates after-hours.
+                                </p>
                             </div>
                         </motion.div>
 
-                        {/* Stat 4 */}
+                        {/* Stat 4: 25% */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.4 }}
-                            className="bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-3xl p-8 relative overflow-hidden group hover:border-[#FF7404]/30 transition-colors duration-500 snap-center shrink-0 w-[75vw] md:w-auto h-full"
+                            className="group relative p-8 lg:p-10 flex flex-col justify-between h-[360px] md:h-[400px] hover:bg-white/[0.02] transition-all duration-500"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                            <div className="flex items-center gap-2 relative z-10">
+                                <div className="w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-[#FF7404] transition-colors" />
+                                <span className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">Growth</span>
+                            </div>
+
                             <div className="relative z-10">
-                                <div className="text-6xl font-bold text-white mb-4 tracking-tighter">
+                                <div className="flex items-start gap-1 text-7xl lg:text-8xl font-medium tracking-tighter text-white mb-4 group-hover:translate-x-2 transition-transform duration-500">
                                     25%
+                                    <sup className="text-3xl text-[#FF7404] mt-4 font-light">+</sup>
                                 </div>
-                                <h4 className="text-sm font-bold text-white uppercase tracking-widest mb-2">CALLS BECOME APPOINTMENTS</h4>
-                                <p className="text-white/50 text-sm leading-relaxed">Calls converted to appts</p>
+                                <svg className="w-8 h-8 text-[#FF7404]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                </svg>
+                            </div>
+
+                            <div className="relative z-10">
+                                <h4 className="text-white font-medium text-lg mb-2">Appt Bookings</h4>
+                                <p className="text-zinc-500 text-sm leading-relaxed">
+                                    Significant increase in booked appointments vs. standard IVR.
+                                </p>
                             </div>
                         </motion.div>
-                    </div>
-
-                    {/* Dots Mobile */}
-                    <div className="flex md:hidden justify-center gap-2 mt-2 pb-4">
-                        {[0, 1, 2, 3].map((i) => (
-                            <div
-                                key={i}
-                                className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex
-                                        ? 'w-6 bg-[#FF6B35]'
-                                        : 'w-1.5 bg-[#4B5563]'
-                                    }`}
-                            />
-                        ))}
                     </div>
                 </motion.div>
             </div>

@@ -153,7 +153,7 @@ const teamLayers: TeamLayer[] = [
             {
                 name: "Jonas Saycon",
                 role: "Client Account Specialist",
-                image: "https://randomuser.me/api/portraits/men/52.jpg",
+                image: "/team/jonas-saycon.png",
                 email: "jsaycon@visquanta.com",
 
             }
