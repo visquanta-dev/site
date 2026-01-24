@@ -330,7 +330,7 @@ export default function DealerHub() {
                                     <span className="text-white">beating heart of your store.</span>
                                 </h2>
                                 <p className="text-lg text-zinc-400 mb-10 leading-relaxed font-light">
-                                    Generic tools sit on top of your data. VisQuanta works from the inside out. We plug directly into your DMS to move inventory and book service appointments while you sleep—no new dashboards, no learning curves.
+                                    Generic tools sit on top of your data. VisQuanta works from the inside out. We plug directly into your DMS to move inventory and book service appointments while you sleep: no new dashboards, no learning curves.
                                 </p>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -525,13 +525,24 @@ export default function DealerHub() {
                             </div>
                         </div>
 
-                        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
+                        <div className="flex flex-col items-center gap-4 justify-center">
                             <RequestDemoButton
                                 className="w-full sm:w-auto px-12 py-6 bg-[#FF7404] hover:bg-[#ff8a2b] text-black font-black text-xl rounded-2xl transition-all shadow-[0_0_50px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_80px_-10px_rgba(255,116,4,0.6)] hover:scale-105 active:scale-95 flex items-center justify-center gap-3"
                             >
                                 Secure Your Territory
                                 <ArrowRight className="w-6 h-6" />
                             </RequestDemoButton>
+
+                            {/* CRO Microcopy */}
+                            <motion.p
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 }}
+                                className="text-[10px] sm:text-xs text-[#FF7404] uppercase tracking-[0.2em] font-bold"
+                            >
+                                15-min 1:1 • Get an exact revenue-lift projection for your dealership
+                            </motion.p>
                         </div>
                         <p className="mt-6 text-xs text-zinc-600 font-mono">
                             LIMITED ONBOARDING SLOTS AVAILABLE FOR Q1

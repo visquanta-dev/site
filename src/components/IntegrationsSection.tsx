@@ -65,7 +65,7 @@ export default function IntegrationsSection() {
               Connects to <span className="text-[#ff7404]">Everything.</span>
             </h2>
             <p className="text-white/60 text-xl leading-relaxed">
-              AutoMaster Suite isn't another silo. We integrate with 50+ platforms out of the box to unify your DMS, CRM, and lead sources into one intelligence layer.
+              The AutoMaster Suite isn't another silo. We integrate with 50+ platforms out of the box to unify your DMS, CRM, and lead sources into one intelligence layer.
             </p>
           </motion.div>
         </div>

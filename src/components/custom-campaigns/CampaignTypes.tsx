@@ -45,7 +45,7 @@ export default function CampaignTypes() {
             <div className="container mx-auto px-4 md:px-6 max-w-[1200px] relative z-10">
                 <div className="mb-16 md:flex md:items-end md:justify-between">
                     <div className="max-w-2xl">
-                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Launch any campaign type.</h2>
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">6 High-Converting Car Dealership Campaign Types</h2>
                         <p className="text-lg text-white/50">We build the assets. You approve the send. Our system handles the complexity of segmentation and delivery.</p>
                     </div>
                     <div className="hidden md:block">

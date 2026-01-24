@@ -110,32 +110,65 @@ function normalizeBasePost(raw: BasePostRaw): BasePost {
   };
 }
 
+import { MOCK_BLOG_POSTS } from './mockData';
+
 async function fetchBase(): Promise<BasePost[]> {
   const cacheKey = 'base';
   const cached = getCached<BasePost[]>(cacheKey);
   if (cached) return cached;
 
   const apiKey = getApiKey();
-  if (!apiKey) return [];
-  const url = `https://seobot-blogs.s3.eu-north-1.amazonaws.com/${apiKey}/system/base.json`;
 
-  const response = await fetch(url, { next: { revalidate: 60 } });
-
-  if (!response.ok) {
-    console.error(`Failed to fetch base.json: ${response.status} ${response.statusText}`);
-    throw new Error('Failed to fetch blog posts');
+  // FALLBACK: If no API key, use mock data immediately
+  if (!apiKey) {
+    console.warn('Using mock data for blog posts (No API Key)');
+    return MOCK_BLOG_POSTS as unknown as BasePost[];
   }
 
-  const rawData: BasePostRaw[] = await response.json();
-  const normalizedData = rawData.map(normalizeBasePost);
+  try {
+    const url = `https://seobot-blogs.s3.eu-north-1.amazonaws.com/${apiKey}/system/base.json`;
+    const response = await fetch(url, { next: { revalidate: 60 } });
 
-  // Sort by date descending (newest first)
-  normalizedData.sort((a, b) => {
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-  });
+    if (!response.ok) {
+      console.warn(`Failed to fetch base.json, falling back to mock data: ${response.status}`);
+      return MOCK_BLOG_POSTS as unknown as BasePost[];
+    }
 
-  setCache(cacheKey, normalizedData);
-  return normalizedData;
+    const rawData: BasePostRaw[] = await response.json();
+    const normalizedData = rawData.map(normalizeBasePost);
+
+    // FORCE MERGE LOCALLY CREATED POSTS (MOCK DATA)
+    // This ensures our new "9 PM Problem" article appears even if the API is active.
+    const mockBasePosts = MOCK_BLOG_POSTS.map(p => ({
+      id: p.id,
+      slug: p.slug,
+      headline: p.headline,
+      metaDescription: p.metaDescription,
+      image: p.image,
+      readingTime: p.readingTime,
+      createdAt: p.createdAt,
+      category: p.category,
+      tags: p.tags
+    })) as unknown as BasePost[];
+
+    // Combine them (remote + local)
+    // We filter out any mocks that might conflict with real IDs, though highly unlikely given 'mock-' prefix
+    const combinedData = [
+      ...normalizedData,
+      ...mockBasePosts.filter(m => !normalizedData.some(n => n.id === m.id))
+    ];
+
+    // Sort by date descending (newest first)
+    combinedData.sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+
+    setCache(cacheKey, combinedData);
+    return combinedData;
+  } catch (error) {
+    console.error('Error fetching blog base, falling back to mock data:', error);
+    return MOCK_BLOG_POSTS as unknown as BasePost[];
+  }
 }
 
 async function fetchPost(id: string): Promise<BlogPost | null> {
@@ -143,9 +176,25 @@ async function fetchPost(id: string): Promise<BlogPost | null> {
   const cached = getCached<BlogPost>(cacheKey);
   if (cached) return cached;
 
+  // Check if it's a mock post ID
+  if (id.startsWith('mock-')) {
+    const mock = MOCK_BLOG_POSTS.find(p => p.id === id);
+    if (mock) {
+      return {
+        ...mock,
+        // Use custom HTML if provided in the mock object, otherwise default
+        html: (mock as any).html || '<p>This is a simulated blog post content for demonstration purposes. In a production environment, this would be fetched from your CMS.</p>',
+        updatedAt: mock.createdAt,
+        published: true,
+        relatedPosts: []
+      } as BlogPost;
+    }
+  }
+
   try {
     const apiKey = getApiKey();
-    if (!apiKey) return null;
+    if (!apiKey) throw new Error("No API Key"); // Trigger catch block to maybe fallback if we had mock logic there, but we handled mock above
+
     const url = `https://seobot-blogs.s3.eu-north-1.amazonaws.com/${apiKey}/blog/${id}.json`;
 
     const response = await fetch(url, { next: { revalidate: 60 } });

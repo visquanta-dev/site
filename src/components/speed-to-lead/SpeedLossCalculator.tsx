@@ -1,11 +1,58 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, animate } from 'framer-motion';
 import { Timer, TrendingUp, Zap, DollarSign, Calculator, ArrowRight, Clock } from 'lucide-react';
+import SpotlightCard from '@/components/ui/SpotlightCard';
 
 interface SpeedLossCalculatorProps {
     onOpenCalculator: () => void;
+}
+
+function AnimatedNumber({ value }: { value: number }) {
+    const motionValue = useMotionValue(0);
+    const springValue = useSpring(motionValue, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+    });
+    const [displayValue, setDisplayValue] = useState(0);
+
+    useEffect(() => {
+        motionValue.set(value);
+    }, [value, motionValue]);
+
+    useEffect(() => {
+        const unsubscribe = springValue.on("change", (latest) => {
+            setDisplayValue(Math.round(latest));
+        });
+        return () => unsubscribe();
+    }, [springValue]);
+
+    return <span>{displayValue.toLocaleString()}</span>;
+}
+
+function AnimatedBorder({ children, color = '#FF7404' }: { children: React.ReactNode; color?: string }) {
+    return (
+        <div className="relative group/border h-full">
+            <div
+                className="absolute -inset-[1px] rounded-[inherit] opacity-0 group-hover/border:opacity-100 transition-opacity duration-500"
+                style={{
+                    background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, ${color} 180deg, transparent 360deg)`,
+                    animation: 'rotate 4s linear infinite',
+                }}
+            />
+            <div className="relative h-full rounded-[inherit] bg-[#030303] overflow-hidden">
+                {children}
+            </div>
+            <style jsx global>{`
+                @keyframes rotate {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+            `}</style>
+        </div>
+    );
 }
 
 export default function SpeedLossCalculator({ onOpenCalculator }: SpeedLossCalculatorProps) {
@@ -57,7 +104,7 @@ export default function SpeedLossCalculator({ onOpenCalculator }: SpeedLossCalcu
                                     <label htmlFor="monthly-leads-slider" className="text-xs font-bold text-white/50 uppercase tracking-widest">Monthly Leads</label>
                                     <div className="text-3xl font-bold text-white font-mono tracking-tight">{monthlyLeads}</div>
                                 </div>
-                                <div className="relative h-6 flex items-center">
+                                <div className="relative h-10 sm:h-8 flex items-center">
                                     <input
                                         id="monthly-leads-slider"
                                         type="range"
@@ -66,7 +113,7 @@ export default function SpeedLossCalculator({ onOpenCalculator }: SpeedLossCalcu
                                         step="10"
                                         value={monthlyLeads}
                                         onChange={(e) => setMonthlyLeads(Number(e.target.value))}
-                                        className="w-full h-1.5 bg-white/[0.06] rounded-full appearance-none cursor-pointer focus:outline-none focus:ring-0 z-20 absolute inset-x-0"
+                                        className="w-full h-2 sm:h-1.5 bg-white/[0.06] rounded-full appearance-none cursor-pointer focus:outline-none focus:ring-0 z-20 absolute inset-x-0"
                                         style={{
                                             background: `linear-gradient(to right, #FF7404 0%, #FF7404 ${((monthlyLeads - 50) / (1000 - 50)) * 100}%, rgba(255,255,255,0.06) ${((monthlyLeads - 50) / (1000 - 50)) * 100}%, rgba(255,255,255,0.06) 100%)`
                                         }}
@@ -80,13 +127,15 @@ export default function SpeedLossCalculator({ onOpenCalculator }: SpeedLossCalcu
                                             border-radius: 50%;
                                             background: #FF7404;
                                             cursor: pointer;
-                                            box-shadow: 0 0 20px rgba(255, 116, 4, 0.5), 0 0 0 4px rgba(255, 116, 4, 0.1);
+                                            box-shadow: 0 0 20px rgba(255, 116, 4, 0.4), 0 0 0 4px rgba(255, 116, 4, 0.1);
                                             border: 2px solid white;
-                                            transition: all 0.2s ease;
+                                            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
                                         }
+                                        input[type="range"]:active::-webkit-slider-thumb,
                                         input[type="range"]::-webkit-slider-thumb:hover {
-                                            transform: scale(1.1);
-                                            box-shadow: 0 0 30px rgba(255, 116, 4, 0.6), 0 0 0 6px rgba(255, 116, 4, 0.1);
+                                            transform: scale(1.15);
+                                            box-shadow: 0 0 35px rgba(255, 116, 4, 0.8), 0 0 0 8px rgba(255, 116, 4, 0.15);
+                                            background: #FF9040;
                                         }
                                         input[type="range"]::-moz-range-thumb {
                                             width: 24px;
@@ -94,27 +143,40 @@ export default function SpeedLossCalculator({ onOpenCalculator }: SpeedLossCalcu
                                             border-radius: 50%;
                                             background: #FF7404;
                                             cursor: pointer;
-                                            box-shadow: 0 0 20px rgba(255, 116, 4, 0.5), 0 0 0 4px rgba(255, 116, 4, 0.1);
+                                            box-shadow: 0 0 20px rgba(255, 116, 4, 0.4), 0 0 0 4px rgba(255, 116, 4, 0.1);
                                             border: 2px solid white;
-                                            transition: all 0.2s ease;
+                                            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+                                        }
+                                        input[type="range"]:active::-moz-range-thumb,
+                                        input[type="range"]::-moz-range-thumb:hover {
+                                            transform: scale(1.15);
+                                            box-shadow: 0 0 35px rgba(255, 116, 4, 0.8), 0 0 0 8px rgba(255, 116, 4, 0.15);
+                                            background: #FF9040;
                                         }
                                     `}</style>
                                 </div>
                             </div>
 
                             {/* Output */}
-                            <div className="bg-gradient-to-br from-[#0a0a0a] to-[#000] border border-white/[0.08] rounded-2xl p-8 mb-8 relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-40 h-40 bg-[#FF7404]/[0.05] rounded-full blur-[60px] pointer-events-none group-hover:bg-[#FF7404]/[0.1] transition-colors duration-500" />
-                                <div className="relative z-10">
-                                    <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-[0.25em] mb-2">Potential Monthly Gain</div>
-                                    <div className="text-5xl lg:text-6xl font-black text-white tracking-tighter">
-                                        +${potentialRevenue.toLocaleString()}
+                            <div className="rounded-2xl mb-8 overflow-hidden">
+                                <AnimatedBorder color="#FF7404">
+                                    <div className="p-8 relative overflow-hidden group">
+                                        <div className="absolute top-0 right-0 w-40 h-40 bg-[#FF7404]/[0.05] rounded-full blur-[60px] pointer-events-none group-hover:bg-[#FF7404]/[0.1] transition-colors duration-500" />
+                                        <div className="relative z-10">
+                                            <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-[0.25em] mb-2">Potential Monthly Gain</div>
+                                            <div className="text-5xl lg:text-5xl xl:text-6xl font-black text-white tracking-tighter">
+                                                +$<AnimatedNumber value={potentialRevenue} />
+                                            </div>
+                                            <p className="text-[11px] text-white/30 mt-4 flex items-center gap-2">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                                                Estimated lift from sub-60s response times
+                                            </p>
+                                            <p className="text-[10px] text-white/20 mt-2 italic">
+                                                Based on 5% conversion lift × $2,400 avg gross per deal
+                                            </p>
+                                        </div>
                                     </div>
-                                    <p className="text-[11px] text-white/30 mt-4 flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                                        Estimated lift from sub-60s response times
-                                    </p>
-                                </div>
+                                </AnimatedBorder>
                             </div>
 
                             {/* CTA */}
@@ -142,14 +204,14 @@ export default function SpeedLossCalculator({ onOpenCalculator }: SpeedLossCalcu
                         </div>
 
                         <h2 className="text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight">
-                            Slow responses are{' '}
+                            Slow Lead Response{' '}
                             <span className="bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-[#FF7404] bg-clip-text text-transparent">
-                                deal killers.
+                                Kills Deals.
                             </span>
                         </h2>
 
                         <p className="text-xl text-white/40 leading-[1.8]">
-                            There is a direct correlation between response time and closing ratio. When you wait, interest fades and competitors step in.
+                            There's a direct correlation between lead response time and your closing ratio. When you wait, interest fades and competitors step in.
                         </p>
 
                         <div className="space-y-6">
@@ -188,63 +250,83 @@ export default function SpeedLossCalculator({ onOpenCalculator }: SpeedLossCalcu
                     </div>
 
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
-                        Calculate the Cost of <br />
-                        <span className="bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-[#FF7404] bg-clip-text text-transparent">Inaction.</span>
+                        The Cost of <br />
+                        <span className="bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-[#FF7404] bg-clip-text text-transparent">Slow Lead Response.</span>
                     </h2>
 
                     <p className="text-xl text-white/40 leading-[1.8] max-w-2xl">
-                        Most dealerships don't realize how much revenue slips through the cracks simply because a lead wasn't worked fast enough or persistent enough.
+                        Most dealerships don't realize how much revenue they lose because their lead response time is too slow. Every minute you wait, competitors step in.
                     </p>
                 </motion.div>
 
                 {/* Risk Cards */}
+                {/* Risk Cards - Premium Spotlight Design */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
                     {[
                         {
                             title: "The 5-Minute Rule",
-                            desc: "Odds of Qualifying a lead drop by 80% if you wait just 5 minutes. Speed isn't a bonus, it's a requirement.",
+                            metric: "80% Drop",
+                            highlight: "in qualification odds",
+                            desc: "If you wait just 5 minutes to respond to a new lead.",
                             icon: Timer,
-                            color: "text-red-400/60",
-                            borderHover: "hover:border-red-500/20"
+                            accent: "from-red-500 to-orange-600",
+                            iconColor: "text-red-500"
                         },
                         {
-                            title: "First to Call Wins",
-                            desc: "78% of customers buy from the company that responds to their inquiry first. Being second is being last.",
+                            title: "First to Respond Wins",
+                            metric: "78% Wins",
+                            highlight: "go to the first responder",
+                            desc: "Speed isn't just a factor. It's the deciding factor.",
                             icon: TrendingUp,
-                            color: "text-[#FF7404]",
-                            borderHover: "hover:border-[#FF7404]/20"
+                            accent: "from-[#FF7404] to-yellow-500",
+                            iconColor: "text-[#FF7404]"
                         },
                         {
                             title: "The Weekend Gap",
-                            desc: "Leads that come in on Saturday night often sit until Monday morning. By then, they've bought elsewhere.",
+                            metric: "48+ Hrs",
+                            highlight: "average delay",
+                            desc: "Leads from Saturday night sitting until Monday morning.",
                             icon: Clock,
-                            color: "text-[#FF7404]",
-                            borderHover: "hover:border-[#FF7404]/20"
+                            accent: "from-white to-zinc-400",
+                            iconColor: "text-white"
                         },
                         {
                             title: "Revenue Lift",
-                            desc: "Improving response time to under 1 minute can increase lead conversion per sales rep by up to 50%.",
+                            metric: "50% Lift",
+                            highlight: "in lead conversion",
+                            desc: "By engaging every lead in under 60 seconds.",
                             icon: DollarSign,
-                            color: "text-green-400/60",
-                            borderHover: "hover:border-green-500/20"
+                            accent: "from-green-400 to-emerald-600",
+                            iconColor: "text-green-500"
                         }
                     ].map((item, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className={`group p-8 bg-gradient-to-b from-[#0a0a0a] to-[#0d0d0d] border border-white/[0.06] rounded-3xl hover:border-white/[0.1] ${item.borderHover} transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 relative overflow-hidden`}
-                        >
-                            <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                        <SpotlightCard key={i} className="h-full rounded-3xl bg-[#0a0a0a] border border-white/[0.08]" spotlightColor="rgba(255, 116, 4, 0.1)">
+                            <div className="relative h-full p-8 flex flex-col z-20">
+                                {/* Header */}
+                                <div className="flex items-start justify-between mb-8">
+                                    <div className={`p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] ${item.iconColor}`}>
+                                        <item.icon className="w-6 h-6" />
+                                    </div>
+                                    <div className="text-[10px] font-bold text-white/20 uppercase tracking-widest bg-white/[0.02] px-3 py-1.5 rounded-full border border-white/[0.04]">
+                                        Fact {i + 1}
+                                    </div>
+                                </div>
 
-                            <div className="w-14 h-14 rounded-2xl bg-white/[0.03] flex items-center justify-center mb-6 group-hover:bg-white/[0.06] transition-colors duration-500 shadow-inner border border-white/[0.04]">
-                                <item.icon className={`w-6 h-6 ${item.color}`} />
+                                {/* Content */}
+                                <div className="mt-auto">
+                                    <h4 className="text-white/40 font-medium text-sm mb-2">{item.title}</h4>
+                                    <div className={`text-4xl lg:text-5xl font-black bg-gradient-to-r ${item.accent} bg-clip-text text-transparent mb-2 tracking-tighter`}>
+                                        {item.metric}
+                                    </div>
+                                    <div className="text-sm font-semibold text-white/80 mb-3 block">
+                                        {item.highlight}
+                                    </div>
+                                    <p className="text-sm text-white/40 leading-relaxed">
+                                        {item.desc}
+                                    </p>
+                                </div>
                             </div>
-                            <h4 className="text-white font-bold text-lg mb-3 tracking-tight">{item.title}</h4>
-                            <p className="text-sm text-white/40 leading-relaxed font-medium">{item.desc}</p>
-                        </motion.div>
+                        </SpotlightCard>
                     ))}
                 </div>
             </div>

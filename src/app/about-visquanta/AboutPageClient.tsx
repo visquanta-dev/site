@@ -150,7 +150,7 @@ export default function AboutPageClient() {
                                     Our founders aren't just technologists; they are operators who lived the struggle of scaling a BDC, managing OEM compliance, and trying to keep up with a consumer who expects a response in 60 seconds.
                                 </p>
                                 <div className="p-8 bg-white/[0.02] border-l-4 border-[#FF7404] rounded-r-2xl italic font-mono text-sm">
-                                    "We realized that the problem wasn't a lack of tools—it was a lack of automation that actually understood the emotional weight of a car purchase."
+                                    "We realized that the problem wasn't a lack of tools: it was a lack of automation that actually understood the emotional weight of a car purchase."
                                 </div>
                             </div>
                         </motion.div>

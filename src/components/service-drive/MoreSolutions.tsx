@@ -49,7 +49,7 @@ export default function MoreSolutions() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight">
-                            More <span className="text-[#FF6B35]">AutoMaster</span> Solutions
+                            More <span className="text-[#FF6B35]">The AutoMaster Suite</span> Solutions
                         </h2>
                         <p className="text-lg text-white/40 font-light max-w-xl">
                             Complete AI automation for your entire dealership.

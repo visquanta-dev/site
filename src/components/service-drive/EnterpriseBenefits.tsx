@@ -123,7 +123,7 @@ export default function EnterpriseBenefits() {
                                     </div>
                                     <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">No More Missed Calls</h3>
                                     <p className="text-lg text-white/50 leading-relaxed max-w-lg">
-                                        Voice AI answers every call — nights, weekends, holidays. Zero voicemails. Zero hold music.
+                                        Voice AI answers every call: nights, weekends, holidays. Zero voicemails. Zero hold music.
                                     </p>
                                 </div>
                                 <div className="flex items-end justify-between border-t border-white/[0.08] pt-8">
@@ -178,7 +178,7 @@ export default function EnterpriseBenefits() {
                                 </div>
                                 <h3 className="text-xl font-bold text-white mb-3">Instant Scheduling</h3>
                                 <p className="text-base text-white/50 leading-relaxed">
-                                    Books appointments directly into your DMS — while the customer is still on the call. No callbacks needed.
+                                    Books appointments directly into your DMS while the customer is still on the call. No callbacks needed.
                                 </p>
                             </div>
                             <div className="mt-8 pt-6 border-t border-white/[0.08]">
@@ -208,7 +208,7 @@ export default function EnterpriseBenefits() {
                                     </div>
                                     <h3 className="text-2xl font-bold text-white mb-4">Customer Retention</h3>
                                     <p className="text-lg text-white/50 leading-relaxed">
-                                        Customers who get instant service stay loyal. Voice AI delivers the experience they expect — every time.
+                                        Customers who get instant service stay loyal. Voice AI delivers the experience they expect, every single time.
                                     </p>
                                 </div>
                                 <div className="shrink-0 w-full md:w-auto p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm">
@@ -231,8 +231,8 @@ export default function EnterpriseBenefits() {
                             <div
                                 key={i}
                                 className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex
-                                        ? 'w-6 bg-[#FF6B35]'
-                                        : 'w-1.5 bg-[#4B5563]'
+                                    ? 'w-6 bg-[#FF6B35]'
+                                    : 'w-1.5 bg-[#4B5563]'
                                     }`}
                             />
                         ))}

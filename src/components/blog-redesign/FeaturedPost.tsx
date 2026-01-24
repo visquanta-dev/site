@@ -1,73 +1,76 @@
 'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { BlogArticle } from '@/lib/blog';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function FeaturedPost({ post }: { post: BlogArticle }) {
     if (!post) return null;
 
     return (
-        <Link href={`/blog/${post.slug}`} className="group relative block w-full mb-24 cursor-none-custom">
+        <Link href={`/blog/${post.slug}`} className="group relative block w-full mb-32 h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
+            {/* Image Background with Parallax scale */}
             <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="relative overflow-hidden rounded-2xl bg-[#111111] border border-white/[0.06] group-hover:border-[#ff7404]/25 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_30px_rgba(255,116,4,0.08)] grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] min-h-[500px] lg:min-h-[560px] "
+                className="absolute inset-0 z-0"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
-                {/* Image Section */}
-                <div className="relative h-full w-full overflow-hidden">
-                    {/* Gradient Overlay for seamless blending */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent z-10 lg:hidden" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#111111] z-10 hidden lg:block w-full h-full pointer-events-none" />
+                <Image
+                    src={post.featuredImage}
+                    alt={post.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="opacity-80 group-hover:opacity-60 transition-opacity duration-700"
+                    priority
+                    sizes="100vw"
+                />
+            </motion.div>
 
+            {/* Cinematic Gradient Overlays */}
+            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent" />
+            <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#050505]/80 via-transparent to-transparent" />
+
+            {/* Noise Texture */}
+            <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+
+            {/* Content Container */}
+            <div className="relative z-20 h-full flex flex-col justify-end p-8 md:p-16 max-w-[1400px] mx-auto">
+                <div className="max-w-4xl">
+                    {/* Badge */}
                     <motion.div
-                        className="relative w-full h-full"
-                        initial={{ scale: 1.0 }}
-                        animate={{ scale: 1.02 }}
-                        transition={{ duration: 10, ease: "linear", repeat: 0 }}
-                        whileHover={{ scale: 1.05, transition: { duration: 0.6 } }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="flex items-center gap-4 mb-8"
                     >
-                        <Image
-                            src={post.featuredImage}
-                            alt={post.title}
-                            fill
-                            className="object-contain"
-                            priority
-                            sizes="(max-width: 768px) 100vw, 65vw"
-                        />
+                        <span className="px-4 py-2 rounded-full bg-white text-black text-[11px] font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                            Featured Story
+                        </span>
+                        <span className="text-white/60 text-sm font-medium tracking-wide">
+                            {post.readTime} min read
+                        </span>
                     </motion.div>
 
-                    {/* Category Badge on Image (Mobile) */}
-                    <div className="absolute top-6 left-6 z-20 lg:hidden">
-                        <span className="px-3 py-1.5 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-bold uppercase tracking-[0.05em] text-white">
-                            {post.category?.title}
-                        </span>
-                    </div>
-                </div>
-
-                {/* Content Section */}
-                <div className="relative z-20 flex flex-col justify-center p-8 md:p-12 lg:pr-16 bg-[#111111]">
-                    {/* Category Badge (Desktop) */}
-                    <span className="hidden lg:inline-block text-[11px] font-bold uppercase tracking-[0.05em] text-[#ff7404] mb-6">
-                        {post.category?.title || 'Featured'}
-                    </span>
-
-                    <h2 className="text-3xl md:text-4xl lg:text-[42px] font-semibold text-white leading-[1.15] tracking-[-0.02em] mb-6 group-hover:text-[#ff7404] transition-colors duration-300">
+                    {/* Headline */}
+                    <h2 className="text-4xl md:text-6xl lg:text-[80px] font-bold text-white leading-[0.95] tracking-[-0.03em] mb-8 group-hover:text-[#FF7404] transition-colors duration-500">
                         {post.title}
                     </h2>
 
-                    <p className="text-lg text-white/60 mb-8 line-clamp-3 leading-relaxed lg:max-w-md">
-                        {post.excerpt}
-                    </p>
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-t border-white/20 pt-8">
+                        <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed max-w-2xl">
+                            {post.excerpt}
+                        </p>
 
-                    <div className="flex items-center gap-3 text-[13px] text-white/50 font-medium tracking-[0.02em] mt-auto lg:mt-0">
-                        <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                        <span className="w-1 h-1 rounded-full bg-white/30" />
-                        <span>{post.readTime} min read</span>
+                        <div className="flex items-center gap-3">
+                            <span className="text-sm font-bold uppercase tracking-[0.2em] text-white group-hover:text-[#FF7404] transition-colors">Read Article</span>
+                            <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#FF7404] group-hover:border-[#FF7404] group-hover:text-black transition-all duration-300">
+                                <ArrowUpRight className="w-5 h-5 transition-transform group-hover:rotate-45" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </motion.div>
+            </div>
         </Link>
     )
 }

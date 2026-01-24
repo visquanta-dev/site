@@ -93,30 +93,42 @@ export default function HeroSection() {
                     </motion.p>
 
                     {/* CTA Group (NEW) */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.5 }}
-                        className="flex flex-col sm:flex-row gap-3 sm:gap-4"
-                    >
-                        <RequestDemoButton asChild>
-                            <Button
-                                className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border border-[#FF7404]/30 bg-[#FF7404]/10 hover:bg-[#FF7404]/20 hover:border-[#FF7404]/50 text-[#FF7404] hover:text-white transition-all shadow-[0_0_40px_-10px_rgba(255,116,4,0.1)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.3)]"
-                            >
-                                Speak With Our Team
-                            </Button>
-                        </RequestDemoButton>
-
-                        <Button
-                            asChild
-                            variant="outline"
-                            className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-white/10 hover:bg-white/5 bg-transparent text-white hover:text-white"
+                    <div className="flex flex-col gap-4">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.5 }}
+                            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
                         >
-                            <Link href="#how-it-works">
-                                See How It Works
-                            </Link>
-                        </Button>
-                    </motion.div>
+                            <RequestDemoButton asChild>
+                                <Button
+                                    className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border border-[#FF7404]/30 bg-[#FF7404]/10 hover:bg-[#FF7404]/20 hover:border-[#FF7404]/50 text-[#FF7404] hover:text-white transition-all shadow-[0_0_40px_-10px_rgba(255,116,4,0.1)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.3)]"
+                                >
+                                    Schedule Your Walkthrough
+                                </Button>
+                            </RequestDemoButton>
+
+                            <Button
+                                asChild
+                                variant="outline"
+                                className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-white/10 hover:bg-white/5 bg-transparent text-white hover:text-white"
+                            >
+                                <Link href="#how-it-works">
+                                    See How It Works
+                                </Link>
+                            </Button>
+                        </motion.div>
+
+                        {/* CRO Microcopy */}
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.7 }}
+                            className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold"
+                        >
+                            15-min 1:1 • Get an exact revenue-lift projection for your dealership
+                        </motion.p>
+                    </div>
 
                     {/* Trust Indicators */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-10 sm:pt-12 mt-8 sm:mt-12 pb-4 border-t border-white/10">

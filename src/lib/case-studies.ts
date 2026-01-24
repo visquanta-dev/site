@@ -49,7 +49,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
         logo: '/images/brands/toyota.png',
         heroImage: '/images/dealership-hero.jpg',
         title: 'How Metro Auto Group Generated $68k in Gross Profit from "Dead" Leads in 30 Days',
-        summary: 'Facing a stagnating database of 45,000 leads and an overwhelmed BDC, Metro Auto Group deployed AutoMaster Suite to identify and engage in-market buyers, resulting in 32 incremental unit sales in month one.',
+        summary: 'Facing a stagnating database of 45,000 leads and an overwhelmed BDC, Metro Auto Group deployed The AutoMaster Suite to identify and engage in-market buyers, resulting in 32 incremental unit sales in month one.',
         metrics: [
             { value: '+32', label: 'Incremental Units', icon: TrendingUp },
             { value: '$68k', label: 'Addt. Front Gross', icon: BarChart3 },
@@ -69,7 +69,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
             steps: [
                 {
                     title: 'Database Hygiene & Analysis',
-                    description: 'We ingested their 45k records into AutoMaster Suite, scrubbing for invalid contact info and cross-referencing with DMS data to remove customers who had recently purchased elsewhere.'
+                    description: 'We ingested their 45k records into The AutoMaster Suite, scrubbing for invalid contact info and cross-referencing with DMS data to remove customers who had recently purchased elsewhere.'
                 },
                 {
                     title: 'AI-Powered Cold Lead Outreach',
@@ -87,11 +87,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
             stats: [
                 "32 Incremental Cars Sold directly attributed to the campaign.",
                 "$2,125 Average Front End Gross per unit on these deals.",
-                "Zero additional ad spend required—purely monetizing owned data."
+                "Zero additional ad spend required: purely monetizing owned data."
             ]
         },
         testimonial: {
-            quote: "I was skeptical that software could outperform my BDC on phone calls. But AutoMaster Suite pulled deals out of thin air. These were customers we had given up on. It brought them back into the showroom ready to buy.",
+            quote: "I was skeptical that software could outperform my BDC on phone calls. But The AutoMaster Suite pulled deals out of thin air. These were customers we had given up on. It brought them back into the showroom ready to buy.",
             author: "James Corwin",
             role: "General Manager, Metro Auto Group"
         }
@@ -103,7 +103,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
         logo: '/images/brands/honda.png',
         heroImage: '/images/bayside-hero.jpg',
         title: 'Reducing Lead Response Time from 40 Mins to 30 Seconds with AI',
-        summary: 'In a highly competitive metro market, Bayside Honda struggled to reach leads before competitors. By implementing AutoMaster Speed-to-Lead, they achieved instant engagement, doubling their contact rate.',
+        summary: 'In a highly competitive metro market, Bayside Honda struggled to reach leads before competitors. By implementing specialized Speed-to-Lead from The AutoMaster Suite, they achieved instant engagement, doubling their contact rate.',
         metrics: [
             { value: '-98%', label: 'Response Time', icon: Zap },
             { value: '2x', label: 'Contact Rate', icon: Users },
@@ -177,7 +177,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
             steps: [
                 {
                     title: 'Real-Time RO Scanning',
-                    description: 'AutoMaster integrated with the DMS to scan every open RO against Kelley Blue Book values and current payoff amounts.'
+                    description: 'The AutoMaster Suite integrated with the DMS to scan every open RO against Kelley Blue Book values and current payoff amounts.'
                 },
                 {
                     title: 'The "Upgrade Offer"',
@@ -210,7 +210,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
         type: 'Independent Dealership',
         logo: '/images/brands/generic.png',
         heroImage: '/images/freedom-hero.jpg',
-        title: 'Reducing Inventory Turn Time to 18 Days with AutoMaster',
+        title: 'Reducing Inventory Turn Time to 18 Days with The AutoMaster Suite',
         summary: 'By matching incoming inventory with wish-list customers automatically, Freedom Independent reduced their average turn time from 45 days to just 18 days.',
         metrics: [
             { value: '18 Days', label: 'Arg Turn Time', icon: Clock },
@@ -235,7 +235,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
                 },
                 {
                     title: 'Arrival Alerts',
-                    description: 'The moment a matching vehicle was booked into inventory, AutoMaster automatically texted every matching prospect: "The F-150 you wanted just landed."'
+                    description: 'The moment a matching vehicle was booked into inventory, The AutoMaster Suite automatically texted every matching prospect: "The F-150 you wanted just landed."'
                 },
                 {
                     title: 'Pre-Selling',
@@ -253,7 +253,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
             ]
         },
         testimonial: {
-            quote: "I don't worry about cars aging out anymore. If I buy the right inventory, AutoMaster finds the buyer instantly. It's like having a pre-sold order bank.",
+            quote: "I don't worry about cars aging out anymore. If I buy the right inventory, The AutoMaster Suite finds the buyer instantly. It's like having a pre-sold order bank.",
             author: "Bill Henderson",
             role: "Owner, Freedom Independent"
         }
@@ -265,7 +265,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
         logo: '/images/brands/ford-direct.jpg',
         heroImage: '/images/seth-wadley-hero.jpg',
         title: 'How Seth Wadley Auto Group Recovered $47k in 60 Days',
-        summary: 'Struggling with lead response times and missed opportunities on service calls, Seth Wadley implemented the full AutoMaster Suite. Within two months, the results were undeniable.',
+        summary: 'Struggling with lead response times and missed opportunities on service calls, Seth Wadley implemented the full The AutoMaster Suite. Within two months, the results were undeniable.',
         metrics: [
             { value: '$47k', label: 'Revenue Recovered', icon: DollarSign },
             { value: '12', label: 'Extra Units Sold', icon: TrendingUp },
@@ -307,7 +307,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
             ]
         },
         testimonial: {
-            quote: "The ROI was obvious within the first month. VisQuanta didn't just fix our lead response—it reactivated our entire CRM and stabilized our service drive.",
+            quote: "The ROI was obvious within the first month. VisQuanta didn't just fix our lead response; it reactivated our entire CRM and stabilized our service drive.",
             author: "Michael Rodriguez",
             role: "Operations Manager, Seth Wadley Auto Group"
         }

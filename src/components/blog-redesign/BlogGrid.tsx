@@ -45,13 +45,26 @@ export default function BlogGrid({ posts }: BlogGridProps) {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-x-8 xl:gap-y-10"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-16"
         >
-            {posts.map((post) => (
-                <motion.div key={post.slug} variants={itemVariants}>
-                    <BlogCard article={post} />
-                </motion.div>
-            ))}
+            {posts.map((post, index) => {
+                // Every 7th post spans 2 columns to create visual interest (Magazine Layout)
+                const isWide = (index + 1) % 7 === 0;
+
+                return (
+                    <motion.div
+                        key={post.slug}
+                        variants={itemVariants}
+                        className={isWide ? 'md:col-span-2' : ''}
+                    >
+                        <BlogCard
+                            article={post}
+                            variant={isWide ? 'horizontal' : 'default'}
+                            className="h-full"
+                        />
+                    </motion.div>
+                );
+            })}
         </motion.div>
     );
 }

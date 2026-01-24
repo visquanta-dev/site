@@ -41,7 +41,7 @@ export function BlogArticleHeader({ article }: { article: Article }) {
         if (navigator.share) {
             await navigator.share({
                 title: article.title,
-                text: `${article.title} — via VisQuanta`,
+                text: `${article.title} | via VisQuanta`,
                 url: window.location.href
             });
         } else {
@@ -66,7 +66,7 @@ export function BlogArticleHeader({ article }: { article: Article }) {
 
     const shareTwitter = () => {
         const url = encodeURIComponent(`${window.location.href}?utm_source=share&utm_medium=twitter`);
-        const text = encodeURIComponent(`${article.title} — via @VisQuanta`);
+        const text = encodeURIComponent(`${article.title} | via @VisQuanta`);
         window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
         setShowDropdown(false);
     };

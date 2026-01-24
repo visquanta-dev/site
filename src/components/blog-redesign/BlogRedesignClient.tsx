@@ -7,6 +7,7 @@ import BlogHero from '@/components/blog-redesign/BlogHero';
 import BlogFilters from '@/components/blog-redesign/BlogFilters';
 import FeaturedPost from '@/components/blog-redesign/FeaturedPost';
 import BlogGrid from '@/components/blog-redesign/BlogGrid';
+import NewsletterSignup from '@/components/blog-redesign/NewsletterSignup';
 import { BlogArticle } from '@/lib/blog';
 
 const POSTS_PER_PAGE = 6;
@@ -113,7 +114,7 @@ export default function BlogRedesignClient({ posts, categories, totalPosts }: Bl
     };
 
     return (
-        <div className="min-h-screen bg-[#0a0a0a]">
+        <div className="min-h-screen bg-[#020202]">
             {/* Hero Section */}
             <BlogHero />
 
@@ -139,6 +140,11 @@ export default function BlogRedesignClient({ posts, categories, totalPosts }: Bl
                         >
                             <FeaturedPost post={featuredPost} />
                         </motion.div>
+                    )}
+
+                    {/* Newsletter Signup - CRO Finding M */}
+                    {isFirstPage && activeCategory === 'all' && (
+                        <NewsletterSignup variant="inline" />
                     )}
 
                     {/* Blog Grid */}

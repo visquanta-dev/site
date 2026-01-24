@@ -6,37 +6,41 @@ import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react';
 
 const faqs = [
     {
-        question: "What is Automotive Lead Reactivation?",
-        answer: "Automotive Lead Reactivation is the process of re-engaging dormant CRM leads (typically 90+ days old) using AI-driven conversational SMS. Unlike traditional mass blasts, VisQuanta's system initiates 1-on-1 conversations to identify customers who are back in the market, converting 'dead' data into fresh showroom appointments."
+        question: "How do I get more sales from my existing CRM?",
+        answer: "Your CRM is full of leads who wanted to buy but didn't: yet. VisQuanta uses AI-powered conversational SMS to re-engage these dormant contacts (from 1 week to 5 years old) and book them directly into your showroom. Most dealerships see their first appointment within 48-72 hours. It's not new marketing spend; it's recovering revenue from leads you already paid to acquire."
     },
     {
-        question: "How long does it take to see results?",
-        answer: "Most dealerships see their first booked appointment within the first 48-72 hours of launch. Full campaign momentum typically builds within 2-3 weeks as we optimize your playbooks and response patterns. Our fastest result was 17 additional vehicle sales in the first month for Seth Wadley Auto Group."
+        question: "Can you really sell cars from 3-year-old leads?",
+        answer: "Yes. The average car buying cycle is 3-5 years. That 'dead' lead from 2022 might be ready to buy today: they just need someone to reach out. We've helped dealerships close deals from leads as old as 5 years. Seth Wadley Auto Group sold 17 additional vehicles in their first month, many from leads marked 'lost' years ago."
     },
     {
-        question: "Do you replace our existing CRM or DMS?",
-        answer: "No. We integrate directly with your existing systems—VINSOLUTIONS, DealerSocket, eLead, Reynolds, CDK, and 50+ others. Appointments are synced directly into your CRM the moment they're booked. Zero workflow changes required from your team."
+        question: "What's the best way to follow up on dead leads?",
+        answer: "Not calls (3-5% answer rate). Not email (1-2% engagement). Conversational SMS gets 39%+ engagement because it feels personal, not spammy. The key is 1-on-1 conversations, not mass blasts. Our AI initiates real back-and-forth texting, monitored by humans, to identify who's actually back in the market."
     },
     {
-        question: "What about TCPA compliance?",
-        answer: "We take compliance extremely seriously. All outreach follows TCPA, CTIA, and state-level regulations. We only contact leads who have provided consent through your dealership, and every conversation includes proper opt-out mechanisms. Our legal team reviews all playbooks."
+        question: "Is texting old customers actually legal?",
+        answer: "Yes, when done correctly. We only contact leads who provided consent through your dealership. All outreach follows TCPA, CTIA, and state-level regulations. Every conversation includes proper opt-out mechanisms, and our legal team reviews all playbooks. We take compliance extremely seriously: it protects you and us."
     },
     {
-        question: "How is this different from our current BDC?",
-        answer: "Your BDC handles fresh, high-intent leads. We focus exclusively on cold, dormant, and 'lost' leads that your BDC has stopped working—typically anything older than 30-90 days. We don't compete with your BDC; we feed them warm, reactivated opportunities."
+        question: "How is this different from Podium, Impel, or other AI tools?",
+        answer: "Those tools focus on responding to NEW leads fast. We focus on the leads they've stopped working: the old, cold, 'lost' contacts sitting in your CRM. We don't compete with your AI sales agent or BDC; we work the 95% of your database they're ignoring. Think of us as a parallel revenue stream from existing assets."
     },
     {
-        question: "What's the typical ROI?",
-        answer: "On average, dealerships see a 12-15x return on investment. With an average front + back gross of $4,800 per unit and our conservative 7% reactivation-to-sale rate, a database of 1,500 cold leads typically generates $500K+ in annual recovered revenue."
+        question: "Do I need to change my CRM or train my team?",
+        answer: "No and no. We integrate directly with VinSolutions, DealerSocket, eLead, Reynolds, CDK, and 50+ others. Appointments sync directly into your CRM. Your sales team just shows up to close warm, reactivated leads. Zero workflow changes, zero new software to learn."
     },
     {
-        question: "Is this AI or are there real humans involved?",
-        answer: "Both. We use AI to intelligently identify high-intent signals and manage conversation flows, but every message thread is monitored by our human account management team. This 'human-in-the-loop' approach ensures quality, brand safety, and prevents any awkward bot responses."
+        question: "What kind of ROI should I expect?",
+        answer: "On average, 12-15x return on investment. Here's the math: with $4,800 average profit per unit and a 7% reactivation-to-sale rate, a database of 1,500 cold leads generates $500K+ in annual recovered revenue. Use our calculator to see your specific numbers based on your database size."
+    },
+    {
+        question: "Is this just a chatbot or are there real people involved?",
+        answer: "Both. AI handles the initial outreach and identifies high-intent signals, but every conversation is monitored by our human account management team. This 'human-in-the-loop' approach prevents awkward bot responses and ensures your brand is represented professionally. You also get a dedicated account manager who visits your rooftops."
     }
 ];
 
 export default function FAQSection() {
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     const toggleFAQ = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
@@ -77,14 +81,14 @@ export default function FAQSection() {
                         </div>
 
                         <h2 className="text-5xl lg:text-6xl font-bold text-white mb-8 leading-[1.05] tracking-[-0.02em]">
-                            Frequently Asked <br />
+                            Questions Dealers Ask <br />
                             <span className="bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-[#FF7404] bg-clip-text text-transparent">
-                                Questions
+                                About Reviving Old Leads
                             </span>
                         </h2>
 
                         <p className="text-xl text-white/35 leading-[1.9] max-w-md font-light">
-                            Everything you need to know about our managed lead reactivation service. Can't find the answer you're looking for?
+                            Everything you need to know about selling cars from your existing CRM. Can't find the answer you're looking for?
                         </p>
 
                         <div className="mt-12">

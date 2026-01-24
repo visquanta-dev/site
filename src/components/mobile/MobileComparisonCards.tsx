@@ -73,7 +73,7 @@ export default function MobileComparisonCards({ comparisons }: MobileComparisonC
                                         <span className="text-xs font-medium text-white/40 uppercase tracking-wide">Traditional BDC</span>
                                     </div>
                                     <span className={`text-sm font-medium ${isWeakTraditional ? 'text-white/20' : 'text-white/40'}`}>
-                                        {row.traditional || '—'}
+                                        {row.traditional || '-'}
                                     </span>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@ export default function MobileComparisonCards({ comparisons }: MobileComparisonC
                                         <span className="text-xs font-medium text-white/40 uppercase tracking-wide">Generic AI</span>
                                     </div>
                                     <span className={`text-sm font-medium ${isWeakGeneric ? 'text-white/20' : 'text-white/40'}`}>
-                                        {row.generic || '—'}
+                                        {row.generic || '-'}
                                     </span>
                                 </div>
                             </div>

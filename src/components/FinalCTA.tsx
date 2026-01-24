@@ -41,19 +41,30 @@ export default function FinalCTA() {
 
           {/* Subheadline */}
           <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-xl sm:max-w-2xl mx-auto mb-10 sm:mb-12 md:mb-16 px-2 sm:px-0 leading-relaxed font-medium">
-            Join the elite dealerships using AutoMaster to automate operations and maximize revenue. Your competition is already here.
+            Join the elite dealerships using VisQuanta to automate operations and maximize revenue. Your competition is already here.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex justify-center mb-12 sm:mb-16 md:mb-20">
+          <div className="flex flex-col items-center gap-4 mb-12 sm:mb-16 md:mb-20">
             <RequestDemoButton
               className="group relative px-8 py-5 sm:px-10 sm:py-6 md:px-12 rounded-full bg-white transition-all duration-500 hover:scale-105 active:scale-95 w-full sm:w-auto"
             >
               <div className="absolute inset-0 rounded-full bg-[#ff7404] blur-2xl opacity-0 group-hover:opacity-20 transition-opacity" />
               <span className="relative text-black font-black text-sm uppercase tracking-[0.2em] flex items-center gap-3">
-                Request A Demo <Zap className="w-4 h-4 fill-black" />
+                Schedule Your Walkthrough <Zap className="w-4 h-4 fill-black" />
               </span>
             </RequestDemoButton>
+
+            {/* CRO Microcopy */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold"
+            >
+              15-min 1:1 • Get an exact revenue-lift projection for your dealership
+            </motion.p>
           </div>
 
           {/* Trust Indicators */}

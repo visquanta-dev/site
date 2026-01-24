@@ -26,7 +26,7 @@ const caseStudies = [
         metricLabel: 'Monthly Sales',
         category: 'franchise',
         tags: ['Franchise Group', 'Lead Activation'],
-        description: 'Facing a stagnating database of 45k leads, Metro Auto Group deployed AutoMaster Suite to identify and engage in-market buyers, resulting in an immediate 15% boost in appointment show rates.',
+        description: 'Facing a stagnating database of 45k leads, Metro Auto Group deployed The AutoMaster Suite to identify and engage in-market buyers, resulting in an immediate 15% boost in appointment show rates.',
         color: 'from-orange-500/20 to-red-500/20',
         borderColor: 'group-hover:border-[#FF7404]/50',
         icon: TrendingUp,
@@ -137,7 +137,7 @@ export default function CaseStudiesPage() {
                             transition={{ delay: 0.1 }}
                             className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed"
                         >
-                            Explore how top dealerships leverage AutoMaster Suite to unlock revenue, automate operations, and dominate their local markets.
+                            Explore how top dealerships leverage The AutoMaster Suite to unlock revenue, automate operations, and dominate their local markets.
                         </motion.p>
                     </div>
 
@@ -284,7 +284,7 @@ export default function CaseStudiesPage() {
                                 Ready to write your success story?
                             </h2>
                             <p className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
-                                Join 850+ dealerships that have transformed their operations with AutoMaster Suite.
+                                Join 850+ dealerships that have transformed their operations with The AutoMaster Suite.
                             </p>
                             <div className="inline-flex p-1 rounded-full bg-gradient-to-r from-[#FF7404]/50 to-[#FF7404]/0">
                                 <Link href="/contact">

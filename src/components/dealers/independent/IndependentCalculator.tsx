@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useSpring } from 'framer-motion';
 import { Calculator, Users, DollarSign, TrendingUp, Zap, ArrowRight, Check } from 'lucide-react';
+import { RequestDemoButton } from '@/components/CalendlyModal';
 
 // Animated Count Up Component
 const CountUp = ({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) => {
@@ -61,6 +62,7 @@ export default function IndependentCalculator() {
         { id: 'combined', label: 'Revenue OS', icon: TrendingUp },
     ];
 
+
     return (
         <section className="py-24 bg-[#0a0a0a] relative overflow-hidden" id="calculator">
             {/* Background Ambience */}
@@ -83,7 +85,7 @@ export default function IndependentCalculator() {
                         Calculate Your <span className="text-[#FF7404]">Potential.</span>
                     </h2>
                     <p className="text-white/40 text-lg max-w-2xl mx-auto">
-                        See how much revenue is leaking out of your dealership. Independent dealers win on efficiency.
+                        See how much revenue is leaking out of your dealership. <br /> Independent dealers win on efficiency.
                     </p>
                 </div>
 
@@ -280,83 +282,89 @@ export default function IndependentCalculator() {
                                 style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
                             <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/5 to-transparent pointer-events-none" />
 
-                            <div className="space-y-10 relative z-10">
-                                <div className="space-y-2">
-                                    <div className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] flex items-center gap-2">
-                                        <div className="w-1 h-1 bg-[#FF7404] animate-pulse rounded-full" />
-                                        Projected Monthly Impact
+                            <motion.div
+                                key="hud"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="space-y-10 relative z-10 flex flex-col h-full"
+                            >
+                                <div className="space-y-10 flex-1">
+                                    <div className="space-y-2">
+                                        <div className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] flex items-center gap-2">
+                                            <div className="w-1 h-1 bg-[#FF7404] animate-pulse rounded-full" />
+                                            Projected Monthly Impact
+                                        </div>
+                                        <div className="text-6xl font-black text-white tracking-tighter tabular-nums drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                                            <CountUp value={totalImpact} prefix="$" />
+                                        </div>
+                                        <div className="flex items-center gap-2 text-[#FF7404] text-[10px] font-black uppercase tracking-wider bg-[#FF7404]/10 w-fit px-3 py-1.5 rounded-lg border border-[#FF7404]/20">
+                                            <TrendingUp className="w-3 h-3" />
+                                            {activeTab === 'efficiency' ? (
+                                                <span>+{hoursSavedPerMonth} Hrs Recaptured</span>
+                                            ) : (
+                                                <span>+34% Gross Profit Lift</span>
+                                            )}
+                                        </div>
                                     </div>
-                                    <div className="text-6xl font-black text-white tracking-tighter tabular-nums drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                                        <CountUp value={totalImpact} prefix="$" />
-                                    </div>
-                                    <div className="flex items-center gap-2 text-[#FF7404] text-[10px] font-black uppercase tracking-wider bg-[#FF7404]/10 w-fit px-3 py-1.5 rounded-lg border border-[#FF7404]/20">
-                                        <TrendingUp className="w-3 h-3" />
-                                        {activeTab === 'efficiency' ? (
-                                            <span>+{hoursSavedPerMonth} Hrs Recaptured</span>
-                                        ) : (
-                                            <span>+34% Gross Profit Lift</span>
-                                        )}
+                                    <div className="space-y-4 pt-10 border-t border-white/5">
+                                        <AnimatePresence mode="wait">
+                                            <motion.div
+                                                key={activeTab}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -10 }}
+                                                className="space-y-4"
+                                            >
+                                                {(activeTab === 'reactivation' || activeTab === 'combined') && (
+                                                    <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] backdrop-blur-md">
+                                                        <div className="flex items-center gap-3">
+                                                            <DollarSign className="w-4 h-4 text-green-500" />
+                                                            <div className="text-[10px] text-white/50 uppercase font-bold tracking-widest leading-none">Lead Recovery</div>
+                                                        </div>
+                                                        <div className="text-sm font-black text-white font-mono tabular-nums">
+                                                            <CountUp value={reactivationRevenue} prefix="+$" />
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {(activeTab === 'speed_to_lead' || activeTab === 'combined') && (
+                                                    <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] backdrop-blur-md">
+                                                        <div className="flex items-center gap-3">
+                                                            <Zap className="w-4 h-4 text-[#ff7404]" />
+                                                            <div className="text-[10px] text-white/50 uppercase font-bold tracking-widest leading-none">Conv. Lift</div>
+                                                        </div>
+                                                        <div className="text-sm font-black text-white font-mono tabular-nums">
+                                                            <CountUp value={speedToLeadRevenue} prefix="+$" />
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {(activeTab === 'efficiency' || activeTab === 'combined') && (
+                                                    <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] backdrop-blur-md">
+                                                        <div className="flex items-center gap-3">
+                                                            <Users className="w-4 h-4 text-blue-500" />
+                                                            <div className="text-[10px] text-white/50 uppercase font-bold tracking-widest leading-none">Hours Saved</div>
+                                                        </div>
+                                                        <div className="text-sm font-black text-white font-mono tabular-nums">
+                                                            <CountUp value={hoursSavedPerMonth} suffix="h" />
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </motion.div>
+                                        </AnimatePresence>
                                     </div>
                                 </div>
 
-                                <div className="space-y-4 pt-10 border-t border-white/5">
-                                    <AnimatePresence mode="wait">
-                                        <motion.div
-                                            key={activeTab}
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: -10 }}
-                                            className="space-y-4"
-                                        >
-                                            {(activeTab === 'reactivation' || activeTab === 'combined') && (
-                                                <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] backdrop-blur-md">
-                                                    <div className="flex items-center gap-3">
-                                                        <DollarSign className="w-4 h-4 text-green-500" />
-                                                        <div className="text-[10px] text-white/50 uppercase font-bold tracking-widest leading-none">Lead Recovery</div>
-                                                    </div>
-                                                    <div className="text-sm font-black text-white font-mono tabular-nums">
-                                                        <CountUp value={reactivationRevenue} prefix="+$" />
-                                                    </div>
-                                                </div>
-                                            )}
-
-                                            {(activeTab === 'speed_to_lead' || activeTab === 'combined') && (
-                                                <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] backdrop-blur-md">
-                                                    <div className="flex items-center gap-3">
-                                                        <Zap className="w-4 h-4 text-[#ff7404]" />
-                                                        <div className="text-[10px] text-white/50 uppercase font-bold tracking-widest leading-none">Conv. Lift</div>
-                                                    </div>
-                                                    <div className="text-sm font-black text-white font-mono tabular-nums">
-                                                        <CountUp value={speedToLeadRevenue} prefix="+$" />
-                                                    </div>
-                                                </div>
-                                            )}
-
-                                            {(activeTab === 'efficiency' || activeTab === 'combined') && (
-                                                <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] backdrop-blur-md">
-                                                    <div className="flex items-center gap-3">
-                                                        <Users className="w-4 h-4 text-blue-500" />
-                                                        <div className="text-[10px] text-white/50 uppercase font-bold tracking-widest leading-none">Hours Saved</div>
-                                                    </div>
-                                                    <div className="text-sm font-black text-white font-mono tabular-nums">
-                                                        <CountUp value={hoursSavedPerMonth} suffix="h" />
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </motion.div>
-                                    </AnimatePresence>
+                                <div className="pt-10 space-y-4 relative z-10">
+                                    <RequestDemoButton className="w-full py-5 bg-[#FF7404] hover:bg-white text-black font-black text-xs uppercase tracking-[0.2em] rounded-xl transition-all duration-500 flex items-center justify-center gap-2 group/btn shadow-[0_0_50px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)]">
+                                        Claim Your Revenue Lift
+                                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                                    </RequestDemoButton>
+                                    <p className="text-center text-[9px] text-white/20 uppercase font-bold tracking-widest">
+                                        Conservative Estimates • ROI Verified 2026
+                                    </p>
                                 </div>
-                            </div>
-
-                            <div className="pt-10 space-y-4 relative z-10">
-                                <button className="w-full py-5 bg-[#FF7404] hover:bg-white text-black font-black text-xs uppercase tracking-[0.2em] rounded-xl transition-all duration-500 flex items-center justify-center gap-2 group/btn shadow-[0_0_50px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)]">
-                                    Unlock These Results
-                                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                                </button>
-                                <p className="text-center text-[9px] text-white/20 uppercase font-bold tracking-widest">
-                                    Conservative Estimates • ROI Verified 2025
-                                </p>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>

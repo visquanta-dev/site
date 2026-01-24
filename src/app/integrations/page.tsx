@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import IntegrationHero from '@/components/integrations/IntegrationHero';
 import IntegrationCard from '@/components/integrations/IntegrationCard';
 import IntegrationCTA from '@/components/integrations/IntegrationCTA';
+import FinalCTA from '@/components/FinalCTA';
 import { integrations, Integration } from '@/lib/integrations';
 import { Database, Zap, ArrowRight, ShieldCheck, RefreshCw, Key } from 'lucide-react';
 
@@ -187,13 +188,7 @@ export default function IntegrationsHubPage() {
                 }}
             />
 
-            <IntegrationCTA
-                title="Don't See Your Platform?"
-                description="We're adding new integrations constantly. Let us know what you need and we'll prioritize it."
-                ctaText="Book a Demo"
-                secondaryCtaText="Request Integration"
-                secondaryCtaLink="/contact"
-            />
+            <FinalCTA />
 
             <Footer />
         </main>

@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Mic } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import { RequestDemoButton } from '../CalendlyModal';
 
 
 export default function HeroSection() {
@@ -61,7 +62,7 @@ export default function HeroSection() {
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
                         className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/45 text-center max-w-4xl mx-auto mb-8 sm:mb-12 leading-relaxed font-medium"
                     >
-                        Answer 100% of inbound service calls — 24/7, 365. <br className="hidden md:block" />
+                        Answer 100% of inbound service calls: 24/7, 365. <br className="hidden md:block" />
                         Turn missed calls into <span className="text-white/80 font-medium">booked jobs</span>.
                     </motion.p>
                 </div>
@@ -73,17 +74,18 @@ export default function HeroSection() {
                     transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
                     className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-stretch sm:items-center mb-8 md:mb-16"
                 >
-                    <button
-                        onClick={() => window.dispatchEvent(new CustomEvent('open-voice-demo'))}
-                        className="group relative px-8 sm:px-10 py-5 overflow-hidden rounded-xl shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)] transition-shadow duration-500 text-center uppercase"
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-xl" />
-                        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.3)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
-                        <span className="relative z-10 flex items-center justify-center gap-3 text-black font-black text-sm uppercase tracking-widest">
-                            <Mic className="w-4 h-4" />
-                            TRY VOICE AI LIVE
-                        </span>
-                    </button>
+                    <RequestDemoButton asChild>
+                        <button
+                            className="group relative px-8 sm:px-10 py-5 overflow-hidden rounded-xl shadow-[0_0_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_60px_-10px_rgba(255,116,4,0.6)] transition-shadow duration-500 text-center uppercase border-none"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-xl" />
+                            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.3)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
+                            <span className="relative z-10 flex items-center justify-center gap-3 text-black font-black text-sm uppercase tracking-widest">
+                                <Sparkles className="w-4 h-4" />
+                                Schedule Your Walkthrough
+                            </span>
+                        </button>
+                    </RequestDemoButton>
 
                     <a href="#calculator" className="group px-8 sm:px-10 py-5 bg-white/[0.03] border border-white/[0.08] rounded-xl hover:bg-white/[0.06] transition-all duration-300 text-center">
                         <span className="flex items-center justify-center gap-3 text-white font-black text-sm uppercase tracking-widest">
@@ -91,6 +93,49 @@ export default function HeroSection() {
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#FF7404]" />
                         </span>
                     </a>
+                </motion.div>
+
+                {/* CRO Microcopy */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="flex flex-col items-center gap-2 mb-12 sm:mb-16"
+                >
+                    <p className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold">
+                        15-min 1:1 • Get an exact revenue-lift projection for your dealership
+                    </p>
+                </motion.div>
+
+                {/* Trust Anchor - CRO Finding H */}
+                <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
+                    className="text-center"
+                >
+                    <p className="text-xs sm:text-sm text-white/40 font-medium mb-4">
+                        Trusted by <span className="text-white/60">50+ service departments</span> recovering leaked revenue
+                    </p>
+                    <div className="flex items-center justify-center gap-4 sm:gap-6">
+                        {[
+                            { src: '/images/logos/ford-direct.jpg', alt: 'Ford Direct' },
+                            { src: '/images/logos/toyota.jpg', alt: 'Toyota' },
+                            { src: '/images/logos/honda.jpg', alt: 'Honda' },
+                            { src: '/images/logos/gm.jpg', alt: 'GM' }
+                        ].map((logo, i) => (
+                            <div
+                                key={i}
+                                className="h-6 sm:h-7 w-auto opacity-40 hover:opacity-70 transition-opacity duration-300"
+                            >
+                                <img
+                                    src={logo.src}
+                                    alt={logo.alt}
+                                    className="h-full w-auto object-contain grayscale brightness-150"
+                                />
+                            </div>
+                        ))}
+                    </div>
                 </motion.div>
             </div>
         </section >

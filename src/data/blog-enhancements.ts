@@ -28,7 +28,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-dealerships': {
         executivePoV: {
             title: "The 'Quiet Abandonment' Problem",
-            body: "Most dealerships obsess over open rates and click-through rates. But the metric that actually kills deals is what we call 'Quiet Abandonment'—when a customer opens your email, intends to respond, gets distracted, and never comes back. SMS works because it lives in a persistent, low-friction thread that doesn't require the customer's undivided attention. That's the real competitive advantage.",
+            body: "Most dealerships obsess over open rates and click-through rates. But the metric that actually kills deals is what we call 'Quiet Abandonment,' when a customer opens your email, intends to respond, gets distracted, and never comes back. SMS works because it lives in a persistent, low-friction thread that doesn't require the customer's undivided attention. That's the real competitive advantage.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -52,7 +52,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'speed-to-lead-slow-follow-up-sales-impact': {
         executivePoV: {
             title: "The 5-Minute Cliff",
-            body: "We analyzed over 50,000 lead interactions and found a consistent pattern: if you don't make contact within the first 5 minutes, your odds of ever reaching that customer drop by 80%. After 30 minutes, it's 90%. This isn't about being pushy—it's about being present when the customer is still in decision mode. Once they leave that mental state, they're gone.",
+            body: "We analyzed over 50,000 lead interactions and found a consistent pattern: if you don't make contact within the first 5 minutes, your odds of ever reaching that customer drop by 80%. After 30 minutes, it's 90%. This isn't about being pushy; it's about being present when the customer is still in decision mode. Once they leave that mental state, they're gone.",
             author: "VisQuanta Management"
         },
         glossaryTerms: [
@@ -67,7 +67,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
         ],
         caseStudyProof: {
             client: "Seth Wadley CDJR",
-            result: "Reduced average first-response time from 47 minutes to under 90 seconds.",
+            result: "Reduced average first-response time from 47 minutes to under 60 seconds.",
             product: "Speed-to-Lead AI"
         }
     },
@@ -76,7 +76,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'why-your-service-department-needs-24-7-call-answering-not-just-voicemail': {
         executivePoV: {
             title: "The After-Hours Revenue Leak",
-            body: "Here's what most GMs don't realize: 34% of service calls come in after 6 PM or before 8 AM. Every one of those calls that hits voicemail is a customer who immediately calls the next dealer on their list. They're not leaving messages—they have an urgent need and they'll find someone who answers. That's recurring revenue walking out your door every single night.",
+            body: "Here's what most GMs don't realize: 34% of service calls come in after 6 PM or before 8 AM. Every one of those calls that hits voicemail is a customer who immediately calls the next dealer on their list. They're not leaving messages; they have an urgent need and they'll find someone who answers. That's recurring revenue walking out your door every single night.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -100,7 +100,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'dealerships-ai-improve-csi-scores': {
         executivePoV: {
             title: "The Survey Timing Paradox",
-            body: "CSI surveys are sent days after the service visit, when the only customers who respond are either delighted or furious. The silent majority—the ones who had an 'okay' experience—never respond, which skews your data. AI changes this by identifying at-risk customers in real-time while they're still at the dealership, giving you a chance to recover before the survey ever goes out.",
+            body: "CSI surveys are sent days after the service visit, when the only customers who respond are either delighted or furious. The silent majority, the ones who had an 'okay' experience, never respond, which skews your data. AI changes this by identifying at-risk customers in real-time while they're still at the dealership, giving you a chance to recover before the survey ever goes out.",
             author: "VisQuanta Management"
         },
         glossaryTerms: [
@@ -116,7 +116,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
         caseStudyProof: {
             client: "Corwin Toyota Colorado Springs",
             result: "Improved CSI ranking from bottom 20% to top 10% regionally within 6 months.",
-            product: "AutoMaster Suite"
+            product: "The AutoMaster Suite"
         }
     },
 
@@ -140,7 +140,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
         caseStudyProof: {
             client: "Seth Wadley Chevy GMC of Pauls Valley",
             result: "Consolidated 9 disconnected tools into one platform, saving 22 hours of staff time weekly.",
-            product: "AutoMaster Suite"
+            product: "The AutoMaster Suite"
         }
     },
 
@@ -148,7 +148,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'crm-database-reactivation-guide': {
         executivePoV: {
             title: "The $50K Sitting in Your CRM",
-            body: "Most dealerships operate on a 30-day lead lifecycle—after that, the BDC stops calling. But we've found that leads aged 90-365 days convert at nearly the same rate as fresh inquiries when approached with personalized, conversational AI. Your 'dead' database isn't dead—it's dormant revenue waiting to be unlocked.",
+            body: "Most dealerships operate on a 30-day lead lifecycle; after that, the BDC stops calling. But we've found that leads aged 90-365 days convert at nearly the same rate as fresh inquiries when approached with personalized, conversational AI. Your 'dead' database isn't dead: it's dormant revenue waiting to be unlocked.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -176,7 +176,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'ai-powered-solutions-pre-owned-car-dealers': {
         executivePoV: {
             title: "The Margin Compression Trap",
-            body: "Pre-owned dealers face a paradox: tighter margins mean you need more volume, but more volume means more leads slipping through the cracks. The solution isn't hiring more people—it's automating the repetitive touchpoints so your team can focus on high-intent buyers. AI handles the 80% of leads that need nurturing so your salespeople can close the 20% that are ready now.",
+            body: "Pre-owned dealers face a paradox: tighter margins mean you need more volume, but more volume means more leads slipping through the cracks. The solution isn't hiring more people; it's automating the repetitive touchpoints so your team can focus on high-intent buyers. AI handles the 80% of leads that need nurturing so your salespeople can close the 20% that are ready now.",
             author: "VisQuanta Management"
         },
         glossaryTerms: [
@@ -200,7 +200,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     '5-reasons-car-buyers-prefer-sms-over-phone-calls-from-dealerships': {
         executivePoV: {
             title: "The Generational Shift Nobody Talks About",
-            body: "Millennials and Gen Z now represent over 60% of car buyers. These generations screen unknown calls—they don't answer them. Yet most dealerships still lead with phone calls from unfamiliar numbers. You're not just losing leads; you're actively training customers to ignore you. Meet them where they actually communicate: in text threads.",
+            body: "Millennials and Gen Z now represent over 60% of car buyers. These generations screen unknown calls; they don't answer them. Yet most dealerships still lead with phone calls from unfamiliar numbers. You're not just losing leads; you're actively training customers to ignore you. Meet them where they actually communicate: in text threads.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -224,7 +224,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'automotive-ai-complete-guide-car-dealerships': {
         executivePoV: {
             title: "The 'Good Enough' Ceiling",
-            body: "Most dealerships hit a revenue ceiling not because of market conditions, but because their processes can only scale so far with human labor. AI doesn't replace your team—it removes the ceiling. It handles the volume that would otherwise overwhelm your BDC, creating consistent follow-up at a scale no human team can match.",
+            body: "Most dealerships hit a revenue ceiling not because of market conditions, but because their processes can only scale so far with human labor. AI doesn't replace your team; it removes the ceiling. It handles the volume that would otherwise overwhelm your BDC, creating consistent follow-up at a scale no human team can match.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -240,7 +240,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
         caseStudyProof: {
             client: "Wolfe Chevrolet Edmonton",
             result: "Handled 3,200+ monthly lead interactions with a 2-person BDC team—previously required 8 staff.",
-            product: "AutoMaster Suite"
+            product: "The AutoMaster Suite"
         }
     },
 
@@ -248,7 +248,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'third-party-lead-providers-dealerships': {
         executivePoV: {
             title: "The Lead Quality Illusion",
-            body: "Dealers spend $30,000-50,000 monthly on third-party leads, then wonder why conversion rates are under 5%. The leads aren't bad—the follow-up is. Third-party leads are shared with 3-4 other dealers simultaneously. Speed and persistence win, not lead source. The dealer who responds first and follows up consistently closes the deal.",
+            body: "Dealers spend $30,000-50,000 monthly on third-party leads, then wonder why conversion rates are under 5%. The leads aren't bad; the follow-up is. Third-party leads are shared with 3-4 other dealers simultaneously. Speed and persistence win, not lead source. The dealer who responds first and follows up consistently closes the deal.",
             author: "VisQuanta Management"
         },
         glossaryTerms: [
@@ -272,7 +272,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'ai-call-answering-car-dealerships-guide': {
         executivePoV: {
             title: "The Voicemail Black Hole",
-            body: "We tracked 10,000 dealership voicemails over 90 days. The callback rate? 11%. Customers don't leave voicemails expecting a callback—they leave them out of obligation, then immediately call your competitor. An AI voice agent that answers every call, every time, isn't a luxury. It's the difference between capturing and losing that customer forever.",
+            body: "We tracked 10,000 dealership voicemails over 90 days. The callback rate? Only 11%. Customers don't leave voicemails expecting a callback; they leave them out of obligation, then immediately call your competitor. An AI voice agent that answers every call, every time, isn't a luxury. It's the difference between capturing and losing that customer forever.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -296,7 +296,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'dealership-marketing-challenges-solutions': {
         executivePoV: {
             title: "The Attribution Nightmare",
-            body: "Most dealers can't tell you which marketing channel actually drives sales. They know what drives clicks, maybe leads—but the connection to closed deals is a black box. Until you can trace every sale back to its true source, you're flying blind with your marketing budget. Fix attribution first, then optimize spend.",
+            body: "Most dealers can't tell you which marketing channel actually drives sales. They know what drives clicks, maybe leads, but the connection to closed deals is a black box. Until you can trace every sale back to its true source, you're flying blind with your marketing budget. Fix attribution first, then optimize spend.",
             author: "VisQuanta Management"
         },
         glossaryTerms: [
@@ -311,8 +311,8 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
         ],
         caseStudyProof: {
             client: "Genesis of Norman",
-            result: "Identified that 34% of sales came from organic sources previously attributed to paid ads—reallocated $18K monthly.",
-            product: "AutoMaster Suite"
+            result: "Identified that 34% of sales came from organic sources previously attributed to paid ads, reallocated $18K monthly.",
+            product: "The AutoMaster Suite"
         }
     },
 
@@ -320,7 +320,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'dealership-reputation-management-negative-reviews': {
         executivePoV: {
             title: "The Silent Majority Problem",
-            body: "Happy customers don't leave reviews—frustrated ones do. That's why your online reputation skews negative even when 90% of your customers are satisfied. The fix isn't suppressing bad reviews; it's systematically prompting satisfied customers at the right moment. Timing is everything: ask within 24 hours of a positive experience.",
+            body: "Happy customers don't leave reviews; frustrated ones do. That's why your online reputation skews negative even when 90% of your customers are satisfied. The fix isn't suppressing bad reviews; it's systematically prompting satisfied customers at the right moment. Timing is everything: ask within 24 hours of a positive experience.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -344,7 +344,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'automotive-ai-chatbot-marketing-2025': {
         executivePoV: {
             title: "The Chatbot Credibility Gap",
-            body: "Most dealership chatbots fail because they feel robotic—customers know they're talking to a bot and disengage. The new generation of conversational AI doesn't try to fool customers; it's upfront about being AI while delivering genuinely helpful responses. Transparency plus competence equals trust.",
+            body: "Most dealership chatbots fail because they feel robotic: customers know they're talking to a bot and disengage. The new generation of conversational AI doesn't try to fool customers; it's upfront about being AI while delivering genuinely helpful responses. Transparency plus competence equals trust.",
             author: "VisQuanta Management"
         },
         glossaryTerms: [
@@ -368,7 +368,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'ai-bdc-first-response-time': {
         executivePoV: {
             title: "The BDC Bottleneck",
-            body: "Your BDC can only handle so many leads per hour. During peak times—Saturday mornings, end-of-month pushes—response times balloon and leads go cold. AI doesn't replace your BDC; it handles the surge so your human team maintains consistent response times regardless of volume.",
+            body: "Your BDC can only handle so many leads per hour. During peak times, like Saturday mornings and end-of-month pushes, response times balloon and leads go cold. AI doesn't replace your BDC; it handles the surge so your human team maintains consistent response times regardless of volume.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -392,7 +392,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'ai-call-technology-customer-lost-leads': {
         executivePoV: {
             title: "The Invisible Lead Graveyard",
-            body: "Every dealership has a graveyard of leads marked 'no answer' or 'left voicemail.' These aren't dead leads—they're leads your process killed. The customer was interested enough to submit their information. They just didn't pick up when you called from an unknown number. Change the approach, resurrect the lead.",
+            body: "Every dealership has a graveyard of leads marked 'no answer' or 'left voicemail.' These aren't dead leads: they're leads your process killed. The customer was interested enough to submit their information. They just didn't pick up when you called from an unknown number. Change the approach, resurrect the lead.",
             author: "VisQuanta Management"
         },
         glossaryTerms: [
@@ -416,7 +416,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'crm-mining-automotive-industry': {
         executivePoV: {
             title: "The Equity Timing Window",
-            body: "Your CRM contains customers approaching positive equity positions—people who could trade up today without being underwater. Most dealers wait for the customer to walk in. The proactive dealer identifies these equity windows and reaches out first. That's not selling; that's providing a financial opportunity the customer didn't know they had.",
+            body: "Your CRM contains customers approaching positive equity positions: people who could trade up today without being underwater. Most dealers wait for the customer to walk in. The proactive dealer identifies these equity windows and reaches out first. That's not selling; that's providing a financial opportunity the customer didn't know they had.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -426,7 +426,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
             },
             {
                 term: "Customer Lifecycle Marketing",
-                definition: "Targeted communication strategies based on where customers are in their ownership journey—from purchase to service to trade-in readiness."
+                definition: "Targeted communication strategies based on where customers are in their ownership journey: from purchase to service to trade-in readiness."
             }
         ],
         caseStudyProof: {

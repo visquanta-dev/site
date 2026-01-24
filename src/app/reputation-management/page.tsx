@@ -3,6 +3,7 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Hero from '@/components/reputation-management/Hero';
+import OpportunityCheck from '@/components/reputation-management/OpportunityCheck';
 import DecisionPattern from '@/components/reputation-management/DecisionPattern';
 import TrustLadder from '@/components/reputation-management/TrustLadder';
 import MetricsBand from '@/components/reputation-management/MetricsBand';
@@ -13,7 +14,6 @@ import Benefits from '@/components/reputation-management/Benefits';
 import FeaturesGrid from '@/components/reputation-management/FeaturesGrid';
 import FAQ from '@/components/reputation-management/FAQ';
 import FinalCTA from '@/components/reputation-management/FinalCTA';
-import MinimalQuote from '@/components/ui/MinimalQuote';
 
 export default function ReputationManagementPage() {
     const breadcrumbSchema = {
@@ -58,20 +58,14 @@ export default function ReputationManagementPage() {
                 <Navigation />
 
                 <Hero />
+                <OpportunityCheck />
                 <DecisionPattern />
                 <TrustLadder />
                 <MetricsBand />
                 <UnifiedWorkbench />
                 <RequestTimeline />
 
-                <div className="container-wide py-12">
-                    <MinimalQuote
-                        quote="Nobody understands the automotive business like this team does. The difference is night and day."
-                        author="Jennifer Walsh"
-                        role="Dealer Principal, Walsh Family Motors"
-                        className="max-w-xl"
-                    />
-                </div>
+
 
                 <RecoveryWorkflow />
                 <Benefits />

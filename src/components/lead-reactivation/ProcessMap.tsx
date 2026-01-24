@@ -83,9 +83,9 @@ export default function ProcessMap({ onOpenCalculator }: ProcessMapProps) {
                         <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#FF7404]">Operational Workflow</span>
                     </div>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
-                        From Dormant Data to <br />
+                        How We Turn Old Leads <br />
                         <span className="bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-[#FF7404] bg-clip-text text-transparent">
-                            Booked Appointments.
+                            Into Showroom Visits.
                         </span>
                     </h2>
                     <p className="text-lg text-white/40 leading-relaxed max-w-2xl mx-auto">
@@ -178,7 +178,7 @@ export default function ProcessMap({ onOpenCalculator }: ProcessMapProps) {
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-xl" />
                         <span className="relative z-10 flex items-center gap-3 text-black font-bold text-sm uppercase tracking-widest">
                             {/* Desktop text */}
-                            <span className="hidden sm:inline">Request a Demo</span>
+                            <span className="hidden sm:inline">Schedule Your Walkthrough</span>
                             {/* Mobile text */}
                             <span className="inline sm:hidden">Chat With Us</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

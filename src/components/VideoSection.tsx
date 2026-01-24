@@ -111,7 +111,7 @@ export default function VideoSection() {
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
                 }}>
-                  AutoMaster Suite
+                  The AutoMaster Suite
                 </span>
                 <br />
                 Different
@@ -147,7 +147,7 @@ export default function VideoSection() {
                   margin: 0,
                   fontFamily: 'var(--font-body), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
                 }}>
-                  That's why we built AutoMaster Suite—a single platform designed specifically
+                  That's why we built The AutoMaster Suite: a single platform designed specifically
                   for automotive retail, by people who've worked the desk, managed the BDC,
                   and felt the pressure of month-end.
                 </p>
@@ -162,7 +162,7 @@ export default function VideoSection() {
               }}>
                 {[
                   { num: '50+', label: 'Years Experience' },
-                  { num: '100+', label: 'Dealerships' },
+                  { num: '500+', label: 'Dealerships' },
                   { num: '$35M+', label: 'Revenue Generated' },
                 ].map((stat, i) => (
                   <div key={i}>
@@ -448,7 +448,7 @@ export default function VideoSection() {
               }}>
                 <iframe
                   src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
-                  title="What Makes AutoMaster Suite Different"
+                  title="What Makes The AutoMaster Suite Different"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   style={{

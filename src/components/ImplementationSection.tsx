@@ -9,7 +9,7 @@ const steps = [
     days: 'DAY 1-3',
     eyebrow: 'GET STARTED',
     title: 'Onboard',
-    description: 'Sign the contract and we take it from here. Our team handles all the technical setup—you just answer a few questions.',
+    description: 'Sign the contract and we take it from here. Our team handles all the technical setup; you just answer a few questions.',
     icon: (
       <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -82,10 +82,10 @@ function TimelineCard({ step, index }: { step: typeof steps[0]; index: number })
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         delay: index * 0.1,
-        ease: [0.25, 0.1, 0.25, 1] as const 
+        ease: [0.25, 0.1, 0.25, 1] as const
       }}
       className="group"
       style={{
@@ -136,7 +136,7 @@ function TimelineCard({ step, index }: { step: typeof steps[0]; index: number })
         marginBottom: '20px',
       }}>
         {/* Icon */}
-        <motion.div 
+        <motion.div
           style={{
             width: '48px',
             height: '48px',
@@ -247,12 +247,12 @@ function TimelineDot({ index, days }: { index: number; days: string }) {
       }}>
         {/* Outer glow ring */}
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1, 1.8, 1],
             opacity: [0.3, 0, 0.3],
           }}
-          transition={{ 
-            duration: 2.5, 
+          transition={{
+            duration: 2.5,
             repeat: Infinity,
             ease: 'easeOut',
           }}
@@ -340,7 +340,7 @@ export default function ImplementationSection() {
           maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)',
           WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)',
         }} />
-        
+
         {/* Glow */}
         <div style={{
           position: 'absolute',
@@ -436,9 +436,9 @@ export default function ImplementationSection() {
 
         {/* Horizontal Timeline */}
         <div ref={timelineRef} style={{ position: 'relative' }}>
-          
+
           {/* Timeline track */}
-          <div 
+          <div
             style={{
               position: 'absolute',
               top: '9px',
@@ -466,7 +466,7 @@ export default function ImplementationSection() {
           </div>
 
           {/* Dots row */}
-          <div 
+          <div
             style={{
               display: 'grid',
               gridTemplateColumns: `repeat(${steps.length}, 1fr)`,
@@ -483,7 +483,7 @@ export default function ImplementationSection() {
           </div>
 
           {/* Cards grid */}
-          <div 
+          <div
             style={{
               display: 'grid',
               gridTemplateColumns: `repeat(${steps.length}, 1fr)`,
@@ -513,7 +513,7 @@ export default function ImplementationSection() {
           {stats.map((stat) => (
             <motion.div
               key={stat.label}
-              whileHover={{ 
+              whileHover={{
                 y: -4,
                 borderColor: 'rgba(249,115,22,0.3)',
               }}

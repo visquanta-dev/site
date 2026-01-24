@@ -6,7 +6,7 @@ import { AlertTriangle, Check, Shield } from 'lucide-react';
 export default function TrustLadder() {
     const ladder = [
         {
-            range: "4.5 — 5.0",
+            range: "4.5 - 5.0",
             status: "Trusted",
             impact: "Higher show rates and higher appointment set efficiency.",
             color: "bg-[#FF7404]",
@@ -15,7 +15,7 @@ export default function TrustLadder() {
             active: true
         },
         {
-            range: "4.0 — 4.3",
+            range: "4.0 - 4.3",
             status: "Acceptable",
             impact: "Compared vs. top-rated competitors; price becomes the deciding factor.",
             color: "bg-white/20",

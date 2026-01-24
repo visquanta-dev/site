@@ -97,6 +97,9 @@ export default function VoiceAIDefinitionSection() {
                                 <p className="text-white/40 text-sm leading-relaxed">
                                     This inefficiency costs the average dealership over <span className="text-white font-semibold">$8,500/week</span> in leaked revenue and creates a friction-filled experience.
                                 </p>
+                                <p className="text-white/20 text-[10px] mt-2 italic">
+                                    Based on avg. missed RO value of $450 × 19 missed calls/day
+                                </p>
                             </div>
                         </motion.div>
 
@@ -127,7 +130,7 @@ export default function VoiceAIDefinitionSection() {
                                 </div>
 
                                 <p className="text-white/40 text-sm leading-relaxed">
-                                    Purpose-built for automotive fixed ops. It doesn't just route calls—it resolves them.
+                                    Purpose-built for automotive fixed ops. It doesn't just route calls: it resolves them.
                                 </p>
                             </div>
                         </motion.div>

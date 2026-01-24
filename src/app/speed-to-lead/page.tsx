@@ -5,19 +5,20 @@ import Footer from '@/components/Footer';
 
 // Speed to Lead Sections
 import HeroSection from '@/components/speed-to-lead/HeroSection';
+import WhatIsSection from '@/components/speed-to-lead/WhatIsSection';
 import LeadLossMoment from '@/components/speed-to-lead/LeadLossMoment';
 import WhereLeadsGetLost from '@/components/speed-to-lead/WhereLeadsGetLost';
 import InterceptionLayer from '@/components/speed-to-lead/InterceptionLayer';
-import Coverage24x7 from '@/components/speed-to-lead/Coverage24x7';
-import OutcomesThatMatter from '@/components/speed-to-lead/OutcomesThatMatter';
+import MidPageCTA from '@/components/MidPageCTA';
+
+
 import WhoItIsFor from '@/components/speed-to-lead/WhoItIsFor';
 import FinalCTA from '@/components/speed-to-lead/FinalCTA';
 import FAQSection from '@/components/speed-to-lead/FAQSection';
 import RelatedResources from '@/components/speed-to-lead/RelatedResources';
 
-import SpeedLossCalculator from '@/components/speed-to-lead/SpeedLossCalculator';
+import OpportunityCheck from '@/components/speed-to-lead/OpportunityCheck';
 import ROICalculatorModal from '@/components/ROICalculatorModal';
-import MinimalQuote from '@/components/ui/MinimalQuote';
 import { useState } from 'react';
 
 export default function SpeedToLeadPage() {
@@ -39,7 +40,7 @@ export default function SpeedToLeadPage() {
                         "@type": "Service",
                         "serviceType": "Lead Response Automation",
                         "name": "VisQuanta Speed to Lead",
-                        "description": "Engage every inbound dealership inquiry in under 90 seconds. 24/7/365 coverage for your digital lot with AI-driven conversion.",
+                        "description": "Engage every inbound dealership inquiry in under 60 seconds. 24/7/365 coverage for your digital lot with AI-driven conversion.",
                         "provider": {
                             "@type": "Organization",
                             "name": "VisQuanta",
@@ -71,13 +72,23 @@ export default function SpeedToLeadPage() {
             />
 
             {/* 1. HERO: Urgency & Frame */}
-            <HeroSection />
+            <HeroSection onOpenCalculator={openCalculator} />
+
+            {/* NEW: OPPORTUNITY CHECK (Diagnosis First) */}
+            <OpportunityCheck onOpenCalculator={openCalculator} />
+
+            {/* 1.5 WHAT IS: Definition Block for SEO/AEO */}
+            <WhatIsSection />
 
             {/* 2. THE LEAD LOSS MOMENT: Split Timeline */}
             <LeadLossMoment />
 
-            {/* NEW: CALCULATOR SECTION */}
-            <SpeedLossCalculator onOpenCalculator={openCalculator} />
+            <MidPageCTA
+                title="Stop losing revenue to slow responses."
+                subtitle="Most dealers lose 40% of their digital leads in the first 10 minutes. We change that."
+            />
+
+
 
             {/* 3. WHERE LEADS GET LOST: Operational Gaps */}
             <WhereLeadsGetLost />
@@ -85,11 +96,15 @@ export default function SpeedToLeadPage() {
             {/* 4. INTERCEPTION LAYER: System Flow Map */}
             <InterceptionLayer />
 
-            {/* 5. 24/7 COVERAGE: Always-On Follow-Up */}
-            <Coverage24x7 />
+            <MidPageCTA
+                title="A better way to BDC."
+                subtitle="Eliminate hold times and missed callbacks. Our AI handles the heavy lifting 24/7."
+                buttonText="See the Intervention Map"
+            />
 
-            {/* 6. OUTCOMES: Sales Realities */}
-            <OutcomesThatMatter />
+
+
+
 
             {/* 7. WHO IT IS FOR: Fit Assessment */}
             <WhoItIsFor />
@@ -97,14 +112,7 @@ export default function SpeedToLeadPage() {
             {/* 8. FAQs: Common Questions */}
             <FAQSection />
 
-            <div className="container-wide py-12 text-center">
-                <MinimalQuote
-                    quote="Speed to lead is why we win the deal every time."
-                    author="Amanda Foster"
-                    role="BDC Manager, Foster Nissan"
-                    className="max-w-2xl mx-auto"
-                />
-            </div>
+
 
             {/* 9. RESOURCES: Relevant Articles */}
             <RelatedResources />

@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import FinalCTA from '@/components/FinalCTA';
 
 // --- Data & Content ---
 
@@ -41,7 +42,7 @@ const dataPractices = [
     },
     {
         title: 'Data Usage',
-        content: 'Your data is used exclusively to provide, maintain, and improve the AutoMaster Suite. we do not sell your data to third parties.',
+        content: 'Your data is used exclusively to provide, maintain, and improve The AutoMaster Suite. we do not sell your data to third parties.',
         icon: Server
     },
     {
@@ -340,6 +341,9 @@ export default function TrustCenterPage() {
                 {activeTab === 'Service Providers' && <SubprocessorsView />}
 
             </section>
+
+            <FinalCTA />
+
 
             <Footer />
         </div>

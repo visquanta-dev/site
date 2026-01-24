@@ -106,7 +106,7 @@ export default function WhyVisquantaSection() {
                     <MobileComparisonCards comparisons={comparisons} />
                 </div>
 
-                {/* Desktop: Full Table — PRESERVED EXACTLY */}
+                {/* Desktop: Full Table: PRESERVED EXACTLY */}
                 <div className="relative group/table hidden lg:block">
                     {/* Glowing background behind the table */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#ff7404]/10 to-transparent blur-3xl opacity-50 -z-10" />
@@ -211,7 +211,7 @@ export default function WhyVisquantaSection() {
                     className="mt-10 sm:mt-12 lg:mt-16 text-center max-w-2xl mx-auto"
                 >
                     <p className="text-white/60 text-lg leading-relaxed">
-                        The best dealerships don't choose between AI and humans. They use <strong className="text-white">both</strong>—with VisQuanta as the intelligent layer that makes everything work together.
+                        The best dealerships don't choose between AI and humans. They use <strong className="text-white">both</strong>, with VisQuanta as the intelligent layer that makes everything work together.
                     </p>
                 </motion.div>
 

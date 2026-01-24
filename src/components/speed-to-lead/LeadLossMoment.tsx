@@ -5,15 +5,15 @@ import { CheckCircle2, XCircle, Clock, MessageSquare, Phone, AlertTriangle, Zap,
 
 export default function LeadLossMoment() {
     return (
-        <section className="py-40 bg-[#020202] relative overflow-hidden">
+        <section className="py-20 sm:py-28 lg:py-36 bg-[#020202] relative overflow-hidden">
             {/* Premium Background */}
             <div className="absolute inset-0">
-                <div className="absolute inset-0 opacity-[0.012] bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 512 512%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url%28%23noiseFilter%29%22/%3E%3C/svg%3E')]" />
+                <div className="absolute inset-0 opacity-[0.015] bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 512 512%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url%28%23noiseFilter%29%22/%3E%3C/svg%3E')]" />
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
                 {/* Central dramatic gradient */}
-                <div className="absolute top-[30%] left-[10%] w-[500px] h-[500px] bg-[#FF7404]/[0.03] rounded-full blur-[150px] pointer-events-none" />
-                <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-red-500/[0.02] rounded-full blur-[150px] pointer-events-none" />
+                <div className="absolute top-[30%] left-[5%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-[#FF7404]/[0.04] rounded-full blur-[120px] md:blur-[150px] pointer-events-none" />
+                <div className="absolute bottom-[20%] right-[5%] w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-red-500/[0.03] rounded-full blur-[120px] md:blur-[150px] pointer-events-none" />
             </div>
 
             <div className="container-wide relative z-10">
@@ -22,47 +22,101 @@ export default function LeadLossMoment() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-                    className="text-center mb-24 max-w-3xl mx-auto"
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+                    className="text-center mb-12 sm:mb-16 lg:mb-20 max-w-3xl mx-auto"
                 >
-                    <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-full mb-10">
-                        <Zap className="w-4 h-4 text-[#FF7404]" />
-                        <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/50">The Race to Response</span>
+                    <div className="inline-flex items-center gap-3 px-4 py-2 sm:px-5 sm:py-2.5 bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-full mb-6 sm:mb-8">
+                        <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FF7404]" />
+                        <span className="text-[9px] sm:text-[10px] font-semibold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-white/50">The Race to Response</span>
                     </div>
-                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-[-0.02em] leading-[0.95]">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 sm:mb-6 tracking-[-0.02em] leading-[1]">
                         Speed Wins. <br />
-                        <span className="text-white/30">Delay Loses.</span>
+                        <span className="text-white/60">Delay Loses.</span>
                     </h2>
-                    <p className="text-xl text-white/35 leading-relaxed max-w-2xl mx-auto">
-                        The difference between closing a deal and losing it to a competitor often comes down to minutes—not hours.
+                    <p className="text-base sm:text-lg lg:text-xl text-white/40 leading-relaxed max-w-2xl mx-auto">
+                        The difference between closing a deal and losing it to a competitor often comes down to minutes, not hours.
                     </p>
                 </motion.div>
 
                 {/* Race Track Visualization */}
                 <div className="relative max-w-6xl mx-auto">
 
-                    {/* Time Header Bar */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="mb-10 flex items-center justify-between px-8"
-                    >
-                        <div className="text-[11px] font-bold font-mono text-white/60 uppercase tracking-widest">Start</div>
-                        <div className="flex-1 mx-8 h-px bg-gradient-to-r from-white/20 via-white/60 to-white/20 relative">
-                            {/* Time markers */}
-                            {['1 min', '2 min', '3 min', '5 min'].map((time, i) => (
-                                <div key={i} className="absolute top-1/2 -translate-y-1/2" style={{ left: `${(i + 1) * 20}%` }}>
-                                    <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
-                                    <div className="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] font-bold font-mono text-white/60">{time}</div>
+                    {/* Mobile-friendly comparison cards */}
+                    <div className="lg:hidden space-y-4 mb-8">
+                        {/* Speed to Lead - Winner */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                            className="bg-gradient-to-r from-[#0a0a0a] to-[#080808] rounded-2xl border border-[#FF7404]/30 p-5 relative overflow-hidden"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404]/10 via-transparent to-green-500/5 opacity-50" />
+                            <div className="relative z-10">
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FF7404] to-[#FF9040] flex items-center justify-center shadow-[0_0_20px_-5px_#FF7404]">
+                                            <Zap className="w-5 h-5 text-black" />
+                                        </div>
+                                        <div>
+                                            <div className="text-white font-bold">Speed to Lead</div>
+                                            <div className="text-[10px] text-[#FF7404] font-semibold uppercase tracking-wider">Managed</div>
+                                        </div>
+                                    </div>
+                                    <div className="bg-green-500/10 border border-green-500/30 rounded-lg px-3 py-2 text-center">
+                                        <Trophy className="w-5 h-5 text-green-400 mx-auto mb-1" />
+                                        <div className="text-[10px] text-green-400 font-bold uppercase">Won</div>
+                                    </div>
                                 </div>
-                            ))}
-                        </div>
-                        <div className="text-[11px] font-bold font-mono text-white/60 uppercase tracking-widest">Outcome</div>
-                    </motion.div>
+                                <div className="flex items-center gap-2 text-sm">
+                                    <span className="text-[#FF7404] font-mono">0:08</span>
+                                    <span className="text-white/30">-</span>
+                                    <span className="text-white/50">Engaged</span>
+                                    <span className="text-white/30">-</span>
+                                    <span className="text-green-400 font-mono">3:45</span>
+                                    <span className="text-white/50">Call Booked</span>
+                                </div>
+                            </div>
+                        </motion.div>
 
-                    {/* Two Racing Lanes */}
-                    <div className="space-y-6">
+                        {/* Typical Response - Loser */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            className="bg-[#080808] rounded-2xl border border-white/[0.06] p-5 opacity-70"
+                        >
+                            <div className="flex items-center justify-between mb-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center">
+                                        <Clock className="w-5 h-5 text-white/40" />
+                                    </div>
+                                    <div>
+                                        <div className="text-white/70 font-bold">Typical Response</div>
+                                        <div className="text-[10px] text-white/30 uppercase tracking-wider">Industry Average</div>
+                                    </div>
+                                </div>
+                                <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg px-3 py-2 text-center">
+                                    <X className="w-5 h-5 text-white/25 mx-auto mb-1" />
+                                    <div className="text-[10px] text-white/30 font-bold uppercase">Lost</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                                <span className="text-white/30 font-mono">...</span>
+                                <span className="text-white/20">Waiting</span>
+                                <span className="text-white/20">-</span>
+                                <span className="text-white/30">Competitor First</span>
+                                <span className="text-white/20">-</span>
+                                <span className="text-white/30">Buyer Gone</span>
+                            </div>
+                        </motion.div>
+                    </div>
+
+
+
+                    {/* Two Racing Lanes - Desktop only */}
+                    <div className="hidden lg:block space-y-6">
 
                         {/* Lane 1: Speed to Lead (Winner) */}
                         <motion.div
@@ -143,7 +197,7 @@ export default function LeadLossMoment() {
                                     >
                                         <div className="bg-gradient-to-br from-green-500/10 to-green-500/5 border border-green-500/30 rounded-2xl p-5 text-center shadow-[0_0_30px_-10px_rgba(34,197,94,0.2)]">
                                             <Trophy className="w-8 h-8 text-green-400 mx-auto mb-2 drop-shadow-lg" />
-                                            <div className="text-green-400 font-bold text-lg uppercase tracking-wider">Deal Won</div>
+                                            <div className="text-green-400 font-bold text-lg uppercase tracking-wider">Call Booked</div>
                                             <div className="text-[10px] text-green-400/60 mt-1 font-medium">Under 4 min</div>
                                         </div>
                                     </motion.div>
@@ -191,9 +245,9 @@ export default function LeadLossMoment() {
                                         <div className="relative flex items-center py-4" style={{ justifyContent: 'flex-start', gap: '15%' }}>
                                             {[
                                                 { time: '0:00', label: 'Lead arrives', icon: Clock, delay: 0.6 },
-                                                { time: '...', label: 'Sitting in CRM', icon: Clock, delay: 1.2, faded: true },
+                                                { time: 'Waiting', label: 'Sitting in CRM', icon: Clock, delay: 1.2, faded: true },
                                                 { time: '2:00+', label: 'Competitor first', icon: AlertTriangle, delay: 1.8, warning: true },
-                                                { time: '—', label: 'Buyer gone', icon: XCircle, delay: 2.2, error: true }
+                                                { time: 'Lost', label: 'Buyer gone', icon: XCircle, delay: 2.2, error: true }
                                             ].map((step, i) => (
                                                 <motion.div
                                                     key={i}
@@ -231,8 +285,8 @@ export default function LeadLossMoment() {
                                     >
                                         <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-4 text-center">
                                             <X className="w-8 h-8 text-white/30 mx-auto mb-2" />
-                                            <div className="text-white/40 font-bold text-lg uppercase tracking-wider">Deal Lost</div>
-                                            <div className="text-[10px] text-white/25 mt-1 font-mono uppercase tracking-widest">Efficiency Gap</div>
+                                            <div className="text-white/40 font-bold text-lg uppercase tracking-wider">Lead Lost</div>
+                                            <div className="text-[10px] text-white/25 mt-1 font-mono uppercase tracking-widest">Too Slow</div>
                                         </div>
                                     </motion.div>
                                 </div>
@@ -241,45 +295,20 @@ export default function LeadLossMoment() {
 
                     </div>
 
-                    {/* Bottom stat comparison */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 }}
-                        className="mt-20 grid grid-cols-3 gap-6 max-w-4xl mx-auto"
-                    >
-                        {[
-                            { label: 'First Contact', left: '8 seconds', right: '30+ minutes', winner: 'left' },
-                            { label: 'Engagement Rate', left: 'High', right: 'Low', winner: 'left' },
-                            { label: 'Conversion', left: 'Booked Call', right: 'Lost Lead', winner: 'left' }
-                        ].map((stat, i) => (
-                            <div key={i} className="text-center">
-                                <div className="text-[10px] text-white/30 uppercase tracking-widest mb-4">{stat.label}</div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="p-3 bg-[#FF7404]/10 border border-[#FF7404]/20 rounded-lg">
-                                        <div className="text-sm font-bold text-[#FF7404]">{stat.left}</div>
-                                    </div>
-                                    <div className="p-3 bg-white/[0.02] border border-white/[0.04] rounded-lg">
-                                        <div className="text-sm font-medium text-white/30">{stat.right}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </motion.div>
+
 
                     {/* SEO Strengthening: Link to Orphan Page */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        transition={{ delay: 1 }}
-                        className="mt-16 text-center"
+                        transition={{ delay: 0.8 }}
+                        className="mt-10 sm:mt-14 lg:mt-16 text-center"
                     >
                         <a
                             href="/blog/speed-to-lead-slow-follow-up-sales-impact"
-                            className="text-xs font-bold text-white/20 uppercase tracking-[0.2em] hover:text-[#FF7404] transition-colors duration-300"
+                            className="text-[11px] sm:text-xs font-semibold text-white/25 uppercase tracking-[0.15em] sm:tracking-[0.2em] hover:text-[#FF7404] transition-colors duration-300"
                         >
-                            Read our deep dive on <span className="underline decoration-white/10 underline-offset-8">The Sales Impact of Slow Follow-Up</span>
+                            Read our deep dive on <span className="underline decoration-white/10 underline-offset-4 hover:decoration-[#FF7404]/30">The Sales Impact of Slow Follow-Up</span>
                         </a>
                     </motion.div>
                 </div>

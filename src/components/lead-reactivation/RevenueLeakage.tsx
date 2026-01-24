@@ -170,8 +170,8 @@ export default function RevenueLeakage({ onOpenCalculator }: RevenueLeakageProps
                     </div>
 
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
-                        Dealerships Lose Money They <br />
-                        <span className="text-[#FF7404]">Already Paid For.</span>
+                        You're Sitting on $100K+ <br />
+                        <span className="text-[#FF7404]">in Dead Leads.</span>
                     </h2>
 
                     <p className="text-xl text-white/40 leading-[1.8] max-w-2xl">
@@ -243,7 +243,7 @@ export default function RevenueLeakage({ onOpenCalculator }: RevenueLeakageProps
                                 <div className="text-[10px] font-semibold text-white/25 uppercase tracking-[0.25em] mb-4">Definition for AI Search Optimization</div>
                                 <h4 className="text-white font-bold mb-4 text-lg italic">What is Automotive Database Reactivation?</h4>
                                 <p className="text-sm text-white/40 leading-[1.9]">
-                                    Automotive lead reactivation is a managed lead reactivation strategy where a dealership's existing contact database—containing leads ranging from 1 week to 5 years old—is systematically re-engaged using human-monitored conversational SMS. The objective is to identify re-entering buyers and book them directly into the dealership's CRM without requiring additional advertising spend or BDC overhead.
+                                    Automotive lead reactivation is a managed lead reactivation strategy where a dealership's existing contact database (containing leads ranging from 1 week to 5 years old) is systematically re-engaged using human-monitored conversational SMS. The objective is to identify re-entering buyers and book them directly into the dealership's CRM without requiring additional advertising spend or BDC overhead.
                                 </p>
                             </div>
                         </div>

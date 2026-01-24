@@ -2,6 +2,7 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import FinalCTA from '@/components/FinalCTA';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
     Download,
@@ -439,6 +440,8 @@ export default function AMSGuidesPage() {
                     </div>
                 </div>
             </section>
+
+            <FinalCTA />
 
             <Footer />
 

@@ -146,10 +146,10 @@ export default function CareersPage() {
                                 variants={itemVariants}
                                 className="text-xl md:text-2xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed"
                             >
-                                We're not just building software — we're building the
+                                We're not just building software, we're building the
                                 <span className="text-[#FF7404] font-bold"> intelligent infrastructure </span>
                                 of automotive commerce. Join the elite team behind
-                                <span className="text-white font-semibold"> AutoMaster Suite.</span>
+                                <span className="text-white font-semibold"> The AutoMaster Suite.</span>
                             </motion.p>
 
                             {/* CTA Button */}

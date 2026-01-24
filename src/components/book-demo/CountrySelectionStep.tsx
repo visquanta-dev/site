@@ -19,7 +19,7 @@ export default function CountrySelectionStep({ selectedCountry, onSelect, onAlre
                     animate={{ opacity: 1, y: 0 }}
                     className="text-3xl md:text-5xl font-black text-white tracking-tighter mb-4"
                 >
-                    Chat with VisQuanta
+                    Schedule Your Walkthrough
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
@@ -27,7 +27,7 @@ export default function CountrySelectionStep({ selectedCountry, onSelect, onAlre
                     transition={{ delay: 0.1 }}
                     className="text-xl text-white/50"
                 >
-                    Select your region to connect with the right team.
+                    15-min 1:1 • Get an exact revenue-lift projection for your dealership
                 </motion.p>
             </div>
 

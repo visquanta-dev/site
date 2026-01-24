@@ -3,6 +3,7 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import IndependentCalculator from '@/components/dealers/independent/IndependentCalculator';
+import AmbientBDCLoop from '@/components/dealers/independent/AmbientBDCLoop';
 import DealerInsights from '@/components/dealers/shared/DealerInsights';
 
 import { RefreshCw, Zap, TrendingUp, Search, DollarSign, Clock, LayoutGrid, CheckCircle2, ArrowRight, Gauge, ShoppingCart, HelpCircle, Lightbulb, ChevronDown, Calendar, BookOpen, Target, BarChart3, Database, MessageSquare, Layers, Signal, Wifi, Battery, User, Phone, Star, Timer, Globe, PhoneIncoming, Play } from 'lucide-react';
@@ -248,8 +249,8 @@ const itemVariants = {
 // FAQ Data for Independent Dealers
 const faqs = [
     {
-        question: "We only have 3 sales reps. Is AutoMaster too big for us?",
-        answer: "Actually, lean teams are where we see the highest ROI. AutoMaster acts as a 4th 'virtual' BDC rep who never sleeps, never takes a break, and handles your entire CRM database for a fraction of the cost of a new hire."
+        question: "We only have 3 sales reps. Is The AutoMaster Suite too big for us?",
+        answer: "Actually, lean teams are where we see the highest ROI. The AutoMaster Suite acts as a 4th 'virtual' BDC rep who never sleeps, never takes a break, and handles your entire CRM database for a fraction of the cost of a new hire."
     },
     {
         question: "How does this help with my floorplan interest?",
@@ -274,14 +275,14 @@ const solutions = [
     {
         icon: Zap,
         title: "Speed-to-Lead",
-        desc: "Every lead from CarGurus, AutoTrader, and your website is engaged via SMS in under 90 seconds. 24/7/365. Beat the competition to every customer.",
-        link: "/speed-to-lead",
+        desc: "Every lead from CarGurus, AutoTrader, and your website is engaged via SMS in under 60 seconds. 24/7/365. Beat the competition to every customer.",
+        link: "/website-widget",
         cta: "See How It Works"
     },
     {
         icon: RefreshCw,
         title: "Lead Reactivation",
-        desc: "Our Conversational AI works through your cold CRM leads via SMS, qualifying buyers and booking sales calls automatically. 35% engagement rate, 8% appointment conversion—without lifting a finger.",
+        desc: "Our Conversational AI works through your cold CRM leads via SMS, qualifying buyers and booking sales calls automatically. 35% engagement rate, 8% appointment conversion, without lifting a finger.",
         link: "/lead-reactivation",
         cta: "Reactivate Your Leads"
     },
@@ -289,7 +290,7 @@ const solutions = [
         icon: MessageSquare,
         title: "SMS-First Widget",
         desc: "Webchat is where leads go to die. We instantly transition website visitors to SMS, capturing their real cell number and keeping the conversation alive.",
-        link: "/speed-to-lead",
+        link: "/website-widget",
         cta: "Convert More Visitors"
     },
     {
@@ -316,9 +317,9 @@ const featuresData = [
         highlight: "Worked Automatically.",
         description: "Stop letting old leads collect dust. Our AI texts every cold lead in your CRM, finds out who's still in the market, and books qualified buyers straight into your sales team's calendar.",
         bullets: [
-            { title: "Wake the Dead", desc: "35% of 'cold' leads respond when we reach out. They weren't dead—they were just waiting for the right message." },
+            { title: "Wake the Dead", desc: "35% of 'cold' leads respond when we reach out. They weren't dead; they were just waiting for the right message." },
             { title: "Fire Your Follow-Up", desc: "Skip the 40-hour grind. Our AI works your entire database while your team focuses on closing." },
-            { title: "Deals From Data", desc: "8% book appointments. That's revenue hiding in your CRM—already paid for, finally captured." }
+            { title: "Deals From Data", desc: "8% book appointments. That's revenue hiding in your CRM: already paid for, finally captured." }
         ],
         header: { name: "Amy (Visquanta)", sub: "Reactivating: John", icon: Database },
         avatarInitials: 'VQ',
@@ -337,7 +338,7 @@ const featuresData = [
         tab: 'Speed-to-Lead',
         title: 'The "2nd Shift"',
         highlight: "You Don't Have to Hire.",
-        description: "Most independent dealers lose 40% of their leads between 7 PM and 9 AM. AutoMaster acts as a 4th 'virtual' BDC rep who never sleeps, never takes a break, and handles your entire CRM database for a fraction of the cost of a new hire.",
+        description: "Most independent dealers lose 40% of their leads between 7 PM and 9 AM. The AutoMaster Suite acts as a 4th 'virtual' BDC rep who never sleeps, never takes a break, and handles your entire CRM database for a fraction of the cost of a new hire.",
         bullets: [
             { title: "24/7 Virtual BDC", desc: "Instantly respond to car shoppers on weekends and late nights when your team is off the clock." },
             { title: "Capital Efficiency", desc: "Reduce floorplan interest by moving units 14 days faster through extreme lead follow-up." },
@@ -480,7 +481,7 @@ export default function IndependentDealersPage() {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
-                        "name": "AutoMaster Suite for Independent Dealers",
+                        "name": "The AutoMaster Suite for Independent Dealers",
                         "operatingSystem": "Web-based",
                         "applicationCategory": "BusinessApplication",
                         "description": "Revenue automation system designed specifically for independent car dealerships to optimize lead response and inventory turnover.",
@@ -503,17 +504,8 @@ export default function IndependentDealersPage() {
             {/* 1. HERO SECTION */}
             <section className="relative pt-32 pb-20 overflow-hidden min-h-[90vh] flex flex-col justify-center">
                 <div className="absolute inset-0 bg-enterprise-grid opacity-30 pointer-events-none" />
-                {/* Automotive Background Texture */}
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/images/hero-bg-mesh.png"
-                        alt="Automotive Mesh Background"
-                        fill
-                        className="object-cover opacity-20 mix-blend-screen"
-                        priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-                </div>
+                {/* Dynamic Ambient BDC Background */}
+                <AmbientBDCLoop />
 
                 <div className="container px-4 mx-auto relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
@@ -537,14 +529,14 @@ export default function IndependentDealersPage() {
                                 variants={itemVariants}
                                 className="text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1] lg:leading-[1]"
                             >
-                                Lean Operations. <br />
+                                The 24/7 BDC <br />
                                 <motion.span
                                     className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#FF9040]"
                                     animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                                     transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                                     style={{ backgroundSize: "200% 200%" }}
                                 >
-                                    Franchise Results.
+                                    You Don't Have To Hire.
                                 </motion.span>
                             </motion.h1>
 
@@ -552,24 +544,22 @@ export default function IndependentDealersPage() {
                                 variants={itemVariants}
                                 className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed"
                             >
-                                Stop letting missed leads drain your floorplan. AutoMaster gives independent dealers the 24/7 lead performance of a franchise group without the franchise overhead.
+                                Stop losing leads to the big stores after 6 PM. The AutoMaster Suite handles every text, call, and web lead instantly—so you sell more cars without adding headcount.
                             </motion.p>
 
                             <motion.div
                                 variants={itemVariants}
                                 className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                             >
-                                <RequestDemoButton
-                                    className="bg-[#FF7404] hover:bg-white text-black px-10 py-5 rounded-xl font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_-10px_rgba(255,116,4,0.5)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.7)]"
-                                >
-                                    Request a Demo
-                                </RequestDemoButton>
                                 <Link
-                                    href="#features"
-                                    className="px-10 py-5 rounded-xl font-black text-sm uppercase tracking-widest text-white border border-white/10 hover:bg-white/5 transition-all"
+                                    href="#roi-calculator"
+                                    className="bg-[#FF7404] hover:bg-white text-black px-10 py-5 rounded-xl font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_-10px_rgba(255,116,4,0.5)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.7)] inline-flex items-center justify-center"
                                 >
-                                    See How It Works
+                                    See ROI Calculator
                                 </Link>
+                                <div className="text-xs text-zinc-500 font-medium mt-2 sm:mt-0 sm:absolute sm:-bottom-8 sm:left-1/2 sm:-translate-x-1/2">
+                                    No long-term contracts. 15-minute walkthrough.
+                                </div>
                             </motion.div>
                         </motion.div>
                     </div>
@@ -588,30 +578,82 @@ export default function IndependentDealersPage() {
                     >
                         {[
                             { label: "Floorplan Days Saved", value: "14.2", desc: "Average turn rate reduction" },
-                            { label: "Lead Response Time", value: "<90s", desc: "24/7/365 coverage" },
+                            { label: "Lead Response Time", value: "<60s", desc: "24/7/365 coverage" },
                             { label: "CRM Reactivation", value: "12%", desc: "Average monthly deal lift" },
                             { label: "Cost Per Appointment", value: "-65%", desc: "Vs. traditional BDC" }
                         ].map((stat, i) => (
-                            <motion.div
-                                key={i}
-                                className="relative group p-6 rounded-2xl border border-white/5 bg-[#0f0f0f] shadow-lg hover:bg-[#141414] hover:border-[#FF7404]/20 transition-all duration-500 text-center overflow-hidden"
-                                whileHover={{ y: -5 }}
-                            >
-                                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:via-[#FF7404]/40 transition-all duration-500" />
-                                <div className="text-4xl lg:text-5xl font-black text-white mb-3 tracking-tight group-hover:text-[#FF7404] transition-colors font-mono">{stat.value}</div>
-                                <div className="text-[#999] font-bold text-[10px] uppercase tracking-[0.2em] mb-2">{stat.label}</div>
-                                <div className="text-zinc-600 text-xs font-medium">{stat.desc}</div>
-                            </motion.div>
+                            <div key={i} className={`relative flex flex-col items-center justify-center text-center ${i !== 3 ? 'lg:border-r border-white/10' : ''}`}>
+                                <div className="text-5xl lg:text-7xl font-black text-white mb-2 tracking-tighter leading-none">
+                                    {stat.value}
+                                </div>
+                                <div className="text-[#FF7404] font-bold text-xs uppercase tracking-widest mb-1">
+                                    {stat.label}
+                                </div>
+                                <div className="text-zinc-500 text-sm font-medium">
+                                    {stat.desc}
+                                </div>
+                            </div>
                         ))}
                     </motion.div>
+                </div>
+            </section>
 
-                    <div className="mt-16 container mx-auto px-4 relative z-10 flex justify-center">
-                        <MinimalQuote
-                            quote="ROI in 30 days. Hours to seconds for lead response. The difference is night and day."
-                            author="Michael Rodriguez"
-                            role="General Manager, Premier Auto Group"
-                            className="max-w-2xl"
-                        />
+            {/* NEW: REALITY CHECK SECTION */}
+            <section className="py-24 bg-[#0a0a0a] border-b border-white/5 relative">
+                <div className="container px-4 mx-auto">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <div className="inline-flex items-center gap-2 mb-6">
+                            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                            <span className="text-xs font-bold text-red-500 uppercase tracking-widest">The Independent Dealer's Dilemma</span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
+                            You can't be at the desk 24/7.<br />
+                            <span className="text-zinc-500">But your leads don't stop when you lock&nbsp;up.</span>
+                        </h2>
+                        <p className="text-xl text-zinc-400 leading-relaxed mb-12">
+                            When you miss a lead, you don't just lose a conversation: you lose the deal to the franchise down the street who has a 20-person BDC. It's not a traffic problem; it's a <span className="text-white font-bold">coverage problem</span>.
+                        </p>
+
+                        <div className="grid md:grid-cols-3 gap-6 text-left">
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                                className="group bg-gradient-to-b from-red-950/30 to-transparent p-8 rounded-2xl border border-red-500/20 hover:border-red-500/40 transition-all shadow-[0_0_20px_-10px_rgba(220,38,38,0.1)] hover:shadow-[0_0_30px_-5px_rgba(220,38,38,0.2)]"
+                            >
+                                <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-6 border border-red-500/20 group-hover:bg-red-500/20 transition-all">
+                                    <Clock className="w-6 h-6 text-red-500" />
+                                </div>
+                                <h3 className="text-white text-xl font-bold mb-3">The "After-Hours" Gap</h3>
+                                <p className="text-zinc-400 leading-relaxed">40% of leads arrive when your store is closed. If you wait until morning, they've already bought elsewhere.</p>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className="group bg-gradient-to-b from-red-950/30 to-transparent p-8 rounded-2xl border border-red-500/20 hover:border-red-500/40 transition-all shadow-[0_0_20px_-10px_rgba(220,38,38,0.1)] hover:shadow-[0_0_30px_-5px_rgba(220,38,38,0.2)]"
+                            >
+                                <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-6 border border-red-500/20 group-hover:bg-red-500/20 transition-all">
+                                    <User className="w-6 h-6 text-red-500" />
+                                </div>
+                                <h3 className="text-white text-xl font-bold mb-3">The "Wearing Hats" Issue</h3>
+                                <p className="text-zinc-400 leading-relaxed">You're desking deals, buying cars, and managing service. You physically cannot chase every cold lead.</p>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3 }}
+                                className="group bg-gradient-to-b from-red-950/30 to-transparent p-8 rounded-2xl border border-red-500/20 hover:border-red-500/40 transition-all shadow-[0_0_20px_-10px_rgba(220,38,38,0.1)] hover:shadow-[0_0_30px_-5px_rgba(220,38,38,0.2)]"
+                            >
+                                <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-6 border border-red-500/20 group-hover:bg-red-500/20 transition-all">
+                                    <DollarSign className="w-6 h-6 text-red-500" />
+                                </div>
+                                <h3 className="text-white text-xl font-bold mb-3">The Hiring Trap</h3>
+                                <p className="text-zinc-400 leading-relaxed">Hiring a dedicated BDC rep costs $4k/mo + burden. For most independents, the math just doesn't work.</p>
+                            </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -620,8 +662,24 @@ export default function IndependentDealersPage() {
             <section className="py-32 bg-black relative overflow-hidden">
                 <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] bg-[#FF7404]/5 rounded-full blur-[150px] pointer-events-none" />
                 <div className="container px-4 mx-auto relative z-10">
+                    <div className="text-center mb-20">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter"
+                        >
+                            How It Handles Your Leads <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#ff9040]">(While You Sleep).</span>
+                        </motion.h2>
+                        <p className="text-zinc-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                            Watch how The AutoMaster Suite engages, qualifies, and books appointments without you lifting a finger.
+                        </p>
+                    </div>
+
                     <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <div className="order-2 lg:order-1">
+                            {/* ... Phone Demo Code ... */}
                             <div className="relative w-full max-w-[400px] mx-auto">
                                 {/* Phone Mockup - Premium Style */}
                                 <div className="relative z-10 w-full h-[800px] bg-black rounded-[60px] border-[8px] border-[#2a2a2a] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.7)] overflow-hidden ring-1 ring-white/10 select-none">
@@ -762,11 +820,11 @@ export default function IndependentDealersPage() {
                             className="text-center mb-20"
                         >
                             <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">
-                                Protect Your <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#ff9040]">Front-End Margins.</span>
+                                Cut Your Turn Rate<br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#ff9040]">By 14 Days.</span>
                             </h2>
                             <p className="text-zinc-400 text-xl max-w-2xl mx-auto leading-relaxed">
-                                When you win on efficiency, you don't have to win on volume alone.
+                                Don't let interest payments eat your margin. The AutoMaster Suite moves units faster by engaging leads the second they hit your CRM.
                             </p>
                         </motion.div>
 
@@ -783,7 +841,7 @@ export default function IndependentDealersPage() {
                                         The Floorplan Burn
                                     </h3>
                                     <p className="text-zinc-400 text-lg leading-relaxed group-hover:text-zinc-300 transition-colors">
-                                        For an independent dealer, every day a car sits on the lot is a day of interest <strong>eroding your profit</strong>. AutoMaster's Lead Reactivation mines your CRM to find the perfect buyer the moment a new unit is processed, cutting turn rates by an average of 14 days.
+                                        For an independent dealer, every day a car sits on the lot is a day of interest <strong>eroding your profit</strong>. The AutoMaster Suite's Lead Reactivation mines your CRM to find the perfect buyer the moment a new unit is processed, cutting turn rates by an average of 14 days.
                                     </p>
                                 </motion.div>
 
@@ -804,38 +862,31 @@ export default function IndependentDealersPage() {
                                 </motion.div>
                             </div>
 
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                className="relative"
-                            >
-                                <div className="absolute inset-0 bg-[#FF7404]/20 blur-[100px] rounded-full" />
-                                <div className="relative bg-[#0A0A0A] border border-white/10 rounded-3xl p-10 shadow-2xl overflow-hidden group hover:border-[#FF7404]/30 transition-all duration-500">
-                                    <div className="absolute top-0 right-0 p-32 bg-white/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                            <div className="absolute inset-x-0 top-0 h-full bg-[#FF7404]/10 blur-[120px] rounded-full" />
+                            <div className="relative bg-[#0A0A0A] border border-white/10 rounded-3xl p-10 shadow-2xl overflow-hidden group hover:border-[#FF7404]/30 transition-all duration-500">
+                                <div className="absolute top-0 right-0 p-32 bg-white/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
-                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 text-[#FF7404] text-[10px] font-bold uppercase tracking-widest mb-8">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#FF7404] animate-pulse" />
-                                        Efficiency Insight
-                                    </div>
-
-                                    <h4 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight">
-                                        How can independent dealers compete with large franchise groups for lead traffic?
-                                    </h4>
-
-                                    <p className="text-zinc-400 text-lg leading-relaxed mb-8">
-                                        By winning on <strong className="text-white">Response Velocity</strong>. While franchise groups often have slow, bureaucratic BDC processes, an independent dealer using <strong>Automotive AI Speed-to-Lead</strong> can engage and qualify a lead in under 90 seconds.
-                                    </p>
-
-                                    <div className="flex items-center gap-3 pt-8 border-t border-white/5">
-                                        <div className="flex items-center gap-1.5">
-                                            <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                                            <span className="text-xs font-mono text-zinc-500">SYSTEM_ACTIVE</span>
-                                        </div>
-                                        <span className="text-xs font-mono text-[#FF7404]">MARGIN_VERIFIED_2025</span>
-                                    </div>
+                                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 text-[#FF7404] text-[10px] font-bold uppercase tracking-widest mb-8">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-[#FF7404] animate-pulse" />
+                                    Efficiency Insight
                                 </div>
-                            </motion.div>
+
+                                <h4 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight">
+                                    How can independent dealers compete with large franchise groups for lead traffic?
+                                </h4>
+
+                                <p className="text-zinc-400 text-lg leading-relaxed mb-8">
+                                    By winning on <strong className="text-white">Response Velocity</strong>. While franchise groups often have slow, bureaucratic BDC processes, an independent dealer using <strong>Automotive AI Speed-to-Lead</strong> can engage and qualify a lead in under 60 seconds.
+                                </p>
+
+                                <div className="flex items-center gap-3 pt-8 border-t border-white/5">
+                                    <div className="flex items-center gap-1.5">
+                                        <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                                        <span className="text-xs font-mono text-zinc-500">SYSTEM_ACTIVE</span>
+                                    </div>
+                                    <span className="text-xs font-mono text-[#FF7404]">MARGIN_VERIFIED_2026</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -843,7 +894,9 @@ export default function IndependentDealersPage() {
 
 
             {/* 5. CALCULATOR */}
-            <IndependentCalculator />
+            <div id="roi-calculator">
+                <IndependentCalculator />
+            </div>
 
             {/* 5. SOLUTIONS */}
             <section className="py-24 bg-[#050505] relative overflow-hidden">
@@ -861,7 +914,7 @@ export default function IndependentDealersPage() {
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/50">Franchise Results.</span>
                         </h2>
                         <p className="text-zinc-400 text-xl max-w-2xl mx-auto leading-relaxed">
-                            AutoMaster combines Lead Loss Mitigation, Speed-to-Lead, Reputation Management, and dedicated Success Management to optimize every metric that matters.
+                            The AutoMaster Suite combines Lead Loss Mitigation, Speed-to-Lead, Reputation Management, and dedicated Success Management to optimize every metric that matters.
                         </p>
                     </motion.div>
 
@@ -1015,14 +1068,17 @@ export default function IndependentDealersPage() {
                             <span className="text-[#FF7404]">Team Overhead.</span>
                         </h2>
                         <p className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
-                            Join 100+ high-efficiency independent dealers who are using AutoMaster to protect their margins.
+                            Join 500+ high-efficiency independent dealers who are using The AutoMaster Suite to protect their margins.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <RequestDemoButton
                                 className="px-12 py-6 bg-[#FF7404] hover:bg-white hover:text-black text-black font-black text-lg uppercase tracking-widest rounded-2xl transition-all shadow-[0_20px_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_20px_50px_-10px_rgba(255,116,4,0.6)] transform hover:-translate-y-1"
                             >
-                                Book a Demo
+                                Schedule Your Walkthrough
                             </RequestDemoButton>
+                        </div>
+                        <div className="text-zinc-500 text-sm font-medium mt-6">
+                            No commitment. Just a look at the system.
                         </div>
                     </div>
                 </div>

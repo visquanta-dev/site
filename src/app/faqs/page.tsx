@@ -8,6 +8,8 @@ import { Plus, Minus, ArrowRight, Search, MessageSquare, ShieldCheck, Zap, Users
 import Link from 'next/link';
 
 // Categorized Data Structure
+import FinalCTA from '@/components/FinalCTA';
+
 const faqCategories = [
     {
         id: 'all',
@@ -34,13 +36,13 @@ const faqCategories = [
 const faqs = [
     {
         category: 'general',
-        question: "What exactly is AutoMaster Suite?",
+        question: "What exactly is The AutoMaster Suite?",
         answer: "It’s a set of automated tools that help car dealerships boost sales, re-engage leads, and protect their reputation. It automates the heavy lifting of follow-up and engagement so your team can focus on closing."
     },
     {
         category: 'security',
         question: "Is your outreach compliant with regulations?",
-        answer: "Yes. We run monthly audits and ensure all outreach meets state and federal compliance standards (TCPA, etc.). No legal headaches—just clean, compliant communication."
+        answer: "Yes. We run monthly audits and ensure all outreach meets state and federal compliance standards (TCPA, etc.). No legal headaches: just clean, compliant communication."
     },
     {
         category: 'technical',
@@ -50,12 +52,12 @@ const faqs = [
     {
         category: 'technical',
         question: "How long does implementation take?",
-        answer: "We build and deploy your custom AutoMaster Suite environment in 14 business days. We move fast so you can start seeing results sooner."
+        answer: "We build and deploy your custom environment within The AutoMaster Suite in 14 business days. We move fast so you can start seeing results sooner."
     },
     {
         category: 'technical',
         question: "Does it work with my existing technology?",
-        answer: "Absolutely. AutoMaster Suite plays nice with your existing tech stack. That said, many clients find it robust enough to replace multiple fragmented tools they were previously paying for."
+        answer: "Absolutely. The AutoMaster Suite plays nice with your existing tech stack. That said, many clients find it robust enough to replace multiple fragmented tools they were previously paying for."
     },
     {
         category: 'general',
@@ -69,18 +71,18 @@ const faqs = [
     },
     {
         category: 'general',
-        question: "Is AutoMaster Suite available internationally?",
-        answer: "Yes, AutoMaster Suite is available to dealerships in North America, the UK, and other international markets. If you’re outside these regions, just ask—we’ll let you know what’s possible."
+        question: "Is The AutoMaster Suite available internationally?",
+        answer: "Yes, The AutoMaster Suite available to dealerships in North America, the UK, and other international markets. If you’re outside these regions, just ask: we’ll let you know what’s possible."
     },
     {
         category: 'general',
         question: "Will this replace my BDC or sales staff?",
-        answer: "No, AutoMaster Suite works alongside your team as a force multiplier. It brings qualified, ready-to-engage leads straight to your staff, filtering out the noise and making their job easier—not replacing them."
+        answer: "No, The AutoMaster Suite works alongside your team as a force multiplier. It brings qualified, ready-to-engage leads straight to your staff, filtering out the noise and making their job easier, not replacing them."
     },
     {
         category: 'general',
         question: "What ROI can I expect?",
-        answer: "On average, dealers see 5 to 20 additional car sales each month—sometimes significantly more—depending on your inventory and team setup. The system is designed to pay for itself many times over."
+        answer: "On average, dealers see 5 to 20 additional car sales each month: sometimes significantly more, depending on your inventory and team setup. The system is designed to pay for itself many times over."
     },
     {
         category: 'security',
@@ -132,8 +134,8 @@ export default function FAQPage() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
                 className={`group border rounded-2xl overflow-hidden transition-all duration-300 ${isOpen
-                        ? 'border-[#FF7404] bg-[#FF7404]/5 shadow-[0_0_30px_-10px_rgba(255,116,4,0.3)]'
-                        : 'border-white/5 bg-zinc-900/40 hover:border-[#FF7404]/50 hover:bg-zinc-900/60'
+                    ? 'border-[#FF7404] bg-[#FF7404]/5 shadow-[0_0_30px_-10px_rgba(255,116,4,0.3)]'
+                    : 'border-white/5 bg-zinc-900/40 hover:border-[#FF7404]/50 hover:bg-zinc-900/60'
                     }`}
             >
                 <button
@@ -145,8 +147,8 @@ export default function FAQPage() {
                         {faq.question}
                     </span>
                     <div className={`p-2 rounded-full border transition-all duration-300 shrink-0 ${isOpen
-                            ? 'border-[#FF7404] bg-[#FF7404] rotate-180'
-                            : 'border-zinc-700/50 text-zinc-500 group-hover:border-[#FF7404] group-hover:text-[#FF7404]'
+                        ? 'border-[#FF7404] bg-[#FF7404] rotate-180'
+                        : 'border-zinc-700/50 text-zinc-500 group-hover:border-[#FF7404] group-hover:text-[#FF7404]'
                         }`}>
                         {isOpen ? (
                             <Minus className="w-4 h-4 text-black" />
@@ -208,7 +210,7 @@ export default function FAQPage() {
                             transition={{ delay: 0.1 }}
                             className="text-xl text-zinc-400 max-w-2xl mx-auto"
                         >
-                            Everything you need to know about AutoMaster Suite. Can't find the answer?
+                            Everything you need to know about The AutoMaster Suite. Can't find the answer?
                             Chat to our team at{' '}
                             <Link href="mailto:info@visquanta.com" className="text-[#FF7404] hover:text-white transition-colors underline underline-offset-4 decoration-[#FF7404]/30 hover:decoration-[#FF7404]">
                                 info@visquanta.com
@@ -224,8 +226,8 @@ export default function FAQPage() {
                                     key={cat.id}
                                     onClick={() => setActiveCategory(cat.id)}
                                     className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 whitespace-nowrap ${activeCategory === cat.id
-                                            ? 'bg-[#FF7404] text-black font-bold shadow-lg shadow-[#FF7404]/20'
-                                            : 'bg-zinc-900/50 text-zinc-400 hover:text-white hover:bg-zinc-800'
+                                        ? 'bg-[#FF7404] text-black font-bold shadow-lg shadow-[#FF7404]/20'
+                                        : 'bg-zinc-900/50 text-zinc-400 hover:text-white hover:bg-zinc-800'
                                         }`}
                                 >
                                     <cat.icon className="w-4 h-4" />
@@ -286,42 +288,14 @@ export default function FAQPage() {
                         </motion.div>
                     </AnimatePresence>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="mt-24 relative overflow-hidden rounded-3xl border border-[#FF7404]/20 bg-gradient-to-b from-[#FF7404]/5 to-transparent"
-                    >
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,116,4,0.1),transparent_50%)]" />
-                        <div className="relative p-12 text-center">
-                            <div className="w-16 h-16 bg-[#FF7404]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3 border border-[#FF7404]/20 text-[#FF7404]">
-                                <MessageSquare className="w-8 h-8" />
-                            </div>
+                    </AnimatePresence>
 
-                            <h3 className="text-3xl font-black text-white mb-4">Still have questions?</h3>
-                            <p className="text-zinc-400 mb-8 max-w-lg mx-auto">
-                                Can't find the answer you're looking for? Our team is here to help you get the most out of AutoMaster Suite.
-                            </p>
-
-                            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                <Link href="/contact">
-                                    <button className="px-8 py-4 bg-[#FF7404] hover:bg-[#ff8a2b] text-black font-bold rounded-xl inline-flex items-center gap-2 transition-all hover:scale-105 shadow-lg shadow-[#FF7404]/25">
-                                        Get in Touch
-                                        <ArrowRight className="w-5 h-5" />
-                                    </button>
-                                </Link>
-                                <Link href="mailto:info@visquanta.com">
-                                    <button className="px-8 py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-bold rounded-xl inline-flex items-center gap-2 transition-all border border-white/10 hover:border-white/20">
-                                        Email Support
-                                    </button>
-                                </Link>
-                            </div>
-                        </div>
-                    </motion.div>
+                    <FinalCTA />
                 </div>
             </section>
 
+
             <Footer />
-        </main>
+        </main >
     );
 }

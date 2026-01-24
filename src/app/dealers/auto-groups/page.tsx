@@ -4,7 +4,12 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import DealerInsights from '@/components/dealers/shared/DealerInsights';
 
-import DealerCalculator from '@/components/dealers/DealerCalculator';
+import ROICalculator from '@/components/dealers/shared/ROICalculator';
+import HolographicCards from '@/components/dealers/franchise/upgrades/HolographicCards';
+import PerformanceGlassGrid from '@/components/dealers/auto-groups/upgrades/PerformanceGlassGrid';
+import ScalingTimeline from '@/components/dealers/auto-groups/upgrades/ScalingTimeline';
+import HeroDashboard from '@/components/dealers/auto-groups/upgrades/HeroDashboard';
+import CommandCenterPanel from '@/components/dealers/auto-groups/upgrades/CommandCenterPanel';
 import {
     Users,
     LayoutGrid,
@@ -75,7 +80,7 @@ const itemVariants = {
 const faqs = [
     {
         question: "How do you handle multiple CRMs and DMS systems across the group?",
-        answer: "AutoMaster is built for architectural complexity. We can integrate with multiple different CRM/DMS providers simultaneously (e.g., CDK at one store, Reynold & Reynolds at another) while aggregating all data into a single, centralized Group Headquarters dashboard."
+        answer: "The AutoMaster Suite is built for architectural complexity. We can integrate with multiple different CRM/DMS providers simultaneously (e.g., CDK at one store, Reynold & Reynolds at another) while aggregating all data into a single, centralized Group Headquarters dashboard."
     },
     {
         question: "Can we set group-wide standards vs. store-level customization?",
@@ -83,7 +88,7 @@ const faqs = [
     },
     {
         question: "How does this reduce our centralized BDC overhead?",
-        answer: "AutoMaster acts as a first-line digital BDC. By automating the first 5-10 touchpoints (the 'heavy lifting'), your centralized BDC can be reduced by up to 40% or redirected to focus solely on high-intent, deep-funnel conversations."
+        answer: "The AutoMaster Suite acts as a first-line digital BDC. By automating the first 5-10 touchpoints (the 'heavy lifting'), your centralized BDC can be reduced by up to 40% or redirected to focus solely on high-intent, deep-funnel conversations."
     },
     {
         question: "What group-level reporting visibility is available?",
@@ -313,7 +318,7 @@ const featuresData: Feature[] = [
         tab: 'Lead Reactivation',
         title: 'Recover Dormant',
         highlight: "Inventory Revenue.",
-        description: "Re-engage dormant leads from your CRM with personalized AI conversations. Recover 8-10% of 'dead' prospects—revenue from marketing you've already paid for.",
+        description: "Re-engage dormant leads from your CRM with personalized AI conversations. Recover 8-10% of 'dead' prospects: revenue from marketing you've already paid for.",
         bullets: [
             { title: "CRM Deep Cleansing", desc: "Our AI systematically works through thousands of cold leads to find active buyers." },
             { title: "Personalized Outreach", desc: "Messaging that feels human, respectful, and brand-compliant." },
@@ -335,7 +340,7 @@ const featuresData: Feature[] = [
         tab: 'Speed-to-Lead',
         title: 'The "Instant Response"',
         highlight: "Standard.",
-        description: "Stop worrying about OEM 15-minute response windows. AutoMaster engages every lead in under 90 seconds, securing the first appointment and protecting your CSI.",
+        description: "Stop worrying about OEM 15-minute response windows. The AutoMaster Suite engages every lead in under 60 seconds, securing the first appointment and protecting your CSI.",
         bullets: [
             { title: "OEM Verified Messaging", desc: "Maintain 100% brand compliance with manufacturer-approved templates." },
             { title: "CSI Score Protection", desc: "Never lose points for slow follow-ups. Professional, instant engagement on every lead." },
@@ -541,121 +546,41 @@ export default function AutoGroupsPage() {
                                 variants={itemVariants}
                                 className="text-xl text-zinc-400 leading-relaxed max-w-xl mb-12 font-medium"
                             >
-                                Eliminate decentralized inefficiency. AutoMaster Suite unifies your entire portfolio under a single, high-performance revenue engine—standardizing BDC success from your flagship to your latest acquisition.
+                                Eliminate decentralized inefficiency. The AutoMaster Suite unifies your entire portfolio under a single, high-performance revenue engine, standardizing BDC success from your flagship to your latest acquisition.
                             </motion.p>
 
                             <motion.div
                                 variants={itemVariants}
                                 className="flex flex-col sm:flex-row items-center gap-4"
                             >
-                                <Link href="/book-demo">
+                                <RequestDemoButton asChild>
                                     <motion.div
                                         whileHover={{ scale: 1.02, boxShadow: "0 0 40px -5px rgba(255,116,4,0.5)" }}
                                         whileTap={{ scale: 0.98 }}
-                                        className="w-full sm:w-auto px-8 py-4 bg-[#FF7404] text-black font-bold rounded-xl flex items-center justify-center gap-2 shadow-[0_0_30px_-5px_rgba(255,116,4,0.4)] cursor-pointer"
+                                        className="w-full sm:w-auto px-10 py-5 bg-[#FF7404] text-black font-bold rounded-xl flex items-center justify-center gap-2 shadow-[0_0_30px_-5px_rgba(255,116,4,0.4)] cursor-pointer text-lg"
                                     >
-                                        Book Enterprise Demo
-                                        <ArrowRight className="w-4 h-4" />
+                                        Schedule Your Walkthrough
+                                        <ArrowRight className="w-5 h-5" />
                                     </motion.div>
-                                </Link>
-                                <Link href="/book-demo">
-                                    <motion.div
-                                        whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.1)" }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="w-full sm:w-auto px-8 py-4 bg-white/5 text-white font-bold rounded-xl border border-white/10 cursor-pointer"
-                                    >
-                                        Request Portfolio Audit
-                                    </motion.div>
-                                </Link>
+                                </RequestDemoButton>
                             </motion.div>
                         </motion.div>
 
-                        {/* Visual for Auto Groups (Multi-store dashboard look) */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9, x: 20 }}
-                            animate={{ opacity: 1, scale: 1, x: 0 }}
-                            transition={{ duration: 1, delay: 0.3 }}
-                            className="relative hidden lg:block"
-                        >
-                            <div className="absolute inset-0 bg-[#FF7404]/10 blur-[80px] rounded-full pointer-events-none" />
-                            <div className="relative grid grid-cols-2 gap-4">
-                                <div className="col-span-2 bg-[#0F0F0F] border border-white/10 p-6 rounded-2xl mb-4">
-                                    <div className="flex items-center justify-between mb-6 pb-6 border-b border-white/5">
-                                        <div className="flex items-center gap-3">
-                                            <Globe className="w-5 h-5 text-[#FF7404]" />
-                                            <div className="text-white font-bold">Group Headquarters</div>
-                                        </div>
-                                        <div className="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px] font-bold uppercase">Centralized</div>
-                                    </div>
-                                    <div className="space-y-4">
-                                        <div className="flex items-center justify-between text-xs text-zinc-500">
-                                            <span>Total Portfolio Revenue</span>
-                                            <span className="text-white font-bold">$1,240,500</span>
-                                        </div>
-                                        <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                                            <motion.div
-                                                initial={{ width: 0 }}
-                                                animate={{ width: "75%" }}
-                                                transition={{ duration: 1.5, delay: 0.5 }}
-                                                className="h-full bg-[#FF7404]"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                {['Store #104', 'Store #212', 'Store #098', 'Store #315'].map((store, i) => (
-                                    <motion.div
-                                        key={i}
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.8 + i * 0.1 }}
-                                        className="bg-[#0a0a0a] border border-white/5 p-4 rounded-xl"
-                                    >
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <LayoutGrid className="w-3 h-3 text-zinc-500" />
-                                            <span className="text-[10px] text-white font-medium uppercase tracking-wider">{store}</span>
-                                        </div>
-                                        <div className="flex items-baseline gap-2">
-                                            <div className="text-lg font-bold text-white">+84%</div>
-                                            <div className="text-[8px] text-green-400 font-bold">LIVE</div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </motion.div>
+                        {/* Visual for Auto Groups (New Hero Dashboard) */}
+                        <HeroDashboard />
                     </div>
                 </div>
+
             </motion.section>
 
-            {/* 2. PERFORMANCE MATRIX */}
-            <section className="py-24 border-y border-white/5 bg-[#030303]">
-                <div className="container px-4 mx-auto">
-                    <div className="grid md:grid-cols-4 gap-12">
-                        {[
-                            { label: 'Process Consistency', value: '100%', icon: ShieldCheck },
-                            { label: 'Deployment Time', value: '<24h', icon: Zap },
-                            { label: 'BDC Overhead', value: '-40%', icon: TrendingUp },
-                            { label: 'Unchecked Leads', value: '0', icon: CheckCircle2 },
-                        ].map((stat, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="flex flex-col items-center text-center space-y-4"
-                            >
-                                <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
-                                    <stat.icon className="w-6 h-6 text-[#FF7404]" />
-                                </div>
-                                <div>
-                                    <div className="text-4xl font-black text-white mb-1 tracking-tighter">{stat.value}</div>
-                                    <div className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">{stat.label}</div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            {/* 1.5 NEW MODULES DISPLAY (Borrowed from Franchise for consistency) */}
+            <div className="relative z-10 -mt-20">
+                <HolographicCards />
+            </div>
+
+
+            {/* 2. PERFORMANCE MATRIX (UPGRADED) */}
+            <PerformanceGlassGrid />
 
             {/* 2.5 CENTRAL COMMAND: THE DIGITAL TWIN */}
             <section className="py-32 bg-[#020202] relative border-b border-white/5">
@@ -676,7 +601,7 @@ export default function AutoGroupsPage() {
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#FF9040]">Zero Friction.</span>
                                 </h2>
                                 <p className="text-lg text-zinc-400 mb-10 leading-relaxed">
-                                    AutoMaster's Central Command acts as a high-altitude control tower for your entire portfolio. Manage Store level access, push group-level marketing cadences, and benchmark every rooftop against your gold standard—all from a single dashboard.
+                                    The AutoMaster Suite's Central Command acts as a high-altitude control tower for your entire portfolio. Manage Store level access, push group-level marketing cadences, and benchmark every rooftop against your gold standard: all from a single dashboard.
                                 </p>
 
                                 <div className="space-y-4">
@@ -700,57 +625,7 @@ export default function AutoGroupsPage() {
                         </div>
 
                         <div className="relative">
-                            <div className="aspect-square bg-[#0A0A0A] border border-white/10 rounded-[3rem] p-8 shadow-3xl overflow-hidden relative">
-                                <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#FF7404]/5 to-transparent" />
-
-                                <div className="relative z-10 space-y-8">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-3">
-                                            <Building2 className="w-6 h-6 text-[#FF7404]" />
-                                            <span className="text-white font-black text-xl tracking-tighter">Group Portfolio Summary</span>
-                                        </div>
-                                        <Activity className="w-5 h-5 text-green-500 animate-pulse" />
-                                    </div>
-
-                                    {/* Store Matrix Pulse */}
-                                    <div className="grid grid-cols-2 gap-4">
-                                        {[
-                                            { name: "Westside Toyota", color: "bg-[#FF8524]" },
-                                            { name: "Downtown Ford", color: "bg-[#FF7404]" },
-                                            { name: "Northside Honda", color: "bg-green-500" },
-                                            { name: "Eastside Chevy", color: "bg-purple-500" }
-                                        ].map((store, i) => (
-                                            <div key={i} className="p-5 rounded-2xl bg-white/[0.02] border border-white/10">
-                                                <div className="text-[10px] text-zinc-500 uppercase font-black tracking-widest mb-3">{store.name}</div>
-                                                <div className="flex items-end justify-between">
-                                                    <div className="text-2xl font-black text-white">4.8x</div>
-                                                    <div className="text-[10px] text-green-500 font-bold">ROI</div>
-                                                </div>
-                                                <div className="mt-4 w-full h-1 bg-white/5 rounded-full overflow-hidden">
-                                                    <div className={`h-full ${store.color}/40 w-3/4`} />
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Live Activity Log */}
-                                    <div className="p-5 rounded-2xl bg-black/40 border border-white/5 font-mono text-[10px] space-y-3 opacity-60">
-                                        <div className="flex justify-between">
-                                            <span className="text-zinc-600 tracking-tighter">{'>'} SYNC_ACROSS_LOCATIONS</span>
-                                            <span className="text-green-500">READY</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span className="text-zinc-600 tracking-tighter">{'>'} PUSHING_SCRIPTS: v5.2</span>
-                                            <span className="text-[#FF7404] animate-pulse">DEPLOYING</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="absolute bottom-10 left-10 right-10 flex justify-center mt-8">
-                                    <div className="px-5 py-2 rounded-full bg-green-500/10 border border-green-500/30 text-green-500 text-[10px] font-black uppercase tracking-widest">
-                                        Verified Group Network
-                                    </div>
-                                </div>
-                            </div>
+                            <CommandCenterPanel />
                         </div>
                     </div>
                 </div>
@@ -906,7 +781,7 @@ export default function AutoGroupsPage() {
                                 viewport={{ once: true }}
                             >
                                 <motion.p variants={itemVariants}>
-                                    The biggest challenge for auto groups is maintaining consistent processes as you scale. Portfolios often become a collection of silos—different CRMs, different BDC standards, and different customer experiences.
+                                    The biggest challenge for auto groups is maintaining consistent processes as you scale. Portfolios often become a collection of silos: different CRMs, different BDC standards, and different customer experiences.
                                 </motion.p>
                                 <motion.p variants={itemVariants}>
                                     Executives struggle with group-level visibility, while store managers are too bogged down in daily operations to implement group-wide initiatives.
@@ -950,59 +825,18 @@ export default function AutoGroupsPage() {
                 </div>
             </section>
 
-            {/* 4. SOLUTIONS / SCALING PLAYBOOK */}
-            <section className="py-32 bg-[#050505] relative overflow-hidden">
-                <div className="container px-4 mx-auto">
-                    <div className="text-center max-w-3xl mx-auto mb-20">
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 text-[#FF7404] text-[10px] font-bold uppercase tracking-widest mb-4"
-                        >
-                            <RefreshCw className="w-3 h-3" />
-                            Enterprise Deployment
-                        </motion.div>
-                        <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">The <span className="text-[#FF7404]">24-Hour</span> Rollout.</h2>
-                        <p className="text-zinc-500 text-lg">How we scale your success from acquisition date to live deployment in record time.</p>
-                    </div>
-
-                    <div className="grid md:grid-cols-4 gap-8 relative">
-                        {/* Connecting Line */}
-                        <div className="absolute top-[2.25rem] left-0 w-full h-px bg-white/5 hidden md:block" />
-
-                        {[
-                            { step: "01", title: "API Authorization", desc: "One-click connection to your Group CRM and DMS provider via secure tunnel.", icon: HardDrive },
-                            { step: "02", title: "Portfolio Audit", desc: "Our AI scans your dormant lead volume to find the 'Instant ROI' opportunities.", icon: History },
-                            { step: "03", title: "Store Logic Mapping", desc: "We map store-level hours, offers, and staffing to our group playbook.", icon: LayoutGrid },
-                            { step: "04", title: "Live Deployment", desc: "BDC relief begins. Leads are captured, recovered, and scheduled 24/7.", icon: Zap }
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="relative z-10"
-                            >
-                                <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-[#FF7404] font-black text-xs mb-6 mx-auto md:mx-0">
-                                    <item.icon className="w-5 h-5" />
-                                </div>
-                                <div className="text-center md:text-left">
-                                    <div className="text-[#FF7404] text-[10px] font-black uppercase tracking-[0.2em] mb-2">Step {item.step}</div>
-                                    <h3 className="text-white font-bold text-lg mb-3">{item.title}</h3>
-                                    <p className="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            {/* 4. SCALING PLAYBOOK (UPGRADED) */}
+            <ScalingTimeline />
 
 
 
             {/* 5. CALCULATOR */}
-            <DealerCalculator />
+            <ROICalculator
+                badgeText="Group ROI Engine"
+                title={<>Enterprise <span className="text-[#FF7404]">Revenue Potential</span></>}
+                subtitle="Calculate the impact of centralized efficiency across your entire dealer group portfolio."
+                ctaText="Project Your Group Lift"
+            />
 
             {/* 6. FAQ */}
             <section className="py-24 bg-[#050505] relative overflow-hidden">
@@ -1136,16 +970,16 @@ export default function AutoGroupsPage() {
                             Transform your portfolio into a synchronized revenue engine. Live across all rooftops in weeks, not months.
                         </p>
 
-                        <Link href="/book-demo">
+                        <RequestDemoButton asChild>
                             <motion.div
                                 whileHover={{ scale: 1.05, boxShadow: "0 0 50px -10px rgba(255,116,4,0.6)" }}
                                 whileTap={{ scale: 0.98 }}
                                 className="inline-flex items-center gap-2 px-10 py-5 bg-[#FF7404] text-black font-bold text-lg rounded-xl cursor-pointer shadow-[0_0_40px_-10px_rgba(255,116,4,0.5)]"
                             >
-                                Book Enterprise Demo
+                                Schedule Your Walkthrough
                                 <ArrowRight className="w-5 h-5" />
                             </motion.div>
-                        </Link>
+                        </RequestDemoButton>
 
                         {/* AEO/SEO STRUCTURED DATA */}
                         <script
@@ -1154,7 +988,7 @@ export default function AutoGroupsPage() {
                                 __html: JSON.stringify({
                                     "@context": "https://schema.org",
                                     "@type": "SoftwareApplication",
-                                    "name": "AutoMaster Suite Enterprise",
+                                    "name": "The AutoMaster Suite",
                                     "applicationCategory": "EnterpriseApplication",
                                     "operatingSystem": "Web",
                                     "description": "Multi-location revenue automation and centralized BDC management for automotive groups.",

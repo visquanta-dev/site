@@ -69,9 +69,9 @@ const suiteProducts = [
         id: 's2l',
         title: "Speed to Lead Services",
         icon: Zap,
-        desc: "Engage every website inquiry in under 90 seconds. 24/7/365 coverage for your digital lot.",
+        desc: "Engage every website inquiry in under 60 seconds. 24/7/365 coverage for your digital lot.",
         link: "/speed-to-lead",
-        stats: "<90s Response Time",
+        stats: "<60s Response Time",
         color: "from-yellow-400 to-orange-500",
         image: "/images/suite-bg/s2l-bg.png"
     },
@@ -154,7 +154,7 @@ export default function AutoMasterSuiteHub() {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
-                        "name": "AutoMaster Suite",
+                        "name": "The AutoMaster Suite",
                         "applicationCategory": "BusinessApplication",
                         "operatingSystem": "Web-based",
                         "description": "The definitive automotive revenue ecosystem. An integrated suite of AI-driven tools for lead reactivation, response velocity, and reputation mastery.",
@@ -170,18 +170,18 @@ export default function AutoMasterSuiteHub() {
                         "mainEntity": [
                             {
                                 "@type": "Question",
-                                "name": "What is the AutoMaster Suite for car dealerships?",
+                                "name": "What is The AutoMaster Suite for car dealerships?",
                                 "acceptedAnswer": {
                                     "@type": "Answer",
-                                    "text": "AutoMaster Suite is an integrated automotive revenue ecosystem that combines AI lead reactivation, instant response velocity, and reputation management into a single platform designed to increase dealership turnover and ROI."
+                                    "text": "The AutoMaster Suite is an integrated automotive revenue ecosystem that combines AI lead reactivation, instant response velocity, and reputation management into a single platform designed to increase dealership turnover and ROI."
                                 }
                             },
                             {
                                 "@type": "Question",
-                                "name": "Does AutoMaster Suite integrate with CDK and Reynolds & Reynolds?",
+                                "name": "Does The AutoMaster Suite integrate with CDK and Reynolds & Reynolds?",
                                 "acceptedAnswer": {
                                     "@type": "Answer",
-                                    "text": "Yes, AutoMaster Suite features deep integration with major DMS providers like CDK Global, Reynolds & Reynolds, and Dealertrack, allowing for automated note entry and real-time scheduling direct to your system."
+                                    "text": "Yes, The AutoMaster Suite features deep integration with major DMS providers like CDK Global, Reynolds & Reynolds, and Dealertrack, allowing for automated note entry and real-time scheduling direct to your system."
                                 }
                             }
                         ]
@@ -232,7 +232,7 @@ export default function AutoMasterSuiteHub() {
                                 variants={itemVariants}
                                 className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
                             >
-                                Stop reactive management. Install the <strong className="text-white font-bold italic">beating heart</strong> of high-volume retail. AutoMaster Suite unifies your store into a single high-velocity revenue engine.
+                                Stop reactive management. Install the <strong className="text-white font-bold italic">beating heart</strong> of high-volume retail. The AutoMaster Suite unifies your store into a single high-velocity revenue engine.
                             </motion.p>
 
                             <motion.div
@@ -417,7 +417,7 @@ export default function AutoMasterSuiteHub() {
                 <div className="container px-4 mx-auto">
                     <div className="max-w-3xl mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">The Operational <br /><span className="text-[#FF7404]">Blueprint.</span></h2>
-                        <p className="text-zinc-400 text-lg">A unified suite doesn't just change your tech; it changes how your dealership breathes. Here is the lifecycle of a customer inside the AutoMaster ecosystem.</p>
+                        <p className="text-zinc-400 text-lg">A unified suite doesn't just change your tech; it changes how your dealership breathes. Here is the lifecycle of a customer inside The AutoMaster Suite ecosystem.</p>
                     </div>
 
                     <div className="grid md:grid-cols-4 gap-4 relative">
@@ -425,7 +425,7 @@ export default function AutoMasterSuiteHub() {
                         <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-white/5 -translate-y-1/2 z-0" />
 
                         {[
-                            { step: "01", title: "Arrival", desc: "Speed-to-Lead catches the inquiry <90s.", sub: "Any source: SMS, Web, 3rd Party." },
+                            { step: "01", title: "Arrival", desc: "Speed-to-Lead catches the inquiry <60s.", sub: "Any source: SMS, Web, 3rd Party." },
                             { step: "02", title: "Nurture", desc: "LLM re-engages aged leads in the CRM.", sub: "AI-driven database reactivation." },
                             { step: "03", title: "Conversion", desc: "AI books the appointment via DMS.", sub: "Seamless calendar write-back." },
                             { step: "04", title: "Loyalty", rounded: true, title2: "Retention", desc: "Reputation Management & Service Pro.", sub: "Fixed ops growth & CSI protection." }
@@ -463,7 +463,7 @@ export default function AutoMasterSuiteHub() {
                             <BarChart3 className="w-3 h-3" />
                             Efficiency Comparison
                         </motion.div>
-                        <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Legacy vs. <span className="text-[#FF7404]">AutoMaster.</span></h2>
+                        <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Legacy vs. <span className="text-[#FF7404]">The AutoMaster Suite.</span></h2>
                         <p className="text-zinc-500 text-lg">Why top-tier dealerships are ditching disjointed legacy software for a unified revenue platform.</p>
                     </div>
 
@@ -473,12 +473,12 @@ export default function AutoMasterSuiteHub() {
                                 <tr className="border-b border-white/10 bg-white/5">
                                     <th className="px-8 py-6 text-sm font-bold text-white uppercase tracking-widest">Capabilities</th>
                                     <th className="px-8 py-6 text-sm font-bold text-zinc-500 uppercase tracking-widest">Legacy Tools</th>
-                                    <th className="px-8 py-6 text-sm font-bold text-[#FF7404] uppercase tracking-widest bg-[#FF7404]/5 text-center">AutoMaster Suite</th>
+                                    <th className="px-8 py-6 text-sm font-bold text-[#FF7404] uppercase tracking-widest bg-[#FF7404]/5 text-center">The AutoMaster Suite</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-white/5">
                                 {[
-                                    { cap: "Multi-Source Lead Engagement", legacy: "Manual / Delayed", master: "Instant (<90s)", icon: Zap },
+                                    { cap: "Multi-Source Lead Engagement", legacy: "Manual / Delayed", master: "Instant (<60s)", icon: Zap },
                                     { cap: "CRM/DMS Write-Back", legacy: "API Read Only", master: "Full Bi-Directional Write", icon: Database },
                                     { cap: "Lead Reactivation", legacy: "Marketing Blasts", master: "1-to-1 AI Conversation", icon: RefreshCcw },
                                     { cap: "Service Drive Routing", legacy: "Basic IVR", master: "AI Voice Appointment Booking", icon: Wrench },
@@ -508,7 +508,7 @@ export default function AutoMasterSuiteHub() {
                 <div className="container px-4 mx-auto relative z-10">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Built for Your <br /><span className="text-[#FF7404]">Specific Operation.</span></h2>
-                        <p className="text-zinc-500 text-lg">AutoMaster Suite is modular and customizable, engineered to solve the unique pain points of every dealership model.</p>
+                        <p className="text-zinc-500 text-lg">The AutoMaster Suite is modular and customizable, engineered to solve the unique pain points of every dealership model.</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -601,13 +601,13 @@ export default function AutoMasterSuiteHub() {
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#FF9040]">Modern DMS.</span>
                                 </h2>
                                 <p className="text-lg text-zinc-400 mb-10 leading-relaxed">
-                                    AutoMaster Suite isn't just a collection of apps—it's a deep-integration platform. We speak the language of your CRM and DMS, ensuring every conversation, appointment, and RO is synced in real-time.
+                                    The AutoMaster Suite isn't just a collection of apps: it's a deep-integration platform. We speak the language of your CRM and DMS, ensuring every conversation, appointment, and RO is synced in real-time.
                                 </p>
 
                                 <div className="space-y-6">
                                     {[
                                         { title: "Universal CRM Sync", desc: "Bi-directional sync with VinSolutions, eLeads, DealerSocket, and more. We read notes and write statuses in real-time.", icon: RefreshCcw },
-                                        { title: "DMS Write-Back", desc: "Secure write-back into CDK, Reynolds, and Dealertrack. From appointments to customer record updates—zero manual effort.", icon: Database },
+                                        { title: "DMS Write-Back", desc: "Secure write-back into CDK, Reynolds, and Dealertrack. From appointments to customer record updates: zero manual effort.", icon: Database },
                                         { title: "OEM Compliance", desc: "100% brand-approved messaging. We verify every template against current manufacturer standards and legal guidelines.", icon: ShieldCheck },
                                         { title: "Enterprise Security", desc: "SOC-2 Type II Compliant. Your dealership data is encrypted at rest and in transit. We prioritize dealer privacy.", icon: Shield }
                                     ].map((feat, i) => (
@@ -733,7 +733,7 @@ export default function AutoMasterSuiteHub() {
                             <div className="space-y-6">
                                 <h3 className="text-2xl font-bold text-white">Eliminating Data Silos</h3>
                                 <p className="text-zinc-500 leading-relaxed text-sm">
-                                    Most dealerships run 15+ different tools. Your BDC doesn't know what the Service drive is doing, and your marketing team is blind to your real-time inventory velocity. AutoMaster Suite <strong>bridges the gap</strong>. By centralizing all automated customer touchpoints, we ensure a single, coherent customer journey from first inquiry to service loyalty.
+                                    Most dealerships run 15+ different tools. Your BDC doesn't know what the Service drive is doing, and your marketing team is blind to your real-time inventory velocity. The AutoMaster Suite <strong>bridges the gap</strong>. By centralizing all automated customer touchpoints, we ensure a single, coherent customer journey from first inquiry to service loyalty.
                                 </p>
                             </div>
                             <div className="space-y-6">
@@ -769,7 +769,7 @@ export default function AutoMasterSuiteHub() {
                         className="text-[10px] font-bold text-white/20 uppercase tracking-[0.4em] hover:text-[#FF7404] transition-colors duration-300 inline-flex items-center gap-4"
                     >
                         <Zap className="w-3 h-3" />
-                        Intelligence Report: Boosting Sales with AutoMaster Suite
+                        Intelligence Report: Boosting Sales with The AutoMaster Suite
                         <Zap className="w-3 h-3" />
                     </a>
                 </div>

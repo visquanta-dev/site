@@ -259,7 +259,7 @@ export default function AutoMasterSection() {
                   different vendors for tools that don&apos;t talk to each other.
                 </p>
                 <p>
-                  That&apos;s why we built AutoMaster Suite, a single platform designed
+                  That&apos;s why we built The AutoMaster Suite, a single platform designed
                   specifically for automotive retail, by people who&apos;ve worked the desk,
                   managed the BDC, and felt the pressure of month end.
                 </p>
@@ -302,7 +302,7 @@ export default function AutoMasterSection() {
                   </span>
                 </div>
                 <div className="wwa-stat">
-                  <span className="wwa-stat-num">100+</span>
+                  <span className="wwa-stat-num">500+</span>
                   <span className="wwa-stat-label">
                     Dealerships
                     <br />
@@ -396,7 +396,7 @@ export default function AutoMasterSection() {
           viewport={{ once: true, margin: '-50px' }}
           variants={fadeInUp}
         >
-          <h3 className="am-section-title am-center">What Does AutoMaster Suite Include?</h3>
+          <h3 className="am-section-title am-center">What Does The AutoMaster Suite Include?</h3>
 
           <div className="am-product-feature">
             <div className="am-product-content">
@@ -468,7 +468,7 @@ export default function AutoMasterSection() {
               </div>
               <div className="am-comparison-vs">VS</div>
               <div className="am-comparison-new">
-                <h5>AUTOMASTER SUITE</h5>
+                <h5>THE AUTOMASTER SUITE</h5>
                 <ul>
                   <li>Speed to Lead</li>
                   <li>Lead Reactivation</li>

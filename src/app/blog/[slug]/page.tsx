@@ -10,7 +10,7 @@ import { BlogCard } from '@/components/blog/BlogCard';
 import BlogPostClient, { ReadingProgress, TableOfContents, ExecutiveSummary } from './BlogPostClient';
 import { BlogArticleHeader } from '@/components/blog/BlogArticleHeader';
 import { BLOG_ENHANCEMENTS } from '@/data/blog-enhancements';
-import { ExpertInsight, KnowledgeCards, ProofPoint } from '@/components/blog/BlogEnhancements';
+import { ExpertInsight, KnowledgeCards, ProofPoint, MidArticleCTA, BottomConsultingCTA, BlogFAQAccordion } from '@/components/blog/BlogEnhancements'; import InlineNewsletter from '@/components/blog/InlineNewsletter';
 
 export const revalidate = 60;
 
@@ -270,11 +270,73 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     />
                                 )}
 
-                                <div
-                                    suppressHydrationWarning
-                                    className="blog-content"
-                                    dangerouslySetInnerHTML={{ __html: post.html }}
-                                />
+                                {(() => {
+                                    const faqMatch = post.html.match(/<h2 id="faqs"[^>]*>.*?<\/h2>([\s\S]*)/i);
+                                    let mainContentHtml = post.html;
+                                    let faqHtml = '';
+
+                                    if (faqMatch) {
+                                        mainContentHtml = post.html.substring(0, faqMatch.index);
+                                        faqHtml = faqMatch[1];
+                                    }
+
+                                    const paragraphs = mainContentHtml.split('</p>');
+
+                                    // If text is short, just show it
+                                    if (paragraphs.length < 8) {
+                                        return (
+                                            <div
+                                                suppressHydrationWarning
+                                                className="blog-content"
+                                                dangerouslySetInnerHTML={{ __html: mainContentHtml }}
+                                            />
+                                        );
+                                    }
+
+                                    // Injection Logic
+                                    // 1. Newsletter after paragraph 6
+                                    // 2. MidPageCTA at roughly 60% mark
+
+                                    const newsletterIndex = 6;
+                                    const midPointIndex = Math.floor(paragraphs.length * 0.6);
+
+                                    // Create chunks
+                                    // 1. Start to Newsletter
+                                    const chunk1 = paragraphs.slice(0, newsletterIndex).join('</p>') + '</p>';
+
+                                    // 2. Newsletter to Midpoint
+                                    const chunk2 = paragraphs.slice(newsletterIndex, midPointIndex).join('</p>') + '</p>';
+
+                                    // 3. Midpoint to End
+                                    const chunk3 = paragraphs.slice(midPointIndex).join('</p>');
+
+                                    return (
+                                        <>
+                                            <div
+                                                suppressHydrationWarning
+                                                className="blog-content"
+                                                dangerouslySetInnerHTML={{ __html: chunk1 }}
+                                            />
+
+                                            {/* INLINE NEWSLETTER */}
+                                            <InlineNewsletter />
+
+                                            <div
+                                                suppressHydrationWarning
+                                                className="blog-content"
+                                                dangerouslySetInnerHTML={{ __html: chunk2 }}
+                                            />
+
+                                            <MidArticleCTA />
+
+                                            <div
+                                                suppressHydrationWarning
+                                                className="blog-content"
+                                                dangerouslySetInnerHTML={{ __html: chunk3 }}
+                                            />
+                                        </>
+                                    );
+                                })()}
 
                                 {enhancement?.glossaryTerms && (
                                     <KnowledgeCards terms={enhancement.glossaryTerms} />
@@ -283,6 +345,30 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                 {enhancement?.caseStudyProof && (
                                     <ProofPoint {...enhancement.caseStudyProof} />
                                 )}
+
+                                {(() => {
+                                    const faqMatch = post.html.match(/<h2 id="faqs"[^>]*>.*?<\/h2>([\s\S]*)/i);
+                                    if (!faqMatch) return null;
+
+                                    const faqHtml = faqMatch[1];
+                                    const faqItems: { question: string; answer: string }[] = [];
+
+                                    // Match h3 tags as questions
+                                    const qMatches = Array.from(faqHtml.matchAll(/<h3[^>]*>(.*?)<\/h3>([\s\S]*?)(?=<h3|$)/gi));
+
+                                    qMatches.forEach(match => {
+                                        faqItems.push({
+                                            question: match[1].replace(/<[^>]*>/g, '').trim(),
+                                            answer: match[2].trim()
+                                        });
+                                    });
+
+                                    if (faqItems.length === 0) return null;
+
+                                    return <BlogFAQAccordion faqs={faqItems} />;
+                                })()}
+
+                                <BottomConsultingCTA />
                             </BlogPostClient>
 
                             {/* Tags Section */}
@@ -382,23 +468,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             <div className="sticky top-32">
                                 <TableOfContents />
 
-                                {/* Additional sidebar CTA */}
-                                <div className="mt-10 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
-                                    <div className="flex items-center gap-2 mb-4">
-                                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">System Online</span>
-                                    </div>
-                                    <p className="text-zinc-400 text-sm mb-4 leading-relaxed">
-                                        Ready to transform your dealership operations?
-                                    </p>
-                                    <Link
-                                        href="/book-demo"
-                                        className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-[#FF7404]/10 border border-[#FF7404]/20 text-[#FF7404] text-sm font-bold hover:bg-[#FF7404]/20 transition-all"
-                                    >
-                                        <span>Book a Demo</span>
-                                        <ArrowRight className="w-4 h-4" />
-                                    </Link>
-                                </div>
+
                             </div>
                         </aside>
                     </div>

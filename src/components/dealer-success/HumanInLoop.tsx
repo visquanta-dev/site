@@ -8,7 +8,7 @@ const steps = [
     {
         icon: MessageSquare,
         title: "AI Engagement",
-        description: "Our AI handles 95% of routine inquiries instantly—vetting leads, answering questions, and booking appointments."
+        description: "Our AI handles 95% of routine inquiries instantly: vetting leads, answering questions, and booking appointments."
     },
     {
         icon: Eye,

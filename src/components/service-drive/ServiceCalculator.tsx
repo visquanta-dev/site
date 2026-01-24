@@ -438,6 +438,9 @@ export default function ServiceCalculator() {
                                         <div className="mt-3 text-white/30 text-sm font-medium uppercase tracking-[0.2em]">
                                             Annual Recovered Revenue
                                         </div>
+                                        <p className="text-white/20 text-[10px] mt-2 italic">
+                                            Assumes 25% recovery rate of missed calls → booked appointments
+                                        </p>
                                     </motion.div>
 
                                     {/* Secondary Stats Grid */}
@@ -474,6 +477,11 @@ export default function ServiceCalculator() {
                                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                         </span>
                                     </motion.a>
+
+                                    {/* Expectation Microcopy - CRO Finding L */}
+                                    <p className="mt-4 text-white/20 text-[10px] uppercase tracking-wider font-medium">
+                                        Book a 15-min discovery call to see your custom ROI report
+                                    </p>
                                 </div>
                             </motion.div>
                         </motion.div>

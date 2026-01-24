@@ -189,7 +189,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
                 <div className="container px-4 mx-auto max-w-4xl text-center">
                     <h2 className="text-3xl font-bold text-white mb-6">Ready to replicate these results?</h2>
                     <p className="text-zinc-400 mb-8">
-                        AutoMaster Suite is plug-and-play for franchise and independent dealers.
+                        The AutoMaster Suite is plug-and-play for franchise and independent dealers.
                         See what your database is worth today.
                     </p>
                     <div className="flex justify-center gap-4">

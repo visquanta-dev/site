@@ -369,11 +369,8 @@ export default function Navigation() {
         {/* Desktop Actions */}
         <div className="hidden lg:flex items-center gap-4">
           <RequestDemoButton asChild>
-            <Button className="relative h-9 px-6 rounded-lg border border-[#FF7404]/30 bg-[#FF7404]/10 hover:bg-[#FF7404]/20 hover:border-[#FF7404]/50 text-[#FF7404] hover:text-white transition-all uppercase tracking-widest text-[10px] font-black shadow-[0_0_20px_rgba(255,116,4,0.1)]">
-              <div className="w-4 h-4 rounded bg-[#FF7404]/20 flex items-center justify-center mr-2 text-[#FF7404]">
-                <Zap className="w-2.5 h-2.5 group-hover:rotate-12 transition-transform" />
-              </div>
-              Speak With Our Team
+            <Button className="relative h-9 px-6 rounded-lg bg-[#FF7404] hover:bg-[#ff8a2b] text-black transition-all uppercase tracking-widest text-[10px] font-black shadow-[0_0_20px_rgba(255,116,4,0.4)] hover:shadow-[0_0_30px_rgba(255,116,4,0.6)] border-none">
+              Schedule Your Walkthrough
             </Button>
           </RequestDemoButton>
 
@@ -585,7 +582,7 @@ export default function Navigation() {
                       style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      Speak With Our Team
+                      Schedule Your Walkthrough
                     </button>
                   </RequestDemoButton>
                 </motion.div>

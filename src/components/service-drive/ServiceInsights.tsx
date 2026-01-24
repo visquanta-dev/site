@@ -10,7 +10,7 @@ const articles = [
     {
         category: "RETENTION",
         title: "What's Killing Your Retention?",
-        description: "80% of service calls go unanswered. Here's what that costs you — and how to fix it.",
+        description: "80% of service calls go unanswered. Here's what that costs you: and how to fix it.",
         href: "/blog/whats-killing-retention-in-your-service-department-missed-calls",
         image: "/images/service-center.jpg"
     },

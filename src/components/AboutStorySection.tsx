@@ -70,10 +70,10 @@ export default function AboutStorySection() {
                                 VisQuanta wasn't born in a generic Silicon Valley incubator. It was born on the showroom floor. We spent over a decade in the trenches of dealership operations, feeling the frustration of missed leads, inconsistent BDC performance, and the constant struggle to manage high-volume CRM data.
                             </p>
                             <p>
-                                We realized that the problem wasn't a lack of tools—it was a lack of <strong className="text-white">intelligent automation</strong> that actually understood the automotive sales cycle.
+                                We realized that the problem wasn't a lack of tools: it was a lack of <strong className="text-white">intelligent automation</strong> that actually understood the automotive sales cycle.
                             </p>
                             <p>
-                                Today, AutoMaster Suite is the culmination of that experience. We've combined deep industry knowledge with cutting-edge AI to create a system that doesn't just "chat"—it sells. We're on a mission to help every dealership maximize their existing traffic and build an unbreakable sales engine.
+                                Today, AutoMaster Suite is the culmination of that experience. We've combined deep industry knowledge with cutting-edge AI to create a system that doesn't just "chat": it sells. We're on a mission to help every dealership maximize their existing traffic and build an unbreakable sales engine.
                             </p>
                         </div>
 

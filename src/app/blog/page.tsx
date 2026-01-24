@@ -26,7 +26,7 @@ export default async function BlogPage() {
     const total = posts.length;
 
     return (
-        <main className="bg-[#0a0a0a] min-h-screen selection:bg-[#D4A853] selection:text-black font-sans">
+        <main className="bg-[#020202] min-h-screen selection:bg-[#FF7404] selection:text-black font-sans">
             <Navigation />
 
             <BlogRedesignClient

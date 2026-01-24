@@ -2,6 +2,7 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import FinalCTA from '@/components/FinalCTA';
 import { motion } from 'framer-motion';
 import { Linkedin, Mail, Twitter, Quote, Calendar } from 'lucide-react';
 import Image from 'next/image';
@@ -460,6 +461,9 @@ export default function TeamPage() {
                     </motion.div>
                 </div>
             </section>
+
+            <FinalCTA />
+
 
             <Footer />
         </main>

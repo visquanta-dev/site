@@ -4,7 +4,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import DealerInsights from '@/components/dealers/shared/DealerInsights';
 
-import DealerCalculator from '@/components/dealers/DealerCalculator';
+import ROICalculator from '@/components/dealers/shared/ROICalculator';
 import { RefreshCw, Zap, TrendingUp, Search, DollarSign, Clock, LayoutGrid, CheckCircle2, ArrowRight, Gauge, ShoppingCart, HelpCircle, Lightbulb, ChevronDown, Calendar, BookOpen, Target, BarChart3, Database, MessageSquare, Layers, Signal, Wifi, Battery, User, Star, Timer, PhoneIncoming, Play, ShieldCheck, Globe } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import Link from 'next/link';
@@ -12,6 +12,9 @@ import { useRef, useState, useEffect } from 'react';
 import { RequestDemoButton } from '@/components/CalendlyModal';
 import Image from 'next/image';
 import { CapabilityTabs, CapabilityFeatureDisplay } from '@/components';
+import PreOwnedHeroDashboard from '@/components/dealers/pre-owned/upgrades/PreOwnedHeroDashboard';
+import HolographicCards from '@/components/dealers/franchise/upgrades/HolographicCards';
+import PreOwnedStatsGrid from '@/components/dealers/pre-owned/upgrades/PreOwnedStatsGrid';
 
 // Animation variants
 const containerVariants = {
@@ -35,19 +38,19 @@ const itemVariants = {
 const faqs = [
     {
         question: "How does Lead Reactivation work for Pre-Owned inventory specifically?",
-        answer: "AutoMaster maps your current used car inventory against your entire historical lead database. It identifies 'Dead' leads who previously inquired about similar models and re-engages them the moment a new unit hits the lot or a price is adjusted, essentially finding a buyer before you spend a dime on advertising."
+        answer: "The AutoMaster Suite maps your current used car inventory against your entire historical lead database. It identifies 'Dead' leads who previously inquired about similar models and re-engages them the moment a new unit hits the lot or a price is adjusted, essentially finding a buyer before you spend a dime on advertising."
     },
     {
-        question: "Can AutoMaster help us compete with Carvana and other national retailers?",
-        answer: "Yes. National retailers win on speed and follow-up. AutoMaster gives you that same enterprise-level speed by responding to every lead in under 90 seconds, 24/7/365. You capture the shopper while they are still on your VDP, before they move to the next site."
+        question: "Can The AutoMaster Suite help us compete with Carvana and other national retailers?",
+        answer: "Yes. National retailers win on speed and follow-up. The AutoMaster Suite gives you that same enterprise-level speed by responding to every lead in under 60 seconds, 24/7/365. You capture the shopper while they are still on your VDP, before they move to the next site."
     },
     {
-        question: "How does the Service Drive AI help me get Pre-Owned stock?",
-        answer: "Instead of buying blind at auctions, the Service Drive AI identifies high-equity customers currently in your service lane. It pre-qualifies their trade-in and presents a 'buy-back' offer automatically, allowing you to acquire the highest-margin used car inventory—the ones you already have the service history for."
+        question: "How does The AutoMaster Suite's Service Drive AI help me get Pre-Owned stock?",
+        answer: "Instead of buying blind at auctions, the Service Drive AI identifies high-equity customers currently in your service lane. It pre-qualifies their trade-in and presents a 'buy-back' offer automatically, allowing you to acquire the highest-margin used car inventory: the ones you already have the service history for."
     },
     {
         question: "Do our sales reps have to learn a new system to handle these leads?",
-        answer: "No. AutoMaster sits in the background. It engages, qualifies, and sets the appointment. Once a used car shopper is ready to talk numbers or book a test drive, the 'Clean' lead is handed over to your team in your existing CRM. Your reps only talk to people who want to buy."
+        answer: "No. The AutoMaster Suite sits in the background. It engages, qualifies, and sets the appointment. Once a used car shopper is ready to talk numbers or book a test drive, the 'Clean' lead is handed over to your team in your existing CRM. Your reps only talk to people who want to buy."
     },
     {
         question: "What is the ROI on 3rd party portal leads (Autotrader, etc.)?",
@@ -298,7 +301,7 @@ const featuresData: Feature[] = [
         tab: 'Lead Reactivation',
         title: 'The Art of the',
         highlight: "Pre-Owned Close.",
-        description: "Don't wait for the customer to chase you. AutoMaster identifies \"ready-to-buy\" signals from your old leads and reaches out the moment the right unit hits your front line.",
+        description: "Don't wait for the customer to chase you. The AutoMaster Suite identifies \"ready-to-buy\" signals from your old leads and reaches out the moment the right unit hits your front line.",
         bullets: [
             { title: "Lead Reactivation", desc: "We mine your 'dead' CRM data and re-engage buyers with inventory that matches their exact history." },
             { title: "Trade-In Pre-Qualification", desc: "We identify potential trade units and psychological 'buy signals' before they even reach your lot." },
@@ -322,9 +325,9 @@ const featuresData: Feature[] = [
         tab: 'Speed-to-Lead',
         title: 'Portal Domination',
         highlight: "Catch Them Instantly.",
-        description: "Be the first to respond to Autotrader, Cars.com, and Facebook leads in under 90 seconds. We capture the buyer before they move to your competitor.",
+        description: "Be the first to respond to Autotrader, Cars.com, and Facebook leads in under 60 seconds. We capture the buyer before they move to your competitor.",
         bullets: [
-            { title: "Instant Response", desc: "Every lead from 3rd party portals is engaged in under 90 seconds, securing the first appointment." },
+            { title: "Instant Response", desc: "Every lead from 3rd party portals is engaged in under 60 seconds, securing the first appointment." },
             { title: "Capture Scarcity", desc: "In the pre-owned market, speed is the only differentiator that matters for unique units." },
             { title: "2.5x Conv. Rate", desc: "Vastly improve your appointment set rate compared to manual BDC follow-up." }
         ],
@@ -561,119 +564,20 @@ export default function PreOwnedPage() {
                             </motion.div>
                         </motion.div>
 
-                        {/* Revenue Engine Visual */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1, delay: 0.3 }}
-                            className="relative hidden lg:block"
-                        >
-                            <div className="bg-[#0F0F0F] border border-white/10 rounded-3xl p-8 relative overflow-hidden group shadow-2xl">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF7404]/10 rounded-full blur-3xl" />
-
-                                <div className="flex items-center justify-between mb-8">
-                                    <div className="flex items-center gap-3">
-                                        <RefreshCw className="w-6 h-6 text-[#FF7404] animate-spin-slow" />
-                                        <div className="text-white font-bold">AutoMaster Revenue Engine</div>
-                                    </div>
-                                    <div className="text-[10px] text-zinc-500 font-mono">SEGMENT: PRE_OWNED</div>
-                                </div>
-
-                                <div className="space-y-6">
-                                    {/* Lead Reactivation Visual */}
-                                    <div className="p-4 rounded-xl bg-white/5 border border-white/5 relative group/item">
-                                        <div className="flex items-center gap-3 mb-3">
-                                            <div className="w-8 h-8 rounded-lg bg-[#FF7404]/20 flex items-center justify-center">
-                                                <Database className="w-4 h-4 text-[#FF7404]" />
-                                            </div>
-                                            <div>
-                                                <div className="text-xs font-bold text-white">Lead Reactivation</div>
-                                                <div className="text-[10px] text-zinc-500">Mining 12,400 Historic Leads</div>
-                                            </div>
-                                        </div>
-                                        <div className="flex gap-1">
-                                            {[...Array(12)].map((_, i) => (
-                                                <motion.div
-                                                    key={i}
-                                                    initial={{ opacity: 0.3 }}
-                                                    animate={{ opacity: [0.3, 1, 0.3] }}
-                                                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
-                                                    className="h-1 flex-1 bg-[#FF7404] rounded-full"
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="mt-2 text-[10px] font-bold text-green-400">+14 Appts Today</div>
-                                    </div>
-
-                                    {/* Speed to Lead Visual */}
-                                    <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                                        <div className="flex items-center gap-3 mb-3">
-                                            <div className="w-8 h-8 rounded-lg bg-[#FF7404]/20 flex items-center justify-center">
-                                                <Zap className="w-4 h-4 text-[#FF7404]" />
-                                            </div>
-                                            <div>
-                                                <div className="text-xs font-bold text-white">Speed-to-Lead</div>
-                                                <div className="text-[10px] text-zinc-500">Real-time Portal Catch</div>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center justify-between text-[11px]">
-                                            <span className="text-zinc-400">Autotrader Lead Arrived</span>
-                                            <span className="text-[#FF7404] font-bold">42s Response</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Service Drive Visual */}
-                                    <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                                        <div className="flex items-center gap-3 mb-3">
-                                            <div className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center">
-                                                <BarChart3 className="w-4 h-4 text-green-400" />
-                                            </div>
-                                            <div>
-                                                <div className="text-xs font-bold text-white">Service Drive Pro</div>
-                                                <div className="text-[10px] text-zinc-500">Equity Spotting</div>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center justify-between text-[11px]">
-                                            <span className="text-zinc-400">High Equity Found</span>
-                                            <span className="text-green-400 font-bold">Offer Sent</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
+                        {/* Revenue Engine Visual (New Dashboard) */}
+                        <PreOwnedHeroDashboard />
                     </div>
                 </div>
+
             </motion.section>
 
-            {/* 2. STATS BAR */}
-            <section className="py-20 border-y border-white/5 bg-white/[0.02]">
-                <div className="container px-4 mx-auto">
-                    <motion.div
-                        className="grid md:grid-cols-3 gap-8"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                    >
-                        {[
-                            { label: 'Avg Found Money', value: '$42k+', desc: 'Recovered monthly from existing CRM' },
-                            { label: 'Appt Set Rate', value: '3.5x', desc: 'Increase vs manual portal follow-up' },
-                            { label: 'Market Capture', value: '24/7', desc: 'Engaging buyers while you sleep' },
-                        ].map((stat, i) => (
-                            <motion.div
-                                key={i}
-                                variants={itemVariants}
-                                whileHover={{ scale: 1.02 }}
-                                className="text-center"
-                            >
-                                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">{stat.value}</div>
-                                <div className="text-[#FF7404] font-bold text-sm uppercase tracking-wider mb-2">{stat.label}</div>
-                                <div className="text-zinc-500 text-sm">{stat.desc}</div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
+            {/* 1.5 NEW MODULES DISPLAY (Borrowed from Franchise for consistency) */}
+            <div className="relative z-10 -mt-20">
+                <HolographicCards />
+            </div>
+
+            {/* 2. STATS BAR (UPGRADED) */}
+            <PreOwnedStatsGrid />
 
             {/* 3. THE ART OF THE CLOSE - Interactive Conversation Visual */}
             <section className="py-32 bg-black relative overflow-hidden">
@@ -826,7 +730,7 @@ export default function PreOwnedPage() {
                                 icon: Zap,
                                 title: "Portal Domination",
                                 product: "Speed-to-Lead",
-                                desc: "Be the first to respond to Autotrader, Cars.com, and Facebook leads in under 90 seconds. We capture the buyer before they move to your competitor.",
+                                desc: "Be the first to respond to Autotrader, Cars.com, and Facebook leads in under 60 seconds. We capture the buyer before they move to your competitor.",
                                 impact: "2.5x Conv. Rate"
                             },
                             {
@@ -873,7 +777,7 @@ export default function PreOwnedPage() {
                         >
                             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                                 Why Pre-Owned Dealers are <br />
-                                <span className="text-[#FF7404]">Struggling in 2025.</span>
+                                <span className="text-[#FF7404]">Struggling in 2026.</span>
                             </h2>
                             <p className="text-zinc-400 text-lg">
                                 Between high interest rates and inventory scarcity, the old "spend more on ads" model is broken.
@@ -888,7 +792,7 @@ export default function PreOwnedPage() {
                                         The Interest Rate Lock-In
                                     </h3>
                                     <p className="text-zinc-500 leading-relaxed">
-                                        Shoppers are more price-sensitive than ever. In 2025, a consumer cross-shops an average of 4.2 dealerships before visiting a lot. If you aren't using <strong>Automotive Speed-to-Lead AI</strong> to respond in under 90 seconds, you are effectively invisible to the modern used car buyer.
+                                        Shoppers are more price-sensitive than ever. In 2026, a consumer cross-shops an average of 4.2 dealerships before visiting a lot. If you aren't using <strong>Automotive Speed-to-Lead AI</strong> to respond in under 60 seconds, you are effectively invisible to the modern used car buyer.
                                     </p>
                                 </div>
                                 <div>
@@ -897,7 +801,7 @@ export default function PreOwnedPage() {
                                         The Auction Margin Trap
                                     </h3>
                                     <p className="text-zinc-500 leading-relaxed">
-                                        Wholesale prices remain elevated, leaving thin margins for used car GMs. The only way to win is to bypass the auction and <strong>buy directly from the public</strong>. AutoMaster's Service Drive AI identifies high-equity trades in your own service lane, providing you with inventory that has a guaranteed service history and higher front-end potential.
+                                        Wholesale prices remain elevated, leaving thin margins for used car GMs. The only way to win is to bypass the auction and <strong>buy directly from the public</strong>. The AutoMaster Suite's Service Drive AI identifies high-equity trades in your own service lane, providing you with inventory that has a guaranteed service history and higher front-end potential.
                                     </p>
                                 </div>
                             </div>
@@ -909,7 +813,7 @@ export default function PreOwnedPage() {
                                 </p>
                                 <div className="flex items-center gap-2 text-[#FF7404] text-xs font-bold font-mono">
                                     <div className="w-2 h-2 rounded-full bg-[#FF7404] animate-pulse" />
-                                    STRATEGY_VERIFIED_2025
+                                    STRATEGY_VERIFIED_2026
                                 </div>
                             </div>
                         </div>
@@ -929,7 +833,7 @@ export default function PreOwnedPage() {
                                 </h2>
                                 <div className="space-y-8">
                                     {[
-                                        { step: "01", title: "CRM Data Sanitization", desc: "AutoMaster identifies high-intent segments in your data that human BDCs have overlooked." },
+                                        { step: "01", title: "CRM Data Sanitization", desc: "The AutoMaster Suite identifies high-intent segments in your data that human BDCs have overlooked." },
                                         { step: "02", title: "Automated Intent Matching", desc: "We map your current used car inventory specs against historical buyer preferences in your database." },
                                         { step: "03", title: "2-Way SMS Engagement", desc: "AI initiates personalized conversations, handling objections and pre-qualifying trade-ins." },
                                         { step: "04", title: "Hot Lead Handover", desc: "Once a 'Buy-Ready' signal is detected, the lead is pushed directly to your showroom floor team." }
@@ -959,7 +863,7 @@ export default function PreOwnedPage() {
                                             <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
                                                 <span className="text-zinc-400 text-xs">CRM Database</span>
                                                 <ArrowRight className="w-4 h-4 text-[#FF7404]" />
-                                                <span className="text-white font-bold text-xs uppercase">AutoMaster</span>
+                                                <span className="text-white font-bold text-xs uppercase">The AutoMaster Suite</span>
                                             </div>
                                             <div className="h-12 w-0.5 bg-gradient-to-b from-[#FF7404] to-transparent ml-8" />
                                             <div className="p-4 rounded-xl bg-[#FF7404]/10 border border-[#FF7404]/20">
@@ -992,7 +896,12 @@ export default function PreOwnedPage() {
 
 
             {/* 6. CALCULATOR */}
-            <DealerCalculator />
+            <ROICalculator
+                badgeText="Inventory Velocity"
+                title={<>Pre-Owned <span className="text-[#FF7404]">Profit Engine</span></>}
+                subtitle={<>See how much equity is hiding in your service drive <br />and CRM database right now.</>}
+                ctaText="Calculate Your Lift"
+            />
 
             {/* 7. FAQ - Expanded for AEO */}
             <section className="py-24 bg-[#050505] relative overflow-hidden">
@@ -1006,8 +915,8 @@ export default function PreOwnedPage() {
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                             Pre-Owned <span className="text-[#FF7404]">Revenue Q&A.</span>
                         </h2>
-                        <p className="text-zinc-400 text-lg">
-                            Direct answers for GMs looking to optimize their pre-owned and used car profitability in 2025.
+                        <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+                            Direct answers for GMs looking to optimize their pre-owned and used car profitability in 2026.
                         </p>
                     </motion.div>
 
@@ -1129,7 +1038,7 @@ export default function PreOwnedPage() {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
-                        "name": "AutoMaster Suite",
+                        "name": "The AutoMaster Suite",
                         "applicationCategory": "BusinessApplication",
                         "operatingSystem": "Web",
                         "description": "Enterprise AI for automotive lead reactivation and speed-to-lead automation.",

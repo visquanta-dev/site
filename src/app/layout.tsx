@@ -10,6 +10,7 @@ import { CalendlyModalProvider } from "@/components/CalendlyModal";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import { Toaster } from "@/components/ui/sonner";
 import { baseSchema } from "@/lib/schema/base";
+import MobileStickyCTA from "@/components/MobileStickyCTA";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -187,6 +188,7 @@ export default function RootLayout({
         <SmoothScroll>
           <CalendlyModalProvider calendlyUrl={CALENDLY_URL}>
             {children}
+            <MobileStickyCTA />
             <Toaster />
           </CalendlyModalProvider>
         </SmoothScroll>

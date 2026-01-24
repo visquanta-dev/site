@@ -7,27 +7,27 @@ import { useState } from 'react';
 const faqs = [
     {
         question: "Do you integrate with Independent-focused CRMs like ProMax?",
-        answer: "Absolutely. We are built to work with the tools independents actually use, including ProMax, DealerCenter, and eLeads. The integration is seamless—we inject notes and appointments directly into your CRM, so your process doesn't change."
+        answer: "Absolutely. We are built to work with the tools independents actually use, including ProMax, DealerCenter, and eLeads. The integration is seamless: we inject notes and appointments directly into your CRM, so your process doesn't change."
     },
     {
         question: "Can it help with Service Drive phone calls?",
-        answer: "Yes. Small dealerships often get overwhelmed by inbound service calls. Our Service Drive Voice AI answers every call instantly, routes it to the right person, or books the appointment automatically—ending the 'eternal hold' frustration for your customers."
+        answer: "Yes. Small dealerships often get overwhelmed by inbound service calls. Our Service Drive Voice AI answers every call instantly, routes it to the right person, or books the appointment automatically: ending the 'eternal hold' frustration for your customers."
     },
     {
         question: "What about leads from Cars.com, AutoTrader, and other third-party sources?",
-        answer: "Every third-party lead is engaged the moment it hits your CRM. Whether it's Cars.com, AutoTrader, CarGurus, or your website form—we respond instantly via SMS and begin the qualification process 24/7."
+        answer: "Every third-party lead is engaged the moment it hits your CRM. Whether it's Cars.com, AutoTrader, CarGurus, or your website form: we respond instantly via SMS and begin the qualification process 24/7."
     },
     {
         question: "How do you reactivate my old leads?",
-        answer: "We analyze your CRM to identify unsold leads, aged prospects, and declined finance customers. Then we launch targeted AI-driven campaigns (SMS & voice) to re-engage them—often recovering deals you thought were dead."
+        answer: "We analyze your CRM to identify unsold leads, aged prospects, and declined finance customers. Then we launch targeted AI-driven campaigns (SMS & voice) to re-engage them, often recovering deals you thought were dead."
     },
     {
         question: "How quickly can I go live?",
-        answer: "Most independent dealers are fully operational within 3-5 business days. Our team handles the integration, training, and launch—so your staff doesn't have to learn anything new."
+        answer: "Most independent dealers are fully operational within 3-5 business days. Our team handles the integration, training, and launch: so your staff doesn't have to learn anything new."
     },
     {
         question: "What's the cost compared to hiring a BDC agent?",
-        answer: "A fraction of the cost. A single BDC agent costs $40-60k+ per year (plus benefits and turnover costs). AutoMaster delivers 24/7 coverage at a predictable monthly rate—typically saving dealers 60-80% compared to hiring."
+        answer: "A fraction of the cost. A single BDC agent costs $40-60k+ per year (plus benefits and turnover costs). AutoMaster delivers 24/7 coverage at a predictable monthly rate, typically saving dealers 60-80% compared to hiring."
     }
 ];
 
@@ -97,8 +97,8 @@ export default function IndependentFAQ() {
                         >
                             <motion.div
                                 className={`rounded-2xl border transition-all duration-300 overflow-hidden ${openIndex === i
-                                        ? 'bg-[#0a0a0a] border-[#FF7404]/30 shadow-[0_0_30px_-10px_rgba(255,116,4,0.2)]'
-                                        : 'bg-[#080808] border-white/5 hover:border-white/10'
+                                    ? 'bg-[#0a0a0a] border-[#FF7404]/30 shadow-[0_0_30px_-10px_rgba(255,116,4,0.2)]'
+                                    : 'bg-[#080808] border-white/5 hover:border-white/10'
                                     }`}
                             >
                                 <button

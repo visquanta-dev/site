@@ -1,14 +1,31 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Lead Reactivation AI | Recover Lost CRM Revenue | VisQuanta',
-    description: 'Transform dormant CRM leads into active showroom appointments. VisQuanta AI re-engages cold prospects with conversion-optimized SMS campaigns.',
+    title: 'Revive Dead Dealership Leads | AI Lead Reactivation | VisQuanta',
+    description: 'Sell more cars from leads your BDC gave up on. VisQuanta works your old CRM leads (1 week to 5 years old) with AI-powered conversational SMS. 39%+ engagement rate. TCPA compliant.',
+    keywords: 'dead dealership leads, revive old car leads, CRM lead recovery, automotive lead reactivation, sell cars from old leads, dealership database mining, AI BDC alternative',
     alternates: {
         canonical: 'https://www.visquanta.com/lead-reactivation',
     },
     openGraph: {
+        title: 'Revive Dead Dealership Leads | VisQuanta',
+        description: 'Other AI tools chase new leads. We revive the ones already in your CRM. Sell cars from leads everyone gave up on.',
         url: 'https://www.visquanta.com/lead-reactivation',
+        type: 'website',
+        images: [
+            {
+                url: 'https://www.visquanta.com/og/lead-reactivation.png',
+                width: 1200,
+                height: 630,
+                alt: 'VisQuanta - Revive Dead Dealership Leads'
+            }
+        ]
     },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Revive Dead Dealership Leads | VisQuanta',
+        description: 'Sell cars from leads your BDC gave up on. AI that works your OLD database.',
+    }
 };
 
 export default function LeadReactivationLayout({

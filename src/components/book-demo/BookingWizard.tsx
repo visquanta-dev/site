@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -56,6 +56,43 @@ export default function BookingWizard() {
     const { trigger, getValues, watch } = form;
     const formData = getValues();
     const department = watch('department');
+
+    // Auto-detect country
+    useEffect(() => {
+        const detectCountry = async () => {
+            try {
+                // Using ipapi.co for reliable country detection
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+
+                if (data.country_code) {
+                    if (data.country_code === 'CA') {
+                        setCountry('CA');
+                        setTargetCalendlyUrl(REP_DETAILS.DWAYNE.calendly);
+                        setStep(2);
+                    } else if (['US', 'UM', 'VI', 'PR', 'GU', 'AS', 'MP'].includes(data.country_code)) {
+                        setCountry('US');
+                        setStep(2);
+                    } else if (['GB', 'FR', 'DE', 'IT', 'ES', 'NL', 'BE', 'SE', 'DK', 'NO', 'FI', 'IE'].includes(data.country_code)) {
+                        // Map common EU/Western countries to EU flow
+                        setCountry('EU');
+                        setStep(2);
+                    } else {
+                        // Default fallback logic or let them choose if unsure
+                        // For now we won't force 'Other' to avoid miscategorizing, 
+                        // unless we want to default anything else to 'EU/International'
+                    }
+                }
+            } catch (error) {
+                console.warn('Country detection failed, falling back to manual selection', error);
+            }
+        };
+
+        // Only run if we haven't selected yet (step 1)
+        if (step === 1 && !country) {
+            detectCountry();
+        }
+    }, [step, country]);
 
     // Mapping
     const REP_DETAILS = {
@@ -115,7 +152,7 @@ export default function BookingWizard() {
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif"
             ],
-            calendly: "https://calendly.com/visquanta-team/demo" // Placeholder for Round Robin
+            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo" // Placeholder for Round Robin
         },
         SUCCESS_TEAM: {
             name: "Client Success Team",
@@ -125,7 +162,7 @@ export default function BookingWizard() {
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61fc9b8fa6d06815ceb_charles%2Csnodgrass%2Cheadshot%2Cvisquanta.webp",
                 "/team/clint-annis.png"
             ],
-            calendly: "https://calendly.com/visquanta-team/success" // Placeholder
+            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo" // Placeholder
         }
     };
 
@@ -298,7 +335,7 @@ export default function BookingWizard() {
                             <motion.div key="step6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                                 <div className="max-w-4xl mx-auto space-y-12">
                                     <div className="text-center space-y-8">
-                                        <h2 className="text-3xl font-black text-white tracking-tighter">You're Chatting with VisQuanta</h2>
+                                        <h2 className="text-3xl font-black text-white tracking-tighter">Confirm Your 15-Min Walkthrough</h2>
                                         <div className="max-w-md mx-auto pointer-events-none">
                                             {/* Show the resolved rep card in a 'selected' state */}
                                             <SalesRepCard

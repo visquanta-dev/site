@@ -62,12 +62,27 @@ export default function MobileCarousel({
                     <div
                         key={i}
                         className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex
-                                ? 'w-6 bg-[#FF6B35]'
-                                : 'w-1.5 bg-[#4B5563]'
+                            ? 'w-6 bg-[#FF6B35]'
+                            : 'w-1.5 bg-[#4B5563]'
                             }`}
                     />
                 ))}
             </div>
+
+            {/* Mobile Scroll Hint - CRO Finding K */}
+            {activeIndex < count - 1 && (
+                <div className="flex md:hidden justify-center items-center gap-2 pb-2 animate-pulse">
+                    <span className="text-white/30 text-[10px] uppercase tracking-wider">Swipe for more</span>
+                    <svg
+                        className="w-4 h-4 text-[#FF6B35]/60"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+            )}
         </div>
     );
 }

@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { RequestDemoButton } from '../CalendlyModal';
 
 export default function FinalCTA() {
     return (
@@ -22,10 +23,12 @@ export default function FinalCTA() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
-                            <Link href="/book-demo" className="h-[56px] px-10 bg-[#FF7404] hover:bg-[#ff8a3d] text-black text-lg font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)] flex items-center gap-3">
-                                Speak to our team
-                                <ArrowRight className="w-5 h-5" />
-                            </Link>
+                            <RequestDemoButton asChild>
+                                <button className="h-[56px] px-10 bg-[#FF7404] hover:bg-[#ff8a3d] text-black text-lg font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)] flex items-center gap-3">
+                                    <Sparkles className="w-5 h-5" />
+                                    Schedule Your Walkthrough
+                                </button>
+                            </RequestDemoButton>
                         </div>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm font-medium text-white/40">

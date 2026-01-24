@@ -28,9 +28,9 @@ export default function WhyItWorks() {
                         </div>
 
                         <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
-                            Why Conversational SMS <br />
+                            Why Texting Works Better <br />
                             <span className="bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-[#FF7404] bg-clip-text text-transparent">
-                                Outperforms Everything.
+                                Than Calling Dead Leads.
                             </span>
                         </h2>
 
@@ -78,7 +78,7 @@ export default function WhyItWorks() {
                             className="mt-12"
                         >
                             <button className="flex items-center gap-3 text-[#FF7404] font-semibold text-sm tracking-wide group">
-                                Request a Demo to See the Tech
+                                Schedule Your Walkthrough
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </button>
                         </motion.div>

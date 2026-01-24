@@ -12,7 +12,7 @@ const dealerTypes = [
     label: 'Independent Dealers',
     icon: Store,
     tagline: 'Enterprise power. Independent spirit.',
-    description: 'You built your dealership from the ground up. AutoMaster Suite gives you the same AI firepower as the big groups—without the overhead or complexity.',
+    description: 'You built your dealership from the ground up. AutoMaster Suite gives you the same AI firepower as the big groups: without the overhead or complexity.',
     link: '/dealers/independent',
     ctaLabel: 'Scale Your Operation',
     stat: '3x',
@@ -91,7 +91,7 @@ export default function DealerServicesSection() {
             Built for how <span className="text-[#ff7404]">your dealership</span> sells cars.
           </h2>
           <p className="text-white/70 text-lg leading-relaxed">
-            Every dealership operates differently. AutoMaster Suite adapts to your unique workflow—not the other way around.
+            Every dealership operates differently. AutoMaster Suite adapts to your unique workflow: not the other way around.
           </p>
         </motion.div>
 
@@ -189,7 +189,7 @@ export default function DealerServicesSection() {
                       {activeDealer.quote && (
                         <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 mb-8">
                           <p className="text-sm italic text-white/80 mb-2">"{activeDealer.quote}"</p>
-                          <p className="text-[10px] font-bold uppercase tracking-widest text-[#ff7404]">— {activeDealer.author}</p>
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-[#ff7404]">- {activeDealer.author}</p>
                         </div>
                       )}
                     </div>

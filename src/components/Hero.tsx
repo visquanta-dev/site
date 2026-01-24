@@ -13,7 +13,8 @@ import {
   MessageSquare,
   Star,
   ArrowRight,
-  RefreshCcw
+  RefreshCcw,
+  PlayCircle
 } from 'lucide-react';
 import HeroDashboardPreview from './mobile/HeroDashboardPreview';
 import MobileHeroTrust from './mobile/MobileHeroTrust';
@@ -269,7 +270,7 @@ export default function Hero() {
             >
               <div className="h-px w-6 sm:w-8 bg-primary/60" />
               <span className="text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em]">
-                AUTOMOTIVE AI · BUILT FOR DEALERSHIPS
+                VISQUANTA PRESENTS: THE AUTOMASTER SUITE
               </span>
             </motion.div>
 
@@ -338,34 +339,61 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-sm sm:text-lg md:text-xl lg:text-2xl text-muted-foreground/80 max-w-2xl leading-relaxed font-medium mt-4 lg:mt-0"
             >
-              VisQuanta automates lead reactivation, responds to new leads in under 60 seconds, protects your reputation, & ensures your service department never misses a call.
+              VisQuanta <strong className="text-white">automates lead reactivation</strong>, responds to new leads in <strong className="text-white">under 60 seconds</strong>, protects your reputation, & ensures your service department <strong className="text-white">never misses a call</strong>.
             </motion.p>
 
 
             {/* CTA Group */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 sm:mt-4 lg:mt-6"
-            >
-              <RequestDemoButton asChild>
-                <Button
-                  className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border border-[#FF7404]/30 bg-[#FF7404]/10 hover:bg-[#FF7404]/20 hover:border-[#FF7404]/50 text-[#FF7404] hover:text-white transition-all shadow-[0_0_40px_-10px_rgba(255,116,4,0.1)] hover:shadow-[0_0_50px_-10px_rgba(255,116,4,0.3)]"
-                >
-                  Speak With Our Team
-                </Button>
-              </RequestDemoButton>
-
-              <Button
-                asChild
-                variant="outline"
-                className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-white/50 hover:bg-white/5 bg-transparent text-white hover:text-white"
+            <div className="flex flex-col gap-4 mt-2 sm:mt-4 lg:mt-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4"
               >
-                <Link href="#how-it-works">
-                  See How It Works
-                </Link>
-              </Button>
+                <RequestDemoButton asChild>
+                  <Button
+                    className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest bg-[#FF7404] hover:bg-[#ff8a2b] text-black transition-all shadow-[0_20px_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_80px_-10px_rgba(255,116,4,0.6)] animate-pulse-subtle"
+                  >
+                    Schedule Your Walkthrough
+                  </Button>
+                </RequestDemoButton>
+
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-white/50 hover:bg-white/5 bg-transparent text-white hover:text-white group"
+                >
+                  <Link href="#see-it-in-action">
+                    <span>See How It Works</span>
+                  </Link>
+                </Button>
+              </motion.div>
+
+              {/* CRO Microcopy */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold"
+              >
+                15-min 1:1 • Get an exact revenue-lift projection for your dealership
+              </motion.p>
+            </div>
+
+            {/* Micro-Trust Signal */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="mt-6 flex items-center gap-4"
+            >
+              <div className="flex gap-0.5">
+                {[1, 2, 3, 4, 5].map(i => (
+                  <Star key={i} className="w-4 h-4 text-[#FF7404] fill-[#FF7404]" />
+                ))}
+              </div>
+              <span className="text-sm text-white/60 font-medium">Trusted by <span className="text-white">500+</span> Dealerships</span>
             </motion.div>
 
             {/* Trust Signal */}
@@ -373,10 +401,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className=" lg:mt-10"
+              className="lg:mt-6"
             >
               {/* Desktop Stats (Hidden on Mobile) */}
-              <div className="hidden lg:block pt-10 border-t border-border">
+              <div className="hidden lg:block pt-6 border-t border-border">
                 <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-x-8 sm:gap-y-3 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <span className="relative flex h-2 w-2">
@@ -414,6 +442,6 @@ export default function Hero() {
 
         </div>
       </div>
-    </section>
+    </section >
   );
 }

@@ -64,7 +64,7 @@ export default function MetricsBand() {
                                     {metric.label}
                                 </div>
                                 <div className="text-[9px] text-white/20 font-black uppercase tracking-[0.25em] italic">
-                                    — {metric.sub} —
+                                    - {metric.sub} -
                                 </div>
                             </div>
                         </motion.div>

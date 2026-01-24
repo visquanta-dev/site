@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import { BlogCard } from '@/components/blog/BlogCard';
 
 export default function RelatedResources() {
     const [realArticles, setRealArticles] = useState<any[]>([]);
@@ -14,13 +15,14 @@ export default function RelatedResources() {
             .then(data => {
                 if (data.posts && data.posts.length > 0) {
                     const mapped = data.posts.map((post: any) => ({
-                        category: post.category?.title || 'Digital Drive',
-                        title: post.headline,
-                        date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-                        readTime: `${post.readingTime} min read`,
-                        author: { name: "VisQuanta Team", avatar: null },
-                        image: post.image,
-                        href: `/blog/${post.slug}`
+                        slug: post.slug,
+                        title: post.title,
+                        featuredImage: post.featuredImage,
+                        category: post.category,
+                        readTime: post.readTime,
+                        publishedAt: post.publishedAt,
+                        author: post.author || "VisQuanta Team",
+                        excerpt: post.excerpt
                     }));
                     setRealArticles(mapped);
                 }
@@ -67,12 +69,12 @@ export default function RelatedResources() {
                 >
                     <div>
                         <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#FF7404] to-[#FF8A3D] rounded-full mb-8 shadow-[0_0_30px_-5px_rgba(255,116,4,0.4)]">
-                            <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-black">Latest Articles</span>
+                            <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-black">Insights</span>
                         </div>
 
                         <h2 className="text-5xl lg:text-6xl font-bold text-white leading-[1.05] tracking-[-0.02em]">
-                            The VisQuanta <br />
-                            <span className="text-white/90">Insight</span>
+                            Unlocking Your <br />
+                            <span className="text-white/90">Hidden Revenue</span>
                         </h2>
                     </div>
 
@@ -80,7 +82,7 @@ export default function RelatedResources() {
                         href="/blog"
                         className="group inline-flex items-center gap-3 px-8 py-4 border border-[#FF7404] rounded-full text-[#FF7404] font-semibold text-sm hover:bg-[#FF7404] hover:text-black transition-all duration-300 shadow-[0_0_30px_-10px_rgba(255,116,4,0.3)] hover:shadow-[0_0_40px_-10px_rgba(255,116,4,0.5)]"
                     >
-                        View all
+                        View all resources
                     </Link>
                 </motion.div>
 
@@ -111,76 +113,16 @@ export default function RelatedResources() {
                         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
                         {realArticles.map((article, index) => (
-                            <motion.article
+                            <motion.div
                                 key={index}
                                 initial={{ opacity: 0, x: 40 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.1 + index * 0.08, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-                                className="flex-shrink-0 w-[340px] lg:w-[400px] h-[520px] snap-start group"
+                                className="flex-shrink-0 w-[340px] lg:w-[400px] h-[520px] snap-start"
                             >
-                                <Link href={article.href} className="block h-full">
-                                    <div className="h-full rounded-3xl overflow-hidden bg-[#0a0a0a] border border-white/[0.04] hover:border-[#FF7404]/20 transition-all duration-500 flex flex-col relative shadow-[0_20px_60px_-20px_rgba(0,0,0,0.5)] hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]">
-
-                                        {/* Hover glow */}
-                                        <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                                        {/* Image */}
-                                        <div className="relative h-60 overflow-hidden">
-                                            <img
-                                                src={article.image}
-                                                alt={article.title}
-                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                                            />
-                                            {/* Read time badge */}
-                                            <div className="absolute top-5 right-5 px-4 py-2 bg-black/70 backdrop-blur-xl rounded-full border border-white/10">
-                                                <span className="text-[11px] font-medium text-white/90">{article.readTime}</span>
-                                            </div>
-                                            {/* Gradient overlay */}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent" />
-                                        </div>
-
-                                        {/* Content */}
-                                        <div className="p-8 relative flex-1 flex flex-col">
-                                            {/* Category */}
-                                            <div className="text-[#FF7404] text-xs font-semibold tracking-widest uppercase mb-4">
-                                                {article.category}
-                                            </div>
-
-                                            {/* Title */}
-                                            <h3 className="text-xl font-bold text-white mb-4 leading-snug group-hover:text-[#FF7404] transition-colors duration-300 line-clamp-2">
-                                                {article.title}
-                                            </h3>
-
-                                            {/* Date */}
-                                            <p className="text-sm text-white/35 mb-auto">
-                                                {article.date}
-                                            </p>
-
-                                            {/* Footer: Author + CTA */}
-                                            <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/[0.04]">
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF7404]/30 to-[#FF7404]/10 flex items-center justify-center overflow-hidden ring-2 ring-white/[0.05]">
-                                                        {article.author.avatar ? (
-                                                            <img src={article.author.avatar} alt={article.author.name} className="w-full h-full object-cover" />
-                                                        ) : (
-                                                            <span className="text-sm font-bold text-[#FF7404]">{article.author.name.charAt(0)}</span>
-                                                        )}
-                                                    </div>
-                                                    <div className="text-xs text-white/40">
-                                                        <span className="block text-[10px] uppercase tracking-widest text-white/25 mb-0.5">Article by</span>
-                                                        <span className="text-white/60 font-medium">{article.author.name}</span>
-                                                    </div>
-                                                </div>
-
-                                                <button className="px-5 py-2.5 bg-gradient-to-r from-[#FF7404] to-[#FF8A3D] text-black text-xs font-bold rounded-full hover:shadow-[0_0_20px_-5px_#FF7404] transition-shadow duration-300">
-                                                    Read more
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </motion.article>
+                                <BlogCard article={article} className="w-full h-full" />
+                            </motion.div>
                         ))}
                     </div>
                 </div>

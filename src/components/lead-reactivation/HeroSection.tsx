@@ -5,6 +5,7 @@ import { ArrowRight, Zap, Play, ShieldCheck, BarChart3, TrendingUp, Sparkles } f
 import Link from 'next/link';
 import PhoneDemo from './PhoneDemo';
 import { useRef } from 'react';
+import { RequestDemoButton } from '../CalendlyModal';
 
 const logos = [
     { name: 'Seth Wadley Auto Group', src: '/images/logos/sw-group.jpg' },
@@ -96,7 +97,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 shadow-[0_0_10px_#22c55e]"></span>
                             </span>
                             <span className="text-white/70 text-[11px] font-semibold tracking-[0.15em] uppercase">
-                                Lead Reactivation System
+                                AI That Works Your Old Leads
                             </span>
                         </motion.div>
 
@@ -108,10 +109,10 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
                                 className="text-[2.75rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] font-black text-white tracking-[-0.04em] leading-[0.9] uppercase"
                             >
-                                <span className="block">The Easiest Cars</span>
-                                <span className="block">You'll Sell</span>
+                                <span className="block">Sell Cars From</span>
+                                <span className="block">Leads Everyone</span>
                                 <span className="block mt-2 bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-[#FF7404] bg-clip-text text-transparent">
-                                    Are Already in Your CRM.
+                                    Gave Up On
                                 </span>
                             </motion.h1>
                             <motion.p
@@ -120,7 +121,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
                                 className="text-base sm:text-lg md:text-xl text-white/45 max-w-lg leading-[1.8] font-medium"
                             >
-                                We use managed conversational SMS to re-engage leads who went quiet—transforming dormant database entries into booked appointments and sold units.
+                                Other AI tools chase new leads. We work your old ones. VisQuanta re-engages dead CRM contacts from 1 week to 5 years old: turning leads your BDC stopped calling into booked appointments.
                             </motion.p>
 
                             {/* Mobile Visual Demo - Right below subheading */}
@@ -137,92 +138,77 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             </div>
                         </div>
 
-                        {/* Authority Proof - Premium Stats */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="grid grid-cols-3 gap-0 py-6 sm:py-8 lg:py-10 border-y border-white/[0.06]"
-                        >
-                            {[
-                                { value: "$35M+", label: "Total Revenue", sublabel: "Recovered" },
-                                { value: "6,724", label: "Vehicles", sublabel: "Sold" },
-                                { value: "39%+", label: "Engagement", sublabel: "Rate" },
-                            ].map((stat, i) => (
-                                <div key={i} className="text-center lg:text-left group cursor-default">
-                                    <motion.div
-                                        initial={{ scale: 0.8, opacity: 0 }}
-                                        animate={{ scale: 1, opacity: 1 }}
-                                        transition={{ delay: 0.4 + i * 0.1 }}
-                                        className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight group-hover:text-[#FF7404] transition-colors duration-500"
-                                    >
-                                        {stat.value}
-                                    </motion.div>
-                                    <div className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-medium mt-2">
-                                        {stat.label}
-                                        <span className="block text-white/20">{stat.sublabel}</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </motion.div>
-
                         {/* CTAs - Premium Buttons */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-4 sm:gap-5"
+                            className="space-y-6 pt-4"
                         >
-                            <button
-                                onClick={onOpenCalculator}
-                                className="group relative px-8 sm:px-10 py-5 overflow-hidden text-center"
-                            >
-                                {/* Button gradient background */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-lg" />
-                                {/* Shimmer effect */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-lg" />
-                                {/* Inner shadow for depth */}
-                                <div className="absolute inset-[1px] bg-gradient-to-b from-white/20 to-transparent rounded-[7px] opacity-50" />
-                                <span className="relative z-10 flex items-center justify-center gap-3 text-black font-black text-sm uppercase tracking-widest whitespace-nowrap">
-                                    Start Revenue Audit
-                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                </span>
-                            </button>
+                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
+                                <button
+                                    onClick={onOpenCalculator}
+                                    className="group relative px-8 sm:px-12 py-5 overflow-hidden text-center rounded-xl shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)] hover:shadow-[0_25px_50px_-12px_rgba(255,116,4,0.4)] transition-all duration-300 transform hover:-translate-y-1"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404]" />
+                                    <span className="relative z-10 flex items-center justify-center gap-3 text-black font-black text-sm uppercase tracking-widest whitespace-nowrap">
+                                        Start Revenue Audit
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </span>
+                                </button>
 
-                            <Link
-                                href="/book-demo"
-                                className="group relative px-8 py-5 rounded-lg overflow-hidden text-center border border-white/20 hover:border-[#FF7404]/50 hover:bg-[#FF7404]/[0.05] transition-all"
-                            >
-                                <span className="relative z-10 flex items-center justify-center gap-3 text-white/80 group-hover:text-white font-black text-sm uppercase tracking-widest transition-colors">
-                                    {/* Desktop text */}
-                                    <span className="hidden sm:inline">Request a Demo</span>
-                                    {/* Mobile text */}
-                                    <span className="inline sm:hidden">Chat With Us</span>
-                                </span>
-                            </Link>
+                                <RequestDemoButton asChild>
+                                    <button className="group flex items-center justify-center gap-3 text-white/50 hover:text-white transition-colors py-4 px-2">
+                                        <Sparkles className="w-4 h-4 text-[#FF7404]" />
+                                        <span className="text-xs font-black uppercase tracking-widest">
+                                            Schedule Your Walkthrough
+                                        </span>
+                                    </button>
+                                </RequestDemoButton>
+                            </div>
+
+                            <div className="flex flex-col gap-1">
+                                <p className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold">
+                                    15-min 1:1 • Get an exact revenue-lift projection
+                                </p>
+                            </div>
                         </motion.div>
 
-                        {/* Social Proof - Minimal Elegance */}
+                        {/* Authority Proof - Integrated Row */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1.2, delay: 0.6 }}
+                            className="pt-10 border-t border-white/[0.04] grid grid-cols-2 sm:grid-cols-3 gap-8"
+                        >
+                            {[
+                                { value: "$35M+", label: "Total Revenue" },
+                                { value: "6,724", label: "Vehicles Sold" },
+                                { value: "39%+", label: "Engagement Rate", className: "hidden sm:block" },
+                            ].map((stat, i) => (
+                                <div key={i} className={stat.className}>
+                                    <div className="text-xl font-bold text-white mb-1">{stat.value}</div>
+                                    <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-bold">{stat.label}</div>
+                                </div>
+                            ))}
+                        </motion.div>
+
+                        {/* Trusted By - Minimal Inline */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 1.2, delay: 0.8 }}
-                            className="pt-12"
+                            className="pt-6 flex flex-wrap items-center gap-x-8 gap-y-4"
                         >
-                            <span className="text-[10px] font-medium text-white/25 uppercase tracking-[0.4em] block mb-8">
-                                Trusted By Leading Dealer Groups
-                            </span>
-                            <div className="flex flex-wrap items-center gap-4">
+                            <span className="text-[9px] font-bold text-white/20 uppercase tracking-[0.3em]">Trusted By:</span>
+                            <div className="flex flex-wrap items-center gap-6">
                                 {logos.map((logo, i) => (
-                                    <motion.span
+                                    <span
                                         key={logo.name}
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.9 + i * 0.1 }}
-                                        className="text-white/40 font-medium text-sm tracking-tight px-5 py-3 rounded-full bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.05] hover:border-white/10 hover:text-white/60 transition-all duration-300 cursor-default"
+                                        className="text-[11px] font-bold text-zinc-500 hover:text-zinc-300 transition-colors cursor-default whitespace-nowrap"
                                     >
                                         {logo.name}
-                                    </motion.span>
+                                    </span>
                                 ))}
                             </div>
                         </motion.div>

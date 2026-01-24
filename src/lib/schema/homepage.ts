@@ -52,12 +52,12 @@ export const homepageSchema = {
         {
             "@type": "SoftwareApplication",
             "@id": "https://www.visquanta.com/#software",
-            "name": "VisQuanta AutoMaster Suite",
-            "alternateName": ["AutoMaster Suite", "VisQuanta AMS"],
+            "name": "The AutoMaster Suite",
+            "alternateName": ["The AutoMaster Suite", "VisQuanta AMS", "AutoMaster Suite"],
             "applicationCategory": "BusinessApplication",
             "applicationSubCategory": "Automotive Dealership Management",
             "operatingSystem": "Web-based",
-            "description": "The complete AI platform for car dealerships. AutoMaster Suite combines lead reactivation, speed-to-lead automation, Voice AI for service departments, SMS-first website chat, and reputation management in one integrated system.",
+            "description": "The complete AI platform for car dealerships. The AutoMaster Suite combines lead reactivation, speed-to-lead automation, Voice AI for service departments, SMS-first website chat, and reputation management in one integrated system.",
             "url": "https://www.visquanta.com/auto-master-suite",
             "downloadUrl": "https://www.visquanta.com/book-demo",
             "installUrl": "https://www.visquanta.com/book-demo",
@@ -78,20 +78,20 @@ export const homepageSchema = {
                 }
             },
             "featureList": [
-                "Lead Reactivation — Re-engage dormant CRM leads via conversational SMS AI with 30%+ re-engagement rates",
-                "Speed to Lead — Respond to every inbound lead in under 60 seconds, 24/7/365",
-                "Voice AI for Service — Answer 100% of service calls, book appointments, handle after-hours inquiries",
-                "SMS-First Website Widget — Convert website visitors to SMS conversations, capture real phone numbers",
-                "Reputation Management — Automate review requests, intercept negative feedback, maintain 4.8+ star ratings",
-                "DMS Integration — CDK Global, Reynolds & Reynolds, Tekion, Dealertrack, Frazer",
-                "CRM Integration — VinSolutions, DriveCentric, eLead, DealerSocket",
-                "24/7 Automated Coverage — Never miss a lead or call regardless of business hours"
+                "Lead Reactivation: Re-engage dormant CRM leads via conversational SMS AI with 30%+ re-engagement rates",
+                "Speed to Lead: Respond to every inbound lead in under 60 seconds, 24/7/365",
+                "Voice AI for Service: Answer 100% of service calls, book appointments, handle after-hours inquiries",
+                "SMS-First Website Widget: Convert website visitors to SMS conversations, capture real phone numbers",
+                "Reputation Management: Automate review requests, intercept negative feedback, maintain 4.8+ star ratings",
+                "DMS Integration: CDK Global, Reynolds & Reynolds, Tekion, Dealertrack, Frazer",
+                "CRM Integration: VinSolutions, DriveCentric, eLead, DealerSocket",
+                "24/7 Automated Coverage: Never miss a lead or call regardless of business hours"
             ],
             "screenshot": [
                 {
                     "@type": "ImageObject",
                     "url": "https://www.visquanta.com/images/dashboard-preview.png",
-                    "caption": "AutoMaster Suite Dashboard"
+                    "caption": "The AutoMaster Suite Dashboard"
                 }
             ],
             "softwareVersion": "2.0",
@@ -139,7 +139,7 @@ export const homepageSchema = {
                     "name": "Do I need to change my existing systems?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "No. AutoMaster integrates seamlessly with all major DMS platforms, CRMs, and lead sources. We work alongside your existing tools, not against them."
+                        "text": "No. The AutoMaster Suite integrates seamlessly with all major DMS platforms, CRMs, and lead sources. We work alongside your existing tools, not against them."
                     }
                 },
                 {

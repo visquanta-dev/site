@@ -59,7 +59,7 @@ export default function FeaturedCaseStudySection() {
                             <div className="relative p-8 rounded-2xl bg-[#ff7404]/5 border border-[#ff7404]/10 mb-10">
                                 <Quote className="absolute top-4 left-4 w-10 h-10 text-[#ff7404]/10" />
                                 <p className="text-white/80 italic text-xl leading-relaxed relative z-10 pl-8">
-                                    "The ROI was obvious within the first month. VisQuanta didn't just fix our lead response—it reactivated our entire CRM and stabilized our service drive. It's the only system that covers the entire store."
+                                    "The ROI was obvious within the first month. VisQuanta didn't just fix our lead response: it reactivated our entire CRM and stabilized our service drive. It's the only system that covers the entire store."
                                 </p>
                                 <div className="mt-6 pl-8 flex items-center gap-4">
                                     <div className="font-bold text-white">Michael Rodriguez</div>

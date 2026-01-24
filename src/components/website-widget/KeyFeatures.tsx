@@ -13,7 +13,7 @@ const features = [
     {
         icon: Zap,
         title: '98% Open Rates',
-        description: 'Emails get ignored. Browser tabs get closed. SMS gets read within 90 seconds, almost every single time.'
+        description: 'Emails get ignored. Browser tabs get closed. SMS gets read within 60 seconds, almost every single time.'
     },
     {
         icon: Repeat,

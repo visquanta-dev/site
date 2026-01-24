@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Star, ShieldCheck, Clock, Bell, ArrowRight, MousePointer2 } from 'lucide-react';
+import { Star, ShieldCheck, Clock, Bell, ArrowRight, MousePointer2, Sparkles } from 'lucide-react';
 import { GoogleLogo, FacebookLogo, DealerRaterLogo } from '@/components/brand-assets/PlatformLogos';
-import { AudiLogo, BMWLogo, VWLogo } from '@/components/brand-assets/CarLogos';
+import { RequestDemoButton } from '../CalendlyModal';
 
 export default function Hero() {
     return (
@@ -38,24 +38,39 @@ export default function Hero() {
                             Turn your reputation into a revenue system. consistent review growth, automated 72-hour follow-up, and immediate escalation for negative feedback.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-12">
-                            <button className="px-8 py-5 bg-gradient-to-r from-[#FF7404] to-[#FF8A3D] text-black font-black uppercase text-sm rounded-xl shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)] hover:shadow-[0_25px_50px_-12px_rgba(255,116,4,0.4)] transition-all duration-300 transform hover:-translate-y-1 text-center">
-                                Request a Demo
-                            </button>
-                            <div className="flex items-center gap-4 text-white/40 text-sm font-medium">
-                                <div className="flex -space-x-3">
-                                    <div className="w-10 h-10 rounded-full border-2 border-[#020202] bg-[#111] flex items-center justify-center overflow-hidden relative z-30">
-                                        <AudiLogo className="w-6 h-6 text-white" />
+                        <div className="flex flex-col gap-4 mb-12">
+                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
+                                <RequestDemoButton asChild>
+                                    <button className="px-8 py-5 bg-gradient-to-r from-[#FF7404] to-[#FF8A3D] text-black font-black uppercase text-sm rounded-xl shadow-[0_20px_40px_-10px_rgba(255,116,4,0.3)] hover:shadow-[0_25px_50px_-12px_rgba(255,116,4,0.4)] transition-all duration-300 transform hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+                                        <Sparkles className="w-4 h-4" />
+                                        Schedule Your Walkthrough
+                                    </button>
+                                </RequestDemoButton>
+                                <div className="flex items-center gap-4 text-white/40 text-sm font-medium">
+                                    <div className="flex -space-x-3">
+                                        <div className="w-10 h-10 rounded-full border-2 border-[#020202] bg-[#111] overflow-hidden relative z-30">
+                                            <img src="/images/avatars/dealer-1.png" alt="Dealer Partner" className="w-full h-full object-cover" />
+                                        </div>
+                                        <div className="w-10 h-10 rounded-full border-2 border-[#020202] bg-[#111] overflow-hidden relative z-20">
+                                            <img src="/images/avatars/dealer-2.png" alt="Dealer Partner" className="w-full h-full object-cover" />
+                                        </div>
+                                        <div className="w-10 h-10 rounded-full border-2 border-[#020202] bg-[#111] overflow-hidden relative z-10">
+                                            <img src="/images/avatars/dealer-3.png" alt="Dealer Partner" className="w-full h-full object-cover" />
+                                        </div>
                                     </div>
-                                    <div className="w-10 h-10 rounded-full border-2 border-[#020202] bg-[#111] flex items-center justify-center overflow-hidden relative z-20">
-                                        <BMWLogo className="w-6 h-6 text-white" />
-                                    </div>
-                                    <div className="w-10 h-10 rounded-full border-2 border-[#020202] bg-[#111] flex items-center justify-center overflow-hidden relative z-10">
-                                        <VWLogo className="w-6 h-6 text-white" />
-                                    </div>
+                                    <span>Trusted by 500+ Dealers</span>
                                 </div>
-                                <span>Trusted by 500+ Dealers</span>
                             </div>
+
+                            {/* CRO Microcopy */}
+                            <motion.p
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.5 }}
+                                className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold"
+                            >
+                                15-min 1:1 • Get an exact revenue-lift projection for your dealership
+                            </motion.p>
                         </div>
 
                         {/* Micro-proof Row */}
@@ -96,6 +111,33 @@ export default function Hero() {
                     >
                         {/* Main Interface Box */}
                         <div className="relative backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
+                            {/* Animated Border Beam - Outer Container */}
+                            <div className="absolute inset-0 rounded-3xl pointer-events-none overflow-hidden">
+                                <svg className="absolute inset-0 w-full h-full z-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                    <motion.rect
+                                        width="100%"
+                                        height="100%"
+                                        x="0"
+                                        y="0"
+                                        rx="3"
+                                        ry="3"
+                                        fill="none"
+                                        stroke="#ffffff"
+                                        strokeOpacity="0.2"
+                                        strokeWidth="1"
+                                        strokeDasharray="30 800"
+                                        animate={{ strokeDashoffset: [-830, 0] }}
+                                        transition={{
+                                            duration: 6, // Slower for the large container
+                                            repeat: Infinity,
+                                            ease: "linear"
+                                        }}
+                                        vectorEffect="non-scaling-stroke"
+                                        className="opacity-100"
+                                    />
+                                </svg>
+                            </div>
+
                             {/* Animated Border Highlight */}
                             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#FF7404]/50 to-transparent opacity-50" />
 
@@ -117,12 +159,39 @@ export default function Hero() {
                             <div className="space-y-5">
                                 {/* Store 1 - The Winner */}
                                 <motion.div
-                                    initial={{ x: 20, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
                                     transition={{ delay: 0.4 }}
                                     className="p-5 rounded-2xl bg-gradient-to-br from-white/[0.05] to-transparent border border-[#FF7404]/40 relative group hover:border-[#FF7404] transition-all duration-500 cursor-default"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+
+                                    {/* Animated Border Beam */}
+                                    <div className="absolute inset-0 rounded-2xl pointer-events-none overflow-hidden">
+                                        <svg className="absolute inset-0 w-full h-full z-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                            <motion.rect
+                                                width="100%"
+                                                height="100%"
+                                                x="0"
+                                                y="0"
+                                                rx="2" // Relative unit approximation for viewBox 0-100
+                                                ry="8" // Adjusting for aspect ratio distortion
+                                                fill="none"
+                                                stroke="#FF7404"
+                                                strokeWidth="1"
+                                                strokeDasharray="15 600" // A short beam relative to perimeter
+                                                animate={{ strokeDashoffset: [-615, 0] }}
+                                                transition={{
+                                                    duration: 3,
+                                                    repeat: Infinity,
+                                                    ease: "linear"
+                                                }}
+                                                vectorEffect="non-scaling-stroke" // Keeps stroke width constant despite scaling
+                                                className="opacity-100"
+                                            />
+                                        </svg>
+                                    </div>
+
                                     <div className="relative z-10 flex items-start justify-between">
                                         <div>
                                             <div className="text-white font-bold text-xl mb-1.5 flex items-center gap-2">
@@ -158,8 +227,8 @@ export default function Hero() {
 
                                 {/* Store 2 - Muted */}
                                 <motion.div
-                                    initial={{ x: 20, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
                                     transition={{ delay: 0.5 }}
                                     className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 opacity-40 grayscale-[0.8] hover:opacity-60 transition-all"
                                 >
@@ -176,8 +245,8 @@ export default function Hero() {
 
                                 {/* Store 3 - Muted */}
                                 <motion.div
-                                    initial={{ x: 20, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
                                     transition={{ delay: 0.6 }}
                                     className="p-5 rounded-2xl bg-white/[0.01] border border-white/5 opacity-20 grayscale"
                                 >

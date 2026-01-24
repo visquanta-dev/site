@@ -98,10 +98,10 @@ export default function PainPointSection() {
                                 As a GM, you know the numbers. But the daily reality is harder to track. While your team focuses on floor traffic, your <strong className="text-white">CRM is becoming a graveyard</strong> of thousands of leads that will never be called again.
                             </p>
                             <p>
-                                In Service, your advisors are overwhelmed. Every missed call is a missed RO—and for an average dealer, that's <strong className="text-white">over $8,500 in lost revenue every single week</strong>.
+                                In Service, your advisors are overwhelmed. Every missed call is a missed RO; and for an average dealer, that's <strong className="text-white">over $8,500 in lost revenue every single week</strong>.
                             </p>
                             <p>
-                                You're fighting a losing battle against BDC turnover and lead response times that your competitors are already beating. It's not just "speed to lead"—it's a <strong className="text-white">total operational breakdown</strong> that costs you the unfair advantage you deserve.
+                                You're fighting a losing battle against BDC turnover and lead response times that your competitors are already beating. It's not just "speed to lead": it's a <strong className="text-white">total operational breakdown</strong> that costs you the unfair advantage you deserve.
                             </p>
                         </div>
 
@@ -113,7 +113,7 @@ export default function PainPointSection() {
                                 "The cost of doing nothing is your highest expense."
                             </p>
                             <p className="text-white/50 text-sm sm:text-base leading-relaxed break-words">
-                                If your system isn't capturing every call, mining every CRM lead, and responding in seconds—you're paying for it every single day in lost units and service ROs.
+                                If your system isn't capturing every call, mining every CRM lead, and responding in seconds: you're paying for it every single day in lost units and service ROs.
                             </p>
                         </div>
 
@@ -167,7 +167,7 @@ export default function PainPointSection() {
                                 onClick={() => setIsCalculatorOpen(true)}
                                 className="w-full py-5 rounded-xl bg-[#ff7404] hover:bg-[#ff8524] text-black font-black text-sm uppercase tracking-widest transition-all hover:scale-[1.02] shadow-[0_0_30px_-10px_rgba(255,116,4,0.4)] flex items-center justify-center gap-3 group"
                             >
-                                See What This Looks Like in Your Dealership
+                                Calculate Your Lost Revenue
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </button>
                         </div>

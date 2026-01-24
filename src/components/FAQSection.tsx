@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Plus, HelpCircle } from 'lucide-react';
+import { RequestDemoButton } from './CalendlyModal';
 
 const faqs = [
   {
@@ -11,7 +12,7 @@ const faqs = [
   },
   {
     question: "Do I need to change my existing systems?",
-    answer: "No. AutoMaster integrates seamlessly with all major DMS platforms, CRMs, and lead sources. We work alongside your existing tools, not against them."
+    answer: "No. The AutoMaster Suite integrates seamlessly with all major DMS platforms, CRMs, and lead sources. We work alongside your existing tools, not against them."
   },
   {
     question: "What happens if I receive a call while the AI is responding?",
@@ -62,19 +63,20 @@ export default function FAQSection() {
               Questions? <span className="text-[#ff7404]">Answers.</span>
             </h2>
             <p className="text-white/70 text-lg leading-relaxed mb-8">
-              Everything you need to know about getting started with AutoMaster Suite.
+              Everything you need to know about getting started with The AutoMaster Suite.
             </p>
 
             {/* Contact CTA */}
             <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
               <p className="text-sm text-white/70 mb-4">Still have questions?</p>
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-2 text-[#ff7404] font-bold hover:text-white transition-colors"
-              >
-                Talk to our team
-                <ChevronDown className="w-4 h-4 -rotate-90" />
-              </a>
+              <RequestDemoButton asChild>
+                <button
+                  className="inline-flex items-center gap-2 text-[#ff7404] font-bold hover:text-white transition-colors"
+                >
+                  Schedule Your Walkthrough
+                  <ChevronDown className="w-4 h-4 -rotate-90" />
+                </button>
+              </RequestDemoButton>
             </div>
           </motion.div>
 

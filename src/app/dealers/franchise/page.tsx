@@ -4,7 +4,8 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import DealerInsights from '@/components/dealers/shared/DealerInsights';
 
-import DealerCalculator from '@/components/dealers/DealerCalculator';
+import ROICalculator from '@/components/dealers/shared/ROICalculator';
+import HolographicCards from '@/components/dealers/franchise/upgrades/HolographicCards';
 import { Building2, ShieldCheck, BarChart3, ArrowRight, CheckCircle2, Award, TrendingUp, Clock, Users, AlertTriangle, Zap, RefreshCw, Phone, Star, Target, HelpCircle, BookOpen, Calendar, Lightbulb, ChevronDown, Signal, Wifi, Battery, User, Database, MessageSquare, Timer, Globe, PhoneIncoming, Play } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import Link from 'next/link';
@@ -230,7 +231,7 @@ const featuresData: Feature[] = [
         tab: 'Lead Reactivation',
         title: 'Recover Dormant',
         highlight: "Inventory Revenue.",
-        description: "Re-engage dormant leads from your CRM with personalized AI conversations. Recover 8-10% of 'dead' prospects—revenue from marketing you've already paid for.",
+        description: "Re-engage dormant leads from your CRM with personalized AI conversations. Recover 8-10% of 'dead' prospects: revenue from marketing you've already paid for.",
         bullets: [
             { title: "CRM Deep Cleansing", desc: "Our AI systematically works through thousands of cold leads to find active buyers." },
             { title: "Personalized Outreach", desc: "Messaging that feels human, respectful, and brand-compliant." },
@@ -252,7 +253,7 @@ const featuresData: Feature[] = [
         tab: 'Speed-to-Lead',
         title: 'The "Instant Response"',
         highlight: "Standard.",
-        description: "Stop worrying about OEM 15-minute response windows. AutoMaster engages every lead in under 90 seconds, securing the first appointment and protecting your CSI.",
+        description: "Stop worrying about OEM 15-minute response windows. The AutoMaster Suite engages every lead in under 90 seconds, securing the first appointment and protecting your CSI.",
         bullets: [
             { title: "OEM Verified Messaging", desc: "Maintain 100% brand compliance with manufacturer-approved templates." },
             { title: "CSI Score Protection", desc: "Never lose points for slow follow-ups. Professional, instant engagement on every lead." },
@@ -356,7 +357,7 @@ const itemVariants = {
 const faqs = [
     {
         question: "How do you ensure OEM compliance with messaging?",
-        answer: "AutoMaster uses brand-compliant messaging templates pre-approved for each manufacturer. Every communication maintains your dealership's voice while meeting OEM standards for tone, timing, and content. All interactions are logged automatically for audit trails."
+        answer: "The AutoMaster Suite uses brand-compliant messaging templates pre-approved for each manufacturer. Every communication maintains your dealership's voice while meeting OEM standards for tone, timing, and content. All interactions are logged automatically for audit trails."
     },
     {
         question: "Can you integrate with our certified CRM/DMS systems?",
@@ -364,11 +365,11 @@ const faqs = [
     },
     {
         question: "How does this help protect our CSI scores?",
-        answer: "By responding to every lead within 90 seconds, you eliminate the #1 cause of CSI complaints: slow response times. Our AI Reputation Management also flags negative reviews before they hit factory surveys, giving you time to resolve issues privately."
+        answer: "By responding to every lead within 60 seconds, you eliminate the #1 cause of CSI complaints: slow response times. Our AI Reputation Management also flags negative reviews before they hit factory surveys, giving you time to resolve issues privately."
     },
     {
         question: "What about our OEM lead programs (Cars.com, AutoTrader, Edmunds)?",
-        answer: "Every lead from OEM programs and third-party providers is engaged instantly via SMS. Speed-to-Lead ensures you're the first dealership to respond—84% of buyers go with whoever contacts them first."
+        answer: "Every lead from OEM programs and third-party providers is engaged instantly via SMS. Speed-to-Lead ensures you're the first dealership to respond, as 84% of buyers go with whoever contacts them first."
     },
     {
         question: "How quickly can we go live across multiple rooftops?",
@@ -376,7 +377,7 @@ const faqs = [
     },
     {
         question: "What ROI can we expect?",
-        answer: "Franchise dealers typically see a 20-30% boost in monthly appointments within the first 14 days. Lead Loss Mitigation recovers 8-10% of dormant leads—that's revenue from marketing you've already paid for, without increasing ad spend."
+        answer: "Franchise dealers typically see a 20-30% boost in monthly appointments within the first 14 days. Lead Loss Mitigation recovers 8-10% of dormant leads: that's revenue from marketing you've already paid for, without increasing ad spend."
     }
 ];
 
@@ -387,14 +388,14 @@ const solutions = [
     {
         icon: Zap,
         title: "Speed-to-Lead",
-        desc: "Every OEM program lead, third-party inquiry, and website form is engaged via SMS in under 90 seconds. 24/7/365. Beat the competition to every customer.",
+        desc: "Every OEM program lead, third-party inquiry, and website form is engaged via SMS in under 60 seconds. 24/7/365. Beat the competition to every customer.",
         link: "/speed-to-lead",
         cta: "See How It Works"
     },
     {
         icon: RefreshCw,
-        title: "Lead Loss Mitigation",
-        desc: "Re-engage dormant leads from your CRM with personalized AI conversations. Recover 8-10% of 'dead' prospects—revenue from marketing you've already paid for.",
+        title: "Lead Reactivation",
+        desc: "Re-engage dormant leads from your CRM with personalized AI conversations. Recover 8-10% of 'dead' prospects: revenue from marketing you've already paid for.",
         link: "/lead-reactivation",
         cta: "Recover Lost Revenue"
     },
@@ -411,6 +412,13 @@ const solutions = [
         desc: "Flag negative reviews before factory surveys. AI responds to all reviews instantly, protecting your CSI scores and OEM bonuses.",
         link: "/reputation-management",
         cta: "Protect Your CSI"
+    },
+    {
+        icon: MessageSquare,
+        title: "Smart Website Widget",
+        desc: "Convert more organic traffic. Capture leads 24/7 with an intelligent chat interface that syncs directly to your CRM.",
+        link: "/website-widget",
+        cta: "Capture More Traffic"
     }
 ];
 
@@ -490,7 +498,7 @@ export default function FranchisePage() {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
-                        "name": "AutoMaster for Franchise Dealerships",
+                        "name": "The AutoMaster Suite for Franchise Dealerships",
                         "operatingSystem": "Web-based",
                         "applicationCategory": "BusinessApplication",
                         "description": "OEM-compliant automotive automation suite designed for franchise dealerships to meet response mandates and protect CSI scores.",
@@ -545,14 +553,14 @@ export default function FranchisePage() {
                                 variants={itemVariants}
                                 className="text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-[1] lg:leading-[0.95]"
                             >
-                                OEM Compliant. <br />
+                                <span className="block mb-2">OEM Compliant Response</span>
                                 <motion.span
                                     className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#FF9040]"
                                     animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                                     transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                                     style={{ backgroundSize: "200% 200%" }}
                                 >
-                                    Performance Driven.
+                                    Maximize OEM Bonuses
                                 </motion.span>
                             </motion.h1>
 
@@ -560,51 +568,53 @@ export default function FranchisePage() {
                                 variants={itemVariants}
                                 className="text-xl text-zinc-400 leading-relaxed max-w-xl mb-10"
                             >
-                                Meet manufacturer response requirements effortlessly. Protect CSI scores, secure bonuses, and outperform competing dealerships—all while your BDC focuses on closing, not chasing.
+                                Meet manufacturer response requirements effortlessly. Protect CSI scores, secure bonuses, and outperform competing dealerships, all while your BDC focuses on closing, not chasing.
                             </motion.p>
 
                             <motion.div
                                 variants={itemVariants}
-                                className="flex flex-col sm:flex-row items-center gap-4"
+                                className="flex flex-col items-start gap-4"
                             >
                                 <Link href="/book-demo">
                                     <motion.div
                                         whileHover={{ scale: 1.02, boxShadow: "0 0 40px -5px rgba(255,116,4,0.5)" }}
                                         whileTap={{ scale: 0.98 }}
-                                        className="w-full sm:w-auto px-8 py-4 bg-[#FF7404] text-black font-bold rounded-xl flex items-center justify-center gap-2 shadow-[0_0_30px_-5px_rgba(255,116,4,0.4)] cursor-pointer"
+                                        className="w-full sm:w-auto px-10 py-5 bg-[#FF7404] text-black font-bold rounded-xl flex items-center justify-center gap-2 shadow-[0_0_30px_-5px_rgba(255,116,4,0.4)] cursor-pointer text-lg"
                                     >
-                                        Schedule Consultation
-                                        <ArrowRight className="w-4 h-4" />
+                                        Schedule Your Walkthrough
+                                        <ArrowRight className="w-5 h-5" />
                                     </motion.div>
                                 </Link>
-                                <Link href="/book-demo">
-                                    <motion.div
-                                        whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.1)" }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="w-full sm:w-auto px-8 py-4 bg-white/5 text-white font-bold rounded-xl border border-white/10 cursor-pointer"
-                                    >
-                                        Request a Demo
-                                    </motion.div>
-                                </Link>
+                                <p className="text-xs text-zinc-500 font-medium tracking-wide ml-2">
+                                    15-min 1:1 • OEM Compliant • CDK/Reynolds Certified
+                                </p>
                             </motion.div>
 
                             {/* Trust Badges */}
                             <motion.div
                                 variants={itemVariants}
-                                className="flex items-center gap-6 mt-12 pt-12 border-t border-white/10"
+                                className="flex flex-col gap-4 mt-12 pt-12 border-t border-white/10"
                             >
-                                <div className="text-white/30 text-xs uppercase tracking-widest font-bold">Trusted By</div>
-                                <div className="flex items-center gap-6">
-                                    {['Toyota of Dallas', 'Honda West', 'Premier Ford'].map((name, i) => (
+                                <div className="text-white/30 text-xs uppercase tracking-widest font-bold">OEM Certified Integrations</div>
+                                <div className="flex items-center gap-6 sm:gap-8">
+                                    {[
+                                        { src: '/images/logos/ford-direct.jpg', alt: 'Ford Direct' },
+                                        { src: '/images/logos/toyota.jpg', alt: 'Toyota' },
+                                        { src: '/images/logos/honda.jpg', alt: 'Honda' },
+                                        { src: '/images/logos/gm.jpg', alt: 'GM' }
+                                    ].map((logo, i) => (
                                         <motion.div
                                             key={i}
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
                                             transition={{ delay: 1 + i * 0.2 }}
-                                            whileHover={{ color: "#fff" }}
-                                            className="text-white/60 font-medium text-sm cursor-default"
+                                            className="h-6 sm:h-7 opacity-20 hover:opacity-50 transition-opacity"
                                         >
-                                            {name}
+                                            <img
+                                                src={logo.src}
+                                                alt={logo.alt}
+                                                className="h-full w-auto object-contain grayscale brightness-200"
+                                            />
                                         </motion.div>
                                     ))}
                                 </div>
@@ -641,7 +651,7 @@ export default function FranchisePage() {
                                     {[
                                         { value: '98.5%', label: 'Response Rate', color: 'text-green-400' },
                                         { value: '4.9/5', label: 'Customer Sentiment', color: 'text-[#FF7404]' },
-                                        { value: '<90s', label: 'Avg Response Time', color: 'text-[#FF7404]' },
+                                        { value: '<60s', label: 'Avg Response Time', color: 'text-[#FF7404]' },
                                         { value: '+22%', label: 'CSI Improvement', color: 'text-purple-400' },
                                     ].map((stat, i) => (
                                         <motion.div
@@ -675,7 +685,7 @@ export default function FranchisePage() {
                         {[
                             { label: 'OEM Compliance', value: '100%', desc: 'Brand guideline adherence' },
                             { label: 'CSI Impact', value: '+22%', desc: 'Avg customer satisfaction lift' },
-                            { label: 'Response Time', value: '<90s', desc: 'Every lead, every time' },
+                            { label: 'Response Time', value: '<60s', desc: 'Every lead, every time' },
                             { label: 'Lead Recovery', value: '8-10%', desc: 'Dormant leads reactivated' },
                         ].map((stat, i) => (
                             <motion.div
@@ -713,7 +723,7 @@ export default function FranchisePage() {
                         >
                             <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
                                 The pressure to perform <br />
-                                <span className="text-[#FF7404]">never stops.</span>
+                                <span className="text-[#FF7404]">never stops</span>
                             </h2>
 
                             <motion.div
@@ -730,7 +740,7 @@ export default function FranchisePage() {
                                     Meanwhile, your BDC is dealing with 80% annual turnover, inconsistent training, and more leads than they can humanly handle from OEM programs, third-party sites, and in-store traffic.
                                 </motion.p>
                                 <motion.p variants={itemVariants}>
-                                    <strong className="text-white">The result:</strong> Missed follow-ups that don't just cost sales—they hurt your CSI, your bonuses, and your standing with the manufacturer.
+                                    <strong className="text-white">The result:</strong> Missed follow-ups that don't just cost sales: they hurt your CSI, your bonuses, and your standing with the manufacturer.
                                 </motion.p>
                             </motion.div>
                         </motion.div>
@@ -744,7 +754,7 @@ export default function FranchisePage() {
                         >
                             {[
                                 { icon: Clock, title: 'OEM Response Mandates', desc: 'Miss the 15-minute response window and you risk losing bonuses, allocation, and manufacturer favor.', color: 'text-red-500', bg: 'bg-red-500/10' },
-                                { icon: TrendingUp, title: 'CSI Score Pressure', desc: 'Every slow response chips away at your customer satisfaction scores—and the bonuses tied to them.', color: 'text-[#FF7404]', bg: 'bg-[#FF7404]/10' },
+                                { icon: TrendingUp, title: 'CSI Score Pressure', desc: 'Every slow response chips away at your customer satisfaction scores, and the bonuses tied to them.', color: 'text-[#FF7404]', bg: 'bg-[#FF7404]/10' },
                                 { icon: Users, title: 'BDC Turnover Crisis', desc: '80% annual turnover means constantly training new agents who can\'t keep up with lead volume.', color: 'text-[#FF7404]', bg: 'bg-[#FF7404]/10' },
                             ].map((item, i) => (
                                 <motion.div
@@ -879,14 +889,25 @@ export default function FranchisePage() {
                                                     <ArrowRight className="w-4 h-4 text-white" />
                                                 </div>
                                             </div>
+                                            {/* Floating AI Agent Tag */}
+                                            <motion.div
+                                                initial={{ opacity: 0, scale: 0.9 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                transition={{ delay: 1.5, duration: 0.5 }}
+                                                className="absolute top-24 -right-12 z-20 bg-black/90 backdrop-blur-xl border border-[#FF7404]/30 px-5 py-3 rounded-2xl shadow-2xl"
+                                            >
+                                                <div className="flex items-center gap-2.5">
+                                                    <div className="w-2 h-2 rounded-full bg-[#FF7404] animate-pulse" />
+                                                    <span className="text-white font-black text-[10px] uppercase tracking-widest">Active BDC AI Agent</span>
+                                                </div>
+                                            </motion.div>
                                         </div>
                                     </div>
+                                    {/* Ambient Glow */}
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[80%] bg-[#FF7404]/5 blur-[100px] rounded-full z-0" />
                                 </div>
-                                {/* Ambient Glow */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[80%] bg-[#FF7404]/5 blur-[100px] rounded-full z-0" />
                             </div>
                         </div>
-
                         <div className="order-1 lg:order-2">
                             {/* Tabs */}
                             <CapabilityTabs
@@ -900,61 +921,16 @@ export default function FranchisePage() {
                     </div>
                 </div>
             </section>
-
-            {/* 5. SOLUTIONS */}
-            <section className="py-24 bg-[#050505] relative overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:64px_64px] opacity-30" />
-
-                <div className="container px-4 mx-auto relative z-10">
-                    <motion.div
-                        className="text-center max-w-3xl mx-auto mb-16"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                            Enterprise-Grade Tools. <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/80 via-[#C0C0C0] to-white/60">Franchise Results.</span>
-                        </h2>
-                        <p className="text-zinc-400 text-lg">
-                            AutoMaster combines Lead Loss Mitigation, Speed-to-Lead, Reputation Management, and dedicated Success Management to optimize every metric that matters.
-                        </p>
-                    </motion.div>
-
-                    <motion.div
-                        className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
-                    >
-                        {solutions.map((sol, i) => (
-                            <motion.div key={i} variants={itemVariants}>
-                                <Link
-                                    href={sol.link}
-                                    className="group block h-full p-8 rounded-2xl bg-[#080808] border border-white/5 hover:border-white/20 transition-all duration-500 hover:shadow-[0_0_30px_-5px_rgba(255,116,4,0.3)]"
-                                >
-                                    <motion.div
-                                        className="w-12 h-12 rounded-xl bg-[#FF7404]/10 border border-[#FF7404]/20 flex items-center justify-center mb-6"
-                                        whileHover={{ scale: 1.1, rotate: 5 }}
-                                    >
-                                        <sol.icon className="w-6 h-6 text-[#FF7404]" />
-                                    </motion.div>
-                                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#FF7404] transition-colors">{sol.title}</h3>
-                                    <p className="text-zinc-500 text-sm leading-relaxed mb-6">{sol.desc}</p>
-                                    <div className="inline-flex items-center gap-2 text-sm font-bold text-zinc-400 group-hover:text-[#FF7404] group-hover:gap-3 transition-all whitespace-nowrap">
-                                        {sol.cta}
-                                        <ArrowRight className="w-4 h-4" />
-                                    </div>
-                                </Link>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
+            {/* 4. ENTERPRISE TOOLS (HOLOGRAPHIC TILES) */}
+            <HolographicCards />
 
             {/* 5. CALCULATOR */}
-            <DealerCalculator />
+            <ROICalculator
+                badgeText="ROI Calculator"
+                title={<>Calculate Your <span className="text-[#FF7404]">True Potential</span></>}
+                subtitle="See the revenue impact of each AutoMaster product for your dealership."
+                ctaText="Learn More About Lead Reactivation"
+            />
 
             {/* 6. FAQ */}
             <section className="py-24 bg-[#050505] relative overflow-hidden">
@@ -978,7 +954,7 @@ export default function FranchisePage() {
                         </motion.div>
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                             Questions from <br />
-                            <span className="text-[#FF7404]">Franchise Leaders.</span>
+                            <span className="text-[#FF7404]">Franchise Leaders</span>
                         </h2>
                         <p className="text-zinc-400 text-lg">
                             Everything you need to know about protecting your OEM standing and maximizing performance.

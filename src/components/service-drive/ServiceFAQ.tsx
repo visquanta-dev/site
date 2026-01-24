@@ -8,15 +8,15 @@ import Link from 'next/link';
 const educationalFaqs = [
     {
         question: "What is voice AI for car dealerships?",
-        answer: "Voice AI for car dealerships is artificial intelligence that answers inbound phone calls, understands what customers need, and takes action — like booking service appointments — without human intervention. Unlike voicemail or IVR menus, voice AI speaks naturally and integrates with your dealership systems to resolve calls instantly."
+        answer: "Voice AI for car dealerships is artificial intelligence that answers inbound phone calls, understands what customers need, and takes action (like booking service appointments) without human intervention. Unlike voicemail or IVR menus, voice AI speaks naturally and integrates with your dealership systems to resolve calls instantly."
     },
     {
         question: "How does voice AI work for service departments?",
-        answer: "When a customer calls your service department, voice AI answers immediately — no hold music, no voicemail. It understands natural language (\"my check engine light is on\"), pulls vehicle data from your DMS, checks technician availability, and books appointments directly into your scheduler. The customer gets an SMS confirmation. Your advisor gets a full transcript."
+        answer: "When a customer calls your service department, voice AI answers immediately (no hold music, no voicemail). It understands natural language (\"my check engine light is on\"), pulls vehicle data from your DMS, checks technician availability, and books appointments directly into your scheduler. The customer gets an SMS confirmation. Your advisor gets a full transcript."
     },
     {
         question: "What is automotive service scheduling?",
-        answer: "Automotive service scheduling is the process of booking customer appointments for vehicle maintenance and repairs. With voice AI, this happens automatically — customers call, voice AI checks availability, and the appointment is booked in real-time. No staff required. No callbacks needed."
+        answer: "Automotive service scheduling is the process of booking customer appointments for vehicle maintenance and repairs. With voice AI, this happens automatically: customers call, voice AI checks availability, and the appointment is booked in real-time. No staff required. No callbacks needed."
     },
     {
         question: "Can voice AI book appointments directly into my DMS?",
@@ -24,14 +24,14 @@ const educationalFaqs = [
     },
     {
         question: "What happens when voice AI can't answer a question?",
-        answer: "Voice AI is trained to handle 90%+ of common service calls. For complex issues requiring human judgment — like dispute resolution or unusual requests — it captures all details, creates a transcript, and routes to the appropriate advisor for callback. No call is ever lost."
+        answer: "Voice AI is trained to handle 90%+ of common service calls. For complex issues requiring human judgment (like dispute resolution or unusual requests) it captures all details, creates a transcript, and routes to the appropriate advisor for callback. No call is ever lost."
     }
 ];
 
 const buyingIntentFaqs = [
     {
         question: "How much does dealership voice AI cost?",
-        answer: "Voice AI pricing varies based on call volume and dealership size. Most service departments see ROI within 30 days — the revenue recovered from missed calls typically exceeds the cost by 5-10x. Contact us for a custom quote based on your call volume."
+        answer: "Voice AI pricing varies based on call volume and dealership size. Most service departments see ROI within 30 days: the revenue recovered from missed calls typically exceeds the cost by 5-10x. Contact us for a custom quote based on your call volume."
     },
     {
         question: "Is voice AI better than a call center for dealerships?",
@@ -39,15 +39,15 @@ const buyingIntentFaqs = [
     },
     {
         question: "How do dealerships handle missed service calls?",
-        answer: "Most don't — 80% of service calls go unanswered during peak hours and after 5pm. Those customers call competitors. Voice AI solves this by answering 100% of calls, 24/7/365. Every missed call becomes a booked appointment instead of lost revenue."
+        answer: "Most don't: 80% of service calls go unanswered during peak hours and after 5pm. Those customers call competitors. Voice AI solves this by answering 100% of calls, 24/7/365. Every missed call becomes a booked appointment instead of lost revenue."
     },
     {
         question: "What is fixed ops automation?",
-        answer: "Fixed ops automation uses AI to streamline service department operations — answering calls, scheduling appointments, sending status updates, and reducing manual workload. Voice AI is the front door of fixed ops automation, capturing every customer call without adding staff."
+        answer: "Fixed ops automation uses AI to streamline service department operations (answering calls, scheduling appointments, sending status updates, and reducing manual workload). Voice AI is the front door of fixed ops automation, capturing every customer call without adding staff."
     },
     {
         question: "Does voice AI work after hours and on weekends?",
-        answer: "Yes. Voice AI works 24/7/365 — nights, weekends, holidays. This is when 80% of calls typically go unanswered. Voice AI captures every after-hours call and books appointments while your competitors send customers to voicemail."
+        answer: "Yes. Voice AI works 24/7/365: nights, weekends, holidays. This is when 80% of calls typically go unanswered. Voice AI captures every after-hours call and books appointments while your competitors send customers to voicemail."
     }
 ];
 

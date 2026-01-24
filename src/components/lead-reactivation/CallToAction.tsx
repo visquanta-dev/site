@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, Zap, Clock, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Zap, Clock, CheckCircle2, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { RequestDemoButton } from '../CalendlyModal';
 
 interface CallToActionProps {
     onOpenCalculator?: () => void;
@@ -76,39 +77,52 @@ export default function CallToAction({ onOpenCalculator }: CallToActionProps) {
                         transition={{ delay: 0.5 }}
                         className="flex flex-col items-center gap-10"
                     >
-                        <div className="flex flex-wrap items-center justify-center gap-5">
-                            {/* Primary CTA */}
-                            <button
-                                onClick={onOpenCalculator}
-                                className="group relative px-12 py-6 overflow-hidden rounded-xl"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-xl" />
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-xl" />
-                                <div className="absolute inset-[1px] bg-gradient-to-b from-white/20 to-transparent rounded-[11px] opacity-50" />
-                                <span className="relative z-10 flex items-center gap-3 text-black font-bold text-sm uppercase tracking-widest">
-                                    Start Revenue Audit
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </span>
-                            </button>
+                        <div className="flex flex-col items-center gap-6">
+                            <div className="flex flex-wrap items-center justify-center gap-5">
+                                {/* Primary CTA */}
+                                <button
+                                    onClick={onOpenCalculator}
+                                    className="group relative px-12 py-6 overflow-hidden rounded-xl"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF7404] rounded-xl" />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-xl" />
+                                    <div className="absolute inset-[1px] bg-gradient-to-b from-white/20 to-transparent rounded-[11px] opacity-50" />
+                                    <span className="relative z-10 flex items-center gap-3 text-black font-bold text-sm uppercase tracking-widest">
+                                        Start Revenue Audit
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    </span>
+                                </button>
 
-                            {/* Secondary CTA */}
-                            <Link
-                                href="/book-demo"
-                                className="group relative px-10 py-6 rounded-xl overflow-hidden"
+                                {/* Secondary CTA */}
+                                <RequestDemoButton asChild>
+                                    <button className="group relative px-10 py-6 rounded-xl overflow-hidden">
+                                        <div className="absolute inset-0 border border-white/[0.15] rounded-xl group-hover:border-[#FF7404]/40 transition-colors duration-300" />
+                                        <div className="absolute inset-0 bg-white/[0.02] group-hover:bg-[#FF7404]/[0.05] transition-colors duration-300 rounded-xl" />
+                                        <span className="relative z-10 flex items-center gap-3 text-white/70 group-hover:text-white font-semibold text-sm uppercase tracking-widest transition-colors">
+                                            <Sparkles className="w-4 h-4 text-[#FF7404]" />
+                                            Schedule Your Walkthrough
+                                        </span>
+                                    </button>
+                                </RequestDemoButton>
+                            </div>
+
+                            {/* CRO Microcopy */}
+                            <motion.p
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.6 }}
+                                className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold"
                             >
-                                <div className="absolute inset-0 border border-white/[0.15] rounded-xl group-hover:border-[#FF7404]/40 transition-colors duration-300" />
-                                <div className="absolute inset-0 bg-white/[0.02] group-hover:bg-[#FF7404]/[0.05] transition-colors duration-300 rounded-xl" />
-                                <span className="relative z-10 flex items-center gap-3 text-white/70 group-hover:text-white font-semibold text-sm uppercase tracking-widest transition-colors">
-                                    {/* Desktop text */}
-                                    <span className="hidden sm:inline">Request a Demo</span>
-                                    {/* Mobile text */}
-                                    <span className="inline sm:hidden">Chat With Us</span>
-                                </span>
-                            </Link>
+                                15-min 1:1 • Get an exact revenue-lift projection for your dealership
+                            </motion.p>
                         </div>
 
                         {/* Tertiary Link */}
-                        <button className="text-[11px] font-semibold text-white/25 uppercase tracking-[0.4em] hover:text-[#FF7404] transition-colors duration-300 flex items-center gap-2 group">
+                        <button
+                            onClick={onOpenCalculator}
+                            className="text-[11px] font-semibold text-white/25 uppercase tracking-[0.4em] hover:text-[#FF7404] transition-colors duration-300 flex items-center gap-2 group"
+                        >
                             <span>See What's Sitting in Your Database</span>
                             <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                         </button>
@@ -125,7 +139,7 @@ export default function CallToAction({ onOpenCalculator }: CallToActionProps) {
                         <div className="flex flex-wrap items-center justify-center gap-12 text-white/30 text-sm">
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="w-4 h-4 text-green-400/50" />
-                                <span>100+ Dealerships Served</span>
+                                <span>500+ Dealerships Served</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="w-4 h-4 text-green-400/50" />

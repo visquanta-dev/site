@@ -100,7 +100,7 @@ export default function PlatformSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-8">
             <Sparkles className="w-3 h-3" />
-            Platform Capabilities
+            Inside The AutoMaster Suite
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 tracking-tighter uppercase leading-[0.9]">
@@ -110,7 +110,7 @@ export default function PlatformSection() {
           <div className="space-y-6 text-white/70 text-lg sm:text-xl leading-relaxed font-medium">
             <p>
               VisQuanta is an AI platform built specifically for car dealerships in the United States.
-              Founded in Miami, Florida, VisQuanta's <span className="text-white">AutoMaster Suite</span> provides
+              Founded in Miami, Florida, VisQuanta's <span className="text-white">The AutoMaster Suite</span> provides
               the complete revenue operating system for your dealership.
             </p>
           </div>

@@ -14,7 +14,7 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    quote: "AutoMaster Suite completely transformed how we handle leads. We went from responding in hours to responding in seconds. The ROI was visible within the first month.",
+    quote: "The AutoMaster Suite completely transformed how we handle leads. We went from responding in hours to responding in seconds. The ROI was visible within the first month.",
     name: "Michael Rodriguez",
     title: "General Manager",
     company: "Premier Auto Group",
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     metricLabel: "Missed calls"
   },
   {
-    quote: "We tried three other AI solutions before AutoMaster Suite. None of them understood the automotive business like this team does. The difference is night and day.",
+    quote: "We tried three other AI solutions before The AutoMaster Suite. None of them understood the automotive business like this team does. The difference is night and day.",
     name: "Jennifer Walsh",
     title: "Dealer Principal",
     company: "Walsh Family Motors",
@@ -62,7 +62,7 @@ const testimonials: Testimonial[] = [
     metricLabel: "Close rate increase"
   },
   {
-    quote: "VisQuanta gets to leads before anyone else. If you're even thinking about it, do it—it pays for itself fast.",
+    quote: "VisQuanta gets to leads before anyone else. If you're even thinking about it, do it, it pays for itself fast.",
     name: "Jo DaBrowski",
     title: "General Manager",
     company: "Seth Wadley of Pauls Valley",
@@ -84,7 +84,7 @@ const testimonials: Testimonial[] = [
 const reviewSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "AutoMaster Suite",
+  "name": "The AutoMaster Suite",
   "brand": {
     "@type": "Brand",
     "name": "Visquanta"
@@ -157,7 +157,7 @@ export default function TestimonialsSection() {
               Trusted by <span className="testimonials-highlight">Industry Leaders</span>
             </h2>
             <p className="testimonials-subtitle">
-              See how dealerships across the country are transforming their operations with AutoMaster Suite.
+              See how dealerships across the country are transforming their operations with The AutoMaster Suite.
             </p>
           </motion.div>
 
@@ -217,7 +217,7 @@ export default function TestimonialsSection() {
             </div>
             <div className="testimonials-stat-divider"></div>
             <div className="testimonials-stat">
-              <div className="testimonials-stat-value">100+</div>
+              <div className="testimonials-stat-value">500+</div>
               <div className="testimonials-stat-label">Dealerships</div>
             </div>
             <div className="testimonials-stat-divider"></div>

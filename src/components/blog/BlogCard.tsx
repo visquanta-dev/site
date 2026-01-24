@@ -57,7 +57,8 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                         src={article.featuredImage || FALLBACK_IMAGE}
                         alt={article.title}
                         fill
-                        className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
+                        style={{ objectFit: 'cover' }}
+                        className="opacity-100 group-hover:scale-105 transition-all duration-700"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
 

@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { 
-  RefreshCw, 
-  Zap, 
-  Star, 
-  Wrench, 
-  Send, 
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import {
+  RefreshCw,
+  Zap,
+  Star,
+  Wrench,
+  Send,
   HeartHandshake,
   ArrowRight,
   Clock,
@@ -40,8 +42,8 @@ const services = [
   {
     icon: Zap,
     title: 'Speed to Lead',
-    description: 'Engage every website inquiry in under 90 seconds. 24/7/365 coverage for your digital lot.',
-    impact: '<90s Response Time',
+    description: 'Engage every website inquiry in under 60 seconds. 24/7/365 coverage for your digital lot.',
+    impact: '<60s Response Time',
     href: '/speed-to-lead',
     gradient: 'from-yellow-500/20 to-orange-500/10'
   },
@@ -84,7 +86,7 @@ const differentiators = [
   {
     icon: Clock,
     title: 'Always-On Coverage',
-    description: 'Your dealership never sleeps. AI handles nights, weekends, and holidays—capturing every opportunity.'
+    description: 'Your dealership never sleeps. AI handles nights, weekends, and holidays, capturing every opportunity.'
   },
   {
     icon: Target,
@@ -101,11 +103,12 @@ const differentiators = [
 export default function DealerServicesPage() {
   return (
     <main className="min-h-screen bg-[#050505] text-white">
+      <Navigation />
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-6 overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-orange-500/5 via-transparent to-transparent" />
-        
+
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
             initial="hidden"
@@ -113,14 +116,14 @@ export default function DealerServicesPage() {
             variants={staggerContainer}
             className="text-center"
           >
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className="text-orange-500 text-sm font-medium tracking-widest uppercase mb-4"
             >
               Dealer Services
             </motion.p>
-            
-            <motion.h1 
+
+            <motion.h1
               variants={fadeInUp}
               className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
             >
@@ -128,16 +131,16 @@ export default function DealerServicesPage() {
               <br />
               <span className="text-orange-500">for Dealerships</span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               variants={fadeInUp}
               className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-10"
             >
-              From lead recovery to reputation protection, our suite of AI-powered 
+              From lead recovery to reputation protection, our suite of AI-powered
               services transforms how your dealership engages customers and drives revenue.
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               variants={fadeInUp}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
@@ -168,8 +171,8 @@ export default function DealerServicesPage() {
             viewport={{ once: true }}
             className="text-xl md:text-2xl text-neutral-300 italic mb-6"
           >
-            "VisQuanta's services paid for themselves in the first month. Our response 
-            time went from hours to seconds, and we're booking appointments we never 
+            "VisQuanta's services paid for themselves in the first month. Our response
+            time went from hours to seconds, and we're booking appointments we never
             would have caught before."
           </motion.blockquote>
           <motion.div
@@ -187,7 +190,7 @@ export default function DealerServicesPage() {
       {/* Differentiators */}
       <section className="py-16 px-6 border-y border-neutral-800">
         <div className="max-w-6xl mx-auto">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -195,7 +198,7 @@ export default function DealerServicesPage() {
             className="grid md:grid-cols-3 gap-8"
           >
             {differentiators.map((item, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 variants={fadeInUp}
                 className="flex gap-4"
@@ -226,12 +229,12 @@ export default function DealerServicesPage() {
               Our <span className="text-orange-500">Services</span>
             </h2>
             <p className="text-neutral-400 max-w-2xl mx-auto">
-              Each service is engineered to solve specific dealership challenges, 
+              Each service is engineered to solve specific dealership challenges,
               with measurable impact and seamless CRM/DMS integration.
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -250,19 +253,19 @@ export default function DealerServicesPage() {
                         {service.badge}
                       </span>
                     )}
-                    
+
                     <div className="w-12 h-12 rounded-xl bg-neutral-800/50 border border-neutral-700 flex items-center justify-center mb-4 group-hover:border-orange-500/50 transition-colors">
                       <service.icon className="w-6 h-6 text-neutral-300 group-hover:text-orange-500 transition-colors" />
                     </div>
-                    
+
                     <h3 className="text-xl font-semibold mb-2 group-hover:text-orange-500 transition-colors">
                       {service.title}
                     </h3>
-                    
+
                     <p className="text-neutral-400 text-sm mb-6 leading-relaxed">
                       {service.description}
                     </p>
-                    
+
                     <div className="flex items-center justify-between pt-4 border-t border-neutral-800">
                       <div>
                         <p className="text-xs text-neutral-500 uppercase tracking-wide">Impact</p>
@@ -293,12 +296,12 @@ export default function DealerServicesPage() {
               Built for Your <span className="text-orange-500">Operation</span>
             </h2>
             <p className="text-neutral-400 max-w-2xl mx-auto">
-              Whether you're an independent lot, franchise dealer, or multi-rooftop group, 
+              Whether you're an independent lot, franchise dealer, or multi-rooftop group,
               our services adapt to your specific challenges.
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -342,7 +345,7 @@ export default function DealerServicesPage() {
               Ready to Transform Your <span className="text-orange-500">Dealership?</span>
             </h2>
             <p className="text-neutral-400 mb-8 max-w-2xl mx-auto">
-              Join hundreds of dealerships using VisQuanta to capture more leads, 
+              Join hundreds of dealerships using VisQuanta to capture more leads,
               close more deals, and build lasting customer relationships.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -362,6 +365,8 @@ export default function DealerServicesPage() {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }

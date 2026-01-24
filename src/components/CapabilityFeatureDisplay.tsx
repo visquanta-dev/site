@@ -71,28 +71,6 @@ const CapabilityFeatureDisplay = ({ feature }: CapabilityFeatureDisplayProps) =>
                     ))}
                 </div>
 
-                {/* CTA BUTTON */}
-                <div className="pt-4">
-                    <RequestDemoButton
-                        className="px-7 py-3.5 bg-white text-black text-[15px] font-semibold rounded-full shadow-[0_4px_24px_rgba(255,255,255,0.1)] hover:bg-white/90 hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] transition-all duration-200 flex items-center gap-2 group"
-                    >
-                        Book a Demo
-                        <svg
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="group-hover:translate-x-1 transition-transform duration-200"
-                        >
-                            <path d="M5 12h14" />
-                            <path d="m12 5 7 7-7 7" />
-                        </svg>
-                    </RequestDemoButton>
-                </div>
             </div>
         </motion.div>
     );

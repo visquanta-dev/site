@@ -72,19 +72,23 @@ export function TableOfContents() {
     const [activeId, setActiveId] = useState<string>('');
 
     useEffect(() => {
-        // Parse headings from the content
-        const elements = Array.from(document.querySelectorAll('.prose h2, .prose h3'));
+        // Parse headings from the content - updated selector to match page.tsx
+        const elements = Array.from(document.querySelectorAll('.blog-content h2, .blog-content h3'));
 
         // Add IDs if missing
         const headingData = elements.map((elem, index) => {
             if (!elem.id) {
-                elem.id = `section-${index}`;
+                // Sanitize text for ID
+                const sanitizedText = (elem.textContent || '')
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+                elem.id = sanitizedText || `section-${index}`;
             }
             return {
                 id: elem.id,
                 text: elem.textContent || '',
-                level: Number(elem.tagName.substring(1)),
-                top: elem.getBoundingClientRect().top + window.scrollY
+                level: Number(elem.tagName.substring(1))
             };
         });
 
@@ -92,19 +96,25 @@ export function TableOfContents() {
 
         // Scroll Spy Logic
         const handleScroll = () => {
-            const scrollPos = window.scrollY + 200; // Offset
+            const scrollPos = window.scrollY + 100;
 
             // Find current active section
-            for (let i = headingData.length - 1; i >= 0; i--) {
-                const h = headingData[i];
-                if (document.getElementById(h.id) && (document.getElementById(h.id)?.getBoundingClientRect().top ?? 0) < 200) {
-                    setActiveId(h.id);
-                    break;
+            let current = '';
+            for (const h of headingData) {
+                const element = document.getElementById(h.id);
+                if (element) {
+                    const top = element.getBoundingClientRect().top + window.scrollY;
+                    if (scrollPos >= top - 20) {
+                        current = h.id;
+                    }
                 }
             }
+            setActiveId(current);
         };
 
         window.addEventListener('scroll', handleScroll);
+        // Initial call
+        handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -157,7 +167,7 @@ const BRIEF_VARIATIONS = [
     {
         id: 1,
         title: "Executive Brief: The Hidden Revenue Problem",
-        body: "84% of CRM leads go untouched after 30 days—that's millions in latent revenue sitting idle. AI reactivation recovers $50K-$200K monthly from existing databases without new ad spend.",
+        body: "84% of CRM leads go untouched after 30 days: that's millions in latent revenue sitting idle. AI reactivation recovers $50K-$200K monthly from existing databases without new ad spend.",
         impactArea: "Revenue Recovery",
         implementation: "Rapid (1-2 Weeks)",
         roiTimeline: "Immediate (14 Days)"
@@ -165,7 +175,7 @@ const BRIEF_VARIATIONS = [
     {
         id: 2,
         title: "Executive Brief: The 60-Second Window",
-        body: "22-minute average response times cost dealerships $8,500+ weekly. Sub-60-second AI response captures leads before competitors—converting at 21x the industry average.",
+        body: "22-minute average response times cost dealerships $8,500+ weekly. Sub-60-second AI response captures leads before competitors, converting at 21x the industry average.",
         impactArea: "Lead Conversion",
         implementation: "Standard (2-4 Weeks)",
         roiTimeline: "Immediate (7 Days)"
@@ -173,7 +183,7 @@ const BRIEF_VARIATIONS = [
     {
         id: 3,
         title: "Executive Brief: Missed Calls, Missed Revenue",
-        body: "1 in 4 service calls go to voicemail—$340+ lost per missed RO. Voice AI captures every inquiry 24/7, books appointments automatically, and protects CSI scores.",
+        body: "1 in 4 service calls go to voicemail: $340+ lost per missed RO. Voice AI captures every inquiry 24/7, books appointments automatically, and protects CSI scores.",
         impactArea: "Fixed Operations",
         implementation: "Rapid (1-2 Weeks)",
         roiTimeline: "Immediate (30 Days)"
@@ -181,7 +191,7 @@ const BRIEF_VARIATIONS = [
     {
         id: 4,
         title: "Executive Brief: The BDC Consistency Problem",
-        body: "45% annual BDC turnover means constant retraining and lost consistency. AI handles first-touch engagement and qualification—your closers focus on selling cars.",
+        body: "45% annual BDC turnover means constant retraining and lost consistency. AI handles first-touch engagement and qualification: your closers focus on selling cars.",
         impactArea: "Sales Operations",
         implementation: "Standard (2-4 Weeks)",
         roiTimeline: "Accelerated (60 Days)"
@@ -197,7 +207,7 @@ const BRIEF_VARIATIONS = [
     {
         id: 6,
         title: "Executive Brief: Reviews Drive Revenue",
-        body: "4.8★ dealerships close 23% more sales. AI monitors and responds to reviews instantly across all platforms—protecting CSI and converting satisfied customers into advocates.",
+        body: "4.8★ dealerships close 23% more sales. AI monitors and responds to reviews instantly across all platforms, protecting CSI and converting satisfied customers into advocates.",
         impactArea: "Reputation & CSI",
         implementation: "Rapid (1-2 Weeks)",
         roiTimeline: "Ongoing"
@@ -205,7 +215,7 @@ const BRIEF_VARIATIONS = [
     {
         id: 7,
         title: "Executive Brief: The After-Hours Opportunity",
-        body: "67% of leads come after 6PM. Your showroom closes—your competitors' AI doesn't. 24/7 conversational AI captures every evening and weekend inquiry automatically.",
+        body: "67% of leads come after 6PM. Your showroom closes, but your competitors' AI doesn't. 24/7 conversational AI captures every evening and weekend inquiry automatically.",
         impactArea: "Lead Capture",
         implementation: "Rapid (1-2 Weeks)",
         roiTimeline: "Immediate (7 Days)"
@@ -229,7 +239,7 @@ const BRIEF_VARIATIONS = [
     {
         id: 10,
         title: "Executive Brief: Measurable Impact",
-        body: "Dealerships on AutoMaster Suite average 30% revenue increase within 30 days—higher lead conversion, zero missed service calls, and recovered database revenue.",
+        body: "Dealerships on AutoMaster Suite average 30% revenue increase within 30 days: higher lead conversion, zero missed service calls, and recovered database revenue.",
         impactArea: "Overall Performance",
         implementation: "Standard (2-4 Weeks)",
         roiTimeline: "Immediate (30 Days)"

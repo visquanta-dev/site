@@ -100,7 +100,7 @@ const scenarios: Scenario[] = [
   {
     id: 'widget',
     number: '03',
-    title: 'SMS-First Widget',
+    title: 'The AutoMaster Web Widget',
     description: 'Webchat is where leads go to die. We instantly transition website visitors to SMS, capturing their real cell number and keeping the conversation alive.',
     stats: [
       { value: '98%', label: 'OPEN RATE' },
@@ -120,7 +120,7 @@ const scenarios: Scenario[] = [
       { id: 'msg6', sender: 'user', content: "Sure." },
       { id: 'msg7', sender: 'agent', content: "Great, what’s the best number to reach you on?" }
     ],
-    link: "/auto-master-suite"
+    link: "/website-widget"
   },
   {
     id: 'reputation',
@@ -498,7 +498,7 @@ export default function SeeItInAction() {
   }, [activeScenarioId]);
 
   return (
-    <section ref={sectionRef} className="bg-[#050505] py-16 sm:py-20 lg:py-32 border-t border-white/5 relative selection:bg-amber-500/30">
+    <section id="see-it-in-action" ref={sectionRef} className="bg-[#050505] py-16 sm:py-20 lg:py-32 border-t border-white/5 relative selection:bg-amber-500/30">
 
       {/* Background FX */}
       <div className="absolute inset-0 pointer-events-none">
@@ -509,6 +509,10 @@ export default function SeeItInAction() {
 
         {/* Header */}
         <div className="mb-12 sm:mb-16 lg:mb-24 max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-6">
+            <span className="w-2 h-2 rounded-full bg-[#ff7404] animate-pulse" />
+            The AutoMaster Suite Intelligence
+          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[0.9] mb-6 sm:mb-8">
             Conversations<br />
             <span className="text-white/80">that convert.</span>

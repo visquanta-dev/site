@@ -57,7 +57,7 @@ export default function LiveDemoPhone({ conversation }: LiveDemoPhoneProps) {
             <span className="font-medium">9:41</span>
             <div className="flex items-center gap-1.5">
               <svg className="w-[14px] h-[14px] opacity-90" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 18c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm-4.9-2.3l1.4 1.4c1.9-1.9 5.1-1.9 7 0l1.4-1.4c-2.7-2.7-7.1-2.7-9.8 0zM3.5 12.1l1.4 1.4c3.9-3.9 10.2-3.9 14.1 0l1.4-1.4c-4.7-4.7-12.2-4.7-16.9 0z"/>
+                <path d="M12 18c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm-4.9-2.3l1.4 1.4c1.9-1.9 5.1-1.9 7 0l1.4-1.4c-2.7-2.7-7.1-2.7-9.8 0zM3.5 12.1l1.4 1.4c3.9-3.9 10.2-3.9 14.1 0l1.4-1.4c-4.7-4.7-12.2-4.7-16.9 0z" />
               </svg>
               <div className="flex items-end gap-[2px]">
                 <div className="w-[2px] h-[4px] bg-white/80 rounded-sm" />
@@ -92,7 +92,7 @@ export default function LiveDemoPhone({ conversation }: LiveDemoPhoneProps) {
               <span className="text-white text-xs font-bold">AI</span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white text-sm font-semibold">AutoMaster AI</p>
+              <p className="text-white text-sm font-semibold">The AutoMaster Suite AI</p>
               <p className="text-[#FF7404] text-[10px] font-medium flex items-center gap-1">
                 <span className="w-1.5 h-1.5 bg-[#FF7404] rounded-full animate-pulse" />
                 Online
@@ -120,13 +120,12 @@ export default function LiveDemoPhone({ conversation }: LiveDemoPhoneProps) {
                   duration: 0.35,
                   ease: [0.25, 0.1, 0.25, 1] as const,
                 }}
-                className={`flex ${
-                  message.sender === "user"
+                className={`flex ${message.sender === "user"
                     ? "justify-end"
                     : message.sender === "system"
-                    ? "justify-center"
-                    : "justify-start"
-                }`}
+                      ? "justify-center"
+                      : "justify-start"
+                  }`}
               >
                 {message.sender === "system" ? (
                   <span className="text-[10px] text-[#555] font-medium uppercase tracking-wide">

@@ -8,6 +8,7 @@ import TeamExpertise from '@/components/dealer-success/TeamExpertise';
 import TrainingSection from '@/components/dealer-success/TrainingSection';
 import SuccessStories from '@/components/dealer-success/SuccessStories';
 import DealerFAQ from '@/components/dealer-success/DealerFAQ';
+import MidPageCTA from '@/components/MidPageCTA';
 
 export const metadata = {
     title: 'Dealer Success | Automotive AI with a Human Touch | VisQuanta',
@@ -28,6 +29,12 @@ export default function DealerSuccessPage() {
                 <HeroSection />
                 <UnifiedDashboard />
                 <HumanInLoop />
+
+                <MidPageCTA
+                    title="Experience White-Glove AI."
+                    subtitle="We don't just hand you software. We manage the outcomes with 24/7 human oversight."
+                    buttonText="Meet the Success Team"
+                />
                 <TeamExpertise />
                 <TrainingSection />
                 <SuccessStories />

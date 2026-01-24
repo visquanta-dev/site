@@ -38,8 +38,8 @@ export default function FAQ() {
         <section className="py-24 bg-[#020202] relative z-10">
             <div className="container mx-auto px-4 md:px-6 max-w-[800px]">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold text-white mb-4">Common Questions</h2>
-                    <p className="text-white/60">Details on execution and compliance.</p>
+                    <h2 className="text-3xl font-bold text-white mb-4">Car Dealership Campaign FAQs</h2>
+                    <p className="text-white/60">Common questions about running custom SMS campaigns.</p>
                 </div>
 
                 <div className="space-y-4">

@@ -9,7 +9,7 @@ const steps = [
     {
         icon: PhoneIncoming,
         title: "Call Answered",
-        description: "Voice AI picks up instantly and understands what the customer needs — appointment, status check, or emergency.",
+        description: "Voice AI picks up instantly and understands what the customer needs: appointment, status check, or emergency.",
         number: "01",
         isStart: true
     },

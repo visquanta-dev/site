@@ -28,7 +28,7 @@ const faqs = [
 ];
 
 export default function DealerFAQ() {
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
         <section className="py-32 bg-[#050505] relative border-t border-white/[0.05]">

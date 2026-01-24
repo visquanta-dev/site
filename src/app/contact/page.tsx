@@ -567,7 +567,7 @@ export default function ContactPage() {
                                             </div>
                                             <div className="flex-1">
                                                 <div className="text-white font-bold text-lg mb-1">Book a Live Demo</div>
-                                                <div className="text-zinc-500 text-sm">See AutoMaster Suite in action</div>
+                                                <div className="text-zinc-500 text-sm">See The AutoMaster Suite in action</div>
                                             </div>
                                             <ArrowRight className="w-5 h-5 text-[#FF7404] group-hover:translate-x-2 transition-transform" />
                                         </div>
@@ -643,6 +643,18 @@ export default function ContactPage() {
                                         ))}
                                     </div>
 
+                                    {/* Trust Signals */}
+                                    <div className="mt-8 pt-6 border-t border-white/5">
+                                        <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-4">Trusted By Industry Leaders</div>
+                                        <div className="flex flex-wrap gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                                            {/* Simple text representation if logos aren't available, or placeholders */}
+                                            <div className="bg-white/5 px-3 py-2 rounded text-xs font-bold text-white/70">AUTONATION</div>
+                                            <div className="bg-white/5 px-3 py-2 rounded text-xs font-bold text-white/70">LITHIA</div>
+                                            <div className="bg-white/5 px-3 py-2 rounded text-xs font-bold text-white/70">PENSKE</div>
+                                            <div className="bg-white/5 px-3 py-2 rounded text-xs font-bold text-white/70">GROUP 1</div>
+                                        </div>
+                                    </div>
+
                                     {/* Support Info */}
                                     <div className="mt-8 pt-6 border-t border-white/5">
                                         <div className="flex items-center gap-3 p-4 bg-green-500/5 border border-green-500/10 rounded-xl">
@@ -701,7 +713,7 @@ export default function ContactPage() {
                             </span>
                         </h2>
                         <p className="text-xl text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-                            Join the dealerships already using AutoMaster Suite to capture more leads, close more deals, and dominate their market.
+                            Join the dealerships already using The AutoMaster Suite to capture more leads, close more deals, and dominate their market.
                         </p>
                         <Link href="/book-demo">
                             <motion.div

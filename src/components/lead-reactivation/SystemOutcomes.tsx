@@ -30,9 +30,9 @@ export default function SystemOutcomes() {
                                 <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#FF7404]">The Managed Advantage</span>
                             </div>
                             <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
-                                A Managed Service, <br />
+                                We Work Your Old Leads <br />
                                 <span className="bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-[#FF7404] bg-clip-text text-transparent">
-                                    Not Another Software Tool.
+                                    So Your Team Doesn't Have To.
                                 </span>
                             </h3>
                             <p className="text-lg text-white/40 leading-[1.8] max-w-xl">
@@ -71,7 +71,7 @@ export default function SystemOutcomes() {
                             transition={{ delay: 0.6 }}
                         >
                             <button className="px-8 py-4 rounded-xl border border-[#FF7404]/30 text-white font-semibold text-sm uppercase tracking-widest hover:bg-[#FF7404]/[0.08] hover:border-[#FF7404]/50 transition-all duration-300">
-                                Request a Demo
+                                Schedule Your Walkthrough
                             </button>
                         </motion.div>
                     </motion.div>

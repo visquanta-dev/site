@@ -29,7 +29,7 @@ interface CalendlyModalProviderProps {
 
 export function CalendlyModalProvider({
     children,
-    calendlyUrl = 'https://calendly.com/your-calendly-url'
+    calendlyUrl = 'https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo'
 }: CalendlyModalProviderProps) {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -109,8 +109,8 @@ function CalendlyModal({ isOpen, onClose, calendlyUrl }: CalendlyModalProps) {
                                         <Calendar className="w-5 h-5 text-[#ff7404]" />
                                     </div>
                                     <div>
-                                        <h2 className="text-lg font-bold text-white">Request a Demo</h2>
-                                        <p className="text-xs text-white/50">Choose a time that works for you</p>
+                                        <h2 className="text-lg font-bold text-white">Schedule Your Walkthrough</h2>
+                                        <p className="text-xs text-white/50">Choose a 15-minute slot that works for you</p>
                                     </div>
                                 </div>
                                 <button

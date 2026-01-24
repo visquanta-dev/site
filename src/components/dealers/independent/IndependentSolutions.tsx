@@ -9,7 +9,7 @@ const solutions = [
     {
         icon: MessageSquare,
         title: "Speed-to-Lead AI",
-        desc: "Instant SMS engagement for every lead source (Cars.com, AutoTrader, Website) in under 90 seconds. 24/7/365 coverage.",
+        desc: "Instant SMS engagement for every lead source (Cars.com, AutoTrader, Website) in under 60 seconds. 24/7/365 coverage.",
         color: "text-[#FF7404]",
         bg: "bg-[#FF7404]/10",
         border: "border-[#FF7404]/20",
