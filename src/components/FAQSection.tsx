@@ -60,7 +60,7 @@ export default function FAQSection() {
               FAQ
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
-              Questions? <span className="text-[#ff7404]">Answers.</span>
+              Frequently Asked <span className="text-[#ff7404]">Questions</span>
             </h2>
             <p className="text-white/70 text-lg leading-relaxed mb-8">
               Everything you need to know about getting started with The AutoMaster Suite.

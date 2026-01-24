@@ -3,6 +3,8 @@
 
 import type { Metadata } from 'next';
 import Script from "next/script";
+import { Suspense } from 'react';
+
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import SocialProofBar from '@/components/SocialProofBar';
@@ -27,7 +29,7 @@ import { homepageSchema } from "@/lib/schema/homepage";
 // =============================================================================
 export const metadata: Metadata = {
   // Title: Primary keyword FIRST, then brand
-  title: "AI for Car Dealerships | Lead Reactivation & Speed to Lead",
+  title: "AI BDC for Car Dealerships | Lead Reactivation & Speed-to-Lead | VisQuanta",
 
   // Description: Front-load keywords, include differentiators, add trust signals
   description:
@@ -152,7 +154,10 @@ export default function Home() {
       <FAQSection />
 
       {/* 12. Latest Insights - Blog Articles */}
-      <HomeBlogSection />
+      <Suspense fallback={null}>
+        <HomeBlogSection />
+      </Suspense>
+
 
       {/* 13. Final CTA */}
       <FinalCTA />

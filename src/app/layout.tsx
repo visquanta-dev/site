@@ -11,6 +11,8 @@ import SmoothScroll from "@/components/ui/SmoothScroll";
 import { Toaster } from "@/components/ui/sonner";
 import { baseSchema } from "@/lib/schema/base";
 import MobileStickyCTA from "@/components/MobileStickyCTA";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 
 const inter = Inter({
   variable: "--font-inter",
@@ -190,7 +192,9 @@ export default function RootLayout({
             {children}
             <MobileStickyCTA />
             <Toaster />
+            <SpeedInsights />
           </CalendlyModalProvider>
+
         </SmoothScroll>
       </body>
     </html>

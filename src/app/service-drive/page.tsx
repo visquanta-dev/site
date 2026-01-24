@@ -19,7 +19,7 @@ import MidPageCTA from '@/components/MidPageCTA';
 
 
 export const metadata = {
-    title: 'Voice AI for Dealership Service Departments | Answer 100% of Calls | VisQuanta',
+    title: 'Service BDC Voice AI | 100% Call Answer Rate | VisQuanta',
     description: 'Voice AI for car dealership service departments. Answer 100% of inbound calls 24/7. Book appointments directly into your DMS. No missed calls. No voicemail.',
     alternates: {
         canonical: 'https://www.visquanta.com/service-drive',

@@ -140,8 +140,9 @@ export default function Navigation() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+
   }, []);
 
   const pathname = usePathname();
@@ -242,14 +243,16 @@ export default function Navigation() {
                   }`}
               >
                 {item.label}
-                {item.children && (
+                {item.children ? (
                   <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
-                )}
+                ) : null}
+
               </Link>
 
               <AnimatePresence>
-                {activeDropdown === item.label && item.children && (
+                {activeDropdown === item.label && item.children ? (
                   <motion.div
+
                     className="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[700px]"
                     initial={{ opacity: 0, y: 15, scale: 0.98, rotateX: -10 }}
                     animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
@@ -360,8 +363,9 @@ export default function Navigation() {
 
                     </div>
                   </motion.div>
-                )}
+                ) : null}
               </AnimatePresence>
+
             </div>
           ))}
         </nav>
@@ -505,7 +509,7 @@ export default function Navigation() {
                           </button>
 
                           <AnimatePresence>
-                            {mobileActiveMenu === item.label && (
+                            {mobileActiveMenu === item.label ? (
                               <motion.div
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}
@@ -541,8 +545,9 @@ export default function Navigation() {
                                   })}
                                 </div>
                               </motion.div>
-                            )}
+                            ) : null}
                           </AnimatePresence>
+
                         </div>
                       ) : (
                         <Link

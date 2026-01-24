@@ -3,35 +3,17 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
-import { Plus, Minus, ArrowRight, Search, MessageSquare, ShieldCheck, Zap, Users, LayoutGrid } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Plus, Minus, Search, ShieldCheck, Zap, Users, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
-
-// Categorized Data Structure
 import FinalCTA from '@/components/FinalCTA';
 
 const faqCategories = [
-    {
-        id: 'all',
-        label: 'All Questions',
-        icon: LayoutGrid
-    },
-    {
-        id: 'general',
-        label: 'General & ROI',
-        icon: Users
-    },
-    {
-        id: 'technical',
-        label: 'Implementation',
-        icon: Zap
-    },
-    {
-        id: 'security',
-        label: 'Trust & Safety',
-        icon: ShieldCheck
-    }
-];
+    { id: 'all', label: 'All Questions', icon: LayoutGrid },
+    { id: 'general', label: 'General & ROI', icon: Users },
+    { id: 'technical', label: 'Implementation', icon: Zap },
+    { id: 'security', label: 'Trust & Safety', icon: ShieldCheck }
+] as const;
 
 const faqs = [
     {
@@ -106,83 +88,80 @@ const faqs = [
     }
 ];
 
+const FAQItem = ({ faq, isOpen, onToggle }: { faq: typeof faqs[0], isOpen: boolean, onToggle: () => void }) => {
+    return (
+        <motion.div
+            layout
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            className={`group border rounded-2xl overflow-hidden transition-all duration-300 ${isOpen
+                ? 'border-[#FF7404] bg-[#FF7404]/5 shadow-[0_0_30px_-10px_rgba(255,116,4,0.3)]'
+                : 'border-white/5 bg-zinc-900/40 hover:border-[#FF7404]/50 hover:bg-zinc-900/60'
+                }`}
+        >
+            <button
+                onClick={onToggle}
+                className="flex items-center justify-between w-full p-6 text-left"
+            >
+                <span className={`text-lg font-bold transition-colors duration-300 pr-8 ${isOpen ? 'text-white' : 'text-zinc-300 group-hover:text-white'}`}>
+                    {faq.question}
+                </span>
+                <div className={`p-2 rounded-full border transition-all duration-300 shrink-0 ${isOpen
+                    ? 'border-[#FF7404] bg-[#FF7404] rotate-180'
+                    : 'border-zinc-700/50 text-zinc-500 group-hover:border-[#FF7404] group-hover:text-[#FF7404]'
+                    }`}>
+                    {isOpen ? <Minus className="w-4 h-4 text-black" /> : <Plus className="w-4 h-4" />}
+                </div>
+            </button>
+
+            <AnimatePresence>
+                {isOpen ? (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] as const }}
+                    >
+                        <div className="p-6 pt-0 text-zinc-400 leading-relaxed">
+                            <div className="h-px w-full bg-gradient-to-r from-[#FF7404]/20 to-transparent mb-4" />
+                            {faq.answer}
+                        </div>
+                    </motion.div>
+                ) : null}
+            </AnimatePresence>
+        </motion.div>
+    );
+};
+
 export default function FAQPage() {
     const [activeCategory, setActiveCategory] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
     const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
-    // Filter FAQs based on category and search query
-    const filteredFaqs = faqs.filter(faq => {
-        const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
-        const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesCategory && matchesSearch;
-    });
+    const filteredFaqs = useMemo(() => {
+        return faqs.filter(faq => {
+            const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
+            const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
+            return matchesCategory && matchesSearch;
+        });
+    }, [activeCategory, searchQuery]);
 
-    const midPoint = Math.ceil(filteredFaqs.length / 2);
-    const leftFaqs = filteredFaqs.slice(0, midPoint);
-    const rightFaqs = filteredFaqs.slice(midPoint);
-
-    const FAQItem = ({ faq, index }: { faq: typeof faqs[0], index: number }) => {
-        const isOpen = openQuestion === faq.question;
-
-        return (
-            <motion.div
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className={`group border rounded-2xl overflow-hidden transition-all duration-300 ${isOpen
-                    ? 'border-[#FF7404] bg-[#FF7404]/5 shadow-[0_0_30px_-10px_rgba(255,116,4,0.3)]'
-                    : 'border-white/5 bg-zinc-900/40 hover:border-[#FF7404]/50 hover:bg-zinc-900/60'
-                    }`}
-            >
-                <button
-                    onClick={() => setOpenQuestion(isOpen ? null : faq.question)}
-                    className="flex items-center justify-between w-full p-6 text-left"
-                >
-                    <span className={`text-lg font-bold transition-colors duration-300 pr-8 ${isOpen ? 'text-white' : 'text-zinc-300 group-hover:text-white'
-                        }`}>
-                        {faq.question}
-                    </span>
-                    <div className={`p-2 rounded-full border transition-all duration-300 shrink-0 ${isOpen
-                        ? 'border-[#FF7404] bg-[#FF7404] rotate-180'
-                        : 'border-zinc-700/50 text-zinc-500 group-hover:border-[#FF7404] group-hover:text-[#FF7404]'
-                        }`}>
-                        {isOpen ? (
-                            <Minus className="w-4 h-4 text-black" />
-                        ) : (
-                            <Plus className="w-4 h-4" />
-                        )}
-                    </div>
-                </button>
-
-                <AnimatePresence>
-                    {isOpen && (
-                        <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] as const }}
-                        >
-                            <div className="p-6 pt-0 text-zinc-400 leading-relaxed">
-                                <div className="h-px w-full bg-gradient-to-r from-[#FF7404]/20 to-transparent mb-4" />
-                                {faq.answer}
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </motion.div>
-        );
-    };
+    const { leftFaqs, rightFaqs } = useMemo(() => {
+        const midPoint = Math.ceil(filteredFaqs.length / 2);
+        return {
+            leftFaqs: filteredFaqs.slice(0, midPoint),
+            rightFaqs: filteredFaqs.slice(midPoint)
+        };
+    }, [filteredFaqs]);
 
     return (
         <main className="bg-[#020202] min-h-screen selection:bg-[#FF7404] selection:text-black font-sans">
             <Navigation />
 
             <section className="relative pt-48 pb-12 overflow-hidden">
-                {/* Cinematic Background Elements */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#FF7404]/10 rounded-[100%] blur-[120px] pointer-events-none" />
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#FF7404]/20 to-transparent" />
 
@@ -204,21 +183,15 @@ export default function FAQPage() {
                             Frequently Asked <span className="text-[#FF7404]">Questions.</span>
                         </motion.h1>
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-xl text-zinc-400 max-w-2xl mx-auto"
-                        >
+                        <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
                             Everything you need to know about The AutoMaster Suite. Can't find the answer?
                             Chat to our team at{' '}
                             <Link href="mailto:info@visquanta.com" className="text-[#FF7404] hover:text-white transition-colors underline underline-offset-4 decoration-[#FF7404]/30 hover:decoration-[#FF7404]">
                                 info@visquanta.com
                             </Link>
-                        </motion.p>
+                        </p>
                     </div>
 
-                    {/* Search & Filter Bar */}
                     <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-12 sticky top-24 z-50 p-2 rounded-2xl transition-all duration-300 backdrop-blur-md bg-black/50 border border-white/5">
                         <div className="flex overflow-x-auto pb-2 md:pb-0 gap-2 w-full md:w-auto text-sm scrollbar-hide">
                             {faqCategories.map((cat) => (
@@ -249,53 +222,62 @@ export default function FAQPage() {
                     </div>
 
                     <AnimatePresence mode="wait">
-                        <motion.div
-                            layout
-                            className="grid lg:grid-cols-2 gap-6 items-start min-h-[400px]"
-                        >
-                            {filteredFaqs.length > 0 ? (
-                                <>
-                                    <div className="space-y-4">
-                                        {leftFaqs.map((faq, index) => (
-                                            <FAQItem key={faq.question} faq={faq} index={index} />
-                                        ))}
-                                    </div>
-                                    <div className="space-y-4">
-                                        {rightFaqs.map((faq, index) => (
-                                            <FAQItem key={faq.question} faq={faq} index={index + leftFaqs.length} />
-                                        ))}
-                                    </div>
-                                </>
-                            ) : (
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    className="col-span-2 text-center py-20"
+                        {filteredFaqs.length > 0 ? (
+                            <motion.div
+                                key={activeCategory + searchQuery}
+                                initial={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="grid lg:grid-cols-2 gap-6 items-start min-h-[400px]"
+                            >
+                                <div className="space-y-4">
+                                    {leftFaqs.map((faq) => (
+                                        <FAQItem
+                                            key={faq.question}
+                                            faq={faq}
+                                            isOpen={openQuestion === faq.question}
+                                            onToggle={() => setOpenQuestion(openQuestion === faq.question ? null : faq.question)}
+                                        />
+                                    ))}
+                                </div>
+                                <div className="space-y-4">
+                                    {rightFaqs.map((faq) => (
+                                        <FAQItem
+                                            key={faq.question}
+                                            faq={faq}
+                                            isOpen={openQuestion === faq.question}
+                                            onToggle={() => setOpenQuestion(openQuestion === faq.question ? null : faq.question)}
+                                        />
+                                    ))}
+                                </div>
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="no-results"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="text-center py-20 min-h-[400px]"
+                            >
+                                <div className="w-16 h-16 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/5">
+                                    <Search className="w-6 h-6 text-zinc-600" />
+                                </div>
+                                <h3 className="text-white font-bold text-lg mb-2">No results found</h3>
+                                <p className="text-zinc-500">Try adjusting your search terms or browse all categories.</p>
+                                <button
+                                    onClick={() => { setSearchQuery(''); setActiveCategory('all'); }}
+                                    className="mt-6 text-[#FF7404] hover:text-white text-sm font-bold transition-colors"
                                 >
-                                    <div className="w-16 h-16 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/5">
-                                        <Search className="w-6 h-6 text-zinc-600" />
-                                    </div>
-                                    <h3 className="text-white font-bold text-lg mb-2">No results found</h3>
-                                    <p className="text-zinc-500">Try adjusting your search terms or browse all categories.</p>
-                                    <button
-                                        onClick={() => { setSearchQuery(''); setActiveCategory('all'); }}
-                                        className="mt-6 text-[#FF7404] hover:text-white text-sm font-bold transition-colors"
-                                    >
-                                        Clear Search
-                                    </button>
-                                </motion.div>
-                            )}
-                        </motion.div>
-                    </AnimatePresence>
-
+                                    Clear Search
+                                </button>
+                            </motion.div>
+                        )}
                     </AnimatePresence>
 
                     <FinalCTA />
                 </div>
             </section>
 
-
             <Footer />
-        </main >
+        </main>
     );
 }

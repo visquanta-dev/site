@@ -6,8 +6,8 @@ import SocialProofSection from '@/components/book-demo/SocialProofSection';
 import FAQSection from '@/components/book-demo/FAQSection';
 
 export const metadata: Metadata = {
-    title: "Schedule Your Walkthrough | 15-Min Revenue Analysis | VisQuanta",
-    description: "Schedule your 15-minute 1:1 walkthrough. Get an exact revenue-lift projection for your dealership and see how VisQuanta's AI automates your growth.",
+    title: "Schedule Your Walkthrough | VisQuanta",
+    description: "Schedule your 15-minute revenue analysis. Get a custom projection for your dealership and see how our AI automates your growth.",
     alternates: {
         canonical: "https://www.visquanta.com/book-demo",
     },
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
         url: "https://www.visquanta.com/book-demo",
     },
 };
+
 
 export default function BookDemoPage() {
     return (
