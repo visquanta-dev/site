@@ -3,7 +3,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase';
 import { NewsletterWelcomeEmail } from '@/emails/NewsletterWelcomeEmail';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Defer instantiation to handle missing API key during build time
+let resend: Resend | null = null;
+
+function getResendClient() {
+    if (!resend) {
+        const apiKey = process.env.RESEND_API_KEY || 're_placeholder'; // Use placeholder to prevent constructor from throwing
+        resend = new Resend(apiKey);
+    }
+    return resend;
+}
+
 
 export async function POST(request: NextRequest) {
     try {
@@ -75,8 +85,9 @@ export async function POST(request: NextRequest) {
 
         // Send welcome email via Resend
         try {
-            await resend.emails.send({
+            await getResendClient().emails.send({
                 from: 'VisQuanta Insights <onboarding@resend.dev>',
+
                 to: normalizedEmail,
                 subject: 'Welcome to VisQuanta Insights 🚗',
                 react: <NewsletterWelcomeEmail email={normalizedEmail} />,
