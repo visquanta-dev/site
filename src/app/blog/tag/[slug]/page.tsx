@@ -95,7 +95,7 @@ export default async function TagPage({ params, searchParams }: PageProps) {
                             <span className="text-[#FF7404] text-xs font-bold uppercase tracking-wider">Tag</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight uppercase">
+                        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
                             {tag?.title || 'Tag'}
                         </h1>
 
