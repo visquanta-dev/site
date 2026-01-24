@@ -16,6 +16,9 @@ import WhoItIsFor from '@/components/speed-to-lead/WhoItIsFor';
 import FinalCTA from '@/components/speed-to-lead/FinalCTA';
 import FAQSection from '@/components/speed-to-lead/FAQSection';
 import RelatedResources from '@/components/speed-to-lead/RelatedResources';
+import RelatedSolutions from '@/components/shared/RelatedSolutions';
+import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
+import { RefreshCcw, MessageSquare, Star } from 'lucide-react';
 
 import OpportunityCheck from '@/components/speed-to-lead/OpportunityCheck';
 import ROICalculatorModal from '@/components/ROICalculatorModal';
@@ -112,7 +115,20 @@ export default function SpeedToLeadPage() {
             {/* 8. FAQs: Common Questions */}
             <FAQSection />
 
+            {/* 8.5 CROSS-LINKING: Related Solutions */}
+            <RelatedSolutions
+                title="Instant Response Ecosystem"
+                solutions={[
+                    { title: "Lead Reactivation", href: "/lead-reactivation", description: "Convert missed leads that was never contacted.", icon: RefreshCcw },
+                    { title: "Website Widget", href: "/website-widget", description: "The front-door for your Speed to Lead engine.", icon: MessageSquare },
+                    { title: "Reputation Management", description: "Follow up great experiences with review requests.", href: "/reputation-management", icon: Star }
+                ]}
+            />
 
+            {/* 8.7 PROOF: Related Case Studies */}
+            <RelatedCaseStudies
+                caseStudySlugs={['bayside-honda', 'seth-wadley']}
+            />
 
             {/* 9. RESOURCES: Relevant Articles */}
             <RelatedResources />

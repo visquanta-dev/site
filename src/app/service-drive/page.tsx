@@ -15,6 +15,9 @@ import MoreSolutions from '@/components/service-drive/MoreSolutions';
 
 import ServiceInsights from '@/components/service-drive/ServiceInsights';
 import MidPageCTA from '@/components/MidPageCTA';
+import RelatedSolutions from '@/components/shared/RelatedSolutions';
+import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
+import { RefreshCcw, Zap, Target, Star, HeartHandshake } from 'lucide-react';
 
 
 
@@ -202,7 +205,20 @@ export default function ServiceDrivePage() {
                 />
 
                 <ServiceFAQ />
-                <MoreSolutions />
+
+                <RelatedSolutions
+                    title="Scale Your Fixed Ops"
+                    solutions={[
+                        { title: "Lead Reactivation", href: "/lead-reactivation", description: "Re-engage lost service customers automatically.", icon: RefreshCcw },
+                        { title: "Reputation Management", href: "/reputation-management", description: "Capture a 5-star review after every service visit.", icon: Star },
+                        { title: "Dealer Success", href: "/dealer-success", description: "White-glove implementation for your service team.", icon: HeartHandshake }
+                    ]}
+                />
+
+                <RelatedCaseStudies
+                    caseStudySlugs={['prestige-imports', 'seth-wadley']}
+                />
+
                 <VoiceAgent />
 
                 <ServiceInsights />

@@ -28,7 +28,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-dealerships': {
         executivePoV: {
             title: "The 'Quiet Abandonment' Problem",
-            body: "Most dealerships obsess over open rates and click-through rates. But the metric that actually kills deals is what we call 'Quiet Abandonment,' when a customer opens your email, intends to respond, gets distracted, and never comes back. SMS works because it lives in a persistent, low-friction thread that doesn't require the customer's undivided attention. That's the real competitive advantage.",
+            body: "Most dealerships obsess over open rates and click-through rates. But the metric that actually kills deals is what we call 'Quiet Abandonment,' when a customer opens your email, intends to respond, gets distracted, and never comes back. [SMS outreach](/speed-to-lead) works because it lives in a persistent, low-friction thread that doesn't require the customer's undivided attention. That's the real competitive advantage of a [conversion-first widget](/website-widget).",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -52,7 +52,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'speed-to-lead-slow-follow-up-sales-impact': {
         executivePoV: {
             title: "The 5-Minute Cliff",
-            body: "We analyzed over 50,000 lead interactions and found a consistent pattern: if you don't make contact within the first 5 minutes, your odds of ever reaching that customer drop by 80%. After 30 minutes, it's 90%. This isn't about being pushy; it's about being present when the customer is still in decision mode. Once they leave that mental state, they're gone.",
+            body: "We analyzed over 50,000 lead interactions and found a consistent pattern: if you don't make contact within the first 5 minutes, your odds of ever reaching that customer drop by 80%. After 30 minutes, it's 90%. This isn't about being pushy; it's about being present when the customer is still in decision mode. Our [Speed-to-Lead AI](/speed-to-lead) ensures you're always first, while [Lead Reactivation](/lead-reactivation) handles the ones that slipped through previously.",
             author: "VisQuanta Management"
         },
         glossaryTerms: [
@@ -76,7 +76,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'why-your-service-department-needs-24-7-call-answering-not-just-voicemail': {
         executivePoV: {
             title: "The After-Hours Revenue Leak",
-            body: "Here's what most GMs don't realize: 34% of service calls come in after 6 PM or before 8 AM. Every one of those calls that hits voicemail is a customer who immediately calls the next dealer on their list. They're not leaving messages; they have an urgent need and they'll find someone who answers. That's recurring revenue walking out your door every single night.",
+            body: "Here's what most GMs don't realize: 34% of service calls come in after 6 PM or before 8 AM. Every one of those calls that hits voicemail is a customer who immediately calls the next dealer on their list. With [Service Drive Pro](/service-drive), you answer 100% of these calls and book appointments directly. Don't let recurring revenue walk out your door every single night.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -124,7 +124,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'boost-dealership-sales-with-automaster-suite': {
         executivePoV: {
             title: "The Integration Tax",
-            body: "Most dealerships run 7-12 different software tools that don't talk to each other. Every time data has to be manually transferred between systems, you're paying an invisible 'integration tax' in wasted labor, duplicate data entry, and missed handoffs. A unified suite eliminates that tax entirely and lets your people focus on selling instead of copy-pasting.",
+            body: "Most dealerships run 7-12 different software tools that don't talk to each other. Every time data has to be manually transferred between systems, you're paying an invisible 'integration tax' in wasted labor, duplicate data entry, and missed handoffs. A [unified revenue suite](/auto-master-suite) eliminates that tax entirely and lets your people focus on selling instead of copy-pasting.",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [
@@ -148,7 +148,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'crm-database-reactivation-guide': {
         executivePoV: {
             title: "The $50K Sitting in Your CRM",
-            body: "Most dealerships operate on a 30-day lead lifecycle; after that, the BDC stops calling. But we've found that leads aged 90-365 days convert at nearly the same rate as fresh inquiries when approached with personalized, conversational AI. Your 'dead' database isn't dead: it's dormant revenue waiting to be unlocked.",
+            body: "Most dealerships operate on a 30-day lead lifecycle; after that, the BDC stops calling. But we've found that leads aged 90-365 days convert at nearly the same rate as fresh inquiries when approached with [personalized Lead Reactivation](/lead-reactivation). Your 'dead' database isn't dead: it's dormant revenue waiting to be unlocked with [Custom SMS Campaigns](/custom-campaigns).",
             author: "VisQuanta Leadership"
         },
         glossaryTerms: [

@@ -10,6 +10,8 @@ import { BlogCard } from '@/components/blog/BlogCard';
 import BlogPostClient, { ReadingProgress, TableOfContents, ExecutiveSummary } from './BlogPostClient';
 import { BlogArticleHeader } from '@/components/blog/BlogArticleHeader';
 import { BLOG_ENHANCEMENTS } from '@/data/blog-enhancements';
+import { BLOG_RELATED_PRODUCTS } from '@/data/blog-products';
+import RelatedProducts from '@/components/blog/RelatedProducts';
 import { ExpertInsight, KnowledgeCards, ProofPoint, MidArticleCTA, BottomConsultingCTA, BlogFAQAccordion } from '@/components/blog/BlogEnhancements'; import InlineNewsletter from '@/components/blog/InlineNewsletter';
 
 export const revalidate = 60;
@@ -334,6 +336,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                                 className="blog-content"
                                                 dangerouslySetInnerHTML={{ __html: chunk3 }}
                                             />
+
+                                            {/* CONTEXTUAL PRODUCT CROSS-LINKING */}
+                                            {BLOG_RELATED_PRODUCTS[slug] && (
+                                                <RelatedProducts productSlugs={BLOG_RELATED_PRODUCTS[slug]} />
+                                            )}
                                         </>
                                     );
                                 })()}

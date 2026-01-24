@@ -725,7 +725,7 @@ export default function AutoMasterSuiteHub() {
                                 <span className="text-[#FF7404]">Unified Intelligence.</span>
                             </h2>
                             <p className="text-zinc-500 text-lg">
-                                Why automotive GMs are moving away from "app-fatigue" toward unified revenue platforms.
+                                Why automotive GMs are moving away from "app-fatigue" toward unified revenue platforms. <Link href="/dealer-services" className="text-[#FF7404] hover:underline font-bold">Explore our catalog of services.</Link>
                             </p>
                         </div>
 

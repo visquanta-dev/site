@@ -308,6 +308,26 @@ export default function DealerHub() {
                 </div>
             </section>
 
+            {/* Hub Bridging: Dealer Services Link */}
+            <section className="py-24 bg-[#050505] border-y border-white/5 relative overflow-hidden">
+                <div className="absolute inset-0 bg-enterprise-grid opacity-5 pointer-events-none" />
+                <div className="container px-4 mx-auto relative z-10 text-center">
+                    <div className="max-w-3xl mx-auto">
+                        <h2 className="text-3xl font-bold text-white mb-6">Looking for a specific capability?</h2>
+                        <p className="text-zinc-400 text-lg mb-10">
+                            Explore our comprehensive catalog of individual AI modules designed to fit any dealership operational workflow.
+                        </p>
+                        <Link
+                            href="/dealer-services"
+                            className="inline-flex items-center gap-3 px-8 py-4 bg-white/5 border border-white/10 rounded-full text-white font-bold hover:bg-white hover:text-black transition-all group"
+                        >
+                            Explore All Dealer Services
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
             {/* 3. INTEGRATION ARCHITECTURE */}
             <section className="py-32 bg-[#050505] border-t border-white/5 relative overflow-hidden">
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#FF7404]/20 to-transparent" />

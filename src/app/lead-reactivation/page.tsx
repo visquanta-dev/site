@@ -15,6 +15,9 @@ import SystemOutcomes from '@/components/lead-reactivation/SystemOutcomes';
 import ProcessMap from '@/components/lead-reactivation/ProcessMap';
 import FAQSection from '@/components/lead-reactivation/FAQSection';
 import RelatedResources from '@/components/lead-reactivation/RelatedResources';
+import RelatedSolutions from '@/components/shared/RelatedSolutions';
+import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
+import { Zap, Target, MessageSquare, Wrench } from 'lucide-react';
 import CallToAction from '@/components/lead-reactivation/CallToAction';
 import MidPageCTA from '@/components/MidPageCTA';
 
@@ -103,6 +106,21 @@ export default function LeadReactivationPage() {
 
             {/* 6. FAQs: Common Questions Answered */}
             <FAQSection />
+
+            {/* 6.5 CROSS-LINKING: Related Solutions */}
+            <RelatedSolutions
+                title="Smarter Lead Management"
+                solutions={[
+                    { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine database reactivation with instant response.", icon: Zap },
+                    { title: "Custom Campaigns", href: "/custom-campaigns", description: "Targeted seasonal blitzes for your reactivated audience.", icon: Target },
+                    { title: "Service Drive Pro", href: "/service-drive", description: "Automate service appointments for reactivated service leads.", icon: Wrench }
+                ]}
+            />
+
+            {/* 6.7 PROOF: Related Case Studies */}
+            <RelatedCaseStudies
+                caseStudySlugs={['metro-motors', 'seth-wadley']}
+            />
 
             {/* 7. RESOURCES: Blog & Case Studies */}
             <RelatedResources />

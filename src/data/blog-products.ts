@@ -1,0 +1,19 @@
+export const BLOG_RELATED_PRODUCTS: Record<string, string[]> = {
+    'sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-dealerships': ['speed-to-lead', 'website-widget'],
+    'speed-to-lead-slow-follow-up-sales-impact': ['speed-to-lead', 'lead-reactivation'],
+    'why-your-service-department-needs-24-7-call-answering-not-just-voicemail': ['service-drive', 'reputation-management'],
+    'dealerships-ai-improve-csi-scores': ['reputation-management', 'service-drive'],
+    'boost-dealership-sales-with-automaster-suite': ['lead-reactivation', 'speed-to-lead', 'custom-campaigns'],
+    'crm-database-reactivation-guide': ['lead-reactivation', 'custom-campaigns'],
+    'ai-powered-solutions-pre-owned-car-dealers': ['lead-reactivation', 'website-widget'],
+    '5-reasons-car-buyers-prefer-sms-over-phone-calls-from-dealerships': ['website-widget', 'speed-to-lead'],
+    'automotive-ai-complete-guide-car-dealerships': ['lead-reactivation', 'speed-to-lead', 'service-drive'],
+    'third-party-lead-providers-dealerships': ['speed-to-lead', 'lead-reactivation'],
+    'ai-call-answering-car-dealerships-guide': ['service-drive', 'reputation-management'],
+    'dealership-marketing-challenges-solutions': ['custom-campaigns', 'lead-reactivation'],
+    'dealership-reputation-management-negative-reviews': ['reputation-management', 'service-drive'],
+    'automotive-ai-chatbot-marketing-2025': ['website-widget', 'speed-to-lead'],
+    'ai-bdc-first-response-time': ['speed-to-lead', 'lead-reactivation'],
+    'ai-call-technology-customer-lost-leads': ['lead-reactivation', 'service-drive'],
+    'crm-mining-automotive-industry': ['lead-reactivation', 'custom-campaigns']
+};
