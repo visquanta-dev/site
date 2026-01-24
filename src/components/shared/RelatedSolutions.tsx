@@ -2,13 +2,23 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, LucideIcon } from 'lucide-react';
+import { ArrowRight, LucideIcon, Zap, RefreshCcw, Star, Wrench, MessageSquare, Target, HeartHandshake } from 'lucide-react';
+
+const ICON_MAP: Record<string, LucideIcon> = {
+    zap: Zap,
+    refresh: RefreshCcw,
+    star: Star,
+    wrench: Wrench,
+    message: MessageSquare,
+    target: Target,
+    heart: HeartHandshake
+};
 
 interface RelatedSolution {
     title: string;
     href: string;
     description: string;
-    icon?: LucideIcon;
+    icon?: keyof typeof ICON_MAP;
 }
 
 interface RelatedSolutionsProps {
@@ -63,11 +73,14 @@ export default function RelatedSolutions({
 
                                     <div className="relative z-10">
                                         {/* Icon */}
-                                        {solution.icon && (
-                                            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[#FF7404]/10 group-hover:border-[#FF7404]/30 transition-all duration-300">
-                                                <solution.icon className="w-6 h-6 text-zinc-400 group-hover:text-[#FF7404] transition-colors" />
-                                            </div>
-                                        )}
+                                        {solution.icon && ICON_MAP[solution.icon] && (() => {
+                                            const Icon = ICON_MAP[solution.icon];
+                                            return (
+                                                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[#FF7404]/10 group-hover:border-[#FF7404]/30 transition-all duration-300">
+                                                    <Icon className="w-6 h-6 text-zinc-400 group-hover:text-[#FF7404] transition-colors" />
+                                                </div>
+                                            );
+                                        })()}
 
                                         {/* Title */}
                                         <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#FF7404] transition-colors">

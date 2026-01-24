@@ -18,7 +18,6 @@ import FAQSection from '@/components/speed-to-lead/FAQSection';
 import RelatedResources from '@/components/speed-to-lead/RelatedResources';
 import RelatedSolutions from '@/components/shared/RelatedSolutions';
 import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
-import { RefreshCcw, MessageSquare, Star } from 'lucide-react';
 
 import OpportunityCheck from '@/components/speed-to-lead/OpportunityCheck';
 import ROICalculatorModal from '@/components/ROICalculatorModal';
@@ -119,9 +118,9 @@ export default function SpeedToLeadPage() {
             <RelatedSolutions
                 title="Instant Response Ecosystem"
                 solutions={[
-                    { title: "Lead Reactivation", href: "/lead-reactivation", description: "Convert missed leads that was never contacted.", icon: RefreshCcw },
-                    { title: "Website Widget", href: "/website-widget", description: "The front-door for your Speed to Lead engine.", icon: MessageSquare },
-                    { title: "Reputation Management", description: "Follow up great experiences with review requests.", href: "/reputation-management", icon: Star }
+                    { title: "Lead Reactivation", href: "/lead-reactivation", description: "Convert missed leads that was never contacted.", icon: "refresh" },
+                    { title: "Website Widget", href: "/website-widget", description: "The front-door for your Speed to Lead engine.", icon: "message" },
+                    { title: "Reputation Management", description: "Follow up great experiences with review requests.", href: "/reputation-management", icon: "star" }
                 ]}
             />
 

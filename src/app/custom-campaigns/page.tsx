@@ -12,7 +12,6 @@ import KPIs from '@/components/custom-campaigns/KPIs';
 import FAQ from '@/components/custom-campaigns/FAQ';
 import RelatedSolutions from '@/components/shared/RelatedSolutions';
 import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
-import { RefreshCcw, Zap, Wrench } from 'lucide-react';
 import FinalCTA from '@/components/custom-campaigns/FinalCTA';
 
 export default function CustomCampaignsPage() {
@@ -167,9 +166,9 @@ export default function CustomCampaignsPage() {
                 <RelatedSolutions
                     title="Scale Your Store"
                     solutions={[
-                        { title: "Lead Reactivation", href: "/lead-reactivation", description: "Use custom campaigns to boost database reactivation.", icon: RefreshCcw },
-                        { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine campaign traffic with instant response.", icon: Zap },
-                        { title: "Service Drive Pro", href: "/service-drive", description: "Drive high-value service appointments with targeted SMS.", icon: Wrench }
+                        { title: "Lead Reactivation", href: "/lead-reactivation", description: "Use custom campaigns to boost database reactivation.", icon: "refresh" },
+                        { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine campaign traffic with instant response.", icon: "zap" },
+                        { title: "Service Drive Pro", href: "/service-drive", description: "Drive high-value service appointments with targeted SMS.", icon: "wrench" }
                     ]}
                 />
 

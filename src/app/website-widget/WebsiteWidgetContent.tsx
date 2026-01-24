@@ -13,7 +13,6 @@ import WidgetCTA from '@/components/website-widget/WidgetCTA'
 import SocialProofSection from '@/components/website-widget/SocialProofSection'
 import RelatedSolutions from '@/components/shared/RelatedSolutions';
 import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
-import { Zap, RefreshCcw, Star } from 'lucide-react';
 
 // ============================================================================
 // SMS FIRST WIDGET PAGE - CLIENT COMPONENT
@@ -35,9 +34,9 @@ export default function WebsiteWidgetContent() {
             <RelatedSolutions
                 title="Better Lead Capture"
                 solutions={[
-                    { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine high-intent capture with instant response.", icon: Zap },
-                    { title: "Lead Reactivation", href: "/lead-reactivation", description: "Use the widget to capture missed reactivation leads.", icon: RefreshCcw },
-                    { title: "Reputation Management", href: "/reputation-management", description: "The front-door for customer-first relationships.", icon: Star }
+                    { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine high-intent capture with instant response.", icon: "zap" },
+                    { title: "Lead Reactivation", href: "/lead-reactivation", description: "Use the widget to capture missed reactivation leads.", icon: "refresh" },
+                    { title: "Reputation Management", href: "/reputation-management", description: "The front-door for customer-first relationships.", icon: "star" }
                 ]}
             />
 

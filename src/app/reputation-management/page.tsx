@@ -15,7 +15,6 @@ import FeaturesGrid from '@/components/reputation-management/FeaturesGrid';
 import FAQ from '@/components/reputation-management/FAQ';
 import RelatedSolutions from '@/components/shared/RelatedSolutions';
 import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
-import { Wrench, Zap, RefreshCcw } from 'lucide-react';
 import FinalCTA from '@/components/reputation-management/FinalCTA';
 
 export default function ReputationManagementPage() {
@@ -78,9 +77,9 @@ export default function ReputationManagementPage() {
                 <RelatedSolutions
                     title="Synergistic Solutions"
                     solutions={[
-                        { title: "Service Drive Pro", href: "/service-drive", description: "The best time to ask for a review is at vehicle pickup.", icon: Wrench },
-                        { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine rapid response with rapid review requests.", icon: Zap },
-                        { title: "Lead Reactivation", href: "/lead-reactivation", description: "Protect your brand while winning back lost shoppers.", icon: RefreshCcw }
+                        { title: "Service Drive Pro", href: "/service-drive", description: "The best time to ask for a review is at vehicle pickup.", icon: "wrench" },
+                        { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine rapid response with rapid review requests.", icon: "zap" },
+                        { title: "Lead Reactivation", href: "/lead-reactivation", description: "Protect your brand while winning back lost shoppers.", icon: "refresh" }
                     ]}
                 />
 

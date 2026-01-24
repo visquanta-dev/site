@@ -17,7 +17,6 @@ import FAQSection from '@/components/lead-reactivation/FAQSection';
 import RelatedResources from '@/components/lead-reactivation/RelatedResources';
 import RelatedSolutions from '@/components/shared/RelatedSolutions';
 import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
-import { Zap, Target, MessageSquare, Wrench } from 'lucide-react';
 import CallToAction from '@/components/lead-reactivation/CallToAction';
 import MidPageCTA from '@/components/MidPageCTA';
 
@@ -111,9 +110,9 @@ export default function LeadReactivationPage() {
             <RelatedSolutions
                 title="Smarter Lead Management"
                 solutions={[
-                    { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine database reactivation with instant response.", icon: Zap },
-                    { title: "Custom Campaigns", href: "/custom-campaigns", description: "Targeted seasonal blitzes for your reactivated audience.", icon: Target },
-                    { title: "Service Drive Pro", href: "/service-drive", description: "Automate service appointments for reactivated service leads.", icon: Wrench }
+                    { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine database reactivation with instant response.", icon: "zap" },
+                    { title: "Custom Campaigns", href: "/custom-campaigns", description: "Targeted seasonal blitzes for your reactivated audience.", icon: "target" },
+                    { title: "Service Drive Pro", href: "/service-drive", description: "Automate service appointments for reactivated service leads.", icon: "wrench" }
                 ]}
             />
 
