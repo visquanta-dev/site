@@ -434,6 +434,30 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
             result: "Generated 67 incremental trade-in opportunities from equity mining in Q1, averaging $2,100 front-end gross.",
             product: "Lead Reactivation AI"
         }
+    },
+
+    // 18. AI MVP Car Sales Teams
+    'ai-mvp-car-sales-teams': {
+        executivePoV: {
+            title: "Supporting, Not Replacing",
+            body: "The biggest fear in dealerships is that AI will replace the salesperson. In reality, AI acts as the ultimate 'Junior Salesman.' It handles the grinding work of initial engagement and basic Q&A, allowing your closers to stop chasing cold leads and start [focusing on booked appointments](/speed-to-lead). It's not a replacement; it's a force multiplier for your best talent.",
+            author: "VisQuanta Management"
+        },
+        glossaryTerms: [
+            {
+                term: "Augmented Intelligence",
+                definition: "The use of AI to enhance human decision-making and productivity, rather than replacing the human actor. In automotive, this means AI handles follow-up while humans handle the final negotiation."
+            },
+            {
+                term: "Lead-to-Appointment Ratio",
+                definition: "A key performance metric measuring the percentage of inquiries that result in a scheduled showroom or service visit. AI engagement typically increases this ratio by 40-60%."
+            }
+        ],
+        caseStudyProof: {
+            client: "Norm Reeves Auto Group",
+            result: "Increased sales productivity by 28% without increasing BDC headcount.",
+            product: "The AutoMaster Suite"
+        }
     }
 
 };

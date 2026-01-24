@@ -15,5 +15,6 @@ export const BLOG_RELATED_PRODUCTS: Record<string, string[]> = {
     'automotive-ai-chatbot-marketing-2025': ['website-widget', 'speed-to-lead'],
     'ai-bdc-first-response-time': ['speed-to-lead', 'lead-reactivation'],
     'ai-call-technology-customer-lost-leads': ['lead-reactivation', 'service-drive'],
-    'crm-mining-automotive-industry': ['lead-reactivation', 'custom-campaigns']
+    'crm-mining-automotive-industry': ['lead-reactivation', 'custom-campaigns'],
+    'ai-mvp-car-sales-teams': ['auto-master-suite', 'speed-to-lead']
 };

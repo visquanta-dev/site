@@ -91,11 +91,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/blog/ai-mvp-car-sales-teams',
-        destination: '/blog',
-        permanent: true,
-      },
-      {
         source: '/blog/promax-visquanta-partner',
         destination: '/blog',
         permanent: true,
