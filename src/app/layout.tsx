@@ -12,6 +12,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { baseSchema } from "@/lib/schema/base";
 import MobileStickyCTA from "@/components/MobileStickyCTA";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
+
 
 
 const inter = Inter({
@@ -193,6 +195,8 @@ export default function RootLayout({
             <MobileStickyCTA />
             <Toaster />
             <SpeedInsights />
+            <Analytics />
+
           </CalendlyModalProvider>
 
         </SmoothScroll>
