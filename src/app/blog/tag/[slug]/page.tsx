@@ -13,13 +13,17 @@ interface PageProps {
     searchParams: Promise<{ page?: string }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
     const { slug } = await params;
+    const resolvedSearchParams = await searchParams;
+    const page = parseInt(resolvedSearchParams.page || '0', 10);
     const { tag } = await getBlogPostsByTag(slug, 0, 1);
 
+    const titleSuffix = page > 0 ? ` (Page ${page + 1})` : '';
+
     return {
-        title: tag ? `${tag.title} | VisQuanta Blog` : 'Tag | VisQuanta Blog',
-        description: `Browse articles tagged with ${tag?.title || 'this tag'}.`,
+        title: tag ? `${tag.title}${titleSuffix} | VisQuanta Blog` : 'Tag | VisQuanta Blog',
+        description: `Browse articles tagged with ${tag?.title || 'this tag'}.${titleSuffix}`,
         alternates: {
             canonical: `https://visquanta.com/blog/tag/${slug}`,
         },
@@ -91,8 +95,8 @@ export default async function TagPage({ params, searchParams }: PageProps) {
                             <span className="text-[#FF7404] text-xs font-bold uppercase tracking-wider">Tag</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
-                            #{tag?.title || 'Tag'}
+                        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight uppercase">
+                            {tag?.title || 'Tag'}
                         </h1>
 
                         <p className="text-xl text-zinc-400 max-w-2xl mx-auto">

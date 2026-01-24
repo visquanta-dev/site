@@ -13,13 +13,17 @@ interface PageProps {
     searchParams: Promise<{ page?: string }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
     const { slug } = await params;
+    const resolvedSearchParams = await searchParams;
+    const page = parseInt(resolvedSearchParams.page || '0', 10);
     const { category } = await getBlogPostsByCategory(slug, 0, 1);
 
+    const titleSuffix = page > 0 ? ` (Page ${page + 1})` : '';
+
     return {
-        title: category ? `${category.title} | VisQuanta Blog` : 'Category | VisQuanta Blog',
-        description: `Browse articles in the ${category?.title || 'category'} category.`,
+        title: category ? `${category.title}${titleSuffix} | VisQuanta Blog` : 'Category | VisQuanta Blog',
+        description: `Browse articles in the ${category?.title || 'category'} category.${titleSuffix}`,
         alternates: {
             canonical: `https://visquanta.com/blog/category/${slug}`,
         },
