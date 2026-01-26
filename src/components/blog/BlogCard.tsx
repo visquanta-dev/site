@@ -57,13 +57,17 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                         src={article.featuredImage || FALLBACK_IMAGE}
                         alt={article.title}
                         fill
-                        style={{ objectFit: 'cover' }}
-                        className="opacity-100 group-hover:scale-105 transition-all duration-700"
+                        style={{
+                            objectFit: 'cover',
+                            filter: 'grayscale(100%) contrast(1.1) brightness(0.7)'
+                        }}
+                        className="opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
 
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent pointer-events-none" />
+                    {/* Cinematic Overlay - Service Drive Style */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/80 to-transparent z-10" />
+                    <div className="absolute inset-0 bg-[#020202]/40 z-5" />
 
                     {/* Category Badge - Keep absolute only for horizontal/featured/compact if needed, or unify. 
                         Moving to body for default to match ServiceInsights */}
@@ -143,7 +147,7 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                         "pt-2 flex items-center text-[#FF7404] text-xs font-bold uppercase tracking-widest gap-2",
                         variant === 'featured' ? "mt-8" : "mt-auto"
                     )}>
-                        Read Article
+                        READ ARTICLE
                         {/* Arrow Right if I had the icon, but I can use CSS or just text. 
                             The import might not be available if I don't import standard lucide-react.
                             Actually, BlogCard didn't have lucide icons imported. I'll stick to text styling or simple arrow.

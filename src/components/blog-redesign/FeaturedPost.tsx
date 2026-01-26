@@ -20,16 +20,20 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                     src={post.featuredImage}
                     alt={post.title}
                     fill
-                    style={{ objectFit: 'cover' }}
-                    className="opacity-80 group-hover:opacity-60 transition-opacity duration-700"
+                    style={{
+                        objectFit: 'cover',
+                        filter: 'grayscale(100%) contrast(1.1) brightness(0.6)'
+                    }}
+                    className="opacity-50 group-hover:opacity-100 transition-all duration-1000"
                     priority
                     sizes="100vw"
                 />
             </motion.div>
 
-            {/* Cinematic Gradient Overlays */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent" />
-            <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#050505]/80 via-transparent to-transparent" />
+            {/* Cinematic Gradient Overlays - Service Drive Style */}
+            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#020202] via-[#020202]/40 to-transparent" />
+            <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#020202]/80 via-transparent to-transparent" />
+            <div className="absolute inset-0 z-5 bg-[#020202]/60" />
 
             {/* Noise Texture */}
             <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />

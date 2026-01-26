@@ -75,10 +75,11 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                                             src={featured.featuredImage}
                                             alt={featured.title}
                                             fill
-                                            className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
+                                            className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                                         />
                                     )}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent pointer-events-none" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-10" />
+                                    <div className="absolute inset-0 bg-black/20 z-1" />
 
                                     {/* Data Tab Overlay - Only visible if it's the specific CRM article or we want it on all featured */}
                                     {/* Data Tab Overlay Removed */}
@@ -171,16 +172,17 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
             transition={{ duration: 0.5, delay }}
         >
             <Link href={`/blog/${post.slug}`} className="group block bg-black border border-white/[0.05] rounded-[2rem] overflow-hidden hover:border-[#ff7404]/50 hover:bg-white/[0.04] transition-all duration-500 h-full flex flex-col">
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#020202]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-950">
                     {post.featuredImage && (
                         <Image
                             src={post.featuredImage}
                             alt={post.title}
                             fill
-                            className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
+                            className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                         />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
+                    <div className="absolute inset-0 bg-black/20 z-1" />
                 </div>
 
                 <div className="p-8 flex-1 flex flex-col">

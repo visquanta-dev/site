@@ -117,7 +117,7 @@ export default function BlogCarouselClient({
                                                 <div className="absolute top-5 right-5 px-4 py-2 bg-black/70 backdrop-blur-xl rounded-full border border-white/10">
                                                     <span className="text-[11px] font-medium text-white/90">{post.readingTime} min read</span>
                                                 </div>
-                                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/20 to-transparent" />
                                             </div>
 
                                             <div className="p-8 relative flex-1 flex flex-col">
@@ -304,6 +304,7 @@ export default function BlogCarouselClient({
                                 <Link href={`/blog/${post.slug}`} className="group block">
                                     <div className="relative h-[250px] rounded-t-[2.5rem] overflow-hidden border-x border-t border-white/5 shadow-2xl">
                                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent pointer-events-none z-10" />
                                         <img
                                             src={post.image}
                                             alt={post.headline}

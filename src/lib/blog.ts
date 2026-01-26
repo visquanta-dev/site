@@ -17,6 +17,8 @@ export interface BlogArticle {
 
 // Single source of truth for post images to avoid visual drift
 export function getPostFeaturedImage(headline: string, defaultImage: string): string {
+    if (defaultImage) return defaultImage;
+
     const h = headline || '';
     if (h.includes('CRM Database Reactivation')) {
         return '/images/wireframes/ultimate-guide-crm-reactivation.jpeg';
@@ -29,7 +31,7 @@ export function getPostFeaturedImage(headline: string, defaultImage: string): st
         h.includes('Lead Response Time')) {
         return '/images/wireframes/6.jpeg';
     }
-    return defaultImage || '/images/blog/default.jpg';
+    return '/images/blog/default.jpg';
 }
 
 // Single source of truth for fetching articles

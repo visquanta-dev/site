@@ -20,7 +20,7 @@ export default function NewsletterSignup({ variant = 'inline' }: NewsletterSignu
         setStatus('loading');
 
         try {
-            const response = await fetch('/api/newsletter/subscribe', {
+            const response = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ export default function NewsletterSignup({ variant = 'inline' }: NewsletterSignu
                         ) : (
                             <form onSubmit={handleSubmit} className="relative">
                                 <div
-                                    className={`relative flex items-center rounded-xl transition-all duration-300 ${isFocused
+                                    className={`relative flex flex-col sm:flex-row items-stretch sm:items-center gap-2 rounded-2xl sm:rounded-xl transition-all duration-300 p-1.5 ${isFocused
                                         ? 'ring-2 ring-[#FF6B35]/40 bg-white/[0.03]'
                                         : 'bg-white/[0.02]'
                                         }`}
@@ -138,25 +138,26 @@ export default function NewsletterSignup({ variant = 'inline' }: NewsletterSignu
                                         border: '1px solid rgba(255,255,255,0.08)',
                                     }}
                                 >
-                                    <div className="pl-4 text-white/30">
-                                        <Mail className="w-5 h-5" />
+                                    <div className="flex items-center flex-1">
+                                        <div className="pl-4 text-white/30">
+                                            <Mail className="w-5 h-5" />
+                                        </div>
+                                        <input
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            onFocus={() => setIsFocused(true)}
+                                            onBlur={() => setIsFocused(false)}
+                                            placeholder="Enter your work email"
+                                            className="flex-1 bg-transparent px-4 py-4 text-white placeholder:text-white/30 focus:outline-none text-sm"
+                                            required
+                                        />
                                     </div>
-
-                                    <input
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        onFocus={() => setIsFocused(true)}
-                                        onBlur={() => setIsFocused(false)}
-                                        placeholder="Enter your work email"
-                                        className="flex-1 bg-transparent px-4 py-4 text-white placeholder:text-white/30 focus:outline-none text-sm"
-                                        required
-                                    />
 
                                     <button
                                         type="submit"
                                         disabled={status === 'loading' || !email}
-                                        className="m-1.5 px-5 py-2.5 rounded-lg bg-[#FF6B35] hover:bg-[#FF8C5A] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center gap-2 group"
+                                        className="px-5 py-4 sm:py-2.5 rounded-xl sm:rounded-lg bg-[#FF6B35] hover:bg-[#FF8C5A] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 group flex-shrink-0"
                                     >
                                         {status === 'loading' ? (
                                             <Loader2 className="w-4 h-4 text-black animate-spin" />

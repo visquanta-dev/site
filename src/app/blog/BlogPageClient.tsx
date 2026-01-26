@@ -40,14 +40,21 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                     className="group bg-zinc-900/40 border border-white/5 rounded-3xl overflow-hidden hover:bg-zinc-900/60 hover:border-[#FF7404]/30 transition-all duration-500 flex flex-col h-full"
                 >
                     <Link href={`/blog/${post.slug}`} className="block">
-                        <div className="h-48 bg-zinc-800 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+                        <div className="h-56 bg-zinc-950 relative overflow-hidden">
+                            {/* Cinematic Overlay - Service Drive Style */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
+                            <div className="absolute inset-0 bg-black/20 z-1" />
+
                             {post.image ? (
                                 <Image
                                     src={post.image}
                                     alt={post.headline}
                                     fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    style={{
+                                        objectFit: 'cover',
+                                        filter: 'grayscale(100%) contrast(1.1) brightness(0.6)'
+                                    }}
+                                    className="opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000"
                                 />
                             ) : (
                                 <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">

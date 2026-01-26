@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
         // Send welcome email via Resend
         try {
             await getResendClient().emails.send({
-                from: 'VisQuanta Insights <onboarding@resend.dev>',
+                from: 'VisQuanta Insights <insights@visquanta.com>',
 
                 to: normalizedEmail,
                 subject: 'Welcome to VisQuanta Insights 🚗',
@@ -95,6 +95,32 @@ export async function POST(request: NextRequest) {
         } catch (emailError) {
             // Log but don't fail - email is secondary to database storage
             console.error('Resend email error:', emailError);
+        }
+
+        // Send to Loops
+        try {
+            const loopsApiKey = process.env.LOOPS_API_KEY;
+            if (loopsApiKey) {
+                await fetch('https://app.loops.so/api/v1/contacts/create', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${loopsApiKey}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: normalizedEmail,
+                        source: "Website",
+                        subscribed: false,
+                        userGroup: 'Newsletter',
+                        mailingLists: {
+                            "cmkvfkhct04kn0i3r1wzfagtm": true
+                        },
+                        optInUrl: 'https://www.visquanta.com/newsletter/confirm'
+                    }),
+                });
+            }
+        } catch (loopsError) {
+            console.error('Loops integration error:', loopsError);
         }
 
         console.log('Newsletter subscription:', {

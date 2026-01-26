@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 
 export async function middleware(request) {
 
+    // FIX ISSUE 3: Force www redirect
+    const host = request.headers.get("host") || "";
+    if (host === "visquanta.com") {
+        return NextResponse.redirect(new URL(request.nextUrl.pathname, "https://www.visquanta.com"), 301);
+    }
+
     const userAgent = request.headers.get("user-agent");
 
     const bots = [

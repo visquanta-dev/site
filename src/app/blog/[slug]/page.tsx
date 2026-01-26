@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
 
     return {
-        title: `${post.headline} | VisQuanta`,
+        title: post.headline,
         description: description,
         authors: [{ name: 'VisQuanta', url: 'https://www.visquanta.com' }],
         alternates: {
@@ -274,11 +274,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
                                 {(() => {
                                     const faqMatch = post.html.match(/<h2 id="faqs"[^>]*>.*?<\/h2>([\s\S]*)/i);
-                                    let mainContentHtml = post.html;
+
+                                    // FIX ISSUE 2: Strip duplicate H1 from content (since template has one)
+                                    let mainContentHtml = post.html.replace(/<h1[^>]*>.*?<\/h1>/i, '');
+
                                     let faqHtml = '';
 
                                     if (faqMatch) {
-                                        mainContentHtml = post.html.substring(0, faqMatch.index);
+                                        mainContentHtml = mainContentHtml.substring(0, faqMatch.index);
                                         faqHtml = faqMatch[1];
                                     }
 

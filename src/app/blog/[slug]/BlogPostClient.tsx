@@ -31,11 +31,12 @@ export function ParallaxHero({ src, alt }: ParallaxHeroProps) {
                     src={src}
                     alt={alt}
                     fill
-                    className="object-contain"
+                    className="object-contain grayscale opacity-60"
                     priority
                 />
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
+            <div className="absolute inset-0 bg-black/40 z-1" />
 
             {/* Scroll Indication */}
             <motion.div

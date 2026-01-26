@@ -165,11 +165,25 @@ export default function ContactPage() {
     const { isSubmitting } = form.formState;
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        console.log(values);
-        setIsSubmitted(true);
-        toast.success("Message sent successfully!");
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(values),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('API error:', errorData);
+                throw new Error(errorData.error?.message || errorData.details || errorData.error || 'Failed to send message');
+            }
+
+            setIsSubmitted(true);
+            toast.success("Message sent successfully!");
+        } catch (error: any) {
+            console.error('Submission error:', error);
+            toast.error(error.message || "Failed to send message. Please try again.");
+        }
     }
 
     // --- Animations ---
