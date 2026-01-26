@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'AutoMaster Suite | AI Revenue Platform | VisQuanta',
+    title: 'AutoMaster Suite | AI Revenue Platform',
     description: 'AutoMaster Suite is a unified AI platform designed to automate dealership operations, reactivate CRM leads, and maximize your store\'s total gross profit.',
     alternates: {
         canonical: 'https://www.visquanta.com/auto-master-suite',

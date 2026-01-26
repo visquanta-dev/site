@@ -7,7 +7,7 @@ import { getArticles } from '@/lib/blog';
 export const revalidate = 60;
 
 export const metadata = {
-    title: 'The Journal | VisQuanta',
+    title: 'The Journal',
     description: 'Read The Journal for industry insights, sales strategies, and data-driven trends in modern automotive retail. Stay ahead with expert analysis from VisQuanta.',
     alternates: {
         canonical: 'https://www.visquanta.com/blog',

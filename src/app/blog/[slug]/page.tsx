@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!post) {
         return {
-            title: 'Post Not Found | VisQuanta',
+            title: 'Post Not Found',
         };
     }
 

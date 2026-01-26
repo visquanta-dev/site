@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!caseStudy) {
         return {
-            title: 'Case Study Not Found | VisQuanta',
+            title: 'Case Study Not Found',
             description: 'The requested case study could not be found.',
             alternates: {
                 canonical: `https://visquanta.com/case-studies/${slug}`,
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
 
     return {
-        title: `${caseStudy.client} Case Study | VisQuanta`,
+        title: `${caseStudy.client} Case Study`,
         description: caseStudy.summary.length > 155
             ? caseStudy.summary.substring(0, 152) + '...'
             : caseStudy.summary,

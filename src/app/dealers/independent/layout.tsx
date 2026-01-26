@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Independent Dealer AI | Scalable Growth | VisQuanta',
+    title: 'Independent Dealer AI | Scalable Growth',
     description: 'Accelerate growth for your independent dealership with AI-powered lead management, inventory turn optimization, and 24/7 automated customer engagement tools.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealers/independent',

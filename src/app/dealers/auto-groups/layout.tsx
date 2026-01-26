@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Auto Group AI | Enterprise Lead Management | VisQuanta',
+    title: 'Auto Group AI | Enterprise Lead Management',
     description: 'Empower your auto group with enterprise-grade AI lead management and centralized performance tracking. Orchestrate revenue growth across all your rooftops.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealers/auto-groups',

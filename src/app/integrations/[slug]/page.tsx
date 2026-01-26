@@ -28,12 +28,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     if (!integration) {
         return {
-            title: 'Automotive Integration Not Found | VisQuanta',
+            title: 'Automotive Integration Not Found',
         };
     }
 
     return {
-        title: `${integration.name} Integration | VisQuanta AI for Dealerships`,
+        title: `${integration.name} Integration`,
         description: `${integration.name} + VisQuanta: ${integration.description} Seamlessly sync leads, appointments, and activities with automotive AI.`.substring(0, 158).trim(),
         alternates: {
             canonical: `https://www.visquanta.com/integrations/${slug}`,

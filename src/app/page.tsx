@@ -29,7 +29,7 @@ import { homepageSchema } from "@/lib/schema/homepage";
 // =============================================================================
 export const metadata: Metadata = {
   // Title: Primary keyword FIRST, then brand
-  title: "AI BDC for Car Dealerships | Lead Reactivation & Speed-to-Lead | VisQuanta",
+  title: "AI BDC for Car Dealerships | Lead Reactivation & Speed-to-Lead",
 
   // Description: Front-load keywords, include differentiators, add trust signals
   description:
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.visquanta.com/",
     siteName: "VisQuanta",
-    title: "AI for Car Dealerships | Lead Reactivation & Speed to Lead | VisQuanta",
+    title: "AI for Car Dealerships | Lead Reactivation & Speed to Lead",
     description:
       "Reactivate dormant CRM leads. Respond to inbound leads in under 60 seconds. Never miss a service call. VisQuanta's AI platform drives dealership revenue 24/7.",
     images: [

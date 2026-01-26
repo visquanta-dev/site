@@ -6,7 +6,7 @@ import WebsiteWidgetContent from './WebsiteWidgetContent';
 // ============================================================================
 
 export const metadata: Metadata = {
-  title: 'Website Widget | SMS First Capture | VisQuanta',
+  title: 'Website Widget | SMS First Capture',
   description: 'Convert more visitors with our SMS-first website widget. Capture leads instantly and engage them in real-time conversation.',
   alternates: {
     canonical: 'https://www.visquanta.com/website-widget',
