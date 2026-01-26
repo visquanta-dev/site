@@ -36,7 +36,8 @@ export default function WebsiteWidgetContent() {
                 solutions={[
                     { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine high-intent capture with instant response.", icon: "zap" },
                     { title: "Lead Reactivation", href: "/lead-reactivation", description: "Use the widget to capture missed reactivation leads.", icon: "refresh" },
-                    { title: "Reputation Management", href: "/reputation-management", description: "The front-door for customer-first relationships.", icon: "star" }
+                    { title: "Reputation Management", href: "/reputation-management", description: "The front-door for customer-first relationships.", icon: "star" },
+                    { title: "Service Drive", href: "/service-drive", description: "Capture service intent and book directly into your DMS.", icon: "wrench" }
                 ]}
             />
 

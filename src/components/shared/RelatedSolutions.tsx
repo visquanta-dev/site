@@ -55,7 +55,7 @@ export default function RelatedSolutions({
                     </div>
 
                     {/* Solutions Grid */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className={`grid md:grid-cols-2 ${solutions.length % 4 === 0 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-6`}>
                         {solutions.map((solution, index) => (
                             <motion.div
                                 key={solution.href}
