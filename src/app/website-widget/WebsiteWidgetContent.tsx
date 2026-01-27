@@ -12,7 +12,6 @@ import WidgetFAQ from '@/components/website-widget/WidgetFAQ'
 import WidgetCTA from '@/components/website-widget/WidgetCTA'
 import SocialProofSection from '@/components/website-widget/SocialProofSection'
 import RelatedSolutions from '@/components/shared/RelatedSolutions';
-import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
 
 // ============================================================================
 // SMS FIRST WIDGET PAGE - CLIENT COMPONENT
@@ -39,10 +38,6 @@ export default function WebsiteWidgetContent() {
                     { title: "Reputation Management", href: "/reputation-management", description: "The front-door for customer-first relationships.", icon: "star" },
                     { title: "Service Drive", href: "/service-drive", description: "Capture service intent and book directly into your DMS.", icon: "wrench" }
                 ]}
-            />
-
-            <RelatedCaseStudies
-                caseStudySlugs={['bayside-honda', 'seth-wadley']}
             />
 
             <WidgetCTA />
