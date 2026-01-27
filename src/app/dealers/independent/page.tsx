@@ -558,7 +558,7 @@ export default function IndependentDealersPage() {
                                     See ROI Calculator
                                 </Link>
                                 <div className="text-xs text-zinc-500 font-medium mt-2 sm:mt-0 sm:absolute sm:-bottom-8 sm:left-1/2 sm:-translate-x-1/2">
-                                    No long-term contracts. 15-minute walkthrough.
+                                    No long-term contracts. 30-minute walkthrough.
                                 </div>
                             </motion.div>
                         </motion.div>

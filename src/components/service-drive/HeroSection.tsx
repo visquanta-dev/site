@@ -103,7 +103,7 @@ export default function HeroSection() {
                     className="flex flex-col items-center gap-2 mb-12 sm:mb-16"
                 >
                     <p className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold">
-                        15-min 1:1 • Get an exact revenue-lift projection for your dealership
+                        30-min 1:1 • Get an exact revenue-lift projection for your dealership
                     </p>
                 </motion.div>
 

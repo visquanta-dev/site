@@ -551,18 +551,21 @@ export default function AutoGroupsPage() {
 
                             <motion.div
                                 variants={itemVariants}
-                                className="flex flex-col sm:flex-row items-center gap-4"
+                                className="flex flex-col items-center lg:items-start gap-4"
                             >
                                 <RequestDemoButton asChild>
                                     <motion.div
                                         whileHover={{ scale: 1.02, boxShadow: "0 0 40px -5px rgba(255,116,4,0.5)" }}
                                         whileTap={{ scale: 0.98 }}
-                                        className="w-full sm:w-auto px-10 py-5 bg-[#FF7404] text-black font-bold rounded-xl flex items-center justify-center gap-2 shadow-[0_0_30px_-5px_rgba(255,116,4,0.4)] cursor-pointer text-lg"
+                                        className="w-full sm:w-auto px-10 py-5 bg-[#FF7404] text-black font-bold rounded-xl flex items-center justify-center gap-2 shadow-[0_0_30px_-5px_rgba(255,116,4,0.4)] cursor-pointer text-lg group"
                                     >
                                         Schedule Your Walkthrough
-                                        <ArrowRight className="w-5 h-5" />
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                     </motion.div>
                                 </RequestDemoButton>
+                                <p className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold">
+                                    30-min 1:1 • Get an exact revenue-lift projection for your group
+                                </p>
                             </motion.div>
                         </motion.div>
 

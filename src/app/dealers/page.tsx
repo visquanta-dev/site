@@ -561,7 +561,7 @@ export default function DealerHub() {
                                 transition={{ delay: 0.3 }}
                                 className="text-[10px] sm:text-xs text-[#FF7404] uppercase tracking-[0.2em] font-bold"
                             >
-                                15-min 1:1 • Get an exact revenue-lift projection for your dealership
+                                30-min 1:1 • Get an exact revenue-lift projection for your dealership
                             </motion.p>
                         </div>
                         <p className="mt-6 text-xs text-zinc-600 font-mono">

@@ -27,7 +27,7 @@ export default function CountrySelectionStep({ selectedCountry, onSelect, onAlre
                     transition={{ delay: 0.1 }}
                     className="text-xl text-white/50"
                 >
-                    15-min 1:1 • Get an exact revenue-lift projection for your dealership
+                    30-min 1:1 • Get an exact revenue-lift projection for your dealership
                 </motion.p>
             </div>
 

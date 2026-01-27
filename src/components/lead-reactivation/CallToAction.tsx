@@ -114,7 +114,7 @@ export default function CallToAction({ onOpenCalculator }: CallToActionProps) {
                                 transition={{ delay: 0.6 }}
                                 className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold"
                             >
-                                15-min 1:1 • Get an exact revenue-lift projection for your dealership
+                                30-min 1:1 • Get an exact revenue-lift projection for your dealership
                             </motion.p>
                         </div>
 

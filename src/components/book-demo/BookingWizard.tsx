@@ -100,49 +100,57 @@ export default function BookingWizard() {
             name: "Dwayne Roemer",
             role: "Director of Canadian Operations",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4cd9a69563d82a59b270f_WhatsApp_Image_2025-10-07_at_01.28.06_8f1c8935-modified-removebg-preview.avif",
-            calendly: "https://calendly.com/droemer-visquanta/30min"
+            calendly: "https://calendly.com/droemer-visquanta/30min",
+            duration: "30-Min"
         },
         WILLIAM: {
             name: "William Voyles",
             role: "Co-Founder & CSO",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
-            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo"
+            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo",
+            duration: "30-Min"
         },
         SIA: {
             name: "Sia Small",
             role: "Director of Business Growth",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif",
-            calendly: "https://calendly.com/ssmall-visquanta/book-a-product-demo-45-min"
+            calendly: "https://calendly.com/ssmall-visquanta/book-a-product-demo-45-min",
+            duration: "45-Min"
         },
         CHARLES: {
             name: "Charles Snodgrass",
             role: "Director of Client Success",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61fc9b8fa6d06815ceb_charles%2Csnodgrass%2Cheadshot%2Cvisquanta.webp",
-            calendly: "https://calendly.com/csnodgrass-visquanta/visquanta-discovery-call"
+            calendly: "https://calendly.com/csnodgrass-visquanta/visquanta-discovery-call",
+            duration: "30-Min"
         },
         AARON: {
             name: "Aaron Rowley",
             role: "Co-Founder & CTO",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61e609317cfb8b63364_aaron%2Crowley%2Cheadshot%2Cvisquanta.webp",
-            calendly: "https://calendly.com/aaron-visquanta/virtual_coffee"
+            calendly: "https://calendly.com/aaron-visquanta/virtual_coffee",
+            duration: "30-Min"
         },
         MATT: {
             name: "Matt Nixon",
             role: "Co-Founder & CFO",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61edcc6a5a093ce6245_matt%2Cnixon%2Cheadshot%2Cvisquanta.webp",
-            calendly: "https://calendly.com/matt-visquanta/30min"
+            calendly: "https://calendly.com/matt-visquanta/30min",
+            duration: "30-Min"
         },
         CHRISTOPHER: {
             name: "Christopher Wilson",
             role: "Co-Founder & COO",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61f76c1b77bb770b669_christopher%2Cwilson%2Cheadshot%2Cvisquanta.webp",
-            calendly: "https://calendly.com/christopher-visquanta/30min"
+            calendly: "https://calendly.com/christopher-visquanta/30min",
+            duration: "30-Min"
         },
         CLINT: {
             name: "Clint Annis",
             role: "Integrations Lead",
             image: "/team/clint-annis.png",
-            calendly: "https://calendly.com/cannis-visquanta/30min"
+            calendly: "https://calendly.com/cannis-visquanta/30min",
+            duration: "30-Min"
         },
         SALES_TEAM: {
             name: "Product Specialist Team",
@@ -152,7 +160,8 @@ export default function BookingWizard() {
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif"
             ],
-            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo" // Placeholder for Round Robin
+            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo", // Placeholder for Round Robin
+            duration: "45-Min"
         },
         SUCCESS_TEAM: {
             name: "Client Success Team",
@@ -162,7 +171,8 @@ export default function BookingWizard() {
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61fc9b8fa6d06815ceb_charles%2Csnodgrass%2Cheadshot%2Cvisquanta.webp",
                 "/team/clint-annis.png"
             ],
-            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo" // Placeholder
+            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo", // Placeholder
+            duration: "30-Min"
         }
     };
 
@@ -335,7 +345,7 @@ export default function BookingWizard() {
                             <motion.div key="step6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                                 <div className="max-w-4xl mx-auto space-y-12">
                                     <div className="text-center space-y-8">
-                                        <h2 className="text-3xl font-black text-white tracking-tighter">Confirm Your 15-Min Walkthrough</h2>
+                                        <h2 className="text-3xl font-black text-white tracking-tighter">Confirm Your {(getFinalRep() as any).duration || "30-Min"} Walkthrough</h2>
                                         <div className="max-w-md mx-auto pointer-events-none">
                                             {/* Show the resolved rep card in a 'selected' state */}
                                             <SalesRepCard
