@@ -110,7 +110,7 @@ function CalendlyModal({ isOpen, onClose, calendlyUrl }: CalendlyModalProps) {
                                     </div>
                                     <div>
                                         <h2 className="text-lg font-bold text-white">Schedule Your Walkthrough</h2>
-                                        <p className="text-xs text-white/50">Choose a 30-min slot that works for you</p>
+                                        <p className="text-xs text-white/50">Choose a 15-min slot that works for you</p>
                                     </div>
                                 </div>
                                 <button
@@ -150,7 +150,7 @@ function CalendlyModal({ isOpen, onClose, calendlyUrl }: CalendlyModalProps) {
                             {/* Footer */}
                             <div className="px-6 py-6 border-t border-white/10 bg-[#0A0A0A] text-center">
                                 <p className="text-sm text-white/50 mb-4">
-                                    30-min 1:1 • Get an exact revenue-lift projection for your dealership
+                                    15-min 1:1 • Get an exact revenue-lift projection for your dealership
                                 </p>
                                 <p className="text-xs text-white/40">
                                     By scheduling, you agree to our{' '}

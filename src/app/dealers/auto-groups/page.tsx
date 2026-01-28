@@ -564,7 +564,7 @@ export default function AutoGroupsPage() {
                                     </motion.div>
                                 </RequestDemoButton>
                                 <p className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold">
-                                    30-min 1:1 • Get an exact revenue-lift projection for your group
+                                    15-min 1:1 • Get an exact revenue-lift projection for your group
                                 </p>
                             </motion.div>
                         </motion.div>

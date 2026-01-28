@@ -61,7 +61,7 @@ export default function WhatIsSection() {
                                     <strong className="text-white font-semibold">Speed to lead</strong> (or inbound lead response time) is the critical window between a customer inquiry and your first contact. Respond in <span className="text-white border-b border-[#FF7404]/30">under 5 minutes</span>, and you're 100x more likely to convert.
                                 </p>
                                 <p className="text-lg text-white/50 leading-relaxed">
-                                    Wait just 30 minutes, and your chances of closing the deal drop by 21x. While the industry average inbound lead response time drags at 1 hour and 38 minutes, VisQuanta's AI ensures you're always first, responding in seconds, 24/7/365.
+                                    Wait just 15 minutes, and your chances of closing the deal drop by 21x. While the industry average inbound lead response time drags at 1 hour and 38 minutes, VisQuanta's AI ensures you're always first, responding in seconds, 24/7/365.
                                 </p>
                             </div>
                         </motion.div>

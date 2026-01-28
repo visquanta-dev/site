@@ -217,7 +217,7 @@ export default function SpeedLossCalculator({ onOpenCalculator }: SpeedLossCalcu
                         <div className="space-y-6">
                             {[
                                 { label: "Response under 1 min", value: "391% Increase in Conversion", color: "text-green-500" },
-                                { label: "Response after 30 mins", value: "21x Decrease in Qualification", color: "text-red-500" },
+                                { label: "Response after 15 mins", value: "21x Decrease in Qualification", color: "text-red-500" },
                             ].map((stat, i) => (
                                 <div key={i} className="flex flex-col gap-1">
                                     <span className="text-xs font-semibold text-white/30 uppercase tracking-widest">{stat.label}</span>

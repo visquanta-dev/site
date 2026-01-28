@@ -62,7 +62,7 @@ export default function MidPageCTA({
                     )}
 
                     <p className="text-[10px] sm:text-xs text-white/30 uppercase tracking-[0.15em] font-bold mt-6">
-                        30-min 1:1 • Get an exact revenue-lift projection for your dealership                  </p>
+                        15-min 1:1 • Get an exact revenue-lift projection for your dealership                  </p>
                 </motion.div>
             </div>
         </section>

@@ -76,7 +76,7 @@ export default function OpportunityCheck({ onOpenCalculator }: OpportunityCheckP
                                         <span className="text-[10px] font-bold uppercase tracking-widest">The 1-Min Rule</span>
                                     </div>
                                     <p className="text-xs text-zinc-500 leading-relaxed italic">
-                                        &quot;Responding within 60 seconds increases conversion by 391% vs responding in 30 mins.&quot;
+                                        &quot;Responding within 60 seconds increases conversion by 391% vs responding in 15 mins.&quot;
                                     </p>
                                 </div>
                                 <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">

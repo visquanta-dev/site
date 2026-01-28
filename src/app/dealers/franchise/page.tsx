@@ -586,7 +586,7 @@ export default function FranchisePage() {
                                     </motion.div>
                                 </Link>
                                 <p className="text-xs text-zinc-500 font-medium tracking-wide ml-2">
-                                    30-min 1:1 • OEM Compliant • CDK/Reynolds Certified
+                                    15-min 1:1 • OEM Compliant • CDK/Reynolds Certified
                                 </p>
                             </motion.div>
 

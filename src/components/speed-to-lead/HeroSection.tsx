@@ -114,7 +114,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             </div>
                             {/* CRO Finding D: Explicit value prop below CTA */}
                             <p className="text-[11px] sm:text-xs text-white/40 font-medium tracking-wide ml-0 sm:ml-2">
-                                30-min 1:1 • Get an exact revenue-lift projection for your dealership
+                                15-min 1:1 • Get an exact revenue-lift projection for your dealership
                             </p>
                         </motion.div>
 

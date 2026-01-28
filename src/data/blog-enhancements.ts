@@ -52,7 +52,7 @@ export const BLOG_ENHANCEMENTS: Record<string, BlogEnhancement> = {
     'speed-to-lead-slow-follow-up-sales-impact': {
         executivePoV: {
             title: "The 5-Minute Cliff",
-            body: "We analyzed over 50,000 lead interactions and found a consistent pattern: if you don't make contact within the first 5 minutes, your odds of ever reaching that customer drop by 80%. After 30 minutes, it's 90%. This isn't about being pushy; it's about being present when the customer is still in decision mode. Our [Speed-to-Lead AI](/speed-to-lead) ensures you're always first, while [Lead Reactivation](/lead-reactivation) handles the ones that slipped through previously.",
+            body: "We analyzed over 50,000 lead interactions and found a consistent pattern: if you don't make contact within the first 5 minutes, your odds of ever reaching that customer drop by 80%. After 15 minutes, it's 90%. This isn't about being pushy; it's about being present when the customer is still in decision mode. Our [Speed-to-Lead AI](/speed-to-lead) ensures you're always first, while [Lead Reactivation](/lead-reactivation) handles the ones that slipped through previously.",
             author: "VisQuanta Management"
         },
         glossaryTerms: [

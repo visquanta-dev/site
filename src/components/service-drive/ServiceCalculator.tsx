@@ -480,7 +480,7 @@ export default function ServiceCalculator() {
 
                                     {/* Expectation Microcopy - CRO Finding L */}
                                     <p className="mt-4 text-white/20 text-[10px] uppercase tracking-wider font-medium">
-                                        Book a 30-min discovery call to see your custom ROI report
+                                        Book a 15-min discovery call to see your custom ROI report
                                     </p>
                                 </div>
                             </motion.div>

@@ -93,7 +93,7 @@ export const MOCK_BLOG_POSTS = [
             </ul>
             
             <h3>The Cost of "Morning Response"</h3>
-            <p>Response time is not just a vanity metric; it is the single biggest predictor of conversion. Leads responded to within 5 minutes are <strong>21x more likely</strong> to enter the sales process than those responded to after 30 minutes. responding 10 hours later? That lead is effectively dead.</p>
+            <p>Response time is not just a vanity metric; it is the single biggest predictor of conversion. Leads responded to within 5 minutes are <strong>21x more likely</strong> to enter the sales process than those responded to after 15 minutes. responding 10 hours later? That lead is effectively dead.</p>
             
             <h3>The Solution: 24/7 AI Coverage</h3>
             <p>This is where <a href="/speed-to-lead">Speed to Lead</a> technology shifts from a "nice-to-have" to a critical operational asset. An AI agent doesn't sleep, doesn't take breaks, and doesn't care if a lead comes in at 2:00 AM on a Sunday.</p>

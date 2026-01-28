@@ -66,7 +66,7 @@ const scenarios: Scenario[] = [
       { id: 'msg2', sender: 'user', content: "Yeah, I am actually, my lease is up next month." },
       { id: 'msg3', sender: 'agent', content: "Perfect timing then. We’ve had some great stock come in recently. Would you like to pop by for a look and a quick test drive?" },
       { id: 'msg4', sender: 'user', content: "Sure, that works." },
-      { id: 'msg5', sender: 'agent', content: "Perfect. I’ll have one of our sales team give you a quick call to lock in a time. You can expect a call from them within the next 30 minutes." },
+      { id: 'msg5', sender: 'agent', content: "Perfect. I’ll have one of our sales team give you a quick call to lock in a time. You can expect a call from them within the next 15 minutes." },
       { id: 'msg6', sender: 'user', content: "Ok, thanks for getting in touch." },
       { id: 'msg7', sender: 'agent', content: "You’re very welcome, John. Speak shortly and have a great day." }
     ],

@@ -3,7 +3,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const faqs = [
-    { question: "How long is the demo?", answer: "Most demos take about 30 minutes. We'll show you exactly how VisQuanta works and answer any questions." },
+    { question: "How long is the demo?", answer: "Most demos take about 15 minutes. We'll show you exactly how VisQuanta works and answer any questions." },
     { question: "Do I need to prepare anything?", answer: "No preparation needed. If you know your monthly volume and current pain points, that helps us tailor the walkthrough." },
     { question: "Is there a free trial?", answer: "We offer pilot programs for qualified dealerships. Ask your product specialist during the call." },
     { question: "Does it integrate with my CRM?", answer: "Yes, VisQuanta integrates with all major automotive CRMs tailored to your specific setup." },
