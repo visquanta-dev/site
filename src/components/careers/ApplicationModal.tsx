@@ -36,11 +36,32 @@ export default function ApplicationModal({ isOpen, onClose, position = "Strategi
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    inquiryType: `Career Application: ${position}`,
+                    message: `LinkedIn: ${formData.linkedin}\n\nExperience:\n${formData.experience}\n\nConnections:\n${formData.connections}`
+                }),
+            });
 
-        setIsSubmitting(false);
-        setStep(2); // Success state
+            if (!response.ok) {
+                throw new Error('Failed to submit application');
+            }
+
+            setStep(2); // Success state
+        } catch (error) {
+            console.error('Application submission error:', error);
+            alert('Failed to submit application. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

@@ -193,6 +193,23 @@ export default function BookingWizard() {
         if (step === 2) {
             isValid = await trigger(['fullName', 'email', 'phone', 'dealershipName']);
             if (isValid) {
+                // Capture lead in background (fire & forget)
+                const currentData = getValues();
+                const leadData = {
+                    name: currentData.fullName,
+                    email: currentData.email,
+                    phone: currentData.phone,
+                    dealership: currentData.dealershipName,
+                    inquiryType: 'Demo Booking Started',
+                    message: `Started booking wizard. Country: ${country}`
+                };
+
+                fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadData)
+                }).catch(err => console.error('Background lead capture failed:', err));
+
                 if (isCanada) {
                     setStep(3);
                 } else {

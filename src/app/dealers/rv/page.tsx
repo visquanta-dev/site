@@ -20,9 +20,36 @@ export default function RVConnectPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setFormState('submitting');
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setFormState('success');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    dealership: formData.dealershipName,
+                    inquiryType: 'RV Connect Waitlist',
+                    message: `Please add me to the RV Connect waitlist.\nDealership: ${formData.dealershipName}`
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit');
+            }
+
+            setFormState('success');
+        } catch (error) {
+            console.error('Submission error:', error);
+            // Optionally set an error state here, for now we effectively reset or stay in submitting which isn't ideal but minimal change
+            // But let's just reset to idle so they can try again if needed, or maybe add an error state later.
+            // For this specific UI, checking 'success' shows the success message.
+            setFormState('idle');
+            alert('Something went wrong. Please try again.');
+        }
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
