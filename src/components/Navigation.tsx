@@ -47,6 +47,7 @@ interface NavItem {
     href: string;
     description?: string;
     icon?: any;
+    isCore?: boolean;
   }[];
 }
 
@@ -58,33 +59,21 @@ const navItems: NavItem[] = [
       {
         label: 'Lead Reactivation',
         href: '/lead-reactivation',
-        description: 'Re-engage and convert dormant leads',
-        icon: RefreshCcw
+        description: 'Database Reactivation - Reengage and convert',
+        icon: RefreshCcw,
+        isCore: true
       },
       {
         label: 'Speed to Lead Services',
         href: '/speed-to-lead',
-        description: 'Lead response in real time',
+        description: 'Including Website SMS Widget & Social Media Agent',
         icon: Zap
-      },
-      {
-        label: 'SMS Website Widget',
-        href: '/website-widget',
-        description: 'Convert visitors to SMS leads',
-        icon: MessageSquare
       },
       {
         label: 'Reputation Management',
         href: '/reputation-management',
         description: 'Stay ahead of online reviews',
         icon: Star
-      },
-
-      {
-        label: 'Service Drive Pro',
-        href: '/service-drive',
-        description: 'Your service desk, on autopilot',
-        icon: Wrench
       },
       {
         label: 'Custom Campaigns',
@@ -98,7 +87,7 @@ const navItems: NavItem[] = [
     label: 'Dealer Services',
     children: [
       { label: 'Independent Dealerships', href: '/dealers/independent', description: 'Maximize capital & time efficiency', icon: Target },
-      { label: 'Franchise Dealerships', href: '/dealers/franchise', description: 'Consistent performance across locations', icon: Star },
+      { label: 'Franchise Dealerships', href: '/dealers/franchise', description: 'Consistent performance across locations', icon: Star, isCore: true },
       { label: 'Auto Groups', href: '/dealers/auto-groups', description: 'Group-wide control, local execution', icon: Zap },
       { label: 'Pre-Owned', href: '/dealers/pre-owned', description: 'Lead reactivation & inventory velocity', icon: RefreshCcw },
       {
@@ -305,7 +294,7 @@ export default function Navigation() {
                                         <div className="text-sm font-bold text-white group-hover:text-[#FF7404] transition-colors uppercase tracking-tight">
                                           {child.label}
                                         </div>
-                                        {idx === 0 && (
+                                        {child.isCore && (
                                           <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-[#FF7404]/20 text-[#FF7404] uppercase tracking-widest border border-[#FF7404]/20">Core</span>
                                         )}
                                       </div>
@@ -533,8 +522,13 @@ export default function Navigation() {
                                           </div>
                                         )}
                                         <div>
-                                          <div className="text-base text-zinc-300 group-hover/child:text-white transition-colors font-semibold">
-                                            {child.label}
+                                          <div className="flex items-center gap-2">
+                                            <div className="text-base text-zinc-300 group-hover/child:text-white transition-colors font-semibold">
+                                              {child.label}
+                                            </div>
+                                            {child.isCore && (
+                                              <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-[#FF7404]/20 text-[#FF7404] uppercase tracking-widest border border-[#FF7404]/20">Core</span>
+                                            )}
                                           </div>
                                           <div className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
                                             {child.description}

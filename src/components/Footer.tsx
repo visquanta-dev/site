@@ -267,7 +267,8 @@ export default function Footer() {
 
                 <div className="flex items-center gap-6">
                   {/* BBB Logo */}
-                  <div className="flex items-center opacity-40 hover:opacity-100 transition-opacity cursor-default">
+                  {/* BBB Logo - Hidden via Overlay */}
+                  <div className="relative flex items-center opacity-40 hover:opacity-100 transition-opacity cursor-default">
                     <Image
                       src="/images/logos/BBB_ABSeal_H_US_2025.svg.svg"
                       alt="BBB Accredited Business"
@@ -275,9 +276,10 @@ export default function Footer() {
                       height={37}
                       className="h-9 w-auto"
                     />
+                    <div className="absolute inset-0 bg-[#030303] z-10" />
                   </div>
 
-                  <div className="w-px h-6 bg-white/10" />
+                  <div className="invisible w-px h-6 bg-white/10" />
 
                   {/* SSL Icon */}
                   <div className="flex items-center gap-1.5 opacity-40 hover:opacity-80 transition-opacity cursor-default">
