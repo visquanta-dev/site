@@ -20,7 +20,8 @@ import {
   Building2,
   Shield,
   MonitorPlay,
-  MessageSquare
+  MessageSquare,
+  Truck
 } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
 import { Button } from "@/components/ui/button";
@@ -66,7 +67,7 @@ const navItems: NavItem[] = [
       {
         label: 'Speed to Lead Services',
         href: '/speed-to-lead',
-        description: 'Including Website SMS Widget & Social Media Agent',
+        description: 'Website SMS & Facebook Widget',
         icon: Zap
       },
       {
@@ -96,6 +97,12 @@ const navItems: NavItem[] = [
         description: 'Personalized dealer support',
         icon: HeartHandshake
       },
+      {
+        label: 'RV Connect',
+        href: '/dealers/rv',
+        description: 'Purpose-built for RV dealerships',
+        icon: Truck
+      },
     ]
   },
   {
@@ -121,6 +128,7 @@ const navItems: NavItem[] = [
 
 export default function Navigation() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeTier, setActiveTier] = useState<'Starter' | 'PRO'>('Starter');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileActiveMenu, setMobileActiveMenu] = useState<string | null>(null);
@@ -254,12 +262,48 @@ export default function Navigation() {
 
                       <div className="flex">
                         {/* Side Context (Optional/Visual) */}
-                        <div className="w-[180px] bg-white/[0.02] border-r border-white/5 p-8 hidden md:flex flex-col justify-between">
+                        <div className="w-[240px] bg-white/[0.02] border-r border-white/5 p-8 hidden md:flex flex-col justify-between">
                           <div>
-                            <div className="text-[10px] font-black uppercase tracking-[0.25em] text-[#FF7404] mb-4">Module</div>
-                            <h3 className="text-white font-bold text-lg tracking-tighter leading-tight uppercase">
-                              {item.label}
-                            </h3>
+                            <div className="text-[10px] font-black uppercase tracking-[0.25em] text-[#FF7404] mb-6">Suite Config</div>
+                            {item.label === 'AutoMaster Suite' ? (
+                              <div className="relative p-1.5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center w-full max-w-[180px] mt-2 group/switcher">
+                                {/* Sliding highlight */}
+                                <motion.div
+                                  className={`absolute h-[calc(100%-12px)] rounded-xl z-0 ${activeTier === 'Starter' ? 'bg-[#FF7404]' : 'bg-white'}`}
+                                  initial={false}
+                                  animate={{
+                                    left: activeTier === 'Starter' ? '6px' : '50%',
+                                    width: 'calc(50% - 6px)'
+                                  }}
+                                  transition={{ type: "spring", stiffness: 450, damping: 40 }}
+                                />
+
+                                <button
+                                  onMouseEnter={() => setActiveTier('Starter')}
+                                  className={`relative z-10 flex-1 py-2.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 ${activeTier === 'Starter' ? 'text-black' : 'text-zinc-500 hover:text-white'}`}
+                                >
+                                  Starter
+                                </button>
+
+                                <button
+                                  onMouseEnter={() => setActiveTier('PRO')}
+                                  className={`relative z-10 flex-1 py-2.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 flex items-center justify-center gap-2 ${activeTier === 'PRO' ? 'text-black' : 'text-zinc-500 hover:text-white'}`}
+                                >
+                                  <span>PRO</span>
+                                  {activeTier === 'Starter' && (
+                                    <motion.div
+                                      animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
+                                      transition={{ repeat: Infinity, duration: 2 }}
+                                      className="w-1.5 h-1.5 rounded-full bg-white ml-0.5"
+                                    />
+                                  )}
+                                </button>
+                              </div>
+                            ) : (
+                              <h3 className="text-white font-bold text-lg tracking-tighter leading-tight uppercase">
+                                {item.label}
+                              </h3>
+                            )}
                           </div>
                           <div className="text-[9px] text-zinc-600 font-mono uppercase tracking-widest leading-relaxed">
                             AVG. DEALER IMPACT <br />
@@ -270,7 +314,18 @@ export default function Navigation() {
                         {/* Main Grid Content */}
                         <div className="flex-1 p-6">
                           <div className="grid grid-cols-2 gap-2">
-                            {item.children.map((child, idx) => {
+                            {(item.label === 'AutoMaster Suite' && activeTier === 'PRO'
+                              ? [
+                                ...item.children,
+                                {
+                                  label: 'Service Drive Pro',
+                                  href: '/service-drive',
+                                  description: 'Voice AI for fixed ops & appointments',
+                                  icon: Wrench,
+                                }
+                              ]
+                              : item.children
+                            ).map((child, idx) => {
                               const Icon = child.icon;
                               return (
                                 <motion.div

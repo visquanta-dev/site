@@ -47,6 +47,7 @@ const footerLinks = {
     { label: 'Franchise Dealerships', href: '/dealers/franchise' },
     { label: 'Auto Groups', href: '/dealers/auto-groups' },
     { label: 'Pre-Owned', href: '/dealers/pre-owned' },
+    { label: 'RV Connect', href: '/dealers/rv', tag: 'Coming Soon' },
     { label: 'Dealer Success', href: '/dealer-success' },
   ],
   resources: [
@@ -190,9 +191,16 @@ export default function Footer() {
                       <li key={i}>
                         <Link
                           href={link.href}
-                          className="group text-sm text-white/40 hover:text-white transition-colors duration-300"
+                          className="group flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors duration-300"
                         >
                           <span className="group-hover:translate-x-1 inline-block transition-transform duration-300">{link.label}</span>
+                          {/* @ts-ignore */}
+                          {link.tag && (
+                            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${link.tag === 'New' || link.tag === 'Coming Soon' ? 'bg-[#FF7404]/20 text-[#FF7404]' : 'bg-white/10 text-white/50'
+                              }`}>
+                              {link.tag}
+                            </span>
+                          )}
                         </Link>
                       </li>
                     ))}

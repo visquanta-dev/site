@@ -5,9 +5,12 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { RequestDemoButton } from '@/components/CalendlyModal';
 import { ArrowRight } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export default function MobileStickyCTA() {
     const [isVisible, setIsVisible] = useState(false);
+
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,6 +22,8 @@ export default function MobileStickyCTA() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    if (pathname === '/dealers/rv') return null;
 
     return (
         <AnimatePresence>
