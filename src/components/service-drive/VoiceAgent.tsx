@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import { useConversation } from '@elevenlabs/react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mic, X, Phone, PhoneOff, Volume2, Shield, CheckCircle2, Calendar, ArrowRight } from 'lucide-react';
+import { Mic, X, Phone, PhoneOff, Calendar, ArrowRight } from 'lucide-react';
 
 export default function VoiceAgent() {
     const [isVisible, setIsVisible] = useState(true);
