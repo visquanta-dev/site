@@ -104,12 +104,27 @@
   animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* ===========================================
+   GLOBAL OVERFLOW FIX - Prevent Horizontal Scroll
+   =========================================== */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
 /* 
@@ -217,11 +232,14 @@ p {
    Added for responsive enhancement
    =========================================== */
 
-/* Tighter container padding on mobile */
-@media (max-width: 639px) {
+@media (max-width: 768px) {
   .container-wide {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  * {
+    max-width: 100vw;
   }
 }
 
@@ -252,10 +270,19 @@ p {
   padding-top: env(safe-area-inset-top);
 }
 
-/* Prevent text size adjustment on orientation change */
-html {
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+/* ===========================================
+   MOBILE: Hide Video Popup Modal (BlogExitModal)
+   The Revenue Intelligence popup with YouTube video
+   should be hidden on mobile devices
+   =========================================== */
+@media (max-width: 768px) {
+
+  .blog-exit-modal,
+  [class*="BlogExitModal"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 }
 
 /* ===========================================

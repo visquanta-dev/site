@@ -67,7 +67,7 @@ export default function BlogExitModal() {
     return (
         <AnimatePresence>
             {isOpen && (
-                <>
+                <div className="blog-exit-modal hidden md:block">
                     {/* Backdrop */}
                     <div
                         className="fixed inset-0 bg-[#050505]/80 backdrop-blur-md z-[9999] transition-opacity duration-300"
@@ -172,7 +172,7 @@ export default function BlogExitModal() {
 
                         </div>
                     </motion.div>
-                </>
+                </div>
             )}
         </AnimatePresence>
     );

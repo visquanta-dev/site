@@ -67,6 +67,8 @@ export default function VoiceAgent() {
         setIsReady(true);
     }, []);
 
+
+
     // Event listener for external triggers (e.g., Hero Button)
     useEffect(() => {
         const handleExternalTrigger = () => {
@@ -78,8 +80,6 @@ export default function VoiceAgent() {
         window.addEventListener('open-voice-demo', handleExternalTrigger);
         return () => window.removeEventListener('open-voice-demo', handleExternalTrigger);
     }, [handleStartConversation]);
-
-
 
     const handleConnect = useCallback(async () => {
         try {
@@ -149,6 +149,8 @@ export default function VoiceAgent() {
         <AnimatePresence>
             {isVisible && (
                 <>
+
+
                     {/* PREMIUM Conversation Modal Overlay */}
                     <AnimatePresence>
                         {isOverlayOpen && (
@@ -390,7 +392,7 @@ export default function VoiceAgent() {
                                             {currentState === 'ENDED' && 'Session Complete'}
                                         </h2>
 
-                                        <p className="text-white/50 text-base max-w-[340px] mx-auto leading-relaxed h-[48px]">
+                                        <p className="text-white/50 text-base max-w-[400px] mx-auto leading-relaxed min-h-[48px]">
                                             {currentState === 'READY' && 'Experience how inbound service calls are handled, qualified, and routed — live.'}
                                             {currentState === 'CONNECTING' && 'Establishing secure voice uplink...'}
                                             {currentState === 'LISTENING' && 'Speak naturally. Your request is being handled in real time.'}
@@ -413,6 +415,12 @@ export default function VoiceAgent() {
                                                 >
                                                     Start Demo
                                                 </motion.button>
+                                                <p className="text-white/20 text-[11px] text-center mt-1">
+                                                    By starting, you agree to our{' '}
+                                                    <Link href="/terms" className="text-[#FF7404]/70 hover:text-[#FF7404] transition-colors">Terms of Service</Link>
+                                                    {' '}and{' '}
+                                                    <Link href="/privacy" className="text-[#FF7404]/70 hover:text-[#FF7404] transition-colors">Privacy Policy</Link>
+                                                </p>
                                                 <button
                                                     onClick={handleCloseOverlay}
                                                     className="text-white/30 hover:text-white/60 text-sm font-medium transition-colors py-2"
@@ -421,8 +429,8 @@ export default function VoiceAgent() {
                                                 </button>
 
                                                 {/* Micro-trust copy */}
-                                                <p className="text-white/20 text-[10px] text-center mt-2 max-w-[200px] leading-tight">
-                                                    By starting, you agree to our <Link href="/terms-conditions" className="hover:text-white transition-colors underline decoration-white/20">Terms of Service</Link> and <Link href="/privacy-policy" className="hover:text-white transition-colors underline decoration-white/20">Privacy Policy</Link>.
+                                                <p className="text-white/20 text-[10px] text-center mt-2">
+                                                    No setup. No commitment. Ends automatically.
                                                 </p>
                                             </div>
                                         )}
@@ -456,7 +464,7 @@ export default function VoiceAgent() {
                                                 {currentState !== 'ENDED' && (
                                                     <button
                                                         onClick={handleEndConversation}
-                                                        className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-white/20 text-white hover:bg-white/10 transition-all text-sm font-medium"
+                                                        className="flex items-center justify-center gap-2 w-full py-3 rounded-xl hover:bg-white/[0.05] text-white/30 hover:text-white/60 transition-all text-sm font-medium"
                                                     >
                                                         <PhoneOff className="w-3.5 h-3.5" />
                                                         <span>End Session</span>

@@ -216,7 +216,7 @@ export default function Navigation() {
         <Link href="/" className="flex items-center z-50 relative group px-2 py-1">
           <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404]/0 via-[#FF7404]/5 to-[#FF7404]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-lg" />
           <Image
-            src="/images/visquanta-logo-white.png"
+            src="/images/visquanta-logo-transparent.png"
             alt="VisQuanta"
             width={200}
             height={53}
@@ -509,7 +509,7 @@ export default function Navigation() {
                   style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
                 >
                   <Image
-                    src="/images/visquanta-logo-white.png"
+                    src="/images/visquanta-logo-transparent.png"
                     alt="VisQuanta"
                     width={150}
                     height={40}

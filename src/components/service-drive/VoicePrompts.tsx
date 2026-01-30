@@ -58,7 +58,7 @@ export default function VoicePrompts() {
                             {/* Right: Text */}
                             <div className="">
                                 <div className="flex items-center gap-2 mb-1">
-                                    <span className="text-white font-bold text-sm tracking-wide">Test Drive Our Voice AI</span>
+                                    <span className="text-white font-bold text-sm tracking-wide">Try a Live Demo Call</span>
 
                                     {/* Integrated Live Badge */}
                                     <div className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-[#FF7404]/10 border border-[#FF7404]/20">
