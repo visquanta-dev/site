@@ -15,25 +15,19 @@ export default function VoiceAgent() {
     const [isReady, setIsReady] = useState(false);
     const [sessionEnded, setSessionEnded] = useState(false);
 
-    // Track if we have an active session
-    const hasActiveSession = useRef(false);
-
     const conversation = useConversation({
         onConnect: () => {
             console.log('Connected to ElevenLabs');
-            hasActiveSession.current = true;
             setIsReady(false); // Move to connected state
             setSessionEnded(false);
         },
         onDisconnect: () => {
             console.log('Disconnected from ElevenLabs');
-            hasActiveSession.current = false;
             setIsReady(false);
             setSessionEnded(true);
         },
         onError: (error) => {
             console.error('ElevenLabs error:', error);
-            hasActiveSession.current = false;
             setIsReady(false);
             setSessionEnded(true);
         },
@@ -92,7 +86,6 @@ export default function VoiceAgent() {
             await navigator.mediaDevices.getUserMedia({ audio: true });
 
             if (previewMode) {
-                hasActiveSession.current = true;
                 setIsReady(false); // Manually trigger "connected" state for preview
                 return;
             }
@@ -104,48 +97,25 @@ export default function VoiceAgent() {
         } catch (error) {
             console.error('Failed to start conversation:', error);
             setPreviewMode(true);
-            hasActiveSession.current = true;
             setIsReady(false);
         }
     }, [conversation, previewMode]);
 
     const handleEndConversation = useCallback(async () => {
-        if (!hasActiveSession.current) return;
-
         if (previewMode) {
             setPreviewMode(false);
             setIsReady(false);
             setSessionEnded(true);
-            hasActiveSession.current = false;
             return;
         }
         await conversation.endSession();
-        // onDisconnect will handle setting sessionEnded and hasActiveSession
+        // onDisconnect will handle setting sessionEnded
     }, [conversation, previewMode]);
 
     const handleCloseOverlay = useCallback(() => {
         setSessionEnded(false);
         setIsReady(false);
     }, []);
-
-    // Auto-end session on navigation away from page
-    useEffect(() => {
-        const handleBeforeUnload = () => {
-            if (hasActiveSession.current) {
-                if (previewMode) {
-                    hasActiveSession.current = false;
-                } else {
-                    conversation.endSession();
-                }
-            }
-        };
-
-        window.addEventListener('beforeunload', handleBeforeUnload);
-
-        return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
-        };
-    }, [conversation, previewMode]);
 
     if (!isVisible) return null;
 
