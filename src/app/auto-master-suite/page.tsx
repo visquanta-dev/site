@@ -253,14 +253,7 @@ export default function AutoMasterSuiteHub() {
                 </div>
             </section>
 
-            <div className="container mx-auto px-4 pb-24 relative z-10 flex justify-center">
-                <MinimalQuote
-                    quote="Consolidated five vendors into one unified platform. One dashboard, one invoice, zero friction."
-                    author="Robert Kim"
-                    role="Operations Director, Capital City Auto"
-                    className="max-w-2xl text-center"
-                />
-            </div>
+
 
             {/* 1.5 VIDEO VISION BRIEFING - KNOWLEDGE HEAVY ENTRY */}
             <section className="pb-24 bg-[#020202]">

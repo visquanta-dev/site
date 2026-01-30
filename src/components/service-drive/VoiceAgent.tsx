@@ -8,8 +8,6 @@ import { Mic, X, Phone, PhoneOff, Volume2, Shield, CheckCircle2, Calendar, Arrow
 
 export default function VoiceAgent() {
     const [isVisible, setIsVisible] = useState(true);
-    const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false);
-    const [showTermsModal, setShowTermsModal] = useState(false);
     const [previewMode, setPreviewMode] = useState(false);
     const [previewSpeaking, setPreviewSpeaking] = useState(false);
     const [callDuration, setCallDuration] = useState(0);
@@ -66,17 +64,6 @@ export default function VoiceAgent() {
     };
 
     const handleStartConversation = useCallback(async () => {
-        if (!hasAcceptedTerms) {
-            setShowTermsModal(true);
-            return;
-        }
-        // If terms accepted, go to ready state first
-        setIsReady(true);
-    }, [hasAcceptedTerms]);
-
-    const handleAcceptTerms = useCallback(() => {
-        setHasAcceptedTerms(true);
-        setShowTermsModal(false);
         setIsReady(true);
     }, []);
 
@@ -91,6 +78,8 @@ export default function VoiceAgent() {
         window.addEventListener('open-voice-demo', handleExternalTrigger);
         return () => window.removeEventListener('open-voice-demo', handleExternalTrigger);
     }, [handleStartConversation]);
+
+
 
     const handleConnect = useCallback(async () => {
         try {
@@ -126,8 +115,21 @@ export default function VoiceAgent() {
     const handleCloseOverlay = useCallback(() => {
         setSessionEnded(false);
         setIsReady(false);
-        setHasAcceptedTerms(false);
     }, []);
+
+    // Auto-end session on navigation or travel
+    useEffect(() => {
+        const handleBeforeUnload = () => {
+            handleEndConversation();
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+            handleEndConversation(); // Ensure session ends on component unmount
+        };
+    }, [handleEndConversation]);
 
     if (!isVisible) return null;
 
@@ -161,100 +163,6 @@ export default function VoiceAgent() {
         <AnimatePresence>
             {isVisible && (
                 <>
-                    {/* Premium Terms Modal */}
-                    <AnimatePresence>
-                        {showTermsModal && (
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-md"
-                                onClick={() => setShowTermsModal(false)}
-                            >
-                                <motion.div
-                                    initial={{ scale: 0.95, opacity: 0, y: 20 }}
-                                    animate={{ scale: 1, opacity: 1, y: 0 }}
-                                    exit={{ scale: 0.95, opacity: 0, y: 20 }}
-                                    transition={{ type: "spring", damping: 28, stiffness: 350 }}
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="relative bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] rounded-3xl px-8 pt-10 pb-8 max-w-md mx-4 shadow-[0_25px_80px_-15px_rgba(0,0,0,0.9)] border border-white/[0.08] overflow-hidden featured-card-border"
-                                >
-                                    {/* Subtle background depth */}
-                                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,116,4,0.03)_0%,_transparent_60%)] pointer-events-none" />
-                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.02)_0%,_transparent_50%)] pointer-events-none" />
-
-                                    {/* Close button */}
-                                    <button
-                                        onClick={() => setShowTermsModal(false)}
-                                        className="absolute top-3 right-3 w-10 h-10 rounded-full flex items-center justify-center text-white/20 hover:text-white/50 hover:bg-white/5 transition-all"
-                                    >
-                                        <X className="w-4 h-4" />
-                                    </button>
-
-                                    {/* Icon */}
-                                    <div className="relative flex justify-center mb-8">
-                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#FF7404] to-[#FF7404]/60 flex items-center justify-center shadow-[0_0_40px_rgba(255,116,4,0.25)]">
-                                            <Shield className="w-7 h-7 text-white" />
-                                        </div>
-                                    </div>
-
-                                    {/* Content */}
-                                    <h3 className="relative text-xl font-bold text-white text-center mb-3">
-                                        Service Drive Voice Assistant
-                                    </h3>
-                                    <p className="relative text-white/45 text-sm text-center mb-8 leading-relaxed max-w-xs mx-auto">
-                                        A live demonstration of how inbound service calls are handled, qualified, and routed automatically.
-                                    </p>
-
-                                    {/* Bullet points */}
-                                    <div className="relative space-y-3 mb-10">
-                                        {[
-                                            'Live, real-time customer conversation',
-                                            'Enterprise-grade voice infrastructure',
-                                            'No recordings or data retained after session'
-                                        ].map((feature, i) => (
-                                            <div key={i} className="flex items-center gap-3">
-                                                <div className="w-5 h-5 rounded-full bg-[#FF7404]/10 flex items-center justify-center flex-shrink-0">
-                                                    <CheckCircle2 className="w-3 h-3 text-[#FF7404]" />
-                                                </div>
-                                                <span className="text-white/60 text-[13px]">{feature}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Terms text */}
-                                    <p className="relative text-white/25 text-xs text-center mb-8">
-                                        By continuing, you agree to our{' '}
-                                        <a href="/terms" className="text-[#FF7404]/70 hover:text-[#FF7404] hover:underline transition-colors">Terms of Service</a>
-                                        {' '}and{' '}
-                                        <a href="/privacy" className="text-[#FF7404]/70 hover:text-[#FF7404] hover:underline transition-colors">Privacy Policy</a>
-                                    </p>
-
-                                    {/* Buttons */}
-                                    <div className="relative flex gap-3">
-                                        <button
-                                            onClick={() => setShowTermsModal(false)}
-                                            className="flex-1 px-5 py-2.5 text-white/40 border border-white/[0.06] rounded-xl hover:bg-white/[0.03] hover:text-white/60 hover:border-white/10 transition-all font-medium text-sm"
-                                        >
-                                            Cancel
-                                        </button>
-                                        <button
-                                            onClick={handleAcceptTerms}
-                                            className="flex-[1.2] px-6 py-3.5 bg-gradient-to-r from-[#FF7404] to-[#FF7404]/85 text-white rounded-xl hover:shadow-[0_0_30px_rgba(255,116,4,0.35)] transition-all font-semibold text-[15px]"
-                                        >
-                                            Start Demo
-                                        </button>
-                                    </div>
-
-                                    {/* Micro-trust copy */}
-                                    <p className="relative text-white/20 text-[10px] text-center mt-5 tracking-wide">
-                                        No setup. No commitment. Ends automatically.
-                                    </p>
-                                </motion.div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-
                     {/* PREMIUM Conversation Modal Overlay */}
                     <AnimatePresence>
                         {isOverlayOpen && (
@@ -489,7 +397,7 @@ export default function VoiceAgent() {
                                         className="mt-8 text-center z-20 relative px-6 w-full"
                                     >
                                         <h2 className={`text-3xl font-bold mb-3 tracking-tight ${currentState === 'ENDED' ? 'text-white/60' : 'text-white'}`}>
-                                            {currentState === 'READY' && 'Service Drive Voice Assistant'}
+                                            {currentState === 'READY' && 'Service Drive Demo'}
                                             {currentState === 'CONNECTING' && 'Preparing live session...'}
                                             {currentState === 'LISTENING' && 'Listening...'}
                                             {currentState === 'PROCESSING' && 'Processing...'}
@@ -497,11 +405,11 @@ export default function VoiceAgent() {
                                         </h2>
 
                                         <p className="text-white/50 text-base max-w-[340px] mx-auto leading-relaxed h-[48px]">
-                                            {currentState === 'READY' && 'A live demonstration of how inbound service calls are handled, qualified, and routed automatically.'}
+                                            {currentState === 'READY' && 'Experience how inbound service calls are handled, qualified, and routed — live.'}
                                             {currentState === 'CONNECTING' && 'Establishing secure voice uplink...'}
                                             {currentState === 'LISTENING' && 'Speak naturally. Your request is being handled in real time.'}
                                             {currentState === 'PROCESSING' && 'Handling your request...'}
-                                            {currentState === 'ENDED' && 'Thanks for trying the Service Drive Voice Assistant.'}
+                                            {currentState === 'ENDED' && 'Thanks for trying the Service Drive Demo. Imagine this handling your inbound calls 24/7.'}
                                         </p>
                                     </motion.div>
 
@@ -527,8 +435,8 @@ export default function VoiceAgent() {
                                                 </button>
 
                                                 {/* Micro-trust copy */}
-                                                <p className="text-white/20 text-[10px] text-center mt-2">
-                                                    No setup. No commitment. Ends automatically.
+                                                <p className="text-white/20 text-[10px] text-center mt-2 max-w-[200px] leading-tight">
+                                                    By starting, you agree to our <Link href="/terms-conditions" className="hover:text-white transition-colors underline decoration-white/20">Terms of Service</Link> and <Link href="/privacy-policy" className="hover:text-white transition-colors underline decoration-white/20">Privacy Policy</Link>.
                                                 </p>
                                             </div>
                                         )}
@@ -562,7 +470,7 @@ export default function VoiceAgent() {
                                                 {currentState !== 'ENDED' && (
                                                     <button
                                                         onClick={handleEndConversation}
-                                                        className="flex items-center justify-center gap-2 w-full py-3 rounded-xl hover:bg-white/[0.05] text-white/30 hover:text-white/60 transition-all text-sm font-medium"
+                                                        className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-white/20 text-white hover:bg-white/10 transition-all text-sm font-medium"
                                                     >
                                                         <PhoneOff className="w-3.5 h-3.5" />
                                                         <span>End Session</span>
@@ -650,7 +558,7 @@ export default function VoiceAgent() {
                                     <div className="flex flex-col items-start">
                                         <div className="flex items-center gap-2">
                                             <span className="text-white text-sm font-semibold tracking-wide">
-                                                {isConnecting ? 'Connecting...' : 'Test Drive Our Voice AI'}
+                                                {isConnecting ? 'Connecting...' : 'Try a Live Demo Call'}
                                             </span>
                                             <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20">
                                                 <span className="relative flex h-1.5 w-1.5">
