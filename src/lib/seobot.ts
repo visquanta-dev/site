@@ -205,6 +205,17 @@ async function fetchPost(id: string): Promise<BlogPost | null> {
     }
 
     const data = await response.json();
+
+    // Link Sanitizer: Clean up internal links in content
+    if (data && data.html) {
+      data.html = data.html
+        // Correct Bare Domain to WWW
+        .replace(/https:\/\/visquanta\.com(?!\/)/g, 'https://www.visquanta.com')
+        .replace(/https:\/\/visquanta\.com(?=\/)/g, 'https://www.visquanta.com')
+        // Correct Legacy Path Structure
+        .replace(/\/blog-details\//g, '/blog/');
+    }
+
     setCache(cacheKey, data);
     return data;
   } catch (error) {

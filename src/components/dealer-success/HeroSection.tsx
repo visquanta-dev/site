@@ -152,7 +152,7 @@ export default function HeroSection() {
                         <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
                             <img
                                 src="/images/suite-bg/ds-bg.png"
-                                alt="Dealer Success Demo"
+                                alt="VisQuanta Dealer Success Team Operations Dashboard Demo"
                                 className="w-full h-auto"
                             />
                         </div>

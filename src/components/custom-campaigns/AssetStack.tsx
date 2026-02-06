@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Layers, FileText, Sparkles, Database, Bot, CalendarCheck, ShieldCheck } from 'lucide-react';
 
@@ -13,11 +14,11 @@ const features = [
 ];
 
 const campaigns = [
-    '/images/drive-download-custom-campaigns/campaign-1.jpg',
-    '/images/drive-download-custom-campaigns/campaign-2.jpg',
-    '/images/drive-download-custom-campaigns/campaign-3.jpg',
-    '/images/drive-download-custom-campaigns/campaign-4.jpg',
-    '/images/drive-download-custom-campaigns/campaign-5.jpg',
+    { src: '/images/drive-download-custom-campaigns/campaign-1.jpg', alt: 'Automotive Labor Day Sales Event Campaign Creative' },
+    { src: '/images/drive-download-custom-campaigns/campaign-2.jpg', alt: 'Dealership Service Department Reactivation Mailer' },
+    { src: '/images/drive-download-custom-campaigns/campaign-3.jpg', alt: 'Custom Car Sales Promotion Graphic for AI Automation' },
+    { src: '/images/drive-download-custom-campaigns/campaign-4.jpg', alt: 'Automotive CRM Database Mining Campaign Template' },
+    { src: '/images/drive-download-custom-campaigns/campaign-5.jpg', alt: 'Digital Lot Advertising Asset for Car Dealerships' },
 ];
 
 export default function AssetStack() {
@@ -44,7 +45,7 @@ export default function AssetStack() {
 
                                 return (
                                     <motion.div
-                                        key={img}
+                                        key={img.src}
                                         // Initial stacked state
                                         initial={{
                                             x: xOffset,
@@ -73,10 +74,13 @@ export default function AssetStack() {
                                         }}
                                     >
                                         <div className="relative h-full w-full bg-[#111] group/card">
-                                            <img
-                                                src={img}
-                                                alt={`Campaign Creative ${i + 1}`}
+                                            <Image
+                                                src={img.src}
+                                                alt={img.alt}
+                                                width={280}
+                                                height={380}
                                                 className="w-full h-full object-contain bg-black p-1"
+                                                priority={i < 2}
                                             />
 
                                             {/* Reflective Sheen */}

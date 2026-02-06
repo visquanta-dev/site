@@ -57,8 +57,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         description = `${description}${filler}`.substring(0, 158).trim();
     }
 
+    // Clean up title for SEO (max 60 chars is ideal)
+    let seoTitle = post.headline || '';
+    if (seoTitle.length > 55) {
+        seoTitle = seoTitle.substring(0, 55).trim() + '...';
+    }
+    const finalTitle = `${seoTitle} | VisQuanta`;
+
     return {
-        title: post.headline,
+        title: finalTitle,
         description: description,
         authors: [{ name: 'VisQuanta', url: 'https://www.visquanta.com' }],
         alternates: {
@@ -70,7 +77,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             url: `https://www.visquanta.com/blog/${slug}`,
             siteName: 'VisQuanta',
             locale: 'en_US',
-            title: post.headline,
+            title: finalTitle,
             description: description,
             images: [
                 {
@@ -93,7 +100,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             card: 'summary_large_image',
             site: '@VisQuanta',
             creator: '@VisQuanta',
-            title: post.headline,
+            title: finalTitle,
             description: description,
             images: [imageUrl],
         },
@@ -131,6 +138,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     const articleSchema = {
         '@context': 'https://schema.org',
         '@type': 'Article',
+        '@id': `https://www.visquanta.com/blog/${slug}#article`,
+        'isPartOf': {
+            '@id': `https://www.visquanta.com/blog/${slug}#webpage`
+        },
         'headline': post.headline,
         'description': post.metaDescription,
         'image': post.image,
@@ -144,7 +155,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             'name': 'VisQuanta',
             'logo': {
                 '@type': 'ImageObject',
-                'url': 'https://www.visquanta.com/logo-white.png'
+                'url': 'https://www.visquanta.com/images/logo.png'
             }
         },
         'datePublished': post.createdAt,

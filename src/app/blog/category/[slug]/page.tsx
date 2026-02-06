@@ -23,9 +23,9 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
 
     return {
         title: category ? `${category.title}${titleSuffix} | VisQuanta Blog` : 'Category | VisQuanta Blog',
-        description: `Browse articles in the ${category?.title || 'category'} category.${titleSuffix}`,
+        description: `Browse all VisQuanta articles, expert guides, and news within the "${category?.title || 'Automotive AI'}" category.${titleSuffix} Stay tuned for the latest in dealership automation and lead management.`,
         alternates: {
-            canonical: `https://visquanta.com/blog/category/${slug}`,
+            canonical: `https://www.visquanta.com/blog/category/${slug}`,
         },
     };
 }
@@ -52,19 +52,19 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://visquanta.com'
+                'item': 'https://www.visquanta.com'
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Blog',
-                'item': 'https://visquanta.com/blog'
+                'item': 'https://www.visquanta.com/blog'
             },
             {
                 '@type': 'ListItem',
                 'position': 3,
                 'name': category?.title || 'Category',
-                'item': `https://visquanta.com/blog/category/${slug}`
+                'item': `https://www.visquanta.com/blog/category/${slug}`
             }
         ]
     };

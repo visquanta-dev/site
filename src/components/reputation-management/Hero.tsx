@@ -49,13 +49,13 @@ export default function Hero() {
                                 <div className="flex items-center gap-4 text-white/40 text-sm font-medium">
                                     <div className="flex -space-x-3">
                                         <div className="w-10 h-10 rounded-full border-2 border-[#020202] bg-[#111] overflow-hidden relative z-30">
-                                            <img src="/images/avatars/dealer-1.png" alt="Dealer Partner" className="w-full h-full object-cover" />
+                                            <img src="/images/avatars/dealer-1.png" alt="Sales Manager Partner" className="w-full h-full object-cover" />
                                         </div>
                                         <div className="w-10 h-10 rounded-full border-2 border-[#020202] bg-[#111] overflow-hidden relative z-20">
-                                            <img src="/images/avatars/dealer-2.png" alt="Dealer Partner" className="w-full h-full object-cover" />
+                                            <img src="/images/avatars/dealer-2.png" alt="Service Director Partner" className="w-full h-full object-cover" />
                                         </div>
                                         <div className="w-10 h-10 rounded-full border-2 border-[#020202] bg-[#111] overflow-hidden relative z-10">
-                                            <img src="/images/avatars/dealer-3.png" alt="Dealer Partner" className="w-full h-full object-cover" />
+                                            <img src="/images/avatars/dealer-3.png" alt="General Manager Partner" className="w-full h-full object-cover" />
                                         </div>
                                     </div>
                                     <span>Trusted by 500+ Dealers</span>
@@ -94,7 +94,7 @@ export default function Hero() {
                             <div className="relative rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl shadow-black/50 bg-[#0a0a0a]">
                                 <img
                                     src="/images/suite-bg/rm-bg.png"
-                                    alt="Reputation Management Demo"
+                                    alt="VisQuanta Reputation Management Platform Interface Demo"
                                     className="w-full h-auto"
                                 />
                             </div>

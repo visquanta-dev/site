@@ -99,6 +99,13 @@ const teamLayers: TeamLayer[] = [
                 calendly: "https://calendly.com/droemer-visquanta/30min"
             },
             {
+                name: "Murray Wilkinson",
+                role: "Director of UK Operations",
+                image: "/team/murray.png",
+                link: "https://www.linkedin.com/in/murraywilkinsonaisalesenablement/",
+                email: "mwilkinson@visquanta.com"
+            },
+            {
                 name: "Clint Annis",
                 role: "Integrations Lead",
                 image: "/team/clint-annis.png",

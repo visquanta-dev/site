@@ -1,3 +1,4 @@
+
 import {
     Body,
     Container,
@@ -27,50 +28,51 @@ export const NewsletterWelcomeEmail = ({
     return (
         <Html>
             <Head />
-            <Preview>Welcome to VisQuanta Insights 🚗</Preview>
+            <Preview>Welcome to the VisQuanta Inner Circle 🚗</Preview>
             <Body style={main}>
                 <Container style={container}>
-                    {/* Header */}
-                    <Section style={header}>
-                        <Heading style={logo}>VisQuanta</Heading>
-                        <Text style={subtitle}>Weekly Insights</Text>
+                    {/* Glow Header */}
+                    <Section style={glowHeader}>
+                        <Text style={brandLabel}>VISQUANTA / EXCLUSIVE</Text>
                     </Section>
 
                     {/* Main Content Card */}
                     <Section style={card}>
-                        <Heading style={h1}>You're in! 🎉</Heading>
+                        <Heading style={h1}>Welcome to the <br /><span style={accentText}>Premium List</span></Heading>
                         <Text style={text}>
-                            Welcome to the VisQuanta Insights newsletter. You've just joined{' '}
-                            <span style={highlight}>2,500+ automotive professionals</span> who
-                            receive weekly strategies on:
+                            You've officially joined an elite group of automotive leaders leveraging AI to dominate their market.
                         </Text>
 
-                        <Section style={listSection}>
-                            <Row style={listItem}>
-                                <Column style={bullet}>•</Column>
-                                <Column>AI automation for dealerships</Column>
+                        {/* Feature Grid */}
+                        <Section style={featureGrid}>
+                            <Row style={featureRow}>
+                                <Column style={featureIcon}>⚡</Column>
+                                <Column style={featureTextContainer}>
+                                    <Text style={featureHeading}>Lead Reactivation</Text>
+                                    <Text style={featureSubtext}>Turning "dead" leads into active revenue units.</Text>
+                                </Column>
                             </Row>
-                            <Row style={listItem}>
-                                <Column style={bullet}>•</Column>
-                                <Column>Lead conversion optimization</Column>
+                            <Row style={featureRow}>
+                                <Column style={featureIcon}>🤖</Column>
+                                <Column style={featureTextContainer}>
+                                    <Text style={featureHeading}>AI Automation</Text>
+                                    <Text style={featureSubtext}>Scaling your BDC without adding headcount.</Text>
+                                </Column>
                             </Row>
-                            <Row style={listItem}>
-                                <Column style={bullet}>•</Column>
-                                <Column>Revenue recovery strategies</Column>
-                            </Row>
-                            <Row style={listItem}>
-                                <Column style={bullet}>•</Column>
-                                <Column>Industry trends and insights</Column>
+                            <Row style={featureRow}>
+                                <Column style={featureIcon}>📈</Column>
+                                <Column style={featureTextContainer}>
+                                    <Text style={featureHeading}>Market Data</Text>
+                                    <Text style={featureSubtext}>Local market insights you won't find anywhere else.</Text>
+                                </Column>
                             </Row>
                         </Section>
 
-                        <Text style={secondaryText}>
-                            Expect your first insights email within the next few days.
-                        </Text>
+                        <div style={spacer} />
 
-                        <Section style={ctaSection}>
+                        <Section style={ctaContainer}>
                             <Link href="https://www.visquanta.com/blog" style={button}>
-                                Explore The Journal →
+                                Access Recent Journal →
                             </Link>
                         </Section>
                     </Section>
@@ -78,15 +80,16 @@ export const NewsletterWelcomeEmail = ({
                     {/* Footer */}
                     <Section style={footer}>
                         <Text style={footerText}>
-                            © 2026 VisQuanta LLC. All rights reserved.
-                        </Text>
-                        <Text style={footerSubtext}>
-                            2233 Ponce de Leon Blvd, 3rd Floor, Miami, FL 33134
+                            Automotive AI / Scaled Growth / Market Dominance
                         </Text>
                         <Hr style={hr} />
-                        <Text style={footerLinks}>
+                        <Text style={tinyText}>
+                            © 2026 VisQuanta LLC. All rights reserved. <br />
+                            2222 Ponce de Leon Blvd, Miami, FL 33134.
+                        </Text>
+                        <Text style={tinyText}>
                             <Link href={unsubscribeUrl} style={footerLink}>
-                                Unsubscribe
+                                Manage Subscription
                             </Link>
                         </Text>
                     </Section>
@@ -99,101 +102,111 @@ export const NewsletterWelcomeEmail = ({
 export default NewsletterWelcomeEmail;
 
 const main = {
-    backgroundColor: '#050505',
-    fontFamily:
-        '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+    backgroundColor: '#020202',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
 };
 
 const container = {
     margin: '0 auto',
-    padding: '40px 20px',
-    maxWidth: '600px',
+    padding: '40px 10px',
+    maxWidth: '560px',
 };
 
-const header = {
+const glowHeader = {
     textAlign: 'center' as const,
-    marginBottom: '32px',
+    padding: '30px 0',
+    background: 'radial-gradient(circle at center, rgba(255, 116, 4, 0.15) 0%, transparent 70%)',
 };
 
-const logo = {
+const brandLabel = {
     color: '#FF7404',
-    fontSize: '32px',
-    fontWeight: 'bold',
-    letterSpacing: '-1px',
+    fontSize: '11px',
+    fontWeight: '800',
+    letterSpacing: '4px',
     margin: '0',
 };
 
-const subtitle = {
-    color: 'rgba(255, 255, 255, 0.4)',
-    fontSize: '12px',
-    textTransform: 'uppercase' as const,
-    letterSpacing: '3px',
-    marginTop: '8px',
-    marginRight: '-3px', // Counteract letter-spacing on last char
-};
-
 const card = {
-    background: 'rgba(20, 20, 20, 0.8)',
-    border: '1px solid rgba(255, 116, 4, 0.2)',
-    borderRadius: '16px',
-    padding: '40px 32px',
+    background: 'linear-gradient(135deg, #0A0A0A 0%, #050505 100%)',
+    border: '1px solid rgba(255, 255, 255, 0.08)',
+    borderRadius: '24px',
+    padding: '48px 40px',
     textAlign: 'left' as const,
+    boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
 };
 
 const h1 = {
     color: '#ffffff',
-    fontSize: '26px',
-    fontWeight: '700',
-    margin: '0 0 16px',
+    fontSize: '34px',
+    fontWeight: '900',
+    lineHeight: '1.1',
+    margin: '0 0 24px',
+    letterSpacing: '-1px',
+};
+
+const accentText = {
+    color: '#FF7404',
 };
 
 const text = {
-    color: 'rgba(255, 255, 255, 0.8)',
-    fontSize: '16px',
+    color: '#9ca3af',
+    fontSize: '17px',
     lineHeight: '1.6',
-    margin: '0 0 24px',
+    margin: '0 0 40px',
 };
 
-const highlight = {
-    color: '#FF7404',
-    fontWeight: '600',
+const featureGrid = {
+    marginBottom: '40px',
 };
 
-const listSection = {
-    marginBottom: '24px',
+const featureRow = {
+    paddingBottom: '24px',
 };
 
-const listItem = {
-    color: 'rgba(255, 255, 255, 0.7)',
-    fontSize: '15px',
-    lineHeight: '24px',
+const featureIcon = {
+    width: '44px',
+    fontSize: '24px',
+    verticalAlign: 'top',
 };
 
-const bullet = {
-    width: '20px',
-    color: '#FF7404',
-    fontWeight: 'bold',
+const featureTextContainer = {
+    paddingLeft: '12px',
 };
 
-const secondaryText = {
-    color: 'rgba(255, 255, 255, 0.5)',
+const featureHeading = {
+    color: '#ffffff',
+    fontSize: '16px',
+    fontWeight: '700',
+    margin: '0',
+};
+
+const featureSubtext = {
+    color: '#6b7280',
     fontSize: '14px',
-    margin: '0 0 32px',
+    margin: '4px 0 0',
 };
 
-const ctaSection = {
+const spacer = {
+    height: '1px',
+    width: '100%',
+    background: 'linear-gradient(90deg, transparent, rgba(255, 116, 4, 0.3), transparent)',
+    margin: '32px 0',
+};
+
+const ctaContainer = {
     textAlign: 'center' as const,
 };
 
 const button = {
     backgroundColor: '#FF7404',
-    borderRadius: '8px',
+    borderRadius: '12px',
     color: '#000000',
-    fontSize: '14px',
-    fontWeight: '700',
+    fontSize: '16px',
+    fontWeight: '800',
     textDecoration: 'none',
-    padding: '14px 32px',
+    padding: '18px 40px',
     display: 'inline-block',
+    boxShadow: '0 10px 20px -5px rgba(255, 116, 4, 0.4)',
 };
 
 const footer = {
@@ -202,15 +215,10 @@ const footer = {
 };
 
 const footerText = {
-    color: 'rgba(255, 255, 255, 0.4)',
-    fontSize: '12px',
+    color: '#4b5563',
+    fontSize: '13px',
+    fontWeight: '600',
     margin: '0',
-};
-
-const footerSubtext = {
-    color: 'rgba(255, 255, 255, 0.2)',
-    fontSize: '11px',
-    margin: '8px 0 0',
 };
 
 const hr = {
@@ -218,12 +226,14 @@ const hr = {
     margin: '24px 0',
 };
 
-const footerLinks = {
+const tinyText = {
+    color: '#374151',
+    fontSize: '11px',
+    lineHeight: '1.8',
     margin: '0',
 };
 
 const footerLink = {
-    color: 'rgba(255, 255, 255, 0.3)',
-    fontSize: '11px',
+    color: '#FF7404',
     textDecoration: 'underline',
 };

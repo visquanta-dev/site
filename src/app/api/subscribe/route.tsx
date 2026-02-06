@@ -65,7 +65,10 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Insert new subscriber
+        // Generate confirmation token
+        const confirmationToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+        // Insert new subscriber (PENDING status)
         const { data: newSubscriber, error: insertError } = await supabase
             .from('newsletter_subscribers')
             .insert({
@@ -73,28 +76,28 @@ export async function POST(request: NextRequest) {
                 source,
                 ip_address: ip,
                 user_agent: userAgent,
-                verified: true, // Set to false if you want double opt-in
+                verified: false, // Double opt-in: set to false initially
+                confirmation_token: confirmationToken,
             })
             .select()
             .single();
 
         if (insertError) {
             console.error('Supabase insert error:', insertError);
-            // Even if DB fails, let's try to continue if it's just a duplicate we missed or similar
-            // But usually this means something is wrong with the table.
+            return NextResponse.json({ error: 'Subscription failed' }, { status: 500 });
         }
 
-        // Send welcome email via Resend
+        // Send confirmation email via Resend
         try {
+            const { NewsletterConfirmEmail } = await import('@/emails/NewsletterConfirmEmail');
             await getResendClient().emails.send({
-                from: 'VisQuanta Insights <insights@visquanta.com>',
+                from: 'VisQuanta <noreply@visquanta.com>',
                 to: normalizedEmail,
-                subject: 'Welcome to VisQuanta Insights 🚗',
-                react: <NewsletterWelcomeEmail email={normalizedEmail} />,
+                subject: 'Confirm your subscription - VisQuanta Insights 🚗',
+                react: <NewsletterConfirmEmail email={normalizedEmail} token={confirmationToken} />,
             });
-            console.log('Welcome email sent to:', normalizedEmail);
+            console.log('Confirmation email sent to:', normalizedEmail);
         } catch (emailError) {
-            // Log but don't fail - email is secondary to database storage
             console.error('Resend email error:', emailError);
         }
 

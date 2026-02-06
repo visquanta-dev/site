@@ -1,13 +1,24 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'AutoMaster Suite | AI Revenue Platform',
-    description: 'AutoMaster Suite is a unified AI platform designed to automate dealership operations, reactivate CRM leads, and maximize your store\'s total gross profit.',
+    title: 'Car Dealership AI Platform | The AutoMaster Suite by VisQuanta',
+    description: 'The definitive Car Dealership AI revenue ecosystem. Automate lead reactivation, speed-to-lead, and service drive appointments for maximum dealership profit.',
+    keywords: [
+        'car dealership ai',
+        'automotive ai platform',
+        'dealership revenue automation',
+        'ai for car dealers',
+        'automaster suite',
+        'dealership growth platform'
+    ],
     alternates: {
         canonical: 'https://www.visquanta.com/auto-master-suite',
     },
     openGraph: {
+        title: 'Car Dealership AI Platform | The AutoMaster Suite',
+        description: 'The definitive automotive revenue ecosystem. An integrated suite of AI-driven tools for high-volume dealerships.',
         url: 'https://www.visquanta.com/auto-master-suite',
+        type: 'website',
     },
 };
 

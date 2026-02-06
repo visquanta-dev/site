@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/blog-details/:slug',
-        destination: '/blog/:slug',
+        destination: 'https://www.visquanta.com/blog/:slug',
         permanent: true,
       },
       {
@@ -148,6 +148,11 @@ const nextConfig: NextConfig = {
       {
         source: '/blog/5-reasons-car-buyers-prefer-sms-over-phone-calls-in-2025',
         destination: '/blog/5-reasons-car-buyers-prefer-sms-over-phone-calls-from-dealerships',
+        permanent: true,
+      },
+      {
+        source: '/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2025',
+        destination: '/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2026',
         permanent: true,
       },
       // =========================================================================

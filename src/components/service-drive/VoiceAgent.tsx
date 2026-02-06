@@ -90,9 +90,20 @@ export default function VoiceAgent() {
                 return;
             }
 
+            // Fetch signed URL from our secure API route
+            const signedUrlResponse = await fetch('/api/elevenlabs/signed-url', {
+                method: 'POST',
+            });
+
+            if (!signedUrlResponse.ok) {
+                throw new Error('Failed to get signed URL');
+            }
+
+            const { signedUrl } = await signedUrlResponse.json();
+
+            // Start session with signed URL for secure authentication
             await conversation.startSession({
-                agentId: 'agent_4501k4d2eehvf0p8axd56y4a0d45',
-                connectionType: 'websocket',
+                signedUrl,
             });
         } catch (error) {
             console.error('Failed to start conversation:', error);

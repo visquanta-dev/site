@@ -658,16 +658,7 @@ export default function ContactPage() {
                                     </div>
 
                                     {/* Trust Signals */}
-                                    <div className="mt-8 pt-6 border-t border-white/5">
-                                        <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-4">Trusted By Industry Leaders</div>
-                                        <div className="flex flex-wrap gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                                            {/* Simple text representation if logos aren't available, or placeholders */}
-                                            <div className="bg-white/5 px-3 py-2 rounded text-xs font-bold text-white/70">AUTONATION</div>
-                                            <div className="bg-white/5 px-3 py-2 rounded text-xs font-bold text-white/70">LITHIA</div>
-                                            <div className="bg-white/5 px-3 py-2 rounded text-xs font-bold text-white/70">PENSKE</div>
-                                            <div className="bg-white/5 px-3 py-2 rounded text-xs font-bold text-white/70">GROUP 1</div>
-                                        </div>
-                                    </div>
+
 
                                     {/* Support Info */}
                                     <div className="mt-8 pt-6 border-t border-white/5">

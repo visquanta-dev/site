@@ -141,7 +141,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                     >
                                         <img
                                             src={logo.src}
-                                            alt={logo.alt}
+                                            alt={`${logo.alt} Dealership Partner Logo`}
                                             className="h-full w-auto object-contain grayscale brightness-150"
                                         />
                                     </div>
@@ -161,7 +161,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             <div className="relative rounded-[2rem] border border-white/10 overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)] bg-[#0a0a0a]">
                                 <img
                                     src="/images/suite-bg/s2l-bg.png"
-                                    alt="Speed to Lead Demo"
+                                    alt="VisQuanta Speed to Lead Responsive Dashboard View"
                                     className="w-full h-auto"
                                 />
                                 {/* Overlay gradient */}

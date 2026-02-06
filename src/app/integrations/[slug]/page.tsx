@@ -205,13 +205,13 @@ export default async function IntegrationPage({ params }: PageProps) {
                                 "@type": "ListItem",
                                 "position": 1,
                                 "name": "Integrations",
-                                "item": "https://visquanta.com/integrations"
+                                "item": "https://www.visquanta.com/integrations"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 2,
                                 "name": integration.name,
-                                "item": `https://visquanta.com/integrations/${integration.slug}`
+                                "item": `https://www.visquanta.com/integrations/${integration.slug}`
                             }
                         ]
                     })

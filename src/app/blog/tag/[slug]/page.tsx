@@ -23,9 +23,9 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
 
     return {
         title: tag ? `${tag.title}${titleSuffix} | VisQuanta Blog` : 'Tag | VisQuanta Blog',
-        description: `Browse articles tagged with ${tag?.title || 'this tag'}.${titleSuffix}`,
+        description: `Explore all VisQuanta blog posts and industry insights tagged with "${tag?.title || 'this topic'}".${titleSuffix} Learn how our AI solutions are transforming automotive dealerships and maximizing revenue.`,
         alternates: {
-            canonical: `https://visquanta.com/blog/tag/${slug}`,
+            canonical: `https://www.visquanta.com/blog/tag/${slug}`,
         },
     };
 }
@@ -52,19 +52,19 @@ export default async function TagPage({ params, searchParams }: PageProps) {
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://visquanta.com'
+                'item': 'https://www.visquanta.com'
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Blog',
-                'item': 'https://visquanta.com/blog'
+                'item': 'https://www.visquanta.com/blog'
             },
             {
                 '@type': 'ListItem',
                 'position': 3,
                 'name': tag?.title || 'Tag',
-                'item': `https://visquanta.com/blog/tag/${slug}`
+                'item': `https://www.visquanta.com/blog/tag/${slug}`
             }
         ]
     };
