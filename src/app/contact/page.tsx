@@ -69,10 +69,10 @@ const offices = [
         timezone: "CST"
     },
     {
-        city: "Edinburgh",
+        city: "United Kingdom",
         country: "UK",
         isHQ: false,
-        address: ["5 South Charlotte Street", "Edinburgh", "EH2 4AN"],
+        address: ["7 Bell Yard", "The Strand", "London", "WC2A 2JR"],
         phone: "020 8058 5269",
         timezone: "GMT"
     }
