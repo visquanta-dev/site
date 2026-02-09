@@ -55,6 +55,13 @@ const offices = [
         timezone: "EST"
     },
     {
+        city: "Calgary",
+        country: "Canada",
+        isHQ: false,
+        address: ["#301 1122 3 St SE Ste 1906", "Calgary, AB T2G 0E7"],
+        timezone: "MST"
+    },
+    {
         city: "The Woodlands",
         country: "USA",
         isHQ: false,
@@ -687,7 +694,7 @@ export default function ContactPage() {
                                     </motion.div>
                                 </Link>
 
-                                <a href="mailto:info@visquanta.com">
+                                <a href={`mailto:${t('footer.email')}`}>
                                     <motion.div
                                         whileHover={{ scale: 1.02, x: 5 }}
                                         className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl cursor-pointer group hover:border-white/20 transition-all"
@@ -698,7 +705,7 @@ export default function ContactPage() {
                                             </div>
                                             <div className="flex-1">
                                                 <div className="text-white font-bold text-lg mb-1">Email Us Directly</div>
-                                                <div className="text-[#FF7404] text-sm font-medium">info@visquanta.com</div>
+                                                <div className="text-[#FF7404] text-sm font-medium">{t('footer.email')}</div>
                                             </div>
                                             <ArrowRight className="w-5 h-5 text-zinc-600 group-hover:text-[#FF7404] group-hover:translate-x-2 transition-all" />
                                         </div>

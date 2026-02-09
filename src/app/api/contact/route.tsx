@@ -41,12 +41,16 @@ export async function POST(request: NextRequest) {
         const inquiryLabel = isCanadian ? 'Enquiry' : 'Inquiry';
         const timestamp = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
 
-        console.log(`SENDING EMAIL TO: ['info@visquanta.com', 'jbillington@visquanta.com'] [Locale: ${locale}]`);
+        const recipients = isCanadian
+            ? ['canada@visquanta.com', 'jbillington@visquanta.com']
+            : ['info@visquanta.com', 'jbillington@visquanta.com'];
+
+        console.log(`SENDING EMAIL TO: ${JSON.stringify(recipients)} [Locale: ${locale}]`);
 
         // 1. Send email notification to internal team
         const internalData = await resend.emails.send({
             from: 'VisQuanta Website <noreply@visquanta.com>',
-            to: ['info@visquanta.com', 'jbillington@visquanta.com'],
+            to: recipients,
             replyTo: email,
             subject: `[New ${inquiryLabel}] ${inquiryType || 'General'} - ${name}`,
             react: <ContactFormEmail
