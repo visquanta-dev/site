@@ -2,46 +2,50 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Rocket, Settings, Zap, TrendingUp, Target } from 'lucide-react';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
-const steps = [
-  {
-    number: "01",
-    title: "Onboard",
-    description: "White-glove setup with a dedicated dealership success manager.",
-    day: "Day 1-2",
-    icon: Rocket,
-  },
-  {
-    number: "02",
-    title: "Connect",
-    description: "Seamless CRM, lead source, and existing dealership system integration.",
-    day: "Day 3-5",
-    icon: Settings,
-  },
-  {
-    number: "03",
-    title: "Configure",
-    description: "Configured to match your dealership's voice, follow-up process, and customer expectations.",
-    day: "Day 6-8",
-    icon: Target,
-  },
-  {
-    number: "04",
-    title: "Convert",
-    description: "Go live with faster response and consistent lead engagement.",
-    day: "Day 9-11",
-    icon: Zap,
-  },
-  {
-    number: "05",
-    title: "Scale",
-    description: "Ongoing optimization as lead volume and results increase.",
-    day: "Day 12-14",
-    icon: TrendingUp,
-  }
-];
 
 export default function HowItWorksSection() {
+  const { t } = useLocale();
+
+  const steps = [
+    {
+      number: "01",
+      title: t('how_it_works.step_1_title'),
+      description: t('how_it_works.step_1_description'),
+      day: t('how_it_works.step_1_timing'),
+      icon: Rocket,
+    },
+    {
+      number: "02",
+      title: t('how_it_works.step_2_title'),
+      description: t('how_it_works.step_2_description'),
+      day: t('how_it_works.step_2_timing'),
+      icon: Settings,
+    },
+    {
+      number: "03",
+      title: t('how_it_works.step_3_title'),
+      description: t('how_it_works.step_3_description'),
+      day: t('how_it_works.step_3_timing'),
+      icon: Target,
+    },
+    {
+      number: "04",
+      title: t('how_it_works.step_4_title'),
+      description: t('how_it_works.step_4_description'),
+      day: t('how_it_works.step_4_timing'),
+      icon: Zap,
+    },
+    {
+      number: "05",
+      title: t('how_it_works.step_5_title'),
+      description: t('how_it_works.step_5_description'),
+      day: t('how_it_works.step_5_timing'),
+      icon: TrendingUp,
+    }
+  ];
+
   return (
     <section id="how-it-works" className="py-24 bg-[#050505] relative overflow-hidden">
       {/* Background Effects */}
@@ -59,19 +63,26 @@ export default function HowItWorksSection() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/50 border border-[#ff7404]/30 shadow-[0_0_15px_-3px_rgba(255,116,4,0.3)] backdrop-blur-md text-xs font-bold uppercase tracking-widest mb-6">
               <Rocket className="w-3 h-3 text-[#ff7404] fill-[#ff7404]" />
-              <span className="bg-gradient-to-r from-[#ff7404] to-[#ff9b50] bg-clip-text text-transparent">The Journey</span>
+              <span className="bg-gradient-to-r from-[#ff7404] to-[#ff9b50] bg-clip-text text-transparent">{t('how_it_works.badge')}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6 tracking-tight leading-[1.1]">
-              From Signup to <br /><span className="text-[#ff7404]">ROI.</span>
-            </h2>
+
+            <h2
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6 tracking-tight leading-[1.1]"
+              dangerouslySetInnerHTML={{
+                __html: t('how_it_works.headline')
+                  .replace('<highlight>', '<span class="text-[#ff7404]">')
+                  .replace('</highlight>', '</span>')
+              }}
+            />
+
             <p className="text-white/40 text-sm lg:text-base mb-4 leading-relaxed max-w-sm">
-              14 days. Zero code. One dedicated success manager. We handle the heavy lifting so your team can stay focused on closing deals.
+              {t('how_it_works.tagline')}
             </p>
             <p className="text-[#ff7404] text-sm font-semibold mb-10">
-              Built to maximize sales from the leads already in your CRM.
+              {t('how_it_works.process_description')}
             </p>
 
-            {/* Quick Stats */}
+            {/* Quick Stats - Hardcoded for now as simple numbers */}
             <div className="flex gap-1 p-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] w-fit">
               <div className="px-6 py-4 text-center">
                 <div className="text-2xl font-bold text-[#ff7404]">14</div>

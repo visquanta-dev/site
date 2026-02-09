@@ -2,6 +2,7 @@
 // This ensures og:url matches the canonical URL for each page
 
 import { Metadata } from 'next';
+import { getHreflangTags } from './hreflang';
 
 interface PageMetadataOptions {
     title: string;
@@ -10,6 +11,7 @@ interface PageMetadataOptions {
     image?: string;
     type?: 'website' | 'article';
     keywords?: string[];
+    locale?: string;
 }
 
 export function generatePageMetadata({
@@ -19,9 +21,19 @@ export function generatePageMetadata({
     image = '/images/og-image.png',
     type = 'website',
     keywords = [],
+    locale = 'en-US',
 }: PageMetadataOptions): Metadata {
     const baseUrl = 'https://www.visquanta.com';
-    const fullUrl = `${baseUrl}${path}`;
+    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+
+    // Construct full URL based on locale
+    let fullUrl = `${baseUrl}${cleanPath}`;
+    if (locale === 'en-CA' && !cleanPath.startsWith('/ca')) {
+        fullUrl = `${baseUrl}/ca${cleanPath === '/' ? '' : cleanPath}`;
+    } else if (locale === 'en-GB' && !cleanPath.startsWith('/uk')) {
+        fullUrl = `${baseUrl}/uk${cleanPath === '/' ? '' : cleanPath}`;
+    }
+
     const imageUrl = image.startsWith('http') ? image : `${baseUrl}${image}`;
 
     return {
@@ -30,12 +42,13 @@ export function generatePageMetadata({
         keywords: keywords.length > 0 ? keywords : undefined,
         alternates: {
             canonical: fullUrl,
+            languages: getHreflangTags(path),
         },
         openGraph: {
             type,
             url: fullUrl,
             siteName: 'VisQuanta',
-            locale: 'en_US',
+            locale: locale.replace('-', '_'), // en-US -> en_US
             title,
             description,
             images: [

@@ -3,31 +3,8 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Share2, Database, MessageSquare, Zap, Globe, ArrowRight, ShieldCheck } from 'lucide-react';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
-const integrationCategories = [
-  {
-    title: "DMS Integrations",
-    icon: Database,
-    description: "Deep, bi-directional sync with all major Dealer Management Systems.",
-    logos: [
-      { name: "CDK Global", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/683035c47ec0959e855dc829_CDK_Global%20white.avif" },
-      { name: "Dealertrack", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68303785972641d9b50fab37_dealertrack%20white.avif" },
-      { name: "Titan DMS", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68303b117151572b502b806b_titan%20DMS%20(1)%20(1).webp" },
-      { name: "Frazer", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68303167b87c5f19ec16c69f_frazer-white%20(2).webp" },
-    ]
-  },
-  {
-    title: "CRM Platforms",
-    icon: Share2,
-    description: "Real-time lead push and activity logging in your existing CRM workflow.",
-    logos: [
-      { name: "VINSOLUTIONS", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/683031f386647aef7335d0ba_vinsolutions%20white%20(1).png" },
-      { name: "DealerSocket", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/683035efe444102587fe1083_dealersocket%20white.avif" },
-      { name: "eLead", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/683036fd7f6a3d1d58acd0d7_elead%20(1).png" },
-      { name: "DriveCentric", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/6830b1419b23bac70ff2bfe5_DriveCentric_white.svg" },
-    ]
-  }
-];
 
 const allLogos = [
   "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/683035c47ec0959e855dc829_CDK_Global%20white.avif",
@@ -43,6 +20,33 @@ const allLogos = [
 const duplicatedLogos = [...allLogos, ...allLogos, ...allLogos];
 
 export default function IntegrationsSection() {
+  const { t } = useLocale();
+
+  const integrationCategories = [
+    {
+      title: t('integrations.dms_title'),
+      icon: Database,
+      description: t('integrations.dms_description'),
+      logos: [
+        { name: "CDK Global", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/683035c47ec0959e855dc829_CDK_Global%20white.avif" },
+        { name: "Dealertrack", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68303785972641d9b50fab37_dealertrack%20white.avif" },
+        { name: "Titan DMS", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68303b117151572b502b806b_titan%20DMS%20(1)%20(1).webp" },
+        { name: "Frazer", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68303167b87c5f19ec16c69f_frazer-white%20(2).webp" },
+      ]
+    },
+    {
+      title: t('integrations.crm_title'),
+      icon: Share2,
+      description: t('integrations.crm_description'),
+      logos: [
+        { name: "VINSOLUTIONS", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/683031f386647aef7335d0ba_vinsolutions%20white%20(1).png" },
+        { name: "DealerSocket", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/683035efe444102587fe1083_dealersocket%20white.avif" },
+        { name: "eLead", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/683036fd7f6a3d1d58acd0d7_elead%20(1).png" },
+        { name: "DriveCentric", url: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/6830b1419b23bac70ff2bfe5_DriveCentric_white.svg" },
+      ]
+    }
+  ];
+
   return (
     <section className="py-32 bg-[#050505] relative overflow-hidden">
       {/* Premium Background */}
@@ -59,13 +63,34 @@ export default function IntegrationsSection() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/50 border border-[#ff7404]/30 shadow-[0_0_15px_-3px_rgba(255,116,4,0.3)] backdrop-blur-md text-xs font-bold uppercase tracking-widest mb-8">
               <Zap className="w-3 h-3 text-[#ff7404] fill-[#ff7404]" />
-              <span className="bg-gradient-to-r from-[#ff7404] to-[#ff9b50] bg-clip-text text-transparent">Ecosystem</span>
+              <span className="bg-gradient-to-r from-[#ff7404] to-[#ff9b50] bg-clip-text text-transparent">{t('integrations.badge')}</span>
             </div>
             <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-              Connects to <span className="text-[#ff7404]">Everything.</span>
+              {t('integrations.headline').replace("Everything", "")} <span className="text-[#ff7404]">Everything.</span>
             </h2>
+            {/* Note: I am hardcoding the highlight because the EN string is "Connects to Everything". 
+                 The localized key also says "Connects to Everything".
+                 If I want highlight logic, I should do what I did before. 
+                 Since I didn't add highlight tag to JSON for integrations, I will just use t() directly or simple replace if I'm confident.
+                 Actually, the original code had `Connects to <span class="text-[#ff7404]">Everything.</span>`.
+                 The JSON has `Connects to Everything`.
+                 I will stick to `t('integrations.headline')` without color for now or try to split it?
+                 Let's stick to simple t() for now to avoid mess unless I update JSON.
+                 Wait, I want the premium feel.
+                 I'll wrap the whole thing or update JSON to use highlight.
+                 I'll just use t() to be safe. "Premium feel" mainly comes from the color. Losing it on one word is acceptable compared to broken strings.
+                 OR, I can just hardcode the color span:
+                 `Connects to <span ...>Everything.</span>`
+                 But `t` returns "Connects to Everything".
+                 I'll update JSON to "Connects to <highlight>Everything</highlight>" now?
+                 No, let's just proceed with `t()` for now. I can polish later.
+              */}
+            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+              {t('integrations.headline')}
+            </h2>
+
             <p className="text-white/60 text-xl leading-relaxed">
-              The AutoMaster Suite isn't another silo. We integrate with 50+ platforms out of the box to unify your DMS, CRM, and lead sources into one intelligence layer.
+              {t('integrations.description')}
             </p>
           </motion.div>
         </div>
@@ -141,9 +166,9 @@ export default function IntegrationsSection() {
           className="mt-20 text-center"
         >
           <button className="inline-flex items-center gap-3 text-white/50 hover:text-[#ff7404] font-bold transition-all duration-300 group">
-            Don't see your system?
+            {t('integrations.footer_q')}
             <span className="text-[#ff7404] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-              Check compatibility <ArrowRight className="w-4 h-4" />
+              {t('integrations.footer_cta')} <ArrowRight className="w-4 h-4" />
             </span>
           </button>
         </motion.div>

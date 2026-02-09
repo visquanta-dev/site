@@ -9,8 +9,6 @@ import {
     Section,
     Text,
     Hr,
-    Row,
-    Column,
 } from '@react-email/components';
 import * as React from 'react';
 
@@ -21,6 +19,11 @@ interface ContactFormEmailProps {
     dealership?: string;
     inquiryType: string;
     message: string;
+    locale?: string;
+    region?: string;
+    stateProvince?: string;
+    postalCode?: string;
+    timestamp?: string;
 }
 
 export const ContactFormEmail = ({
@@ -30,14 +33,31 @@ export const ContactFormEmail = ({
     dealership,
     inquiryType,
     message,
+    locale = 'en-US',
+    region = 'US',
+    stateProvince,
+    postalCode,
+    timestamp,
 }: ContactFormEmailProps) => {
+    const isCanadian = locale === 'en-CA';
+    const regionBadge = isCanadian ? '🇨🇦 CANADA' : '🇺🇸 USA';
+    const stateLabel = isCanadian ? 'Province/Territory' : 'State';
+    const postalLabel = isCanadian ? 'Postal Code' : 'ZIP Code';
+    const inquiryLabel = isCanadian ? 'Enquiry' : 'Inquiry';
+
     return (
         <Html>
             <Head />
-            <Preview>New Inquiry: {inquiryType} from {name}</Preview>
+            <Preview>New {inquiryLabel}: {inquiryType} from {name}</Preview>
             <Body style={main}>
                 <Container style={container}>
-                    <Heading style={h1}>New Website Inquiry</Heading>
+                    <Section style={badgeContainer}>
+                        <Text style={badgeText}>
+                            {regionBadge}
+                        </Text>
+                    </Section>
+
+                    <Heading style={h1}>New Website {inquiryLabel}</Heading>
 
                     <Section style={section}>
                         <Text style={label}>From:</Text>
@@ -57,7 +77,24 @@ export const ContactFormEmail = ({
                             </>
                         )}
 
-                        <Text style={label}>Inquiry Type:</Text>
+                        {(stateProvince || postalCode) && (
+                            <div style={{ marginTop: '16px' }}>
+                                {stateProvince && (
+                                    <>
+                                        <Text style={label}>{stateLabel}:</Text>
+                                        <Text style={value}>{stateProvince}</Text>
+                                    </>
+                                )}
+                                {postalCode && (
+                                    <>
+                                        <Text style={label}>{postalLabel}:</Text>
+                                        <Text style={value}>{postalCode}</Text>
+                                    </>
+                                )}
+                            </div>
+                        )}
+
+                        <Text style={label}>{inquiryLabel} Type:</Text>
                         <Text style={highlight}>{inquiryType}</Text>
                     </Section>
 
@@ -70,9 +107,19 @@ export const ContactFormEmail = ({
 
                     <Hr style={hr} />
 
-                    <Text style={footer}>
-                        Sent from VisQuanta.com Contact Form
-                    </Text>
+                    <Section style={section}>
+                        <Text style={footer}>
+                            Submitted from: visquanta.com{isCanadian ? '/ca/' : '/'}
+                        </Text>
+                        <Text style={footer}>
+                            Locale: {locale}
+                        </Text>
+                        {timestamp && (
+                            <Text style={footer}>
+                                Timestamp: {timestamp}
+                            </Text>
+                        )}
+                    </Section>
                 </Container>
             </Body>
         </Html>
@@ -91,6 +138,22 @@ const container = {
     margin: '0 auto',
     padding: '20px 0 48px',
     marginBottom: '64px',
+};
+
+const badgeContainer = {
+    textAlign: 'center' as const,
+    padding: '12px 0',
+    borderBottom: '2px solid #eee',
+    marginBottom: '24px',
+};
+
+const badgeText = {
+    fontSize: '24px',
+    fontWeight: '900',
+    textAlign: 'center' as const,
+    letterSpacing: '2px',
+    color: '#333',
+    margin: '0',
 };
 
 const h1 = {
@@ -142,4 +205,5 @@ const hr = {
 const footer = {
     color: '#8898aa',
     fontSize: '12px',
+    lineHeight: '1.6',
 };

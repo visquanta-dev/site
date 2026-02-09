@@ -13,6 +13,8 @@ import { baseSchema } from "@/lib/schema/base";
 import MobileStickyCTA from "@/components/MobileStickyCTA";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import I18nWrapper from "@/components/i18n/I18nWrapper";
+import GeoSuggestionBanner from "@/components/i18n/GeoSuggestionBanner";
 
 
 
@@ -189,17 +191,20 @@ export default function RootLayout({
         <script src="https://analytics.ahrefs.com/analytics.js" data-key="Wu9ybf2aliQUBBh9UHxyGQ" async></script>
       </head>
       <body className={inter.variable} style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif' }} suppressHydrationWarning>
-        <SmoothScroll>
-          <CalendlyModalProvider calendlyUrl={CALENDLY_URL}>
-            {children}
-            <MobileStickyCTA />
-            <Toaster />
-            <SpeedInsights />
-            <Analytics />
+        <I18nWrapper>
+          <GeoSuggestionBanner />
+          <SmoothScroll>
+            <CalendlyModalProvider calendlyUrl={CALENDLY_URL}>
+              {children}
+              <MobileStickyCTA />
+              <Toaster />
+              <SpeedInsights />
+              <Analytics />
 
-          </CalendlyModalProvider>
+            </CalendlyModalProvider>
 
-        </SmoothScroll>
+          </SmoothScroll>
+        </I18nWrapper>
       </body>
     </html>
   );

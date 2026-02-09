@@ -1,0 +1,557 @@
+{
+    "form": {
+        "heading": "Get in Touch",
+        "description": "We respond within 2 hours during business hours.",
+        "name_label": "Full Name",
+        "name_placeholder": "John Doe",
+        "email_label": "Email Address",
+        "email_placeholder": "john@dealership.com",
+        "phone_label": "Phone Number",
+        "phone_placeholder": "+1 (786) 555-0123",
+        "dealership_label": "Dealership Name",
+        "dealership_placeholder": "VisQuanta Motors",
+        "inquiry_type_label": "How Can We Help?",
+        "inquiry_type_placeholder": "Select an option",
+        "message_label": "Your Message",
+        "message_placeholder": "Tell us about your dealership, your goals, and how we can help accelerate your growth...",
+        "state_label": "State",
+        "state_placeholder": "Select State",
+        "postal_label": "ZIP Code",
+        "postal_placeholder": "33134",
+        "submit_button": "Submit Inquiry",
+        "sending": "Sending...",
+        "success_title": "Message Received",
+        "success_desc": "Thank you for your inquiry. A member of our team will be in touch shortly.",
+        "error_message": "Something went wrong. Please try again.",
+        "privacy_note": "By submitting, you agree to our <link>Privacy & data handling</link> practices.",
+        "states": [
+            {
+                "value": "AL",
+                "label": "Alabama"
+            },
+            {
+                "value": "AK",
+                "label": "Alaska"
+            },
+            {
+                "value": "AZ",
+                "label": "Arizona"
+            },
+            {
+                "value": "AR",
+                "label": "Arkansas"
+            },
+            {
+                "value": "CA",
+                "label": "California"
+            },
+            {
+                "value": "CO",
+                "label": "Colorado"
+            },
+            {
+                "value": "CT",
+                "label": "Connecticut"
+            },
+            {
+                "value": "DE",
+                "label": "Delaware"
+            },
+            {
+                "value": "FL",
+                "label": "Florida"
+            },
+            {
+                "value": "GA",
+                "label": "Georgia"
+            },
+            {
+                "value": "HI",
+                "label": "Hawaii"
+            },
+            {
+                "value": "ID",
+                "label": "Idaho"
+            },
+            {
+                "value": "IL",
+                "label": "Illinois"
+            },
+            {
+                "value": "IN",
+                "label": "Indiana"
+            },
+            {
+                "value": "IA",
+                "label": "Iowa"
+            },
+            {
+                "value": "KS",
+                "label": "Kansas"
+            },
+            {
+                "value": "KY",
+                "label": "Kentucky"
+            },
+            {
+                "value": "LA",
+                "label": "Louisiana"
+            },
+            {
+                "value": "ME",
+                "label": "Maine"
+            },
+            {
+                "value": "MD",
+                "label": "Maryland"
+            },
+            {
+                "value": "MA",
+                "label": "Massachusetts"
+            },
+            {
+                "value": "MI",
+                "label": "Michigan"
+            },
+            {
+                "value": "MN",
+                "label": "Minnesota"
+            },
+            {
+                "value": "MS",
+                "label": "Mississippi"
+            },
+            {
+                "value": "MO",
+                "label": "Missouri"
+            },
+            {
+                "value": "MT",
+                "label": "Montana"
+            },
+            {
+                "value": "NE",
+                "label": "Nebraska"
+            },
+            {
+                "value": "NV",
+                "label": "Nevada"
+            },
+            {
+                "value": "NH",
+                "label": "New Hampshire"
+            },
+            {
+                "value": "NJ",
+                "label": "New Jersey"
+            },
+            {
+                "value": "NM",
+                "label": "New Mexico"
+            },
+            {
+                "value": "NY",
+                "label": "New York"
+            },
+            {
+                "value": "NC",
+                "label": "North Carolina"
+            },
+            {
+                "value": "ND",
+                "label": "North Dakota"
+            },
+            {
+                "value": "OH",
+                "label": "Ohio"
+            },
+            {
+                "value": "OK",
+                "label": "Oklahoma"
+            },
+            {
+                "value": "OR",
+                "label": "Oregon"
+            },
+            {
+                "value": "PA",
+                "label": "Pennsylvania"
+            },
+            {
+                "value": "RI",
+                "label": "Rhode Island"
+            },
+            {
+                "value": "SC",
+                "label": "South Carolina"
+            },
+            {
+                "value": "SD",
+                "label": "South Dakota"
+            },
+            {
+                "value": "TN",
+                "label": "Tennessee"
+            },
+            {
+                "value": "TX",
+                "label": "Texas"
+            },
+            {
+                "value": "UT",
+                "label": "Utah"
+            },
+            {
+                "value": "VT",
+                "label": "Vermont"
+            },
+            {
+                "value": "VA",
+                "label": "Virginia"
+            },
+            {
+                "value": "WA",
+                "label": "Washington"
+            },
+            {
+                "value": "WV",
+                "label": "West Virginia"
+            },
+            {
+                "value": "WI",
+                "label": "Wisconsin"
+            },
+            {
+                "value": "WY",
+                "label": "Wyoming"
+            },
+            {
+                "value": "DC",
+                "label": "District of Columbia"
+            }
+        ],
+        "provinces": [
+            {
+                "value": "AB",
+                "label": "Alberta"
+            },
+            {
+                "value": "BC",
+                "label": "British Columbia"
+            },
+            {
+                "value": "MB",
+                "label": "Manitoba"
+            },
+            {
+                "value": "NB",
+                "label": "New Brunswick"
+            },
+            {
+                "value": "NL",
+                "label": "Newfoundland and Labrador"
+            },
+            {
+                "value": "NT",
+                "label": "Northwest Territories"
+            },
+            {
+                "value": "NS",
+                "label": "Nova Scotia"
+            },
+            {
+                "value": "NU",
+                "label": "Nunavut"
+            },
+            {
+                "value": "ON",
+                "label": "Ontario"
+            },
+            {
+                "value": "PE",
+                "label": "Prince Edward Island"
+            },
+            {
+                "value": "QC",
+                "label": "Quebec"
+            },
+            {
+                "value": "SK",
+                "label": "Saskatchewan"
+            },
+            {
+                "value": "YT",
+                "label": "Yukon"
+            }
+        ]
+    },
+    "common": {
+        "schedule_cta": "Schedule Your Walkthrough",
+        "learn_more": "Learn More",
+        "see_how_it_works": "See How It Works",
+        "explore": "Explore",
+        "enquiry_label": "Inquiry",
+        "phone_placeholder": "+1 (786) 555-0123",
+        "state_label": "State",
+        "zip_label": "ZIP Code",
+        "submit_button": "Submit Inquiry",
+        "thank_you_message": "Thank you for your inquiry. A member of our team will be in touch shortly.",
+        "system_online": "System Online",
+        "calculate_lost_revenue": "Calculate Your Lost Revenue"
+    },
+    "metadata": {
+        "homepage_title": "Car Dealership AI | Lead Reactivation & Revenue Recovery Platform",
+        "homepage_description": "The #1 Car Dealership AI platform for lead reactivation, speed-to-lead automation, and high-performance revenue recovery. Transform your CRM into a sales engine.",
+        "og_title": "AI for Car Dealerships | Lead Reactivation & Speed to Lead",
+        "og_description": "Reactivate dormant CRM leads. Respond to inbound leads in under 60 seconds. Never miss a service call. VisQuanta's AI platform drives dealership revenue 24/7."
+    },
+    "hero": {
+        "eyebrow": "VISQUANTA PRESENTS: THE AUTOMASTER SUITE",
+        "headline_1": "AI for Car Dealerships",
+        "headline_2": "That Drives Revenue",
+        "subheadline": "VisQuanta <strong>automates lead reactivation</strong>, responds to new leads in <strong>under 60 seconds</strong>, protects your reputation, & ensures your service department <strong>never misses a call</strong>.",
+        "cta_primary": "Schedule Your Walkthrough",
+        "cta_secondary": "See How It Works",
+        "cta_microcopy": "15-min 1:1 • Get an exact revenue-lift projection for your dealership",
+        "trusted_by": "Trusted by",
+        "trusted_count": "500+",
+        "trusted_suffix": "Dealerships",
+        "stat_revenue": "30%",
+        "stat_revenue_label": "avg. revenue increase",
+        "stat_coverage": "24/7",
+        "stat_coverage_label": "automated coverage"
+    },
+    "hero_cards": {
+        "widget_title": "Website Widget",
+        "widget_label": "Conversion",
+        "widget_description": "Convert website visitors into qualified buyers with real-time engagement.",
+        "reputation_title": "Reputation Management",
+        "reputation_label": "Brand Health",
+        "reputation_description": "Monitor and respond to reviews across all platforms instantly.",
+        "service_title": "Service AI",
+        "service_label": "Fixed Ops",
+        "service_description": "Handle service appointments and inquiries 24/7 with specialized Voice AI.",
+        "speed_title": "Speed to Lead",
+        "speed_label": "Inbound Response",
+        "speed_description": "Instant, human-quality engagement for every inbound lead, 24/7/365.",
+        "reactivation_title": "Lead Reactivation",
+        "reactivation_label": "Revenue Recovery",
+        "reactivation_description": "Conversational AI digs into your CRM to reactivate stalled prospects."
+    },
+    "pain_points": {
+        "badge": "The Operations Reality",
+        "headline": "Most dealerships don't realize how much <highlight>revenue is being left behind</highlight> day-to-day.",
+        "paragraph_1": "As a GM, you know the numbers. But the daily reality is harder to track. While your team focuses on floor traffic, your <strong>CRM is becoming a graveyard</strong> of thousands of leads that will never be called again.",
+        "paragraph_2": "In Service, your advisors are overwhelmed. Every missed call is a missed RO; and for an average dealer, that's <strong>over $8,500 in lost revenue every single week</strong>.",
+        "paragraph_3": "You're fighting a losing battle against BDC turnover and lead response times that your competitors are already beating. It's not just \"speed to lead\": it's a <strong>total operational breakdown</strong> that costs you the unfair advantage you deserve.",
+        "quote": "\"The cost of doing nothing is your highest expense.\"",
+        "quote_detail": "If your system isn't capturing every call, mining every CRM lead, and responding in seconds: you're paying for it every single day in lost units and service ROs.",
+        "stat_1_value": "84%",
+        "stat_1_label": "of CRM leads",
+        "stat_1_detail": "are never re-engaged after 30 days",
+        "stat_1_impact": "Millions in latent revenue wasted.",
+        "stat_2_value": "1 in 4",
+        "stat_2_label": "service calls",
+        "stat_2_detail": "are missed or go to voicemail",
+        "stat_2_impact": "Directly losing $340+ per missed RO.",
+        "stat_3_value": "45%",
+        "stat_3_label": "BDC Turnover",
+        "stat_3_detail": "average annual staff churn rate",
+        "stat_3_impact": "Constant retraining & lost consistency.",
+        "stat_4_value": "22 min",
+        "stat_4_label": "Avg. Response",
+        "stat_4_detail": "for new web leads on weekends",
+        "stat_4_impact": "Leads are sold by competitors in 5."
+    },
+    "what_is_ai": {
+        "badge": "Understanding Dealership AI",
+        "headline": "What is AI for Car Dealerships?",
+        "paragraph_1": "AI for car dealerships refers to artificial intelligence software designed specifically for automotive retail operations. Unlike generic chatbots or business automation tools, dealership AI understands automotive terminology, integrates with dealer management systems (DMS), and handles industry-specific workflows.",
+        "paragraph_2": "Key applications include Lead Reactivation to re-engage cold prospects, Speed-to-Lead Automation for instant responses (seconds, not hours), and Voice AI for handling phone calls and service appointments. Comprehensive platforms also centralize Reputation Management and convert web traffic into live SMS Engagement.",
+        "paragraph_3": "VisQuanta's AutoMaster Suite combines all five capabilities in one platform, purpose-built for how dealerships actually operate."
+    },
+    "platform": {
+        "badge": "Inside The AutoMaster Suite",
+        "headline": "AI for Car Dealerships:",
+        "headline_highlight": "Five Capabilities, One Platform",
+        "intro": "VisQuanta is an AI platform built specifically for car dealerships in the United States. Founded in Miami, Florida, VisQuanta's <highlight>The AutoMaster Suite</highlight> provides the complete revenue operating system for your dealership.",
+        "lead_reactivation_title": "Lead Reactivation",
+        "lead_reactivation_description": "Conversational AI digs into your CRM, reactivates stalled prospects, and turns dead leads into booked appointments.",
+        "lead_reactivation_stat_1": "30%",
+        "lead_reactivation_stat_1_label": "Re-engagement",
+        "lead_reactivation_stat_2": "11%",
+        "lead_reactivation_stat_2_label": "Sales Uplift",
+        "speed_to_lead_title": "Speed to Lead",
+        "speed_to_lead_description": "Instant personalized response to every inbound lead within 60 seconds.",
+        "speed_to_lead_stat_1": "21x",
+        "speed_to_lead_stat_1_label": "Higher Conversion",
+        "speed_to_lead_stat_2": "<60s",
+        "speed_to_lead_stat_2_label": "Response Time",
+        "widget_title": "Website Widget",
+        "widget_description": "Convert website visitors into qualified buyers with real-time engagement.",
+        "widget_stat_1": "24/7",
+        "widget_stat_1_label": "Availability",
+        "widget_stat_2": "3x",
+        "widget_stat_2_label": "More Leads",
+        "reputation_title": "Reputation Management",
+        "reputation_description": "Monitor and respond to reviews across all platforms instantly.",
+        "reputation_stat_1": "100%",
+        "reputation_stat_1_label": "Response Rate",
+        "reputation_stat_2": "4.8",
+        "reputation_stat_2_label": "Avg Rating",
+        "service_title": "Service AI",
+        "service_description": "Handle service appointments and inquiries 24/7 with Voice AI.",
+        "service_stat_1": "98%",
+        "service_stat_1_label": "Success Rate",
+        "service_stat_2": "0",
+        "service_stat_2_label": "Missed Calls"
+    },
+    "why_visquanta": {
+        "badge": "The Competitive Edge",
+        "headline": "Bespoke automotive AI.",
+        "headline_highlight": "Unmatched in the industry.",
+        "intro": "VisQuanta isn't here to replace your sales team. It's here to fill their pipeline with qualified, engaged buyers ready to make a decision.",
+        "point_1_title": "Conversations That Convert",
+        "point_1_description": "Our conversational AI is unlike any other tool on the market. It speaks automotive, understands buyer intent, and delivers qualified leads, not tire-kickers.",
+        "point_2_title": "Your Team Closes the Deal",
+        "point_2_description": "We qualify leads and book appointments. Your salespeople do what they do best: turn opportunities we bring them into sold units.",
+        "point_3_title": "Built for Dealerships",
+        "point_3_description": "We're not a generic AI company that decided to try automotive. Every feature is purpose-built for how dealerships actually operate."
+    },
+    "dealer_services": {
+        "badge": "Dealer-Specific Solutions",
+        "headline": "Built for how <highlight>your dealership</highlight> sells cars.",
+        "intro": "Every dealership operates differently. AutoMaster Suite adapts to your unique workflow: not the other way around.",
+        "independent_title": "Independent Dealers",
+        "independent_tagline": "Enterprise power. Independent spirit.",
+        "independent_description": "You built your dealership from the ground up. AutoMaster Suite gives you the same AI firepower as the big groups: without the overhead or complexity.",
+        "preowned_title": "Pre-Owned Dealers",
+        "preowned_tagline": "Move metal faster.",
+        "preowned_description": "In pre-owned, speed is everything. Our AI engages buyers instantly, qualifies their needs, and gets them on your lot before the competition knows they exist.",
+        "franchise_title": "Franchise Dealers",
+        "franchise_tagline": "OEM-compliant. Performance-optimized.",
+        "franchise_description": "Meet manufacturer response requirements effortlessly. AutoMaster integrates with certified systems and maintains brand standards across every touchpoint.",
+        "autogroups_title": "Auto Groups",
+        "autogroups_tagline": "One platform. Every rooftop.",
+        "autogroups_description": "Unified AI across all locations with centralized reporting and per-store customization. Scale your winning playbook instantly across your entire portfolio.",
+        "testimonial_placeholder": "Canadian dealership success stories coming soon."
+    },
+    "results": {
+        "badge": "VisQuanta By The Numbers",
+        "headline": "Real Results.",
+        "headline_highlight": "Real Dealerships.",
+        "intro": "We don't just provide software; we provide a measurable competitive advantage. See how VisQuanta partners are transforming their operations.",
+        "stat_1_value": "$37.8M",
+        "stat_1_label": "Extra Revenue",
+        "stat_1_detail": "Generated by VisQuanta partners",
+        "stat_2_value": "7,192+",
+        "stat_2_label": "Vehicles Sold",
+        "stat_2_detail": "From reactivated dead leads",
+        "stat_3_value": "11.6%",
+        "stat_3_label": "Sales Lift",
+        "stat_3_detail": "Average increase in total vehicle sales",
+        "stat_4_value": "Under 60s",
+        "stat_4_label": "Response Time",
+        "stat_4_detail": "For every single inbound lead"
+    },
+    "how_it_works": {
+        "badge": "The Journey",
+        "headline": "From Signup to <br /><highlight>ROI.</highlight>",
+        "tagline": "14 days. Zero code. One dedicated success manager. We handle the heavy lifting so your team can stay focused on closing deals.",
+        "process_description": "Built to maximize sales from the leads already in your CRM.",
+        "step_1_title": "Onboard",
+        "step_1_timing": "Day 1-2",
+        "step_1_description": "White-glove setup with a dedicated dealership success manager.",
+        "step_2_title": "Connect",
+        "step_2_timing": "Day 3-5",
+        "step_2_description": "Seamless CRM, lead source, and existing dealership system integration.",
+        "step_3_title": "Configure",
+        "step_3_timing": "Day 6-8",
+        "step_3_description": "Configured to match your dealership's voice, follow-up process, and customer expectations.",
+        "step_4_title": "Convert",
+        "step_4_timing": "Day 9-11",
+        "step_4_description": "Go live with faster response and consistent lead engagement.",
+        "step_5_title": "Scale",
+        "step_5_timing": "Day 12-14",
+        "step_5_description": "Ongoing optimization as lead volume and results increase."
+    },
+    "integrations": {
+        "badge": "Seamless Integration",
+        "headline": "Connects to Everything",
+        "description": "AutoMaster Suite integrates with your existing dealership systems — no rip-and-replace required.",
+        "dms_title": "DMS Integrations",
+        "dms_description": "Deep, bi-directional sync with all major Dealer Management Systems.",
+        "crm_title": "CRM Platforms",
+        "crm_description": "Real-time lead push and activity logging in your existing CRM workflow.",
+        "footer_q": "Don't see your system?",
+        "footer_cta": "Check compatibility"
+    },
+    "faq": {
+        "badge": "Common Questions",
+        "headline": "Frequently Asked Questions",
+        "implementation_q": "How long does implementation take?",
+        "implementation_a": "Most dealerships are fully operational within 14 days. Our white-glove onboarding includes CRM integration, custom scripting, and team training.",
+        "compliance_q": "Is the AI compliant with regulations?",
+        "compliance_a": "Yes. VisQuanta is fully compliant with State and Federal TCPA regulations, with monthly audits to ensure ongoing compliance.",
+        "cancel_q": "Can I cancel anytime?",
+        "cancel_a": "Yes. We offer flexible month-to-month agreements with no long-term contracts required.",
+        "systems_q": "Do I need to change my existing systems?",
+        "systems_a": "No. The AutoMaster Suite integrates seamlessly with all major DMS platforms, CRMs, and lead sources. We work alongside your existing tools, not against them.",
+        "calls_q": "What happens if I receive a call while the AI is responding?",
+        "calls_a": "Our intelligent routing system ensures live calls always take priority. The AI seamlessly hands off to your team when a customer is ready to talk, with full conversation context.",
+        "customization_q": "Is the AI customized for my dealership?",
+        "customization_a": "Absolutely. During onboarding, we train the AI on your inventory, pricing, processes, and brand voice. It learns your dealership's unique personality and selling style.",
+        "roi_q": "What's your typical ROI?",
+        "roi_a": "Dealers typically see 3-5x ROI within the first 90 days through recovered leads, faster response times, and increased service appointments. We provide transparent reporting so you can track every dollar.",
+        "description": "Everything you need to know about getting started with The AutoMaster Suite.",
+        "cta_text": "Still have questions?",
+        "cta_button": "Schedule Your Walkthrough"
+    },
+    "final_cta": {
+        "headline": "<span class='text-white/40'>READY TO</span><br />DOMINATE <span class='text-[#ff7404]'>YOUR MARKET?</span>",
+        "description": "Join the elite dealerships using VisQuanta to automate operations and maximize revenue. Your competition is already here.",
+        "cta": "Schedule Your Walkthrough",
+        "microcopy": "15-min 1:1 • Get an exact revenue-lift projection for your dealership",
+        "badge": "Enterprise Deployment Ready",
+        "trust_1_title": "DMS SECURE SYNC",
+        "trust_1_desc": "Automated real-time data integration",
+        "trust_2_title": "CUSTOM DEPLOYMENT",
+        "trust_2_desc": "Tailored to your store's specific workflow",
+        "trust_3_title": "PERFORMANCE FIRST",
+        "trust_3_desc": "Built for high-volume automotive results"
+    },
+    "footer": {
+        "address_line_1": "2222 Ponce de Leon Blvd, 3rd Floor",
+        "address_line_2": "Miami, FL 33134",
+        "country": "USA",
+        "email": "info@visquanta.com",
+        "phone": "+1 786-686-6554",
+        "copyright": "© 2026 VisQuanta LLC. All Rights Reserved.",
+        "privacy_policy": "Privacy Policy",
+        "terms": "Terms & Conditions",
+        "cookies": "Cookies",
+        "automaster_suite": "AutoMaster Suite",
+        "dealer_services": "Dealer Services",
+        "resources": "Resources",
+        "company": "Company",
+        "show_bbb_badge": true
+    },
+    "nav": {
+        "automaster_suite": "AutoMaster Suite",
+        "dealer_services": "Dealer Services",
+        "company": "Company",
+        "resources": "Resources"
+    },
+    "geo_banner": {
+        "message": "It looks like you're visiting from {country}.",
+        "switch_button": "Switch to {country} site",
+        "dismiss": "Stay on US site"
+    },
+    "locale_switcher": {
+        "select_region": "Select Region",
+        "united_states": "United States",
+        "canada": "Canada",
+        "united_kingdom": "United Kingdom",
+        "coming_soon": "Coming Soon"
+    }
+}

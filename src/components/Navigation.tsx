@@ -28,6 +28,9 @@ import { Button } from "@/components/ui/button";
 import { usePathname } from 'next/navigation';
 import { useRef } from 'react';
 import { createPortal } from 'react-dom';
+import LocaleSwitcher from '@/components/i18n/LocaleSwitcher';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
+import { localeLink } from '@/lib/locale-link';
 
 // Portal helper to ensure client-side rendering
 const Portal = ({ children }: { children: React.ReactNode }) => {
@@ -143,6 +146,7 @@ export default function Navigation() {
   }, []);
 
   const pathname = usePathname();
+  const { locale } = useLocale();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // Close menu on route change
@@ -213,7 +217,7 @@ export default function Navigation() {
     >
       <div className="container-wide flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center z-50 relative group px-2 py-1">
+        <Link href={localeLink('/', locale)} className="flex items-center z-50 relative group px-2 py-1">
           <div className="absolute inset-0 bg-gradient-to-r from-[#FF7404]/0 via-[#FF7404]/5 to-[#FF7404]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-lg" />
           <Image
             src="/images/visquanta-logo-transparent.png"
@@ -235,7 +239,7 @@ export default function Navigation() {
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <Link
-                href={item.href || '#'}
+                href={localeLink(item.href || '#', locale)}
                 className={`flex items-center gap-1.5 text-[15px] font-medium transition-colors ${activeDropdown === item.label ? 'text-white' : 'text-muted-foreground hover:text-white'
                   }`}
               >
@@ -319,7 +323,7 @@ export default function Navigation() {
                                 ...item.children,
                                 {
                                   label: 'Service Drive Pro',
-                                  href: '/service-drive',
+                                  href: localeLink('/service-drive', locale),
                                   description: 'Voice AI for fixed ops & appointments',
                                   icon: Wrench,
                                 }
@@ -335,7 +339,7 @@ export default function Navigation() {
                                   transition={{ delay: idx * 0.05 }}
                                 >
                                   <Link
-                                    href={child.href}
+                                    href={localeLink(child.href, locale)}
                                     className="group relative flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/5"
                                   >
                                     {Icon && (
@@ -394,7 +398,7 @@ export default function Navigation() {
 
                         {item.href && (
                           <Link
-                            href={item.href}
+                            href={localeLink(item.href, locale)}
                             className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#FF7404] hover:text-white transition-all group relative z-10"
                           >
                             Access {item.label} Hub
@@ -415,7 +419,10 @@ export default function Navigation() {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
+          {/* Locale Switcher */}
+          <LocaleSwitcher />
+
           <RequestDemoButton asChild>
             <Button className="relative h-9 px-6 rounded-lg bg-[#FF7404] hover:bg-[#ff8a2b] text-black transition-all uppercase tracking-widest text-[10px] font-black shadow-[0_0_20px_rgba(255,116,4,0.4)] hover:shadow-[0_0_30px_rgba(255,116,4,0.6)] border-none">
               Schedule Your Walkthrough
@@ -503,7 +510,7 @@ export default function Navigation() {
                 style={{ WebkitTapHighlightColor: 'transparent' }}
               >
                 <Link
-                  href="/"
+                  href={localeLink('/', locale)}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="flex items-center"
                   style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
@@ -566,7 +573,7 @@ export default function Navigation() {
                                     return (
                                       <Link
                                         key={childIdx}
-                                        href={child.href}
+                                        href={localeLink(child.href, locale)}
                                         onClick={() => setIsMobileMenuOpen(false)}
                                         className="flex items-center gap-4 group/child py-2 -mx-2 px-2 rounded-lg active:bg-white/5"
                                         style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
@@ -600,7 +607,7 @@ export default function Navigation() {
                         </div>
                       ) : (
                         <Link
-                          href={item.href || '#'}
+                          href={localeLink(item.href || '#', locale)}
                           onClick={() => setIsMobileMenuOpen(false)}
                           className="block text-2xl font-bold text-white uppercase tracking-wider py-1 -mx-2 px-2 rounded-lg active:bg-white/5"
                           style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}

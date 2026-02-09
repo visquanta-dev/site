@@ -1,8 +1,8 @@
+
 import React from 'react';
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 import { ContactFormEmail } from '@/emails/ContactFormEmail';
-
 import { ContactThankYouEmail } from '@/emails/ContactThankYouEmail';
 
 export async function POST(request: NextRequest) {
@@ -16,7 +16,18 @@ export async function POST(request: NextRequest) {
 
         const resend = new Resend(apiKey);
         const body = await request.json();
-        const { name, email, phone, dealership, inquiryType, message } = body;
+        const {
+            name,
+            email,
+            phone,
+            dealership,
+            inquiryType,
+            message,
+            locale = 'en-US',
+            region = 'US',
+            stateProvince,
+            postalCode
+        } = body;
 
         // Basic validation
         if (!email || !message || !name) {
@@ -26,21 +37,30 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        console.log('SENDING EMAIL TO:', ['info@visquanta.com', 'jbillington@visquanta.com']);
+        const isCanadian = locale === 'en-CA';
+        const inquiryLabel = isCanadian ? 'Enquiry' : 'Inquiry';
+        const timestamp = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+
+        console.log(`SENDING EMAIL TO: ['info@visquanta.com', 'jbillington@visquanta.com'] [Locale: ${locale}]`);
 
         // 1. Send email notification to internal team
         const internalData = await resend.emails.send({
             from: 'VisQuanta Website <noreply@visquanta.com>',
             to: ['info@visquanta.com', 'jbillington@visquanta.com'],
             replyTo: email,
-            subject: `[New Inquiry] ${inquiryType} - ${name}`,
+            subject: `[New ${inquiryLabel}] ${inquiryType || 'General'} - ${name}`,
             react: <ContactFormEmail
                 name={name}
                 email={email}
                 phone={phone}
                 dealership={dealership}
-                inquiryType={inquiryType}
+                inquiryType={inquiryType || 'General'}
                 message={message}
+                locale={locale}
+                region={region}
+                stateProvince={stateProvince}
+                postalCode={postalCode}
+                timestamp={timestamp}
             />,
         });
 
@@ -54,14 +74,16 @@ export async function POST(request: NextRequest) {
             const isCareer = inquiryType?.toLowerCase().includes('career');
             const subject = isCareer
                 ? "Application Received - VisQuanta"
-                : "We've received your inquiry - VisQuanta";
+                : `We've received your ${inquiryLabel.toLowerCase()} - VisQuanta`;
 
-            // For now using the same template but could be specialized
             await resend.emails.send({
                 from: 'VisQuanta <noreply@visquanta.com>',
                 to: email,
                 subject: subject,
-                react: <ContactThankYouEmail name={name.split(' ')[0]} />,
+                react: <ContactThankYouEmail
+                    name={name.split(' ')[0]}
+                    locale={locale}
+                />,
             });
             console.log('Thank you email sent to:', email);
         } catch (thankYouError) {

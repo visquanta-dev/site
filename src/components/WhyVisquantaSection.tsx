@@ -2,10 +2,14 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Check, X, Sparkles, Bot, Users, Building2, Zap, Target, ShieldCheck, Smartphone } from 'lucide-react';
+import { Check, X, ShieldCheck, Smartphone, Users, Building2 } from 'lucide-react';
 import MobileComparisonCards from './mobile/MobileComparisonCards';
 import MobileDifferentiatorCards from './mobile/MobileDifferentiatorCards';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
+
+// Comparisons left hardcoded for now as they are technical specs, 
+// but normally should be localized if they vary by region or language.
 const comparisons = [
     { feature: 'Lead Response Time', visquanta: '<60 seconds', traditional: '24+ hours', generic: '2-5 minutes', detail: 'Speed wins deals.' },
     { feature: 'Lead Reactivation', visquanta: 'SMS Conversational AI', traditional: 'Outbound calls', generic: '', detail: 'Prioritize, don\'t guess.' },
@@ -14,26 +18,27 @@ const comparisons = [
     { feature: 'Cost per Appointment', visquanta: 'Fraction of BDC', traditional: '$150-300', generic: 'Variable', detail: 'Scale without payroll.' },
 ];
 
-const differentiators = [
-    {
-        icon: Smartphone,
-        title: 'Conversations That Convert',
-        description: 'Our conversational AI is unlike any other tool on the market. It speaks automotive, understands buyer intent, and delivers qualified leads, not tire-kickers.',
-    },
-
-    {
-        icon: Users,
-        title: 'Your Team Closes the Deal',
-        description: 'We qualify leads and book appointments. Your salespeople do what they do best: turn opportunities we bring them into sold units.',
-    },
-    {
-        icon: Building2,
-        title: 'Built for Dealerships',
-        description: 'We\'re not a generic AI company that decided to try automotive. Every feature is purpose-built for how dealerships actually operate.',
-    },
-];
-
 export default function WhyVisquantaSection() {
+    const { t } = useLocale();
+
+    const differentiators = [
+        {
+            icon: Smartphone,
+            title: t('why_visquanta.point_1_title'),
+            description: t('why_visquanta.point_1_description'),
+        },
+        {
+            icon: Users,
+            title: t('why_visquanta.point_2_title'),
+            description: t('why_visquanta.point_2_description'),
+        },
+        {
+            icon: Building2,
+            title: t('why_visquanta.point_3_title'),
+            description: t('why_visquanta.point_3_description'),
+        },
+    ];
+
     return (
         <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#080808] relative overflow-hidden">
             {/* Background */}
@@ -61,13 +66,13 @@ export default function WhyVisquantaSection() {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-8">
                         <ShieldCheck className="w-3 h-3" />
-                        The Competitive Edge
+                        {t('why_visquanta.badge')}
                     </div>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
-                        Bespoke automotive AI. <span className="text-[#ff7404]">Unmatched in the industry.</span>
+                        {t('why_visquanta.headline')} <span className="text-[#ff7404]">{t('why_visquanta.headline_highlight')}</span>
                     </h2>
                     <p className="text-white/60 text-base sm:text-lg lg:text-xl leading-relaxed px-2 sm:px-0">
-                        VisQuanta isn't here to replace your sales team. It's here to fill their pipeline with qualified, engaged buyers ready to make a decision.
+                        {t('why_visquanta.intro')}
                     </p>
                 </motion.div>
 

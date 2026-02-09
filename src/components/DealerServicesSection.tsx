@@ -5,66 +5,70 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { BadgeCheck, Users, Building2, Store, ArrowRight, Sparkles, Calculator, TrendingUp } from 'lucide-react';
 import ROICalculatorModal from './ROICalculatorModal';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
-const dealerTypes = [
-  {
-    id: 'independent',
-    label: 'Independent Dealers',
-    icon: Store,
-    tagline: 'Enterprise power. Independent spirit.',
-    description: 'You built your dealership from the ground up. AutoMaster Suite gives you the same AI firepower as the big groups: without the overhead or complexity.',
-    link: '/dealers/independent',
-    ctaLabel: 'Scale Your Operation',
-    stat: '3x',
-    statLabel: 'Leads Converted',
-    quote: "ROI in 30 days. The difference is night and day.",
-    author: "Michael R."
-  },
-  {
-    id: 'pre-owned',
-    label: 'Pre-Owned Dealers',
-    icon: BadgeCheck,
-    tagline: 'Move metal faster.',
-    description: 'In pre-owned, speed is everything. Our AI engages buyers instantly, qualifies their needs, and gets them on your lot before the competition knows they exist.',
-    link: '/dealers/pre-owned',
-    ctaLabel: 'Move Metal Faster',
-    stat: '<60s',
-    statLabel: 'Response Time',
-    quote: "We've closed deals we thought were long gone.",
-    author: "Cody R."
-  },
-  {
-    id: 'franchise',
-    label: 'Franchise Dealers',
-    icon: Building2,
-    tagline: 'OEM-compliant. Performance-optimized.',
-    description: 'Meet manufacturer response requirements effortlessly. AutoMaster integrates with certified systems and maintains brand standards across every touchpoint.',
-    link: '/dealers/franchise',
-    ctaLabel: 'Dominate Your Market',
-    stat: '100%',
-    statLabel: 'OEM Compliance',
-    quote: "VisQuanta gets to leads before anyone else.",
-    author: "Jo D."
-  },
-  {
-    id: 'auto-groups',
-    label: 'Auto Groups',
-    icon: Users,
-    tagline: 'One platform. Every rooftop.',
-    description: 'Unified AI across all locations with centralized reporting and per-store customization. Scale your winning playbook instantly across your entire portfolio.',
-    link: '/dealers/auto-groups',
-    ctaLabel: 'Transform Your Portfolio',
-    stat: '89%',
-    statLabel: 'Process Consistency',
-    quote: "Integrated logic for fixed-ops mastery.",
-    author: "Dealer Principal"
-  },
-];
 
 export default function DealerServicesSection() {
-  const [activeDealer, setActiveDealer] = useState(dealerTypes[0]);
+  const { t } = useLocale();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [monthlyLeads, setMonthlyLeads] = useState(120);
+
+  const dealerTypes = [
+    {
+      id: 'independent',
+      label: t('dealer_services.independent_title'),
+      icon: Store,
+      tagline: t('dealer_services.independent_tagline'),
+      description: t('dealer_services.independent_description'),
+      link: '/dealers/independent',
+      ctaLabel: 'Scale Your Operation',
+      stat: '3x',
+      statLabel: 'Leads Converted',
+      quote: "ROI in 30 days. The difference is night and day.",
+      author: "Michael R."
+    },
+    {
+      id: 'pre-owned',
+      label: t('dealer_services.preowned_title'),
+      icon: BadgeCheck,
+      tagline: t('dealer_services.preowned_tagline'),
+      description: t('dealer_services.preowned_description'),
+      link: '/dealers/pre-owned',
+      ctaLabel: 'Move Metal Faster',
+      stat: '<60s',
+      statLabel: 'Response Time',
+      quote: "We've closed deals we thought were long gone.",
+      author: "Cody R."
+    },
+    {
+      id: 'franchise',
+      label: t('dealer_services.franchise_title'),
+      icon: Building2,
+      tagline: t('dealer_services.franchise_tagline'),
+      description: t('dealer_services.franchise_description'),
+      link: '/dealers/franchise',
+      ctaLabel: 'Dominate Your Market',
+      stat: '100%',
+      statLabel: 'OEM Compliance',
+      quote: "VisQuanta gets to leads before anyone else.",
+      author: "Jo D."
+    },
+    {
+      id: 'auto-groups',
+      label: t('dealer_services.autogroups_title'),
+      icon: Users,
+      tagline: t('dealer_services.autogroups_tagline'),
+      description: t('dealer_services.autogroups_description'),
+      link: '/dealers/auto-groups',
+      ctaLabel: 'Transform Your Portfolio',
+      stat: '89%',
+      statLabel: 'Process Consistency',
+      quote: "Integrated logic for fixed-ops mastery.",
+      author: "Dealer Principal"
+    },
+  ];
+
+  const [activeDealer, setActiveDealer] = useState(dealerTypes[0]);
 
   // Quick Math: Assumes $2400 gross
   const potentialLostRevenue = (monthlyLeads * 2400).toLocaleString();
@@ -85,13 +89,19 @@ export default function DealerServicesSection() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-6">
             <Sparkles className="w-3 h-3" />
-            Dealer Services
+            {t('dealer_services.badge')}
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
-            Built for how <span className="text-[#ff7404]">your dealership</span> sells cars.
-          </h2>
+          <h2
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight"
+            dangerouslySetInnerHTML={{
+              __html: t('dealer_services.headline')
+                .replace('<highlight>', '<span class="text-[#ff7404]">')
+                .replace('</highlight>', '</span>')
+            }}
+          />
+
           <p className="text-white/70 text-lg leading-relaxed">
-            Every dealership operates differently. AutoMaster Suite adapts to your unique workflow: not the other way around.
+            {t('dealer_services.intro')}
           </p>
         </motion.div>
 

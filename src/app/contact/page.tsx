@@ -17,11 +17,12 @@ import {
     CheckCircle2
 } from 'lucide-react';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { toast } from 'sonner';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -43,14 +44,6 @@ import {
 } from '@/components/ui/select';
 
 // --- Assets ---
-const inquiryTypes = [
-    "Schedule a Demo",
-    "Pricing Inquiry",
-    "Technical Support",
-    "Partnership Opportunity",
-    "Media / Press",
-    "General Question"
-];
 
 const offices = [
     {
@@ -78,17 +71,37 @@ const offices = [
     }
 ];
 
-// --- Form Schema ---
-const formSchema = z.object({
+// --- Validation Regexes ---
+const phoneRegexUS = /^\+?1?\s*\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
+const postalRegexUS = /^\d{5}(-\d{4})?$/;
+const postalRegexCA = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+
+const createFormSchema = (region: string) => z.object({
     name: z.string().min(2, { message: "Name must be at least 2 characters." }),
     email: z.string().email({ message: "Please enter a valid email address." }),
-    phone: z.string().optional(),
+    phone: z.string().optional().refine(val => !val || val.length > 5, { message: "Invalid phone number" }), // Basic checking for now
     dealership: z.string().optional(),
     inquiryType: z.string().min(1, { message: "Please select an inquiry type." }),
     message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+    stateProvince: z.string().min(1, { message: "Required" }),
+    postalCode: z.string().regex(region === 'CA' ? postalRegexCA : postalRegexUS, { message: region === 'CA' ? "Invalid Postal Code (e.g. M5V 2T6)" : "Invalid ZIP Code" }),
 });
 
 export default function ContactPage() {
+    const { t, locale, messages } = useLocale();
+    const region = locale.split('-')[1] || 'US';
+
+    // Dynamic Inquiry Types
+    const inquiryLabel = region === 'CA' ? 'Enquiry' : 'Inquiry';
+    const inquiryTypes = [
+        "Schedule a Demo",
+        `Pricing ${inquiryLabel}`,
+        "Technical Support",
+        "Partnership Opportunity",
+        "Media / Press",
+        "General Question"
+    ];
+
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -118,8 +131,8 @@ export default function ContactPage() {
         'telephone': '',
         'address': {
             '@type': 'PostalAddress',
-            'addressLocality': 'USA',
-            'addressCountry': 'US'
+            'addressLocality': region === 'CA' ? 'Canada' : 'USA',
+            'addressCountry': region
         },
         'contactPoint': {
             '@type': 'ContactPoint',
@@ -151,6 +164,8 @@ export default function ContactPage() {
     // --- Form Logic ---
     const [isSubmitted, setIsSubmitted] = useState(false);
 
+    const formSchema = useMemo(() => createFormSchema(region), [region]);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -159,32 +174,66 @@ export default function ContactPage() {
             phone: "",
             dealership: "",
             message: "",
+            stateProvince: "",
+            postalCode: "",
         },
     });
+
+    // Get region options from messages
+    const regionOptions: { value: string; label: string }[] = useMemo(() => {
+        const anyMessages = messages as any;
+        return (region === 'CA' ? anyMessages?.form?.provinces : anyMessages?.form?.states) || [];
+    }, [messages, region]);
 
     const { isSubmitting } = form.formState;
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
+            const payload = {
+                ...values,
+                locale,
+                region,
+            };
+
             const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(values),
+                body: JSON.stringify(payload),
             });
 
             if (!response.ok) {
                 const errorData = await response.json();
                 console.error('API error:', errorData);
-                throw new Error(errorData.error?.message || errorData.details || errorData.error || 'Failed to send message');
+                throw new Error(errorData.error?.message || errorData.details || errorData.error || t('form.error_message'));
             }
 
             setIsSubmitted(true);
-            toast.success("Message sent successfully!");
+            toast.success(t('form.success_title'));
         } catch (error: any) {
             console.error('Submission error:', error);
-            toast.error(error.message || "Failed to send message. Please try again.");
+            toast.error(error.message || t('form.error_message'));
         }
     }
+
+    // Parse privacy link
+    const renderPrivacyNote = () => {
+        const note = t('form.privacy_note');
+        if (note.includes('<link>')) {
+            const parts = note.split(/<link>(.*?)<\/link>/);
+            return (
+                <p className="text-center text-zinc-600 text-[10px] uppercase tracking-widest leading-relaxed">
+                    {parts[0]}
+                    <Link href="/trust" className="text-[#FF7404] hover:underline font-bold">{parts[1]}</Link>
+                    {parts[2]}
+                </p>
+            );
+        }
+        return (
+            <p className="text-center text-zinc-600 text-[10px] uppercase tracking-widest leading-relaxed">
+                {note}
+            </p>
+        );
+    };
 
     // --- Animations ---
     const containerVariants = {
@@ -359,9 +408,9 @@ export default function ContactPage() {
                                             >
                                                 <CheckCircle2 className="w-12 h-12 text-green-500" />
                                             </motion.div>
-                                            <h3 className="text-4xl font-black text-white mb-4 tracking-tight">Message Received</h3>
+                                            <h3 className="text-4xl font-black text-white mb-4 tracking-tight">{t('form.success_title')}</h3>
                                             <p className="text-zinc-400 text-lg mb-10 max-w-md mx-auto">
-                                                A member of our team will reach out within the next 2 hours.
+                                                {t('form.success_desc')}
                                             </p>
                                             <Button
                                                 asChild
@@ -382,8 +431,8 @@ export default function ContactPage() {
                                                         <MessageSquare className="w-5 h-5 text-[#FF7404]" />
                                                     </div>
                                                     <div>
-                                                        <h2 className="text-2xl font-bold text-white">Start a Conversation</h2>
-                                                        <p className="text-zinc-500 text-sm">We respond within 2 hours during business hours.</p>
+                                                        <h2 className="text-2xl font-bold text-white">{t('form.heading')}</h2>
+                                                        <p className="text-zinc-500 text-sm">{t('form.description')}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -398,11 +447,11 @@ export default function ContactPage() {
                                                             render={({ field }) => (
                                                                 <FormItem className="group relative">
                                                                     <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
-                                                                        Full Name <span className="text-[#FF7404]">*</span>
+                                                                        {t('form.name_label')} <span className="text-[#FF7404]">*</span>
                                                                     </FormLabel>
                                                                     <FormControl>
                                                                         <Input
-                                                                            placeholder="John Smith"
+                                                                            placeholder={t('form.name_placeholder')}
                                                                             className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300"
                                                                             {...field}
                                                                         />
@@ -419,11 +468,11 @@ export default function ContactPage() {
                                                             render={({ field }) => (
                                                                 <FormItem>
                                                                     <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
-                                                                        Email Address <span className="text-[#FF7404]">*</span>
+                                                                        {t('form.email_label')} <span className="text-[#FF7404]">*</span>
                                                                     </FormLabel>
                                                                     <FormControl>
                                                                         <Input
-                                                                            placeholder="john@dealership.com"
+                                                                            placeholder={t('form.email_placeholder')}
                                                                             className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300"
                                                                             {...field}
                                                                         />
@@ -442,11 +491,11 @@ export default function ContactPage() {
                                                             render={({ field }) => (
                                                                 <FormItem>
                                                                     <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
-                                                                        Phone Number
+                                                                        {t('form.phone_label')}
                                                                     </FormLabel>
                                                                     <FormControl>
                                                                         <Input
-                                                                            placeholder="+1 (555) 123-4567"
+                                                                            placeholder={t('form.phone_placeholder')}
                                                                             className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300"
                                                                             {...field}
                                                                         />
@@ -463,13 +512,65 @@ export default function ContactPage() {
                                                             render={({ field }) => (
                                                                 <FormItem>
                                                                     <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
-                                                                        Dealership / Company
+                                                                        {t('form.dealership_label')}
                                                                     </FormLabel>
                                                                     <FormControl>
                                                                         <Input
-                                                                            placeholder="Premier Auto Group"
+                                                                            placeholder={t('form.dealership_placeholder')}
                                                                             className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300"
                                                                             {...field}
+                                                                        />
+                                                                    </FormControl>
+                                                                    <FormMessage />
+                                                                </FormItem>
+                                                            )}
+                                                        />
+                                                    </div>
+
+                                                    <div className="grid md:grid-cols-2 gap-6">
+                                                        {/* State/Province Field */}
+                                                        <FormField
+                                                            control={form.control}
+                                                            name="stateProvince"
+                                                            render={({ field }) => (
+                                                                <FormItem>
+                                                                    <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                                                                        {t('form.state_label')} <span className="text-[#FF7404]">*</span>
+                                                                    </FormLabel>
+                                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                                        <FormControl>
+                                                                            <SelectTrigger className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white focus:ring-1 focus:ring-[#FF7404]/50 focus:bg-white/[0.05] focus:border-[#FF7404]/50 transition-all duration-300 h-auto">
+                                                                                <SelectValue placeholder={t('form.state_placeholder')} />
+                                                                            </SelectTrigger>
+                                                                        </FormControl>
+                                                                        <SelectContent className="bg-[#0A0A0A] border-white/10 text-white max-h-[300px]">
+                                                                            {regionOptions.map((opt) => (
+                                                                                <SelectItem key={opt.value} value={opt.value} className="focus:bg-[#FF7404]/20 focus:text-white cursor-pointer">
+                                                                                    {opt.label}
+                                                                                </SelectItem>
+                                                                            ))}
+                                                                        </SelectContent>
+                                                                    </Select>
+                                                                    <FormMessage />
+                                                                </FormItem>
+                                                            )}
+                                                        />
+
+                                                        {/* Postal Field */}
+                                                        <FormField
+                                                            control={form.control}
+                                                            name="postalCode"
+                                                            render={({ field }) => (
+                                                                <FormItem>
+                                                                    <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                                                                        {t('form.postal_label')} <span className="text-[#FF7404]">*</span>
+                                                                    </FormLabel>
+                                                                    <FormControl>
+                                                                        <Input
+                                                                            placeholder={t('form.postal_placeholder')}
+                                                                            className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300 uppercase"
+                                                                            {...field}
+                                                                            onChange={(e) => field.onChange(e.target.value.toUpperCase())}
                                                                         />
                                                                     </FormControl>
                                                                     <FormMessage />
@@ -485,12 +586,12 @@ export default function ContactPage() {
                                                         render={({ field }) => (
                                                             <FormItem>
                                                                 <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
-                                                                    How Can We Help? <span className="text-[#FF7404]">*</span>
+                                                                    {t('form.inquiry_type_label')} <span className="text-[#FF7404]">*</span>
                                                                 </FormLabel>
                                                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                                     <FormControl>
                                                                         <SelectTrigger className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white focus:ring-1 focus:ring-[#FF7404]/50 focus:bg-white/[0.05] focus:border-[#FF7404]/50 transition-all duration-300 h-auto">
-                                                                            <SelectValue placeholder="Select an option" />
+                                                                            <SelectValue placeholder={t('form.inquiry_type_placeholder')} />
                                                                         </SelectTrigger>
                                                                     </FormControl>
                                                                     <SelectContent className="bg-[#0A0A0A] border-white/10 text-white">
@@ -513,11 +614,11 @@ export default function ContactPage() {
                                                         render={({ field }) => (
                                                             <FormItem>
                                                                 <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
-                                                                    Your Message <span className="text-[#FF7404]">*</span>
+                                                                    {t('form.message_label')} <span className="text-[#FF7404]">*</span>
                                                                 </FormLabel>
                                                                 <FormControl>
                                                                     <Textarea
-                                                                        placeholder="Tell us about your dealership, your goals, and how we can help accelerate your growth..."
+                                                                        placeholder={t('form.message_placeholder')}
                                                                         className="w-full px-5 py-4 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300 resize-none min-h-[140px]"
                                                                         {...field}
                                                                     />
@@ -536,20 +637,18 @@ export default function ContactPage() {
                                                         {isSubmitting ? (
                                                             <>
                                                                 <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                                                                Sending...
+                                                                {t('form.sending')}
                                                             </>
                                                         ) : (
                                                             <>
-                                                                Send Message
+                                                                {t('form.submit_button')}
                                                                 <Send className="w-5 h-5" />
                                                             </>
                                                         )}
                                                     </Button>
 
                                                     {/* Privacy Note */}
-                                                    <p className="text-center text-zinc-600 text-[10px] uppercase tracking-widest leading-relaxed">
-                                                        By submitting, you agree to our <Link href="/trust" className="text-[#FF7404] hover:underline font-bold">Privacy & data handling</Link> practices.
-                                                    </p>
+                                                    {renderPrivacyNote()}
                                                 </form>
                                             </Form>
                                         </div>
@@ -656,9 +755,6 @@ export default function ContactPage() {
                                             </motion.div>
                                         ))}
                                     </div>
-
-                                    {/* Trust Signals */}
-
 
                                     {/* Support Info */}
                                     <div className="mt-8 pt-6 border-t border-white/5">

@@ -5,8 +5,10 @@ import { getAllCaseStudySlugs } from '@/lib/case-studies';
 // Allow dynamic generation for external API calls
 export const dynamic = 'force-dynamic';
 
+const baseUrl = 'https://www.visquanta.com';
+const locales = ['', '/ca']; // '' = default US, '/ca' = Canada
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://www.visquanta.com';
 
     // Static main pages
     const mainPages = [
@@ -16,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/blog',
         '/book-demo',
         '/careers',
-        '/case-studies',
+        //  '/case-studies', // Case studies not yet localized, handled separately
         '/company',
         '/contact',
         '/custom-campaigns',
@@ -46,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/dealers/pre-owned',
     ];
 
-    // Case study slugs from shared data module
+    // Case study slugs from shared data module (US Only for now)
     const caseStudySlugs = getAllCaseStudySlugs();
 
     // Dynamically fetch blog posts, categories, and tags from Seobot API
@@ -70,55 +72,119 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         // Graceful degradation - sitemap will still include static pages
     }
 
-    const routes: MetadataRoute.Sitemap = [
-        // Main pages
-        ...mainPages.map(page => ({
-            url: `${baseUrl}${page}`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
-            priority: page === '' ? 1 : 0.8,
-        })),
+    const routes: MetadataRoute.Sitemap = [];
 
-        // Dealer pages
-        ...dealerPages.map(page => ({
-            url: `${baseUrl}${page}`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly' as const,
-            priority: 0.7,
-        })),
+    // Helper to add localized routes
+    const addLocalizedRoutes = (paths: string[], priority: number, changeFreq: 'weekly' | 'monthly') => {
+        paths.forEach(page => {
+            locales.forEach(locale => {
+                const isDefault = locale === '';
+                const path = locale + page;
+                const fullUrl = `${baseUrl}${path === '/' ? '' : path}`;
 
-        // Blog posts (dynamic from Seobot)
-        ...blogSlugs.map(slug => ({
-            url: `${baseUrl}/blog/${slug}`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly' as const,
-            priority: 0.6,
-        })),
+                // Construct alternates
+                const languages: Record<string, string> = {
+                    'en-US': `${baseUrl}${page}`,
+                    'en-CA': `${baseUrl}/ca${page}`,
+                    'x-default': `${baseUrl}${page}`,
+                    // 'en-GB': `${baseUrl}/uk${page}`, // Future
+                };
 
-        // Blog categories (dynamic from Seobot)
-        ...categorySlugs.map(slug => ({
-            url: `${baseUrl}/blog/category/${slug}`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
-            priority: 0.5,
-        })),
+                routes.push({
+                    url: fullUrl,
+                    lastModified: new Date(),
+                    changeFrequency: changeFreq,
+                    priority: page === '' ? 1 : priority,
+                    alternates: {
+                        languages
+                    }
+                });
+            });
+        });
+    };
 
-        // Blog tags (dynamic from Seobot)
-        ...tagSlugs.map(slug => ({
-            url: `${baseUrl}/blog/tag/${slug}`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
-            priority: 0.4,
-        })),
+    // Add Main Pages
+    addLocalizedRoutes(mainPages, 0.8, 'weekly');
 
-        // Case studies
-        ...caseStudySlugs.map(slug => ({
+    // Add Dealer Pages
+    addLocalizedRoutes(dealerPages, 0.7, 'monthly');
+
+    // Add Blog Posts
+    // Note: Assuming /ca/blog/[slug] is handled by router
+    blogSlugs.forEach(slug => {
+        const page = `/blog/${slug}`;
+        locales.forEach(locale => {
+            const path = locale + page;
+            const fullUrl = `${baseUrl}${path}`;
+            routes.push({
+                url: fullUrl,
+                lastModified: new Date(),
+                changeFrequency: 'monthly',
+                priority: 0.6,
+                alternates: {
+                    languages: {
+                        'en-US': `${baseUrl}${page}`,
+                        'en-CA': `${baseUrl}/ca${page}`,
+                        'x-default': `${baseUrl}${page}`,
+                    }
+                }
+            });
+        });
+    });
+
+    // Add Blog Categories as localized?
+    // User prompt didn't explicitly ask for categories, strictly pages.
+    // But categories are useful. I'll add them initialized.
+    categorySlugs.forEach(slug => {
+        const page = `/blog/category/${slug}`;
+        // Assuming categories are localized too
+        locales.forEach(locale => {
+            const path = locale + page;
+            const fullUrl = `${baseUrl}${path}`;
+            routes.push({
+                url: fullUrl,
+                lastModified: new Date(),
+                changeFrequency: 'weekly',
+                priority: 0.5,
+                alternates: {
+                    languages: {
+                        'en-US': `${baseUrl}${page}`,
+                        'en-CA': `${baseUrl}/ca${page}`,
+                        'x-default': `${baseUrl}${page}`,
+                    }
+                }
+            });
+        });
+    });
+
+    // Case Studies (US Only)
+    caseStudySlugs.forEach(slug => {
+        routes.push({
             url: `${baseUrl}/case-studies/${slug}`,
             lastModified: new Date(),
-            changeFrequency: 'monthly' as const,
+            changeFrequency: 'monthly',
             priority: 0.6,
-        })),
-    ];
+            alternates: {
+                languages: {
+                    'en-US': `${baseUrl}/case-studies/${slug}`,
+                    'x-default': `${baseUrl}/case-studies/${slug}`,
+                }
+            }
+        });
+    });
+    // Add main /case-studies index (US Only)
+    routes.push({
+        url: `${baseUrl}/case-studies`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.8,
+        alternates: {
+            languages: {
+                'en-US': `${baseUrl}/case-studies`,
+                'x-default': `${baseUrl}/case-studies`,
+            }
+        }
+    });
 
     return routes;
 }

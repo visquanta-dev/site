@@ -55,6 +55,13 @@ export const organizationSchema = {
             "email": "support@visquanta.com",
             "areaServed": "US",
             "availableLanguage": ["English", "Spanish"]
+        },
+        {
+            "@type": "ContactPoint",
+            "telephone": "+1-786-686-6554",
+            "contactType": "sales",
+            "areaServed": "CA",
+            "availableLanguage": "English"
         }
     ],
     "sameAs": [
@@ -153,6 +160,13 @@ export const baseSchema = {
                     "email": "info@visquanta.com",
                     "areaServed": "US",
                     "availableLanguage": ["English", "Spanish"]
+                },
+                {
+                    "@type": "ContactPoint",
+                    "telephone": "+1-786-686-6554",
+                    "contactType": "sales",
+                    "areaServed": "CA",
+                    "availableLanguage": "English"
                 }
             ],
             "sameAs": [

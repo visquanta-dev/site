@@ -4,8 +4,18 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, CheckCircle, Zap } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
+
 
 export default function FinalCTA() {
+  const { t } = useLocale();
+
+  const trustIndicators = [
+    { label: t('final_cta.trust_1_title'), desc: t('final_cta.trust_1_desc') },
+    { label: t('final_cta.trust_2_title'), desc: t('final_cta.trust_2_desc') },
+    { label: t('final_cta.trust_3_title'), desc: t('final_cta.trust_3_desc') }
+  ];
+
   return (
     <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#080808] relative overflow-hidden">
       {/* Premium Background Effects */}
@@ -30,18 +40,18 @@ export default function FinalCTA() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 text-white/50 text-[10px] font-black uppercase tracking-[0.3em] mb-6 sm:mb-8">
             <Sparkles className="w-3 h-3 text-[#ff7404]" />
-            Enterprise Deployment Ready
+            {t('final_cta.badge')}
           </div>
 
           {/* Headline */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.95] uppercase">
-            <span className="text-white/40">READY TO</span><br />
-            DOMINATE <span className="text-[#ff7404]">YOUR MARKET?</span>
-          </h2>
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.95] uppercase"
+            dangerouslySetInnerHTML={{ __html: t('final_cta.headline') }}
+          />
 
           {/* Subheadline */}
           <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-xl sm:max-w-2xl mx-auto mb-10 sm:mb-12 md:mb-16 px-2 sm:px-0 leading-relaxed font-medium">
-            Join the elite dealerships using VisQuanta to automate operations and maximize revenue. Your competition is already here.
+            {t('final_cta.description')}
           </p>
 
           {/* CTA Buttons */}
@@ -51,7 +61,7 @@ export default function FinalCTA() {
             >
               <div className="absolute inset-0 rounded-full bg-[#ff7404] blur-2xl opacity-0 group-hover:opacity-20 transition-opacity" />
               <span className="relative text-black font-black text-sm uppercase tracking-[0.2em] flex items-center gap-3">
-                Schedule Your Walkthrough <Zap className="w-4 h-4 fill-black" />
+                {t('final_cta.cta')} <Zap className="w-4 h-4 fill-black" />
               </span>
             </RequestDemoButton>
 
@@ -63,17 +73,13 @@ export default function FinalCTA() {
               transition={{ delay: 0.3 }}
               className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold"
             >
-              15-min 1:1 • Get an exact revenue-lift projection for your dealership
+              {t('final_cta.microcopy')}
             </motion.p>
           </div>
 
           {/* Trust Indicators */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-12 max-w-4xl mx-auto">
-            {[
-              { label: "DMS SECURE SYNC", desc: "Automated real-time data integration" },
-              { label: "CUSTOM DEPLOYMENT", desc: "Tailored to your store's specific workflow" },
-              { label: "PERFORMANCE FIRST", desc: "Built for high-volume automotive results" }
-            ].map((item, i) => (
+            {trustIndicators.map((item, i) => (
               <div key={i} className="flex flex-col items-center gap-3 group">
                 <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:border-[#ff7404]/30 transition-all duration-500 group-hover:bg-[#ff7404]/5">
                   <CheckCircle className="w-5 h-5 text-[#ff7404]/50 group-hover:text-[#ff7404]" />

@@ -2,227 +2,18 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useRef, useEffect } from 'react';
 import { RequestDemoButton } from './CalendlyModal';
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Database,
-  Zap,
-  Wrench,
-  MessageSquare,
-  Star,
-  ArrowRight,
-  RefreshCcw,
-  PlayCircle
-} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Star } from 'lucide-react';
 import HeroDashboardPreview from './mobile/HeroDashboardPreview';
-import MobileHeroTrust from './mobile/MobileHeroTrust';
-
-const cardData = [
-  {
-    id: 'widget',
-    title: 'Website Widget',
-    label: 'Conversion',
-    icon: MessageSquare,
-    description: 'Convert website visitors into qualified buyers with real-time engagement.',
-    color: '#ff7404',
-    initialX: -280,
-    initialY: -40,
-    rotate: -4,
-    delay: 0,
-    image: '/platform/widget-sms-final.jpg',
-    link: '/speed-to-lead'
-  },
-  {
-    id: 'reputation',
-    title: 'Reputation Management',
-    label: 'Brand Health',
-    icon: Star,
-    description: 'Monitor and respond to reviews across all platforms instantly.',
-    color: '#ff7404',
-    initialX: -140,
-    initialY: 40,
-    rotate: -2,
-    delay: 0.1,
-    image: '/platform/reputation-icons.png',
-    link: '/reputation-management'
-  },
-  {
-    id: 'service',
-    title: 'Service AI',
-    label: 'Fixed Ops',
-    icon: Wrench,
-    description: 'Handle service appointments and inquiries 24/7 with specialized Voice AI.',
-    color: '#ff7404',
-    initialX: 0,
-    initialY: 0,
-    rotate: 0,
-    delay: 0.2,
-    image: '/platform/service-ai-customer.jpg',
-    link: '/service-drive'
-  },
-  {
-    id: 'speed',
-    title: 'Speed to Lead',
-    label: 'Inbound Response',
-    icon: Zap,
-    description: 'Instant, human-quality engagement for every inbound lead, 24/7/365.',
-    color: '#ff7404',
-    initialX: 140,
-    initialY: 40,
-    rotate: 2,
-    delay: 0.3,
-    image: '/platform/speed-to-lead.jpg',
-    link: '/speed-to-lead'
-  },
-  {
-    id: 'reactivation',
-    title: 'Lead Reactivation',
-    label: 'Revenue Recovery',
-    icon: RefreshCcw,
-    description: 'Conversational AI digs into your CRM to reactivate stalled prospects.',
-    color: '#ff7404',
-    initialX: 280,
-    initialY: -40,
-    rotate: 4,
-    delay: 0.4,
-    image: '/platform/lead-reactivation.png',
-    link: '/lead-reactivation'
-  }
-];
-
-/* ==========================================================================
-   MOBILE CARD CAROUSEL - Premium horizontal scroll
-   ========================================================================== */
-function MobileCardCarousel() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const cardWidth = 280 + 16; // card width + gap
-      const newIndex = Math.round(scrollLeft / cardWidth);
-      setActiveIndex(Math.min(Math.max(newIndex, 0), cardData.length - 1));
-    };
-
-    container.addEventListener('scroll', handleScroll, { passive: true });
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToCard = (index: number) => {
-    const container = scrollRef.current;
-    if (!container) return;
-    const cardWidth = 280 + 16;
-    container.scrollTo({ left: cardWidth * index, behavior: 'smooth' });
-  };
-
-  return (
-    <div className="w-full">
-      {/* Carousel */}
-      <div
-        ref={scrollRef}
-        className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 -mx-4 px-4 scrollbar-hide"
-        style={{
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-          WebkitOverflowScrolling: 'touch'
-        }}
-      >
-        {cardData.map((card, index) => {
-          const Icon = card.icon;
-          return (
-            <motion.div
-              key={card.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 + 0.3 }}
-              className="flex-shrink-0 w-[280px] snap-center"
-            >
-              <Link href={card.link} className="block">
-                <div className="relative bg-[#0a0a0a] border border-white/[0.08] rounded-2xl overflow-hidden h-[360px] flex flex-col group active:scale-[0.98] transition-transform duration-200">
-                  {/* Top shine */}
-                  <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-                  {/* Image area */}
-                  <div className="relative h-36 w-full overflow-hidden bg-black/50">
-                    {card.image ? (
-                      <img
-                        src={card.image}
-                        alt={card.title}
-                        className="w-full h-full object-cover opacity-80"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <Icon className="w-12 h-12 text-white/20" />
-                      </div>
-                    )}
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent" />
-
-                    {/* Label badge */}
-                    <div className="absolute bottom-3 left-4">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ff7404]">
-                        {card.label}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1 p-5 flex flex-col">
-                    <h3 className="text-lg font-bold text-white mb-2 tracking-tight">
-                      {card.title}
-                    </h3>
-                    <p className="text-white/50 text-sm leading-relaxed flex-1">
-                      {card.description}
-                    </p>
-
-                    {/* CTA */}
-                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/[0.06]">
-                      <span className="text-xs font-bold uppercase tracking-widest text-white/40 group-hover:text-[#ff7404] transition-colors">
-                        Explore
-                      </span>
-                      <div className="w-8 h-8 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center group-hover:bg-[#ff7404]/10 group-hover:border-[#ff7404]/30 transition-all">
-                        <ArrowRight className="w-3.5 h-3.5 text-white/40 group-hover:text-[#ff7404] transition-colors" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bottom accent */}
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-[#ff7404]/30 to-transparent" />
-                </div>
-              </Link>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Dot indicators */}
-      <div className="flex justify-center items-center gap-2 mt-2">
-        {cardData.map((card, index) => (
-          <button
-            key={card.id}
-            onClick={() => scrollToCard(index)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${activeIndex === index
-              ? 'bg-[#ff7404] w-6'
-              : 'bg-white/20 w-1.5 hover:bg-white/40'
-              }`}
-            aria-label={`Go to ${card.title}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 /* ==========================================================================
    MAIN HERO COMPONENT
    ========================================================================== */
 export default function Hero() {
+  const { t } = useLocale();
 
   return (
     <section className="relative min-h-screen flex flex-col pt-20 bg-[#050505] overflow-hidden">
@@ -270,7 +61,7 @@ export default function Hero() {
             >
               <div className="h-px w-6 sm:w-8 bg-primary/60" />
               <span className="text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em]">
-                VISQUANTA PRESENTS: THE AUTOMASTER SUITE
+                {t('hero.eyebrow')}
               </span>
             </motion.div>
 
@@ -288,7 +79,7 @@ export default function Hero() {
               }}
             >
               <span className="inline-block">
-                {"AI for Car Dealerships".split(" ").map((word, wi) => (
+                {t('hero.headline_1').split(" ").map((word, wi) => (
                   <span key={wi} className="inline-block whitespace-nowrap mr-[0.2em]">
                     {word.split("").map((char, ci) => (
                       <motion.span
@@ -307,7 +98,7 @@ export default function Hero() {
                 ))}
               </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff7404] to-[#ff9040] inline-block">
-                {"That Drives Revenue".split(" ").map((word, wi) => (
+                {t('hero.headline_2').split(" ").map((word, wi) => (
                   <span key={wi} className="inline-block whitespace-nowrap mr-[0.2em]">
                     {word.split("").map((char, ci) => (
                       <motion.span
@@ -333,14 +124,13 @@ export default function Hero() {
             </div>
 
             {/* Subheadline */}
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-sm sm:text-lg md:text-xl lg:text-2xl text-muted-foreground/80 max-w-2xl leading-relaxed font-medium mt-4 lg:mt-0"
-            >
-              VisQuanta <strong className="text-white">automates lead reactivation</strong>, responds to new leads in <strong className="text-white">under 60 seconds</strong>, protects your reputation, & ensures your service department <strong className="text-white">never misses a call</strong>.
-            </motion.p>
+              dangerouslySetInnerHTML={{ __html: t('hero.subheadline') }}
+            />
 
 
             {/* CTA Group */}
@@ -355,7 +145,7 @@ export default function Hero() {
                   <Button
                     className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest bg-[#FF7404] hover:bg-[#ff8a2b] text-black transition-all shadow-[0_20px_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_80px_-10px_rgba(255,116,4,0.6)] animate-pulse-subtle"
                   >
-                    Schedule Your Walkthrough
+                    {t('common.schedule_cta')}
                   </Button>
                 </RequestDemoButton>
 
@@ -365,7 +155,7 @@ export default function Hero() {
                   className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-white/50 hover:bg-white/5 bg-transparent text-white hover:text-white group"
                 >
                   <Link href="#see-it-in-action">
-                    <span>See How It Works</span>
+                    <span>{t('hero.cta_secondary')}</span>
                   </Link>
                 </Button>
               </motion.div>
@@ -377,7 +167,7 @@ export default function Hero() {
                 transition={{ delay: 0.5 }}
                 className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold"
               >
-                15-min 1:1 • Get an exact revenue-lift projection for your dealership
+                {t('hero.cta_microcopy')}
               </motion.p>
             </div>
 
@@ -393,7 +183,7 @@ export default function Hero() {
                   <Star key={i} className="w-4 h-4 text-[#FF7404] fill-[#FF7404]" />
                 ))}
               </div>
-              <span className="text-sm text-white/60 font-medium">Trusted by <span className="text-white">500+</span> Dealerships</span>
+              <span className="text-sm text-white/60 font-medium">{t('hero.trusted_by')} <span className="text-white">{t('hero.trusted_count')}</span> {t('hero.trusted_suffix')}</span>
             </motion.div>
 
             {/* Trust Signal */}
@@ -411,16 +201,16 @@ export default function Hero() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    <span className="font-medium">System Online</span>
+                    <span className="font-medium">{t('common.system_online')}</span>
                   </div>
                   <div className="flex items-center gap-4 sm:gap-8">
                     <div>
-                      <span className="font-bold text-white">30%</span>
-                      <span className="text-muted-foreground/60 ml-1.5">avg. revenue increase</span>
+                      <span className="font-bold text-white">{t('hero.stat_revenue')}</span>
+                      <span className="text-muted-foreground/60 ml-1.5">{t('hero.stat_revenue_label')}</span>
                     </div>
                     <div>
-                      <span className="font-bold text-white">24/7</span>
-                      <span className="text-muted-foreground/60 ml-1.5">automated coverage</span>
+                      <span className="font-bold text-white">{t('hero.stat_coverage')}</span>
+                      <span className="text-muted-foreground/60 ml-1.5">{t('hero.stat_coverage_label')}</span>
                     </div>
                   </div>
                 </div>
@@ -445,3 +235,4 @@ export default function Hero() {
     </section >
   );
 }
+

@@ -4,36 +4,39 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Plus, HelpCircle } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
-const faqs = [
-  {
-    question: "How long does implementation take?",
-    answer: "Most dealerships are fully operational within 14 days. Our white-glove onboarding process handles all integrations, training, and AI configuration so your team can focus on selling cars."
-  },
-  {
-    question: "Do I need to change my existing systems?",
-    answer: "No. The AutoMaster Suite integrates seamlessly with all major DMS platforms, CRMs, and lead sources. We work alongside your existing tools, not against them."
-  },
-  {
-    question: "What happens if I receive a call while the AI is responding?",
-    answer: "Our intelligent routing system ensures live calls always take priority. The AI seamlessly hands off to your team when a customer is ready to talk, with full conversation context."
-  },
-  {
-    question: "Is the AI customized for my dealership?",
-    answer: "Absolutely. During onboarding, we train the AI on your inventory, pricing, processes, and brand voice. It learns your dealership's unique personality and selling style."
-  },
-  {
-    question: "What's your typical ROI?",
-    answer: "Dealers typically see 3-5x ROI within the first 90 days through recovered leads, faster response times, and increased service appointments. We provide transparent reporting so you can track every dollar."
-  },
-  {
-    question: "Can I cancel anytime?",
-    answer: "Yes. We offer month-to-month agreements with no long-term contracts. We're confident you'll stay because of results, not obligations."
-  }
-];
 
 export default function FAQSection() {
+  const { t } = useLocale();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const faqs = [
+    {
+      question: t('faq.implementation_q'),
+      answer: t('faq.implementation_a')
+    },
+    {
+      question: t('faq.systems_q'),
+      answer: t('faq.systems_a')
+    },
+    {
+      question: t('faq.calls_q'),
+      answer: t('faq.calls_a')
+    },
+    {
+      question: t('faq.customization_q'),
+      answer: t('faq.customization_a')
+    },
+    {
+      question: t('faq.roi_q'),
+      answer: t('faq.roi_a')
+    },
+    {
+      question: t('faq.cancel_q'),
+      answer: t('faq.cancel_a')
+    }
+  ];
 
   return (
     <section className="py-32 bg-[#080808] relative overflow-hidden">
@@ -57,23 +60,24 @@ export default function FAQSection() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-6">
               <HelpCircle className="w-3 h-3" />
-              FAQ
+              {t('faq.badge')}
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
-              Frequently Asked <span className="text-[#ff7404]">Questions</span>
+              {t('faq.headline')}
             </h2>
+
             <p className="text-white/70 text-lg leading-relaxed mb-8">
-              Everything you need to know about getting started with The AutoMaster Suite.
+              {t('faq.description')}
             </p>
 
             {/* Contact CTA */}
             <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
-              <p className="text-sm text-white/70 mb-4">Still have questions?</p>
+              <p className="text-sm text-white/70 mb-4">{t('faq.cta_text')}</p>
               <RequestDemoButton asChild>
                 <button
                   className="inline-flex items-center gap-2 text-[#ff7404] font-bold hover:text-white transition-colors"
                 >
-                  Schedule Your Walkthrough
+                  {t('faq.cta_button')}
                   <ChevronDown className="w-4 h-4 -rotate-90" />
                 </button>
               </RequestDemoButton>

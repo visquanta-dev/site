@@ -5,49 +5,52 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Users, PhoneOff, Database, TrendingDown, AlertCircle, ShieldAlert, ArrowRight } from 'lucide-react';
 import ROICalculatorModal from './ROICalculatorModal';
 import MobilePainPointCarousel from './mobile/MobilePainPointCarousel';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
-const dealerPainPoints = [
-    {
-        icon: Database,
-        stat: '84%',
-        label: 'of CRM leads',
-        detail: 'are never re-engaged after 30 days',
-        impact: 'Millions in latent revenue wasted.',
-        color: 'text-[#ff7404]'
-    },
-    {
-        icon: PhoneOff,
-        stat: '1 in 4',
-        label: 'service calls',
-        detail: 'are missed or go to voicemail',
-        impact: 'Directly losing $340+ per missed RO.',
-        color: 'text-[#ff7404]'
-    },
-    {
-        icon: Users,
-        stat: '45%',
-        label: 'BDC Turnover',
-        detail: 'average annual staff churn rate',
-        impact: 'Constant retraining & lost consistency.',
-        color: 'text-orange-400'
-    },
-    {
-        icon: TrendingDown,
-        stat: '22 min',
-        label: 'Avg. Response',
-        detail: 'for new web leads on weekends',
-        impact: 'Leads are sold by competitors in 5.',
-        color: 'text-[#ff7404]'
-    },
-];
 
 export default function PainPointSection() {
+    const { t } = useLocale();
     const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["start end", "end start"]
     });
+
+    const dealerPainPoints = [
+        {
+            icon: Database,
+            stat: t('pain_points.stat_1_value'),
+            label: t('pain_points.stat_1_label'),
+            detail: t('pain_points.stat_1_detail'),
+            impact: t('pain_points.stat_1_impact'),
+            color: 'text-[#ff7404]'
+        },
+        {
+            icon: PhoneOff,
+            stat: t('pain_points.stat_2_value'),
+            label: t('pain_points.stat_2_label'),
+            detail: t('pain_points.stat_2_detail'),
+            impact: t('pain_points.stat_2_impact'),
+            color: 'text-[#ff7404]'
+        },
+        {
+            icon: Users,
+            stat: t('pain_points.stat_3_value'),
+            label: t('pain_points.stat_3_label'),
+            detail: t('pain_points.stat_3_detail'),
+            impact: t('pain_points.stat_3_impact'),
+            color: 'text-orange-400'
+        },
+        {
+            icon: TrendingDown,
+            stat: t('pain_points.stat_4_value'),
+            label: t('pain_points.stat_4_label'),
+            detail: t('pain_points.stat_4_detail'),
+            impact: t('pain_points.stat_4_impact'),
+            color: 'text-[#ff7404]'
+        },
+    ];
 
     const yBlob = useTransform(scrollYProgress, [0, 1], [0, 150]);
     const yWireframe = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -86,23 +89,18 @@ export default function PainPointSection() {
                     >
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-6 select-none max-w-full">
                             <ShieldAlert className="w-3 h-3 flex-shrink-0" />
-                            <span className="truncate">The Operations Reality</span>
+                            <span className="truncate">{t('pain_points.badge')}</span>
                         </div>
 
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 tracking-tight leading-[1.2] break-words w-full">
-                            Most dealerships don’t realise how much <span className="text-[#ff7404] inline-block">revenue is being left behind</span> day-to-day.
-                        </h2>
+                        <h2
+                            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 tracking-tight leading-[1.2] break-words w-full"
+                            dangerouslySetInnerHTML={{ __html: t('pain_points.headline').replace('<highlight>', '<span class="text-[#ff7404] inline-block">').replace('</highlight>', '</span>') }}
+                        />
 
                         <div className="space-y-6 text-white/70 text-base sm:text-lg leading-relaxed mb-8 sm:mb-10 w-full break-words">
-                            <p>
-                                As a GM, you know the numbers. But the daily reality is harder to track. While your team focuses on floor traffic, your <strong className="text-white">CRM is becoming a graveyard</strong> of thousands of leads that will never be called again.
-                            </p>
-                            <p>
-                                In Service, your advisors are overwhelmed. Every missed call is a missed RO; and for an average dealer, that's <strong className="text-white">over $8,500 in lost revenue every single week</strong>.
-                            </p>
-                            <p>
-                                You're fighting a losing battle against BDC turnover and lead response times that your competitors are already beating. It's not just "speed to lead": it's a <strong className="text-white">total operational breakdown</strong> that costs you the unfair advantage you deserve.
-                            </p>
+                            <p dangerouslySetInnerHTML={{ __html: t('pain_points.paragraph_1') }} />
+                            <p dangerouslySetInnerHTML={{ __html: t('pain_points.paragraph_2') }} />
+                            <p dangerouslySetInnerHTML={{ __html: t('pain_points.paragraph_3') }} />
                         </div>
 
                         <div className="mt-8 sm:mt-10 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#ff7404]/10 to-transparent border border-[#ff7404]/20 relative group overflow-hidden w-full">
@@ -110,10 +108,10 @@ export default function PainPointSection() {
                                 <AlertCircle className="w-12 h-12 text-[#ff7404]" />
                             </div>
                             <p className="text-[#ff7404] font-bold text-lg sm:text-xl mb-3 pr-8 break-words">
-                                "The cost of doing nothing is your highest expense."
+                                "{t('pain_points.quote')}"
                             </p>
                             <p className="text-white/50 text-sm sm:text-base leading-relaxed break-words">
-                                If your system isn't capturing every call, mining every CRM lead, and responding in seconds: you're paying for it every single day in lost units and service ROs.
+                                {t('pain_points.quote_detail')}
                             </p>
                         </div>
 
@@ -167,7 +165,7 @@ export default function PainPointSection() {
                                 onClick={() => setIsCalculatorOpen(true)}
                                 className="w-full py-5 rounded-xl bg-[#ff7404] hover:bg-[#ff8524] text-black font-black text-sm uppercase tracking-widest transition-all hover:scale-[1.02] shadow-[0_0_30px_-10px_rgba(255,116,4,0.4)] flex items-center justify-center gap-3 group"
                             >
-                                Calculate Your Lost Revenue
+                                {t('common.calculate_lost_revenue')}
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </button>
                         </div>

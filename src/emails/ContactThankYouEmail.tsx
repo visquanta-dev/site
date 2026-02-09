@@ -9,57 +9,67 @@ import {
     Preview,
     Section,
     Text,
-    Hr,
 } from '@react-email/components';
 import * as React from 'react';
 
 interface ContactThankYouEmailProps {
     name: string;
+    locale?: string;
 }
 
 export const ContactThankYouEmail = ({
     name = 'there',
-}: ContactThankYouEmailProps) => (
-    <Html>
-        <Head />
-        <Preview>We've received your inquiry - VisQuanta</Preview>
-        <Body style={main}>
-            <Container style={container}>
-                <Section style={header}>
-                    <Heading style={logo}>VisQuanta</Heading>
-                </Section>
+    locale = 'en-US',
+}: ContactThankYouEmailProps) => {
+    const isCanadian = locale === 'en-CA';
+    const enquiryTerm = isCanadian ? 'enquiry' : 'inquiry';
+    const teamTerm = isCanadian ? 'Canadian team' : 'team';
 
-                <Section style={card}>
-                    <Heading style={h1}>Hi {name},</Heading>
-                    <Text style={text}>
-                        Thanks for reaching out to VisQuanta. We've received your inquiry and our team is already reviewing it.
-                    </Text>
-                    <Text style={text}>
-                        You can expect a response from one of our automotive specialists within the next{' '}
-                        <span style={highlight}>2 business hours</span>.
-                    </Text>
-                    <Text style={text}>
-                        In the meantime, feel free to explore our latest case studies to see how we're helping dealerships like yours recover lost revenue.
-                    </Text>
-                    <Section style={ctaSection}>
-                        <Link href="https://www.visquanta.com/case-studies" style={button}>
-                            View Case Studies
-                        </Link>
+    return (
+        <Html>
+            <Head />
+            <Preview>We've received your {enquiryTerm} - VisQuanta</Preview>
+            <Body style={main}>
+                <Container style={container}>
+                    <Section style={header}>
+                        <Heading style={logo}>VisQuanta</Heading>
                     </Section>
-                </Section>
 
-                <Section style={footer}>
-                    <Text style={footerText}>
-                        © 2026 VisQuanta LLC. All rights reserved.
-                    </Text>
-                    <Text style={footerSubtext}>
-                        2233 Ponce de Leon Blvd, 3rd Floor, Miami, FL 33134
-                    </Text>
-                </Section>
-            </Container>
-        </Body>
-    </Html>
-);
+                    <Section style={card}>
+                        <Heading style={h1}>Hi {name},</Heading>
+                        <Text style={text}>
+                            Thanks for reaching out to VisQuanta. We've received your {enquiryTerm} and our {teamTerm} is already reviewing it.
+                        </Text>
+                        <Text style={text}>
+                            You can expect a response from one of our automotive specialists within the next{' '}
+                            <span style={highlight}>2 business hours</span>.
+                        </Text>
+                        <Text style={text}>
+                            In the meantime, feel free to explore our latest case studies to see how we're helping dealerships like yours recover lost revenue.
+                        </Text>
+                        <Section style={ctaSection}>
+                            <Link href="https://www.visquanta.com/case-studies" style={button}>
+                                View Case Studies
+                            </Link>
+                        </Section>
+                    </Section>
+
+                    <Section style={footer}>
+                        <Text style={footerText}>
+                            © 2026 VisQuanta LLC. All rights reserved.
+                        </Text>
+                        <Text style={footerSubtext}>
+                            {isCanadian
+                                ? 'Serving Canadian dealerships nationwide'
+                                : '2233 Ponce de Leon Blvd, 3rd Floor, Miami, FL 33134'
+                            }
+                        </Text>
+                    </Section>
+                </Container>
+            </Body>
+        </Html>
+    );
+};
 
 export default ContactThankYouEmail;
 

@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion';
 import { BadgeDollarSign } from 'lucide-react';
 import Image from 'next/image';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 export default function WhatIsAIDealerships() {
+    const { t } = useLocale();
     return (
         <section className="py-24 sm:py-32 bg-[#050505] relative overflow-hidden">
             {/* Premium Background Effects */}
@@ -33,35 +35,23 @@ export default function WhatIsAIDealerships() {
                     >
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/10 text-white text-[10px] font-bold uppercase tracking-[0.2em] mb-8 shadow-inner shadow-white/5">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#ff7404] animate-pulse" />
-                            Intelligence Briefing
+                            {t('what_is_ai.badge')}
                         </div>
 
-                        <h2 className="text-4xl sm:text-5xl font-black text-white mb-8 tracking-tighter leading-[1.1]">
-                            WHAT IS AI FOR <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff7404] to-[#ff9040]">CAR DEALERSHIPS?</span>
-                        </h2>
+                        <h2
+                            className="text-4xl sm:text-5xl font-black text-white mb-8 tracking-tighter leading-[1.1]"
+                            dangerouslySetInnerHTML={{ __html: t('what_is_ai.headline') }}
+                        />
+
 
                         <div className="space-y-6 text-white/70 text-lg leading-relaxed font-light mb-8">
-                            <p>
-                                AI for car dealerships refers to artificial intelligence software designed specifically
-                                for automotive retail operations. Unlike generic chatbots or business automation tools,
-                                dealership AI understands <span className="text-white font-medium">automotive terminology</span>, integrates with <span className="text-white font-medium">dealer management
-                                    systems (DMS)</span>, and handles industry-specific workflows.
-                            </p>
+                            <p dangerouslySetInnerHTML={{ __html: t('what_is_ai.paragraph_1') }} />
 
                             <div>
-                                <p className="text-white/70 text-lg leading-relaxed font-light">
-                                    Key applications include <strong className="text-white font-medium">Lead Reactivation</strong> to re-engage cold prospects,
-                                    <strong className="text-white font-medium"> Speed-to-Lead Automation</strong> for instant responses (seconds, not hours),
-                                    and <strong className="text-white font-medium">Voice AI</strong> for handling phone calls and service appointments.
-                                    Comprehensive platforms also centralize <strong className="text-white font-medium">Reputation Management</strong> and
-                                    convert web traffic into live <strong className="text-white font-medium">SMS Engagement</strong>.
-                                </p>
+                                <p className="text-white/70 text-lg leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: t('what_is_ai.paragraph_2') }} />
                             </div>
 
-                            <p className="pt-4 border-t border-white/10 italic text-white/60">
-                                VisQuanta's AutoMaster Suite combines all five capabilities in one platform, purpose-built for how dealerships actually operate.
-                            </p>
+                            <p className="pt-4 border-t border-white/10 italic text-white/60" dangerouslySetInnerHTML={{ __html: t('what_is_ai.paragraph_3') }} />
                         </div>
                     </motion.div>
 

@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
+        allow: ['/', '/ca/'],
         // Note: We intentionally ALLOW /_next/static/ and /static/ so Google can 
         // render pages correctly. Blocking these causes "Indexed, though blocked 
         // by robots.txt" warnings in GSC and prevents proper page rendering.
@@ -13,7 +13,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: ['GPTBot', 'ClaudeBot', 'Claude-Web', 'PerplexityBot', 'Google-Extended'],
-        allow: ['/', '/llms.txt', '/llms-full.txt'],
+        allow: ['/', '/ca/', '/llms.txt', '/llms-full.txt'],
         disallow: ['/api/', '/admin/', '/portal/'],
       },
     ],

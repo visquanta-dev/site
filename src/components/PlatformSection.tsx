@@ -4,65 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Zap, MessageSquare, Star, Phone, RefreshCcw } from 'lucide-react';
 import Link from 'next/link';
 import SpotlightCard from './ui/SpotlightCard';
-
-const capabilities = [
-  {
-    number: '01',
-    title: 'Lead Reactivation',
-    description: 'Conversational AI digs into your CRM, reactivates stalled prospects, and turns dead leads into booked appointments.',
-    stat: '30%',
-    statLabel: 'Re-engagement',
-    stat2: '11%',
-    stat2Label: 'Sales Uplift',
-    link: '/lead-reactivation',
-    icon: RefreshCcw,
-    featured: true,
-  },
-  {
-    number: '02',
-    title: 'Speed to Lead',
-    description: 'Instant personalized response to every inbound lead within 60 seconds.',
-    stat: '21x',
-    statLabel: 'Higher Conversion',
-    stat2: '<60s',
-    stat2Label: 'Response Time',
-    link: '/speed-to-lead',
-    icon: Zap,
-  },
-  {
-    number: '03',
-    title: 'Website Widget',
-    description: 'Convert website visitors into qualified buyers with real-time engagement.',
-    stat: '24/7',
-    statLabel: 'Availability',
-    stat2: '3x',
-    stat2Label: 'More Leads',
-    link: '/website-widget',
-    icon: MessageSquare,
-  },
-  {
-    number: '04',
-    title: 'Reputation Management',
-    description: 'Monitor and respond to reviews across all platforms instantly.',
-    stat: '100%',
-    statLabel: 'Response Rate',
-    stat2: '4.8',
-    stat2Label: 'Avg Rating',
-    link: '/reputation-management',
-    icon: Star,
-  },
-  {
-    number: '05',
-    title: 'Service AI',
-    description: 'Handle service appointments and inquiries 24/7 with Voice AI.',
-    stat: '98%',
-    statLabel: 'Success Rate',
-    stat2: '0',
-    stat2Label: 'Missed Calls',
-    link: '/service-drive',
-    icon: Phone,
-  },
-];
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -78,6 +20,67 @@ const itemVariants = {
 } as any;
 
 export default function PlatformSection() {
+  const { t } = useLocale();
+
+  const capabilities = [
+    {
+      number: '01',
+      title: t('platform.lead_reactivation_title'),
+      description: t('platform.lead_reactivation_description'),
+      stat: t('platform.lead_reactivation_stat_1'),
+      statLabel: t('platform.lead_reactivation_stat_1_label'),
+      stat2: t('platform.lead_reactivation_stat_2'),
+      stat2Label: t('platform.lead_reactivation_stat_2_label'),
+      link: '/lead-reactivation',
+      icon: RefreshCcw,
+      featured: true,
+    },
+    {
+      number: '02',
+      title: t('platform.speed_to_lead_title'),
+      description: t('platform.speed_to_lead_description'),
+      stat: t('platform.speed_to_lead_stat_1'),
+      statLabel: t('platform.speed_to_lead_stat_1_label'),
+      stat2: t('platform.speed_to_lead_stat_2'),
+      stat2Label: t('platform.speed_to_lead_stat_2_label'),
+      link: '/speed-to-lead',
+      icon: Zap,
+    },
+    {
+      number: '03',
+      title: t('platform.widget_title'),
+      description: t('platform.widget_description'),
+      stat: t('platform.widget_stat_1'),
+      statLabel: t('platform.widget_stat_1_label'),
+      stat2: t('platform.widget_stat_2'),
+      stat2Label: t('platform.widget_stat_2_label'),
+      link: '/website-widget',
+      icon: MessageSquare,
+    },
+    {
+      number: '04',
+      title: t('platform.reputation_title'),
+      description: t('platform.reputation_description'),
+      stat: t('platform.reputation_stat_1'),
+      statLabel: t('platform.reputation_stat_1_label'),
+      stat2: t('platform.reputation_stat_2'),
+      stat2Label: t('platform.reputation_stat_2_label'),
+      link: '/reputation-management',
+      icon: Star,
+    },
+    {
+      number: '05',
+      title: t('platform.service_title'),
+      description: t('platform.service_description'),
+      stat: t('platform.service_stat_1'),
+      statLabel: t('platform.service_stat_1_label'),
+      stat2: t('platform.service_stat_2'),
+      stat2Label: t('platform.service_stat_2_label'),
+      link: '/service-drive',
+      icon: Phone,
+    },
+  ];
+
   const featured = capabilities[0];
   const others = capabilities.slice(1);
 
@@ -100,19 +103,19 @@ export default function PlatformSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ff7404]/10 border border-[#ff7404]/20 text-[#ff7404] text-xs font-bold uppercase tracking-widest mb-8">
             <Sparkles className="w-3 h-3" />
-            Inside The AutoMaster Suite
+            {t('platform.badge')}
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 tracking-tighter uppercase leading-[0.9]">
-            AI for Car Dealerships:<br /><span className="text-[#ff7404]">Five Capabilities, One Platform</span>
+            {t('platform.headline')}<br /><span className="text-[#ff7404]">{t('platform.headline_highlight')}</span>
           </h2>
 
           <div className="space-y-6 text-white/70 text-lg sm:text-xl leading-relaxed font-medium">
-            <p>
-              VisQuanta is an AI platform built specifically for car dealerships in the United States.
-              Founded in Miami, Florida, VisQuanta's <span className="text-white">The AutoMaster Suite</span> provides
-              the complete revenue operating system for your dealership.
-            </p>
+            <p dangerouslySetInnerHTML={{
+              __html: t('platform.intro')
+                .replace('<highlight>', '<span class="text-white">')
+                .replace('</highlight>', '</span>')
+            }} />
           </div>
         </motion.div>
 
@@ -174,7 +177,7 @@ export default function PlatformSection() {
                       href={featured.link}
                       className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#ff7404] text-black font-bold hover:bg-white transition-all duration-300 shadow-lg shadow-[#ff7404]/20 group/btn"
                     >
-                      Learn More
+                      {t('common.learn_more')}
                       <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
                   </div>

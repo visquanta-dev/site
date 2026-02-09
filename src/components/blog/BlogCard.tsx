@@ -57,17 +57,14 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                         src={article.featuredImage || FALLBACK_IMAGE}
                         alt={article.title}
                         fill
-                        style={{
-                            objectFit: 'cover',
-                            filter: 'grayscale(100%) contrast(1.1) brightness(0.7)'
-                        }}
-                        className="opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000"
+                        style={{ objectFit: 'cover' }}
+                        className="opacity-80 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
 
-                    {/* Cinematic Overlay - Service Drive Style */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/80 to-transparent z-10" />
-                    <div className="absolute inset-0 bg-[#020202]/40 z-5" />
+                    {/* Subtle Overlay - Lightened */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent z-10 group-hover:opacity-60 transition-opacity duration-700" />
+                    <div className="absolute inset-0 bg-[#020202]/10 group-hover:opacity-0 transition-opacity duration-700 z-5" />
 
                     {/* Category Badge - Keep absolute only for horizontal/featured/compact if needed, or unify. 
                         Moving to body for default to match ServiceInsights */}
