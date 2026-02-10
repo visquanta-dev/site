@@ -135,6 +135,9 @@ export const viewport = {
 
 // Calendly URL for demo scheduling
 const CALENDLY_URL = "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo";
+const CALENDLY_LOCALE_OVERRIDES: Record<string, string> = {
+  'en-CA': 'https://calendly.com/droemer-visquanta/30min',
+};
 
 export default function RootLayout({
   children,
@@ -194,7 +197,7 @@ export default function RootLayout({
         <I18nWrapper>
           <GeoSuggestionBanner />
           <SmoothScroll>
-            <CalendlyModalProvider calendlyUrl={CALENDLY_URL}>
+            <CalendlyModalProvider calendlyUrl={CALENDLY_URL} localeOverrides={CALENDLY_LOCALE_OVERRIDES}>
               {children}
               <MobileStickyCTA />
               <Toaster />

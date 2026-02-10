@@ -5,6 +5,11 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     // Canadian-specific metadata defaults
+    icons: {
+        icon: [
+            { url: "/favicon-ca.png", sizes: "32x32", type: "image/png" },
+        ],
+    },
     openGraph: {
         locale: "en_CA",
     },

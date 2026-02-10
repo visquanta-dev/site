@@ -4,6 +4,7 @@ import { createContext, useContext, useState, ReactNode, useEffect } from 'react
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Loader2 } from 'lucide-react';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 // Context for managing modal state
 interface CalendlyModalContextType {
@@ -25,13 +26,19 @@ export function useCalendlyModal() {
 interface CalendlyModalProviderProps {
     children: ReactNode;
     calendlyUrl?: string;
+    localeOverrides?: Record<string, string>;
 }
 
 export function CalendlyModalProvider({
     children,
-    calendlyUrl = 'https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo'
+    calendlyUrl = 'https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo',
+    localeOverrides = {}
 }: CalendlyModalProviderProps) {
     const [isOpen, setIsOpen] = useState(false);
+    const { locale } = useLocale();
+
+    // Pick the right Calendly URL based on locale
+    const resolvedUrl = localeOverrides[locale] || calendlyUrl;
 
     const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
@@ -39,7 +46,7 @@ export function CalendlyModalProvider({
     return (
         <CalendlyModalContext.Provider value={{ isOpen, openModal, closeModal }}>
             {children}
-            <CalendlyModal isOpen={isOpen} onClose={closeModal} calendlyUrl={calendlyUrl} />
+            <CalendlyModal isOpen={isOpen} onClose={closeModal} calendlyUrl={resolvedUrl} />
         </CalendlyModalContext.Provider>
     );
 }

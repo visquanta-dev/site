@@ -2,6 +2,7 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import GlobalPresence from '@/components/GlobalPresence';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import {
     Mail,
@@ -45,38 +46,7 @@ import {
 
 // --- Assets ---
 
-const offices = [
-    {
-        city: "Miami",
-        country: "USA",
-        isHQ: true,
-        address: ["2222 Ponce de Leon Blvd", "3rd Floor", "Miami, FL 33134"],
-        phone: "+1 786-686-6554",
-        timezone: "EST"
-    },
-    {
-        city: "Calgary",
-        country: "Canada",
-        isHQ: false,
-        address: ["#301 1122 3 St SE Ste 1906", "Calgary, AB T2G 0E7"],
-        timezone: "MST"
-    },
-    {
-        city: "The Woodlands",
-        country: "USA",
-        isHQ: false,
-        address: ["2001 Timberloch Place", "Suite 500", "TX 77380"],
-        timezone: "CST"
-    },
-    {
-        city: "United Kingdom",
-        country: "UK",
-        isHQ: false,
-        address: ["7 Bell Yard", "The Strand", "London", "WC2A 2JR"],
-        phone: "020 8058 5269",
-        timezone: "GMT"
-    }
-];
+
 
 // --- Validation Regexes ---
 const phoneRegexUS = /^\+?1?\s*\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
@@ -90,8 +60,8 @@ const createFormSchema = (region: string) => z.object({
     dealership: z.string().optional(),
     inquiryType: z.string().min(1, { message: "Please select an inquiry type." }),
     message: z.string().min(10, { message: "Message must be at least 10 characters." }),
-    stateProvince: z.string().min(1, { message: "Required" }),
-    postalCode: z.string().regex(region === 'CA' ? postalRegexCA : postalRegexUS, { message: region === 'CA' ? "Invalid Postal Code (e.g. M5V 2T6)" : "Invalid ZIP Code" }),
+    stateProvince: region === 'CA' ? z.string().optional() : z.string().min(1, { message: "Required" }),
+    postalCode: region === 'CA' ? z.string().optional() : z.string().regex(postalRegexUS, { message: "Invalid ZIP Code" }),
 });
 
 export default function ContactPage() {
@@ -534,57 +504,59 @@ export default function ContactPage() {
                                                         />
                                                     </div>
 
-                                                    <div className="grid md:grid-cols-2 gap-6">
-                                                        {/* State/Province Field */}
-                                                        <FormField
-                                                            control={form.control}
-                                                            name="stateProvince"
-                                                            render={({ field }) => (
-                                                                <FormItem>
-                                                                    <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
-                                                                        {t('form.state_label')} <span className="text-[#FF7404]">*</span>
-                                                                    </FormLabel>
-                                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                                        <FormControl>
-                                                                            <SelectTrigger className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white focus:ring-1 focus:ring-[#FF7404]/50 focus:bg-white/[0.05] focus:border-[#FF7404]/50 transition-all duration-300 h-auto">
-                                                                                <SelectValue placeholder={t('form.state_placeholder')} />
-                                                                            </SelectTrigger>
-                                                                        </FormControl>
-                                                                        <SelectContent className="bg-[#0A0A0A] border-white/10 text-white max-h-[300px]">
-                                                                            {regionOptions.map((opt) => (
-                                                                                <SelectItem key={opt.value} value={opt.value} className="focus:bg-[#FF7404]/20 focus:text-white cursor-pointer">
-                                                                                    {opt.label}
-                                                                                </SelectItem>
-                                                                            ))}
-                                                                        </SelectContent>
-                                                                    </Select>
-                                                                    <FormMessage />
-                                                                </FormItem>
-                                                            )}
-                                                        />
+                                                    {region !== 'CA' && (
+                                                        <div className="grid md:grid-cols-2 gap-6">
+                                                            {/* State/Province Field */}
+                                                            <FormField
+                                                                control={form.control}
+                                                                name="stateProvince"
+                                                                render={({ field }) => (
+                                                                    <FormItem>
+                                                                        <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                                                                            {t('form.state_label')} <span className="text-[#FF7404]">*</span>
+                                                                        </FormLabel>
+                                                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                                            <FormControl>
+                                                                                <SelectTrigger className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white focus:ring-1 focus:ring-[#FF7404]/50 focus:bg-white/[0.05] focus:border-[#FF7404]/50 transition-all duration-300 h-auto">
+                                                                                    <SelectValue placeholder={t('form.state_placeholder')} />
+                                                                                </SelectTrigger>
+                                                                            </FormControl>
+                                                                            <SelectContent className="bg-[#0A0A0A] border-white/10 text-white max-h-[300px]">
+                                                                                {regionOptions.map((opt) => (
+                                                                                    <SelectItem key={opt.value} value={opt.value} className="focus:bg-[#FF7404]/20 focus:text-white cursor-pointer">
+                                                                                        {opt.label}
+                                                                                    </SelectItem>
+                                                                                ))}
+                                                                            </SelectContent>
+                                                                        </Select>
+                                                                        <FormMessage />
+                                                                    </FormItem>
+                                                                )}
+                                                            />
 
-                                                        {/* Postal Field */}
-                                                        <FormField
-                                                            control={form.control}
-                                                            name="postalCode"
-                                                            render={({ field }) => (
-                                                                <FormItem>
-                                                                    <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
-                                                                        {t('form.postal_label')} <span className="text-[#FF7404]">*</span>
-                                                                    </FormLabel>
-                                                                    <FormControl>
-                                                                        <Input
-                                                                            placeholder={t('form.postal_placeholder')}
-                                                                            className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300 uppercase"
-                                                                            {...field}
-                                                                            onChange={(e) => field.onChange(e.target.value.toUpperCase())}
-                                                                        />
-                                                                    </FormControl>
-                                                                    <FormMessage />
-                                                                </FormItem>
-                                                            )}
-                                                        />
-                                                    </div>
+                                                            {/* Postal Field */}
+                                                            <FormField
+                                                                control={form.control}
+                                                                name="postalCode"
+                                                                render={({ field }) => (
+                                                                    <FormItem>
+                                                                        <FormLabel className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                                                                            {t('form.postal_label')} <span className="text-[#FF7404]">*</span>
+                                                                        </FormLabel>
+                                                                        <FormControl>
+                                                                            <Input
+                                                                                placeholder={t('form.postal_placeholder')}
+                                                                                className="w-full px-5 py-6 bg-white/[0.03] border-white/10 rounded-xl text-white placeholder-zinc-600 focus-visible:ring-1 focus-visible:ring-[#FF7404]/50 focus-visible:bg-white/[0.05] focus-visible:border-[#FF7404]/50 transition-all duration-300 uppercase"
+                                                                                {...field}
+                                                                                onChange={(e) => field.onChange(e.target.value.toUpperCase())}
+                                                                            />
+                                                                        </FormControl>
+                                                                        <FormMessage />
+                                                                    </FormItem>
+                                                                )}
+                                                            />
+                                                        </div>
+                                                    )}
 
                                                     {/* Inquiry Type */}
                                                     <FormField
@@ -714,86 +686,7 @@ export default function ContactPage() {
                             </div>
 
                             {/* Global Offices */}
-                            <div className="bg-gradient-to-b from-white/[0.03] to-transparent border border-white/10 rounded-3xl p-8 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-48 h-48 bg-[#FF7404]/5 rounded-full blur-[80px]" />
-
-                                <div className="relative z-10">
-                                    <div className="flex items-center gap-3 mb-8">
-                                        <Globe className="w-5 h-5 text-[#FF7404]" />
-                                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em]">Global Presence</span>
-                                    </div>
-
-                                    <div className="space-y-6">
-                                        {offices.map((office, i) => (
-                                            <motion.div
-                                                key={i}
-                                                whileHover={{ x: 5 }}
-                                                className={`relative pl-6 ${i !== offices.length - 1 ? 'pb-6 border-b border-white/5' : ''}`}
-                                            >
-                                                {/* Accent Line */}
-                                                <div className={`absolute left-0 top-0 bottom-0 w-0.5 ${office.isHQ ? 'bg-[#FF7404]' : 'bg-white/10'}`} />
-
-                                                <div className="flex items-start justify-between">
-                                                    <div>
-                                                        <div className="flex items-center gap-2 mb-2">
-                                                            <span className="text-white font-bold">{office.city}</span>
-                                                            {office.isHQ && (
-                                                                <span className="text-[8px] font-black text-[#FF7404] bg-[#FF7404]/10 px-2 py-0.5 rounded uppercase tracking-wider">HQ</span>
-                                                            )}
-                                                        </div>
-                                                        <div className="text-zinc-500 text-sm leading-relaxed">
-                                                            {office.address.map((line, j) => (
-                                                                <span key={j}>{line}{j < office.address.length - 1 && <br />}</span>
-                                                            ))}
-                                                        </div>
-                                                        {office.phone && (
-                                                            <div className="flex items-center gap-2 mt-2">
-                                                                <PhoneIcon className="w-3.5 h-3.5 text-[#FF7404]" />
-                                                                <a href={`tel:${office.phone.replace(/\s/g, '')}`} className="text-zinc-400 text-sm hover:text-[#FF7404] transition-colors">
-                                                                    {office.phone}
-                                                                </a>
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                    <div className="text-[10px] font-mono text-zinc-600 bg-white/5 px-2 py-1 rounded">
-                                                        {office.timezone}
-                                                    </div>
-                                                </div>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-
-                                    {/* Support Info */}
-                                    <div className="mt-8 pt-6 border-t border-white/5">
-                                        <div className="flex items-center gap-3 p-4 bg-green-500/5 border border-green-500/10 rounded-xl">
-                                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                                            <div>
-                                                <div className="text-green-400 text-sm font-bold">24/7 Client Support</div>
-                                                <div className="text-zinc-500 text-xs">Active clients receive priority support</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Response Guarantee */}
-                            <motion.div
-                                whileHover={{ scale: 1.02 }}
-                                className="bg-gradient-to-br from-[#FF7404]/10 via-[#FF7404]/5 to-transparent border border-[#FF7404]/20 rounded-2xl p-6 relative overflow-hidden"
-                            >
-                                <div className="absolute top-0 right-0 opacity-10">
-                                    <Sparkles className="w-24 h-24 text-[#FF7404]" />
-                                </div>
-                                <div className="relative z-10 flex items-center gap-5">
-                                    <div className="w-14 h-14 rounded-full bg-[#FF7404]/20 flex items-center justify-center">
-                                        <Zap className="w-7 h-7 text-[#FF7404]" />
-                                    </div>
-                                    <div>
-                                        <div className="text-white font-bold text-lg mb-1">Fast Response Guarantee</div>
-                                        <div className="text-zinc-400 text-sm">All inquiries answered within 2 business hours</div>
-                                    </div>
-                                </div>
-                            </motion.div>
+                            <GlobalPresence />
                         </motion.div>
                     </div>
                 </div>
