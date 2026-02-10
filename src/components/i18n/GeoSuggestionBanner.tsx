@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { LOCALE_COOKIE_NAME, GEO_BANNER_DISMISSED_COOKIE } from '@/lib/i18n/config';
 import { X, Globe } from 'lucide-react';
+import { CA } from 'country-flag-icons/react/3x2';
 import Image from 'next/image';
 
 const DETECTED_COUNTRY_COOKIE = 'vq-detected-country';
@@ -62,7 +63,9 @@ export default function GeoSuggestionBanner() {
 
             <div className="container-wide mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-3 text-center sm:text-left">
-                    <span className="text-2xl drop-shadow-lg">🇨🇦</span>
+                    <div className="w-8 h-6 relative shadow-lg rounded-sm overflow-hidden shrink-0">
+                        <CA className="w-full h-full object-cover" />
+                    </div>
                     <p className="text-sm text-zinc-300 font-medium leading-tight">
                         It looks like you're visiting from <span className="text-white font-bold">Canada</span>.
                         <span className="hidden sm:inline"> would you like to view our Canadian site with local content?</span>

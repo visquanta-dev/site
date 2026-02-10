@@ -120,6 +120,11 @@ export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
     const host = request.headers.get("host");
 
+    // Bot detection early
+    const userAgent = request.headers.get("user-agent") || "";
+    const isBot = bots.some((bot) => userAgent.toLowerCase().includes(bot));
+
+
     // -------------------------------------------------------------------------
     // 1. Force www redirect (existing behavior)
     // -------------------------------------------------------------------------
@@ -170,10 +175,28 @@ export async function middleware(request: NextRequest) {
     const suggestedLocale = detectedCountry ? countryToLocale[detectedCountry] : null;
 
     // -------------------------------------------------------------------------
-    // 5. Bot handling (existing Prerender.io logic)
+    // 5. Auto-Redirect for Root Path
     // -------------------------------------------------------------------------
-    const userAgent = request.headers.get("user-agent");
-    const isBot = userAgent && bots.some((bot) => userAgent.toLowerCase().includes(bot));
+    // If user is at root '/', has no locale preference, and is in a supported non-US country, redirect them.
+    const bannerDismissed = request.cookies.get(GEO_BANNER_DISMISSED_COOKIE);
+    if (pathname === '/' && !localePreference && !bannerDismissed && detectedCountry && !isBot) {
+        const targetLocale = countryToLocale[detectedCountry];
+        if (targetLocale && targetLocale !== 'en-US') {
+            // Find the prefix for this locale (reverse lookup)
+            const prefix = Object.keys(prefixToLocale).find(key => prefixToLocale[key] === targetLocale);
+
+            if (prefix) {
+                const url = request.nextUrl.clone();
+                url.pathname = `/${prefix}`;
+                return NextResponse.redirect(url);
+            }
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // 6. Bot handling (existing Prerender.io logic)
+    // -------------------------------------------------------------------------
+
     const isPrerender = request.headers.get("X-Prerender");
 
     if (isBot && !isPrerender) {
@@ -205,7 +228,7 @@ export async function middleware(request: NextRequest) {
     }
 
     // -------------------------------------------------------------------------
-    // 6. Set locale headers for downstream components
+    // 7. Set locale headers for downstream components
     // -------------------------------------------------------------------------
     // Set headers on request so they are available to RSCs via headers()
     const requestHeaders = new Headers(request.headers);

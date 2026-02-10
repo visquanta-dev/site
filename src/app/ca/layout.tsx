@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     openGraph: {
         locale: "en_CA",
     },
+    alternates: {
+        canonical: "https://www.visquanta.com/ca/",
+    },
 };
 
 export default function CanadianLayout({

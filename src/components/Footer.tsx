@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, ArrowUpRight, Linkedin, Youtube, Facebook, Instagram, Twitter } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { Button } from "@/components/ui/button";
 
 // Custom TikTok Icon since it's not in standard Lucide set yet
@@ -66,6 +67,20 @@ const footerLinks = {
 };
 
 export default function Footer() {
+  const { locale } = useLocale();
+
+  // Contact Info Configuration
+  const contactInfo = locale === 'en-CA' ? {
+    address: <>#301 1122 3 St SE Ste 1906<br />Calgary, AB T2G 0E7</>,
+    phoneDisplay: '1-866-285-8724',
+    phoneHref: 'tel:+18662858724',
+    email: 'canada@visquanta.com'
+  } : {
+    address: <>2222 Ponce de Leon Blvd<br />3rd Floor, Miami,<br />FL 33134 USA</>,
+    phoneDisplay: '+1 786-686-6554',
+    phoneHref: 'tel:+17866866554',
+    email: 'info@visquanta.com'
+  };
   return (
     <footer className="relative bg-[#030303] text-white overflow-hidden">
       {/* Premium Background Effects */}
@@ -115,23 +130,23 @@ export default function Footer() {
                     <MapPin className="w-4 h-4 text-[#FF7404]" />
                   </div>
                   <div className="text-sm text-white/50 leading-relaxed group-hover:text-white/70 transition-colors">
-                    2222 Ponce de Leon Blvd<br />3rd Floor, Miami,<br />FL 33134 USA
+                    {contactInfo.address}
                   </div>
                 </div>
                 <div className="flex items-center gap-4 group">
                   <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center flex-shrink-0 group-hover:border-[#FF7404]/30 group-hover:bg-[#FF7404]/5 transition-all duration-300">
                     <Mail className="w-4 h-4 text-[#FF7404]" />
                   </div>
-                  <a href="mailto:info@visquanta.com" className="text-sm text-white/50 hover:text-white transition-colors">
-                    info@visquanta.com
+                  <a href={`mailto:${contactInfo.email}`} className="text-sm text-white/50 hover:text-white transition-colors">
+                    {contactInfo.email}
                   </a>
                 </div>
                 <div className="flex items-center gap-4 group">
                   <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center flex-shrink-0 group-hover:border-[#FF7404]/30 group-hover:bg-[#FF7404]/5 transition-all duration-300">
                     <Phone className="w-4 h-4 text-[#FF7404]" />
                   </div>
-                  <a href="tel:+17866866554" className="text-sm text-white/50 hover:text-white transition-colors">
-                    +1 786-686-6554
+                  <a href={contactInfo.phoneHref} className="text-sm text-white/50 hover:text-white transition-colors">
+                    {contactInfo.phoneDisplay}
                   </a>
                 </div>
               </motion.div>
