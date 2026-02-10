@@ -1,6 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
+import { localeLink } from '@/lib/locale-link';
 
 interface BlogCardProps {
     article: {
@@ -17,7 +21,7 @@ interface BlogCardProps {
         excerpt?: string;
     };
     variant?: 'default' | 'compact' | 'featured' | 'horizontal';
-    className?: string;
+    className?: string; // Add className to props interface
 }
 
 const FALLBACK_IMAGE = '/images/wireframes/6.jpeg'; // High-quality automotive wireframe as default
@@ -37,8 +41,9 @@ const normalizeCategory = (cat?: string) => {
 
 
 export function BlogCard({ article, variant = 'default', className }: BlogCardProps) {
+    const { locale } = useLocale();
     return (
-        <Link href={`/blog/${article.slug}`} className={cn("group block h-full", className)}>
+        <Link href={localeLink(`/blog/${article.slug}`, locale)} className={cn("group block h-full", className)}>
             <article className={cn(
                 "flex flex-col h-full bg-black border border-white/[0.05] rounded-[2rem] overflow-hidden transition-all duration-500 hover:border-[#FF7404]/50 hover:bg-white/[0.04]",
                 variant === 'featured' && "md:flex-col",

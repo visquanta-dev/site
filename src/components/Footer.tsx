@@ -8,6 +8,7 @@ import { MapPin, Mail, Phone, ArrowUpRight, Linkedin, Youtube, Facebook, Instagr
 import { RequestDemoButton } from './CalendlyModal';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { Button } from "@/components/ui/button";
+import { localeLink } from '@/lib/locale-link';
 
 // Custom TikTok Icon since it's not in standard Lucide set yet
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -107,7 +108,7 @@ export default function Footer() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <Link href="/" className="inline-block group">
+                <Link href={localeLink('/', locale)} className="inline-block group">
                   <Image
                     src="/images/visquanta-logo-transparent.png"
                     alt="VisQuanta"
@@ -168,13 +169,13 @@ export default function Footer() {
                   className="space-y-6"
                 >
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
-                    <Link href="/auto-master-suite" className="hover:text-[#FF7404] transition-colors">AutoMaster Suite</Link>
+                    <Link href={localeLink('/auto-master-suite', locale)} className="hover:text-[#FF7404] transition-colors">AutoMaster Suite</Link>
                   </h4>
                   <ul className="space-y-4">
                     {footerLinks.autoMasterSuite.map((link, i) => (
                       <li key={i}>
                         <Link
-                          href={link.href}
+                          href={localeLink(link.href, locale)}
                           className="group flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors duration-300"
                         >
                           <span className="group-hover:translate-x-1 transition-transform duration-300">{link.label}</span>
@@ -199,13 +200,13 @@ export default function Footer() {
                   className="space-y-6"
                 >
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
-                    <Link href="/dealers" className="hover:text-[#FF7404] transition-colors">Dealer Services</Link>
+                    <Link href={localeLink('/dealers', locale)} className="hover:text-[#FF7404] transition-colors">Dealer Services</Link>
                   </h4>
                   <ul className="space-y-4">
                     {footerLinks.dealerServices.map((link, i) => (
                       <li key={i}>
                         <Link
-                          href={link.href}
+                          href={localeLink(link.href, locale)}
                           className="group flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors duration-300"
                         >
                           <span className="group-hover:translate-x-1 inline-block transition-transform duration-300">{link.label}</span>
@@ -231,13 +232,13 @@ export default function Footer() {
                   className="space-y-6"
                 >
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
-                    <Link href="/resources" className="hover:text-[#FF7404] transition-colors">Resources</Link>
+                    <Link href={localeLink('/resources', locale)} className="hover:text-[#FF7404] transition-colors">Resources</Link>
                   </h4>
                   <ul className="space-y-4">
                     {footerLinks.resources.map((link, i) => (
                       <li key={i}>
                         <Link
-                          href={link.href}
+                          href={link.href.startsWith('http') ? link.href : localeLink(link.href, locale)}
                           className="group text-sm text-white/40 hover:text-white transition-colors duration-300"
                         >
                           <span className="group-hover:translate-x-1 inline-block transition-transform duration-300">{link.label}</span>
@@ -256,13 +257,13 @@ export default function Footer() {
                   className="space-y-6"
                 >
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
-                    <Link href="/company" className="hover:text-[#FF7404] transition-colors">Company</Link>
+                    <Link href={localeLink('/company', locale)} className="hover:text-[#FF7404] transition-colors">Company</Link>
                   </h4>
                   <ul className="space-y-4">
                     {footerLinks.company.map((link, i) => (
                       <li key={i}>
                         <Link
-                          href={link.href}
+                          href={localeLink(link.href, locale)}
                           className="group text-sm text-white/40 hover:text-white transition-colors duration-300"
                         >
                           <span className="group-hover:translate-x-1 inline-block transition-transform duration-300">{link.label}</span>
@@ -341,11 +342,11 @@ export default function Footer() {
               viewport={{ once: true }}
               className="flex items-center gap-6 text-xs text-white/30 order-2 lg:order-3"
             >
-              <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href={localeLink('/privacy-policy', locale)} className="hover:text-white transition-colors">Privacy Policy</Link>
               <span className="w-1 h-1 rounded-full bg-white/20" />
-              <Link href="/terms-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
+              <Link href={localeLink('/terms-conditions', locale)} className="hover:text-white transition-colors">Terms & Conditions</Link>
               <span className="w-1 h-1 rounded-full bg-white/20" />
-              <Link href="/cookie-policy" className="hover:text-white transition-colors">Cookies</Link>
+              <Link href={localeLink('/cookie-policy', locale)} className="hover:text-white transition-colors">Cookies</Link>
             </motion.div>
           </div>
         </div>

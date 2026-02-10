@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getBlogPosts, getAllCategories, getAllTags } from '@/lib/seobot';
 import { getAllCaseStudySlugs } from '@/lib/case-studies';
+import { integrations } from '@/lib/integrations';
 
 // Allow dynamic generation for external API calls
 export const dynamic = 'force-dynamic';
@@ -18,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/blog',
         '/book-demo',
         '/careers',
-        //  '/case-studies', // Case studies not yet localized, handled separately
+        '/case-studies',
         '/company',
         '/contact',
         '/custom-campaigns',
@@ -46,6 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/dealers/franchise',
         '/dealers/auto-groups',
         '/dealers/pre-owned',
+        '/dealers/rv',
     ];
 
     // Case study slugs from shared data module (US Only for now)
@@ -157,33 +159,70 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         });
     });
 
-    // Case Studies (US Only)
+    // Case Studies - Localized
     caseStudySlugs.forEach(slug => {
-        routes.push({
-            url: `${baseUrl}/case-studies/${slug}`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.6,
-            alternates: {
-                languages: {
-                    'en-US': `${baseUrl}/case-studies/${slug}`,
-                    'x-default': `${baseUrl}/case-studies/${slug}`,
+        const page = `/case-studies/${slug}`;
+        locales.forEach(locale => {
+            const path = locale + page;
+            const fullUrl = `${baseUrl}${path}`;
+            routes.push({
+                url: fullUrl,
+                lastModified: new Date(),
+                changeFrequency: 'monthly',
+                priority: 0.6,
+                alternates: {
+                    languages: {
+                        'en-US': `${baseUrl}${page}`,
+                        'en-CA': `${baseUrl}/ca${page}`,
+                        'x-default': `${baseUrl}${page}`,
+                    }
                 }
-            }
+            });
         });
     });
-    // Add main /case-studies index (US Only)
-    routes.push({
-        url: `${baseUrl}/case-studies`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.8,
-        alternates: {
-            languages: {
-                'en-US': `${baseUrl}/case-studies`,
-                'x-default': `${baseUrl}/case-studies`,
-            }
-        }
+
+    // Add Blog Tags - Localized
+    tagSlugs.forEach(slug => {
+        const page = `/blog/tag/${slug}`;
+        locales.forEach(locale => {
+            const path = locale + page;
+            const fullUrl = `${baseUrl}${path}`;
+            routes.push({
+                url: fullUrl,
+                lastModified: new Date(),
+                changeFrequency: 'weekly',
+                priority: 0.4,
+                alternates: {
+                    languages: {
+                        'en-US': `${baseUrl}${page}`,
+                        'en-CA': `${baseUrl}/ca${page}`,
+                        'x-default': `${baseUrl}${page}`,
+                    }
+                }
+            });
+        });
+    });
+
+    // Add Individual Integrations - Localized
+    integrations.forEach(integration => {
+        const page = `/integrations/${integration.slug}`;
+        locales.forEach(locale => {
+            const path = locale + page;
+            const fullUrl = `${baseUrl}${path}`;
+            routes.push({
+                url: fullUrl,
+                lastModified: new Date(),
+                changeFrequency: 'monthly',
+                priority: 0.6,
+                alternates: {
+                    languages: {
+                        'en-US': `${baseUrl}${page}`,
+                        'en-CA': `${baseUrl}/ca${page}`,
+                        'x-default': `${baseUrl}${page}`,
+                    }
+                }
+            });
+        });
     });
 
     return routes;

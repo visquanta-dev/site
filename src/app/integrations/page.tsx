@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     description: 'VisQuanta integrates with VinSolutions, eLead, DealerSocket, CDK, and all major automotive CRMs. Connect your dealership\'s existing tools with AI voice automation.',
     alternates: {
         canonical: 'https://www.visquanta.com/integrations',
+        languages: {
+            'en-US': 'https://www.visquanta.com/integrations',
+            'en-CA': 'https://www.visquanta.com/ca/integrations',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/integrations',

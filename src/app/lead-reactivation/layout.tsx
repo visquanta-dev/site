@@ -6,6 +6,10 @@ export const metadata: Metadata = {
     keywords: 'dead dealership leads, revive old car leads, CRM lead recovery, automotive lead reactivation, sell cars from old leads, dealership database mining, AI BDC alternative',
     alternates: {
         canonical: 'https://www.visquanta.com/lead-reactivation',
+        languages: {
+            'en-US': 'https://www.visquanta.com/lead-reactivation',
+            'en-CA': 'https://www.visquanta.com/ca/lead-reactivation',
+        },
     },
     openGraph: {
         title: 'Revive Dead Dealership Leads',

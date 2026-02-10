@@ -10,6 +10,10 @@ export const metadata: Metadata = {
     description: "Schedule your 15-minute revenue analysis. Get a custom projection for your dealership and see how our AI automates your growth.",
     alternates: {
         canonical: "https://www.visquanta.com/book-demo",
+        languages: {
+            'en-US': 'https://www.visquanta.com/book-demo',
+            'en-CA': 'https://www.visquanta.com/ca/book-demo',
+        },
     },
     openGraph: {
         url: "https://www.visquanta.com/book-demo",

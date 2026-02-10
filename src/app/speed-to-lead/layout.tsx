@@ -6,6 +6,10 @@ export const metadata: Metadata = {
     keywords: 'inbound lead response time, automotive bdc software, dealership lead response, speed to lead automation, automotive crm integration, ai lead management, car dealership bdc tools, internet lead response time, automotive sales automation',
     alternates: {
         canonical: 'https://www.visquanta.com/speed-to-lead',
+        languages: {
+            'en-US': 'https://www.visquanta.com/speed-to-lead',
+            'en-CA': 'https://www.visquanta.com/ca/speed-to-lead',
+        },
     },
     openGraph: {
         title: 'Automotive Speed to Lead | Respond in <60 Seconds',

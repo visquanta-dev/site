@@ -13,6 +13,7 @@ import { BLOG_ENHANCEMENTS } from '@/data/blog-enhancements';
 import { BLOG_RELATED_PRODUCTS } from '@/data/blog-products';
 import RelatedProducts from '@/components/blog/RelatedProducts';
 import { ExpertInsight, KnowledgeCards, ProofPoint, MidArticleCTA, BottomConsultingCTA, BlogFAQAccordion } from '@/components/blog/BlogEnhancements'; import InlineNewsletter from '@/components/blog/InlineNewsletter';
+import { getServerLocalePrefix } from '@/lib/server-locale';
 
 export const revalidate = 60;
 
@@ -70,6 +71,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         authors: [{ name: 'VisQuanta', url: 'https://www.visquanta.com' }],
         alternates: {
             canonical: `https://www.visquanta.com/blog/${slug}`,
+            languages: {
+                'en-US': `https://www.visquanta.com/blog/${slug}`,
+                'en-CA': `https://www.visquanta.com/ca/blog/${slug}`,
+            },
         },
         // Complete Open Graph for articles (10/10 compliance)
         openGraph: {
@@ -127,6 +132,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     }
 
     const enhancement = BLOG_ENHANCEMENTS[slug];
+    const localePrefix = await getServerLocalePrefix();
 
     // Standardized current post image mapping
     post.image = getPostFeaturedImage(post.headline, post.image);
@@ -138,9 +144,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     const articleSchema = {
         '@context': 'https://schema.org',
         '@type': 'Article',
-        '@id': `https://www.visquanta.com/blog/${slug}#article`,
+        '@id': `https://www.visquanta.com${localePrefix}/blog/${slug}#article`,
         'isPartOf': {
-            '@id': `https://www.visquanta.com/blog/${slug}#webpage`
+            '@id': `https://www.visquanta.com${localePrefix}/blog/${slug}#webpage`
         },
         'headline': post.headline,
         'description': post.metaDescription,
@@ -175,19 +181,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://www.visquanta.com'
+                'item': `https://www.visquanta.com${localePrefix || '/'}`
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Blog',
-                'item': 'https://www.visquanta.com/blog'
+                'item': `https://www.visquanta.com${localePrefix}/blog`
             },
             {
                 '@type': 'ListItem',
                 'position': 3,
                 'name': post.headline,
-                'item': `https://www.visquanta.com/blog/${slug}`
+                'item': `https://www.visquanta.com${localePrefix}/blog/${slug}`
             }
         ]
     };
@@ -406,7 +412,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                             {post.tags.map((tag) => (
                                                 <Link
                                                     key={tag.slug}
-                                                    href={`/blog/tag/${tag.slug}`}
+                                                    href={`${localePrefix}/blog/tag/${tag.slug}`}
                                                     className="px-5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-zinc-400 text-sm font-medium hover:bg-white/[0.06] hover:text-white hover:border-white/20 transition-all"
                                                 >
                                                     {tag.title}
@@ -439,7 +445,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                         <p className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
                                             Join hundreds of high-performance dealerships using VisQuanta to automate their growth and maximize revenue.
                                         </p>
-                                        <Link href="/book-demo">
+                                        <Link href={`${localePrefix}/book-demo`}>
                                             <button className="group px-10 py-5 bg-[#FF7404] hover:bg-[#ff8a2b] text-black font-black uppercase tracking-widest rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-[0_0_60px_-15px_rgba(255,116,4,0.5)] hover:shadow-[0_0_80px_-10px_rgba(255,116,4,0.6)]">
                                                 <span className="flex items-center gap-3">
                                                     Request a Strategy Call

@@ -15,6 +15,10 @@ export const metadata = {
     description: 'VisQuanta delivers a white-glove service with human-in-the-loop AI monitoring. Built by car people for car people to ensure every lead is maximized.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealer-success',
+        languages: {
+            'en-US': 'https://www.visquanta.com/dealer-success',
+            'en-CA': 'https://www.visquanta.com/ca/dealer-success',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/dealer-success',

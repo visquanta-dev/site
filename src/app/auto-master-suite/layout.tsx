@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     ],
     alternates: {
         canonical: 'https://www.visquanta.com/auto-master-suite',
+        languages: {
+            'en-US': 'https://www.visquanta.com/auto-master-suite',
+            'en-CA': 'https://www.visquanta.com/ca/auto-master-suite',
+        },
     },
     openGraph: {
         title: 'Car Dealership AI Platform | The AutoMaster Suite',

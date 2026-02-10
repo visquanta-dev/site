@@ -4,12 +4,15 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { BlogArticle } from '@/lib/blog';
 import { ArrowUpRight } from 'lucide-react';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
+import { localeLink } from '@/lib/locale-link';
 
 export default function FeaturedPost({ post }: { post: BlogArticle }) {
+    const { locale } = useLocale();
     if (!post) return null;
 
     return (
-        <Link href={`/blog/${post.slug}`} className="group relative block w-full mb-32 h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
+        <Link href={localeLink(`/blog/${post.slug}`, locale)} className="group relative block w-full mb-32 h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
             {/* Image Background with Parallax scale */}
             <motion.div
                 className="absolute inset-0 z-0"

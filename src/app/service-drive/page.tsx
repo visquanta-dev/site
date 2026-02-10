@@ -25,6 +25,10 @@ export const metadata = {
     description: 'Voice AI for car dealership service departments. Answer 100% of inbound calls 24/7. Book appointments directly into your DMS. No missed calls. No voicemail.',
     alternates: {
         canonical: 'https://www.visquanta.com/service-drive',
+        languages: {
+            'en-US': 'https://www.visquanta.com/service-drive',
+            'en-CA': 'https://www.visquanta.com/ca/service-drive',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/service-drive',

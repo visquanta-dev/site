@@ -54,6 +54,10 @@ export const metadata: Metadata = {
   // Canonical URL (with www for consistency)
   alternates: {
     canonical: "https://www.visquanta.com/",
+    languages: {
+      'en-US': 'https://www.visquanta.com/',
+      'en-CA': 'https://www.visquanta.com/ca',
+    },
   },
 
   // Open Graph - Homepage specific

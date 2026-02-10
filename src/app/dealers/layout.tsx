@@ -5,6 +5,10 @@ export const metadata: Metadata = {
     description: 'Explore tailored AI solutions for franchise groups, independent dealers, and auto groups. See how VisQuanta scales to meet the unique needs of your operations.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealers',
+        languages: {
+            'en-US': 'https://www.visquanta.com/dealers',
+            'en-CA': 'https://www.visquanta.com/ca/dealers',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/dealers',

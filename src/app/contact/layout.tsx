@@ -5,6 +5,10 @@ export const metadata: Metadata = {
     description: 'Contact the VisQuanta team for sales inquiries, expert dealer support, or general questions. We are here to help your dealership succeed with automotive AI.',
     alternates: {
         canonical: 'https://www.visquanta.com/contact',
+        languages: {
+            'en-US': 'https://www.visquanta.com/contact',
+            'en-CA': 'https://www.visquanta.com/ca/contact',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/contact',

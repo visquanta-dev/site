@@ -5,6 +5,7 @@ import { ArrowRight, Tag } from 'lucide-react';
 import { getBlogPostsByTag, getAllTags } from '@/lib/seobot';
 import BlogPageClient from '../../BlogPageClient';
 import type { Metadata } from 'next';
+import { getServerLocalePrefix } from '@/lib/server-locale';
 
 export const revalidate = 60;
 
@@ -26,6 +27,10 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
         description: `Explore all VisQuanta blog posts and industry insights tagged with "${tag?.title || 'this topic'}".${titleSuffix} Learn how our AI solutions are transforming automotive dealerships and maximizing revenue.`,
         alternates: {
             canonical: `https://www.visquanta.com/blog/tag/${slug}`,
+            languages: {
+                'en-US': `https://www.visquanta.com/blog/tag/${slug}`,
+                'en-CA': `https://www.visquanta.com/ca/blog/tag/${slug}`,
+            },
         },
     };
 }
@@ -43,6 +48,7 @@ export default async function TagPage({ params, searchParams }: PageProps) {
     const page = parseInt(resolvedSearchParams.page || '0', 10);
     const { posts, total, totalPages, tag } = await getBlogPostsByTag(slug, page, 12);
     const allTags = await getAllTags();
+    const localePrefix = await getServerLocalePrefix();
 
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
@@ -52,19 +58,19 @@ export default async function TagPage({ params, searchParams }: PageProps) {
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://www.visquanta.com'
+                'item': `https://www.visquanta.com${localePrefix || '/'}`
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Blog',
-                'item': 'https://www.visquanta.com/blog'
+                'item': `https://www.visquanta.com${localePrefix}/blog`
             },
             {
                 '@type': 'ListItem',
                 'position': 3,
                 'name': tag?.title || 'Tag',
-                'item': `https://www.visquanta.com/blog/tag/${slug}`
+                'item': `https://www.visquanta.com${localePrefix}/blog/tag/${slug}`
             }
         ]
     };
@@ -83,7 +89,7 @@ export default async function TagPage({ params, searchParams }: PageProps) {
                 <div className="container px-4 mx-auto relative z-10">
                     <div className="max-w-4xl mx-auto text-center mb-16">
                         <Link
-                            href="/blog"
+                            href={`${localePrefix}/blog`}
                             className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm mb-8"
                         >
                             <ArrowRight className="w-4 h-4 rotate-180" />
@@ -110,7 +116,7 @@ export default async function TagPage({ params, searchParams }: PageProps) {
                             {allTags.slice(0, 10).map((t) => (
                                 <Link
                                     key={t.slug}
-                                    href={`/blog/tag/${t.slug}`}
+                                    href={`${localePrefix}/blog/tag/${t.slug}`}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${t.slug === slug
                                         ? 'bg-[#FF7404]/20 border border-[#FF7404]/40 text-[#FF7404]'
                                         : 'bg-zinc-900/50 border border-white/10 text-zinc-400 hover:bg-zinc-900 hover:text-white hover:border-white/20'
@@ -128,7 +134,7 @@ export default async function TagPage({ params, searchParams }: PageProps) {
                         <div className="flex justify-center items-center gap-4 mt-16">
                             {page > 0 && (
                                 <Link
-                                    href={`/blog/tag/${slug}?page=${page - 1}`}
+                                    href={`${localePrefix}/blog/tag/${slug}?page=${page - 1}`}
                                     className="px-6 py-3 rounded-xl bg-zinc-900 border border-white/10 text-white font-medium hover:bg-zinc-800 hover:border-white/20 transition-colors flex items-center gap-2"
                                 >
                                     <ArrowRight className="w-4 h-4 rotate-180" />
@@ -142,7 +148,7 @@ export default async function TagPage({ params, searchParams }: PageProps) {
 
                             {page < totalPages - 1 && (
                                 <Link
-                                    href={`/blog/tag/${slug}?page=${page + 1}`}
+                                    href={`${localePrefix}/blog/tag/${slug}?page=${page + 1}`}
                                     className="px-6 py-3 rounded-xl bg-zinc-900 border border-white/10 text-white font-medium hover:bg-zinc-800 hover:border-white/20 transition-colors flex items-center gap-2"
                                 >
                                     Next

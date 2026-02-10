@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '@/lib/seobot';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
+import { localeLink } from '@/lib/locale-link';
 
 interface BlogPageClientProps {
     posts: BlogPost[];
@@ -20,6 +22,8 @@ function formatDate(dateString: string): string {
 }
 
 export default function BlogPageClient({ posts }: BlogPageClientProps) {
+    const { locale } = useLocale();
+
     if (posts.length === 0) {
         return (
             <div className="text-center py-20">
@@ -39,7 +43,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                     transition={{ delay: i * 0.05 }}
                     className="group bg-zinc-900/40 border border-white/5 rounded-3xl overflow-hidden hover:bg-zinc-900/60 hover:border-[#FF7404]/30 transition-all duration-500 flex flex-col h-full"
                 >
-                    <Link href={`/blog/${post.slug}`} className="block">
+                    <Link href={localeLink(`/blog/${post.slug}`, locale)} className="block">
                         <div className="h-56 bg-zinc-950 relative overflow-hidden">
                             {/* Cinematic Overlay - Service Drive Style */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
@@ -84,7 +88,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                             </span>
                         </div>
 
-                        <Link href={`/blog/${post.slug}`} className="block group/title">
+                        <Link href={localeLink(`/blog/${post.slug}`, locale)} className="block group/title">
                             <h2 className="text-xl font-bold text-white mb-3 group-hover/title:text-[#FF7404] transition-colors line-clamp-2">
                                 {post.headline}
                             </h2>
@@ -95,7 +99,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                         </p>
 
                         <Link
-                            href={`/blog/${post.slug}`}
+                            href={localeLink(`/blog/${post.slug}`, locale)}
                             className="inline-flex items-center gap-2 text-sm font-bold text-white mt-auto group-hover:gap-3 transition-all"
                         >
                             Read Article <ArrowRight className="w-4 h-4 text-[#FF7404]" />

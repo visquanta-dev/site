@@ -11,6 +11,10 @@ export const metadata = {
     description: 'Read The Journal for industry insights, sales strategies, and data-driven trends in modern automotive retail. Stay ahead with expert analysis from VisQuanta.',
     alternates: {
         canonical: 'https://www.visquanta.com/blog',
+        languages: {
+            'en-US': 'https://www.visquanta.com/blog',
+            'en-CA': 'https://www.visquanta.com/ca/blog',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/blog',

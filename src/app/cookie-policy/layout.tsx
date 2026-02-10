@@ -5,6 +5,10 @@ export const metadata: Metadata = {
     description: 'Read the VisQuanta Cookie Policy to understand how we use cookies to improve your user experience, analyze our traffic, and provide secure platform functionality.',
     alternates: {
         canonical: 'https://www.visquanta.com/cookie-policy',
+        languages: {
+            'en-US': 'https://www.visquanta.com/cookie-policy',
+            'en-CA': 'https://www.visquanta.com/ca/cookie-policy',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/cookie-policy',

@@ -5,6 +5,10 @@ export const metadata: Metadata = {
     description: 'Help us shape the future of automotive retail intelligence. Explore career opportunities at VisQuanta and join a team dedicated to transforming the industry.',
     alternates: {
         canonical: 'https://www.visquanta.com/careers',
+        languages: {
+            'en-US': 'https://www.visquanta.com/careers',
+            'en-CA': 'https://www.visquanta.com/ca/careers',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/careers',

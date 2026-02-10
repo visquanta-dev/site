@@ -5,6 +5,10 @@ export const metadata: Metadata = {
     description: 'Maximize pre-owned inventory profitability with intelligent lead reactivation and speed-to-lead AI. Transform old CRM data into active showroom traffic.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealers/pre-owned',
+        languages: {
+            'en-US': 'https://www.visquanta.com/dealers/pre-owned',
+            'en-CA': 'https://www.visquanta.com/ca/dealers/pre-owned',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/dealers/pre-owned',

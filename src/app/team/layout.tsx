@@ -5,6 +5,10 @@ export const metadata: Metadata = {
     description: 'Meet the automotive veterans and technologists building VisQuanta. Our team brings decades of retail experience to create the industry\'s leading AI tools.',
     alternates: {
         canonical: 'https://www.visquanta.com/team',
+        languages: {
+            'en-US': 'https://www.visquanta.com/team',
+            'en-CA': 'https://www.visquanta.com/ca/team',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/team',

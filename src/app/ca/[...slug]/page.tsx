@@ -28,6 +28,7 @@ const pageImports: Record<string, () => Promise<{ default: React.ComponentType }
     'privacy-policy': () => import('@/app/privacy-policy/page'),
     'terms-conditions': () => import('@/app/terms-conditions/page'),
     'cookie-policy': () => import('@/app/cookie-policy/page'),
+    'case-studies': () => import('@/app/case-studies/page'),
 };
 
 // Nested route imports (e.g., /dealers/independent)
@@ -41,6 +42,7 @@ const nestedPageImports: Record<string, () => Promise<{ default: React.Component
 
 interface PageProps {
     params: Promise<{ slug: string[] }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export async function generateStaticParams() {
@@ -53,11 +55,86 @@ export async function generateStaticParams() {
     return [...singleRoutes, ...nestedRoutes];
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
     const resolvedParams = await params;
     const slugPath = resolvedParams.slug.join('/');
 
+    let blogMetadata: Metadata = {};
+
+    // Handle Metadata for Blog Routes dynamically
+    if (resolvedParams.slug[0] === 'blog') {
+        try {
+            const segments = resolvedParams.slug;
+            const remainingSegments = segments.slice(1);
+
+            // 1. Single Blog Post: /blog/[slug]
+            if (remainingSegments.length === 1 && remainingSegments[0] !== 'category' && remainingSegments[0] !== 'tag') {
+                const mod = await import('@/app/blog/[slug]/page');
+                if (mod.generateMetadata) {
+                    // @ts-ignore
+                    blogMetadata = await mod.generateMetadata({
+                        params: Promise.resolve({ slug: remainingSegments[0] })
+                    });
+                }
+            }
+            // 2. Blog Category: /blog/category/[slug]
+            else if (remainingSegments.length === 2 && remainingSegments[0] === 'category') {
+                const mod = await import('@/app/blog/category/[slug]/page');
+                if (mod.generateMetadata) {
+                    // @ts-ignore
+                    blogMetadata = await mod.generateMetadata({
+                        params: Promise.resolve({ slug: remainingSegments[1] }),
+                        searchParams: searchParams as any
+                    });
+                }
+            }
+            // 3. Blog Tag: /blog/tag/[slug]
+            else if (remainingSegments.length === 2 && remainingSegments[0] === 'tag') {
+                const mod = await import('@/app/blog/tag/[slug]/page');
+                if (mod.generateMetadata) {
+                    // @ts-ignore
+                    blogMetadata = await mod.generateMetadata({
+                        params: Promise.resolve({ slug: remainingSegments[1] }),
+                        searchParams: searchParams as any
+                    });
+                }
+            }
+            // 4. Main Blog Index: /blog
+            else if (remainingSegments.length === 0) {
+                const mod = await import('@/app/blog/page');
+                // @ts-ignore
+                if (mod.metadata) {
+                    // @ts-ignore
+                    blogMetadata = mod.metadata;
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching blog metadata for CA:', error);
+        }
+    }
+
+    // Handle Metadata for Case Study Routes dynamically
+    if (resolvedParams.slug[0] === 'case-studies') {
+        try {
+            const segments = resolvedParams.slug;
+            const remainingSegments = segments.slice(1);
+
+            // 1. Single Case Study: /case-studies/[slug]
+            if (remainingSegments.length === 1) {
+                const mod = await import('@/app/case-studies/[slug]/layout');
+                if (mod.generateMetadata) {
+                    blogMetadata = await mod.generateMetadata({
+                        params: Promise.resolve({ slug: remainingSegments[0] })
+                    });
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching case study metadata for CA:', error);
+        }
+    }
+
     return {
+        ...blogMetadata,
         alternates: {
             canonical: `https://www.visquanta.com/ca/${slugPath}`,
             languages: {
@@ -65,10 +142,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
                 'en-CA': `https://www.visquanta.com/ca/${slugPath}`,
             },
         },
+        openGraph: {
+            ...blogMetadata.openGraph,
+            url: `https://www.visquanta.com/ca/${slugPath}`,
+            locale: 'en_CA',
+        }
     };
 }
 
-export default async function CatchAllPage({ params }: PageProps) {
+export default async function CatchAllPage({ params, searchParams }: PageProps) {
     const resolvedParams = await params;
     const slugPath = resolvedParams.slug.join('/');
 
@@ -86,6 +168,54 @@ export default async function CatchAllPage({ params }: PageProps) {
     if (nestedImporter) {
         const PageComponent = (await nestedImporter()).default;
         return <PageComponent />;
+    }
+
+    // Handle dynamic Blog routes (Post, Category, Tag)
+    if (resolvedParams.slug[0] === 'blog') {
+        const segments = resolvedParams.slug;
+        const remainingSegments = segments.slice(1);
+
+        // 1. Single Blog Post: /blog/[slug]
+        if (remainingSegments.length === 1 && remainingSegments[0] !== 'category' && remainingSegments[0] !== 'tag') {
+            const BlogPostPage = (await import('@/app/blog/[slug]/page')).default;
+            return <BlogPostPage params={Promise.resolve({ slug: remainingSegments[0] })} />;
+        }
+
+        // 2. Blog Category: /blog/category/[slug]
+        if (remainingSegments.length === 2 && remainingSegments[0] === 'category') {
+            const BlogCategoryPage = (await import('@/app/blog/category/[slug]/page')).default;
+            return <BlogCategoryPage
+                params={Promise.resolve({ slug: remainingSegments[1] })}
+                searchParams={searchParams as any}
+            />;
+        }
+
+        // 3. Blog Tag: /blog/tag/[slug]
+        if (remainingSegments.length === 2 && remainingSegments[0] === 'tag') {
+            const BlogTagPage = (await import('@/app/blog/tag/[slug]/page')).default;
+            return <BlogTagPage
+                params={Promise.resolve({ slug: remainingSegments[1] })}
+                searchParams={searchParams as any}
+            />;
+        }
+    }
+
+    // Handle dynamic Case Study routes
+    if (resolvedParams.slug[0] === 'case-studies') {
+        const segments = resolvedParams.slug;
+        const remainingSegments = segments.slice(1);
+
+        // 1. Single Case Study: /case-studies/[slug]
+        if (remainingSegments.length === 1) {
+            const CaseStudyPage = (await import('@/app/case-studies/[slug]/page')).default;
+            const CaseStudyLayout = (await import('@/app/case-studies/[slug]/layout')).default;
+
+            return (
+                <CaseStudyLayout params={Promise.resolve({ slug: remainingSegments[0] })}>
+                    <CaseStudyPage params={Promise.resolve({ slug: remainingSegments[0] })} />
+                </CaseStudyLayout>
+            );
+        }
     }
 
     // Page not found

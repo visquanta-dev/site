@@ -22,6 +22,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             : caseStudy.summary,
         alternates: {
             canonical: `https://www.visquanta.com/case-studies/${slug}`,
+            languages: {
+                'en-US': `https://www.visquanta.com/case-studies/${slug}`,
+                'en-CA': `https://www.visquanta.com/ca/case-studies/${slug}`,
+            },
         },
         openGraph: {
             title: caseStudy.title,

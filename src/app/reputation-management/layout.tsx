@@ -5,6 +5,10 @@ export const metadata: Metadata = {
     description: 'Build an elite dealership reputation with Visquanta. Our 72-hour review growth engine and conversational SMS resolution protect your store and OEM scores.',
     alternates: {
         canonical: 'https://www.visquanta.com/reputation-management',
+        languages: {
+            'en-US': 'https://www.visquanta.com/reputation-management',
+            'en-CA': 'https://www.visquanta.com/ca/reputation-management',
+        },
     },
     openGraph: {
         url: 'https://www.visquanta.com/reputation-management',
