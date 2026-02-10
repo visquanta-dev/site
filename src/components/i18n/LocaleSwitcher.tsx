@@ -7,8 +7,15 @@ import { useState, useRef, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Globe } from 'lucide-react';
+import { US, CA, GB } from 'country-flag-icons/react/3x2';
 import { Locale, localeConfig, locales, localizePathname, LOCALE_COOKIE_NAME } from '@/lib/i18n/config';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
+
+const FlagComponents: Record<Locale, React.ElementType> = {
+    'en-US': US,
+    'en-CA': CA,
+    'en-GB': GB,
+};
 
 export default function LocaleSwitcher() {
     const [isOpen, setIsOpen] = useState(false);
@@ -51,6 +58,7 @@ export default function LocaleSwitcher() {
     };
 
     const currentConfig = localeConfig[currentLocale];
+    const CurrentFlag = FlagComponents[currentLocale];
 
     return (
         <div className="relative" ref={dropdownRef}>
@@ -62,8 +70,9 @@ export default function LocaleSwitcher() {
                 aria-expanded={isOpen}
                 aria-haspopup="listbox"
             >
-                <Globe className="w-4 h-4 text-white/60" />
-                <span className="hidden sm:inline">{currentConfig.flag}</span>
+                <span className="flex items-center w-5 h-3.5 relative shadow-sm rounded-sm overflow-hidden">
+                    <CurrentFlag className="w-full h-full object-cover" />
+                </span>
                 <span className="hidden md:inline text-xs font-medium">{currentConfig.name}</span>
                 <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -93,6 +102,7 @@ export default function LocaleSwitcher() {
                                 const config = localeConfig[locale];
                                 const isActive = locale === currentLocale;
                                 const isDisabled = !config.enabled;
+                                const Flag = FlagComponents[locale];
 
                                 return (
                                     <button
@@ -100,20 +110,20 @@ export default function LocaleSwitcher() {
                                         onClick={() => handleLocaleChange(locale)}
                                         disabled={isDisabled}
                                         className={`
-                      w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200
-                      ${isActive
+                                            w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200
+                                            ${isActive
                                                 ? 'bg-[#FF7404]/10 text-[#FF7404]'
                                                 : isDisabled
                                                     ? 'text-white/30 cursor-not-allowed'
                                                     : 'text-white/80 hover:bg-white/5 hover:text-white'
                                             }
-                    `}
+                                        `}
                                         role="option"
                                         aria-selected={isActive}
                                     >
                                         {/* Flag */}
-                                        <span className={`text-xl ${isDisabled ? 'grayscale opacity-50' : ''}`}>
-                                            {config.flag}
+                                        <span className={`w-6 h-4 relative shadow-sm rounded-sm overflow-hidden flex-shrink-0 ${isDisabled ? 'grayscale opacity-50' : ''}`}>
+                                            <Flag className="w-full h-full object-cover" />
                                         </span>
 
                                         {/* Name & Status */}
