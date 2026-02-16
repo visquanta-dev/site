@@ -14,6 +14,7 @@ import { BLOG_RELATED_PRODUCTS } from '@/data/blog-products';
 import RelatedProducts from '@/components/blog/RelatedProducts';
 import { ExpertInsight, KnowledgeCards, ProofPoint, MidArticleCTA, BottomConsultingCTA, BlogFAQAccordion } from '@/components/blog/BlogEnhancements'; import InlineNewsletter from '@/components/blog/InlineNewsletter';
 import { getServerLocalePrefix } from '@/lib/server-locale';
+import { normalizeLinks } from '@/lib/link-normalization';
 
 export const revalidate = 60;
 
@@ -132,6 +133,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
     const enhancement = BLOG_ENHANCEMENTS[slug];
     const localePrefix = await getServerLocalePrefix();
+
+    // PHASE 2: Implement Render-Time Link Normalisation
+    // Eliminate internal redirect reliance by rewriting legacy links in the HTML
+    post.html = normalizeLinks(post.html);
 
     // Standardized current post image mapping
     post.image = getPostFeaturedImage(post.headline, post.image);
