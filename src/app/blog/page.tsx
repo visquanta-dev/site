@@ -13,7 +13,6 @@ export const metadata = {
         canonical: 'https://www.visquanta.com/blog',
         languages: {
             'en-US': 'https://www.visquanta.com/blog',
-            'en-CA': 'https://www.visquanta.com/ca/blog',
         },
     },
     openGraph: {

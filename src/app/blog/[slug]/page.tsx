@@ -73,7 +73,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             canonical: `https://www.visquanta.com/blog/${slug}`,
             languages: {
                 'en-US': `https://www.visquanta.com/blog/${slug}`,
-                'en-CA': `https://www.visquanta.com/ca/blog/${slug}`,
             },
         },
         // Complete Open Graph for articles (10/10 compliance)
@@ -187,13 +186,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Blog',
-                'item': `https://www.visquanta.com${localePrefix}/blog`
+                'item': `https://www.visquanta.com/blog`
             },
             {
                 '@type': 'ListItem',
                 'position': 3,
                 'name': post.headline,
-                'item': `https://www.visquanta.com${localePrefix}/blog/${slug}`
+                'item': `https://www.visquanta.com/blog/${slug}`
             }
         ]
     };

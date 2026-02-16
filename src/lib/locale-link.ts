@@ -5,7 +5,7 @@
  * @param locale The current locale (e.g., 'en-US', 'en-CA', 'en-GB')
  */
 export function localeLink(path: string, locale?: string): string {
-    if (!locale || locale === 'en-US') {
+    if (!locale || locale === 'en-US' || path.startsWith('/blog')) {
         return path;
     }
 

@@ -23,7 +23,6 @@ const pageImports: Record<string, () => Promise<{ default: React.ComponentType }
     'book-demo': () => import('@/app/book-demo/page'),
     'contact': () => import('@/app/contact/page'),
     'faqs': () => import('@/app/faqs/page'),
-    'blog': () => import('@/app/blog/page'),
     'ams-guides': () => import('@/app/ams-guides/page'),
     'integrations': () => import('@/app/integrations/page'),
     'resources': () => import('@/app/resources/page'),
@@ -80,58 +79,6 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     const slugPath = resolvedParams.slug.join('/');
 
     let pageMetadata: Metadata = {};
-
-    // Handle Metadata for Blog Routes dynamically
-    if (resolvedParams.slug[0] === 'blog') {
-        try {
-            const segments = resolvedParams.slug;
-            const remainingSegments = segments.slice(1);
-
-            // 1. Single Blog Post: /blog/[slug]
-            if (remainingSegments.length === 1 && remainingSegments[0] !== 'category' && remainingSegments[0] !== 'tag') {
-                const mod = await import('@/app/blog/[slug]/page');
-                if (mod.generateMetadata) {
-                    // @ts-ignore
-                    pageMetadata = await mod.generateMetadata({
-                        params: Promise.resolve({ slug: remainingSegments[0] })
-                    });
-                }
-            }
-            // 2. Blog Category: /blog/category/[slug]
-            else if (remainingSegments.length === 2 && remainingSegments[0] === 'category') {
-                const mod = await import('@/app/blog/category/[slug]/page');
-                if (mod.generateMetadata) {
-                    // @ts-ignore
-                    pageMetadata = await mod.generateMetadata({
-                        params: Promise.resolve({ slug: remainingSegments[1] }),
-                        searchParams: searchParams as any
-                    });
-                }
-            }
-            // 3. Blog Tag: /blog/tag/[slug]
-            else if (remainingSegments.length === 2 && remainingSegments[0] === 'tag') {
-                const mod = await import('@/app/blog/tag/[slug]/page');
-                if (mod.generateMetadata) {
-                    // @ts-ignore
-                    pageMetadata = await mod.generateMetadata({
-                        params: Promise.resolve({ slug: remainingSegments[1] }),
-                        searchParams: searchParams as any
-                    });
-                }
-            }
-            // 4. Main Blog Index: /blog
-            else if (remainingSegments.length === 0) {
-                const mod = await import('@/app/blog/page');
-                // @ts-ignore
-                if (mod.metadata) {
-                    // @ts-ignore
-                    pageMetadata = mod.metadata;
-                }
-            }
-        } catch (error) {
-            console.error('Error fetching blog metadata for CA:', error);
-        }
-    }
 
     // Handle Metadata for Case Study Routes dynamically
     if (resolvedParams.slug[0] === 'case-studies') {
@@ -196,7 +143,7 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
         'case-studies': () => import('@/app/case-studies/layout'),
     };
 
-    // If we haven't populated metadata yet (not blog/case-study/integration), try layout metadata
+    // If we haven't populated metadata yet (not case-study/integration), try layout metadata
     if (Object.keys(pageMetadata).length === 0 && layoutMetadataRoutes[slugPath]) {
         try {
             const layoutMod = await layoutMetadataRoutes[slugPath]();
@@ -252,36 +199,6 @@ export default async function CatchAllPage({ params, searchParams }: PageProps) 
         if (integration) {
             const IntegrationPage = (await import('@/app/integrations/[slug]/page')).default;
             return <IntegrationPage params={Promise.resolve({ slug: integrationSlug })} />;
-        }
-    }
-
-    // Handle dynamic Blog routes (Post, Category, Tag)
-    if (resolvedParams.slug[0] === 'blog') {
-        const segments = resolvedParams.slug;
-        const remainingSegments = segments.slice(1);
-
-        // 1. Single Blog Post: /blog/[slug]
-        if (remainingSegments.length === 1 && remainingSegments[0] !== 'category' && remainingSegments[0] !== 'tag') {
-            const BlogPostPage = (await import('@/app/blog/[slug]/page')).default;
-            return <BlogPostPage params={Promise.resolve({ slug: remainingSegments[0] })} />;
-        }
-
-        // 2. Blog Category: /blog/category/[slug]
-        if (remainingSegments.length === 2 && remainingSegments[0] === 'category') {
-            const BlogCategoryPage = (await import('@/app/blog/category/[slug]/page')).default;
-            return <BlogCategoryPage
-                params={Promise.resolve({ slug: remainingSegments[1] })}
-                searchParams={searchParams as any}
-            />;
-        }
-
-        // 3. Blog Tag: /blog/tag/[slug]
-        if (remainingSegments.length === 2 && remainingSegments[0] === 'tag') {
-            const BlogTagPage = (await import('@/app/blog/tag/[slug]/page')).default;
-            return <BlogTagPage
-                params={Promise.resolve({ slug: remainingSegments[1] })}
-                searchParams={searchParams as any}
-            />;
         }
     }
 

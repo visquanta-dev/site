@@ -29,7 +29,6 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
             canonical: `https://www.visquanta.com/blog/category/${slug}`,
             languages: {
                 'en-US': `https://www.visquanta.com/blog/category/${slug}`,
-                'en-CA': `https://www.visquanta.com/ca/blog/category/${slug}`,
             },
         },
     };
@@ -64,13 +63,13 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
                 '@type': 'ListItem',
                 'position': 2,
                 'name': 'Blog',
-                'item': `https://www.visquanta.com${localePrefix}/blog`
+                'item': `https://www.visquanta.com/blog`
             },
             {
                 '@type': 'ListItem',
                 'position': 3,
                 'name': category?.title || 'Category',
-                'item': `https://www.visquanta.com${localePrefix}/blog/category/${slug}`
+                'item': `https://www.visquanta.com/blog/category/${slug}`
             }
         ]
     };
@@ -89,7 +88,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
                 <div className="container px-4 mx-auto relative z-10">
                     <div className="max-w-4xl mx-auto text-center mb-16">
                         <Link
-                            href={`${localePrefix}/blog`}
+                            href="/blog"
                             className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm mb-8"
                         >
                             <ArrowRight className="w-4 h-4 rotate-180" />

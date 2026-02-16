@@ -46,6 +46,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/ca/blog/:slug*',
+        destination: '/blog/:slug*',
+        permanent: true,
+      },
+      {
         source: '/visquanta-team',
         destination: '/team',
         permanent: true,

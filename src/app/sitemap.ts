@@ -11,12 +11,11 @@ const locales = ['', '/ca']; // '' = default US, '/ca' = Canada
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
-    // Static main pages
-    const mainPages = [
+    // Static main pages (Localized)
+    const localizedMainPages = [
         '',
         '/about-visquanta',
         '/auto-master-suite',
-        '/blog',
         '/book-demo',
         '/careers',
         '/case-studies',
@@ -41,8 +40,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/cookie-policy',
     ];
 
-    // Dealer segment pages
-    const dealerPages = [
+    // Dealer segment pages (Localized)
+    const localizedDealerPages = [
         '/dealers',
         '/dealers/independent',
         '/dealers/franchise',
@@ -51,7 +50,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/dealers/rv',
     ];
 
-    // Case study slugs from shared data module (US Only for now)
+    // Global Pages (Blog is exclusively global)
+    const globalPages = [
+        '/blog',
+    ];
+
+    // Case study slugs from shared data module (Localized)
     const caseStudySlugs = getAllCaseStudySlugs();
 
     // Dynamically fetch blog posts, categories, and tags from Seobot API
@@ -72,7 +76,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         tagSlugs = tags.map(tag => tag.slug);
     } catch (error) {
         console.error('Error fetching dynamic content for sitemap:', error);
-        // Graceful degradation - sitemap will still include static pages
     }
 
     const routes: MetadataRoute.Sitemap = [];
@@ -81,17 +84,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const addLocalizedRoutes = (paths: string[], priority: number, changeFreq: 'weekly' | 'monthly') => {
         paths.forEach(page => {
             locales.forEach(locale => {
-                const isDefault = locale === '';
                 const path = locale + page;
                 const fullUrl = `${baseUrl}${path === '/' ? '' : path}`;
-
-                // Construct alternates
-                const languages: Record<string, string> = {
-                    'en-US': `${baseUrl}${page}`,
-                    'en-CA': `${baseUrl}/ca${page}`,
-                    'x-default': `${baseUrl}${page}`,
-                    // 'en-GB': `${baseUrl}/uk${page}`, // Future
-                };
 
                 routes.push({
                     url: fullUrl,
@@ -99,68 +93,100 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                     changeFrequency: changeFreq,
                     priority: page === '' ? 1 : priority,
                     alternates: {
-                        languages
+                        languages: {
+                            'en-US': `${baseUrl}${page}`,
+                            'en-CA': `${baseUrl}/ca${page}`,
+                            'x-default': `${baseUrl}${page}`,
+                        }
                     }
                 });
             });
         });
     };
 
-    // Add Main Pages
-    addLocalizedRoutes(mainPages, 0.8, 'weekly');
+    // Helper to add global routes (No locale prefix, no CA hreflang)
+    const addGlobalRoutes = (paths: string[], priority: number, changeFreq: 'weekly' | 'monthly') => {
+        paths.forEach(page => {
+            const fullUrl = `${baseUrl}${page}`;
+            routes.push({
+                url: fullUrl,
+                lastModified: new Date(),
+                changeFrequency: changeFreq,
+                priority: priority,
+                alternates: {
+                    languages: {
+                        'en-US': `${baseUrl}${page}`,
+                        'x-default': `${baseUrl}${page}`,
+                    }
+                }
+            });
+        });
+    };
 
-    // Add Dealer Pages
-    addLocalizedRoutes(dealerPages, 0.7, 'monthly');
+    // 1. Add Localized Main Pages
+    addLocalizedRoutes(localizedMainPages, 0.8, 'weekly');
 
-    // Add Blog Posts
-    // Note: Assuming /ca/blog/[slug] is handled by router
+    // 2. Add Localized Dealer Pages
+    addLocalizedRoutes(localizedDealerPages, 0.7, 'monthly');
+
+    // 3. Add Global Pages (Blog Hub)
+    addGlobalRoutes(globalPages, 0.8, 'weekly');
+
+    // 4. Add Global Blog Posts
     blogSlugs.forEach(slug => {
         const page = `/blog/${slug}`;
-        locales.forEach(locale => {
-            const path = locale + page;
-            const fullUrl = `${baseUrl}${path}`;
-            routes.push({
-                url: fullUrl,
-                lastModified: new Date(),
-                changeFrequency: 'monthly',
-                priority: 0.6,
-                alternates: {
-                    languages: {
-                        'en-US': `${baseUrl}${page}`,
-                        'en-CA': `${baseUrl}/ca${page}`,
-                        'x-default': `${baseUrl}${page}`,
-                    }
+        const fullUrl = `${baseUrl}${page}`;
+        routes.push({
+            url: fullUrl,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.6,
+            alternates: {
+                languages: {
+                    'en-US': `${baseUrl}${page}`,
+                    'x-default': `${baseUrl}${page}`,
                 }
-            });
+            }
         });
     });
 
-    // Add Blog Categories as localized?
-    // User prompt didn't explicitly ask for categories, strictly pages.
-    // But categories are useful. I'll add them initialized.
+    // 5. Add Global Blog Categories
     categorySlugs.forEach(slug => {
         const page = `/blog/category/${slug}`;
-        // Assuming categories are localized too
-        locales.forEach(locale => {
-            const path = locale + page;
-            const fullUrl = `${baseUrl}${path}`;
-            routes.push({
-                url: fullUrl,
-                lastModified: new Date(),
-                changeFrequency: 'weekly',
-                priority: 0.5,
-                alternates: {
-                    languages: {
-                        'en-US': `${baseUrl}${page}`,
-                        'en-CA': `${baseUrl}/ca${page}`,
-                        'x-default': `${baseUrl}${page}`,
-                    }
+        const fullUrl = `${baseUrl}${page}`;
+        routes.push({
+            url: fullUrl,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.5,
+            alternates: {
+                languages: {
+                    'en-US': `${baseUrl}${page}`,
+                    'x-default': `${baseUrl}${page}`,
                 }
-            });
+            }
         });
     });
 
-    // Case Studies - Localized
+    // 6. Add Global Blog Tags
+    tagSlugs.forEach(slug => {
+        const page = `/blog/tag/${slug}`;
+        const fullUrl = `${baseUrl}${page}`;
+        routes.push({
+            url: fullUrl,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.4,
+            alternates: {
+                languages: {
+                    'en-US': `${baseUrl}${page}`,
+                    'x-default': `${baseUrl}${page}`,
+                }
+            }
+        });
+    });
+
+    // 7. Add Localized Case Studies
     caseStudySlugs.forEach(slug => {
         const page = `/case-studies/${slug}`;
         locales.forEach(locale => {
@@ -182,29 +208,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         });
     });
 
-    // Add Blog Tags - Localized
-    tagSlugs.forEach(slug => {
-        const page = `/blog/tag/${slug}`;
-        locales.forEach(locale => {
-            const path = locale + page;
-            const fullUrl = `${baseUrl}${path}`;
-            routes.push({
-                url: fullUrl,
-                lastModified: new Date(),
-                changeFrequency: 'weekly',
-                priority: 0.4,
-                alternates: {
-                    languages: {
-                        'en-US': `${baseUrl}${page}`,
-                        'en-CA': `${baseUrl}/ca${page}`,
-                        'x-default': `${baseUrl}${page}`,
-                    }
-                }
-            });
-        });
-    });
-
-    // Add Individual Integrations - Localized
+    // 8. Add Localized Individual Integrations
     integrations.forEach(integration => {
         const page = `/integrations/${integration.slug}`;
         locales.forEach(locale => {
