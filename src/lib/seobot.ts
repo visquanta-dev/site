@@ -123,24 +123,23 @@ export async function getAllPostsMeta(): Promise<BasePost[]> {
 
   // FALLBACK: If no API key, use mock data immediately
   if (!apiKey) {
-    console.warn('Using mock data for blog posts (No API Key)');
+    console.warn('[seobot] No API key — returning mock data');
     return MOCK_BLOG_POSTS as unknown as BasePost[];
   }
 
   try {
     const url = `https://seobot-blogs.s3.eu-north-1.amazonaws.com/${apiKey}/system/base.json`;
-    const response = await fetch(url, { next: { revalidate: 60 } });
+    const response = await fetch(url, { next: { revalidate: 3600 } });
 
     if (!response.ok) {
-      console.warn(`Failed to fetch base.json, falling back to mock data: ${response.status}`);
-      return MOCK_BLOG_POSTS as unknown as BasePost[];
+      console.warn(`[seobot] base.json returned ${response.status} — returning empty`);
+      return [];
     }
 
     const rawData: BasePostRaw[] = await response.json();
     const normalizedData = rawData.map(normalizeBasePost);
 
-    // FORCE MERGE LOCALLY CREATED POSTS (MOCK DATA)
-    // This ensures our new "9 PM Problem" article appears even if the API is active.
+    // Merge locally created mock posts
     const mockBasePosts = MOCK_BLOG_POSTS.map(p => ({
       id: p.id,
       slug: p.slug,
@@ -154,23 +153,20 @@ export async function getAllPostsMeta(): Promise<BasePost[]> {
       tags: p.tags
     })) as unknown as BasePost[];
 
-    // Combine them (remote + local)
-    // We filter out any mocks that might conflict with real IDs, though highly unlikely given 'mock-' prefix
     const combinedData = [
       ...normalizedData,
       ...mockBasePosts.filter(m => !normalizedData.some(n => n.id === m.id))
     ];
 
-    // Sort by date descending (newest first)
-    combinedData.sort((a, b) => {
-      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-    });
+    combinedData.sort((a, b) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
 
     setCache(cacheKey, combinedData);
     return combinedData;
   } catch (error) {
-    console.error('Error fetching blog base, falling back to mock data:', error);
-    return MOCK_BLOG_POSTS as unknown as BasePost[];
+    console.error('[seobot] getAllPostsMeta fetch failed (ECONNRESET / network):', error);
+    return [];
   }
 }
 
@@ -435,6 +431,3 @@ export async function getAllTags(): Promise<Array<{ slug: string; title: string;
   }
 }
 
-export async function getAllPostsMeta(): Promise<BasePost[]> {
-  return fetchBase();
-}
