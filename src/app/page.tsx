@@ -52,6 +52,7 @@ export const metadata: Metadata = {
     languages: {
       'en-US': 'https://www.visquanta.com/',
       'en-CA': 'https://www.visquanta.com/ca',
+      'x-default': 'https://www.visquanta.com/',
     },
   },
 };

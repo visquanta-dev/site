@@ -18,17 +18,20 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     const { slug } = await params;
     const resolvedSearchParams = await searchParams;
     const page = parseInt(resolvedSearchParams.page || '0', 10);
-    const { tag } = await getBlogPostsByTag(slug, 0, 1);
+    const { tag, total } = await getBlogPostsByTag(slug, 0, 1);
 
     const titleSuffix = page > 0 ? ` (Page ${page + 1})` : '';
 
     return {
         title: tag ? `Posts about ${tag.title}${titleSuffix} | VisQuanta Blog` : 'Tag | VisQuanta Blog',
         description: `Explore articles tagged with "${tag?.title || 'this topic'}".${titleSuffix} Practical guides and analysis for modern automotive retail operations.`,
+        // CRAWL BUDGET PROTECTION: Noindex tags with very few posts
+        robots: total < 2 ? 'noindex, follow' : 'index, follow',
         alternates: {
             canonical: `https://www.visquanta.com/blog/tag/${slug}`,
             languages: {
                 'en-US': `https://www.visquanta.com/blog/tag/${slug}`,
+                'x-default': `https://www.visquanta.com/blog/tag/${slug}`,
             },
         },
     };

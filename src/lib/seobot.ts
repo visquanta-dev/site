@@ -80,6 +80,7 @@ export interface BasePost {
   image: string;
   readingTime: number;
   createdAt: string;
+  updatedAt: string;
   category: {
     slug: string;
     title: string;
@@ -99,6 +100,7 @@ function normalizeBasePost(raw: BasePostRaw): BasePost {
     image: raw.i,
     readingTime: raw.rt,
     createdAt: raw.cr,
+    updatedAt: raw.up || raw.cr,
     category: raw.c ? {
       slug: raw.c.s,
       title: raw.c.t
@@ -147,6 +149,7 @@ async function fetchBase(): Promise<BasePost[]> {
       image: p.image,
       readingTime: p.readingTime,
       createdAt: p.createdAt,
+      updatedAt: p.createdAt,
       category: p.category,
       tags: p.tags
     })) as unknown as BasePost[];

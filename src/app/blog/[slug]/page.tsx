@@ -76,6 +76,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             canonical: `https://www.visquanta.com/blog/${slug}`,
             languages: {
                 'en-US': `https://www.visquanta.com/blog/${slug}`,
+                'x-default': `https://www.visquanta.com/blog/${slug}`,
             },
         },
         // Complete Open Graph for articles (10/10 compliance)

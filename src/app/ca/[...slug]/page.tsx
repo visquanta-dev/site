@@ -162,6 +162,7 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
             languages: {
                 'en-US': `https://www.visquanta.com/${slugPath}`,
                 'en-CA': `https://www.visquanta.com/ca/${slugPath}`,
+                'x-default': `https://www.visquanta.com/${slugPath}`,
             },
         },
         openGraph: {

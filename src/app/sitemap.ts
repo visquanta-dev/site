@@ -58,22 +58,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Case study slugs from shared data module (Localized)
     const caseStudySlugs = getAllCaseStudySlugs();
 
-    // Dynamically fetch blog posts, categories, and tags from Seobot API
-    let blogSlugs: string[] = [];
+    // Dynamically fetch ALL blog posts, categories, and tags from Seobot metadata base
+    let blogPosts: { slug: string; updatedAt: string }[] = [];
     let categorySlugs: string[] = [];
-    let tagSlugs: string[] = [];
+    let tagData: { slug: string; count: number }[] = [];
 
     try {
-        // Fetch up to 100 blog posts for sitemap
-        const [{ posts }, categories, tags] = await Promise.all([
-            getBlogPosts(0, 100),
+        const [posts, categories, tags] = await Promise.all([
+            getAllPostsMeta(),
             getAllCategories(),
             getAllTags()
         ]);
 
-        blogSlugs = posts.map(post => post.slug);
+        blogPosts = posts.map(post => ({ slug: post.slug, updatedAt: post.updatedAt }));
         categorySlugs = categories.map(cat => cat.slug);
-        tagSlugs = tags.map(tag => tag.slug);
+
+        // CRAWL BUDGET OPTIMIZATION: Only include tags with ≥ 2 posts to avoid thin content traps
+        tagData = tags.filter(tag => tag.count >= 2).map(tag => ({ slug: tag.slug, count: tag.count }));
     } catch (error) {
         console.error('Error fetching dynamic content for sitemap:', error);
     }
@@ -132,13 +133,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // 3. Add Global Pages (Blog Hub)
     addGlobalRoutes(globalPages, 0.8, 'weekly');
 
-    // 4. Add Global Blog Posts
-    blogSlugs.forEach(slug => {
-        const page = `/blog/${slug}`;
+    // 4. Add Global Blog Posts (UNLIMITED)
+    blogPosts.forEach(post => {
+        const page = `/blog/${post.slug}`;
         const fullUrl = `${baseUrl}${page}`;
         routes.push({
             url: fullUrl,
-            lastModified: new Date(),
+            lastModified: new Date(post.updatedAt),
             changeFrequency: 'monthly',
             priority: 0.6,
             alternates: {
@@ -168,9 +169,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         });
     });
 
-    // 6. Add Global Blog Tags
-    tagSlugs.forEach(slug => {
-        const page = `/blog/tag/${slug}`;
+    // 6. Add Global Blog Tags (FILTERED)
+    tagData.forEach(tag => {
+        const page = `/blog/tag/${tag.slug}`;
         const fullUrl = `${baseUrl}${page}`;
         routes.push({
             url: fullUrl,

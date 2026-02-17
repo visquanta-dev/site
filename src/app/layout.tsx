@@ -30,6 +30,14 @@ const inter = Inter({
 // =============================================================================
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.visquanta.com"),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/",
+      "en-CA": "/ca",
+      "x-default": "/",
+    }
+  },
 
   // Default title template - pages override the %s
   title: {
