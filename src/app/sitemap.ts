@@ -4,7 +4,6 @@ import { getAllCaseStudySlugs } from '@/lib/case-studies';
 import { integrations } from '@/lib/integrations';
 
 // Allow dynamic generation for external API calls
-export const dynamic = 'force-dynamic';
 
 const baseUrl = 'https://www.visquanta.com';
 const locales = ['', '/ca']; // '' = default US, '/ca' = Canada
