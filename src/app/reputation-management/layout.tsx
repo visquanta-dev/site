@@ -15,6 +15,14 @@ export const metadata: Metadata = {
         description: 'Automate review generation and resolve negatives via SMS. Protect OEM scores and grow Google ratings.',
         url: 'https://www.visquanta.com/reputation-management',
         type: 'website',
+            images: [
+            {
+                url: 'https://www.visquanta.com/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'VisQuanta',
+            }
+        ],
     },
 };
 

@@ -28,7 +28,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             },
         },
         openGraph: {
-            title: `How ${caseStudy.client} Improved Results with AI`,
+            title: `How ${caseStudy.client        images: [
+            {
+                url: 'https://www.visquanta.com/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'VisQuanta',
+            }
+        ],
+    } Improved Results with AI`,
             description: caseStudy.summary,
             type: 'article',
             url: `https://www.visquanta.com/case-studies/${slug}`,

@@ -111,6 +111,14 @@ function checkFile(filePath) {
             }
         }
     }
+
+    // 6. OG Image Check
+    const ogRegex = /openGraph:\s*\{([^}]*)\}/s;
+    const ogMatch = content.match(ogRegex);
+    if (ogMatch && !ogMatch[1].includes('images:') && relativePath !== 'layout.tsx') {
+        console.warn(`⚠️ [OG] Missing openGraph.images in ${relativePath}`);
+        issuesFound++;
+    }
 }
 
 try {

@@ -17,6 +17,14 @@ export const metadata = {
     },
     openGraph: {
         url: 'https://www.visquanta.com/blog',
+            images: [
+            {
+                url: 'https://www.visquanta.com/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'VisQuanta',
+            }
+        ],
     },
 };
 

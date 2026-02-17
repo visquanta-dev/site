@@ -165,7 +165,15 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
             },
         },
         openGraph: {
-            ...(pageMetadata.openGraph as Record<string, unknown> || {}),
+            ...(pageMetadata.openGraph as Record<string, unknown> || {        images: [
+            {
+                url: 'https://www.visquanta.com/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'VisQuanta',
+            }
+        ],
+    }),
             url: `https://www.visquanta.com/ca/${slugPath}`,
             locale: 'en_CA',
         }

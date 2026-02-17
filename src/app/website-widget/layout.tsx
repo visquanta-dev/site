@@ -15,6 +15,14 @@ export const metadata: Metadata = {
         description: 'Convert website visitors into showroom appointments 24/7. Intelligent conversational AI with CRM integration.',
         url: 'https://www.visquanta.com/website-widget',
         type: 'website',
+            images: [
+            {
+                url: 'https://www.visquanta.com/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'VisQuanta',
+            }
+        ],
     },
 };
 

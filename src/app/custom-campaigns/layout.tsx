@@ -15,6 +15,14 @@ export const metadata: Metadata = {
         description: 'Run high-converting dealership SMS campaigns at scale. Lease pull-aheads, aged inventory, and service specials that book.',
         url: 'https://www.visquanta.com/custom-campaigns',
         type: 'website',
+            images: [
+            {
+                url: 'https://www.visquanta.com/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'VisQuanta',
+            }
+        ],
     },
 };
 

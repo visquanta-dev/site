@@ -12,6 +12,14 @@ export const metadata: Metadata = {
     },
     openGraph: {
         url: 'https://www.visquanta.com/dealers/pre-owned',
+            images: [
+            {
+                url: 'https://www.visquanta.com/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'VisQuanta',
+            }
+        ],
     },
 };
 

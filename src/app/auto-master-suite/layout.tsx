@@ -23,6 +23,14 @@ export const metadata: Metadata = {
         description: 'The complete AI revenue ecosystem. Lead reactivation, speed-to-lead, Voice AI, and reputation management in one platform.',
         url: 'https://www.visquanta.com/auto-master-suite',
         type: 'website',
+            images: [
+            {
+                url: 'https://www.visquanta.com/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'VisQuanta',
+            }
+        ],
     },
 };
 

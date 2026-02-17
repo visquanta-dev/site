@@ -81,7 +81,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         // Complete Open Graph for articles (10/10 compliance)
         openGraph: {
             type: 'article',
-            url: `https://www.visquanta.com/blog/${slug}`,
+            url: `https://www.visquanta.com/blog/${slug        images: [
+            {
+                url: 'https://www.visquanta.com/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'VisQuanta',
+            }
+        ],
+    }`,
             siteName: 'VisQuanta',
             locale: 'en_US',
             title: `${finalTitle} | VisQuanta`,
