@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { getBlogPosts, getAllCategories, getAllTags } from '@/lib/seobot';
+import { getBlogPosts, getAllCategories, getAllTags, getAllPostsMeta } from '@/lib/seobot';
 import { getAllCaseStudySlugs } from '@/lib/case-studies';
 import { integrations } from '@/lib/integrations';
 

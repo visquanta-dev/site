@@ -114,7 +114,7 @@ function normalizeBasePost(raw: BasePostRaw): BasePost {
 
 import { MOCK_BLOG_POSTS } from './mockData';
 
-async function fetchBase(): Promise<BasePost[]> {
+export async function getAllPostsMeta(): Promise<BasePost[]> {
   const cacheKey = 'base';
   const cached = getCached<BasePost[]>(cacheKey);
   if (cached) return cached;
@@ -233,7 +233,7 @@ export async function getBlogPosts(page: number = 0, limit: number = 12): Promis
   totalPages: number;
 }> {
   try {
-    const base = await fetchBase();
+    const base = await getAllPostsMeta();
     const start = page * limit;
     const end = start + limit;
 
@@ -262,7 +262,7 @@ export async function getBlogPosts(page: number = 0, limit: number = 12): Promis
 
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
   try {
-    const base = await fetchBase();
+    const base = await getAllPostsMeta();
     const postMeta = base.find((item) => item.slug === slug);
 
     if (!postMeta?.id) {
@@ -300,7 +300,7 @@ export async function getBlogPostsByCategory(
   category: { slug: string; title: string } | null;
 }> {
   try {
-    const base = await fetchBase();
+    const base = await getAllPostsMeta();
     const categoryPosts = base.filter(
       (item) => item.category?.slug === categorySlug
     );
@@ -345,7 +345,7 @@ export async function getBlogPostsByTag(
   tag: { slug: string; title: string } | null;
 }> {
   try {
-    const base = await fetchBase();
+    const base = await getAllPostsMeta();
     const tagPosts = base.filter((item) =>
       item.tags?.some((tag) => tag.slug === tagSlug)
     );
@@ -381,7 +381,7 @@ export async function getBlogPostsByTag(
 
 export async function getAllCategories(): Promise<Array<{ slug: string; title: string; count: number }>> {
   try {
-    const base = await fetchBase();
+    const base = await getAllPostsMeta();
     const categoryMap = new Map<string, { slug: string; title: string; count: number }>();
 
     base.forEach((post) => {
@@ -408,7 +408,7 @@ export async function getAllCategories(): Promise<Array<{ slug: string; title: s
 
 export async function getAllTags(): Promise<Array<{ slug: string; title: string; count: number }>> {
   try {
-    const base = await fetchBase();
+    const base = await getAllPostsMeta();
     const tagMap = new Map<string, { slug: string; title: string; count: number }>();
 
     base.forEach((post) => {
