@@ -21,8 +21,8 @@ import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
 
 
 export const metadata = {
-    title: 'Service BDC Voice AI | 100% Call Answer Rate',
-    description: 'Voice AI for car dealership service departments. Answer 100% of inbound calls 24/7. Book appointments directly into your DMS. No missed calls. No voicemail.',
+    title: 'Voice AI for Dealership Service Drives',
+    description: 'Answer 100% of service calls 24/7 with Voice AI. Book appointments directly into your DMS. No missed calls, no voicemail, no lost revenue.',
     alternates: {
         canonical: 'https://www.visquanta.com/service-drive',
         languages: {

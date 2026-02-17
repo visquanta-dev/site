@@ -11,8 +11,8 @@ import DealerFAQ from '@/components/dealer-success/DealerFAQ';
 import MidPageCTA from '@/components/MidPageCTA';
 
 export const metadata = {
-    title: 'Dealer Success | Automotive AI with a Human Touch',
-    description: 'VisQuanta delivers a white-glove service with human-in-the-loop AI monitoring. Built by car people for car people to ensure every lead is maximized.',
+    title: 'Dealer Success — AI with a Human Touch',
+    description: 'White-glove AI service with human-in-the-loop monitoring. Built by car people, for car people, to ensure every lead is maximized.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealer-success',
         languages: {

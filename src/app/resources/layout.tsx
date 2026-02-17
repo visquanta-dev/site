@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Resource Center',
-    description: 'Access the VisQuanta Resource Center for technical guides, case studies, and industry articles designed to help your dealership maximize revenue and efficiency.',
+    title: 'Dealership AI Resource Center',
+    description: 'Guides, case studies, and industry articles to help your dealership maximize revenue with AI. Technical docs and strategic playbooks.',
     alternates: {
         canonical: 'https://www.visquanta.com/resources',
         languages: {

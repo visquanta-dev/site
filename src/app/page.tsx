@@ -28,12 +28,7 @@ import { homepageSchema } from "@/lib/schema/homepage";
 // Keyword-optimized for "AI for car dealerships" (primary target)
 // =============================================================================
 export const metadata: Metadata = {
-  // Title: Primary keyword FIRST, then brand
-  title: "Car Dealership AI | Lead Reactivation & Revenue Recovery Platform",
-
-  // Description: Front-load keywords, include differentiators, add trust signals
-  description:
-    "The #1 Car Dealership AI platform for lead reactivation, speed-to-lead automation, and high-performance revenue recovery. Transform your CRM into a sales engine.",
+  // Title & Description inherited from src/app/layout.tsx to ensure consistency (#1 AI Platform...)
 
   // Page-specific keywords
   keywords: [
@@ -66,9 +61,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.visquanta.com/",
     siteName: "VisQuanta",
-    title: "AI for Car Dealerships | Lead Reactivation & Speed to Lead",
+    title: "#1 AI Platform for Car Dealerships | VisQuanta",
     description:
-      "Reactivate dormant CRM leads. Respond to inbound leads in under 60 seconds. Never miss a service call. VisQuanta's AI platform drives dealership revenue 24/7.",
+      "The #1 AI platform for serious dealerships. Stop losing leads, win speed-to-lead, and turn CRM data into measurable revenue.",
     images: [
       {
         url: "https://www.visquanta.com/images/og-image.png",
@@ -85,9 +80,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@VisQuanta",
     creator: "@VisQuanta",
-    title: "AI for Car Dealerships | Lead Reactivation & Speed to Lead",
+    title: "#1 AI Platform for Car Dealerships | VisQuanta",
     description:
-      "Reactivate dormant leads. Respond in under 60 seconds. Never miss a service call. VisQuanta's AI platform drives dealership revenue 24/7.",
+      "The #1 AI platform for serious dealerships. Stop losing leads, win speed-to-lead, and turn CRM data into measurable revenue.",
     images: ["https://www.visquanta.com/images/og-image.png"],
   },
 

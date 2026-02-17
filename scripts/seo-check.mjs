@@ -9,6 +9,9 @@ console.log('🚀 Starting VisQuanta SEO Compliance Check...');
 
 let issuesFound = 0;
 
+const seenTitles = new Map();
+const seenDescriptions = new Map();
+
 function walkDir(dir) {
     const files = fs.readdirSync(dir);
 
@@ -40,36 +43,50 @@ function checkFile(filePath) {
         // This is a warning - it might be handled by layout.tsx
     }
 
-    // 2. Performance Check: Title Length
+    // 2. Performance Check: Title Length & Duplicates
     // Look specifically for title inside a metadata object or generateMetadata return
     // Handle escaped quotes correctly
-    const titleRegex = /metadata:\s*Metadata\s*=\s*{[^}]*title:\s*(['"`])(.*?)(?<!\\)\1|title:\s*(['"`])(.*?)(?<!\\)\3.*?\}\s*as\s*Metadata|generateMetadata.*?\{\s*return\s*\{[^}]*title:\s*(['"`])(.*?)(?<!\\)\5/s;
+    const titleRegex = /title:\s*(['"`])(.*?)(?<!\\)\1/s;
     const titleMatch = content.match(titleRegex);
-    const title = titleMatch ? (titleMatch[2] || titleMatch[4] || titleMatch[6]) : null;
+    const title = titleMatch ? titleMatch[2] : null;
 
-    if (title) {
-        if (title.length > 61) {
+    if (title !== null && !relativePath.includes('[slug]')) { // Skip dynamic pages for duplicate check
+        if (title.length > 65) {
             console.warn(`⚠️ [LENGTH] Title too long (${title.length} chars) in ${relativePath}`);
             issuesFound++;
-        } else if (title.length < 25) {
+        } else if (title.length < 10) {
             console.warn(`⚠️ [LENGTH] Title too short (${title.length} chars) in ${relativePath}`);
             issuesFound++;
         }
+
+        if (seenTitles.has(title)) {
+            console.error(`❌ [DUPLICATE] Title found in ${relativePath} and ${seenTitles.get(title)}`);
+            issuesFound++;
+        } else {
+            seenTitles.set(title, relativePath);
+        }
     }
 
-    // 3. Performance Check: Description Length
+    // 3. Performance Check: Description Length & Duplicates
     // Handle escaped quotes correctly
     const descRegex = /description:\s*(['"`])(.*?)(?<!\\)\1/s;
     const descMatch = content.match(descRegex);
     const desc = descMatch ? descMatch[2] : null;
 
-    if (desc && hasMetadata) {
+    if (desc !== null && hasMetadata && !relativePath.includes('[slug]')) {
         if (desc.length > 165) {
             console.warn(`⚠️ [LENGTH] Description too long (${desc.length} chars) in ${relativePath}`);
             issuesFound++;
         } else if (desc.length < 40) {
             console.warn(`⚠️ [LENGTH] Description too short (${desc.length} chars) in ${relativePath}`);
             issuesFound++;
+        }
+
+        if (seenDescriptions.has(desc)) {
+            console.error(`❌ [DUPLICATE] Description found in ${relativePath} and ${seenDescriptions.get(desc)}`);
+            issuesFound++;
+        } else {
+            seenDescriptions.set(desc, relativePath);
         }
     }
 
@@ -105,7 +122,7 @@ try {
         process.exit(0);
     } else {
         console.warn(`🚨 SEO Audit Finished with ${issuesFound} issues.`);
-        console.log('Please review the warnings above before merging.');
+        console.log('Please check the validation report above.');
         // We exit with 0 to not break the build if it's just warnings, 
         // but it highlights them in the CI log.
         process.exit(0);

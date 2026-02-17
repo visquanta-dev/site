@@ -178,18 +178,18 @@ export async function middleware(request: NextRequest) {
     // 5. Auto-Redirect for Root Path
     // -------------------------------------------------------------------------
     // If user is at root '/', has no locale preference, and is in a supported non-US country, redirect them.
+    // IMPORTANT: Only redirect to locales with active route handlers.
+    // en-GB (/uk) has NO route handler — do not redirect UK visitors.
+    const ACTIVE_LOCALE_PREFIXES: Record<string, string> = { 'en-CA': 'ca' };
+
     const bannerDismissed = request.cookies.get(GEO_BANNER_DISMISSED_COOKIE);
     if (pathname === '/' && !localePreference && !bannerDismissed && detectedCountry && !isBot) {
         const targetLocale = countryToLocale[detectedCountry];
-        if (targetLocale && targetLocale !== 'en-US') {
-            // Find the prefix for this locale (reverse lookup)
-            const prefix = Object.keys(prefixToLocale).find(key => prefixToLocale[key] === targetLocale);
-
-            if (prefix) {
-                const url = request.nextUrl.clone();
-                url.pathname = `/${prefix}`;
-                return NextResponse.redirect(url);
-            }
+        if (targetLocale && ACTIVE_LOCALE_PREFIXES[targetLocale]) {
+            const prefix = ACTIVE_LOCALE_PREFIXES[targetLocale];
+            const url = request.nextUrl.clone();
+            url.pathname = `/${prefix}`;
+            return NextResponse.redirect(url);
         }
     }
 

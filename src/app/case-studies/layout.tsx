@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Case Studies | Success Stories',
-    description: 'Explore real-world results from elite dealerships using AutoMaster Suite. See how our clients achieved massive ROI and sales growth through AI-driven automation.',
+    title: 'Dealership AI Case Studies & Results',
+    description: 'Real ROI from real dealerships. See how top operators use AI to recover lost leads, cut response times, and grow fixed ops revenue.',
     alternates: {
         canonical: 'https://www.visquanta.com/case-studies',
         languages: {

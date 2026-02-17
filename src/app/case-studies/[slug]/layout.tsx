@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
 
     return {
-        title: `${caseStudy.client} Case Study`,
+        title: `How ${caseStudy.client} Improved Results with AI`,
         description: caseStudy.summary.length > 155
             ? caseStudy.summary.substring(0, 152) + '...'
             : caseStudy.summary,
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             },
         },
         openGraph: {
-            title: caseStudy.title,
+            title: `How ${caseStudy.client} Improved Results with AI`,
             description: caseStudy.summary,
             type: 'article',
             url: `https://www.visquanta.com/case-studies/${slug}`,

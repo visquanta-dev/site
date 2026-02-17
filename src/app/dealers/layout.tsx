@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Dealer Solutions | Automotive Growth Platform',
-    description: 'Explore tailored AI solutions for franchise groups, independent dealers, and auto groups. See how VisQuanta scales to meet the unique needs of your operations.',
+    title: 'AI Solutions by Dealer Type',
+    description: 'Tailored AI for franchise groups, independents, auto groups, RV, and pre-owned dealers. See which VisQuanta modules fit your operation.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealers',
         languages: {

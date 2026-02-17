@@ -50,6 +50,18 @@ const nextConfig: NextConfig = {
         destination: '/blog/:slug*',
         permanent: true,
       },
+      // UK locale cleanup — no /uk route handler exists.
+      // 301 redirect all /uk/* to root equivalents to fix Ahrefs 404s.
+      {
+        source: '/uk',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/uk/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
       {
         source: '/visquanta-team',
         destination: '/team',

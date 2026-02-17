@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return {
-        title: `${integration.name} Integration`,
-        description: `${integration.name} + VisQuanta: ${integration.description} Seamlessly sync leads, appointments, and activities with automotive AI.`.substring(0, 158).trim(),
+        title: `${integration.name} Integration for Dealerships`,
+        description: `Connect ${integration.name} with VisQuanta. Sync leads, automate follow-up, and increase conversion without extra manual work.`.substring(0, 155).trim(),
         alternates: {
             canonical: `https://www.visquanta.com/integrations/${slug}`,
             languages: {

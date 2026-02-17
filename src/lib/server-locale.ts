@@ -7,7 +7,8 @@ export async function getServerLocale(): Promise<string> {
 
 export async function getServerLocalePrefix(): Promise<string> {
     const locale = await getServerLocale();
+    // Only en-CA has an active route handler (/ca).
+    // en-GB has NO /uk route handler — do not generate /uk prefix.
     if (locale === 'en-CA') return '/ca';
-    if (locale === 'en-GB') return '/uk';
     return '';
 }

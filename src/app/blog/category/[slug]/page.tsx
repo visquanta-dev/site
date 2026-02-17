@@ -23,8 +23,8 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     const titleSuffix = page > 0 ? ` (Page ${page + 1})` : '';
 
     return {
-        title: category ? `${category.title}${titleSuffix} | VisQuanta Blog` : 'Category | VisQuanta Blog',
-        description: `Browse all VisQuanta articles, expert guides, and news within the "${category?.title || 'Automotive AI'}" category.${titleSuffix} Stay tuned for the latest in dealership automation and lead management.`,
+        title: category ? `${category.title} for Dealerships${titleSuffix} | VisQuanta Blog` : 'Category | VisQuanta Blog',
+        description: `Read the latest ${category?.title || 'Automotive AI'} articles for car dealerships.${titleSuffix} Data-driven strategies to automate sales and service revenue.`,
         alternates: {
             canonical: `https://www.visquanta.com/blog/category/${slug}`,
             languages: {

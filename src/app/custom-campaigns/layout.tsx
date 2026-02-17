@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Car Dealership AI SMS Marketing',
-    description: 'Run high-converting dealership campaigns at scale. AI-powered SMS marketing for lease pull-aheads, service specials, and aged inventory that books appointments.',
+    title: 'AI SMS Campaigns for Car Dealerships',
+    description: 'Run high-converting lease pull-aheads, service specials, and aged inventory campaigns. AI-powered SMS that books appointments at scale.',
     alternates: {
         canonical: 'https://www.visquanta.com/custom-campaigns',
         languages: {
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
         },
     },
     openGraph: {
-        title: 'Car Dealership AI SMS Marketing',
-        description: 'Run high-converting car dealership campaigns at scale. Custom SMS marketing for lease pull-aheads, aged inventory, service specials & more.',
+        title: 'AI SMS Campaigns for Car Dealerships | VisQuanta',
+        description: 'Run high-converting dealership SMS campaigns at scale. Lease pull-aheads, aged inventory, and service specials that book.',
         url: 'https://www.visquanta.com/custom-campaigns',
         type: 'website',
     },

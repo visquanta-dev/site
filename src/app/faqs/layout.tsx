@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'FAQ | Frequently Asked Questions',
-    description: 'Find answers to FAQs about the VisQuanta platform, CRM integrations, onboarding, and pricing. Get the information your dealership needs to get started today.',
+    title: 'Dealership AI FAQ',
+    description: 'Answers to common questions about VisQuanta, CRM integrations, onboarding timelines, and pricing. Everything your dealership needs to get started.',
     alternates: {
         canonical: 'https://www.visquanta.com/faqs',
         languages: {

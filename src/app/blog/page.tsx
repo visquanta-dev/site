@@ -7,8 +7,8 @@ import { getArticles } from '@/lib/blog';
 export const revalidate = 60;
 
 export const metadata = {
-    title: 'The Journal',
-    description: 'Read The Journal for industry insights, sales strategies, and data-driven trends in modern automotive retail. Stay ahead with expert analysis from VisQuanta.',
+    title: 'Automotive AI Blog & Insights',
+    description: 'Expert insights on car dealership AI, speed-to-lead strategies, and fixed ops revenue. Stay ahead of automotive retail trends.',
     alternates: {
         canonical: 'https://www.visquanta.com/blog',
         languages: {

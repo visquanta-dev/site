@@ -27,12 +27,12 @@ export function generatePageMetadata({
     const cleanPath = path.startsWith('/') ? path : `/${path}`;
 
     // Construct full URL based on locale
+    // Only en-CA has an active locale route (/ca). en-GB (/uk) has no route handler.
     let fullUrl = `${baseUrl}${cleanPath}`;
     if (locale === 'en-CA' && !cleanPath.startsWith('/ca')) {
         fullUrl = `${baseUrl}/ca${cleanPath === '/' ? '' : cleanPath}`;
-    } else if (locale === 'en-GB' && !cleanPath.startsWith('/uk')) {
-        fullUrl = `${baseUrl}/uk${cleanPath === '/' ? '' : cleanPath}`;
     }
+    // en-GB visitors see US content (no /uk routes exist)
 
     const imageUrl = image.startsWith('http') ? image : `${baseUrl}${image}`;
 

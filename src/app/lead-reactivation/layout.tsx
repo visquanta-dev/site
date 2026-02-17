@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Revive Dead Dealership Leads | AI Reactivation',
-    description: 'Sell more cars from leads your BDC gave up on. VisQuanta works your old CRM leads with AI-powered conversational SMS. 39%+ engagement rate. TCPA compliant.',
+    title: 'Lead Reactivation for Car Dealerships',
+    description: 'Recover revenue from dead CRM leads. AI-powered SMS re-engages old prospects with 39%+ response rates. TCPA compliant. No new ad spend required.',
     keywords: 'dead dealership leads, revive old car leads, CRM lead recovery, automotive lead reactivation, sell cars from old leads, dealership database mining, AI BDC alternative',
     alternates: {
         canonical: 'https://www.visquanta.com/lead-reactivation',
@@ -12,8 +12,8 @@ export const metadata: Metadata = {
         },
     },
     openGraph: {
-        title: 'Revive Dead Dealership Leads',
-        description: 'Other AI tools chase new leads. We revive the ones already in your CRM. Sell cars from leads everyone gave up on.',
+        title: 'Lead Reactivation for Car Dealerships | VisQuanta',
+        description: 'Recover revenue from dead CRM leads. AI-powered SMS re-engages old prospects with 39%+ response rates.',
         url: 'https://www.visquanta.com/lead-reactivation',
         type: 'website',
         images: [
@@ -21,14 +21,14 @@ export const metadata: Metadata = {
                 url: 'https://www.visquanta.com/og/lead-reactivation.png',
                 width: 1200,
                 height: 630,
-                alt: 'VisQuanta - Revive Dead Dealership Leads'
+                alt: 'VisQuanta - Lead Reactivation for Car Dealerships'
             }
         ]
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Revive Dead Dealership Leads',
-        description: 'Sell cars from leads your BDC gave up on. AI that works your OLD database.',
+        title: 'Lead Reactivation for Car Dealerships | VisQuanta',
+        description: 'Recover revenue from dead CRM leads. AI re-engages old prospects. No new ad spend required.',
     }
 };
 

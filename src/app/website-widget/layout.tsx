@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Website Widget | Intelligent Conversational AI',
-    description: 'Convert visitors into showroom appointments with our intelligent conversational AI widget. Seamless CRM integration and 24/7 automated lead engagement.',
+    title: 'AI Website Chat Widget for Dealerships',
+    description: 'Convert website visitors into showroom appointments 24/7. Intelligent conversational AI with seamless CRM integration and automated lead capture.',
     alternates: {
         canonical: 'https://www.visquanta.com/website-widget',
         languages: {
@@ -11,7 +11,10 @@ export const metadata: Metadata = {
         },
     },
     openGraph: {
+        title: 'AI Website Chat Widget for Dealerships | VisQuanta',
+        description: 'Convert website visitors into showroom appointments 24/7. Intelligent conversational AI with CRM integration.',
         url: 'https://www.visquanta.com/website-widget',
+        type: 'website',
     },
 };
 

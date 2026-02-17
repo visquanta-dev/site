@@ -28,14 +28,8 @@ import { homepageSchema } from "@/lib/schema/homepage";
 // Localized for en-CA with proper hreflang and canonical
 // =============================================================================
 export const metadata: Metadata = {
-    // Title: Canadian-specific
-    title: "Car Dealership AI in Canada | Lead Reactivation & Revenue Recovery Platform",
-
-    // Description: Canadian English
-    description:
-        "The #1 Car Dealership AI platform for Canadian dealerships. Lead reactivation, speed-to-lead automation, and high-performance revenue recovery. Transform your CRM into a sales engine.",
-
-    // Page-specific keywords for Canada
+    title: 'AI for Canadian Car Dealerships',
+    description: 'The #1 AI platform for Canadian dealerships. Stop losing leads, win speed-to-lead, and turn CRM data into measurable revenue across Canada.',
     keywords: [
         "AI for car dealerships Canada",
         "dealership AI Canada",
@@ -57,7 +51,6 @@ export const metadata: Metadata = {
         languages: {
             'en-US': 'https://www.visquanta.com/',
             'en-CA': 'https://www.visquanta.com/ca/',
-            'en-GB': 'https://www.visquanta.com/uk/',
             'x-default': 'https://www.visquanta.com/',
         },
     },

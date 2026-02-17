@@ -6,8 +6,8 @@ import SocialProofSection from '@/components/book-demo/SocialProofSection';
 import FAQSection from '@/components/book-demo/FAQSection';
 
 export const metadata: Metadata = {
-    title: "Schedule Your Walkthrough",
-    description: "Schedule your 15-minute revenue analysis. Get a custom projection for your dealership and see how our AI automates your growth.",
+    title: "Book a 15-Min Revenue Analysis",
+    description: "Get a custom revenue projection for your dealership. See exactly how AI automates lead recovery, speeds up response times, and grows fixed ops.",
     alternates: {
         canonical: "https://www.visquanta.com/book-demo",
         languages: {

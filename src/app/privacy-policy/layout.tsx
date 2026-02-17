@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: 'Privacy Policy',
-    description: 'Read our Privacy Policy to understand how VisQuanta handles and protects your dealership\'s data. We are committed to absolute transparency and data security.',
+    description: 'How VisQuanta handles and protects your dealership data. Full transparency on data collection, storage, and third-party sharing.',
     alternates: {
         canonical: 'https://www.visquanta.com/privacy-policy',
         languages: {

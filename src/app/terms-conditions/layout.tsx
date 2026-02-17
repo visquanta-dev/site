@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: 'Terms & Conditions',
-    description: 'Read the terms and conditions governing the use of the VisQuanta platform. Understand our service agreements, user responsibilities, and legal framework.',
+    description: 'Service agreements, user responsibilities, and legal framework governing the use of the VisQuanta AI platform for dealerships.',
     alternates: {
         canonical: 'https://www.visquanta.com/terms-conditions',
         languages: {

@@ -91,3 +91,38 @@ export function localizePathname(pathname: string, targetLocale: Locale): string
 // Cookie name for locale preference
 export const LOCALE_COOKIE_NAME = 'vq-locale';
 export const GEO_BANNER_DISMISSED_COOKIE = 'vq-geo-banner-dismissed';
+
+// =============================================================================
+// SAFEGUARDS: Prevent future locale route leaks
+// =============================================================================
+
+/**
+ * Returns only locales that are enabled in the config.
+ */
+export const enabledLocales = locales.filter(l => localeConfig[l].enabled);
+
+/**
+ * Returns locales that have active route handlers in the Next.js app router.
+ * A locale has a "route" if either:
+ *   - It's the default locale (no prefix needed, always works)
+ *   - It has an explicit directory under src/app/ (e.g., src/app/ca/)
+ * 
+ * IMPORTANT: Update this list when you add new locale route handlers.
+ */
+export const ACTIVE_LOCALE_ROUTES: Locale[] = ['en-US', 'en-CA'];
+
+/**
+ * Checks whether a locale has an active route handler.
+ * Use this before generating any URL with a locale prefix.
+ */
+export function hasActiveRoute(locale: Locale): boolean {
+    return ACTIVE_LOCALE_ROUTES.includes(locale);
+}
+
+/**
+ * Safe URL prefix — returns empty string for locales without active routes.
+ */
+export function getSafeUrlPrefix(locale: Locale): string {
+    if (!hasActiveRoute(locale)) return '';
+    return localeConfig[locale].urlPrefix || '';
+}

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Meet the Team | Leadership & Experts',
-    description: 'Meet the automotive veterans and technologists building VisQuanta. Our team brings decades of retail experience to create the industry\'s leading AI tools.',
+    title: 'Meet Our Leadership Team',
+    description: "Automotive veterans and AI technologists building the industry's most advanced dealership platform. Decades of retail experience in one team.",
     alternates: {
         canonical: 'https://www.visquanta.com/team',
         languages: {

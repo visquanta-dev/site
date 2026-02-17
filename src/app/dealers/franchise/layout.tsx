@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Franchise Dealership AI Solutions',
-    description: 'Optimize franchise dealership operations with our intelligent revenue recovery and speed-to-lead modules.',
+    title: 'AI for Franchise Dealerships',
+    description: 'Hit OEM targets and grow fixed ops with AI-powered lead recovery and sub-60s response times. Built for high-volume franchise operations.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealers/franchise',
         languages: {

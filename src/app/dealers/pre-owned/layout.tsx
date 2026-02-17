@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Pre-Owned Dealer AI | Lead Reactivation & Turn',
-    description: 'Maximize pre-owned inventory profitability with intelligent lead reactivation and speed-to-lead AI. Transform old CRM data into active showroom traffic.',
+    title: 'AI for Pre-Owned Dealerships',
+    description: 'Turn aged inventory and old CRM leads into showroom traffic. AI-powered reactivation and speed-to-lead built for pre-owned operations.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealers/pre-owned',
         languages: {

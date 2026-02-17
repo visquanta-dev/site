@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'RV Dealer AI | Lifecycle & Service Automation',
-    description: 'Optimize RV dealership operations with AI-powered lead reactivation and automated service scheduling. Designed for the unique RV sales cycle.',
+    title: 'AI for RV Dealerships',
+    description: 'Optimize RV sales cycles with AI-powered lead reactivation and automated service scheduling. Built for the unique demands of RV retail.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealers/rv',
         languages: {

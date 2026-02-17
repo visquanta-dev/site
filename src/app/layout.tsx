@@ -33,12 +33,12 @@ export const metadata: Metadata = {
 
   // Default title template - pages override the %s
   title: {
-    default: "VisQuanta | AI for Car Dealerships",
+    default: "#1 AI Platform for Car Dealerships | VisQuanta",
     template: "%s | VisQuanta"
   },
 
   // Default description (pages should override with specific copy)
-  description: "AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI for service, SMS chat, and reputation management. Purpose-built for automotive retail.",
+  description: "The #1 AI platform for serious dealerships. Stop losing leads, win speed-to-lead, and turn CRM data into measurable revenue.",
 
   // Comprehensive keyword list
   keywords: [
@@ -86,8 +86,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.visquanta.com",
     siteName: "VisQuanta",
-    title: "VisQuanta | AI for Car Dealerships",
-    description: "AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.",
+    title: "#1 AI Platform for Car Dealerships | VisQuanta",
+    description: "The #1 AI platform for serious dealerships. Stop losing leads, win speed-to-lead, and turn CRM data into measurable revenue.",
     images: [
       {
         url: "https://www.visquanta.com/images/og-image.png",
@@ -104,8 +104,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@VisQuanta",
     creator: "@VisQuanta",
-    title: "VisQuanta | AI for Car Dealerships",
-    description: "AI platform for car dealerships. Lead reactivation, speed-to-lead, Voice AI, SMS chat, and reputation management.",
+    title: "#1 AI Platform for Car Dealerships | VisQuanta",
+    description: "The #1 AI platform for serious dealerships. Stop losing leads, win speed-to-lead, and turn CRM data into measurable revenue.",
     images: ["https://www.visquanta.com/images/og-image.png"],
   },
 

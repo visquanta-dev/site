@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: 'Cookie Policy',
-    description: 'Read the VisQuanta Cookie Policy to understand how we use cookies to improve your user experience, analyze our traffic, and provide secure platform functionality.',
+    description: 'How VisQuanta uses cookies to improve your experience, analyze traffic, and provide secure platform functionality.',
     alternates: {
         canonical: 'https://www.visquanta.com/cookie-policy',
         languages: {

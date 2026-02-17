@@ -2,15 +2,17 @@ import fs from 'fs';
 import path from 'path';
 
 /**
- * CI Protection Script: Scans the codebase for internal links that would trigger
- * a 3xx redirect according to next.config.ts.
+ * CI Protection Script: Scans the codebase for:
+ *   1. Internal links that would trigger a 3xx redirect (per redirect-map.json)
+ *   2. Internal links pointing to locale routes without active route handlers (e.g., /uk/*)
  * 
- * This fulfills Phase 4 of the Internal Link Normalisation task.
- * It ensures that developers don't introduce new redirected links manually
- * and that our normalization layer covers all necessary cases.
+ * This fulfills Phase 4 of the Internal Link Normalisation task and
+ * Phase 4 of the Locale Route Cleanup task.
  */
 
-// Load the current redirect map
+// =============================================================================
+// 1. Load redirect map
+// =============================================================================
 const REDIRECT_MAP_PATH = path.resolve(process.cwd(), 'src/lib/redirect-map.json');
 if (!fs.existsSync(REDIRECT_MAP_PATH)) {
     console.error('❌ Redirect map not found. Run generate-redirect-map.ts first.');
@@ -19,6 +21,20 @@ if (!fs.existsSync(REDIRECT_MAP_PATH)) {
 
 const REDIRECT_MAP = JSON.parse(fs.readFileSync(REDIRECT_MAP_PATH, 'utf-8'));
 const REDIRECT_SOURCES = Object.keys(REDIRECT_MAP);
+
+// =============================================================================
+// 2. Define dead locale prefixes — locale routes with no app router handler
+// =============================================================================
+const DEAD_LOCALE_PREFIXES = ['/uk'];
+
+// Files/patterns to exclude from the check
+const EXCLUDE_FILES = [
+    'redirect-map.json',
+    'link-normalization.ts',
+    'check-internal-links.ts',
+    'generate-redirect-map.ts',
+    'crawl-blog.ts',
+];
 
 const ROOT_DIR = path.resolve(process.cwd(), 'src');
 let issuesFound = 0;
@@ -33,8 +49,7 @@ function walkDir(dir: string) {
         if (stat.isDirectory()) {
             walkDir(filePath);
         } else if (file.endsWith('.tsx') || file.endsWith('.ts')) {
-            // Skip the mapping file itself and the normalization lib
-            if (file === 'redirect-map.json' || file === 'link-normalization.ts') return;
+            if (EXCLUDE_FILES.includes(file)) return;
             checkFile(filePath);
         }
     });
@@ -45,7 +60,6 @@ function checkFile(filePath: string) {
     const relativePath = path.relative(process.cwd(), filePath);
 
     // Regex to find href links in strings or JSX
-    // This catches <Link href="/old-path"> and "href='/old-path'"
     const hrefRegex = /href=(?:{[`'"]([^`'"]+)[`'"]}|["']([^"']+)["'])/g;
 
     let match;
@@ -53,38 +67,52 @@ function checkFile(filePath: string) {
         const url = match[1] || match[2];
 
         if (!url || typeof url !== 'string') continue;
+        if (!url.startsWith('/')) continue; // Skip external links
 
+        // ── Check 1: Dead locale prefix ──────────────────────────────────
+        for (const deadPrefix of DEAD_LOCALE_PREFIXES) {
+            if (url === deadPrefix || url.startsWith(`${deadPrefix}/`)) {
+                console.error(`❌ [DEAD LOCALE] Link to non-existent locale route in ${relativePath}: "${url}" → ${deadPrefix} has no route handler (404)`);
+                issuesFound++;
+            }
+        }
+
+        // ── Check 2: Redirect map match ──────────────────────────────────
         // Strip locale prefix for checking
         let cleanUrl = url.replace(/^\/(ca|uk)/, '');
-        if (!cleanUrl.startsWith('/')) continue; // Skip external links
+        if (!cleanUrl.startsWith('/')) continue;
 
         // Remove trailing slash for matching
         const [pathOnly] = cleanUrl.split(/[?#]/);
         const matchPath = pathOnly.endsWith('/') && pathOnly.length > 1 ? pathOnly.slice(0, -1) : pathOnly;
 
         if (REDIRECT_SOURCES.includes(matchPath)) {
-            // Special exception: if the link is inside normalizeLinks call or related logic, we ignore it?
-            // Actually, we want to fail if it's a hardcoded link in a component.
-
-            // Check if this is a false positive (part of the mapping logic itself)
-            if (content.includes('normalizeLinks')) {
-                // We might be inside the normalization logic, but we should still avoid hardcoded legacy links in the same file
-            }
-
-            console.error(`❌ [3XX REDIRECT] Hardcoded legacy link found in ${relativePath}: "${url}" -> redirects to "${REDIRECT_MAP[matchPath]}"`);
+            console.error(`❌ [3XX REDIRECT] Hardcoded legacy link found in ${relativePath}: "${url}" → redirects to "${REDIRECT_MAP[matchPath]}"`);
             issuesFound++;
         }
     }
 }
 
-console.log('🚀 Checking for redirected internal links...');
+console.log('🚀 Checking for redirected and dead-locale internal links...');
 walkDir(ROOT_DIR);
 
+// Also scan the scripts directory for any hardcoded dead locale links
+const SCRIPTS_DIR = path.resolve(process.cwd(), 'scripts');
+if (fs.existsSync(SCRIPTS_DIR)) {
+    const scriptFiles = fs.readdirSync(SCRIPTS_DIR).filter(f => f.endsWith('.ts') || f.endsWith('.tsx'));
+    scriptFiles.forEach(file => {
+        if (EXCLUDE_FILES.includes(file)) return;
+        checkFile(path.join(SCRIPTS_DIR, file));
+    });
+}
+
 if (issuesFound > 0) {
-    console.error(`\n🚨 Failed: Found ${issuesFound} internal link(s) that resolve to 3xx redirects.`);
-    console.error('Please update these links to their canonical versions (see src/lib/redirect-map.json).');
+    console.error(`\n🚨 Failed: Found ${issuesFound} issue(s).`);
+    console.error('Please update these links to their canonical versions.');
+    console.error('See src/lib/redirect-map.json for redirect mappings.');
+    console.error('Dead locale prefixes (no route handler): ' + DEAD_LOCALE_PREFIXES.join(', '));
     process.exit(1);
 } else {
-    console.log('✅ No hardcoded redirected links found.');
+    console.log('✅ No hardcoded redirected or dead-locale links found.');
     process.exit(0);
 }

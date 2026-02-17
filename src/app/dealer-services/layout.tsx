@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Dealer Services | AI-Powered Solutions for Dealerships',
-    description: 'From lead recovery to reputation protection, our suite of AI-powered services transforms how your dealership engages customers and drives revenue.',
+    title: 'AI-Powered Dealer Services',
+    description: 'From lead recovery to reputation protection. AI-powered services that transform how your dealership engages customers and drives measurable revenue.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealer-services',
         languages: {

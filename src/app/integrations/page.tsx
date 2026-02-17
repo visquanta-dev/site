@@ -9,8 +9,8 @@ import { integrations, Integration } from '@/lib/integrations';
 import { Database, Zap, ArrowRight, ShieldCheck, RefreshCw, Key } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'CRM Integrations | Automotive AI',
-    description: 'VisQuanta integrates with VinSolutions, eLead, DealerSocket, CDK, and all major automotive CRMs. Connect your dealership\'s existing tools with AI voice automation.',
+    title: 'CRM Integrations for Dealerships',
+    description: 'Seamlessly connect VisQuanta with VinSolutions, eLead, DealerSocket, CDK, and more. Sync data, automate follow-up, and increase conversion.',
     alternates: {
         canonical: 'https://www.visquanta.com/integrations',
         languages: {

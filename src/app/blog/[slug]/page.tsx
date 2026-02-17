@@ -59,12 +59,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         description = `${description}${filler}`.substring(0, 158).trim();
     }
 
-    // Clean up title for SEO (max 60 chars is ideal)
+    // Clean up title for SEO (max 60 chars total is ideal)
+    // Root layout appends "| VisQuanta" (13 chars), so we need to keep this under 47 chars
     let seoTitle = post.headline || '';
-    if (seoTitle.length > 55) {
-        seoTitle = seoTitle.substring(0, 55).trim() + '...';
+    if (seoTitle.length > 45) {
+        seoTitle = seoTitle.substring(0, 45).trim() + '...';
     }
-    const finalTitle = `${seoTitle} | VisQuanta`;
+    // const finalTitle = `${seoTitle} | VisQuanta`; // REMOVED: Avoid double suffix
+    const finalTitle = seoTitle;
 
     return {
         title: finalTitle,
@@ -82,7 +84,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             url: `https://www.visquanta.com/blog/${slug}`,
             siteName: 'VisQuanta',
             locale: 'en_US',
-            title: finalTitle,
+            title: `${finalTitle} | VisQuanta`,
             description: description,
             images: [
                 {

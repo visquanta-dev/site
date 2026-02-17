@@ -23,8 +23,8 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     const titleSuffix = page > 0 ? ` (Page ${page + 1})` : '';
 
     return {
-        title: tag ? `${tag.title}${titleSuffix} | VisQuanta Blog` : 'Tag | VisQuanta Blog',
-        description: `Explore all VisQuanta blog posts and industry insights tagged with "${tag?.title || 'this topic'}".${titleSuffix} Learn how our AI solutions are transforming automotive dealerships and maximizing revenue.`,
+        title: tag ? `Posts about ${tag.title}${titleSuffix} | VisQuanta Blog` : 'Tag | VisQuanta Blog',
+        description: `Explore articles tagged with "${tag?.title || 'this topic'}".${titleSuffix} Practical guides and analysis for modern automotive retail operations.`,
         alternates: {
             canonical: `https://www.visquanta.com/blog/tag/${slug}`,
             languages: {

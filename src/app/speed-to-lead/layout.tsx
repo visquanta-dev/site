@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Automotive Speed to Lead | Respond in <60s',
-    description: "Stop losing leads to slow response times. VisQuanta's AI BDC software automates lead response in under 60 seconds, 24/7. Books appointments instantly.",
-    keywords: 'inbound lead response time, automotive bdc software, dealership lead response, speed to lead automation, automotive crm integration, ai lead management, car dealership bdc tools, internet lead response time, automotive sales automation',
+    title: 'Speed to Lead Automation for Dealerships',
+    description: 'Respond to every lead in under 60 seconds, 24/7. AI-powered instant engagement books appointments before competitors pick up the phone.',
+    keywords: 'inbound lead response time, automotive bdc software, dealership lead response, speed to lead automation, automotive crm integration, ai lead management',
     alternates: {
         canonical: 'https://www.visquanta.com/speed-to-lead',
         languages: {
@@ -12,8 +12,8 @@ export const metadata: Metadata = {
         },
     },
     openGraph: {
-        title: 'Automotive Speed to Lead | Respond in <60 Seconds',
-        description: "78% of buyers choose the first dealer to respond. VisQuanta's AI BDC gets you there in seconds, not hours.",
+        title: 'Speed to Lead Automation for Dealerships | VisQuanta',
+        description: '78% of buyers choose the first dealer to respond. Get there in seconds, not hours.',
         url: 'https://www.visquanta.com/speed-to-lead',
         type: 'website',
         images: [
@@ -21,14 +21,14 @@ export const metadata: Metadata = {
                 url: 'https://www.visquanta.com/og/speed-to-lead.png',
                 width: 1200,
                 height: 630,
-                alt: 'VisQuanta AI - Automated Dealership Lead Response'
+                alt: 'VisQuanta - Speed to Lead Automation'
             }
         ]
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Automotive Speed to Lead Software',
-        description: "Stop losing leads. Automate your dealership's response time to under 60 seconds with AI.",
+        title: 'Speed to Lead Automation for Dealerships | VisQuanta',
+        description: 'Respond to every lead in under 60 seconds, 24/7. Book appointments before competitors answer.',
     }
 };
 
