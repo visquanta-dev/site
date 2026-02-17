@@ -50,7 +50,8 @@ function checkFile(filePath) {
     const titleMatch = content.match(titleRegex);
     const title = titleMatch ? titleMatch[2] : null;
 
-    if (title !== null && !relativePath.includes('[slug]')) { // Skip dynamic pages for duplicate check
+    // Only check metadata title if it's NOT a client component (which shouldn't export metadata)
+    if (title !== null && !isClient && !relativePath.includes('[slug]')) { // Skip dynamic pages for duplicate check
         if (title.length > 65) {
             console.warn(`⚠️ [LENGTH] Title too long (${title.length} chars) in ${relativePath}`);
             issuesFound++;
@@ -73,7 +74,7 @@ function checkFile(filePath) {
     const descMatch = content.match(descRegex);
     const desc = descMatch ? descMatch[2] : null;
 
-    if (desc !== null && hasMetadata && !relativePath.includes('[slug]')) {
+    if (desc !== null && hasMetadata && !isClient && !relativePath.includes('[slug]')) {
         if (desc.length > 165) {
             console.warn(`⚠️ [LENGTH] Description too long (${desc.length} chars) in ${relativePath}`);
             issuesFound++;

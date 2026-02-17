@@ -54,50 +54,6 @@ export const metadata: Metadata = {
       'en-CA': 'https://www.visquanta.com/ca',
     },
   },
-
-  // Open Graph - Homepage specific
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://www.visquanta.com/",
-    siteName: "VisQuanta",
-    title: "#1 AI Platform for Car Dealerships | VisQuanta",
-    description:
-      "The #1 AI platform for serious dealerships. Stop losing leads, win speed-to-lead, and turn CRM data into measurable revenue.",
-    images: [
-      {
-        url: "https://www.visquanta.com/images/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "VisQuanta - AI for Car Dealerships - Lead Reactivation and Speed to Lead Platform",
-        type: "image/png",
-      },
-    ],
-  },
-
-  // Twitter Card - Homepage specific
-  twitter: {
-    card: "summary_large_image",
-    site: "@VisQuanta",
-    creator: "@VisQuanta",
-    title: "#1 AI Platform for Car Dealerships | VisQuanta",
-    description:
-      "The #1 AI platform for serious dealerships. Stop losing leads, win speed-to-lead, and turn CRM data into measurable revenue.",
-    images: ["https://www.visquanta.com/images/og-image.png"],
-  },
-
-  // Robots - ensure homepage is fully indexed
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
 };
 
 export default function Home() {
