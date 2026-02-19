@@ -13,10 +13,10 @@ export const organizationSchema = {
     "logo": {
         "@type": "ImageObject",
         "@id": "https://www.visquanta.com/#logo",
-        "url": "https://www.visquanta.com/images/visquanta-logo-transparent.png",
-        "contentUrl": "https://www.visquanta.com/images/visquanta-logo-transparent.png",
-        "width": 400,
-        "height": 100,
+        "url": "https://www.visquanta.com/images/visquanta-logo-white.png",
+        "contentUrl": "https://www.visquanta.com/images/visquanta-logo-white.png",
+        "width": 750,
+        "height": 256,
         "caption": "VisQuanta Logo"
     },
     "image": {
@@ -130,10 +130,10 @@ export const baseSchema = {
             "logo": {
                 "@type": "ImageObject",
                 "@id": "https://www.visquanta.com/#logo",
-                "url": "https://www.visquanta.com/images/visquanta-logo-transparent.png",
-                "contentUrl": "https://www.visquanta.com/images/visquanta-logo-transparent.png",
-                "width": 400,
-                "height": 100,
+                "url": "https://www.visquanta.com/images/visquanta-logo-white.png",
+                "contentUrl": "https://www.visquanta.com/images/visquanta-logo-white.png",
+                "width": 750,
+                "height": 256,
                 "caption": "VisQuanta Logo"
             },
             "image": {

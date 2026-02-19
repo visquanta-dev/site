@@ -12,7 +12,7 @@ interface TeamMember {
     role: string;
     image: string;
     link?: string;
-    email: string;
+    email?: string;
     calendly?: string;
 }
 
@@ -53,11 +53,8 @@ const teamLayers: TeamLayer[] = [
             },
             {
                 name: "Lavar Harper",
-                role: "Co-Founder & CMO",
+                role: "Co-Founder",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac64f14c562cf25aec7e4_lavar%2Charper%2Cheadshot%2Cvisquanta.webp",
-                link: "https://www.linkedin.com/in/lavar-harper-1681152a4/",
-                email: "lavar@visquanta.com",
-                calendly: "https://calendly.com/lavar-visquanta/30min"
             },
 
             {
@@ -107,7 +104,7 @@ const teamLayers: TeamLayer[] = [
             },
             {
                 name: "Clint Annis",
-                role: "Integrations Lead",
+                role: "Implementation Lead",
                 image: "/team/clint-annis.png",
                 link: "#",
                 email: "cannis@visquanta.com",
@@ -202,7 +199,7 @@ export default function TeamPage() {
                                 "name": member.name,
                                 "jobTitle": member.role,
                                 "image": member.image.startsWith('http') ? member.image : `https://www.visquanta.com${member.image}`,
-                                "email": member.email,
+                                "email": member.email || "info@visquanta.com",
                                 "url": `https://www.visquanta.com/team#${member.name.toLowerCase().replace(/\s+/g, '-')}`,
                                 "sameAs": member.link && member.link !== "#" ? [member.link] : [],
                                 "affiliation": {
@@ -371,7 +368,7 @@ export default function TeamPage() {
                                         </div>
                                         <div className="h-px flex-grow bg-gradient-to-r from-[#FF7404]/20 to-transparent mx-8 hidden md:block" />
                                         <div className="text-zinc-600 font-mono text-xs uppercase tracking-[0.2em]">
-                                            {layer.members.length} Active Members
+                                            {layerIdx === 0 ? "4" : layer.members.length} Active Members
                                         </div>
                                     </motion.div>
 
@@ -382,85 +379,90 @@ export default function TeamPage() {
                                         viewport={{ once: true }}
                                         className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto"
                                     >
-                                        {layer.members.map((member, i) => (
-                                            <motion.div
-                                                key={i}
-                                                variants={itemVariants}
-                                                className="group relative w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] h-[280px] bg-[#0A0A0A] border border-white/5 rounded-[2.5rem] p-8 hover:border-[#FF7404]/40 transition-all duration-700 overflow-hidden shadow-2xl"
-                                            >
-                                                {/* Advanced Hover Glow */}
-                                                <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/0 via-[#FF7404]/[0.01] to-[#FF7404]/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                                                <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-[#FF7404]/10 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                        {layer.members.map((member, i) => {
+                                            const isInteractive = !!(member.link || member.email || member.calendly);
+                                            return (
+                                                <motion.div
+                                                    key={i}
+                                                    variants={itemVariants}
+                                                    className={`relative w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] h-[280px] bg-[#0A0A0A] border border-white/5 rounded-[2.5rem] p-8 transition-all duration-700 overflow-hidden shadow-2xl ${isInteractive ? 'group hover:border-[#FF7404]/40 cursor-custom-pointer' : 'cursor-default'}`}
+                                                >
+                                                    {/* Advanced Hover Glow */}
+                                                    <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/0 via-[#FF7404]/[0.01] to-[#FF7404]/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                                    <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-[#FF7404]/10 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                                                {/* Scanning Flare Effect */}
-                                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent -translate-x-full group-hover:animate-scanner pointer-events-none" />
+                                                    {/* Scanning Flare Effect */}
+                                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent -translate-x-full group-hover:animate-scanner pointer-events-none" />
 
-                                                <div className="relative z-10 flex items-center justify-between h-full gap-4">
-                                                    <div className="flex flex-col min-w-0 flex-1">
-                                                        <h3 className="text-xl lg:text-2xl font-black text-white mb-2 leading-none tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#FF7404] transition-all duration-500 uppercase">
-                                                            {member.name.split(' ')[0]}<br />
-                                                            {member.name.substring(member.name.indexOf(' ') + 1)}
-                                                        </h3>
-                                                        <div className="w-8 h-[2px] bg-[#FF7404]/40 mb-4 group-hover:w-16 transition-all duration-700" />
-                                                        <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.2em] leading-tight mb-6 h-8">
-                                                            {member.role}
-                                                        </p>
+                                                    <div className="relative z-10 flex items-center justify-between h-full gap-4">
+                                                        <div className="flex flex-col min-w-0 flex-1">
+                                                            <h3 className={`text-xl lg:text-2xl font-black text-white mb-2 leading-none tracking-tight transition-all duration-500 uppercase ${isInteractive ? 'group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#FF7404]' : ''}`}>
+                                                                {member.name.split(' ')[0]}<br />
+                                                                {member.name.substring(member.name.indexOf(' ') + 1)}
+                                                            </h3>
+                                                            <div className={`w-8 h-[2px] bg-[#FF7404]/40 mb-4 transition-all duration-700 ${isInteractive ? 'group-hover:w-16' : ''}`} />
+                                                            <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.2em] leading-tight mb-6 h-8">
+                                                                {member.role}
+                                                            </p>
 
-                                                        <div className="flex items-center gap-2">
-                                                            {member.link && (
-                                                                <a
-                                                                    href={member.link}
-                                                                    title="LinkedIn Profile"
-                                                                    className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-[#FF7404] hover:text-black hover:scale-110 transition-all duration-500"
-                                                                >
-                                                                    <Linkedin className="w-3.5 h-3.5" />
-                                                                </a>
-                                                            )}
-                                                            <a
-                                                                href={`mailto:${member.email}`}
-                                                                title="Send Email"
-                                                                className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-[#FF7404] hover:text-black hover:scale-110 transition-all duration-500"
-                                                            >
-                                                                <Mail className="w-3.5 h-3.5" />
-                                                            </a>
-                                                            {member.calendly && (
-                                                                <a
-                                                                    href={member.calendly}
-                                                                    title="Book Meeting"
-                                                                    className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-[#FF7404] hover:text-black hover:scale-110 transition-all duration-500"
-                                                                >
-                                                                    <Calendar className="w-3.5 h-3.5" />
-                                                                </a>
-                                                            )}
+                                                            <div className="flex items-center gap-2">
+                                                                {member.link && (
+                                                                    <a
+                                                                        href={member.link}
+                                                                        title="LinkedIn Profile"
+                                                                        className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-[#FF7404] hover:text-black hover:scale-110 transition-all duration-500"
+                                                                    >
+                                                                        <Linkedin className="w-3.5 h-3.5" />
+                                                                    </a>
+                                                                )}
+                                                                {member.email && (
+                                                                    <a
+                                                                        href={`mailto:${member.email}`}
+                                                                        title="Send Email"
+                                                                        className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-[#FF7404] hover:text-black hover:scale-110 transition-all duration-500"
+                                                                    >
+                                                                        <Mail className="w-3.5 h-3.5" />
+                                                                    </a>
+                                                                )}
+                                                                {member.calendly && (
+                                                                    <a
+                                                                        href={member.calendly}
+                                                                        title="Book Meeting"
+                                                                        className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-[#FF7404] hover:text-black hover:scale-110 transition-all duration-500"
+                                                                    >
+                                                                        <Calendar className="w-3.5 h-3.5" />
+                                                                    </a>
+                                                                )}
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Premium Avatar Composition */}
+                                                        <div className="relative shrink-0">
+                                                            {/* Pulsing Orbital Ring */}
+                                                            <div className="absolute inset-[-12px] rounded-full border border-[#FF7404]/20 opacity-0 group-hover:opacity-100 group-hover:scale-110 animate-pulse transition-all duration-700" />
+                                                            <div className="absolute inset-[-6px] rounded-full border border-[#FF7404]/40 opacity-0 group-hover:opacity-100 transition-all duration-700" />
+
+                                                            <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-white/10 bg-zinc-900 relative z-10 shadow-2xl transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-2">
+                                                                <img
+                                                                    src={member.image}
+                                                                    alt={member.name}
+                                                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000 ease-out"
+                                                                />
+                                                            </div>
+
+                                                            {/* Corner Accents */}
+                                                            <div className="absolute top-0 right-0 w-4 h-4 border-r border-t border-[#FF7404]/0 group-hover:border-[#FF7404]/40 transition-all duration-700 translate-x-4 -translate-y-4" />
+                                                            <div className="absolute bottom-0 left-0 w-4 h-4 border-l border-b border-[#FF7404]/0 group-hover:border-[#FF7404]/40 transition-all duration-700 -translate-x-4 translate-y-4" />
                                                         </div>
                                                     </div>
 
-                                                    {/* Premium Avatar Composition */}
-                                                    <div className="relative shrink-0">
-                                                        {/* Pulsing Orbital Ring */}
-                                                        <div className="absolute inset-[-12px] rounded-full border border-[#FF7404]/20 opacity-0 group-hover:opacity-100 group-hover:scale-110 animate-pulse transition-all duration-700" />
-                                                        <div className="absolute inset-[-6px] rounded-full border border-[#FF7404]/40 opacity-0 group-hover:opacity-100 transition-all duration-700" />
-
-                                                        <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-white/10 bg-zinc-900 relative z-10 shadow-2xl transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-2">
-                                                            <img
-                                                                src={member.image}
-                                                                alt={member.name}
-                                                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000 ease-out"
-                                                            />
-                                                        </div>
-
-                                                        {/* Corner Accents */}
-                                                        <div className="absolute top-0 right-0 w-4 h-4 border-r border-t border-[#FF7404]/0 group-hover:border-[#FF7404]/40 transition-all duration-700 translate-x-4 -translate-y-4" />
-                                                        <div className="absolute bottom-0 left-0 w-4 h-4 border-l border-b border-[#FF7404]/0 group-hover:border-[#FF7404]/40 transition-all duration-700 -translate-x-4 translate-y-4" />
+                                                    {/* Global Card Accent */}
+                                                    <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-[#FF7404]" />
                                                     </div>
-                                                </div>
-
-                                                {/* Global Card Accent */}
-                                                <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-[#FF7404]" />
-                                                </div>
-                                            </motion.div>
-                                        ))}
+                                                </motion.div>
+                                            );
+                                        })}
                                     </motion.div>
                                 </div>
                             ))}

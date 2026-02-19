@@ -345,7 +345,7 @@ export default function HeroSection() {
                                 {/* Phone Header */}
                                 <div className="bg-[#0a0a0a]/90 backdrop-blur-md pt-16 px-5 pb-4 border-b border-white/5 flex items-center gap-3 sticky top-0 z-40">
                                     <div className="w-10 h-10 rounded-full bg-white/10 overflow-hidden flex items-center justify-center ring-1 ring-white/10">
-                                        <Image src="/images/visquanta-logo-transparent.png" alt="VQ" width={32} height={32} />
+                                        <Image src="/images/logo-black.jpg" alt="VQ" width={28} height={28} className="object-contain" />
                                     </div>
                                     <div>
                                         <div className="text-white text-sm font-bold tracking-wide">Dealership Assistant</div>

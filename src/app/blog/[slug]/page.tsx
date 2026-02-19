@@ -168,7 +168,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             'name': 'VisQuanta',
             'logo': {
                 '@type': 'ImageObject',
-                'url': 'https://www.visquanta.com/images/logo.png'
+                'url': 'https://www.visquanta.com/images/visquanta-logo-white.png'
             }
         },
         'datePublished': post.createdAt,

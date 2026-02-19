@@ -147,7 +147,7 @@ export default function BookingWizard() {
         },
         CLINT: {
             name: "Clint Annis",
-            role: "Integrations Lead",
+            role: "Implementation Lead",
             image: "/team/clint-annis.png",
             calendly: "https://calendly.com/cannis-visquanta/30min",
             duration: "30-Min"

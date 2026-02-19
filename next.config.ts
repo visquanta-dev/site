@@ -38,6 +38,14 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-icons'],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+      },
+    ];
+  },
   async redirects() {
     return [
       {
@@ -88,12 +96,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/case-studies/westline-motors', // Specific legacy case study
+        source: '/case-studies/westline-motors',
         destination: '/case-studies',
         permanent: true,
       },
       {
-        source: '/blog/:page(\\d+)', // Handle /blog/1, /blog/2 legacy pagination
+        source: '/blog/:page(\\d+)',
         destination: '/blog',
         permanent: true,
       },
@@ -172,18 +180,11 @@ const nextConfig: NextConfig = {
         destination: '/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2026',
         permanent: true,
       },
-      // =========================================================================
-      // LEGACY GHL (GoHighLevel) SITE REDIRECTS - 2024 era
-      // These paths are from the old GHL website and no longer exist
-      // =========================================================================
       {
-        source: '/blogs-3289/:path*', // Catch-all for old GHL blog system
+        source: '/blogs-3289/:path*',
         destination: '/blog',
         permanent: true,
       },
-      // =========================================================================
-      // OTHER LEGACY PATHS FROM GSC REPORT
-      // =========================================================================
       {
         source: '/landing-page',
         destination: '/',
@@ -200,14 +201,10 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/product-category/:path*', // Old e-commerce paths
+        source: '/product-category/:path*',
         destination: '/',
         permanent: true,
       },
-      // =========================================================================
-      // 404 FIXES FROM GSC REPORT - January 2026
-      // =========================================================================
-      // Legacy homepage variants
       {
         source: '/home',
         destination: '/',
@@ -218,7 +215,6 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
-      // Legacy page paths
       {
         source: '/about-us',
         destination: '/about-visquanta',
@@ -284,7 +280,6 @@ const nextConfig: NextConfig = {
         destination: '/dealer-success',
         permanent: true,
       },
-      // Legacy blog post paths (old /post/ structure)
       {
         source: '/post/:slug',
         destination: '/blog',
@@ -295,13 +290,11 @@ const nextConfig: NextConfig = {
         destination: '/blog',
         permanent: true,
       },
-      // Legacy blog tag paths
       {
         source: '/blogs/tag/:tag',
         destination: '/blog',
         permanent: true,
       },
-      // Legacy case studies that no longer exist
       {
         source: '/case-studies/cityline-auto-group-accelerates-sales-with-visquantas-automaster-suite',
         destination: '/case-studies',
@@ -312,7 +305,6 @@ const nextConfig: NextConfig = {
         destination: '/case-studies',
         permanent: true,
       },
-      // Link in bio legacy paths
       {
         source: '/link-in-bio-:id',
         destination: '/',
@@ -320,8 +312,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-
-  // Add headers to control indexing of non-HTML assets
   async headers() {
     return [
       {

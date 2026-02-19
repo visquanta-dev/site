@@ -172,7 +172,7 @@ export default function AboutPageClient() {
 
                                 <div className="absolute inset-0 flex items-center justify-center p-12 z-10">
                                     <img
-                                        src="/images/visquanta-logo-transparent.png"
+                                        src="/images/visquanta-logo-white.png"
                                         alt="VisQuanta Logo"
                                         className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-all duration-1000 group-hover:scale-110 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                                     />

@@ -2,7 +2,7 @@ const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
 
-const SOURCE_LOGO = path.join(__dirname, '../public/images/visquanta-logo-transparent.png');
+const SOURCE_LOGO = path.join(__dirname, '../public/images/logo-black.jpg');
 const OUTPUT_DIR = path.join(__dirname, '../public');
 const APP_DIR = path.join(__dirname, '../src/app');
 

@@ -110,11 +110,11 @@ export default function LocalizedFooter() {
                             >
                                 <Link href={localeLink('/', locale)} className="inline-block group">
                                     <Image
-                                        src="/images/visquanta-logo-transparent.png"
+                                        src="/images/visquanta-logo-white.png"
                                         alt="VisQuanta"
                                         width={240}
                                         height={63}
-                                        className="h-14 w-auto brightness-100 group-hover:brightness-110 transition-all duration-300"
+                                        className="h-14 w-auto transition-all duration-300 group-hover:scale-105"
                                     />
                                 </Link>
                             </motion.div>

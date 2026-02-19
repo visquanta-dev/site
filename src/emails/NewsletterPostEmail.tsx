@@ -42,7 +42,15 @@ export const NewsletterPostEmail = ({
                 <Container style={container}>
                     {/* Header */}
                     <Section style={header}>
-                        <Heading style={logo}>VisQuanta</Heading>
+                        <Link href="https://www.visquanta.com">
+                            <Img
+                                src="https://www.visquanta.com/images/visquanta-logo-white.png"
+                                width="180"
+                                height="46"
+                                alt="VisQuanta"
+                                style={logoImage}
+                            />
+                        </Link>
                         <Text style={subtitle}>Weekly Insights</Text>
                     </Section>
 
@@ -112,6 +120,11 @@ const logo = {
     fontWeight: 'bold',
     letterSpacing: '-1px',
     margin: '0',
+};
+
+const logoImage = {
+    margin: '0 auto',
+    display: 'block',
 };
 
 const subtitle = {

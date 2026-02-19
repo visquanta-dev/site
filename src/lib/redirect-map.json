@@ -1,10 +1,12 @@
 {
+  "/sitemap.xml": "/api/sitemap",
   "/uk": "/",
   "/visquanta-team": "/team",
   "/dealer-success-solutions": "/dealer-success",
   "/auto-master-suite-technical-guides": "/ams-guides",
   "/promo": "/auto-master-suite",
   "/lead-loss-mitigation": "/lead-reactivation",
+  "/case-studies/westline-motors": "/case-studies",
   "/how-it-works": "/",
   "/faq": "/faqs",
   "/blog/promax-visquanta-partner": "/blog",

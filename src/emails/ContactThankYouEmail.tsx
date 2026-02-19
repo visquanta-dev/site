@@ -6,6 +6,7 @@ import {
     Heading,
     Html,
     Link,
+    Img,
     Preview,
     Section,
     Text,
@@ -32,7 +33,15 @@ export const ContactThankYouEmail = ({
             <Body style={main}>
                 <Container style={container}>
                     <Section style={header}>
-                        <Heading style={logo}>VisQuanta</Heading>
+                        <Link href="https://www.visquanta.com">
+                            <Img
+                                src="https://www.visquanta.com/images/visquanta-logo-white.png"
+                                width="150"
+                                height="38"
+                                alt="VisQuanta"
+                                style={logoImage}
+                            />
+                        </Link>
                     </Section>
 
                     <Section style={card}>
@@ -96,6 +105,11 @@ const logo = {
     fontWeight: 'bold',
     letterSpacing: '-1px',
     margin: '0',
+};
+
+const logoImage = {
+    margin: '0 auto',
+    display: 'block',
 };
 
 const card = {
