@@ -1,0 +1,57 @@
+# VisQuanta robots.txt — Corrected User-Agent grouping
+
+# Default rules for all crawlers
+User-Agent: *
+Allow: /
+Allow: /ca/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /portal/
+
+# AI crawlers — explicit allow for LLM content
+User-Agent: GPTBot
+Allow: /
+Allow: /ca/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /api/
+Disallow: /admin/
+Disallow: /portal/
+
+User-Agent: ClaudeBot
+Allow: /
+Allow: /ca/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /api/
+Disallow: /admin/
+Disallow: /portal/
+
+User-Agent: Claude-Web
+Allow: /
+Allow: /ca/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /api/
+Disallow: /admin/
+Disallow: /portal/
+
+User-Agent: PerplexityBot
+Allow: /
+Allow: /ca/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /api/
+Disallow: /admin/
+Disallow: /portal/
+
+User-Agent: Google-Extended
+Allow: /
+Allow: /ca/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /api/
+Disallow: /admin/
+Disallow: /portal/
+
+Sitemap: https://www.visquanta.com/sitemap-us.xml

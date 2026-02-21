@@ -39,12 +39,7 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-icons'],
   },
   async rewrites() {
-    return [
-      {
-        source: '/sitemap.xml',
-        destination: '/api/sitemap',
-      },
-    ];
+    return [];
   },
   async redirects() {
     return [
@@ -53,11 +48,7 @@ const nextConfig: NextConfig = {
         destination: 'https://www.visquanta.com/blog/:slug',
         permanent: true,
       },
-      {
-        source: '/ca/blog/:slug*',
-        destination: '/blog/:slug*',
-        permanent: true,
-      },
+
       // UK locale cleanup — no /uk route handler exists.
       // 301 redirect all /uk/* to root equivalents to fix Ahrefs 404s.
       {

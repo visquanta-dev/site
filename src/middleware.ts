@@ -116,8 +116,19 @@ function shouldShowGeoBanner(request: NextRequest, detectedCountry: string | nul
 // =============================================================================
 // MIDDLEWARE
 // =============================================================================
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
+
+    // Skip middleware entirely for sitemap, robots, and static assets
+    if (
+        pathname.startsWith('/sitemap') ||
+        pathname === '/robots.txt' ||
+        pathname.startsWith('/_next') ||
+        pathname === '/favicon.ico'
+    ) {
+        return NextResponse.next();
+    }
+
     const host = request.headers.get("host");
 
     // Bot detection early
@@ -140,7 +151,7 @@ export async function proxy(request: NextRequest) {
     // 2. Skip static files and API routes
     // -------------------------------------------------------------------------
     const extension = pathname.slice(((pathname.lastIndexOf(".") - 1) >>> 0) + 1);
-    if (extension && IGNORE_EXTENSIONS.includes(`.${extension}`)) {
+    if (extension && IGNORE_EXTENSIONS.includes(extension)) {
         return NextResponse.next();
     }
 
@@ -268,7 +279,9 @@ export const config = {
          * - _next/static (static files)
          * - _next/image (image optimization files)
          * - favicon.ico (favicon file)
+         * - sitemap.*.xml (sitemap files)
+         * - robots.txt (robots file)
          */
-        '/((?!api|_next/static|_next/image|favicon.ico).*)',
+        '/((?!api|_next/static|_next/image|favicon.ico|sitemap.*\\.xml|robots\\.txt).*)',
     ],
 };

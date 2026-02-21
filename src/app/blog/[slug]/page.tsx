@@ -76,6 +76,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             canonical: `https://www.visquanta.com/blog/${slug}`,
             languages: {
                 'en-US': `https://www.visquanta.com/blog/${slug}`,
+                'en-CA': `https://www.visquanta.com/ca/blog/${slug}`,
                 'x-default': `https://www.visquanta.com/blog/${slug}`,
             },
         },

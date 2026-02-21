@@ -13,11 +13,13 @@ export const metadata = {
         canonical: 'https://www.visquanta.com/blog',
         languages: {
             'en-US': 'https://www.visquanta.com/blog',
+            'en-CA': 'https://www.visquanta.com/ca/blog',
+            'x-default': 'https://www.visquanta.com/blog',
         },
     },
     openGraph: {
         url: 'https://www.visquanta.com/blog',
-            images: [
+        images: [
             {
                 url: 'https://www.visquanta.com/images/og-image.png',
                 width: 1200,
