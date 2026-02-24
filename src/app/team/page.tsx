@@ -101,7 +101,13 @@ const teamLayers: TeamLayer[] = [
                 image: "/team/murray.png",
                 link: "https://www.linkedin.com/in/murraywilkinsonaisalesenablement/",
                 email: "mwilkinson@visquanta.com"
-            },
+            }
+        ]
+    },
+    {
+        title: "Dealer Success & Ops",
+        badge: "Execution Excellence",
+        members: [
             {
                 name: "Clint Annis",
                 role: "Implementation Lead",
@@ -115,14 +121,7 @@ const teamLayers: TeamLayer[] = [
                 role: "Systems Engineer",
                 image: "/team/kyle-roath.png",
                 email: "kroath@visquanta.com"
-
-            }
-        ]
-    },
-    {
-        title: "Dealer Success & Ops",
-        badge: "Execution Excellence",
-        members: [
+            },
             {
                 name: "Chloe Johncock",
                 role: "Account Operations Manager",
@@ -377,7 +376,7 @@ export default function TeamPage() {
                                         initial="hidden"
                                         whileInView="visible"
                                         viewport={{ once: true }}
-                                        className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto"
+                                        className={`flex flex-wrap justify-center gap-8 mx-auto ${layerIdx === 1 ? 'max-w-5xl' : 'max-w-7xl'}`}
                                     >
                                         {layer.members.map((member, i) => {
                                             const isInteractive = !!(member.link || member.email || member.calendly);
@@ -385,7 +384,7 @@ export default function TeamPage() {
                                                 <motion.div
                                                     key={i}
                                                     variants={itemVariants}
-                                                    className={`relative w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] h-[280px] bg-[#0A0A0A] border border-white/5 rounded-[2.5rem] p-8 transition-all duration-700 overflow-hidden shadow-2xl ${isInteractive ? 'group hover:border-[#FF7404]/40 cursor-custom-pointer' : 'cursor-default'}`}
+                                                    className={`relative w-full md:w-[calc(50%-2rem)] ${layerIdx === 1 ? '' : 'lg:w-[calc(33.333%-2rem)]'} h-[280px] bg-[#0A0A0A] border border-white/5 rounded-[2.5rem] p-8 transition-all duration-700 overflow-hidden shadow-2xl ${isInteractive ? 'group hover:border-[#FF7404]/40 cursor-custom-pointer' : 'cursor-default'}`}
                                                 >
                                                     {/* Advanced Hover Glow */}
                                                     <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/0 via-[#FF7404]/[0.01] to-[#FF7404]/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
