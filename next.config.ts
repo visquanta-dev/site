@@ -72,6 +72,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/dealer-success/dealer-success-solutions',
+        destination: '/dealer-success',
+        permanent: true,
+      },
+      {
         source: '/auto-master-suite-technical-guides',
         destination: '/ams-guides',
         permanent: true,
@@ -83,6 +88,11 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/lead-loss-mitigation',
+        destination: '/lead-reactivation',
+        permanent: true,
+      },
+      {
+        source: '/lead-reactivation.com/lead-loss-mitigation',
         destination: '/lead-reactivation',
         permanent: true,
       },
@@ -117,7 +127,17 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/dealers/auto-groupsnta.com/enterprise-groups',
+        destination: '/dealers/auto-groups',
+        permanent: true,
+      },
+      {
         source: '/partnerships',
+        destination: '/book-demo',
+        permanent: true,
+      },
+      {
+        source: '/book-demoisquanta.com/partnerships',
         destination: '/book-demo',
         permanent: true,
       },
@@ -127,7 +147,27 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/blogw.visquanta.com/blog-home',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
         source: '/independent-dealers',
+        destination: '/dealers/independent',
+        permanent: true,
+      },
+      {
+        source: '/independent-dealerships',
+        destination: '/dealers/independent',
+        permanent: true,
+      },
+      {
+        source: '/pre-owned-dealerships',
+        destination: '/dealers/pre-owned',
+        permanent: true,
+      },
+      {
+        source: '/dealers/independenta.com/independent-dealers',
         destination: '/dealers/independent',
         permanent: true,
       },
@@ -142,12 +182,32 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/dealers/auto-groups.visquanta.com/auto-group',
+        destination: '/dealers/auto-groups',
+        permanent: true,
+      },
+      {
         source: '/auto-groups',
         destination: '/dealers/auto-groups',
         permanent: true,
       },
       {
         source: '/franchise-dealers',
+        destination: '/dealers/franchise',
+        permanent: true,
+      },
+      {
+        source: '/franchise-dealerships',
+        destination: '/dealers/franchise',
+        permanent: true,
+      },
+      {
+        source: '/rv-dealerships',
+        destination: '/dealers/franchise',
+        permanent: true,
+      },
+      {
+        source: '/dealers/franchisenta.com/franchise-dealers',
         destination: '/dealers/franchise',
         permanent: true,
       },
@@ -169,6 +229,21 @@ const nextConfig: NextConfig = {
       {
         source: '/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2025',
         destination: '/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2026',
+        permanent: true,
+      },
+      {
+        source: '/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2026lead-reactivation-in-2025',
+        destination: '/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2026',
+        permanent: true,
+      },
+      {
+        source: '/enterprise',
+        destination: '/dealers/auto-groups',
+        permanent: true,
+      },
+      {
+        source: '/faqss:tail(.*)',
+        destination: '/faqs',
         permanent: true,
       },
       {
