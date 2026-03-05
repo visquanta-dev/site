@@ -29,7 +29,6 @@ import { Button } from "@/components/ui/button";
 import { usePathname } from 'next/navigation';
 import { useRef } from 'react';
 import { createPortal } from 'react-dom';
-import LocaleSwitcher from '@/components/i18n/LocaleSwitcher';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
 
@@ -427,9 +426,6 @@ export default function Navigation() {
 
         {/* Desktop Actions */}
         <div className="hidden lg:flex items-center gap-3">
-          {/* Locale Switcher */}
-          <LocaleSwitcher />
-
           <RequestDemoButton asChild>
             <Button className="relative h-9 px-6 rounded-lg bg-[#FF7404] hover:bg-[#ff8a2b] text-black transition-all uppercase tracking-widest text-[10px] font-black shadow-[0_0_20px_rgba(255,116,4,0.4)] hover:shadow-[0_0_30px_rgba(255,116,4,0.6)] border-none">
               Schedule Your Walkthrough

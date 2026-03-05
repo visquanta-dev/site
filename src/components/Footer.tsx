@@ -9,6 +9,7 @@ import { RequestDemoButton } from './CalendlyModal';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { Button } from "@/components/ui/button";
 import { localeLink } from '@/lib/locale-link';
+import LocaleSwitcher from '@/components/i18n/LocaleSwitcher';
 
 // Custom TikTok Icon since it's not in standard Lucide set yet
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -150,6 +151,10 @@ export default function Footer() {
                   <a href={contactInfo.phoneHref} className="text-sm text-white/50 hover:text-white transition-colors">
                     {contactInfo.phoneDisplay}
                   </a>
+                </div>
+
+                <div className="pt-6 w-fit">
+                  <LocaleSwitcher />
                 </div>
               </motion.div>
 
