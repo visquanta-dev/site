@@ -114,10 +114,10 @@ export default function IntegrationsSection() {
                   <h3 className="text-2xl font-bold text-white mb-4">{cat.title}</h3>
                   <p className="text-white/50 text-lg leading-relaxed mb-10">{cat.description}</p>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="flex flex-wrap justify-center items-center gap-8 px-6">
                     {cat.logos.map((logo, j) => (
-                      <div key={j} className="h-16 rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 group/logo">
-                        <img src={logo.url} alt={logo.name} className="max-w-full max-h-full object-contain opacity-40 group-hover/logo:opacity-100 transition-opacity" />
+                      <div key={j} className="h-8 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 group/logo">
+                        <img src={logo.url} alt={logo.name} className="h-full w-auto object-contain opacity-40 group-hover/logo:opacity-100 transition-opacity" />
                       </div>
                     ))}
                   </div>
@@ -150,8 +150,8 @@ export default function IntegrationsSection() {
           <div className="relative w-full mask-linear-fade overflow-hidden py-4">
             <div className="flex gap-12 animate-infinite-scroll w-max hover:[animation-play-state:paused] cursor-pointer">
               {duplicatedLogos.map((logo, i) => (
-                <div key={i} className="w-40 h-16 flex items-center justify-center">
-                  <img src={logo} alt="Partner Logo" className="max-w-[120px] max-h-full object-contain grayscale opacity-30 hover:opacity-100 hover:grayscale-0 transition-all duration-500" />
+                <div key={i} className="w-fit h-8 flex items-center justify-center">
+                  <img src={logo} alt="Partner Logo" className="h-full w-auto object-contain grayscale opacity-30 hover:opacity-100 hover:grayscale-0 transition-all duration-500" />
                 </div>
               ))}
             </div>

@@ -30,7 +30,7 @@ export default function MobileHeroTrust() {
                     {duplicatedBrands.map((brand, index) => (
                         <div
                             key={`${brand.name}-${index}`}
-                            className="flex items-center justify-center h-8 grayscale opacity-50 contrast-125 brightness-150"
+                            className="flex items-center justify-center w-fit h-8 grayscale opacity-50 contrast-125 brightness-150"
                         >
                             <img
                                 src={brand.src}

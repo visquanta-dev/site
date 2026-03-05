@@ -50,6 +50,7 @@ const footerLinks = {
     { label: 'Auto Groups', href: '/dealers/auto-groups' },
     { label: 'Pre-Owned', href: '/dealers/pre-owned' },
     { label: 'RV Connect', href: '/dealers/rv', tag: 'Coming Soon' },
+    { label: 'Paid Campaigns', href: '/paid-campaigns', tag: 'Expert' },
     { label: 'Dealer Success', href: '/dealer-success' },
   ],
   resources: [
@@ -112,9 +113,9 @@ export default function Footer() {
                   <Image
                     src="/images/visquanta-logo-white.png"
                     alt="VisQuanta"
-                    width={240}
-                    height={63}
-                    className="h-14 w-auto transition-all duration-300 group-hover:scale-105"
+                    width={160}
+                    height={42}
+                    className="h-8 w-auto transition-all duration-300 group-hover:scale-105"
                   />
                 </Link>
               </motion.div>

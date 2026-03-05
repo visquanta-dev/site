@@ -21,7 +21,8 @@ import {
   Shield,
   MonitorPlay,
   MessageSquare,
-  Truck
+  Truck,
+  Megaphone
 } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
 import { Button } from "@/components/ui/button";
@@ -105,6 +106,12 @@ const navItems: NavItem[] = [
         href: '/dealers/rv',
         description: 'Purpose-built for RV dealerships',
         icon: Truck
+      },
+      {
+        label: 'Paid Campaigns',
+        href: '/paid-campaigns',
+        description: 'Done-for-you automotive ad management',
+        icon: Megaphone
       },
     ]
   },
@@ -222,9 +229,9 @@ export default function Navigation() {
           <Image
             src="/images/visquanta-logo-white.png"
             alt="VisQuanta"
-            width={200}
-            height={53}
-            className="h-10 w-auto group-hover:scale-105 transition-all duration-500 relative z-10"
+            width={160}
+            height={42}
+            className="h-8 w-auto group-hover:scale-105 transition-all duration-500 relative z-10"
             priority
           />
         </Link>

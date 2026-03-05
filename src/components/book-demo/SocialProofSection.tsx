@@ -85,28 +85,28 @@ export default function SocialProofSection() {
 
                     <div className="flex gap-12 sm:gap-20 animate-scroll w-max items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
                         {/* First Set */}
-                        <img src="/images/logos/ford-direct.jpg" alt="Ford" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/gm.jpg" alt="GM" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/honda.jpg" alt="Honda" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/toyota.jpg" alt="Toyota" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/brand-1.png" alt="Hyundai" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/brand-4.png" alt="Porsche" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/ford-direct.jpg" alt="Ford" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/gm.jpg" alt="GM" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/honda.jpg" alt="Honda" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/toyota.jpg" alt="Toyota" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-1.png" alt="Hyundai" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-4.png" alt="Porsche" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
 
                         {/* Duplicated Set for infinite loop */}
-                        <img src="/images/logos/ford-direct.jpg" alt="Ford" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/gm.jpg" alt="GM" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/honda.jpg" alt="Honda" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/toyota.jpg" alt="Toyota" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/brand-1.png" alt="Hyundai" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/brand-4.png" alt="Porsche" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/ford-direct.jpg" alt="Ford" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/gm.jpg" alt="GM" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/honda.jpg" alt="Honda" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/toyota.jpg" alt="Toyota" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-1.png" alt="Hyundai" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-4.png" alt="Porsche" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
 
                         {/* Triplicated Set for safety on wider screens */}
-                        <img src="/images/logos/ford-direct.jpg" alt="Ford" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/gm.jpg" alt="GM" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/honda.jpg" alt="Honda" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/toyota.jpg" alt="Toyota" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/brand-1.png" alt="Hyundai" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
-                        <img src="/images/logos/brand-4.png" alt="Porsche" className="h-8 md:h-10 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/ford-direct.jpg" alt="Ford" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/gm.jpg" alt="GM" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/honda.jpg" alt="Honda" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/toyota.jpg" alt="Toyota" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-1.png" alt="Hyundai" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
+                        <img src="/images/logos/brand-4.png" alt="Porsche" className="h-8 w-auto object-contain mix-blend-screen contrast-125 brightness-150" />
                     </div>
                 </div>
             </div>

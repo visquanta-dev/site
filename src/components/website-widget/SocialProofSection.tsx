@@ -165,12 +165,12 @@ export default function SocialProofSection() {
                         {[...BRAND_LOGOS, ...BRAND_LOGOS, ...BRAND_LOGOS, ...BRAND_LOGOS].map((brand, i) => (
                             <div
                                 key={i}
-                                className="relative flex items-center justify-center min-w-[140px] px-8"
+                                className="relative flex items-center justify-center w-fit"
                             >
                                 <img
                                     src={brand.src}
                                     alt={brand.name}
-                                    className="h-9 w-auto object-contain mix-blend-screen grayscale brightness-125 opacity-30 hover:opacity-100 hover:grayscale-0 transition-all duration-500 cursor-default"
+                                    className="h-8 w-auto object-contain mix-blend-screen grayscale brightness-125 opacity-30 hover:opacity-100 hover:grayscale-0 transition-all duration-500 cursor-default"
                                 />
                             </div>
                         ))}

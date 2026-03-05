@@ -128,7 +128,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                             <p className="text-xs sm:text-sm text-white/40 font-medium mb-4">
                                 Trusted by <span className="text-white/60">500+ dealerships</span> across North America
                             </p>
-                            <div className="flex items-center gap-4 sm:gap-6">
+                            <div className="flex flex-wrap items-center gap-6 sm:gap-8">
                                 {[
                                     { src: '/images/logos/ford-direct.jpg', alt: 'Ford Direct' },
                                     { src: '/images/logos/toyota.jpg', alt: 'Toyota' },
@@ -137,7 +137,7 @@ export default function HeroSection({ onOpenCalculator }: HeroSectionProps) {
                                 ].map((logo, i) => (
                                     <div
                                         key={i}
-                                        className="h-6 sm:h-7 w-auto opacity-40 hover:opacity-70 transition-opacity duration-300"
+                                        className="h-8 w-auto opacity-40 hover:opacity-70 transition-opacity duration-300 flex items-center"
                                     >
                                         <img
                                             src={logo.src}

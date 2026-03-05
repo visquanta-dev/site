@@ -11,7 +11,7 @@ const brands = [
       <img
         src="/images/logos/audi.jpg"
         alt="Audi"
-        className="h-10 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
+        className="h-8 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
       />
     ),
   },
@@ -21,7 +21,7 @@ const brands = [
       <img
         src="/images/logos/ford-direct.jpg"
         alt="Ford Direct"
-        className="h-14 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
+        className="h-8 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
       />
     ),
   },
@@ -31,7 +31,7 @@ const brands = [
       <img
         src="/images/logos/gm.jpg"
         alt="General Motors"
-        className="h-12 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
+        className="h-8 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
       />
     ),
   },
@@ -41,7 +41,7 @@ const brands = [
       <img
         src="/images/logos/honda.jpg"
         alt="Honda"
-        className="h-10 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
+        className="h-8 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
       />
     ),
   },
@@ -51,7 +51,7 @@ const brands = [
       <img
         src="/images/logos/toyota.jpg"
         alt="Toyota"
-        className="h-10 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
+        className="h-8 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
       />
     ),
   },
@@ -61,7 +61,7 @@ const brands = [
       <img
         src="/images/logos/brand-1.png"
         alt="Hyundai"
-        className="h-6 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
+        className="h-8 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
       />
     ),
   },
@@ -71,7 +71,7 @@ const brands = [
       <img
         src="/images/logos/brand-4.png"
         alt="Porsche"
-        className="h-6 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
+        className="h-8 w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-all duration-500 grayscale brightness-125"
       />
     ),
   }
@@ -100,7 +100,7 @@ export default function SocialProofBar() {
             {duplicatedBrands.map((brand, index) => (
               <div
                 key={`${brand.name}-${index}`}
-                className="flex items-center justify-center min-w-[100px] text-muted-foreground/40 hover:text-muted-foreground transition-colors duration-300 pointer-events-none"
+                className="flex items-center justify-center w-fit text-muted-foreground/40 hover:text-muted-foreground transition-colors duration-300 pointer-events-none"
               >
                 {brand.logo}
               </div>
