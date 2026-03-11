@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { RefreshCcw, Mic, PhoneOff, ShieldCheck } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import Script from "next/script"
+import { RetellWebClient } from "retell-client-js-sdk"
 
 import { DemoCard } from "./components/DemoCard"
 import { VoiceWaveform } from "./components/VoiceWaveform"
@@ -76,10 +76,7 @@ function VoiceDemo() {
       if (!resp.ok) throw new Error("Server error")
       const data = await resp.json()
 
-      const SDK = (window as any).retellClientJsSdk?.RetellWebClient || (window as any).retellSDK?.RetellWebClient || (window as any).RetellWebClient
-      if (!SDK) throw new Error("SDK not loaded")
-
-      const client = new SDK()
+      const client = new RetellWebClient()
       retellRef.current = client
 
       client.on("call_started", () => setCallState("active"))
@@ -103,8 +100,6 @@ function VoiceDemo() {
     } catch (err: any) {
       if (err.name === "NotAllowedError") {
         setError("Microphone access denied. Please allow mic access.")
-      } else if (err.message === "SDK not loaded") {
-        setError("Voice SDK still loading. Please try again.")
       } else {
         setError("Unable to connect. Please try again.")
       }
@@ -301,10 +296,6 @@ export default function AutoShowDemo() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-[#F0F0F0] font-sans selection:bg-[#F97316]/30 relative overflow-hidden">
-      <Script
-        src="https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/dist/index.umd.js"
-        strategy="afterInteractive"
-      />
 
       {/* Background Wireframe Image */}
       <div 
