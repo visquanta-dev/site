@@ -76,7 +76,7 @@ function VoiceDemo() {
       if (!resp.ok) throw new Error("Server error")
       const data = await resp.json()
 
-      const SDK = (window as any).retellSDK?.RetellWebClient || (window as any).RetellWebClient
+      const SDK = (window as any).retellClientJsSdk?.RetellWebClient || (window as any).retellSDK?.RetellWebClient || (window as any).RetellWebClient
       if (!SDK) throw new Error("SDK not loaded")
 
       const client = new SDK()
@@ -302,7 +302,7 @@ export default function AutoShowDemo() {
   return (
     <div className="min-h-screen bg-[#050505] text-[#F0F0F0] font-sans selection:bg-[#F97316]/30 relative overflow-hidden">
       <Script
-        src="https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.4/bundle/index.js"
+        src="https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.7/dist/index.umd.js"
         strategy="afterInteractive"
       />
 
