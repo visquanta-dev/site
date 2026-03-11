@@ -269,10 +269,25 @@ function VoiceDemo() {
             That was a live AI receptionist answering as {dealership}. Want to try again?
           </p>
 
-          <Button onClick={resetCall} className="group">
-            <Mic size={18} className="mr-2" />
-            Try Again
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-md">
+            <Button asChild className="group flex-1">
+              <a href="https://calendly.com/droemer-visquanta/30min" target="_blank" rel="noopener noreferrer">
+                Book a Demo
+              </a>
+            </Button>
+
+            <Button 
+              variant="outline" 
+              onClick={() => {
+                setMode(mode === "overflow" ? "after-hours" : "overflow");
+                resetCall();
+              }}
+              className="group flex-1"
+            >
+              <RefreshCcw size={16} className="mr-2" />
+              Try {mode === "overflow" ? "After Hours" : "Overflow"}
+            </Button>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 10 }}
