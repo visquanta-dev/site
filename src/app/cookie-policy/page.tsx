@@ -236,7 +236,7 @@ export default function CookiePolicyPage() {
                                             </p>
                                             <div className="pt-6">
                                                 <Link
-                                                    href="https://www.allaboutcookies.org"
+                                                    href="https://www.allaboutcookies.org" target="_blank" rel="nofollow noopener noreferrer"
                                                     className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/5 rounded-xl text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/10 transition-all group"
                                                 >
                                                     External Documentation

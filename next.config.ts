@@ -381,6 +381,16 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+        ],
+      },
+    return [
+      {
         source: '/guides/:path*.pdf',
         headers: [
           {

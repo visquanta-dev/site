@@ -142,7 +142,7 @@ const SubprocessorsView = () => (
                 </div>
                 <div className="divide-y divide-white/5">
                     {subprocessors.map((sub, i) => (
-                        <a key={i} href={sub.website} target="_blank" rel="noopener noreferrer" className="px-6 py-5 grid grid-cols-12 items-center hover:bg-white/[0.02] transition-colors group block">
+                        <a key={i} href={sub.website} target="_blank" rel="nofollow noopener noreferrer" className="px-6 py-5 grid grid-cols-12 items-center hover:bg-white/[0.02] transition-colors group block">
                             <div className="col-span-12 md:col-span-4 flex items-center gap-4 mb-2 md:mb-0">
                                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-white/50 border border-white/5 overflow-hidden">
                                     {sub.logo ? (

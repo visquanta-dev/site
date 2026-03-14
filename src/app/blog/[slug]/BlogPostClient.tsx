@@ -337,7 +337,7 @@ export default function BlogPostClient({ children, delay = 0 }: BlogPostClientPr
 
             if (isExternal) {
                 anchor.target = '_blank';
-                anchor.rel = 'noopener noreferrer';
+                anchor.rel = 'nofollow noopener noreferrer';
                 anchor.classList.add('external-link-enhanced'); // Hook for custom CSS if needed
 
                 // Optional: Append icon visually

@@ -1,10 +1,9 @@
 // src/app/ca/layout.tsx
-// Canadian English locale layout wrapper with hreflang tags
+// Canadian English locale layout wrapper
 
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    // Canadian-specific metadata defaults
     icons: {
         icon: [
             { url: "/favicon-ca.png", sizes: "32x32", type: "image/png" },
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
     },
     openGraph: {
         locale: "en_CA",
-            images: [
+        images: [
             {
                 url: 'https://www.visquanta.com/images/og-image.png',
                 width: 1200,
@@ -20,9 +19,6 @@ export const metadata: Metadata = {
                 alt: 'VisQuanta',
             }
         ],
-    },
-    alternates: {
-        canonical: "https://www.visquanta.com/ca/",
     },
 };
 
@@ -33,7 +29,6 @@ export default function CanadianLayout({
 }) {
     return (
         <>
-            {/* hreflang tags are handled by page-level metadata */}
             {children}
         </>
     );
