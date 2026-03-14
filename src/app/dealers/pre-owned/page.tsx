@@ -1,5 +1,5 @@
-import DealerTypeCrossLinks from '@/components/dealers/DealerTypeCrossLinks';
 'use client';
+import DealerTypeCrossLinks from '@/components/dealers/DealerTypeCrossLinks';
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
