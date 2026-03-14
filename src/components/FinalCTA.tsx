@@ -75,6 +75,9 @@ export default function FinalCTA() {
             >
               {t('final_cta.microcopy')}
             </motion.p>
+            <Link href="/book-demo" className="text-xs text-white/30 hover:text-[#ff7404] transition-colors underline underline-offset-4 font-medium">
+              Or visit our booking page
+            </Link>
           </div>
 
           {/* Trust Indicators */}

@@ -66,6 +66,7 @@ const footerLinks = {
     { label: 'Careers', href: '/careers' },
     { label: 'Trust Center', href: '/trust' },
     { label: 'Contact Us', href: '/contact' },
+    { label: 'Book a Demo', href: '/book-demo' },
   ],
 };
 
