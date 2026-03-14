@@ -192,6 +192,7 @@ export default function ServiceDrivePage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
             />
+{/* JSON-LD SoftwareApplication with isRelatedTo */}            <script                type="application/ld+json"                dangerouslySetInnerHTML={{ __html: JSON.stringify({                    "@context": "https://schema.org",                    "@type": "SoftwareApplication",                    "name": "VisQuanta Service Drive",                    "applicationCategory": "BusinessApplication",                    "operatingSystem": "Web",                    "url": "https://www.visquanta.com/service-drive",                    "provider": {                        "@type": "Organization",                        "name": "VisQuanta",                        "url": "https://www.visquanta.com"                    },                    "isRelatedTo": [                        {                            "@type": "SoftwareApplication",                            "name": "VisQuanta Reputation Management",                            "url": "https://www.visquanta.com/reputation-management"                        }                    ]                }) }}            />
             <Navigation />
             <main>
                 <HeroSection />
@@ -220,9 +221,9 @@ export default function ServiceDrivePage() {
                 <RelatedSolutions
                     title="Scale Your Fixed Ops"
                     solutions={[
-                        { title: "Lead Reactivation", href: "/lead-reactivation", description: "Re-engage lost service customers automatically.", icon: "refresh" },
-                        { title: "Reputation Management", href: "/reputation-management", description: "Capture a 5-star review after every service visit.", icon: "star" },
-                        { title: "Dealer Success", href: "/dealer-success", description: "White-glove implementation for your service team.", icon: "heart" }
+                        { title: "Franchise Dealers", href: "/dealers/franchise", description: "Enterprise tools for franchise dealer groups.", icon: "building" },
+                        { title: "Reputation Management", href: "/reputation-management", description: "Grow reviews and protect your online reputation.", icon: "star" },
+                        { title: "Dealer Success", href: "/dealer-success", description: "Full-service support for dealership growth.", icon: "heart" }
                     ]}
                 />
 

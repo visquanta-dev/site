@@ -9,6 +9,7 @@ import TrainingSection from '@/components/dealer-success/TrainingSection';
 import SuccessStories from '@/components/dealer-success/SuccessStories';
 import DealerFAQ from '@/components/dealer-success/DealerFAQ';
 import MidPageCTA from '@/components/MidPageCTA';
+import SeeAlso from '@/components/shared/SeeAlso';
 
 export const metadata = {
     title: 'Dealer Success — AI with a Human Touch',
@@ -69,6 +70,12 @@ export default function DealerSuccessPage() {
                     <FinalCTA />
                 </div>
             </main>
+            <SeeAlso links={[
+                { title: 'Auto Master Suite', href: '/auto-master-suite', description: 'Our complete AI platform for dealerships' },
+                { title: 'Case Studies', href: '/case-studies', description: 'See real dealer results and success stories' },
+                { title: 'Dealers', href: '/dealers', description: 'Solutions by dealership type' },
+                { title: 'Resources', href: '/resources', description: 'Guides, articles, and knowledge base' },
+            ]} />
             <Footer />
         </div>
     );

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, LucideIcon, Zap, RefreshCcw, Star, Wrench, MessageSquare, Target, HeartHandshake } from 'lucide-react';
+import { ArrowRight, LucideIcon, Zap, RefreshCcw, Star, Wrench, MessageSquare, Target, HeartHandshake, Building2, Store, Users, Car } from 'lucide-react';
 
 const ICON_MAP: Record<string, LucideIcon> = {
     zap: Zap,
@@ -11,7 +11,11 @@ const ICON_MAP: Record<string, LucideIcon> = {
     wrench: Wrench,
     message: MessageSquare,
     target: Target,
-    heart: HeartHandshake
+    heart: HeartHandshake,
+    building: Building2,
+    store: Store,
+    users: Users,
+    car: Car
 };
 
 interface RelatedSolution {

@@ -43,6 +43,7 @@ export default function ReputationManagementPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
+{/* JSON-LD SoftwareApplication with isRelatedTo */}            <script                type="application/ld+json"                dangerouslySetInnerHTML={{ __html: JSON.stringify({                    "@context": "https://schema.org",                    "@type": "SoftwareApplication",                    "name": "VisQuanta Reputation Management",                    "applicationCategory": "BusinessApplication",                    "operatingSystem": "Web",                    "url": "https://www.visquanta.com/reputation-management",                    "provider": {                        "@type": "Organization",                        "name": "VisQuanta",                        "url": "https://www.visquanta.com"                    },                    "isRelatedTo": [                        {                            "@type": "SoftwareApplication",                            "name": "VisQuanta Service Drive",                            "url": "https://www.visquanta.com/service-drive"                        }                    ]                }) }}            />
             {/* Global Premium Skin Elements */}
             <div className="fixed inset-0 pointer-events-none z-0">
                 {/* Grainy Texture */}
@@ -77,9 +78,8 @@ export default function ReputationManagementPage() {
                 <RelatedSolutions
                     title="Synergistic Solutions"
                     solutions={[
-                        { title: "Service Drive Pro", href: "/service-drive", description: "The best time to ask for a review is at vehicle pickup.", icon: "wrench" },
-                        { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine rapid response with rapid review requests.", icon: "zap" },
-                        { title: "Lead Reactivation", href: "/lead-reactivation", description: "Protect your brand while winning back lost shoppers.", icon: "refresh" }
+                        { title: "Service Drive", href: "/service-drive", description: "Convert service visits into sales opportunities.", icon: "wrench" },
+                        { title: "Dealer Success", href: "/dealer-success", description: "Full-service support for dealership growth.", icon: "heart" }
                     ]}
                 />
 

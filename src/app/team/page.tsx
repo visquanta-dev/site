@@ -3,6 +3,7 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import FinalCTA from '@/components/FinalCTA';
+import SeeAlso from '@/components/shared/SeeAlso';
 import { motion } from 'framer-motion';
 import { Linkedin, Mail, Twitter, Quote, Calendar } from 'lucide-react';
 import Image from 'next/image';
@@ -473,6 +474,11 @@ export default function TeamPage() {
             <FinalCTA />
 
 
+            <SeeAlso links={[
+                { title: 'About VisQuanta', href: '/about-visquanta', description: 'Our mission, story, and values' },
+                { title: 'Case Studies', href: '/case-studies', description: 'See real dealer results and success stories' },
+                { title: 'Careers', href: '/careers', description: 'Join the VisQuanta team' },
+            ]} />
             <Footer />
         </main>
     );

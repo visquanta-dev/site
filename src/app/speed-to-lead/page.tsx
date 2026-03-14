@@ -72,6 +72,7 @@ export default function SpeedToLeadPage() {
                     })
                 }}
             />
+{/* JSON-LD SoftwareApplication with isRelatedTo */}            <script                type="application/ld+json"                dangerouslySetInnerHTML={{                    __html: JSON.stringify({                        "@context": "https://schema.org",                        "@type": "SoftwareApplication",                        "name": "VisQuanta Speed to Lead",                        "applicationCategory": "BusinessApplication",                        "operatingSystem": "Web",                        "url": "https://www.visquanta.com/speed-to-lead",                        "provider": {                            "@type": "Organization",                            "name": "VisQuanta",                            "url": "https://www.visquanta.com"                        },                        "isRelatedTo": [                            {                                "@type": "SoftwareApplication",                                "name": "VisQuanta Lead Reactivation",                                "url": "https://www.visquanta.com/lead-reactivation"                            },                            {                                "@type": "SoftwareApplication",                                "name": "VisQuanta Website Widget",                                "url": "https://www.visquanta.com/website-widget"                            }                        ]                    })                }}            />
 
             {/* 1. HERO: Urgency & Frame */}
             <HeroSection onOpenCalculator={openCalculator} />
@@ -118,9 +119,9 @@ export default function SpeedToLeadPage() {
             <RelatedSolutions
                 title="Instant Response Ecosystem"
                 solutions={[
-                    { title: "Lead Reactivation", href: "/lead-reactivation", description: "Convert missed leads that was never contacted.", icon: "refresh" },
-                    { title: "Website Widget", href: "/website-widget", description: "The front-door for your Speed to Lead engine.", icon: "message" },
-                    { title: "Reputation Management", description: "Follow up great experiences with review requests.", href: "/reputation-management", icon: "star" }
+                    { title: "Lead Reactivation", href: "/lead-reactivation", description: "Re-engage dormant leads and recover lost opportunities.", icon: "refresh" },
+                    { title: "Website Widget", href: "/website-widget", description: "Capture and convert website visitors in real-time.", icon: "message" },
+                    { title: "Franchise Dealers", href: "/dealers/franchise", description: "Enterprise tools for franchise dealer groups.", icon: "building" }
                 ]}
             />
 

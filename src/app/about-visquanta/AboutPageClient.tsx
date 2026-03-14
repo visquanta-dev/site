@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import SeeAlso from '@/components/shared/SeeAlso';
 
 // Animation variants
 const containerVariants = {
@@ -361,6 +362,12 @@ export default function AboutPageClient() {
                 </div>
             </section>
 
+            <SeeAlso links={[
+                { title: 'Team', href: '/team', description: 'Meet the people behind VisQuanta' },
+                { title: 'Case Studies', href: '/case-studies', description: 'See real dealer results and success stories' },
+                { title: 'Resources', href: '/resources', description: 'Guides, articles, and knowledge base' },
+                { title: 'Book Demo', href: '/book-demo', description: 'Schedule a personalized walkthrough' },
+            ]} />
             <Footer />
         </main>
     );

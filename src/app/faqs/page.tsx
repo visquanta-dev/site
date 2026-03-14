@@ -7,6 +7,7 @@ import { useState, useMemo } from 'react';
 import { Plus, Minus, Search, ShieldCheck, Zap, Users, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 import FinalCTA from '@/components/FinalCTA';
+import SeeAlso from '@/components/shared/SeeAlso';
 
 const faqCategories = [
     { id: 'all', label: 'All Questions', icon: LayoutGrid },
@@ -158,7 +159,25 @@ export default function FAQPage() {
     }, [filteredFaqs]);
 
     return (
+
         <main className="bg-[#020202] min-h-screen selection:bg-[#FF7404] selection:text-black font-sans">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        mainEntity: faqs.map((faq) => ({
+                            "@type": "Question",
+                            name: faq.question,
+                            acceptedAnswer: {
+                                "@type": "Answer",
+                                text: faq.answer,
+                            },
+                        })),
+                    }),
+                }}
+            />
             <Navigation />
 
             <section className="relative pt-48 pb-12 overflow-hidden">
@@ -277,6 +296,12 @@ export default function FAQPage() {
                 </div>
             </section>
 
+            <SeeAlso links={[
+                { title: 'Resources', href: '/resources', description: 'Guides, articles, and knowledge base' },
+                { title: 'Blog', href: '/blog', description: 'Industry insights and trends' },
+                { title: 'Book Demo', href: '/book-demo', description: 'Schedule a personalized walkthrough' },
+                { title: 'AMS Guides', href: '/ams-guides', description: 'Product overviews and deep dives' },
+            ]} />
             <Footer />
         </main>
     );

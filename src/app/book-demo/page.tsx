@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import BookingWizard from '@/components/book-demo/BookingWizard';
 import SocialProofSection from '@/components/book-demo/SocialProofSection';
 import FAQSection from '@/components/book-demo/FAQSection';
+import SeeAlso from '@/components/shared/SeeAlso';
 
 export const metadata: Metadata = {
     title: "Book a 15-Min Revenue Analysis",
@@ -50,6 +51,11 @@ export default function BookDemoPage() {
                 </div>
             </div>
 
+            <SeeAlso links={[
+                { title: 'FAQs', href: '/faqs', description: 'Answers to common questions' },
+                { title: 'Case Studies', href: '/case-studies', description: 'See real dealer results and success stories' },
+                { title: 'Auto Master Suite', href: '/auto-master-suite', description: 'Our complete AI platform for dealerships' },
+            ]} />
             <Footer />
         </div>
     );

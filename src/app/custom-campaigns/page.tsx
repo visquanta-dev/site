@@ -137,6 +137,7 @@ export default function CustomCampaignsPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
+{/* JSON-LD SoftwareApplication with isRelatedTo */}            <script                type="application/ld+json"                dangerouslySetInnerHTML={{ __html: JSON.stringify({                    "@context": "https://schema.org",                    "@type": "SoftwareApplication",                    "name": "VisQuanta Custom Campaigns",                    "applicationCategory": "BusinessApplication",                    "operatingSystem": "Web",                    "url": "https://www.visquanta.com/custom-campaigns",                    "provider": {                        "@type": "Organization",                        "name": "VisQuanta",                        "url": "https://www.visquanta.com"                    },                    "isRelatedTo": [                        {                            "@type": "SoftwareApplication",                            "name": "VisQuanta Lead Reactivation",                            "url": "https://www.visquanta.com/lead-reactivation"                        }                    ]                }) }}            />
 
             {/* Global Premium Skin Elements */}
             <div className="fixed inset-0 pointer-events-none z-0">
@@ -166,9 +167,8 @@ export default function CustomCampaignsPage() {
                 <RelatedSolutions
                     title="Scale Your Store"
                     solutions={[
-                        { title: "Lead Reactivation", href: "/lead-reactivation", description: "Use custom campaigns to boost database reactivation.", icon: "refresh" },
-                        { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine campaign traffic with instant response.", icon: "zap" },
-                        { title: "Service Drive Pro", href: "/service-drive", description: "Drive high-value service appointments with targeted SMS.", icon: "wrench" }
+                        { title: "Lead Reactivation", href: "/lead-reactivation", description: "Re-engage dormant leads and recover lost opportunities.", icon: "refresh" },
+                        { title: "Auto Groups", href: "/dealers/auto-groups", description: "Scalable platform for multi-rooftop operations.", icon: "users" }
                     ]}
                 />
 

@@ -70,6 +70,7 @@ export default function LeadReactivationPage() {
                     })
                 }}
             />
+{/* JSON-LD SoftwareApplication with isRelatedTo */}            <script                type="application/ld+json"                dangerouslySetInnerHTML={{                    __html: JSON.stringify({                        "@context": "https://schema.org",                        "@type": "SoftwareApplication",                        "name": "VisQuanta Lead Reactivation",                        "applicationCategory": "BusinessApplication",                        "operatingSystem": "Web",                        "url": "https://www.visquanta.com/lead-reactivation",                        "provider": {                            "@type": "Organization",                            "name": "VisQuanta",                            "url": "https://www.visquanta.com"                        },                        "isRelatedTo": [                            {                                "@type": "SoftwareApplication",                                "name": "VisQuanta Speed to Lead",                                "url": "https://www.visquanta.com/speed-to-lead"                            },                            {                                "@type": "SoftwareApplication",                                "name": "VisQuanta Custom Campaigns",                                "url": "https://www.visquanta.com/custom-campaigns"                            }                        ]                    })                }}            />
 
             {/* 1. HERO: Recovered Revenue & Authority */}
             <HeroSection onOpenCalculator={openCalculator} />
@@ -110,9 +111,9 @@ export default function LeadReactivationPage() {
             <RelatedSolutions
                 title="Smarter Lead Management"
                 solutions={[
-                    { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine database reactivation with instant response.", icon: "zap" },
-                    { title: "Custom Campaigns", href: "/custom-campaigns", description: "Targeted seasonal blitzes for your reactivated audience.", icon: "target" },
-                    { title: "Service Drive Pro", href: "/service-drive", description: "Automate service appointments for reactivated service leads.", icon: "wrench" }
+                    { title: "Speed to Lead", href: "/speed-to-lead", description: "Respond to leads instantly with AI-powered engagement.", icon: "zap" },
+                    { title: "Custom Campaigns", href: "/custom-campaigns", description: "Launch targeted SMS campaigns that drive appointments.", icon: "target" },
+                    { title: "Pre-Owned Dealers", href: "/dealers/pre-owned", description: "Solutions built for pre-owned dealerships.", icon: "car" }
                 ]}
             />
 

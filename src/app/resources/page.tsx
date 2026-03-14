@@ -31,6 +31,22 @@ const resourceLinks = [
     },
     // Adding placeholders for missing pages so the grid looks full, but we will route them or keep them pending
     {
+        title: 'Integrations',
+        description: 'See how VisQuanta connects with your DMS, CRM, and existing tools.',
+        href: '/integrations',
+        icon: LayoutGrid,
+        category: 'Platform',
+        color: 'teal',
+    },
+    {
+        title: 'Dealer Services',
+        description: 'Explore our full range of services designed to accelerate dealership growth.',
+        href: '/dealer-services',
+        icon: MessageSquare,
+        category: 'Services',
+        color: 'orange',
+    },
+    {
         title: 'Our Blog',
         description: 'Trends, data analysis, and insights from the edge of retail.',
         href: '/blog',

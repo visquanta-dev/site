@@ -295,10 +295,17 @@ export default function DealerServicesPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Built for Your <span className="text-orange-500">Operation</span>
             </h2>
-            <p className="text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-neutral-400 max-w-2xl mx-auto mb-4">
               Whether you're an independent lot, franchise dealer, or multi-rooftop group,
               our services adapt to your specific challenges.
             </p>
+            <Link
+              href="/dealers"
+              className="inline-flex items-center gap-2 text-orange-500 font-medium hover:underline"
+            >
+              Visit the Dealer Hub for full details
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </motion.div>
 
           <motion.div

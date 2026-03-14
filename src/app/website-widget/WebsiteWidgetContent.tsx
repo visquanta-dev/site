@@ -20,6 +20,7 @@ import RelatedSolutions from '@/components/shared/RelatedSolutions';
 export default function WebsiteWidgetContent() {
     return (
         <main className="bg-[#050505] min-h-screen selection:bg-orange-500 selection:text-white">
+{/* JSON-LD SoftwareApplication with isRelatedTo */}            <script                type="application/ld+json"                dangerouslySetInnerHTML={{ __html: JSON.stringify({                    "@context": "https://schema.org",                    "@type": "SoftwareApplication",                    "name": "VisQuanta Website Widget",                    "applicationCategory": "BusinessApplication",                    "operatingSystem": "Web",                    "url": "https://www.visquanta.com/website-widget",                    "provider": {                        "@type": "Organization",                        "name": "VisQuanta",                        "url": "https://www.visquanta.com"                    },                    "isRelatedTo": [                        {                            "@type": "SoftwareApplication",                            "name": "VisQuanta Speed to Lead",                            "url": "https://www.visquanta.com/speed-to-lead"                        }                    ]                }) }}            />
             <Navigation />
             <HeroSection />
             <OpportunityCheck />
@@ -33,10 +34,8 @@ export default function WebsiteWidgetContent() {
             <RelatedSolutions
                 title="Better Lead Capture"
                 solutions={[
-                    { title: "Speed to Lead", href: "/speed-to-lead", description: "Combine high-intent capture with instant response.", icon: "zap" },
-                    { title: "Lead Reactivation", href: "/lead-reactivation", description: "Use the widget to capture missed reactivation leads.", icon: "refresh" },
-                    { title: "Reputation Management", href: "/reputation-management", description: "The front-door for customer-first relationships.", icon: "star" },
-                    { title: "Service Drive", href: "/service-drive", description: "Capture service intent and book directly into your DMS.", icon: "wrench" }
+                    { title: "Speed to Lead", href: "/speed-to-lead", description: "Respond to leads instantly with AI-powered engagement.", icon: "zap" },
+                    { title: "Independent Dealers", href: "/dealers/independent", description: "Affordable AI tools for independent dealers.", icon: "store" }
                 ]}
             />
 
