@@ -29,6 +29,9 @@ export default function FinalCTA() {
                                     Schedule Your Walkthrough
                                 </button>
                             </RequestDemoButton>
+                            <Link href="/book-demo" className="text-sm text-white/30 hover:text-[#FF7404] transition-colors underline underline-offset-4 font-medium">
+                                Or visit our booking page
+                            </Link>
                         </div>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm font-medium text-white/40">

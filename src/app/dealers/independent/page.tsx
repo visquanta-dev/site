@@ -1,3 +1,4 @@
+import DealerTypeCrossLinks from '@/components/dealers/DealerTypeCrossLinks';
 'use client';
 
 import Navigation from '@/components/Navigation';
@@ -1084,6 +1085,7 @@ export default function IndependentDealersPage() {
                 </div>
             </section>
 
+            <DealerTypeCrossLinks currentPath="/dealers/independent" />
             <Footer />
         </main >
     );

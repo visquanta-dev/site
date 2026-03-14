@@ -16,5 +16,15 @@ export const BLOG_RELATED_PRODUCTS: Record<string, string[]> = {
     'ai-bdc-first-response-time': ['speed-to-lead', 'lead-reactivation'],
     'ai-call-technology-customer-lost-leads': ['lead-reactivation', 'service-drive'],
     'crm-mining-automotive-industry': ['lead-reactivation', 'custom-campaigns'],
-    'ai-mvp-car-sales-teams': ['auto-master-suite', 'speed-to-lead']
+    'ai-mvp-car-sales-teams': ['auto-master-suite', 'speed-to-lead'],
+    'why-ai-lead-handoffs-fail-modern-car-dealerships': ['speed-to-lead', 'lead-reactivation'],
+    'nada-show-2026-dealership-leaders-need-to-know-ai': ['auto-master-suite'],
+    'ai-bdc-guide-for-car-dealerships': ['auto-master-suite', 'speed-to-lead'],
+    'lead-generation-car-sales-dealership-playbook': ['lead-reactivation', 'custom-campaigns'],
+    'dealerships-review-response-time-as-much-as-lead-response-time': ['reputation-management', 'speed-to-lead'],
+    '5-ai-tools-that-will-increase-car-dealership-sales-in-q4-2025': ['auto-master-suite', 'speed-to-lead'],
+    'ai-revives-dormant-crm-data': ['lead-reactivation', 'custom-campaigns'],
+    'the-9pm-problem-dealership-revenue-leak': ['speed-to-lead', 'service-drive'],
+    'lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it': ['speed-to-lead', 'lead-reactivation'],
+    'how-to-reduce-lead-response-time-in-auto-sales': ['speed-to-lead', 'lead-reactivation']
 };

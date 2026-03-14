@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { ArrowRight, Star, ShieldCheck } from 'lucide-react';
 import { GoogleLogo, FacebookLogo, DealerRaterLogo } from '@/components/brand-assets/PlatformLogos';
 
@@ -57,6 +58,10 @@ export default function FinalCTA() {
                             Explore Enterprise
                         </button>
                     </div>
+
+                    <Link href="/book-demo" className="mt-6 inline-block text-sm text-white/30 hover:text-[#FF7404] transition-colors underline underline-offset-4 font-medium">
+                        Or visit our booking page
+                    </Link>
 
                     <div className="mt-32 pt-16 border-t border-white/5 flex flex-wrap items-center justify-center gap-x-20 gap-y-10 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
                         <GoogleLogo className="h-8 w-auto text-white" />

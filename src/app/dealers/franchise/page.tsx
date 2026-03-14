@@ -1,3 +1,4 @@
+import DealerTypeCrossLinks from '@/components/dealers/DealerTypeCrossLinks';
 'use client';
 
 import Navigation from '@/components/Navigation';
@@ -1094,6 +1095,7 @@ export default function FranchisePage() {
                 </div>
             </section>
 
+            <DealerTypeCrossLinks currentPath="/dealers/franchise" />
             <Footer />
         </main>
     );

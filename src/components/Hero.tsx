@@ -154,8 +154,18 @@ export default function Hero() {
                   variant="outline"
                   className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-white/50 hover:bg-white/5 bg-transparent text-white hover:text-white group"
                 >
-                  <Link href="#see-it-in-action">
+                  <Link href="/auto-master-suite">
                     <span>{t('hero.cta_secondary')}</span>
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full sm:w-auto h-auto px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest border-primary/50 hover:bg-primary/5 bg-transparent text-primary hover:text-primary group"
+                >
+                  <Link href="/book-demo">
+                    <span>Book a Demo</span>
                   </Link>
                 </Button>
               </motion.div>

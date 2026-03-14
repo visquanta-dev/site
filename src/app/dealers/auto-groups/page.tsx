@@ -2,6 +2,7 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import DealerTypeCrossLinks from '@/components/dealers/DealerTypeCrossLinks';
 import DealerInsights from '@/components/dealers/shared/DealerInsights';
 
 import ROICalculator from '@/components/dealers/shared/ROICalculator';
@@ -546,7 +547,7 @@ export default function AutoGroupsPage() {
                                 variants={itemVariants}
                                 className="text-xl text-zinc-400 leading-relaxed max-w-xl mb-12 font-medium"
                             >
-                                Eliminate decentralized inefficiency. The AutoMaster Suite unifies your entire portfolio under a single, high-performance revenue engine, standardizing BDC success from your flagship to your latest acquisition.
+                                Eliminate decentralized inefficiency. The <Link href="/auto-master-suite" className="text-[#FF7404] hover:underline underline-offset-2">AutoMaster Suite</Link> unifies your entire portfolio under a single, high-performance revenue engine, standardizing BDC success from your flagship to your latest acquisition.
                             </motion.p>
 
                             <motion.div
@@ -566,6 +567,18 @@ export default function AutoGroupsPage() {
                                 <p className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold">
                                     15-min 1:1 • Get an exact revenue-lift projection for your group
                                 </p>
+                                <div className="flex flex-wrap gap-4 mt-2">
+                                    <Link href="/case-studies" className="text-sm text-zinc-400 hover:text-[#FF7404] transition-colors flex items-center gap-1.5 group">
+                                        <BookOpen className="w-4 h-4" />
+                                        View Case Studies
+                                        <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                                    </Link>
+                                    <Link href="/book-demo" className="text-sm text-zinc-400 hover:text-[#FF7404] transition-colors flex items-center gap-1.5 group">
+                                        <Calendar className="w-4 h-4" />
+                                        Book a Demo
+                                        <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                                    </Link>
+                                </div>
                             </motion.div>
                         </motion.div>
 
@@ -604,7 +617,7 @@ export default function AutoGroupsPage() {
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#FF9040]">Zero Friction.</span>
                                 </h2>
                                 <p className="text-lg text-zinc-400 mb-10 leading-relaxed">
-                                    The AutoMaster Suite's Central Command acts as a high-altitude control tower for your entire portfolio. Manage Store level access, push group-level marketing cadences, and benchmark every rooftop against your gold standard: all from a single dashboard.
+                                    The <Link href="/auto-master-suite" className="text-[#FF7404] hover:underline underline-offset-2">AutoMaster Suite&apos;s</Link> Central Command acts as a high-altitude control tower for your entire portfolio. Manage Store level access, push group-level marketing cadences, and benchmark every rooftop against your gold standard: all from a single dashboard.
                                 </p>
 
                                 <div className="space-y-4">
@@ -790,7 +803,7 @@ export default function AutoGroupsPage() {
                                     Executives struggle with group-level visibility, while store managers are too bogged down in daily operations to implement group-wide initiatives.
                                 </motion.p>
                                 <motion.p variants={itemVariants}>
-                                    <strong className="text-white">The result:</strong> Inconsistent performance across rooftops, high regional overhead, and millions in lost revenue due to fragmented lead management.
+                                    <strong className="text-white">The result:</strong> Inconsistent performance across rooftops, high regional overhead, and millions in lost revenue due to fragmented <Link href="/lead-reactivation" className="text-[#FF7404] hover:underline underline-offset-2">lead management</Link> and slow <Link href="/speed-to-lead" className="text-[#FF7404] hover:underline underline-offset-2">speed to lead</Link>.
                                 </motion.p>
                             </motion.div>
                         </motion.div>
@@ -984,6 +997,29 @@ export default function AutoGroupsPage() {
                             </motion.div>
                         </RequestDemoButton>
 
+                        <div className="flex flex-wrap justify-center gap-6 mt-8">
+                            <Link href="/auto-master-suite" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                                <Layers className="w-4 h-4" />
+                                Explore the AutoMaster Suite
+                                <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                            </Link>
+                            <Link href="/speed-to-lead" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                                <Zap className="w-4 h-4" />
+                                Speed to Lead
+                                <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                            </Link>
+                            <Link href="/lead-reactivation" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                                <RefreshCw className="w-4 h-4" />
+                                Lead Reactivation
+                                <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                            </Link>
+                            <Link href="/case-studies" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                                <BookOpen className="w-4 h-4" />
+                                Case Studies
+                                <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                            </Link>
+                        </div>
+
                         {/* AEO/SEO STRUCTURED DATA */}
                         <script
                             type="application/ld+json"
@@ -1012,6 +1048,7 @@ export default function AutoGroupsPage() {
                 </div>
             </section>
 
+            <DealerTypeCrossLinks currentPath="/dealers/auto-groups" />
             <Footer />
         </main>
     );

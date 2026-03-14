@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import DealerTypeCrossLinks from '@/components/dealers/DealerTypeCrossLinks';
 import { Check, ChevronRight, Zap, Calendar, RefreshCw, BarChart3, Star, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 
@@ -277,32 +278,38 @@ export default function RVConnectPage() {
                                 {
                                     title: "Speed-to-Lead",
                                     icon: Zap,
-                                    desc: "Engage every website inquiry in under 60 seconds. 24/7 coverage ensuring no buyer goes to a competitor."
+                                    desc: "Engage every website inquiry in under 60 seconds. 24/7 coverage ensuring no buyer goes to a competitor.",
+                                    href: "/speed-to-lead" as string | null
                                 },
                                 {
                                     title: "Lead Reactivation",
                                     icon: RefreshCw,
-                                    desc: "Mine your CRM for gold. AI conversationalists wake up dormant leads and book appointments automatically."
+                                    desc: "Mine your CRM for gold. AI conversationalists wake up dormant leads and book appointments automatically.",
+                                    href: "/lead-reactivation" as string | null
                                 },
                                 {
                                     title: "Service Scheduling",
                                     icon: Calendar,
-                                    desc: "Fill your service bays. AI handles inbound service calls and texts to book maintenance without human intervention."
+                                    desc: "Fill your service bays. AI handles inbound service calls and texts to book maintenance without human intervention.",
+                                    href: null as string | null
                                 },
                                 {
                                     title: "Reputation Mgmt",
                                     icon: Star,
-                                    desc: "Protect your dealership's brand. Instant AI responses to reviews and sentiment monitoring to catch issues early."
+                                    desc: "Protect your dealership's brand. Instant AI responses to reviews and sentiment monitoring to catch issues early.",
+                                    href: null as string | null
                                 },
                                 {
                                     title: "Smart Site Widget",
                                     icon: MessageSquare,
-                                    desc: "Convert more visitors. A proactive chat widget that qualifies trade-ins and schedules test drives instantly."
+                                    desc: "Convert more visitors. A proactive chat widget that qualifies trade-ins and schedules test drives instantly.",
+                                    href: null as string | null
                                 },
                                 {
                                     title: "Lifecycle Automation",
                                     icon: BarChart3,
-                                    desc: "Right message, right time. Automated seasonal campaigns for winterization, de-winterization, and trade-ups."
+                                    desc: "Right message, right time. Automated seasonal campaigns for winterization, de-winterization, and trade-ups.",
+                                    href: null as string | null
                                 }
                             ].map((feature, i) => (
                                 <motion.div
@@ -315,13 +322,39 @@ export default function RVConnectPage() {
                                     </div>
                                     <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#ff6b00] transition-colors">{feature.title}</h3>
                                     <p className="text-sm text-neutral-400 leading-relaxed">{feature.desc}</p>
+                                    {feature.href && (
+                                        <Link href={feature.href} className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-[#ff6b00] hover:text-orange-400 transition-colors">
+                                            Learn more <ChevronRight className="w-4 h-4" />
+                                        </Link>
+                                    )}
                                 </motion.div>
                             ))}
+                        </div>
+
+                        {/* CTA Section */}
+                        <div className="mt-16 text-center space-y-6">
+                            <p className="text-neutral-400 max-w-2xl mx-auto">
+                                These features are part of the{' '}
+                                <Link href="/auto-master-suite" className="text-[#ff6b00] hover:text-orange-400 font-medium transition-colors">
+                                    Auto Master Suite
+                                </Link>
+                                {' '}&mdash; our complete AI platform for dealerships.
+                            </p>
+                            <div>
+                                <Link
+                                    href="/book-demo"
+                                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#ff6b00] to-orange-600 text-white font-bold rounded-lg shadow-lg hover:shadow-[#ff6b00]/25 hover:scale-[1.02] transform transition-all duration-300 group"
+                                >
+                                    <span>Book a Demo</span>
+                                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </div>
                         </div>
                     </motion.section>
                 </div>
             </div>
 
+            <DealerTypeCrossLinks currentPath="/dealers/rv" />
             <Footer />
         </div>
     );

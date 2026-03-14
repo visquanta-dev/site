@@ -1,3 +1,4 @@
+import DealerTypeCrossLinks from '@/components/dealers/DealerTypeCrossLinks';
 'use client';
 
 import Navigation from '@/components/Navigation';
@@ -1055,6 +1056,7 @@ export default function PreOwnedPage() {
                 }}
             />
 
+            <DealerTypeCrossLinks currentPath="/dealers/pre-owned" />
             <Footer />
         </main >
     );
