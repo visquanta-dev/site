@@ -389,7 +389,6 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-    return [
       {
         source: '/guides/:path*.pdf',
         headers: [
