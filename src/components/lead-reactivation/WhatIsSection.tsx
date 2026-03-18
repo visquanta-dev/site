@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { BookOpen, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { BookOpen } from 'lucide-react';
 
 export default function WhatIsSection() {
     return (
@@ -50,23 +49,7 @@ export default function WhatIsSection() {
                             </div>
                         </div>
 
-                        {/* Differentiator */}
-                        <div className="bg-gradient-to-br from-[#FF7404]/[0.08] to-[#FF7404]/[0.02] border border-[#FF7404]/20 rounded-2xl p-8">
-                            <p className="text-white/60 leading-relaxed">
-                                <strong className="text-[#FF7404]">The difference:</strong> Tools like Podium, Impel, and Drivee focus on responding to <em>new</em> leads. We focus on the leads they've already stopped working: the 95% of your database that's currently being ignored.
-                            </p>
-                        </div>
 
-                        {/* Links */}
-                        <div className="mt-10 flex flex-wrap gap-6">
-                            <Link href="/case-studies" className="group flex items-center gap-2 text-sm text-[#FF7404] hover:underline font-medium">
-                                See dealership results
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </Link>
-                            <Link href="/speed-to-lead" className="text-sm text-white/40 hover:text-white/60 transition-colors">
-                                Learn about Speed to Lead
-                            </Link>
-                        </div>
                     </motion.div>
                 </div>
             </div>
