@@ -1,0 +1,433 @@
+{
+  "agent_name": "[YOUR BUSINESS NAME] - AI Receptionist",
+  "channel": "voice",
+  "response_engine": {
+    "type": "conversation-flow",
+    "version": 6,
+    "conversation_flow_id": "conversation_flow_template"
+  },
+  "webhook_url": "https://your-backend.com/webhook/voice-agent",
+  "webhook_timeout_ms": 11500,
+  "language": "en-US",
+  "data_storage_setting": "everything",
+  "end_call_after_silence_ms": 68000,
+  "post_call_analysis_data": [
+    {
+      "type": "string",
+      "name": "caller_name",
+      "description": "The caller's first name"
+    },
+    {
+      "type": "string",
+      "name": "reason_for_call",
+      "description": "What the caller needs help with"
+    },
+    {
+      "type": "string",
+      "name": "callback_time",
+      "description": "The caller's preferred callback time"
+    },
+    {
+      "type": "number",
+      "name": "phone_number",
+      "description": "Caller's phone number"
+    },
+    {
+      "name": "department",
+      "description": "Which department the caller wanted to reach",
+      "type": "enum",
+      "choices": ["Sales", "Service", "Support", "Admin"]
+    },
+    {
+      "name": "transfer_successful",
+      "description": "Was the transfer successful",
+      "type": "enum",
+      "choices": ["Yes", "No - Left Message", "No - Declined Message"]
+    }
+  ],
+  "post_call_analysis_model": "gpt-4.1-mini",
+  "analysis_successful_prompt": "Evaluate whether the agent had a successful call with the user. For a successful call, the agent should have a complete conversation with user, finished the task, and have not ran into technical issues, or caused user frustration.",
+  "analysis_summary_prompt": "Write a 1-3 sentence summary of the call based on the call transcript.",
+  "analysis_user_sentiment_prompt": "Evaluate user's sentiment, mood and satisfaction level.",
+  "voice_id": "elevenlabs_voice_id",
+  "voice_model": "eleven_turbo_v2_5",
+  "voice_temperature": 1,
+  "voice_speed": 1,
+  "enable_backchannel": true,
+  "backchannel_words": ["yeah", "mhm", "sure", "okay", "right", "uh-huh"],
+  "max_call_duration_ms": 390000,
+  "interruption_sensitivity": 0.7,
+  "ambient_sound": "call-center",
+  "ambient_sound_volume": 0.6,
+  "responsiveness": 0.9,
+  "normalize_for_speech": true,
+  "conversationFlow": {
+    "conversation_flow_id": "conversation_flow_template",
+    "version": 6,
+    "global_prompt": "## Identity\nYou are [NAME], working as receptionist at [YOUR BUSINESS NAME].\n\n## Personality\nYou're warm, professional, and genuinely helpful. You care about the people who call in.\n- Say \"please\" when asking for information\n- Say \"thank you\" when they give you something\n- Use natural phrases like \"sure thing,\" \"no worries,\" \"of course,\" \"happy to help\"\n- Be conversational, not corporate\n- If someone's frustrated, be patient and empathetic\n\n## Dynamic Variables\n- {{call_mode}}: \"overflow\" = open but busy, \"after_hours\" = closed\n- {{current_time_America/Chicago}}: Use for time-of-day greetings\n\n## Business Hours\n- Monday to Friday: 9:00 AM to 5:00 PM\n- Saturday: Closed\n- Sunday: Closed\n\n## Departments\n[YOUR BUSINESS NAME] has four departments: Sales, Service, Support, and Admin.\n\n## What You Do\n- Route callers to the correct department\n- If transfer fails or we're closed, take messages\n- Collect: name, phone, reason, callback preference\n- Ask ONE question at a time\n\n## What You Don't Do\n- No appointments, pricing, or detailed product info\n- If asked about something you can't help with: \"I'll make sure to include that in your message.\"\n\n## Speech Rules\n- Phone numbers: Read as individual digits with 3-3-4 grouping (\"four zero five... six nine eight... six seven four four\")\n- Time: \"seven thirty AM\"\n- Use first names after collecting\n\n## Core Rules\n- Answer questions first before pushing for information collection\n- Be brief and natural - don't sound like you're reading a script",
+    "nodes": [
+      {
+        "id": "node-start",
+        "name": "Entry Logic",
+        "type": "branch",
+        "edges": [
+          {
+            "id": "edge-to-afterhours",
+            "destination_node_id": "node-greeting-afterhours",
+            "transition_condition": {
+              "type": "equation",
+              "equations": [{"left": "{{call_mode}}", "operator": "==", "right": "after_hours"}]
+            }
+          }
+        ],
+        "else_edge": {
+          "id": "edge-to-overflow",
+          "destination_node_id": "node-greeting-overflow",
+          "transition_condition": {"type": "prompt", "prompt": "Else"}
+        }
+      },
+      {
+        "id": "node-greeting-overflow",
+        "name": "Greeting - Open",
+        "type": "conversation",
+        "start_speaker": "agent",
+        "instruction": {
+          "type": "prompt",
+          "text": "Greet the caller warmly. The business is open but the team is busy.\n\nInclude:\n- This is [YOUR BUSINESS NAME]\n- Your name\n- The team is tied up on other lines\n- Ask how you can help\n\nUse current time for appropriate greeting (morning/afternoon/evening)."
+        },
+        "edges": [
+          {
+            "id": "edge-overflow-to-routing",
+            "destination_node_id": "node-department-routing",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller stated their reason or needs help"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-greeting-afterhours",
+        "name": "Greeting - Closed",
+        "type": "conversation",
+        "start_speaker": "agent",
+        "instruction": {
+          "type": "prompt",
+          "text": "Greet the caller warmly. The business is closed.\n\nInclude:\n- This is [YOUR BUSINESS NAME]\n- Your name\n- We're closed right now\n- Offer to take a message\n\nUse current time for appropriate greeting."
+        },
+        "edges": [
+          {
+            "id": "edge-afterhours-to-collect",
+            "destination_node_id": "node-collect-name-afterhours",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller wants to leave a message"
+            }
+          },
+          {
+            "id": "edge-afterhours-decline",
+            "destination_node_id": "node-end-declined",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller declines to leave message"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-department-routing",
+        "name": "Route to Department",
+        "type": "branch",
+        "edges": [
+          {
+            "id": "edge-to-sales",
+            "destination_node_id": "node-transfer-sales",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller needs Sales department"
+            }
+          },
+          {
+            "id": "edge-to-service",
+            "destination_node_id": "node-transfer-service",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller needs Service department"
+            }
+          },
+          {
+            "id": "edge-to-support",
+            "destination_node_id": "node-transfer-support",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller needs Support department"
+            }
+          }
+        ],
+        "else_edge": {
+          "id": "edge-to-ask-dept",
+          "destination_node_id": "node-ask-department",
+          "transition_condition": {"type": "prompt", "prompt": "Else"}
+        }
+      },
+      {
+        "id": "node-ask-department",
+        "name": "Ask Department",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask which department they need: Sales, Service, Support, or Admin."
+        },
+        "edges": [
+          {
+            "id": "edge-dept-to-routing",
+            "destination_node_id": "node-department-routing",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller indicated department"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-transfer-sales",
+        "name": "Transfer to Sales",
+        "type": "transfer_call",
+        "transfer_destination": {
+          "type": "predefined",
+          "number": "+1234567890",
+          "extension": ""
+        },
+        "transfer_option": {
+          "type": "cold_transfer",
+          "opt_out_human_detection": true,
+          "opt_out_initial_message": true
+        },
+        "edge": {
+          "id": "edge-transfer-fail",
+          "destination_node_id": "node-transfer-failed",
+          "transition_condition": {"type": "prompt", "prompt": "Transfer failed"}
+        },
+        "speak_during_execution": false
+      },
+      {
+        "id": "node-transfer-service",
+        "name": "Transfer to Service",
+        "type": "transfer_call",
+        "transfer_destination": {
+          "type": "predefined",
+          "number": "+1234567890",
+          "extension": ""
+        },
+        "transfer_option": {
+          "type": "cold_transfer",
+          "opt_out_human_detection": true,
+          "opt_out_initial_message": true
+        },
+        "edge": {
+          "id": "edge-transfer-fail-2",
+          "destination_node_id": "node-transfer-failed",
+          "transition_condition": {"type": "prompt", "prompt": "Transfer failed"}
+        },
+        "speak_during_execution": false
+      },
+      {
+        "id": "node-transfer-support",
+        "name": "Transfer to Support",
+        "type": "transfer_call",
+        "transfer_destination": {
+          "type": "predefined",
+          "number": "+1234567890",
+          "extension": ""
+        },
+        "transfer_option": {
+          "type": "cold_transfer",
+          "opt_out_human_detection": true,
+          "opt_out_initial_message": true
+        },
+        "edge": {
+          "id": "edge-transfer-fail-3",
+          "destination_node_id": "node-transfer-failed",
+          "transition_condition": {"type": "prompt", "prompt": "Transfer failed"}
+        },
+        "speak_during_execution": false
+      },
+      {
+        "id": "node-transfer-failed",
+        "name": "Transfer Failed - Offer Message",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Apologize that no one is available. Offer to take a message for callback."
+        },
+        "edges": [
+          {
+            "id": "edge-failed-to-collect",
+            "destination_node_id": "node-collect-name-failed",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller wants to leave message"
+            }
+          },
+          {
+            "id": "edge-failed-decline",
+            "destination_node_id": "node-end-declined",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller declines"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-name-afterhours",
+        "name": "Collect Name - After Hours",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for their first name, please."
+        },
+        "edges": [
+          {
+            "id": "edge-name-ah-to-phone",
+            "destination_node_id": "node-collect-phone",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller provided name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-name-failed",
+        "name": "Collect Name - Transfer Failed",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for their first name, please."
+        },
+        "edges": [
+          {
+            "id": "edge-name-fail-to-phone",
+            "destination_node_id": "node-collect-phone",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller provided name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-phone",
+        "name": "Collect Phone Number",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for their callback number. Read it back in 3-3-4 digit groups for confirmation."
+        },
+        "edges": [
+          {
+            "id": "edge-phone-to-reason",
+            "destination_node_id": "node-collect-reason",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller confirmed phone number"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-reason",
+        "name": "Collect Reason",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask what they're calling about. Just get enough detail for the team to know what to expect."
+        },
+        "edges": [
+          {
+            "id": "edge-reason-to-callback",
+            "destination_node_id": "node-collect-callback",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller explained reason"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-callback",
+        "name": "Collect Callback Preference",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask when is best time for callback."
+        },
+        "edges": [
+          {
+            "id": "edge-callback-to-confirm",
+            "destination_node_id": "node-confirm-details",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller provided preference"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-confirm-details",
+        "name": "Confirm All Details",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Read back: name, phone (in digits), reason, and callback time. Ask if all correct."
+        },
+        "edges": [
+          {
+            "id": "edge-confirm-to-end",
+            "destination_node_id": "node-end-success",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller confirmed all correct"
+            }
+          },
+          {
+            "id": "edge-confirm-fix-phone",
+            "destination_node_id": "node-collect-phone",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller wants to correct phone"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-end-success",
+        "name": "End - Message Taken",
+        "type": "end",
+        "speak_during_execution": true,
+        "instruction": {
+          "type": "prompt",
+          "text": "Thank them warmly. Let them know someone will reach out. Use appropriate time-based goodbye."
+        }
+      },
+      {
+        "id": "node-end-declined",
+        "name": "End - Declined",
+        "type": "end",
+        "speak_during_execution": true,
+        "instruction": {
+          "type": "prompt",
+          "text": "Be gracious. Invite them to call back anytime. Use appropriate goodbye."
+        }
+      }
+    ],
+    "start_node_id": "node-start",
+    "start_speaker": "agent",
+    "model_choice": {
+      "type": "cascading",
+      "model": "gemini-2.5-flash"
+    },
+    "model_temperature": 0.4
+  }
+}

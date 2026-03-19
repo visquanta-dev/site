@@ -1,0 +1,15 @@
+{
+  "clients": {
+    "visquanta": {
+      "name": "Visquanta (Car Dealerships)",
+      "api_key": "YOUR_VISQUANTA_API_KEY_HERE",
+      "description": "Car dealership voice agents"
+    },
+    "onriseai": {
+      "name": "OnRiseAI",
+      "api_key": "key_64447ef0aad616b71a390886f600",
+      "description": "OnRiseAI client projects"
+    }
+  },
+  "default_client": "onriseai"
+}

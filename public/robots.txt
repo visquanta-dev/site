@@ -1,57 +1,46 @@
-# VisQuanta robots.txt — Corrected User-Agent grouping
+# VisQuanta robots.txt
 
-# Default rules for all crawlers
-User-Agent: *
+User-agent: *
 Allow: /
 Allow: /ca/
 Disallow: /api/
 Disallow: /admin/
 Disallow: /portal/
 
-# AI crawlers — explicit allow for LLM content
-User-Agent: GPTBot
+# Explicit Google crawler rule
+User-agent: Googlebot
 Allow: /
 Allow: /ca/
-Allow: /llms.txt
-Allow: /llms-full.txt
-Disallow: /api/
-Disallow: /admin/
-Disallow: /portal/
 
-User-Agent: ClaudeBot
+# AI crawler access for LLM retrieval
+User-agent: GPTBot
 Allow: /
 Allow: /ca/
 Allow: /llms.txt
 Allow: /llms-full.txt
-Disallow: /api/
-Disallow: /admin/
-Disallow: /portal/
 
-User-Agent: Claude-Web
+User-agent: ClaudeBot
 Allow: /
 Allow: /ca/
 Allow: /llms.txt
 Allow: /llms-full.txt
-Disallow: /api/
-Disallow: /admin/
-Disallow: /portal/
 
-User-Agent: PerplexityBot
+User-agent: Claude-Web
 Allow: /
 Allow: /ca/
 Allow: /llms.txt
 Allow: /llms-full.txt
-Disallow: /api/
-Disallow: /admin/
-Disallow: /portal/
 
-User-Agent: Google-Extended
+User-agent: PerplexityBot
 Allow: /
 Allow: /ca/
 Allow: /llms.txt
 Allow: /llms-full.txt
-Disallow: /api/
-Disallow: /admin/
-Disallow: /portal/
+
+User-agent: Google-Extended
+Allow: /
+Allow: /ca/
+Allow: /llms.txt
+Allow: /llms-full.txt
 
 Sitemap: https://www.visquanta.com/sitemap-us.xml

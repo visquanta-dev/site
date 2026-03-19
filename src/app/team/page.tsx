@@ -138,7 +138,13 @@ const teamLayers: TeamLayer[] = [
                 email: "mueland@visquanta.com",
 
             },
+            {
+                name: "Herman Sullivan",
+                role: "Client Success Manager",
+                image: "/team/herman-sullivan.jpg",
+                email: "hsullivan@visquanta.com",
 
+            },
             {
                 name: "Ellison Riviera",
                 role: "Client Account Lead",
@@ -154,7 +160,6 @@ const teamLayers: TeamLayer[] = [
                 email: "jcabatingan@visquanta.com",
 
             },
-
             {
                 name: "Jonas Saycon",
                 role: "Client Account Specialist",

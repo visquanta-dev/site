@@ -1,0 +1,37 @@
+{
+  "skill_name": "retellai-conversation-flow",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to upgrade Lake Hartwell Chevrolet from after-hours only to always-on. They want the same departments as Oklahoma City Volkswagen has: Sales, Service, Parts, Finance, and Admin. Keep Sophie as the receptionist and the same hours (Mon-Fri 8 AM-5:30 PM, Sat 8 AM-1 PM, closed Sunday). Add department routing with transfers (leave phone numbers/extensions blank for now - they'll fill them in). When transfers fail, fall back to message taking like before. Make sure it handles both overflow mode (busy) and after-hours mode (closed).",
+      "expected_output": "A complete upgraded Retell AI conversation flow JSON file with:\n- All 5 departments added: Sales, Service, Parts, Finance, Admin\n- Department routing logic (branch node with edges for each department)\n- Transfer nodes for each department (with blank/placeholder phone numbers)\n- Transfer failure handling that falls back to message taking\n- Both overflow and after-hours modes (using call_mode logic split)\n- Updated post_call_analysis_data to include department enum with all 5 departments\n- Sophie's personality and all existing configurations preserved\n- Same business hours maintained\n- Clear explanation of changes made\n- API update command to deploy",
+      "files": [
+        {
+          "path": "A:\\Downloads\\Lake Hartwell Chevrolet - After Hours.json",
+          "description": "Current after-hours flow to be upgraded"
+        },
+        {
+          "path": "A:\\Downloads\\Oklahoma City Volkswagen - Stacey AI Receptionist LIVE (3).json",
+          "description": "Reference for department structure and transfer patterns"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need to create an after-hours only voice agent for Metro Nissan Parts and Service Center. This bot only runs when the service and parts departments are closed (weekdays after 6 PM, weekends all day). It should greet callers, explain that service and parts are closed, and collect messages for callbacks. No transfers - just message taking. Collect name, phone, which department they need (Parts or Service), what they need help with, and preferred callback time. Keep it simple and efficient. The service team opens at 7 AM weekdays, 8 AM Saturdays, closed Sundays.",
+      "expected_output": "A streamlined Retell AI conversation flow JSON file with:\n- After-hours only configuration (no overflow mode, just after_hours)\n- Simplified flow: greeting → collect name → phone → department (Parts/Service) → reason → callback time → confirm → end\n- No transfer nodes (message-taking only)\n- Clear after-hours messaging in global_prompt\n- Business hours explanation for callback expectations\n- Post-call analysis extracting: name, phone, department (Parts/Service enum), reason, callback_time\n- Professional but empathetic tone\n- Setup and deployment instructions",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Let's use retellai to modify the Oklahoma City Volkswagen flow. They want to add a 'Body Shop' department for collision repairs, and they need the bot to ask callers if they have insurance or are paying out of pocket before transferring to body shop. Body shop transfer is ext 8899. Also update the greeting to mention they're now 'Oklahoma City Volkswagen and Collision Center'.",
+      "expected_output": "Modified Oklahoma City Volkswagen conversation flow with:\n- Updated agent_name to include 'and Collision Center'\n- New 'Body Shop' option added to department routing logic\n- New conversation node asking about insurance vs out-of-pocket before body shop transfer\n- New transfer node for Body Shop (ext 8899)\n- Updated post_call_analysis_data enum to include 'Body Shop'\n- Updated global_prompt with new business name in identity section\n- Clear explanation of changes made\n- API update command to deploy the changes",
+      "files": [
+        {
+          "path": "A:\\Downloads\\Oklahoma City Volkswagen - Stacey AI Receptionist LIVE (3).json",
+          "description": "Existing flow to be modified with Body Shop department"
+        }
+      ]
+    }
+  ]
+}

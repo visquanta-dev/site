@@ -1,0 +1,1058 @@
+{
+  "agent_name": "Mia - Adrian Law's Office Assistant",
+  "channel": "voice",
+  "response_engine": {
+    "type": "conversation-flow",
+    "conversation_flow_id": "conversation_flow_mia_adrian"
+  },
+  "webhook_url": "YOUR_N8N_WEBHOOK_URL_HERE",
+  "language": "en-AU",
+  "voice_id": "21m00Tcm4TlvDq8ikWAM",
+  "voice_model": "eleven_turbo_v2_5",
+  "voice_temperature": 1,
+  "voice_speed": 1,
+  "interruption_sensitivity": 0.7,
+  "responsiveness": 0.9,
+  "enable_backchannel": true,
+  "backchannel_words": ["yeah", "mhm", "okay", "right", "sure"],
+  "ambient_sound": "office",
+  "ambient_sound_volume": 0.4,
+  "enable_transcription": true,
+  "enable_recording": true,
+  "opt_out_sensitive_data_storage": false,
+  "pronunciation_dictionary": [
+    {
+      "word": "DTMF",
+      "alphabet": "ipa",
+      "phoneme": "diː tiː ɛm ɛf"
+    }
+  ],
+  "post_call_analysis_data": [
+    {
+      "type": "enum",
+      "name": "category",
+      "description": "Which option/category the caller selected",
+      "choices": ["revenue_recovery", "training_enquiry", "tims_crew", "next_level_selling", "general_enquiry"]
+    },
+    {
+      "type": "string",
+      "name": "name",
+      "description": "The caller's full name"
+    },
+    {
+      "type": "string",
+      "name": "company_or_dealership",
+      "description": "The company name or dealership name the caller is from"
+    },
+    {
+      "type": "string",
+      "name": "phone",
+      "description": "The caller's phone number in the format they provided"
+    },
+    {
+      "type": "string",
+      "name": "email",
+      "description": "The caller's email address if provided (optional field)"
+    },
+    {
+      "type": "string",
+      "name": "best_time_to_call",
+      "description": "When the caller prefers to be called back"
+    },
+    {
+      "type": "string",
+      "name": "role",
+      "description": "The caller's job title or role if mentioned"
+    },
+    {
+      "type": "string",
+      "name": "type_of_enquiry",
+      "description": "What the caller's enquiry or message is about in their own words"
+    },
+    {
+      "type": "string",
+      "name": "message",
+      "description": "A summary of what the caller said about their enquiry"
+    },
+    {
+      "type": "boolean",
+      "name": "is_dealership",
+      "description": "Whether the caller confirmed they are calling from a dealership (relevant for revenue_recovery)"
+    }
+  ],
+  "conversationFlow": {
+    "conversation_flow_id": "conversation_flow_mia_adrian",
+    "model_choice": {
+      "type": "cascading",
+      "model": "gemini-2.5-flash",
+      "high_priority": false
+    },
+    "model_temperature": 0.4,
+    "post_call_analysis_model": "gpt-4.1-mini",
+    "global_prompt": "## Identity\n\nYou are Mia, Adrian Law's AI office assistant. You answer all inbound calls to Adrian's office. You are professional, warm, efficient, and Australian in tone — natural and approachable, never robotic or overly formal. You get to the point without waffling.\n\n## Your Goal\n\nEvery call you handle has three objectives:\n1. Capture a qualified lead — collect the caller's details and reason for calling\n2. Send Adrian a notification — the system handles this automatically after the call, you don't need to mention it\n3. Optionally offer to connect the caller to Adrian directly (only if warm transfer is enabled)\n\n## What You Don't Do\n\n- You do NOT provide pricing, quotes, or detailed consulting advice about any of Adrian's products or services\n- You do NOT book appointments or access any calendar\n- You do NOT answer technical questions about the programs — you capture the enquiry and pass it to Adrian\n- If someone pushes for detail you can't give, let them know Adrian would be the best person to answer that and you'll make sure he gets back to them\n\n## If Someone Asks About You\n\nYou're happy to tell people you're Mia, Adrian's AI assistant — you help manage his calls and make sure enquiries get to the right place. If someone directly asks whether you're a real person or AI, be honest. Never pretend to be human.\n\n## If Someone Wants Adrian Directly\n\nLet them know Adrian isn't available to take calls directly right now, but you can take their details and make sure he gets back to them. Then proceed with collecting their information.\n\n## Collecting Phone Numbers\n\nWhenever you collect a phone number, always read it back to the caller digit by digit to confirm you have it right. For example: \"Just to confirm, that's 0-4-1-2-3-4-5-6-7-8?\"\n\n## Tone & Style\n\n- Warm, professional, efficient\n- Australian-natural — conversational, not corporate\n- Concise — don't over-explain or repeat yourself unnecessarily\n- Reassuring — make every caller feel like their enquiry matters and will be handled\n- Never use filler phrases like \"absolutely\" or \"great question\" excessively\n- Vary your responses — don't repeat the same line twice",
+    "start_node_id": "node-greeting",
+    "nodes": [
+      {
+        "id": "node-greeting",
+        "name": "Greeting & Menu",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Greet the caller warmly and introduce yourself as Mia, Adrian Law's office assistant. Then present the five menu options clearly. Let them know they can say what they need OR press a number on their keypad:\n\n1. Automotive Stars Revenue Recovery Model — for dealerships interested in the AI system that captures missed service calls\n2. Automotive Stars Training Enquiries — for anyone interested in training programs\n3. Tim's Crew — for anything related to Tim's Crew\n4. Next Level Selling — for enquiries about the Next Level Selling program\n5. General enquiry or anything else\n\nSpeak naturally — you don't need to say 'press 1' for every option, just mention it once at the start. Keep it conversational."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-router",
+            "destination_node_id": "node-menu-router",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has indicated which option they want (either by speaking or DTMF), or said something that clearly fits one of the categories"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-menu-router",
+        "name": "Menu Router",
+        "type": "branch",
+        "edges": [
+          {
+            "id": "edge-option-1",
+            "destination_node_id": "node-revenue-recovery-check",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller selected option 1, Revenue Recovery Model, or mentioned dealership AI, service calls, revenue recovery, automotive AI system, or pressed 1 on keypad"
+            }
+          },
+          {
+            "id": "edge-option-2",
+            "destination_node_id": "node-training-intro",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller selected option 2, Training Enquiries, training programs, or pressed 2 on keypad"
+            }
+          },
+          {
+            "id": "edge-option-3",
+            "destination_node_id": "node-tims-crew-intro",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller selected option 3, Tim's Crew, or pressed 3 on keypad"
+            }
+          },
+          {
+            "id": "edge-option-4",
+            "destination_node_id": "node-next-level-selling-intro",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller selected option 4, Next Level Selling, or pressed 4 on keypad"
+            }
+          },
+          {
+            "id": "edge-option-5",
+            "destination_node_id": "node-general-enquiry-intro",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller selected option 5, general enquiry, or pressed 5 on keypad, or their request doesn't clearly fit options 1-4"
+            }
+          }
+        ],
+        "else_edge": {
+          "id": "edge-clarify",
+          "destination_node_id": "node-clarify-menu",
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Else - caller's response was unclear or they didn't choose an option"
+          }
+        }
+      },
+      {
+        "id": "node-clarify-menu",
+        "name": "Clarify Menu Selection",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "The caller's response wasn't clear. Gently ask them to tell you what they're calling about, or which option sounds right. Keep it natural and reassuring — 'No worries, just tell me what you're calling about and I'll point you in the right direction.' Then re-present the 5 options briefly if needed."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-back-to-router",
+            "destination_node_id": "node-menu-router",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has now indicated which option they want"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-revenue-recovery-check",
+        "name": "Revenue Recovery - Check Dealership",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "The caller selected Revenue Recovery. First, ask if they're calling from a dealership. Keep it simple: 'Are you calling from a dealership?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-is-dealership",
+            "destination_node_id": "node-revenue-recovery-explain",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller confirmed they are from a dealership (yes, we are, I work at a dealership, etc.)"
+            }
+          },
+          {
+            "id": "edge-not-dealership",
+            "destination_node_id": "node-not-dealership",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller said no, they are not from a dealership"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-not-dealership",
+        "name": "Not a Dealership - Redirect",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Let them know the Revenue Recovery system is specifically designed for automotive dealerships. Offer to take a message for Adrian or help them with something else. If they want to leave a message, route to general enquiry collection. If they're done, thank them and end the call."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-general",
+            "destination_node_id": "node-general-enquiry-intro",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller wants to leave a message or enquire about something else"
+            }
+          },
+          {
+            "id": "edge-end-call",
+            "destination_node_id": "node-end",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller is done and ready to hang up"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-revenue-recovery-explain",
+        "name": "Revenue Recovery - Explain & Collect",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Great, they're from a dealership. Briefly explain that the Revenue Recovery system helps dealerships capture missed service calls and convert them into booked repair orders. Keep it to 1-2 sentences. Then say you'll grab a few details so Adrian can get back to them. Start by asking for their name."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-name",
+            "destination_node_id": "node-collect-dealership-name",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided their name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-dealership-name",
+        "name": "Collect Dealership Name",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for the dealership name. 'And which dealership are you with?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-phone",
+            "destination_node_id": "node-collect-phone-revenue",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided the dealership name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-phone-revenue",
+        "name": "Collect Phone - Revenue Recovery",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for their phone number. 'What's the best number to reach you on?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-confirm-phone",
+            "destination_node_id": "node-confirm-phone-revenue",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided a phone number"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-confirm-phone-revenue",
+        "name": "Confirm Phone Number",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Read the phone number back to the caller digit by digit to confirm. For example: 'Just to confirm, that's 0-4-1-2-3-4-5-6-7-8?' Wait for their confirmation before proceeding."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-phone-correct",
+            "destination_node_id": "node-collect-email-revenue",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller confirmed the phone number is correct (yes, correct, that's right, etc.)"
+            }
+          },
+          {
+            "id": "edge-phone-incorrect",
+            "destination_node_id": "node-collect-phone-revenue",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller said the phone number is wrong or wants to correct it"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-email-revenue",
+        "name": "Collect Email - Revenue Recovery",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask if they'd like to provide an email address. Keep it optional — 'And do you have an email you'd like me to note down?' If they decline or say no, that's fine, move on."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-best-time",
+            "destination_node_id": "node-collect-best-time-revenue",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided email or declined to provide one"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-best-time-revenue",
+        "name": "Collect Best Time - Revenue Recovery",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask when is the best time for Adrian to call them back. 'And when's the best time for Adrian to give you a call?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-closing",
+            "destination_node_id": "node-closing-revenue",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided their preferred callback time"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-closing-revenue",
+        "name": "Closing - Revenue Recovery",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Confirm that Adrian will review their enquiry and get back to them shortly. Thank them for calling. 'Perfect, I've got all that. Adrian will take a look at your enquiry and get back to you. Thanks for calling!'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-end",
+            "destination_node_id": "node-end",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller is ready to end the call"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-training-intro",
+        "name": "Training Enquiries - Intro",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Let them know you can help with their training enquiry. 'No worries, I can help with that. Let me grab a few details.' Start by asking for their name."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-role",
+            "destination_node_id": "node-collect-role-training",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided their name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-role-training",
+        "name": "Collect Role - Training",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for their role or position. 'And what's your role or position?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-company",
+            "destination_node_id": "node-collect-company-training",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided their role"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-company-training",
+        "name": "Collect Company - Training",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask which company or dealership they're with. 'Which company or dealership are you with?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-enquiry",
+            "destination_node_id": "node-collect-enquiry-training",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided company/dealership name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-enquiry-training",
+        "name": "Collect Training Type",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask what type of training they're interested in. Let them describe it in their own words. 'And what type of training are you interested in?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-phone",
+            "destination_node_id": "node-collect-phone-training",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has described the training they're interested in"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-phone-training",
+        "name": "Collect Phone - Training",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for their phone number. 'What's the best number to reach you on?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-confirm-phone",
+            "destination_node_id": "node-confirm-phone-training",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided a phone number"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-confirm-phone-training",
+        "name": "Confirm Phone - Training",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Read the phone number back digit by digit to confirm. Wait for confirmation."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-phone-correct",
+            "destination_node_id": "node-collect-email-training",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller confirmed the phone number is correct"
+            }
+          },
+          {
+            "id": "edge-phone-incorrect",
+            "destination_node_id": "node-collect-phone-training",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller said the phone number is wrong"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-email-training",
+        "name": "Collect Email - Training",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask if they'd like to provide an email. Optional. 'And do you have an email you'd like me to note down?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-best-time",
+            "destination_node_id": "node-collect-best-time-training",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller provided email or declined"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-best-time-training",
+        "name": "Collect Best Time - Training",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask when is the best time to call. 'When's the best time for Adrian to give you a call?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-closing",
+            "destination_node_id": "node-closing-training",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided callback time"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-closing-training",
+        "name": "Closing - Training",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Confirm Adrian will review and get back to them. Thank them. 'Perfect, I've got all that. Adrian will review your training enquiry and be in touch. Thanks for calling!'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-end",
+            "destination_node_id": "node-end",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Call is ending"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-tims-crew-intro",
+        "name": "Tim's Crew - Intro",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Let them know you'll grab a few details about their Tim's Crew enquiry. Start by asking for their name."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-enquiry",
+            "destination_node_id": "node-collect-enquiry-tims-crew",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided their name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-enquiry-tims-crew",
+        "name": "Collect Enquiry - Tim's Crew",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask what they're calling about. Keep it open-ended — could be a partnership, general info, or something else. 'And what's your call about today?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-phone",
+            "destination_node_id": "node-collect-phone-tims-crew",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has explained what they're calling about"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-phone-tims-crew",
+        "name": "Collect Phone - Tim's Crew",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for their phone number. 'What's the best number to reach you on?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-confirm-phone",
+            "destination_node_id": "node-confirm-phone-tims-crew",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has provided phone number"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-confirm-phone-tims-crew",
+        "name": "Confirm Phone - Tim's Crew",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Read the phone number back digit by digit to confirm."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-phone-correct",
+            "destination_node_id": "node-collect-email-tims-crew",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Phone number confirmed correct"
+            }
+          },
+          {
+            "id": "edge-phone-incorrect",
+            "destination_node_id": "node-collect-phone-tims-crew",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Phone number is wrong"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-email-tims-crew",
+        "name": "Collect Email - Tim's Crew",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask if they'd like to provide an email. Optional."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-best-time",
+            "destination_node_id": "node-collect-best-time-tims-crew",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Email provided or declined"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-best-time-tims-crew",
+        "name": "Collect Best Time - Tim's Crew",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask when is the best time to call."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-closing",
+            "destination_node_id": "node-closing-tims-crew",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Callback time provided"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-closing-tims-crew",
+        "name": "Closing - Tim's Crew",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Confirm Adrian will get back to them. Thank them for calling."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-end",
+            "destination_node_id": "node-end",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Call ending"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-next-level-selling-intro",
+        "name": "Next Level Selling - Intro",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Let them know you'll grab a few details about their Next Level Selling enquiry. Start by asking for their name."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-org",
+            "destination_node_id": "node-collect-org-nls",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Name provided"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-org-nls",
+        "name": "Collect Organisation - Next Level Selling",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for their organisation name. 'Which organisation are you with?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-enquiry",
+            "destination_node_id": "node-collect-enquiry-nls",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Organisation name provided"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-enquiry-nls",
+        "name": "Collect Enquiry - Next Level Selling",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask what their enquiry is about. Keep it open-ended. 'And what's your enquiry about?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-phone",
+            "destination_node_id": "node-collect-phone-nls",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Enquiry described"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-phone-nls",
+        "name": "Collect Phone - Next Level Selling",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for phone number."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-confirm-phone",
+            "destination_node_id": "node-confirm-phone-nls",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Phone provided"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-confirm-phone-nls",
+        "name": "Confirm Phone - Next Level Selling",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Read phone number back digit by digit to confirm."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-phone-correct",
+            "destination_node_id": "node-collect-email-nls",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Phone confirmed"
+            }
+          },
+          {
+            "id": "edge-phone-incorrect",
+            "destination_node_id": "node-collect-phone-nls",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Phone wrong"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-email-nls",
+        "name": "Collect Email - Next Level Selling",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask if they'd like to provide email. Optional."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-best-time",
+            "destination_node_id": "node-collect-best-time-nls",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Email provided or declined"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-best-time-nls",
+        "name": "Collect Best Time - Next Level Selling",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask best time to call."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-closing",
+            "destination_node_id": "node-closing-nls",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Best time provided"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-closing-nls",
+        "name": "Closing - Next Level Selling",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Confirm Adrian will get back to them. Thank them."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-end",
+            "destination_node_id": "node-end",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Call ending"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-general-enquiry-intro",
+        "name": "General Enquiry - Intro",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask how you can help them. Let them explain what they need. 'How can I help you today?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-name",
+            "destination_node_id": "node-collect-name-general",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has explained their enquiry"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-name-general",
+        "name": "Collect Name - General",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for their name. 'Can I grab your name?'"
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-collect-phone",
+            "destination_node_id": "node-collect-phone-general",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Name provided"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-phone-general",
+        "name": "Collect Phone - General",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for phone number."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-confirm-phone",
+            "destination_node_id": "node-confirm-phone-general",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Phone provided"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-confirm-phone-general",
+        "name": "Confirm Phone - General",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Read phone number back digit by digit to confirm."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-phone-correct",
+            "destination_node_id": "node-collect-email-general",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Phone confirmed"
+            }
+          },
+          {
+            "id": "edge-phone-incorrect",
+            "destination_node_id": "node-collect-phone-general",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Phone wrong"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-email-general",
+        "name": "Collect Email - General",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask if they'd like to provide email. Optional."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-best-time",
+            "destination_node_id": "node-collect-best-time-general",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Email provided or declined"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-collect-best-time-general",
+        "name": "Collect Best Time - General",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask best time to call."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-to-closing",
+            "destination_node_id": "node-closing-general",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Best time provided"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-closing-general",
+        "name": "Closing - General",
+        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Confirm Adrian will review their message and get back to them. Thank them for calling."
+        },
+        "start_speaker": "agent",
+        "edges": [
+          {
+            "id": "edge-end",
+            "destination_node_id": "node-end",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Call ending"
+            }
+          }
+        ]
+      },
+      {
+        "id": "node-end",
+        "name": "End Call",
+        "type": "end",
+        "speak_during_execution": false,
+        "instruction": {
+          "type": "prompt",
+          "text": "The call has ended."
+        }
+      }
+    ]
+  }
+}
