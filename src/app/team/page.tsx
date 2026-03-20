@@ -53,12 +53,6 @@ const teamLayers: TeamLayer[] = [
                 calendly: "https://calendly.com/william-visquanta/visquanta-discovery-call"
             },
             {
-                name: "Lavar Harper",
-                role: "Co-Founder",
-                image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac64f14c562cf25aec7e4_lavar%2Charper%2Cheadshot%2Cvisquanta.webp",
-            },
-
-            {
                 name: "Matt Nixon",
                 role: "Co-Founder & CFO",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61edcc6a5a093ce6245_matt%2Cnixon%2Cheadshot%2Cvisquanta.webp",
