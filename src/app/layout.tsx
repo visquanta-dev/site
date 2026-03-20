@@ -201,6 +201,19 @@ export default function RootLayout({
         {/* Ahrefs Analytics */}
         <script src="https://analytics.ahrefs.com/analytics.js" data-key="Wu9ybf2aliQUBBh9UHxyGQ" async></script>
 
+        {/* Mouseflow Session Recording */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window._mfq = window._mfq || [];
+(function() {
+  var mf = document.createElement("script");
+  mf.type = "text/javascript"; mf.defer = true;
+  mf.src = "//cdn.mouseflow.com/projects/ca942256-0780-4566-94b2-e3bb83076045.js";
+  document.getElementsByTagName("head")[0].appendChild(mf);
+})();`
+          }}
+        />
+
         {/* Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{
