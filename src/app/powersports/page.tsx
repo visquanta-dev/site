@@ -596,7 +596,7 @@ export default function PowerPage() {
                 '@type': 'BreadcrumbList',
                 itemListElement: [
                     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.visquanta.com' },
-                    { '@type': 'ListItem', position: 2, name: 'Powersports', item: 'https://www.visquanta.com/power' },
+                    { '@type': 'ListItem', position: 2, name: 'Powersports', item: 'https://www.visquanta.com/powersports' },
                 ],
             }) }} />
 

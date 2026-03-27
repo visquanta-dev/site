@@ -44,14 +44,15 @@ const footerLinks = {
     { label: 'Reputation Management', href: '/reputation-management' },
     { label: 'Service Drive Pro', href: '/service-drive', tag: 'New' },
     { label: 'Custom Campaigns', href: '/custom-campaigns' },
+    { label: 'Paid Campaigns', href: '/paid-campaigns', tag: 'Expert' },
   ],
   dealerServices: [
     { label: 'Independent Dealerships', href: '/dealers/independent' },
     { label: 'Franchise Dealerships', href: '/dealers/franchise' },
     { label: 'Auto Groups', href: '/dealers/auto-groups' },
     { label: 'Pre-Owned', href: '/dealers/pre-owned' },
+    { label: 'Powersport Dealers', href: '/powersports' },
     { label: 'RV Connect', href: '/dealers/rv', tag: 'Coming Soon' },
-    { label: 'Paid Campaigns', href: '/paid-campaigns', tag: 'Expert' },
     { label: 'Dealer Success', href: '/dealer-success' },
   ],
   resources: [

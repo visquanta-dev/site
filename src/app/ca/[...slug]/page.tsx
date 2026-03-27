@@ -35,7 +35,7 @@ const pageImports: Record<string, () => Promise<{ default: React.ComponentType }
     'dealer-services': () => import('@/app/dealer-services/page'),
     'dealers': () => import('@/app/dealers/page'),
     'website-widget': () => import('@/app/website-widget/page'),
-    'power': () => import('@/app/power/page'),
+    'powersports': () => import('@/app/powersports/page'),
 };
 
 // Nested route imports (e.g., /dealers/independent)
@@ -142,7 +142,7 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
         'terms-conditions': () => import('@/app/terms-conditions/layout'),
         'cookie-policy': () => import('@/app/cookie-policy/layout'),
         'case-studies': () => import('@/app/case-studies/layout'),
-        'power': () => import('@/app/power/layout'),
+        'powersports': () => import('@/app/powersports/layout'),
     };
 
     // If we haven't populated metadata yet (not case-study/integration), try layout metadata

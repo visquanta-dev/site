@@ -37,10 +37,10 @@ const industries = [
     stat: '340%',
     statLabel: 'More Callbacks',
     segments: [
-      { title: 'Motorcycle Dealers', icon: Bike, description: 'Sport, cruiser, touring & adventure', link: '/power' },
-      { title: 'ATV / UTV / Side-by-Side', icon: Truck, description: 'Spring rush volume without dropped leads', link: '/power' },
-      { title: 'Marine & Boat Dealers', icon: Anchor, description: 'High-ticket nurture & seasonal service', link: '/power' },
-      { title: 'Multi-Brand Stores', icon: Users, description: 'Brand-level routing & unified reporting', link: '/power' },
+      { title: 'Motorcycle Dealers', icon: Bike, description: 'Sport, cruiser, touring & adventure', link: '/powersports' },
+      { title: 'ATV / UTV / Side-by-Side', icon: Truck, description: 'Spring rush volume without dropped leads', link: '/powersports' },
+      { title: 'Marine & Boat Dealers', icon: Anchor, description: 'High-ticket nurture & seasonal service', link: '/powersports' },
+      { title: 'Multi-Brand Stores', icon: Users, description: 'Brand-level routing & unified reporting', link: '/powersports' },
     ],
   },
   {

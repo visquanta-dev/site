@@ -30,6 +30,7 @@ const pages: { loc: string; lastmod: string; priority: number }[] = [
   { loc: `${BASE}/service-drive`, lastmod: '2026-02-15', priority: 0.9 },
   { loc: `${BASE}/custom-campaigns`, lastmod: '2026-02-15', priority: 0.9 },
   { loc: `${BASE}/website-widget`, lastmod: '2026-02-15', priority: 0.9 },
+  { loc: `${BASE}/powersports`, lastmod: '2026-02-25', priority: 0.9 },
 
   // ── Conversion pages ──
   { loc: `${BASE}/book-demo`, lastmod: '2026-02-01', priority: 0.85 },

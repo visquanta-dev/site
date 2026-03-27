@@ -111,10 +111,10 @@ const navItems: NavItem[] = [
       { label: 'Dealer Success', href: '/dealer-success', description: 'Personalized dealer support', icon: HeartHandshake, group: 'automotive' },
       { label: 'Paid Campaigns', href: '/paid-campaigns', description: 'Done-for-you automotive ad management', icon: Megaphone, group: 'automotive' },
       // Powersports
-      { label: 'Motorcycle Dealers', href: '/power', description: 'Sport, cruiser, touring & adventure', icon: Bike, group: 'powersports' },
-      { label: 'ATV / UTV / Side-by-Side', href: '/power', description: 'Spring rush volume coverage', icon: Truck, group: 'powersports' },
-      { label: 'Marine & Boat Dealers', href: '/power', description: 'High-ticket nurture & seasonal service', icon: Anchor, group: 'powersports' },
-      { label: 'Multi-Brand Stores', href: '/power', description: 'Brand-level routing & reporting', icon: Users, group: 'powersports' },
+      { label: 'Motorcycle Dealers', href: '/powersports', description: 'Sport, cruiser, touring & adventure', icon: Bike, group: 'powersports' },
+      { label: 'ATV / UTV / Side-by-Side', href: '/powersports', description: 'Spring rush volume coverage', icon: Truck, group: 'powersports' },
+      { label: 'Marine & Boat Dealers', href: '/powersports', description: 'High-ticket nurture & seasonal service', icon: Anchor, group: 'powersports' },
+      { label: 'Multi-Brand Stores', href: '/powersports', description: 'Brand-level routing & reporting', icon: Users, group: 'powersports' },
       // RV
       { label: 'New RV Dealers', href: '/dealers/rv', description: 'Instant response to high-intent buyers', icon: Truck, group: 'rv' },
       { label: 'Pre-Owned RV', href: '/dealers/rv', description: 'Reactivate trade-in & financing leads', icon: BadgeCheck, group: 'rv' },
