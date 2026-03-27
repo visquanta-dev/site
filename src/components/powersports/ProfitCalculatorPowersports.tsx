@@ -15,7 +15,7 @@ const tabs = [
         panel: {
             title: 'Re-engage Lost Leads',
             subtitle: "Recover revenue from leads marked as 'Lost' or 'Dead'.",
-            slider1: { label: 'Cold Leads', sublabel: '(Last 12 Mo)', min: 200, max: 5000, step: 50, default: 1650 },
+            slider1: { label: 'Cold Leads', sublabel: '(Last 12 Mo)', min: 200, max: 5000, step: 50, default: 1650, prefix: '' },
             slider2: { label: 'Avg Profit', sublabel: '(Front + Back)', min: 500, max: 12000, step: 100, default: 4800, prefix: '$' },
             rate: 0.07,
             rateLabel: 'Based on a conservative 7% win-back calculation.',
@@ -30,7 +30,7 @@ const tabs = [
         panel: {
             title: 'Capture More Buyers',
             subtitle: 'Revenue gained by responding to every lead in under 60 seconds.',
-            slider1: { label: 'Monthly Leads', sublabel: '(All Sources)', min: 50, max: 2000, step: 25, default: 400 },
+            slider1: { label: 'Monthly Leads', sublabel: '(All Sources)', min: 50, max: 2000, step: 25, default: 400, prefix: '' },
             slider2: { label: 'Avg Profit', sublabel: '(Front + Back)', min: 500, max: 12000, step: 100, default: 4800, prefix: '$' },
             rate: 0.15,
             rateLabel: 'Based on a 15% lift from sub-60s response vs. industry average.',
