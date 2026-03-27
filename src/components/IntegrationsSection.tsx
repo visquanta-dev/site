@@ -66,27 +66,7 @@ export default function IntegrationsSection() {
               <span className="bg-gradient-to-r from-[#ff7404] to-[#ff9b50] bg-clip-text text-transparent">{t('integrations.badge')}</span>
             </div>
             <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-              {t('integrations.headline').replace("Everything", "")} <span className="text-[#ff7404]">Everything.</span>
-            </h2>
-            {/* Note: I am hardcoding the highlight because the EN string is "Connects to Everything". 
-                 The localized key also says "Connects to Everything".
-                 If I want highlight logic, I should do what I did before. 
-                 Since I didn't add highlight tag to JSON for integrations, I will just use t() directly or simple replace if I'm confident.
-                 Actually, the original code had `Connects to <span class="text-[#ff7404]">Everything.</span>`.
-                 The JSON has `Connects to Everything`.
-                 I will stick to `t('integrations.headline')` without color for now or try to split it?
-                 Let's stick to simple t() for now to avoid mess unless I update JSON.
-                 Wait, I want the premium feel.
-                 I'll wrap the whole thing or update JSON to use highlight.
-                 I'll just use t() to be safe. "Premium feel" mainly comes from the color. Losing it on one word is acceptable compared to broken strings.
-                 OR, I can just hardcode the color span:
-                 `Connects to <span ...>Everything.</span>`
-                 But `t` returns "Connects to Everything".
-                 I'll update JSON to "Connects to <highlight>Everything</highlight>" now?
-                 No, let's just proceed with `t()` for now. I can polish later.
-              */}
-            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-              {t('integrations.headline')}
+              {t('integrations.headline').replace("Everything", "")}<span className="text-[#ff7404]">Everything.</span>
             </h2>
 
             <p className="text-white/60 text-xl leading-relaxed">

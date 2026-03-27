@@ -22,7 +22,13 @@ import {
   MonitorPlay,
   MessageSquare,
   Truck,
-  Megaphone
+  Megaphone,
+  Bike,
+  Car,
+  Anchor,
+  Store,
+  BadgeCheck,
+  Users
 } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
 import { Button } from "@/components/ui/button";
@@ -52,8 +58,15 @@ interface NavItem {
     description?: string;
     icon?: any;
     isCore?: boolean;
+    group?: string;
   }[];
 }
+
+const dealerVerticals = [
+  { id: 'automotive', label: 'Automotive', icon: Car },
+  { id: 'powersports', label: 'Powersports', icon: Bike },
+  { id: 'rv', label: 'RV Dealers', icon: Truck },
+] as const;
 
 const navItems: NavItem[] = [
   {
@@ -90,28 +103,23 @@ const navItems: NavItem[] = [
   {
     label: 'Dealer Services',
     children: [
-      { label: 'Independent Dealerships', href: '/dealers/independent', description: 'Maximize capital & time efficiency', icon: Target },
-      { label: 'Franchise Dealerships', href: '/dealers/franchise', description: 'Consistent performance across locations', icon: Star, isCore: true },
-      { label: 'Auto Groups', href: '/dealers/auto-groups', description: 'Group-wide control, local execution', icon: Zap },
-      { label: 'Pre-Owned', href: '/dealers/pre-owned', description: 'Lead reactivation & inventory velocity', icon: RefreshCcw },
-      {
-        label: 'Dealer Success',
-        href: '/dealer-success',
-        description: 'Personalized dealer support',
-        icon: HeartHandshake
-      },
-      {
-        label: 'RV Connect',
-        href: '/dealers/rv',
-        description: 'Purpose-built for RV dealerships',
-        icon: Truck
-      },
-      {
-        label: 'Paid Campaigns',
-        href: '/paid-campaigns',
-        description: 'Done-for-you automotive ad management',
-        icon: Megaphone
-      },
+      // Automotive
+      { label: 'Independent Dealers', href: '/dealers/independent', description: 'Maximize capital & time efficiency', icon: Store, group: 'automotive' },
+      { label: 'Franchise Dealers', href: '/dealers/franchise', description: 'OEM-compliant performance at scale', icon: Building2, isCore: true, group: 'automotive' },
+      { label: 'Auto Groups', href: '/dealers/auto-groups', description: 'Group-wide control, local execution', icon: Users, group: 'automotive' },
+      { label: 'Pre-Owned Specialists', href: '/dealers/pre-owned', description: 'Lead reactivation & inventory velocity', icon: BadgeCheck, group: 'automotive' },
+      { label: 'Dealer Success', href: '/dealer-success', description: 'Personalized dealer support', icon: HeartHandshake, group: 'automotive' },
+      { label: 'Paid Campaigns', href: '/paid-campaigns', description: 'Done-for-you automotive ad management', icon: Megaphone, group: 'automotive' },
+      // Powersports
+      { label: 'Motorcycle Dealers', href: '/power', description: 'Sport, cruiser, touring & adventure', icon: Bike, group: 'powersports' },
+      { label: 'ATV / UTV / Side-by-Side', href: '/power', description: 'Spring rush volume coverage', icon: Truck, group: 'powersports' },
+      { label: 'Marine & Boat Dealers', href: '/power', description: 'High-ticket nurture & seasonal service', icon: Anchor, group: 'powersports' },
+      { label: 'Multi-Brand Stores', href: '/power', description: 'Brand-level routing & reporting', icon: Users, group: 'powersports' },
+      // RV
+      { label: 'New RV Dealers', href: '/dealers/rv', description: 'Instant response to high-intent buyers', icon: Truck, group: 'rv' },
+      { label: 'Pre-Owned RV', href: '/dealers/rv', description: 'Reactivate trade-in & financing leads', icon: BadgeCheck, group: 'rv' },
+      { label: 'RV Groups', href: '/dealers/rv', description: 'Multi-location consistency', icon: Building2, group: 'rv' },
+      { label: 'Service & Parts', href: '/dealers/rv', description: 'Winterization & seasonal campaigns', icon: Target, group: 'rv' },
     ]
   },
   {
@@ -141,6 +149,7 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileActiveMenu, setMobileActiveMenu] = useState<string | null>(null);
+  const [activeDealerVertical, setActiveDealerVertical] = useState('automotive');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -271,13 +280,14 @@ export default function Navigation() {
                       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
 
                       <div className="flex">
-                        {/* Side Context (Optional/Visual) */}
+                        {/* Side Context — Industry Tabs for Dealer Services, Tier Switcher for AutoMaster */}
                         <div className="w-[240px] bg-white/[0.02] border-r border-white/5 p-8 hidden md:flex flex-col justify-between">
                           <div>
-                            <div className="text-[10px] font-black uppercase tracking-[0.25em] text-[#FF7404] mb-6">Suite Config</div>
+                            <div className="text-[10px] font-black uppercase tracking-[0.25em] text-[#FF7404] mb-6">
+                              {item.label === 'Dealer Services' ? 'Industries' : 'Suite Config'}
+                            </div>
                             {item.label === 'AutoMaster Suite' ? (
                               <div className="relative p-1.5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center w-full max-w-[180px] mt-2 group/switcher">
-                                {/* Sliding highlight */}
                                 <motion.div
                                   className={`absolute h-[calc(100%-12px)] rounded-xl z-0 ${activeTier === 'CORE' ? 'bg-[#FF7404]' : 'bg-white'}`}
                                   initial={false}
@@ -287,14 +297,12 @@ export default function Navigation() {
                                   }}
                                   transition={{ type: "spring", stiffness: 450, damping: 40 }}
                                 />
-
                                 <button
                                   onMouseEnter={() => setActiveTier('CORE')}
                                   className={`relative z-10 flex-1 py-2.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 ${activeTier === 'CORE' ? 'text-black' : 'text-zinc-500 hover:text-white'}`}
                                 >
                                   CORE
                                 </button>
-
                                 <button
                                   onMouseEnter={() => setActiveTier('PRO')}
                                   className={`relative z-10 flex-1 py-2.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 flex items-center justify-center gap-2 ${activeTier === 'PRO' ? 'text-black' : 'text-zinc-500 hover:text-white'}`}
@@ -308,6 +316,30 @@ export default function Navigation() {
                                     />
                                   )}
                                 </button>
+                              </div>
+                            ) : item.label === 'Dealer Services' ? (
+                              <div className="space-y-1.5 mt-2">
+                                {dealerVerticals.map((v) => {
+                                  const VIcon = v.icon;
+                                  const isActive = activeDealerVertical === v.id;
+                                  return (
+                                    <button
+                                      key={v.id}
+                                      onMouseEnter={() => setActiveDealerVertical(v.id)}
+                                      onClick={() => setActiveDealerVertical(v.id)}
+                                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-[background-color,border-color] duration-200 ${
+                                        isActive
+                                          ? 'bg-[#FF7404]/10 border border-[#FF7404]/30'
+                                          : 'border border-transparent hover:bg-white/5'
+                                      }`}
+                                    >
+                                      <VIcon className={`w-4 h-4 ${isActive ? 'text-[#FF7404]' : 'text-zinc-500'}`} />
+                                      <span className={`text-xs font-bold uppercase tracking-wider ${isActive ? 'text-white' : 'text-zinc-500'}`}>
+                                        {v.label}
+                                      </span>
+                                    </button>
+                                  );
+                                })}
                               </div>
                             ) : (
                               <h3 className="text-white font-bold text-lg tracking-tighter leading-tight uppercase">
@@ -334,7 +366,9 @@ export default function Navigation() {
                                   icon: Wrench,
                                 }
                               ]
-                              : item.children
+                              : item.label === 'Dealer Services'
+                                ? item.children.filter((c) => c.group === activeDealerVertical)
+                                : item.children
                             ).map((child, idx) => {
                               const Icon = child.icon;
                               return (

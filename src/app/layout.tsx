@@ -101,7 +101,7 @@ export const metadata: Metadata = {
         url: "https://www.visquanta.com/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "VisQuanta - AI for Car Dealerships",
+        alt: "VisQuanta - AI for Dealerships",
         type: "image/png",
       },
     ],

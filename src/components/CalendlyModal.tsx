@@ -122,7 +122,8 @@ function CalendlyModal({ isOpen, onClose, calendlyUrl }: CalendlyModalProps) {
                                 </div>
                                 <button
                                     onClick={onClose}
-                                    className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors group"
+                                    aria-label="Close scheduling modal"
+                                    className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7404] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A]"
                                 >
                                     <X className="w-5 h-5 text-white/50 group-hover:text-white transition-colors" />
                                 </button>
@@ -188,7 +189,16 @@ export function RequestDemoButton({ asChild, onClick, ...props }: RequestDemoBut
         onClick?.(e);
     };
 
+    const { className, ...rest } = props;
+
     return (
-        <Comp onClick={handleClick} {...props} />
+        <Comp
+            onClick={handleClick}
+            className={[
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7404] focus-visible:ring-offset-2 focus-visible:ring-offset-black',
+                className,
+            ].filter(Boolean).join(' ')}
+            {...rest}
+        />
     );
 }

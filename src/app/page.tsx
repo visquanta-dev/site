@@ -81,7 +81,7 @@ export default function Home() {
       {/* 3. The Problem - Dealer Pain Points */}
       <PainPointSection />
 
-      {/* 3b. What is AI for Car Dealerships? - Category Definition */}
+      {/* 3b. What is AI for Dealerships? - Category Definition */}
       <WhatIsAIDealerships />
 
       {/* 4. Platform Capabilities - Detailed Product Breakdown */}

@@ -79,10 +79,10 @@ export default function TeamExpertise() {
                                     quote: "I've sat in your seat. I know the grind. My job is to ensure VisQuanta delivers actual ROI, not just software."
                                 },
                                 {
-                                    name: "Jonas Saycon",
-                                    role: "Client Account Specialist",
-                                    image: "/team/jonas-saycon.png",
-                                    quote: "Every dealership is unique. I focus on fine-tuning our solutions to fit your specific workflows and goals."
+                                    name: "Herman Sullivan",
+                                    role: "Client Success Manager",
+                                    image: "/team/herman-sullivan.jpg",
+                                    quote: "I make sure every dealer gets the attention they deserve. Your success is my success — it's that simple."
                                 }
                             ].map((expert, i) => (
                                 <div key={i} className="rounded-3xl bg-[#0d0b0a] border border-white/10 flex flex-col items-center justify-center text-center p-8 space-y-4 relative overflow-hidden group hover:border-[#FF7404]/50 transition-colors duration-500">

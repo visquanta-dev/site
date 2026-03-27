@@ -10,7 +10,7 @@ export const homepageSchema = {
             "@type": "WebPage",
             "@id": "https://www.visquanta.com/#webpage",
             "url": "https://www.visquanta.com/",
-            "name": "AI for Car Dealerships | Lead Reactivation & Speed to Lead | VisQuanta",
+            "name": "AI for Dealerships | Lead Reactivation & Speed to Lead | VisQuanta",
             "description": "VisQuanta's AI platform helps car dealerships reactivate dormant CRM leads, respond to inbound leads in under 60 seconds, and capture every service call with Voice AI.",
             "isPartOf": {
                 "@id": "https://www.visquanta.com/#website"

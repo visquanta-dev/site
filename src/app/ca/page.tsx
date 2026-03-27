@@ -61,7 +61,7 @@ export const metadata: Metadata = {
         locale: "en_CA",
         url: "https://www.visquanta.com/ca/",
         siteName: "VisQuanta",
-        title: "AI for Car Dealerships in Canada | Lead Reactivation & Speed to Lead",
+        title: "AI for Dealerships in Canada | Lead Reactivation & Speed to Lead",
         description:
             "Reactivate dormant CRM leads. Respond to inbound leads in under 60 seconds. Never miss a service call. VisQuanta's AI platform drives dealership revenue 24/7.",
         images: [
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
                 url: "https://www.visquanta.com/images/og-image.png",
                 width: 1200,
                 height: 630,
-                alt: "VisQuanta - AI for Car Dealerships in Canada - Lead Reactivation and Speed to Lead Platform",
+                alt: "VisQuanta - AI for Dealerships in Canada - Lead Reactivation and Speed to Lead Platform",
                 type: "image/png",
             },
         ],
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         site: "@VisQuanta",
         creator: "@VisQuanta",
-        title: "AI for Car Dealerships in Canada | Lead Reactivation & Speed to Lead",
+        title: "AI for Dealerships in Canada | Lead Reactivation & Speed to Lead",
         description:
             "Reactivate dormant leads. Respond in under 60 seconds. Never miss a service call. VisQuanta's AI platform drives dealership revenue 24/7.",
         images: ["https://www.visquanta.com/images/og-image.png"],
@@ -176,7 +176,7 @@ export default function CanadianHomePage() {
             {/* 3. The Problem - Dealer Pain Points */}
             <PainPointSection />
 
-            {/* 3b. What is AI for Car Dealerships? - Category Definition */}
+            {/* 3b. What is AI for Dealerships? - Category Definition */}
             <WhatIsAIDealerships />
 
             {/* 4. Platform Capabilities - Detailed Product Breakdown */}

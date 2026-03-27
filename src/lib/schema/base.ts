@@ -91,7 +91,7 @@ export const organizationSchema = {
         "Automotive sales automation",
         "Service department AI"
     ],
-    "slogan": "AI for Car Dealerships"
+    "slogan": "AI for Dealerships"
 };
 
 export const websiteSchema = {
@@ -100,7 +100,7 @@ export const websiteSchema = {
     "@id": "https://www.visquanta.com/#website",
     "url": "https://www.visquanta.com/",
     "name": "VisQuanta",
-    "description": "AI for Car Dealerships: Lead Reactivation, Speed to Lead, Voice AI, SMS Chat, and Reputation Management",
+    "description": "AI for Dealerships: Lead Reactivation, Speed to Lead, Voice AI, SMS Chat, and Reputation Management",
     "publisher": {
         "@id": "https://www.visquanta.com/#organization"
     },
@@ -200,7 +200,7 @@ export const baseSchema = {
             "@id": "https://www.visquanta.com/#website",
             "url": "https://www.visquanta.com/",
             "name": "VisQuanta",
-            "description": "AI for Car Dealerships: Lead Reactivation, Speed to Lead, Voice AI, SMS Chat, and Reputation Management",
+            "description": "AI for Dealerships: Lead Reactivation, Speed to Lead, Voice AI, SMS Chat, and Reputation Management",
             "publisher": {
                 "@id": "https://www.visquanta.com/#organization"
             },

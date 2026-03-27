@@ -189,6 +189,12 @@ export default function HeroSection() {
                                     badge: "Tech Ops"
                                 },
                                 {
+                                    name: "Herman Sullivan",
+                                    role: "Client Success Manager",
+                                    image: "/team/herman-sullivan.jpg",
+                                    badge: "Client Success"
+                                },
+                                {
                                     name: "Chloe Johncock",
                                     role: "Account Ops Manager",
                                     image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/6850417609bb855d13026da3_Chloe_JohnCock_Visquanta.avif",
@@ -283,11 +289,6 @@ export default function HeroSection() {
                                             </div>
                                         </div>
 
-                                        {/* Bottom Status */}
-                                        <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between">
-                                            <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest group-hover:text-zinc-400 transition-colors">Active Now</span>
-                                            <ArrowRight className="w-3 h-3 text-zinc-700 group-hover:text-[#FF7404] transition-colors -rotate-45" />
-                                        </div>
                                     </motion.div>
                                 ))}
                             </div>

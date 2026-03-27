@@ -302,12 +302,12 @@
     "metadata": {
         "homepage_title": "Car Dealership AI | Lead Reactivation & Revenue Recovery Platform",
         "homepage_description": "The #1 Car Dealership AI platform for lead reactivation, speed-to-lead automation, and high-performance revenue recovery. Transform your CRM into a sales engine.",
-        "og_title": "AI for Car Dealerships | Lead Reactivation & Speed to Lead",
+        "og_title": "AI for Dealerships | Lead Reactivation & Speed to Lead",
         "og_description": "Reactivate dormant CRM leads. Respond to inbound leads in under 60 seconds. Never miss a service call. VisQuanta's AI platform drives dealership revenue 24/7."
     },
     "hero": {
         "eyebrow": "VISQUANTA PRESENTS: THE AUTOMASTER SUITE",
-        "headline_1": "AI for Car Dealerships",
+        "headline_1": "AI for Dealerships",
         "headline_2": "That Drives Revenue",
         "subheadline": "VisQuanta <strong>automates lead reactivation</strong>, responds to new leads in <strong>under 60 seconds</strong>, protects your reputation, & ensures your service department <strong>never misses a call</strong>.",
         "cta_primary": "Schedule Your Walkthrough",
@@ -365,14 +365,14 @@
     },
     "what_is_ai": {
         "badge": "Understanding Dealership AI",
-        "headline": "What is AI for Car Dealerships?",
+        "headline": "What is AI for Dealerships?",
         "paragraph_1": "AI for car dealerships refers to artificial intelligence software designed specifically for automotive retail operations. Unlike generic chatbots or business automation tools, dealership AI understands automotive terminology, integrates with dealer management systems (DMS), and handles industry-specific workflows.",
         "paragraph_2": "Key applications include Lead Reactivation to re-engage cold prospects, Speed-to-Lead Automation for instant responses (seconds, not hours), and Voice AI for handling phone calls and service appointments. Comprehensive platforms also centralize Reputation Management and convert web traffic into live SMS Engagement.",
         "paragraph_3": "VisQuanta's AutoMaster Suite combines all five capabilities in one platform, purpose-built for how dealerships actually operate."
     },
     "platform": {
         "badge": "Inside The AutoMaster Suite",
-        "headline": "AI for Car Dealerships:",
+        "headline": "AI for Dealerships:",
         "headline_highlight": "Five Capabilities, One Platform",
         "intro": "VisQuanta is an AI platform built specifically for car dealerships in the United States. Founded in Miami, Florida, VisQuanta's <highlight>The AutoMaster Suite</highlight> provides the complete revenue operating system for your dealership.",
         "lead_reactivation_title": "Lead Reactivation",

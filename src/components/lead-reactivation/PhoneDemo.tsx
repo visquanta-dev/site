@@ -12,12 +12,27 @@ export type Message = {
     type?: 'text' | 'notification';
 };
 
+/* Headshot avatars for chat bubbles */
+const AgentAvatar = ({ src }: { src?: string }) => (
+    <div className="w-7 h-7 rounded-full shrink-0 overflow-hidden border border-[#FF7404]/30 bg-[#111] shadow-[0_0_8px_-2px_rgba(255,116,4,0.3)]">
+        <img src={src || '/images/avatars/dealer-2.png'} alt="" className="w-full h-full object-cover" />
+    </div>
+);
+
+const UserAvatar = ({ src }: { src?: string }) => (
+    <div className="w-7 h-7 rounded-full shrink-0 overflow-hidden border border-white/10 bg-[#1a1a1a]">
+        <img src={src || '/images/avatars/dealer-3.png'} alt="" className="w-full h-full object-cover" />
+    </div>
+);
+
 interface PhoneDemoProps {
     children?: ReactNode;
     messages?: Message[];
     title?: string;
     subtitle?: string;
     avatarImage?: string;
+    agentAvatar?: string;
+    userAvatar?: string;
 }
 
 // --- Default Data ---
@@ -59,7 +74,7 @@ const TypingIndicator = () => (
     </motion.div>
 );
 
-const ChatBubble = ({ message }: { message: Message }) => {
+const ChatBubble = ({ message, agentAvatarSrc, userAvatarSrc }: { message: Message; agentAvatarSrc?: string; userAvatarSrc?: string }) => {
     const isAgent = message.sender === 'agent';
 
     if (message.type === 'notification') {
@@ -71,8 +86,9 @@ const ChatBubble = ({ message }: { message: Message }) => {
     }
 
     return (
-        <div className={`flex w-full mb-2 ${isAgent ? 'justify-end' : 'justify-start'}`}>
-            <div className="flex flex-col gap-1 max-w-[85%]">
+        <div className={`flex w-full mb-2 gap-2 items-end ${isAgent ? 'justify-end' : 'justify-start'}`}>
+            {!isAgent && <UserAvatar src={userAvatarSrc} />}
+            <div className="flex flex-col gap-1 max-w-[78%]">
                 <div
                     className={`px-5 py-3 text-[13px] leading-snug relative tracking-normal font-normal shadow-md backdrop-blur-sm
             ${isAgent
@@ -82,13 +98,13 @@ const ChatBubble = ({ message }: { message: Message }) => {
                 >
                     {message.content}
                 </div>
-
             </div>
+            {isAgent && <AgentAvatar src={agentAvatarSrc} />}
         </div>
     );
 };
 
-export default function PhoneDemo({ children, messages, title = "Amy (Specialist)", subtitle = "Managed Performance", avatarImage }: PhoneDemoProps) {
+export default function PhoneDemo({ children, messages, title = "Amy (Specialist)", subtitle = "Managed Performance", avatarImage, agentAvatar, userAvatar }: PhoneDemoProps) {
     const [visibleMessages, setVisibleMessages] = useState<Message[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -228,7 +244,7 @@ export default function PhoneDemo({ children, messages, title = "Amy (Specialist
                                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                     className="px-4"
                                 >
-                                    <ChatBubble message={msg} />
+                                    <ChatBubble message={msg} agentAvatarSrc={agentAvatar} userAvatarSrc={userAvatar} />
                                 </motion.div>
                             ))}
                             {isTyping && <div className="px-4"><TypingIndicator key="typing" /></div>}
