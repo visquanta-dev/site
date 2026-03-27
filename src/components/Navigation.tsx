@@ -63,9 +63,9 @@ interface NavItem {
 }
 
 const dealerVerticals = [
-  { id: 'automotive', label: 'Automotive', icon: Car },
-  { id: 'powersports', label: 'Powersports', icon: Bike },
-  { id: 'rv', label: 'RV Dealers', icon: Truck },
+  { id: 'automotive', label: 'Automotive', icon: Car, href: '/dealers' },
+  { id: 'powersports', label: 'Powersports', icon: Bike, href: '/powersports' },
+  { id: 'rv', label: 'RV Dealers', icon: Truck, href: '/dealers/rv' },
 ] as const;
 
 const navItems: NavItem[] = [
@@ -323,10 +323,10 @@ export default function Navigation() {
                                   const VIcon = v.icon;
                                   const isActive = activeDealerVertical === v.id;
                                   return (
-                                    <button
+                                    <Link
                                       key={v.id}
+                                      href={localeLink(v.href, locale)}
                                       onMouseEnter={() => setActiveDealerVertical(v.id)}
-                                      onClick={() => setActiveDealerVertical(v.id)}
                                       className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-[background-color,border-color] duration-200 ${
                                         isActive
                                           ? 'bg-[#FF7404]/10 border border-[#FF7404]/30'
@@ -337,7 +337,7 @@ export default function Navigation() {
                                       <span className={`text-xs font-bold uppercase tracking-wider ${isActive ? 'text-white' : 'text-zinc-500'}`}>
                                         {v.label}
                                       </span>
-                                    </button>
+                                    </Link>
                                   );
                                 })}
                               </div>
