@@ -119,6 +119,13 @@ const teamLayers: TeamLayer[] = [
                 email: "dlopez@visquanta.com",
             },
             {
+                name: "Herman Sullivan",
+                role: "Client Success Manager",
+                image: "/team/herman-sullivan.jpg",
+                email: "hsullivan@visquanta.com",
+
+            },
+            {
                 name: "Kyle Roath",
                 role: "Systems Engineer",
                 image: "/team/kyle-roath.png",
@@ -137,13 +144,6 @@ const teamLayers: TeamLayer[] = [
                 role: "Account Operations",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4d024bdd582aff727d7f8_Screenshot_2025-08-28_180752-removebg-preview.avif",
                 email: "mueland@visquanta.com",
-
-            },
-            {
-                name: "Herman Sullivan",
-                role: "Client Success Manager",
-                image: "/team/herman-sullivan.jpg",
-                email: "hsullivan@visquanta.com",
 
             },
             {
