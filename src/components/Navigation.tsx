@@ -698,10 +698,13 @@ export default function Navigation() {
                                           </>
                                         ) : item.label === 'Dealer Services' ? (
                                           <>
+                                            <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#FF7404] mb-2">
+                                              Industries
+                                            </p>
                                             <div
                                               role="tablist"
                                               aria-label="Industries"
-                                              className="flex flex-wrap gap-2 pb-1"
+                                              className="grid grid-cols-3 gap-2 w-full max-w-full pb-1"
                                             >
                                               {dealerVerticals.map((v) => {
                                                 const VIcon = v.icon;
@@ -713,10 +716,13 @@ export default function Navigation() {
                                                     role="tab"
                                                     aria-selected={selected}
                                                     onClick={() => setActiveDealerVertical(v.id)}
-                                                    className={`inline-flex items-center gap-2 min-h-11 px-3 rounded-xl text-left text-[10px] font-bold uppercase tracking-wider border transition-colors ${selected ? 'bg-[#FF7404]/15 border-[#FF7404]/40 text-white' : 'border-white/10 text-zinc-500 active:bg-white/5'}`}
+                                                    className={`flex flex-col items-center justify-center gap-1.5 min-h-[3.25rem] px-1.5 py-2 rounded-xl text-center text-[9px] sm:text-[10px] font-bold uppercase tracking-wide border transition-all duration-200 ${selected ? 'bg-[#FF7404]/25 border-[#FF7404]/55 text-white shadow-[0_0_20px_rgba(255,116,4,0.12)] ring-1 ring-[#FF7404]/25' : 'border-white/25 bg-white/[0.08] text-zinc-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] active:bg-white/15 active:border-white/35'}`}
                                                   >
-                                                    <VIcon className={`w-4 h-4 shrink-0 ${selected ? 'text-[#FF7404]' : 'text-zinc-500'}`} />
-                                                    {v.label}
+                                                    <VIcon
+                                                      className={`w-[18px] h-[18px] shrink-0 ${selected ? 'text-[#FF7404]' : 'text-zinc-300'}`}
+                                                      strokeWidth={selected ? 2.25 : 2}
+                                                    />
+                                                    <span className="leading-tight [text-wrap:balance]">{v.label}</span>
                                                   </button>
                                                 );
                                               })}
@@ -727,10 +733,10 @@ export default function Navigation() {
                                                 locale
                                               )}
                                               onClick={() => setIsMobileMenuOpen(false)}
-                                              className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#FF7404] py-2"
+                                              className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#FF7404] py-2.5 mt-1 border-b border-[#FF7404]/30"
                                             >
                                               {dealerVerticals.find((v) => v.id === activeDealerVertical)?.label} hub
-                                              <ChevronDown className="w-3 h-3 -rotate-90" aria-hidden={true} />
+                                              <ChevronDown className="w-3.5 h-3.5 -rotate-90 opacity-90" aria-hidden={true} />
                                             </Link>
                                             {item.children
                                               .filter((c) => c.group === activeDealerVertical)
