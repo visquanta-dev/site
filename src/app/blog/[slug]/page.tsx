@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { Calendar, Clock, ArrowRight, Share2, Tag, BookOpen, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getBlogPost, getBlogPosts } from '@/lib/seobot';
+import { getBlogPost, getAllPostsMeta } from '@/lib/seobot';
 import { getArticles, getPostFeaturedImage, getRelatedArticles } from '@/lib/blog';
 import { BlogCard } from '@/components/blog/BlogCard';
 import BlogPostClient, { ReadingProgress, TableOfContents, ExecutiveSummary } from './BlogPostClient';
@@ -21,8 +21,8 @@ export const revalidate = 60;
 // Generate static params for SSG
 export async function generateStaticParams() {
     try {
-        const { posts } = await getBlogPosts(0, 100);
-        return posts.map((post) => ({
+        const meta = await getAllPostsMeta();
+        return meta.slice(0, 1000).map((post) => ({
             slug: post.slug,
         }));
     } catch (error) {

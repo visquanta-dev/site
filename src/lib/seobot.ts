@@ -2,11 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
+import { BlogClient } from 'seobot';
 
 // ---------------------------------------------------------------------------
-// Local Markdown Blog Engine
-// Reads .md files from /content/blog/ with gray-matter frontmatter
-// Drop-in replacement for the old SEOBot S3 fetcher — same interfaces
+// Hybrid blog: /content/blog/*.md overrides SEOBot on slug collision.
+// Set SEOBOT_API_KEY for SEOBot CDN (cdn.seobotai.com) via BlogClient.
 // ---------------------------------------------------------------------------
 
 export interface BlogPost {
@@ -51,15 +51,11 @@ export interface BasePost {
   }>;
 }
 
-// ---------------------------------------------------------------------------
-// File system helpers
-// ---------------------------------------------------------------------------
-
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
 
 function getMarkdownFiles(): string[] {
   try {
-    return fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md'));
+    return fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith('.md'));
   } catch {
     console.warn('[blog] content/blog/ directory not found');
     return [];
@@ -84,7 +80,11 @@ function parsePost(filename: string): BlogPost | null {
       image: data.image || '/images/blog/default.jpg',
       readingTime: data.readingTime || Math.ceil(content.split(/\s+/).length / 200),
       createdAt: data.publishedAt ? new Date(data.publishedAt).toISOString() : new Date().toISOString(),
-      updatedAt: data.updatedAt ? new Date(data.updatedAt).toISOString() : (data.publishedAt ? new Date(data.publishedAt).toISOString() : new Date().toISOString()),
+      updatedAt: data.updatedAt
+        ? new Date(data.updatedAt).toISOString()
+        : data.publishedAt
+          ? new Date(data.publishedAt).toISOString()
+          : new Date().toISOString(),
       published: data.published !== false,
       category: data.category || { slug: 'general', title: 'General' },
       tags: data.tags || [],
@@ -96,9 +96,83 @@ function parsePost(filename: string): BlogPost | null {
   }
 }
 
-// ---------------------------------------------------------------------------
-// In-memory cache (same pattern as before, 60s TTL)
-// ---------------------------------------------------------------------------
+function localPostsMeta(): BasePost[] {
+  return getMarkdownFiles()
+    .map((f) => parsePost(f))
+    .filter((p): p is BlogPost => p !== null && p.published)
+    .map(({ html, relatedPosts, ...meta }) => meta);
+}
+
+type SeoIndexEntry = Awaited<ReturnType<BlogClient['getArticles']>>['articles'][number];
+type SeoArticle = NonNullable<Awaited<ReturnType<BlogClient['getArticle']>>>;
+
+function seoIndexToBase(entry: SeoIndexEntry): BasePost {
+  return {
+    id: entry.id,
+    slug: entry.slug,
+    headline: entry.headline,
+    metaDescription: entry.metaDescription,
+    image: entry.image,
+    readingTime: entry.readingTime,
+    createdAt: entry.createdAt,
+    updatedAt: entry.updatedAt,
+    category: entry.category
+      ? { slug: entry.category.slug, title: entry.category.title }
+      : { slug: 'general', title: 'General' },
+    tags: (entry.tags || []).map((t) => ({ slug: t.slug, title: t.title })),
+  };
+}
+
+function seoArticleToPost(article: SeoArticle): BlogPost | null {
+  if (article.deleted || !article.published) return null;
+  return {
+    id: article.id,
+    slug: article.slug,
+    headline: article.headline,
+    metaDescription: article.metaDescription,
+    html: article.html,
+    image: article.image,
+    readingTime: article.readingTime,
+    createdAt: article.createdAt,
+    updatedAt: article.updatedAt,
+    published: true,
+    category: article.category
+      ? { slug: article.category.slug, title: article.category.title }
+      : { slug: 'general', title: 'General' },
+    tags: (article.tags || []).map((t) => ({ slug: t.slug, title: t.title })),
+  };
+}
+
+async function fetchSeoBotMeta(): Promise<BasePost[]> {
+  const key = process.env.SEOBOT_API_KEY;
+  if (!key?.trim()) return [];
+
+  try {
+    const client = new BlogClient(key.trim());
+    const { articles } = await client.getArticles(0, 10_000);
+    return (articles || [])
+      .filter((a): a is SeoIndexEntry => a != null && typeof a.slug === 'string' && a.slug.length > 0)
+      .map(seoIndexToBase);
+  } catch (e) {
+    console.error('[blog] SEOBot index fetch failed:', e);
+    return [];
+  }
+}
+
+function mergeMeta(local: BasePost[], remote: BasePost[]): BasePost[] {
+  const bySlug = new Map<string, BasePost>();
+  for (const p of remote) {
+    bySlug.set(p.slug, p);
+  }
+  for (const p of local) {
+    bySlug.set(p.slug, p);
+  }
+  return [...bySlug.values()].sort((a, b) => {
+    const tb = new Date(b.createdAt).getTime();
+    const ta = new Date(a.createdAt).getTime();
+    return (Number.isFinite(tb) ? tb : 0) - (Number.isFinite(ta) ? ta : 0);
+  });
+}
 
 const CACHE_TTL = 60000;
 
@@ -122,24 +196,17 @@ function setCache<T>(key: string, data: T): void {
   cache.set(key, { data, timestamp: Date.now() });
 }
 
-// ---------------------------------------------------------------------------
-// Public API — identical signatures to the old SEOBot module
-// ---------------------------------------------------------------------------
-
 export async function getAllPostsMeta(): Promise<BasePost[]> {
-  const cacheKey = 'all-posts-meta';
+  const cacheKey = 'all-posts-meta-hybrid';
   const cached = getCached<BasePost[]>(cacheKey);
   if (cached) return cached;
 
-  const files = getMarkdownFiles();
-  const posts = files
-    .map(f => parsePost(f))
-    .filter((p): p is BlogPost => p !== null && p.published)
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    .map(({ html, relatedPosts, ...meta }) => meta);
+  const local = localPostsMeta();
+  const remote = await fetchSeoBotMeta();
+  const merged = mergeMeta(local, remote);
 
-  setCache(cacheKey, posts);
-  return posts;
+  setCache(cacheKey, merged);
+  return merged;
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
@@ -147,12 +214,26 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
   const cached = getCached<BlogPost>(cacheKey);
   if (cached) return cached;
 
-  const files = getMarkdownFiles();
-  for (const file of files) {
+  for (const file of getMarkdownFiles()) {
     const post = parsePost(file);
     if (post && post.slug === slug && post.published) {
       setCache(cacheKey, post);
       return post;
+    }
+  }
+
+  const key = process.env.SEOBOT_API_KEY?.trim();
+  if (key) {
+    try {
+      const client = new BlogClient(key);
+      const raw = await client.getArticle(slug);
+      const mapped = raw ? seoArticleToPost(raw) : null;
+      if (mapped) {
+        setCache(cacheKey, mapped);
+        return mapped;
+      }
+    } catch (e) {
+      console.error('[blog] SEOBot getArticle failed:', slug, e);
     }
   }
 
@@ -176,7 +257,7 @@ export async function getBlogPosts(
   return {
     posts,
     total: allMeta.length,
-    totalPages: Math.ceil(allMeta.length / limit),
+    totalPages: Math.ceil(allMeta.length / limit) || 1,
   };
 }
 
@@ -191,7 +272,7 @@ export async function getBlogPostsByCategory(
   category: { slug: string; title: string } | null;
 }> {
   const allMeta = await getAllPostsMeta();
-  const filtered = allMeta.filter(p => p.category?.slug === categorySlug);
+  const filtered = allMeta.filter((p) => p.category?.slug === categorySlug);
   const start = page * limit;
   const paged = filtered.slice(start, start + limit);
 
@@ -204,7 +285,7 @@ export async function getBlogPostsByCategory(
   return {
     posts,
     total: filtered.length,
-    totalPages: Math.ceil(filtered.length / limit),
+    totalPages: Math.ceil(filtered.length / limit) || 1,
     category: filtered[0]?.category || null,
   };
 }
@@ -220,7 +301,7 @@ export async function getBlogPostsByTag(
   tag: { slug: string; title: string } | null;
 }> {
   const allMeta = await getAllPostsMeta();
-  const filtered = allMeta.filter(p => p.tags?.some(t => t.slug === tagSlug));
+  const filtered = allMeta.filter((p) => p.tags?.some((t) => t.slug === tagSlug));
   const start = page * limit;
   const paged = filtered.slice(start, start + limit);
 
@@ -233,8 +314,8 @@ export async function getBlogPostsByTag(
   return {
     posts,
     total: filtered.length,
-    totalPages: Math.ceil(filtered.length / limit),
-    tag: filtered[0]?.tags?.find(t => t.slug === tagSlug) || null,
+    totalPages: Math.ceil(filtered.length / limit) || 1,
+    tag: filtered[0]?.tags?.find((t) => t.slug === tagSlug) || null,
   };
 }
 
@@ -248,7 +329,11 @@ export async function getAllCategories(): Promise<Array<{ slug: string; title: s
       if (existing) {
         existing.count++;
       } else {
-        map.set(post.category.slug, { slug: post.category.slug, title: post.category.title, count: 1 });
+        map.set(post.category.slug, {
+          slug: post.category.slug,
+          title: post.category.title,
+          count: 1,
+        });
       }
     }
   }

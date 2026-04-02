@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, Clock, ArrowRight, Share2, Tag, BookOpen, TrendingUp } from 'lucide-react';
-import { getBlogPost, getBlogPosts } from '@/lib/seobot';
+import { getBlogPost, getAllPostsMeta } from '@/lib/seobot';
 import { getArticles, getPostFeaturedImage, getRelatedArticles } from '@/lib/blog';
 import { locales, getAlternateUrls } from '@/lib/locale-config';
 import Navigation from '@/components/Navigation';
@@ -31,8 +31,8 @@ interface PageProps {
 
 export async function generateStaticParams() {
     try {
-        const { posts } = await getBlogPosts(0, 100);
-        return posts.map((post) => ({ slug: post.slug }));
+        const meta = await getAllPostsMeta();
+        return meta.slice(0, 1000).map((post) => ({ slug: post.slug }));
     } catch {
         return [];
     }

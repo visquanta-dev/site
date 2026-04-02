@@ -1,4 +1,9 @@
-// src/app/sitemap.xml/route.ts
+// REFERENCE ONLY — production US sitemap lives at:
+//   src/app/sitemap-us.xml/route.ts
+// It merges STATIC_PAGES (same URL set as the old public/sitemap-us.xml) with
+// getAllPostsMeta() from src/lib/seobot.ts (local markdown + SEOBot when keyed).
+//
+// src/app/sitemap.xml/route.ts (historical)
 // VisQuanta Sitemap — US pages only. No CA. No API calls. No hreflang.
 //
 // Why no /ca/ URLs? Google discovers CA pages via the hreflang <link> tags
