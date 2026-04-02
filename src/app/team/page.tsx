@@ -112,6 +112,13 @@ const teamLayers: TeamLayer[] = [
                 calendly: "https://calendly.com/cannis-visquanta/30min"
             },
             {
+                name: "David Lopez",
+                role: "Director of Integrations",
+                image: "/team/david-lopez.png",
+                link: "https://www.linkedin.com/in/david-alexander-22lopez22/",
+                email: "dlopez@visquanta.com",
+            },
+            {
                 name: "Kyle Roath",
                 role: "Systems Engineer",
                 image: "/team/kyle-roath.png",
@@ -230,7 +237,7 @@ export default function TeamPage() {
                         <div className="flex justify-center mb-20">
                             <div className="inline-flex items-center gap-4 bg-white/[0.03] border border-white/10 rounded-full px-6 py-2 backdrop-blur-md">
                                 <div className="flex -space-x-2">
-                                    {teamLayers[0].members.slice(0, 3).map((m, i) => (
+                                    {teamLayers[0].members.slice(0, 4).map((m, i) => (
                                         <div key={i} className="w-8 h-8 rounded-full border-2 border-[#020202] overflow-hidden bg-zinc-800">
                                             <img src={m.image} alt="" className="w-full h-full object-cover grayscale" />
                                         </div>
@@ -384,7 +391,7 @@ export default function TeamPage() {
                                                 <motion.div
                                                     key={i}
                                                     variants={itemVariants}
-                                                    className={`relative w-full md:w-[calc(50%-2rem)] ${layerIdx === 1 ? '' : 'lg:w-[calc(33.333%-2rem)]'} h-[280px] bg-[#0A0A0A] border border-white/5 rounded-[2.5rem] p-8 transition-all duration-700 overflow-hidden shadow-2xl ${isInteractive ? 'group hover:border-[#FF7404]/40 cursor-custom-pointer' : 'cursor-default'}`}
+                                                    className={`relative w-full md:w-[calc(50%-2rem)] ${layerIdx === 2 ? 'lg:w-[calc(33.333%-2rem)]' : ''} h-[280px] bg-[#0A0A0A] border border-white/5 rounded-[2.5rem] p-8 transition-all duration-700 overflow-hidden shadow-2xl ${isInteractive ? 'group hover:border-[#FF7404]/40 cursor-custom-pointer' : 'cursor-default'}`}
                                                 >
                                                     {/* Advanced Hover Glow */}
                                                     <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/0 via-[#FF7404]/[0.01] to-[#FF7404]/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
