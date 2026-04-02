@@ -585,62 +585,231 @@ export default function Navigation() {
                     >
                       {item.children ? (
                         <div className="space-y-4">
-                          <button
-                            onClick={() => setMobileActiveMenu(mobileActiveMenu === item.label ? null : item.label)}
-                            className="w-full flex items-center justify-between text-2xl font-bold text-white uppercase tracking-wider text-left"
-                            style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
-                          >
-                            {item.label}
-                            <ChevronDown
-                              className={`w-5 h-5 transition-transform duration-300 ${mobileActiveMenu === item.label ? 'rotate-180 text-[#FF7404]' : 'text-white/40'}`}
-                            />
-                          </button>
+                          {(() => {
+                            const sectionSlug = item.label
+                              .toLowerCase()
+                              .replace(/\s+/g, '-')
+                              .replace(/[^a-z0-9-]/g, '');
+                            const panelId = `mobile-nav-panel-${sectionSlug}`;
+                            const triggerId = `mobile-nav-trigger-${sectionSlug}`;
+                            const isExpanded = mobileActiveMenu === item.label;
+                            return (
+                              <>
+                                <button
+                                  id={triggerId}
+                                  type="button"
+                                  aria-expanded={isExpanded}
+                                  aria-controls={panelId}
+                                  onClick={() => setMobileActiveMenu(isExpanded ? null : item.label)}
+                                  className="w-full flex items-center justify-between text-2xl font-bold text-white uppercase tracking-wider text-left min-h-11"
+                                  style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
+                                >
+                                  {item.label}
+                                  <ChevronDown
+                                    className={`w-5 h-5 shrink-0 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-[#FF7404]' : 'text-white/40'}`}
+                                  />
+                                </button>
 
-                          <AnimatePresence>
-                            {mobileActiveMenu === item.label ? (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: 'auto', opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                className="overflow-hidden border-l border-white/10 ml-1"
-                              >
-                                <div className="py-2 pl-6 space-y-4">
-                                  {item.children.map((child, childIdx) => {
-                                    const Icon = child.icon;
-                                    return (
-                                      <Link
-                                        key={childIdx}
-                                        href={localeLink(child.href, locale)}
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className="flex items-center gap-4 group/child py-2 -mx-2 px-2 rounded-lg active:bg-white/5"
-                                        style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
-                                      >
-                                        {Icon && (
-                                          <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#FF7404]">
-                                            <Icon className="w-4 h-4" />
-                                          </div>
-                                        )}
-                                        <div>
-                                          <div className="flex items-center gap-2">
-                                            <div className="text-base text-zinc-300 group-hover/child:text-white transition-colors font-semibold">
-                                              {child.label}
+                                <AnimatePresence>
+                                  {isExpanded ? (
+                                    <motion.div
+                                      id={panelId}
+                                      role="region"
+                                      aria-labelledby={triggerId}
+                                      initial={{ height: 0, opacity: 0 }}
+                                      animate={{ height: 'auto', opacity: 1 }}
+                                      exit={{ height: 0, opacity: 0 }}
+                                      className="overflow-hidden border-l border-white/10 ml-1"
+                                    >
+                                      <div className="py-2 pl-6 space-y-4">
+                                        {item.label === 'AutoMaster Suite' ? (
+                                          <>
+                                            <div className="relative p-1.5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center w-full max-w-[220px] mb-1">
+                                              <motion.div
+                                                className={`absolute h-[calc(100%-12px)] rounded-xl z-0 ${activeTier === 'CORE' ? 'bg-[#FF7404]' : 'bg-white'}`}
+                                                initial={false}
+                                                animate={{
+                                                  left: activeTier === 'CORE' ? '6px' : '50%',
+                                                  width: 'calc(50% - 6px)',
+                                                }}
+                                                transition={{ type: 'spring', stiffness: 450, damping: 40 }}
+                                              />
+                                              <button
+                                                type="button"
+                                                onClick={() => setActiveTier('CORE')}
+                                                aria-pressed={activeTier === 'CORE'}
+                                                className={`relative z-10 flex-1 min-h-11 py-2.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 ${activeTier === 'CORE' ? 'text-black' : 'text-zinc-500'}`}
+                                              >
+                                                CORE
+                                              </button>
+                                              <button
+                                                type="button"
+                                                onClick={() => setActiveTier('PRO')}
+                                                aria-pressed={activeTier === 'PRO'}
+                                                className={`relative z-10 flex-1 min-h-11 py-2.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 flex items-center justify-center gap-2 ${activeTier === 'PRO' ? 'text-black' : 'text-zinc-500'}`}
+                                              >
+                                                PRO
+                                              </button>
                                             </div>
-                                            {child.isCore && (
-                                              <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-[#FF7404]/20 text-[#FF7404] uppercase tracking-widest border border-[#FF7404]/20">Core</span>
-                                            )}
-                                          </div>
-                                          <div className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
-                                            {child.description}
-                                          </div>
-                                        </div>
-                                      </Link>
-                                    );
-                                  })}
-                                </div>
-                              </motion.div>
-                            ) : null}
-                          </AnimatePresence>
-
+                                            {(activeTier === 'PRO'
+                                              ? [
+                                                  ...item.children,
+                                                  {
+                                                    label: 'Service Drive Pro',
+                                                    href: '/service-drive',
+                                                    description: 'Voice AI for fixed ops & appointments',
+                                                    icon: Wrench,
+                                                  },
+                                                ]
+                                              : item.children
+                                            ).map((child, childIdx) => {
+                                              const Icon = child.icon;
+                                              return (
+                                                <Link
+                                                  key={childIdx}
+                                                  href={localeLink(child.href, locale)}
+                                                  onClick={() => setIsMobileMenuOpen(false)}
+                                                  className="flex items-center gap-4 group/child py-2 -mx-2 px-2 rounded-lg active:bg-white/5 min-h-11"
+                                                  style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
+                                                >
+                                                  {Icon && (
+                                                    <div className="w-8 h-8 shrink-0 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#FF7404]">
+                                                      <Icon className="w-4 h-4" />
+                                                    </div>
+                                                  )}
+                                                  <div className="min-w-0">
+                                                    <div className="flex items-center gap-2 flex-wrap">
+                                                      <div className="text-base text-zinc-300 group-hover/child:text-white transition-colors font-semibold">
+                                                        {child.label}
+                                                      </div>
+                                                      {child.isCore && (
+                                                        <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-[#FF7404]/20 text-[#FF7404] uppercase tracking-widest border border-[#FF7404]/20">
+                                                          Core
+                                                        </span>
+                                                      )}
+                                                    </div>
+                                                    <div className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
+                                                      {child.description}
+                                                    </div>
+                                                  </div>
+                                                </Link>
+                                              );
+                                            })}
+                                          </>
+                                        ) : item.label === 'Dealer Services' ? (
+                                          <>
+                                            <div
+                                              role="tablist"
+                                              aria-label="Industries"
+                                              className="flex flex-wrap gap-2 pb-1"
+                                            >
+                                              {dealerVerticals.map((v) => {
+                                                const VIcon = v.icon;
+                                                const selected = activeDealerVertical === v.id;
+                                                return (
+                                                  <button
+                                                    key={v.id}
+                                                    type="button"
+                                                    role="tab"
+                                                    aria-selected={selected}
+                                                    onClick={() => setActiveDealerVertical(v.id)}
+                                                    className={`inline-flex items-center gap-2 min-h-11 px-3 rounded-xl text-left text-[10px] font-bold uppercase tracking-wider border transition-colors ${selected ? 'bg-[#FF7404]/15 border-[#FF7404]/40 text-white' : 'border-white/10 text-zinc-500 active:bg-white/5'}`}
+                                                  >
+                                                    <VIcon className={`w-4 h-4 shrink-0 ${selected ? 'text-[#FF7404]' : 'text-zinc-500'}`} />
+                                                    {v.label}
+                                                  </button>
+                                                );
+                                              })}
+                                            </div>
+                                            <Link
+                                              href={localeLink(
+                                                dealerVerticals.find((v) => v.id === activeDealerVertical)?.href ?? '/dealers',
+                                                locale
+                                              )}
+                                              onClick={() => setIsMobileMenuOpen(false)}
+                                              className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#FF7404] py-2"
+                                            >
+                                              {dealerVerticals.find((v) => v.id === activeDealerVertical)?.label} hub
+                                              <ChevronDown className="w-3 h-3 -rotate-90" aria-hidden={true} />
+                                            </Link>
+                                            {item.children
+                                              .filter((c) => c.group === activeDealerVertical)
+                                              .map((child, childIdx) => {
+                                                const Icon = child.icon;
+                                                return (
+                                                  <Link
+                                                    key={`${child.href}-${child.label}-${childIdx}`}
+                                                    href={localeLink(child.href, locale)}
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                    className="flex items-center gap-4 group/child py-2 -mx-2 px-2 rounded-lg active:bg-white/5 min-h-11"
+                                                    style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
+                                                  >
+                                                    {Icon && (
+                                                      <div className="w-8 h-8 shrink-0 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#FF7404]">
+                                                        <Icon className="w-4 h-4" />
+                                                      </div>
+                                                    )}
+                                                    <div className="min-w-0">
+                                                      <div className="flex items-center gap-2 flex-wrap">
+                                                        <div className="text-base text-zinc-300 group-hover/child:text-white transition-colors font-semibold">
+                                                          {child.label}
+                                                        </div>
+                                                        {child.isCore && (
+                                                          <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-[#FF7404]/20 text-[#FF7404] uppercase tracking-widest border border-[#FF7404]/20">
+                                                            Core
+                                                          </span>
+                                                        )}
+                                                      </div>
+                                                      <div className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
+                                                        {child.description}
+                                                      </div>
+                                                    </div>
+                                                  </Link>
+                                                );
+                                              })}
+                                          </>
+                                        ) : (
+                                          item.children.map((child, childIdx) => {
+                                            const Icon = child.icon;
+                                            return (
+                                              <Link
+                                                key={childIdx}
+                                                href={localeLink(child.href, locale)}
+                                                onClick={() => setIsMobileMenuOpen(false)}
+                                                className="flex items-center gap-4 group/child py-2 -mx-2 px-2 rounded-lg active:bg-white/5 min-h-11"
+                                                style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
+                                              >
+                                                {Icon && (
+                                                  <div className="w-8 h-8 shrink-0 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#FF7404]">
+                                                    <Icon className="w-4 h-4" />
+                                                  </div>
+                                                )}
+                                                <div className="min-w-0">
+                                                  <div className="flex items-center gap-2 flex-wrap">
+                                                    <div className="text-base text-zinc-300 group-hover/child:text-white transition-colors font-semibold">
+                                                      {child.label}
+                                                    </div>
+                                                    {child.isCore && (
+                                                      <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-[#FF7404]/20 text-[#FF7404] uppercase tracking-widest border border-[#FF7404]/20">
+                                                        Core
+                                                      </span>
+                                                    )}
+                                                  </div>
+                                                  <div className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
+                                                    {child.description}
+                                                  </div>
+                                                </div>
+                                              </Link>
+                                            );
+                                          })
+                                        )}
+                                      </div>
+                                    </motion.div>
+                                  ) : null}
+                                </AnimatePresence>
+                              </>
+                            );
+                          })()}
                         </div>
                       ) : (
                         <Link

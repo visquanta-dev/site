@@ -1,34 +1,13 @@
-const SEOBOT_API_KEY = process.env.SEOBOT_API_KEY;
-const CACHE_TTL = 60000; // 60 seconds
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { marked } from 'marked';
 
-function getApiKey(): string {
-  const key = process.env.SEOBOT_API_KEY;
-  if (!key) {
-    console.warn('⚠️ WARNING: SEOBOT_API_KEY is not set. Blog features may not work correctly.');
-    return '';
-  }
-  return key;
-}
-
-interface CacheEntry<T> {
-  data: T;
-  timestamp: number;
-}
-
-const cache = new Map<string, CacheEntry<unknown>>();
-
-function getCached<T>(key: string): T | null {
-  const entry = cache.get(key);
-  if (entry && Date.now() - entry.timestamp < CACHE_TTL) {
-    return entry.data as T;
-  }
-  cache.delete(key);
-  return null;
-}
-
-function setCache<T>(key: string, data: T): void {
-  cache.set(key, { data, timestamp: Date.now() });
-}
+// ---------------------------------------------------------------------------
+// Local Markdown Blog Engine
+// Reads .md files from /content/blog/ with gray-matter frontmatter
+// Drop-in replacement for the old SEOBot S3 fetcher — same interfaces
+// ---------------------------------------------------------------------------
 
 export interface BlogPost {
   id: string;
@@ -49,27 +28,8 @@ export interface BlogPost {
     slug: string;
     title: string;
   }>;
+  author?: string;
   relatedPosts?: BlogPost[];
-}
-
-// Base.json uses abbreviated field names
-interface BasePostRaw {
-  id: string;
-  s: string;   // slug
-  h: string;   // headline
-  d: string;   // description
-  i: string;   // image
-  rt: number;  // readingTime
-  cr: string;  // createdAt
-  up: string;  // updatedAt
-  c: {         // category
-    s: string; // slug
-    t: string; // title
-  };
-  tg: Array<{  // tags
-    s: string; // slug
-    t: string; // title
-  }>;
 }
 
 export interface BasePost {
@@ -91,198 +51,133 @@ export interface BasePost {
   }>;
 }
 
-function normalizeBasePost(raw: BasePostRaw): BasePost {
-  return {
-    id: raw.id,
-    slug: raw.s,
-    headline: raw.h,
-    metaDescription: raw.d,
-    image: raw.i,
-    readingTime: raw.rt,
-    createdAt: raw.cr,
-    updatedAt: raw.up || raw.cr,
-    category: raw.c ? {
-      slug: raw.c.s,
-      title: raw.c.t
-    } : { slug: '', title: '' },
-    tags: raw.tg?.map(tag => ({
-      slug: tag.s,
-      title: tag.t
-    })) || []
-  };
-}
+// ---------------------------------------------------------------------------
+// File system helpers
+// ---------------------------------------------------------------------------
 
-import { MOCK_BLOG_POSTS } from './mockData';
+const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
 
-export async function getAllPostsMeta(): Promise<BasePost[]> {
-  const cacheKey = 'base';
-  const cached = getCached<BasePost[]>(cacheKey);
-  if (cached) return cached;
-
-  const apiKey = getApiKey();
-
-  // FALLBACK: If no API key, use mock data immediately
-  if (!apiKey) {
-    console.warn('[seobot] No API key — returning mock data');
-    return MOCK_BLOG_POSTS as unknown as BasePost[];
-  }
-
+function getMarkdownFiles(): string[] {
   try {
-    const url = `https://seobot-blogs.s3.eu-north-1.amazonaws.com/${apiKey}/system/base.json`;
-    const response = await fetch(url, { next: { revalidate: 3600 } });
-
-    if (!response.ok) {
-      console.warn(`[seobot] base.json returned ${response.status} — returning empty`);
-      return [];
-    }
-
-    const rawData: BasePostRaw[] = await response.json();
-    const normalizedData = rawData.map(normalizeBasePost);
-
-    // Merge locally created mock posts
-    const mockBasePosts = MOCK_BLOG_POSTS.map(p => ({
-      id: p.id,
-      slug: p.slug,
-      headline: p.headline,
-      metaDescription: p.metaDescription,
-      image: p.image,
-      readingTime: p.readingTime,
-      createdAt: p.createdAt,
-      updatedAt: p.createdAt,
-      category: p.category,
-      tags: p.tags
-    })) as unknown as BasePost[];
-
-    const combinedData = [
-      ...normalizedData,
-      ...mockBasePosts.filter(m => !normalizedData.some(n => n.id === m.id))
-    ];
-
-    combinedData.sort((a, b) =>
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-
-    setCache(cacheKey, combinedData);
-    return combinedData;
-  } catch (error) {
-    console.error('[seobot] getAllPostsMeta fetch failed (ECONNRESET / network):', error);
+    return fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md'));
+  } catch {
+    console.warn('[blog] content/blog/ directory not found');
     return [];
   }
 }
 
-async function fetchPost(id: string): Promise<BlogPost | null> {
-  const cacheKey = `post-${id}`;
-  const cached = getCached<BlogPost>(cacheKey);
-  if (cached) return cached;
-
-  // Check if it's a mock post ID
-  if (id.startsWith('mock-')) {
-    const mock = MOCK_BLOG_POSTS.find(p => p.id === id);
-    if (mock) {
-      return {
-        ...mock,
-        // Use custom HTML if provided in the mock object, otherwise default
-        html: (mock as any).html || '<p>This is a simulated blog post content for demonstration purposes. In a production environment, this would be fetched from your CMS.</p>',
-        updatedAt: mock.createdAt,
-        published: true,
-        relatedPosts: []
-      } as BlogPost;
-    }
-  }
-
+function parsePost(filename: string): BlogPost | null {
   try {
-    const apiKey = getApiKey();
-    if (!apiKey) throw new Error("No API Key"); // Trigger catch block to maybe fallback if we had mock logic there, but we handled mock above
+    const filePath = path.join(CONTENT_DIR, filename);
+    const raw = fs.readFileSync(filePath, 'utf-8');
+    const { data, content } = matter(raw);
 
-    const url = `https://seobot-blogs.s3.eu-north-1.amazonaws.com/${apiKey}/blog/${id}.json`;
+    const slug = data.slug || filename.replace(/\.md$/, '');
+    const html = marked.parse(content, { async: false }) as string;
 
-    const response = await fetch(url, { next: { revalidate: 60 } });
-
-    if (!response.ok) {
-      console.error(`Failed to fetch post ${id}: ${response.status}`);
-      return null;
-    }
-
-    const data = await response.json();
-
-    // Link Sanitizer: Clean up internal links in content
-    if (data && data.html) {
-      data.html = data.html
-        // Correct Bare Domain to WWW
-        .replace(/https:\/\/visquanta\.com(?!\/)/g, 'https://www.visquanta.com')
-        .replace(/https:\/\/visquanta\.com(?=\/)/g, 'https://www.visquanta.com')
-        // Correct Legacy Path Structure
-        .replace(/\/blog-details\//g, '/blog/');
-    }
-
-    setCache(cacheKey, data);
-    return data;
+    return {
+      id: slug,
+      slug,
+      headline: data.title || '',
+      metaDescription: data.metaDescription || '',
+      html,
+      image: data.image || '/images/blog/default.jpg',
+      readingTime: data.readingTime || Math.ceil(content.split(/\s+/).length / 200),
+      createdAt: data.publishedAt ? new Date(data.publishedAt).toISOString() : new Date().toISOString(),
+      updatedAt: data.updatedAt ? new Date(data.updatedAt).toISOString() : (data.publishedAt ? new Date(data.publishedAt).toISOString() : new Date().toISOString()),
+      published: data.published !== false,
+      category: data.category || { slug: 'general', title: 'General' },
+      tags: data.tags || [],
+      author: data.author || 'VisQuanta Team',
+    };
   } catch (error) {
-    console.error(`Error fetching post ${id}:`, error);
+    console.error(`[blog] Failed to parse ${filename}:`, error);
     return null;
   }
 }
 
-export async function getBlogPosts(page: number = 0, limit: number = 12): Promise<{
-  posts: BlogPost[];
-  total: number;
-  totalPages: number;
-}> {
-  try {
-    const base = await getAllPostsMeta();
-    const start = page * limit;
-    const end = start + limit;
+// ---------------------------------------------------------------------------
+// In-memory cache (same pattern as before, 60s TTL)
+// ---------------------------------------------------------------------------
 
-    const postPromises = base.slice(start, end).map(async (item) => {
-      if (item.id) {
-        return await fetchPost(item.id);
-      }
-      return null;
-    });
+const CACHE_TTL = 60000;
 
-    const posts = await Promise.all(postPromises);
-    const publishedPosts = posts.filter((post): post is BlogPost =>
-      post !== null && post.published
-    );
+interface CacheEntry<T> {
+  data: T;
+  timestamp: number;
+}
 
-    return {
-      posts: publishedPosts,
-      total: base.length,
-      totalPages: Math.ceil(base.length / limit)
-    };
-  } catch (error) {
-    console.error('Error fetching blog posts:', error);
-    return { posts: [], total: 0, totalPages: 0 };
+const cache = new Map<string, CacheEntry<unknown>>();
+
+function getCached<T>(key: string): T | null {
+  const entry = cache.get(key);
+  if (entry && Date.now() - entry.timestamp < CACHE_TTL) {
+    return entry.data as T;
   }
+  cache.delete(key);
+  return null;
+}
+
+function setCache<T>(key: string, data: T): void {
+  cache.set(key, { data, timestamp: Date.now() });
+}
+
+// ---------------------------------------------------------------------------
+// Public API — identical signatures to the old SEOBot module
+// ---------------------------------------------------------------------------
+
+export async function getAllPostsMeta(): Promise<BasePost[]> {
+  const cacheKey = 'all-posts-meta';
+  const cached = getCached<BasePost[]>(cacheKey);
+  if (cached) return cached;
+
+  const files = getMarkdownFiles();
+  const posts = files
+    .map(f => parsePost(f))
+    .filter((p): p is BlogPost => p !== null && p.published)
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .map(({ html, relatedPosts, ...meta }) => meta);
+
+  setCache(cacheKey, posts);
+  return posts;
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-  try {
-    const base = await getAllPostsMeta();
-    const postMeta = base.find((item) => item.slug === slug);
+  const cacheKey = `post-${slug}`;
+  const cached = getCached<BlogPost>(cacheKey);
+  if (cached) return cached;
 
-    if (!postMeta?.id) {
-      console.error(`Post not found in base for slug: ${slug}. Available: ${base.slice(0, 3).map(p => p.slug).join(', ')}`);
-      return null;
+  const files = getMarkdownFiles();
+  for (const file of files) {
+    const post = parsePost(file);
+    if (post && post.slug === slug && post.published) {
+      setCache(cacheKey, post);
+      return post;
     }
-
-    const post = await fetchPost(postMeta.id);
-
-    if (!post) {
-      console.error(`Failed to fetch post content for id: ${postMeta.id}`);
-      return null;
-    }
-
-    if (!post.published) {
-      console.error(`Post ${slug} exists but is not published`);
-      return null;
-    }
-
-    return post;
-  } catch (error) {
-    console.error('Error fetching blog post:', error);
-    return null;
   }
+
+  return null;
+}
+
+export async function getBlogPosts(
+  page: number = 0,
+  limit: number = 12
+): Promise<{ posts: BlogPost[]; total: number; totalPages: number }> {
+  const allMeta = await getAllPostsMeta();
+  const start = page * limit;
+  const paged = allMeta.slice(start, start + limit);
+
+  const posts: BlogPost[] = [];
+  for (const meta of paged) {
+    const post = await getBlogPost(meta.slug);
+    if (post) posts.push(post);
+  }
+
+  return {
+    posts,
+    total: allMeta.length,
+    totalPages: Math.ceil(allMeta.length / limit),
+  };
 }
 
 export async function getBlogPostsByCategory(
@@ -295,39 +190,23 @@ export async function getBlogPostsByCategory(
   totalPages: number;
   category: { slug: string; title: string } | null;
 }> {
-  try {
-    const base = await getAllPostsMeta();
-    const categoryPosts = base.filter(
-      (item) => item.category?.slug === categorySlug
-    );
+  const allMeta = await getAllPostsMeta();
+  const filtered = allMeta.filter(p => p.category?.slug === categorySlug);
+  const start = page * limit;
+  const paged = filtered.slice(start, start + limit);
 
-    const start = page * limit;
-    const end = start + limit;
-
-    const postPromises = categoryPosts.slice(start, end).map(async (item) => {
-      if (item.id) {
-        return await fetchPost(item.id);
-      }
-      return null;
-    });
-
-    const posts = await Promise.all(postPromises);
-    const publishedPosts = posts.filter((post): post is BlogPost =>
-      post !== null && post.published
-    );
-
-    const category = categoryPosts[0]?.category || null;
-
-    return {
-      posts: publishedPosts,
-      total: categoryPosts.length,
-      totalPages: Math.ceil(categoryPosts.length / limit),
-      category
-    };
-  } catch (error) {
-    console.error('Error fetching category posts:', error);
-    return { posts: [], total: 0, totalPages: 0, category: null };
+  const posts: BlogPost[] = [];
+  for (const meta of paged) {
+    const post = await getBlogPost(meta.slug);
+    if (post) posts.push(post);
   }
+
+  return {
+    posts,
+    total: filtered.length,
+    totalPages: Math.ceil(filtered.length / limit),
+    category: filtered[0]?.category || null,
+  };
 }
 
 export async function getBlogPostsByTag(
@@ -340,94 +219,59 @@ export async function getBlogPostsByTag(
   totalPages: number;
   tag: { slug: string; title: string } | null;
 }> {
-  try {
-    const base = await getAllPostsMeta();
-    const tagPosts = base.filter((item) =>
-      item.tags?.some((tag) => tag.slug === tagSlug)
-    );
+  const allMeta = await getAllPostsMeta();
+  const filtered = allMeta.filter(p => p.tags?.some(t => t.slug === tagSlug));
+  const start = page * limit;
+  const paged = filtered.slice(start, start + limit);
 
-    const start = page * limit;
-    const end = start + limit;
-
-    const postPromises = tagPosts.slice(start, end).map(async (item) => {
-      if (item.id) {
-        return await fetchPost(item.id);
-      }
-      return null;
-    });
-
-    const posts = await Promise.all(postPromises);
-    const publishedPosts = posts.filter((post): post is BlogPost =>
-      post !== null && post.published
-    );
-
-    const tag = tagPosts[0]?.tags?.find((t) => t.slug === tagSlug) || null;
-
-    return {
-      posts: publishedPosts,
-      total: tagPosts.length,
-      totalPages: Math.ceil(tagPosts.length / limit),
-      tag
-    };
-  } catch (error) {
-    console.error('Error fetching tag posts:', error);
-    return { posts: [], total: 0, totalPages: 0, tag: null };
+  const posts: BlogPost[] = [];
+  for (const meta of paged) {
+    const post = await getBlogPost(meta.slug);
+    if (post) posts.push(post);
   }
+
+  return {
+    posts,
+    total: filtered.length,
+    totalPages: Math.ceil(filtered.length / limit),
+    tag: filtered[0]?.tags?.find(t => t.slug === tagSlug) || null,
+  };
 }
 
 export async function getAllCategories(): Promise<Array<{ slug: string; title: string; count: number }>> {
-  try {
-    const base = await getAllPostsMeta();
-    const categoryMap = new Map<string, { slug: string; title: string; count: number }>();
+  const allMeta = await getAllPostsMeta();
+  const map = new Map<string, { slug: string; title: string; count: number }>();
 
-    base.forEach((post) => {
-      if (post.category?.slug) {
-        const existing = categoryMap.get(post.category.slug);
-        if (existing) {
-          existing.count++;
-        } else {
-          categoryMap.set(post.category.slug, {
-            slug: post.category.slug,
-            title: post.category.title,
-            count: 1
-          });
-        }
+  for (const post of allMeta) {
+    if (post.category?.slug) {
+      const existing = map.get(post.category.slug);
+      if (existing) {
+        existing.count++;
+      } else {
+        map.set(post.category.slug, { slug: post.category.slug, title: post.category.title, count: 1 });
       }
-    });
-
-    return Array.from(categoryMap.values()).sort((a, b) => b.count - a.count);
-  } catch (error) {
-    console.error('Error fetching categories:', error);
-    return [];
+    }
   }
+
+  return Array.from(map.values()).sort((a, b) => b.count - a.count);
 }
 
 export async function getAllTags(): Promise<Array<{ slug: string; title: string; count: number }>> {
-  try {
-    const base = await getAllPostsMeta();
-    const tagMap = new Map<string, { slug: string; title: string; count: number }>();
+  const allMeta = await getAllPostsMeta();
+  const map = new Map<string, { slug: string; title: string; count: number }>();
 
-    base.forEach((post) => {
-      post.tags?.forEach((tag) => {
-        if (tag.slug) {
-          const existing = tagMap.get(tag.slug);
-          if (existing) {
-            existing.count++;
-          } else {
-            tagMap.set(tag.slug, {
-              slug: tag.slug,
-              title: tag.title,
-              count: 1
-            });
-          }
+  for (const post of allMeta) {
+    for (const tag of post.tags || []) {
+      if (tag.slug) {
+        const existing = map.get(tag.slug);
+        if (existing) {
+          existing.count++;
+        } else {
+          map.set(tag.slug, { slug: tag.slug, title: tag.title, count: 1 });
         }
-      });
-    });
-
-    return Array.from(tagMap.values()).sort((a, b) => b.count - a.count);
-  } catch (error) {
-    console.error('Error fetching tags:', error);
-    return [];
+      }
+    }
   }
-}
 
+  return Array.from(map.values()).sort((a, b) => b.count - a.count);
+}
