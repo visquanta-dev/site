@@ -26,7 +26,7 @@ const LOCALE_COOKIE_NAME = 'vq-locale';
 const GEO_BANNER_DISMISSED_COOKIE = 'vq-geo-banner-dismissed';
 
 // =============================================================================
-// BOT DETECTION (from existing middleware)
+// BOT DETECTION (geo redirect: do not send crawlers from / to /ca)
 // =============================================================================
 const bots = [
     "googlebot", "yahoo! slurp", "bingbot", "yandex", "baiduspider",
@@ -116,7 +116,7 @@ function shouldShowGeoBanner(request: NextRequest, detectedCountry: string | nul
 // =============================================================================
 // MIDDLEWARE
 // =============================================================================
-export async function middleware(request: NextRequest) {
+export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
     // Skip middleware entirely for sitemap, robots, and static assets
@@ -205,41 +205,7 @@ export async function middleware(request: NextRequest) {
     }
 
     // -------------------------------------------------------------------------
-    // 6. Bot handling (existing Prerender.io logic)
-    // -------------------------------------------------------------------------
-
-    const isPrerender = request.headers.get("X-Prerender");
-
-    if (isBot && !isPrerender) {
-        const newURL = `http://service.prerender.io/${request.url}`;
-        const newHeaders = new Headers(request.headers);
-        newHeaders.set("X-Prerender-Token", "8NBDZ9ldnEIxh7WvwnyE");
-        newHeaders.set("X-Prerender-Int-Type", "NextJS");
-
-        try {
-            const res = await fetch(new Request(newURL, {
-                headers: newHeaders,
-                redirect: "manual",
-            }));
-
-            const responseHeaders = new Headers(res.headers);
-            responseHeaders.set("X-Redirected-From", request.url);
-
-            const { readable, writable } = new TransformStream();
-            res.body?.pipeTo(writable);
-
-            return new NextResponse(readable, {
-                status: res.status,
-                statusText: res.statusText,
-                headers: responseHeaders,
-            });
-        } catch {
-            // Fall through to normal response
-        }
-    }
-
-    // -------------------------------------------------------------------------
-    // 7. Set locale headers for downstream components
+    // 6. Set locale headers for downstream components
     // -------------------------------------------------------------------------
     // Set headers on request so they are available to RSCs via headers()
     const requestHeaders = new Headers(request.headers);
