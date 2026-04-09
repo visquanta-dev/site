@@ -19,7 +19,6 @@ import {
     ChevronRight,
     Gauge,
     MessageSquare,
-    PlayCircle,
     Play,
     Activity,
     Shield,
@@ -33,6 +32,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import MinimalQuote from '@/components/ui/MinimalQuote';
+import { RequestDemoButton } from '@/components/CalendlyModal';
 import { useState } from 'react';
 import Image from 'next/image';
 
@@ -117,10 +117,10 @@ const suiteProducts = [
     }
 ];
 
-// Beating Heart Background Effect
-const HeartLine = () => (
-    <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
-        <svg className="w-full h-[400px] opacity-[0.3]" viewBox="0 0 1000 200" preserveAspectRatio="none">
+// Beating Heart Effect
+const HeartLine = ({ className = '' }: { className?: string }) => (
+    <div className={`pointer-events-none flex items-center justify-center overflow-hidden ${className}`}>
+        <svg className="w-full h-full opacity-[0.3]" viewBox="0 0 1000 200" preserveAspectRatio="none">
             <motion.path
                 d="M -100 100 L 350 100 L 370 100 L 380 70 L 400 130 L 415 20 L 435 180 L 450 100 L 470 110 L 480 100 L 1100 100"
                 stroke="#FF7404"
@@ -196,7 +196,6 @@ export default function AutoMasterSuiteHub() {
             <section className="relative pt-32 pb-24 overflow-hidden min-h-[80vh] flex items-center">
                 {/* Visual Background Elements */}
                 <div className="absolute inset-0 pointer-events-none">
-                    <HeartLine />
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[#FF7404]/15 rounded-full blur-[150px]" />
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:80px_80px] opacity-[0.15]" />
                 </div>
@@ -221,11 +220,14 @@ export default function AutoMasterSuiteHub() {
 
                             <motion.h1
                                 variants={itemVariants}
-                                className="text-5xl lg:text-8xl font-bold text-white mb-8 tracking-tighter leading-[0.95]"
+                                className="relative text-5xl lg:text-8xl font-bold text-white mb-8 tracking-tighter leading-[0.95]"
                             >
+                                <HeartLine className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] max-w-[860px] h-24 md:h-28 opacity-90 z-0" />
+                                <span className="relative z-10">
                                 One Suite. <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] via-[#FF9040] to-white">
                                     Infinite Growth.
+                                </span>
                                 </span>
                             </motion.h1>
 
@@ -238,16 +240,14 @@ export default function AutoMasterSuiteHub() {
 
                             <motion.div
                                 variants={itemVariants}
-                                className="flex flex-col sm:flex-row gap-5 justify-center"
+                                className="flex justify-center"
                             >
-                                <button className="px-10 py-5 bg-[#FF7404] hover:bg-[#ff8a2b] text-black font-black text-lg rounded-2xl transition-all shadow-[0_20px_40px_-10px_rgba(255,116,4,0.4)] flex items-center gap-3 group">
-                                    Activate Your Revenue Engine
+                                <RequestDemoButton
+                                    className="px-10 py-5 bg-[#FF7404] hover:bg-[#ff8a2b] text-black font-black text-lg rounded-2xl transition-all shadow-[0_20px_40px_-10px_rgba(255,116,4,0.4)] flex items-center gap-3 group"
+                                >
+                                    Schedule Your Walkthrough
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </button>
-                                <button className="px-10 py-5 bg-white/5 hover:bg-white/10 text-white font-bold text-lg rounded-2xl border border-white/10 transition-all backdrop-blur-md flex items-center gap-2 group">
-                                    <PlayCircle className="w-5 h-5 text-[#FF7404] group-hover:scale-110 transition-transform" />
-                                    Watch Vision Briefing
-                                </button>
+                                </RequestDemoButton>
                             </motion.div>
                         </motion.div>
                     </div>
@@ -257,7 +257,7 @@ export default function AutoMasterSuiteHub() {
 
 
             {/* 1.5 VIDEO VISION BRIEFING - KNOWLEDGE HEAVY ENTRY */}
-            <section className="pb-24 bg-[#020202]">
+            <section id="vision-briefing" className="pb-24 bg-[#020202]">
                 <div className="container px-4 mx-auto">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
