@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: 'Trust & Security at VisQuanta',
-    description: 'SOC 2 Type II compliant. Enterprise-grade security, full data encryption, and 99.9% uptime to protect your dealership operations.',
+    description: 'Enterprise-grade security, full data encryption, and 99.9% uptime to protect your dealership operations.',
     alternates: {
         canonical: 'https://www.visquanta.com/trust',
         languages: {

@@ -366,7 +366,7 @@ export default function DealerServicesPage() {
             </div>
             <div className="flex items-center justify-center gap-6 mt-8 text-sm text-neutral-500">
               <span>✓ Full API Access</span>
-              <span>✓ SOC-2 Compliant</span>
+              <span>✓ Enterprise-Grade Security</span>
               <span>✓ DMS Integration</span>
             </div>
           </motion.div>

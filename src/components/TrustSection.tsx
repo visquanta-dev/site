@@ -6,8 +6,8 @@ import { ShieldCheck, Lock, Server, FileCheck } from 'lucide-react';
 const features = [
   {
     icon: ShieldCheck,
-    title: "SOC 2 Type II Compliant",
-    description: "Enterprise-grade security controls and annual third-party audits ensure your data is always protected.",
+    title: "Enterprise-Grade Security",
+    description: "Enterprise-grade security controls and encryption help keep your dealership data protected.",
   },
   {
     icon: Lock,

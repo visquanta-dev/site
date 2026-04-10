@@ -63,7 +63,7 @@ export const integrations: Integration[] = [
             { label: 'Authentication', value: 'OAuth 2.0 (secure)' },
             { label: 'Required Plan', value: 'VinSolutions Connect' },
             { label: 'It Required', value: 'No: self-service' },
-            { label: 'Data Residency', value: 'US-based (SOC 2)' },
+            { label: 'Data Residency', value: 'US-based' },
         ],
         benefits: [
             { before: 'BDC manually enters every lead after each call', after: 'Leads auto-created from conversations' },

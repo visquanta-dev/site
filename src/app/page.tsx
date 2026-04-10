@@ -19,6 +19,7 @@ import HowItWorksSection from '@/components/HowItWorksSection';
 import IntegrationsSection from '@/components/IntegrationsSection';
 import FAQSection from '@/components/FAQSection';
 import HomeBlogSection from '@/components/home/HomeBlogSection';
+import HomeHubStrip from '@/components/home/HomeHubStrip';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import { homepageSchema } from "@/lib/schema/homepage";
@@ -74,6 +75,9 @@ export default function Home() {
 
       {/* 1. Hero - Value Proposition & Interactive Product Cards */}
       <Hero />
+
+      {/* Primary hub links — visible above the fold for users & internal linking */}
+      <HomeHubStrip />
 
       {/* 2. Social Proof Bar - Trust Indicators */}
       <SocialProofBar />

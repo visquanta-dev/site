@@ -603,7 +603,7 @@ export default function AutoMasterSuiteHub() {
                                         { title: "Universal CRM Sync", desc: "Bi-directional sync with VinSolutions, eLeads, DealerSocket, and more. We read notes and write statuses in real-time.", icon: RefreshCcw },
                                         { title: "DMS Write-Back", desc: "Secure write-back into CDK, Reynolds, and Dealertrack. From appointments to customer record updates: zero manual effort.", icon: Database },
                                         { title: "OEM Compliance", desc: "100% brand-approved messaging. We verify every template against current manufacturer standards and legal guidelines.", icon: ShieldCheck },
-                                        { title: "Enterprise Security", desc: "SOC-2 Type II Compliant. Your dealership data is encrypted at rest and in transit. We prioritize dealer privacy.", icon: Shield }
+                                        { title: "Enterprise Security", desc: "Enterprise-grade security. Your dealership data is encrypted at rest and in transit. We prioritize dealer privacy.", icon: Shield }
                                     ].map((feat, i) => (
                                         <div key={i} className="flex gap-4 p-5 rounded-xl bg-white/[0.01] hover:bg-white/[0.03] transition-all border border-white/5 hover:border-[#FF7404]/20 group">
                                             <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-[#FF7404] shrink-0 font-bold border border-white/5 group-hover:bg-[#FF7404]/10 transition-colors">
@@ -795,7 +795,7 @@ export default function AutoMasterSuiteHub() {
                             <CheckCircle2 className="w-5 h-5 text-white" />
                             <span className="text-xs font-bold uppercase tracking-widest text-white">Full API Access Included</span>
                             <CheckCircle2 className="w-5 h-5 text-white" />
-                            <span className="text-xs font-bold uppercase tracking-widest text-white">SOC-2 Type II Compliant</span>
+                            <span className="text-xs font-bold uppercase tracking-widest text-white">Enterprise-Grade Security</span>
                         </div>
                     </div>
                 </div>

@@ -48,7 +48,7 @@ export default function IntegrationsHubPage() {
                 primaryCtaText="Book a Demo"
                 secondaryCtaText="View All Integrations"
                 secondaryCtaLink="#all-integrations"
-                trustBadge="SOC 2 Type II Compliant"
+                trustBadge="Enterprise-Grade Security"
                 visual={
                     <div className="relative w-full max-w-4xl mx-auto h-[300px] md:h-[400px] flex items-center justify-center">
                         {/* Central Hub */}
@@ -121,7 +121,7 @@ export default function IntegrationsHubPage() {
                             { title: "Zero Data Entry", desc: "Every call, every lead, logged automatically.", icon: Database },
                             { title: "Real-Time Sync", desc: "Updates appear in your CRM instantly as they happen.", icon: RefreshCw },
                             { title: "No Training Required", desc: "Works within the tools your team already knows.", icon: ArrowRight },
-                            { title: "Enterprise Security", desc: "SOC 2 Type II compliant data handling and encryption.", icon: ShieldCheck }
+                            { title: "Enterprise Security", desc: "Enterprise-grade data handling and encryption.", icon: ShieldCheck }
                         ].map((benefit, i) => (
                             <div key={i} className="bg-[#161616] p-8 rounded-2xl border border-white/[0.05]">
                                 <benefit.icon className="w-8 h-8 text-[#f97316] mb-6" />
@@ -157,7 +157,7 @@ export default function IntegrationsHubPage() {
                     {[
                         { q: "How long does integration setup take?", a: "Most integrations can be authorized in under 5 minutes. Full synchronization of your historical data typically completes within 2-4 hours depending on your database size." },
                         { q: "Will VisQuanta work with my current CRM?", a: "We support over 25+ major automotive CRMs including VinSolutions, eLead, DealerSocket, DriveCentric, and more. If you don't see yours listed, let us know." },
-                        { q: "Is my customer data secure?", a: "Yes. We are SOC 2 Type II compliant and use bank-grade encryption for all data in transit and at rest. We never sell or share your customer data." },
+                        { q: "Is my customer data secure?", a: "Yes. We use bank-grade encryption for all data in transit and at rest. We never sell or share your customer data." },
                         { q: "What if I switch CRMs later?", a: "VisQuanta connects to multiple CRMs. If you switch, simply disconnect the old one and authorize the new one. Your AI agents will continue working without interruption." },
                         { q: "Do I need IT support to set this up?", a: "No. Our integrations are designed to be self-service via OAuth or simple API keys. No coding or IT resources are required." }
                     ].map((faq, i) => (
@@ -193,7 +193,7 @@ export default function IntegrationsHubPage() {
                         "mainEntity": [
                             { "@type": "Question", "name": "How long does integration setup take?", "acceptedAnswer": { "@type": "Answer", "text": "Most integrations can be authorized in under 5 minutes. Full synchronization of your historical data typically completes within 2-4 hours depending on your database size." } },
                             { "@type": "Question", "name": "Will VisQuanta work with my current CRM?", "acceptedAnswer": { "@type": "Answer", "text": "We support over 25+ major automotive CRMs including VinSolutions, eLead, DealerSocket, DriveCentric, and more." } },
-                            { "@type": "Question", "name": "Is my customer data secure?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We are SOC 2 Type II compliant and use bank-grade encryption for all data in transit and at rest." } },
+                            { "@type": "Question", "name": "Is my customer data secure?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We use bank-grade encryption for all data in transit and at rest." } },
                             { "@type": "Question", "name": "What if I switch CRMs later?", "acceptedAnswer": { "@type": "Answer", "text": "VisQuanta connects to multiple CRMs. If you switch, simply disconnect the old one and authorize the new one." } },
                             { "@type": "Question", "name": "Do I need IT support to set this up?", "acceptedAnswer": { "@type": "Answer", "text": "No. Our integrations are designed to be self-service via OAuth or simple API keys." } }
                         ]

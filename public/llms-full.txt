@@ -190,7 +190,7 @@ VisQuanta accepts leads from 100+ sources including:
 - Do-not-contact list management
 
 ### Data Security
-- SOC 2 Type II compliant infrastructure
+- Enterprise-grade security with encrypted infrastructure
 - Encrypted data transmission (TLS 1.3)
 - No data sold to third parties
 - CCPA compliant
@@ -312,7 +312,7 @@ No. VisQuanta operates month-to-month. No annual commitments required.
 Yes. All SMS and voice communications follow TCPA guidelines including opt-out handling, consent tracking, and do-not-contact list management.
 
 **What about data security?**
-VisQuanta maintains SOC 2 Type II compliance, uses encrypted data transmission, and never sells data to third parties.
+VisQuanta uses encrypted data transmission, follows enterprise-grade security practices, and never sells data to third parties.
 
 ---
 
