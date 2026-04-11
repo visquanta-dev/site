@@ -12,7 +12,11 @@ import { BlogArticleHeader } from '@/components/blog/BlogArticleHeader';
 import { BLOG_ENHANCEMENTS } from '@/data/blog-enhancements';
 import { BLOG_RELATED_PRODUCTS } from '@/data/blog-products';
 import RelatedProducts from '@/components/blog/RelatedProducts';
-import { ExpertInsight, KnowledgeCards, ProofPoint, MidArticleCTA, BottomConsultingCTA, BlogFAQAccordion } from '@/components/blog/BlogEnhancements'; import InlineNewsletter from '@/components/blog/InlineNewsletter';
+import { ExpertInsight, KnowledgeCards, ProofPoint, MidArticleCTA, BottomConsultingCTA, BlogFAQAccordion } from '@/components/blog/BlogEnhancements';
+import InlineNewsletter from '@/components/blog/InlineNewsletter';
+import ServiceCalculator from '@/components/service-drive/ServiceCalculator';
+import VoiceAgent from '@/components/service-drive/VoiceAgent';
+import BlogCalculatorEmbed, { parseCalculatorMarkers } from '@/components/blog/BlogCalculatorEmbed';
 import { getServerLocalePrefix } from '@/lib/server-locale';
 import { normalizeLinks } from '@/lib/link-normalization';
 
@@ -138,6 +142,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     const enhancement = BLOG_ENHANCEMENTS[slug];
     const localePrefix = await getServerLocalePrefix();
 
+    // Determine if post is service-drive related (for calculator/diagnostic injection)
+    const isServiceDrivePost = !!(
+      post.tags?.some((t: { slug: string }) =>
+        ['service-drive', 'missed-calls', 'voice-ai', 'automation'].includes(t.slug)
+      ) ||
+      post.category?.slug === 'daily-seo' && (
+        post.headline?.toLowerCase().includes('service') ||
+        post.headline?.toLowerCase().includes('missed call') ||
+        post.headline?.toLowerCase().includes('voice')
+      )
+    );
+
     // PHASE 2: Implement Render-Time Link Normalisation
     // Eliminate internal redirect reliance by rewriting legacy links in the HTML
     post.html = normalizeLinks(post.html);
@@ -246,33 +262,31 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </div>
             </section>
 
-            {/* Hero Image Section */}
+            {/* Hero Image Section — full width */}
             {post.image && (
                 <section className="relative pb-16 lg:pb-24">
                     <div className="container px-4 mx-auto">
-                        <div className="max-w-6xl mx-auto">
-                            <BlogPostClient delay={0.1}>
-                                <div className="relative rounded-[20px] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/50 group featured-card-border">
-                                    {/* Top shine effect */}
-                                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
+                        <BlogPostClient delay={0.1}>
+                            <div className="relative rounded-[20px] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/50 group">
+                                {/* Top shine effect */}
+                                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
 
-                                    <div className="relative aspect-[21/9] w-full">
-                                        <Image
-                                            src={post.image}
-                                            alt={post.headline}
-                                            fill
-                                            className="object-contain"
-                                            priority
-                                        />
-                                        {/* Gradient overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
-                                    </div>
-
-                                    {/* Bottom accent */}
-                                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
+                                <div className="relative aspect-[21/9] w-full">
+                                    <Image
+                                        src={post.image}
+                                        alt={post.headline}
+                                        fill
+                                        className="object-cover"
+                                        priority
+                                    />
+                                    {/* Gradient overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
                                 </div>
-                            </BlogPostClient>
-                        </div>
+
+                                {/* Bottom accent */}
+                                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
+                            </div>
+                        </BlogPostClient>
                     </div>
                 </section>
             )}
@@ -312,15 +326,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
                                     const paragraphs = mainContentHtml.split('</p>');
 
+                                    // Helper: render HTML with calculator markers replaced by components
+                                    const renderWithCalculators = (html: string) => {
+                                        const segments = parseCalculatorMarkers(html);
+                                        if (segments.length === 1 && segments[0].type === 'html') {
+                                            return <div suppressHydrationWarning className="blog-content" dangerouslySetInnerHTML={{ __html: segments[0].content }} />;
+                                        }
+                                        return (
+                                            <>
+                                                {segments.map((seg, i) =>
+                                                    seg.type === 'html'
+                                                        ? <div key={i} suppressHydrationWarning className="blog-content" dangerouslySetInnerHTML={{ __html: seg.content }} />
+                                                        : <BlogCalculatorEmbed key={i} type={seg.calcType} />
+                                                )}
+                                            </>
+                                        );
+                                    };
+
                                     // If text is short, just show it
                                     if (paragraphs.length < 8) {
-                                        return (
-                                            <div
-                                                suppressHydrationWarning
-                                                className="blog-content"
-                                                dangerouslySetInnerHTML={{ __html: mainContentHtml }}
-                                            />
-                                        );
+                                        return renderWithCalculators(mainContentHtml);
                                     }
 
                                     // Injection Logic
@@ -342,28 +367,30 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
                                     return (
                                         <>
-                                            <div
-                                                suppressHydrationWarning
-                                                className="blog-content"
-                                                dangerouslySetInnerHTML={{ __html: chunk1 }}
-                                            />
+                                            {renderWithCalculators(chunk1)}
 
                                             {/* INLINE NEWSLETTER */}
                                             <InlineNewsletter />
 
-                                            <div
-                                                suppressHydrationWarning
-                                                className="blog-content"
-                                                dangerouslySetInnerHTML={{ __html: chunk2 }}
-                                            />
+                                            {renderWithCalculators(chunk2)}
 
                                             <MidArticleCTA />
 
-                                            <div
-                                                suppressHydrationWarning
-                                                className="blog-content"
-                                                dangerouslySetInnerHTML={{ __html: chunk3 }}
-                                            />
+                                            {/* SERVICE DRIVE ROI CALCULATOR — contextual injection */}
+                                            {isServiceDrivePost && (
+                                                <div className="my-16" style={{ marginLeft: '-8rem', marginRight: '-8rem' }}>
+                                                    <div style={{ transform: 'scale(0.85)', transformOrigin: 'top center' }}>
+                                                        <ServiceCalculator />
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {/* VOICE AGENT DEMO — contextual injection */}
+                                            {isServiceDrivePost && (
+                                                <VoiceAgent />
+                                            )}
+
+                                            {renderWithCalculators(chunk3)}
 
                                             {/* CONTEXTUAL PRODUCT CROSS-LINKING */}
                                             {BLOG_RELATED_PRODUCTS[slug] && (
