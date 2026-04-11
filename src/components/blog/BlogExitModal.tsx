@@ -1,67 +1,45 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, Zap, PhoneCall, ShieldCheck, MessageSquare, ArrowRight, Play, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
+const SESSION_KEY = 'visquanta_blog_modal_seen';
+
 export default function BlogExitModal() {
     const [isOpen, setIsOpen] = useState(false);
-    const [hasTriggered, setHasTriggered] = useState(false);
+    const triggeredRef = useRef(false);
 
     useEffect(() => {
-        // 1. Session Check (Show once per session)
-        const hasSeenModal = sessionStorage.getItem('visquanta_blog_modal_seen');
-        if (hasSeenModal) return;
-
-        // Triggers Logic
-        let scrollTimeout: NodeJS.Timeout;
-        let timeTimeout: NodeJS.Timeout;
+        if (typeof window === 'undefined') return;
+        if (sessionStorage.getItem(SESSION_KEY)) return;
 
         const triggerModal = () => {
-            if (hasTriggered) return;
-            // Double check session in case it fired rapidly
-            if (sessionStorage.getItem('visquanta_blog_modal_seen')) return;
-
+            if (triggeredRef.current) return;
+            if (sessionStorage.getItem(SESSION_KEY)) return;
+            triggeredRef.current = true;
             setIsOpen(true);
-            setHasTriggered(true);
-            sessionStorage.setItem('visquanta_blog_modal_seen', 'true');
+            sessionStorage.setItem(SESSION_KEY, 'true');
         };
 
-        // A. Time Delay (15 seconds)
-        timeTimeout = setTimeout(() => {
-            triggerModal();
-        }, 15000);
-
-        // B. Scroll Depth (50%)
-        const handleScroll = () => {
-            const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-            if (scrollPercent > 0.5) {
-                triggerModal();
-            }
-        };
-
-        // C. Exit Intent (Desktop only)
+        /** Exit intent only: pointer moving up past the top edge (typical “leaving the tab” gesture). */
         const handleExitIntent = (e: MouseEvent) => {
             if (e.clientY <= 0) {
                 triggerModal();
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
         document.addEventListener('mouseleave', handleExitIntent);
 
         return () => {
-            clearTimeout(timeTimeout);
-            window.removeEventListener('scroll', handleScroll);
             document.removeEventListener('mouseleave', handleExitIntent);
         };
-    }, [hasTriggered]);
+    }, []);
 
     const handleClose = () => {
         setIsOpen(false);
-        // Ensure it doesn't show again this session
-        sessionStorage.setItem('visquanta_blog_modal_seen', 'true');
+        sessionStorage.setItem(SESSION_KEY, 'true');
     };
 
     return (
