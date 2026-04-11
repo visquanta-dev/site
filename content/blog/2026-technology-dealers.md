@@ -23,7 +23,7 @@ author: VisQuanta Team
 ---
 ## The Adoption Curve Already Left the Lot
 
-**TL;DR:** 48% of dealerships already ran automation by 2025, and that number is expected to blow past 70% before 2027 - making automation a baseline expectation rather than an early-adopter experiment. Fixed ops is the next battleground, with over 50% of dealers projected to automate service departments by the close of 2026 and another 29% planning rollouts within two to three years.
+**Key Takeaway:** 48% of dealerships already ran automation by 2025, and that number is expected to blow past 70% before 2027 - making automation a baseline expectation rather than an early-adopter experiment. Fixed ops is the next battleground, with over 50% of dealers projected to automate service departments by the close of 2026 and another 29% planning rollouts within two to three years.
 
 {{calculator:service-roi}}
 

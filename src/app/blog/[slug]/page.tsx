@@ -263,7 +263,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                             src={post.image}
                                             alt={post.headline}
                                             fill
-                                            className="object-contain"
+                                            className="object-cover"
                                             priority
                                         />
                                         {/* Gradient overlay */}
