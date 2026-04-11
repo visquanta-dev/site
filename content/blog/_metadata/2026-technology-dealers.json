@@ -1,0 +1,13 @@
+{
+  "gate_scores": {
+    "trace-back": 0.5748002718371413,
+    "slop-lexicon": 9,
+    "originality": 7,
+    "fact-recheck": 88
+  },
+  "retries": 1,
+  "image_count": 0,
+  "blocked_images": [
+    "hero.webp"
+  ]
+}
