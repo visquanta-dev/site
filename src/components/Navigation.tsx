@@ -28,7 +28,8 @@ import {
   Anchor,
   Store,
   BadgeCheck,
-  Users
+  Users,
+  BarChart2
 } from 'lucide-react';
 import { RequestDemoButton } from './CalendlyModal';
 import { Button } from "@/components/ui/button";
@@ -136,6 +137,7 @@ const navItems: NavItem[] = [
   {
     label: 'Resources',
     children: [
+      { label: 'Case Studies', href: '/case-studies', description: 'Real dealerships, real numbers', icon: BarChart2 },
       { label: 'FAQs', href: '/faqs', description: 'Everything you need to know', icon: RefreshCcw },
       { label: 'Our Blog', href: '/blog', description: 'Insights for forward-thinkers', icon: Layers },
       { label: 'AMS Info Sheets', href: '/ams-guides', description: 'One-page solution overviews', icon: Layers },

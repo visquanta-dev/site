@@ -80,7 +80,7 @@ export const NewsletterPostEmail = ({
                             © 2026 VisQuanta LLC. All rights reserved.
                         </Text>
                         <Text style={footerSubtext}>
-                            2233 Ponce de Leon Blvd, 3rd Floor, Miami, FL 33134
+                            2001 Timberloch Place, Suite 500, The Woodlands, TX 77380
                         </Text>
                         <Hr style={hr} />
                         <Text style={footerLinks}>

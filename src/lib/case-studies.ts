@@ -1,7 +1,7 @@
 // Case Study Data Types and Content
-// Shared data file for use in both metadata generation and page rendering
+// Shared data file for use in hub page, detail pages, and metadata generation
 
-import { TrendingUp, BarChart3, Target, Users, Zap, DollarSign, Clock } from 'lucide-react';
+import { TrendingUp, BarChart3, Target, Users, DollarSign } from 'lucide-react';
 
 export interface CaseStudyMetric {
     value: string;
@@ -9,15 +9,30 @@ export interface CaseStudyMetric {
     icon: typeof TrendingUp;
 }
 
+export interface CaseStudyTableData {
+    revenue: string;
+    revenueNum: number;
+    sales: number;
+    conversations: number;
+    avgDeal: string;
+    rooftops: number;
+    brands: string;
+}
+
 export interface CaseStudyData {
     client: string;
     location: string;
+    state: string;
     type: string;
+    category: 'franchise' | 'independent';
+    accentColor: string;
+    tagline: string;
     logo: string;
     heroImage: string;
     title: string;
     summary: string;
     metrics: CaseStudyMetric[];
+    tableData: CaseStudyTableData;
     challenge: {
         title: string;
         content: string[];
@@ -42,284 +57,516 @@ export interface CaseStudyData {
 }
 
 export const caseStudies: Record<string, CaseStudyData> = {
-    'metro-motors': {
-        client: 'Metro Auto Group',
-        location: 'California, USA',
-        type: 'Franchise Dealership Group',
-        logo: '/images/brands/toyota.png',
-        heroImage: '/images/dealership-hero.jpg',
-        title: 'How Metro Auto Group Generated $68k in Gross Profit from "Dead" Leads in 30 Days',
-        summary: 'Facing a stagnating database of 45,000 leads and an overwhelmed BDC, Metro Auto Group deployed The AutoMaster Suite to identify and engage in-market buyers, resulting in 32 incremental unit sales in month one.',
+    'seth-wadley': {
+        client: 'Multi-Rooftop Auto Group in Central Oklahoma',
+        location: 'Central Oklahoma',
+        state: 'OK',
+        type: '5 Rooftops · Chevrolet & Ford',
+        category: 'franchise',
+        accentColor: '#FF7404',
+        tagline: 'Five rooftops. One playbook. $1.29M in 60 days.',
+        logo: '/images/brands/ford-direct.jpg',
+        heroImage: '/images/seth-wadley-hero.jpg',
+        title: 'Five Rooftops. One Playbook. $1.29M in 60 Days.',
+        summary: 'A family-owned auto group operating five Chevrolet and Ford rooftops across central Oklahoma deployed always-on AI across every store simultaneously — handling 2,059 customer conversations and closing $1.29M in attributed revenue over a 60-day window.',
         metrics: [
-            { value: '+32', label: 'Incremental Units', icon: TrendingUp },
-            { value: '$68k', label: 'Addt. Front Gross', icon: BarChart3 },
-            { value: '14x', label: 'ROI First Month', icon: Target },
-            { value: '15%', label: 'Show Rate Lift', icon: Users },
+            { value: '$1.29M', label: 'Attributed Revenue', icon: DollarSign },
+            { value: '37', label: 'Confirmed Sales', icon: TrendingUp },
+            { value: '2,059', label: 'AI-Handled Contacts', icon: Users },
+            { value: '5', label: 'Rooftops Covered', icon: Target },
         ],
+        tableData: {
+            revenue: '$1.29M',
+            revenueNum: 1295924,
+            sales: 37,
+            conversations: 2059,
+            avgDeal: '$35.0k',
+            rooftops: 5,
+            brands: 'Chevrolet & Ford',
+        },
         challenge: {
-            title: 'The Challenge: CRM Bloat & Missed Opportunities',
+            title: 'The Challenge: Five Rooftops, One BDC, Every Lead Under Pressure',
             content: [
-                "Metro Auto Group, a high-volume franchise spanning 3 rooftops, had accumulated over 45,000 leads in their CRM over the past 5 years.",
-                "Their BDC team was consistently maxed out handling fresh inbound traffic, leaving thousands of older leads to collect dust.",
-                "Marketing costs were rising (averaging $650 per sold unit), yet they were sitting on a goldmine of previous customers and prospects that they simply didn't have the manpower to work effectively."
+                "Running five rooftops across central Oklahoma means five phones ringing, five inbox streams, five chat widgets, and five sets of after-hours leads piling up overnight. The group's BDC team couldn't physically be everywhere at once.",
+                "Every minute a web lead sat untouched was another minute a competing dealer could reach the customer first. Across Chevrolet and Ford franchises, the group needed every rooftop to respond to every lead with the same speed and consistency — regardless of brand, city, or time of day.",
+                "And with multiple lead aggregators feeding each store — manufacturer websites, Cars.com, AutoTrader, CARFAX, Edmunds, Facebook lead ads, and the dealerships' own chat widgets — no human BDC could realistically answer every channel in seconds, 24/7, across five different stores."
             ]
         },
         solution: {
-            title: 'The Solution: Intelligent Automation',
+            title: 'The Solution: Coordinated AI Across Every Rooftop',
             steps: [
                 {
-                    title: 'Database Hygiene & Analysis',
-                    description: 'We ingested their 45k records into The AutoMaster Suite, scrubbing for invalid contact info and cross-referencing with DMS data to remove customers who had recently purchased elsewhere.'
+                    title: 'Instant Speed-to-Lead — Every Channel, Every Store',
+                    description: 'Every inbound lead from every source — manufacturer sites, Cars.com, AutoTrader, CARFAX, Edmunds, Facebook lead ads, and the dealerships\' own chat widgets — gets answered within seconds by a named AI agent matched to the right rooftop. No form-fill sits in a queue.'
                 },
                 {
-                    title: 'AI-Powered Cold Lead Outreach',
-                    description: 'Our conversational AI reached out to 2,400 high-probability leads via SMS, qualifying their buying intent and identifying those actively in-market.'
+                    title: 'Database Reactivation Across All 5 Stores',
+                    description: 'Dormant CRM contacts across every rooftop are systematically re-engaged with personalized outbound SMS campaigns — turning cold records into live conversations without adding a single BDC hire.'
                 },
                 {
-                    title: 'Omnichannel Activation Campaign',
-                    description: 'We launched a "Vehicle Exchange Program" campaign using 2-way AI SMS and personalized email sequences, focusing on upgrading customers into newer models with similar payments.'
+                    title: 'Multi-Agent Persona Pool',
+                    description: 'Each rooftop has its own named AI agent, so customers get a consistent store-level experience — but the back-end logic, training, and continuous improvement are shared across the whole group. One playbook, five front doors.'
                 }
             ]
         },
         results: {
-            title: 'The Impact: Immediate Revenue',
-            content: "The results were felt within 48 hours. The BDC woke up to 150+ warm responses from customers asking for upgrade options.",
+            title: 'The Impact: $1.29M in 60 Days Across Five Rooftops',
+            content: "Over a 60-day window (February 10 to April 10, 2026), the AI system handled more than 2,000 customer conversations across all five locations — and the revenue followed.",
             stats: [
-                "32 Incremental Cars Sold directly attributed to the campaign.",
-                "$2,125 Average Front End Gross per unit on these deals.",
-                "Zero additional ad spend required: purely monetizing owned data."
+                "$1,295,924 in attributed vehicle sales revenue across five rooftops in 60 days.",
+                "37 confirmed sales at an average transaction value of $35,025 per deal.",
+                "2,059 AI-handled customer contacts — leads, callbacks, and follow-ups — across Chevrolet and Ford franchises simultaneously."
             ]
         },
         testimonial: {
-            quote: "I was skeptical that software could outperform my BDC on phone calls. But The AutoMaster Suite pulled deals out of thin air. These were customers we had given up on. It brought them back into the showroom ready to buy.",
-            author: "James Corwin",
-            role: "General Manager, Metro Auto Group"
+            quote: "It's great! So happy we found the Robin Egg Blue. We definitely get some looks driving it around town. I love it!",
+            author: "Customer SMS reply",
+            role: "Central Oklahoma — February 2026"
         }
     },
-    'bayside-honda': {
-        client: 'Bayside Honda',
-        location: 'Florida, USA',
-        type: 'Single Point Franchise',
-        logo: '/images/brands/honda.png',
-        heroImage: '/images/bayside-hero.jpg',
-        title: 'Reducing Lead Response Time from 40 Mins to 30 Seconds with AI',
-        summary: 'In a highly competitive metro market, Bayside Honda struggled to reach leads before competitors. By implementing specialized Speed-to-Lead from The AutoMaster Suite, they achieved instant engagement, doubling their contact rate.',
+    'kansas-city-hyundai': {
+        client: 'Hyundai Dealership in Kansas City',
+        location: 'Kansas City, Missouri',
+        state: 'MO',
+        type: 'Single Point · Hyundai',
+        category: 'franchise',
+        accentColor: '#FF7404',
+        tagline: 'Winning the most competitive Hyundai market in the Midwest.',
+        logo: '/images/brands/generic.png',
+        heroImage: '/images/dealership-hero.jpg',
+        title: 'A Kansas City Hyundai Dealer: $271k in 60 Days',
+        summary: 'A Hyundai franchise serving the Kansas City metropolitan market deployed always-on AI to handle inbound leads across every channel — closing $271k in attributed revenue from 722 AI-handled conversations over a 60-day window.',
         metrics: [
-            { value: '-98%', label: 'Response Time', icon: Zap },
-            { value: '2x', label: 'Contact Rate', icon: Users },
-            { value: '+18', label: 'Addt. Appts/Mo', icon: TrendingUp },
-            { value: '92%', label: 'Engagement Rate', icon: Target },
+            { value: '$271k', label: 'Attributed Revenue', icon: DollarSign },
+            { value: '11', label: 'Confirmed Sales', icon: TrendingUp },
+            { value: '722', label: 'AI-Handled Contacts', icon: Users },
+            { value: '$24.7k', label: 'Avg Deal Value', icon: Target },
         ],
+        tableData: {
+            revenue: '$271k',
+            revenueNum: 271485,
+            sales: 11,
+            conversations: 722,
+            avgDeal: '$24.7k',
+            rooftops: 1,
+            brands: 'Hyundai',
+        },
         challenge: {
-            title: 'The Challenge: The "Speed to Lead" Gap',
+            title: 'The Challenge: Winning in a Crowded Metro',
             content: [
-                "Bayside Honda's sales floor was busy. When a web lead came in, it often sat for 40-60 minutes before a salesperson could call.",
-                "Industry data shows that response rates drop by 400% after the first 5 minutes. Bayside was losing deals simply because they weren't first to the phone.",
-                "They needed a solution that could guarantee instant engagement 24/7, without hiring a 24-hour BDC team."
+                "The Kansas City metro is one of the most competitive Hyundai markets in the Midwest — with multiple franchises within a short drive and a heavy aggregator presence feeding leads to everyone at once.",
+                "The store was missing leads simply because it couldn't respond fast enough. First dealer to reply usually wins the deal, and a 20-minute response time was losing customers to faster competitors.",
+                "The BDC needed to behave like it had triple the headcount, 24/7, without the payroll."
             ]
         },
         solution: {
-            title: 'The Solution: AI "First Responder"',
+            title: 'The Solution: Always-On AI Across Every Channel',
             steps: [
                 {
-                    title: 'Instant SMS Engagement',
-                    description: 'We deployed our Speed-to-Lead module to text every new lead within 30 seconds of submission, confirming interest and asking qualifying questions.'
+                    title: 'Instant Speed-to-Lead Across All Channels',
+                    description: "Every inbound lead — from manufacturer site, Cars.com, AutoTrader, CARFAX, Edmunds, Facebook lead ads, and the dealership's chat widget — is answered within seconds by the store's named AI agent."
+                },
+                {
+                    title: '24/7 After-Hours Engagement',
+                    description: "Night-time and weekend leads are picked up instantly by the AI, qualified, and booked into the sales calendar before the store opens."
+                },
+                {
+                    title: 'CRM Reactivation Campaigns',
+                    description: "Dormant contacts are re-engaged with tailored outbound SMS flows — recovering deals the store had effectively written off."
+                }
+            ]
+        },
+        results: {
+            title: 'The Impact: $271k in 60 Days',
+            content: "Over a 60-day window (February 10 to April 10, 2026), the AI handled 722 customer conversations for a single Hyundai rooftop in one of the most competitive metros in the Midwest.",
+            stats: [
+                "$271,485 in attributed vehicle sales revenue over 60 days.",
+                "11 confirmed sales at an average transaction value of $24,680 per deal.",
+                "722 AI-handled customer contacts across every lead source, 24/7."
+            ]
+        },
+        testimonial: {
+            quote: "Thank you so much for your time, have an amazing weekend!",
+            author: "Customer SMS reply",
+            role: "Kansas City, MO — February 2026"
+        }
+    },
+    'brookshire-hyundai': {
+        client: 'Hyundai Dealership in the Brookshire Area',
+        location: 'Brookshire Area, Texas',
+        state: 'TX',
+        type: 'Single Point · Hyundai',
+        category: 'franchise',
+        accentColor: '#FF7404',
+        tagline: '$238k from a single Texas rooftop in 60 days.',
+        logo: '/images/brands/generic.png',
+        heroImage: '/images/dealership-hero.jpg',
+        title: 'A Texas Hyundai Store: $238k in 60 Days from AI-Handled Leads',
+        summary: 'Facing overwhelming inbound lead volume and after-hours gaps, this Texas Hyundai franchise deployed always-on AI to answer every inbound lead in seconds — closing $238k in attributed revenue from 665 AI-handled customer conversations over 60 days.',
+        metrics: [
+            { value: '$238k', label: 'Attributed Revenue', icon: DollarSign },
+            { value: '9', label: 'Confirmed Sales', icon: TrendingUp },
+            { value: '665', label: 'AI-Handled Contacts', icon: Users },
+            { value: '$26.5k', label: 'Avg Deal Value', icon: Target },
+        ],
+        tableData: {
+            revenue: '$238k',
+            revenueNum: 238788,
+            sales: 9,
+            conversations: 665,
+            avgDeal: '$26.5k',
+            rooftops: 1,
+            brands: 'Hyundai',
+        },
+        challenge: {
+            title: 'The Challenge: Every Lead, Every Channel, Every Hour',
+            content: [
+                "As a single-point Hyundai franchise in Texas, the store was fielding leads from every major aggregator — manufacturer site, Cars.com, AutoTrader, CARFAX — plus web chat and walk-in. The BDC couldn't keep up with the volume, and after-hours leads were piling up.",
+                "Every minute a lead sat in a queue was another minute a competitor could get there first. In a metro-adjacent market with plenty of Hyundai alternatives within driving distance, speed wasn't a nice-to-have — it was the whole game.",
+                "The store needed to answer every lead, from every source, instantly — 24/7 — without hiring a three-shift BDC team."
+            ]
+        },
+        solution: {
+            title: 'The Solution: Always-On AI Across Every Channel',
+            steps: [
+                {
+                    title: 'Instant Speed-to-Lead',
+                    description: "Every inbound lead from the manufacturer site, Cars.com, AutoTrader, CARFAX, Edmunds, and the dealership's own chat widget is answered within seconds by the store's named AI agent — no delay, no queue."
                 },
                 {
                     title: 'After-Hours Coverage',
-                    description: 'The AI managed all leads from 9 PM to 9 AM, booking appointments directly into the CRM calendar for the morning team.'
+                    description: "The AI handles every lead from evening through early morning, booking appointments directly into the CRM for the sales team's first coffee of the day."
                 },
                 {
-                    title: 'Defection Alerting',
-                    description: 'If a customer mentioned visiting a competitor, the AI instantly flagged the manager for a "TO" (Turn Over) call.'
+                    title: 'Database Reactivation',
+                    description: "Dormant CRM contacts are systematically re-engaged with personalized outbound SMS campaigns — turning cold records into live conversations."
                 }
             ]
         },
         results: {
-            title: 'The Impact: First to the Deal',
-            content: "By being the first dealership to make contact, Bayside Honda stopped shoppers from visiting other stores.",
+            title: 'The Impact: $238k in 60 Days',
+            content: "Over a 60-day window (February 10 to April 10, 2026), the AI handled 665 customer conversations for a single Hyundai rooftop — and the revenue followed.",
             stats: [
-                "Average response time dropped to under 30 seconds consistently.",
-                "Appointment set rate increased by 45% within 60 days.",
-                "Night-time leads resulted in 12 extra sold units per month."
+                "$238,788 in attributed vehicle sales revenue over 60 days.",
+                "9 confirmed sales at an average transaction value of $26,532 per deal.",
+                "665 AI-handled customer contacts across every lead source, 24/7."
             ]
         },
         testimonial: {
-            quote: "Our guys used to complain about 'bad leads.' Turns out the leads were fine, we were just too slow. Now the AI warms them up, and we just close them. It's a game changer.",
-            author: "Sarah Jenkins",
-            role: "Internet Director, Bayside Honda"
+            quote: "Thank you so much!! I really appreciate the help.",
+            author: "Customer SMS reply",
+            role: "Texas — March 2026"
         }
     },
-    'prestige-imports': {
-        client: 'Prestige Imports',
-        location: 'Texas, USA',
-        type: 'Luxury Import Specialist',
-        logo: '/images/brands/bmw.png',
-        heroImage: '/images/prestige-hero.jpg',
-        title: '300% ROI on Service Drive Mining Campaigns',
-        summary: 'Prestige Imports wanted to turn service customers into new car buyers. Our Service Drive Pro tool automatically identified equity-positive customers, generating $120k in gross profit in Q1.',
-        metrics: [
-            { value: '300%', label: 'ROI', icon: BarChart3 },
-            { value: '$120k', label: 'Gross Profit (Q1)', icon: DollarSign },
-            { value: '15', label: 'Service-to-Sales', icon: TrendingUp },
-            { value: '$4k', label: 'Avg PVR', icon: Target },
-        ],
-        challenge: {
-            title: 'The Challenge: Silent Service Lanes',
-            content: [
-                "Prestige Imports saw 80+ ROs per day, but their sales team had no visibility into who was in the service lounge.",
-                "Customers with high equity were paying for expensive repairs on cars they should have traded in.",
-                "Manual equity mining tools were cumbersome and required a dedicated person to 'work the service drive,' which rarely happened consistently."
-            ]
-        },
-        solution: {
-            title: 'The Solution: Automated Equity Defense',
-            steps: [
-                {
-                    title: 'Real-Time RO Scanning',
-                    description: 'The AutoMaster Suite integrated with the DMS to scan every open RO against Kelley Blue Book values and current payoff amounts.'
-                },
-                {
-                    title: 'The "Upgrade Offer"',
-                    description: 'Qualifying customers received a personalized text: "Mr. Smith, your X5 requires $1,200 in service. We can waive that bill and lower your payment on a 2024 model today."'
-                },
-                {
-                    title: 'Service Valet Introduction',
-                    description: 'When a customer hit "Interested," the Service Manager was notified to walk the customer to the showroom floor personally.'
-                }
-            ]
-        },
-        results: {
-            title: 'The Impact: Fixed Ops to Front End',
-            content: "The service drive became the dealership's most profitable lead source.",
-            stats: [
-                "15 additional units sold per month directly from the service lane.",
-                "Average Front End Gross of $4,000+ due to high-demand trade-ins.",
-                "Acquired premium used inventory without paying auction fees."
-            ]
-        },
-        testimonial: {
-            quote: "We used to beg salespeople to work the service drive. Now they fight over the alerts. The system serves up deals on a silver platter.",
-            author: "Marcus Thorne",
-            role: "Dealer Principal, Prestige Imports"
-        }
-    },
-    'freedom-independent': {
-        client: 'Freedom Independent',
-        location: 'Ohio, USA',
-        type: 'Independent Dealership',
+    'drive-n-motion-colorado': {
+        client: 'Independent Auto Group on the Colorado Front Range',
+        location: 'Colorado Front Range',
+        state: 'CO',
+        type: '3 Rooftops · Pre-Owned',
+        category: 'independent',
+        accentColor: '#FF7404',
+        tagline: 'Proof the playbook works off-franchise.',
         logo: '/images/brands/generic.png',
-        heroImage: '/images/freedom-hero.jpg',
-        title: 'Reducing Inventory Turn Time to 18 Days with The AutoMaster Suite',
-        summary: 'By matching incoming inventory with wish-list customers automatically, Freedom Independent reduced their average turn time from 45 days to just 18 days.',
+        heroImage: '/images/dealership-hero.jpg',
+        title: 'An Independent Colorado Used-Car Group: $228k Across 3 Rooftops',
+        summary: "An independent pre-owned auto group operating 3 rooftops along Colorado's Front Range deployed always-on AI across every store — proving the Speed-to-Lead playbook works off-franchise. $228k in attributed revenue from 1,887 AI-handled conversations over 60 days.",
         metrics: [
-            { value: '18 Days', label: 'Arg Turn Time', icon: Clock },
-            { value: '-27', label: 'Days Saved', icon: TrendingUp },
-            { value: '100%', label: 'Lead Coverage', icon: Zap },
-            { value: '$350', label: 'Reduced Holding Cost', icon: DollarSign },
+            { value: '$228k', label: 'Attributed Revenue', icon: DollarSign },
+            { value: '13', label: 'Confirmed Sales', icon: TrendingUp },
+            { value: '1,887', label: 'AI-Handled Contacts', icon: Users },
+            { value: '3', label: 'Rooftops Covered', icon: BarChart3 },
         ],
+        tableData: {
+            revenue: '$228k',
+            revenueNum: 228150,
+            sales: 13,
+            conversations: 1887,
+            avgDeal: '$17.6k',
+            rooftops: 3,
+            brands: 'Pre-Owned',
+        },
         challenge: {
-            title: 'The Challenge: Aging Inventory Risk',
+            title: 'The Challenge: Independent Dealers vs. Franchise Scale',
             content: [
-                "As an independent dealer, floorplan interest was eating into Freedom's margins.",
-                "Cars were sitting on the lot for 45+ days because they relied on passive web traffic (people browsing CarGurus/Autotrader) to find them.",
-                "They had no mechanism to notify past shoppers when a specific car they wanted arrived in stock."
+                "Independent used-car dealers compete against franchise stores with bigger ad budgets, bigger BDC teams, and manufacturer-backed lead aggregation. Every single lead matters because there aren't many to waste.",
+                "Running 3 rooftops along the Colorado Front Range means 3 phones, 3 inbox streams, and 3 chat widgets — far more surface area than a small independent team can cover manually.",
+                "The group needed franchise-level coverage across all 3 stores without franchise-level headcount, or it was going to keep losing leads to the bigger dealers down the road."
             ]
         },
         solution: {
-            title: 'The Solution: Inventory-Led Outreach',
+            title: 'The Solution: Always-On AI Across Every Rooftop',
             steps: [
                 {
-                    title: 'Wish-List Automation',
-                    description: 'We built a "Virtual Garage" for every lead. If a customer wanted a Ford F-150 but you didn\'t have one, the system remembered.'
+                    title: 'Always-On AI Across All Locations',
+                    description: "Every inbound lead at every rooftop — from CarGurus, AutoTrader, Cars.com, Facebook Marketplace, and the dealerships' own chat widgets — is answered instantly by a named AI agent matched to the right store."
                 },
                 {
-                    title: 'Arrival Alerts',
-                    description: 'The moment a matching vehicle was booked into inventory, The AutoMaster Suite automatically texted every matching prospect: "The F-150 you wanted just landed."'
+                    title: 'Shared Playbook, Local Presence',
+                    description: "Each rooftop runs its own AI persona, so customers always get the right store name and location — but the back-end logic, training, and optimizations are shared across the whole group."
                 },
                 {
-                    title: 'Pre-Selling',
-                    description: 'Many cars were sold before they even finished detailing, purely from the automated waitlist activation.'
+                    title: 'Inventory-Matched Follow-Up',
+                    description: "When a customer asks about a vehicle that's not in stock, the AI remembers — and reaches back out the moment a match arrives, turning one-shot searches into closed deals."
                 }
             ]
         },
         results: {
-            title: 'The Impact: Cash Flow Velocity',
-            content: "Freedom Independent transformed from a storage lot to a logistics hub. Cars moved faster than ever before.",
+            title: 'The Impact: $228k Across 3 Rooftops',
+            content: "Over a 60-day window (February 10 to April 10, 2026), the AI handled nearly 1,900 customer conversations across three independent rooftops — proving the playbook works off-franchise.",
             stats: [
-                "Average turn time dropped to 18 days, slashing floorplan interest costs.",
-                "30% of sales now occur within 48 hours of vehicle acquisition.",
-                "Gross profit holds steady as customers perceive the 'Arrival Alert' as exclusive VIP service."
+                "$228,150 in attributed vehicle sales revenue across 3 rooftops.",
+                "13 confirmed sales at an average transaction value of $17,550 per deal.",
+                "1,887 AI-handled customer contacts across every lead source, 24/7."
             ]
         },
         testimonial: {
-            quote: "I don't worry about cars aging out anymore. If I buy the right inventory, The AutoMaster Suite finds the buyer instantly. It's like having a pre-sold order bank.",
-            author: "Bill Henderson",
-            role: "Owner, Freedom Independent"
+            quote: "Thank you so much, I really appreciate it. I am in desperate need of a car right now.",
+            author: "Customer SMS reply",
+            role: "Colorado — March 2026"
         }
     },
-    'seth-wadley': {
-        client: 'Seth Wadley Auto Group',
-        location: 'Oklahoma, USA',
-        type: 'Auto Group',
-        logo: '/images/brands/ford-direct.jpg',
-        heroImage: '/images/seth-wadley-hero.jpg',
-        title: 'How Seth Wadley Auto Group Recovered $47k in 60 Days',
-        summary: 'Struggling with lead response times and missed opportunities on service calls, Seth Wadley implemented the full The AutoMaster Suite. Within two months, the results were undeniable.',
+    'patriot-chevrolet': {
+        client: 'Chevrolet Dealership in Northeast Oklahoma',
+        location: 'Northeast Oklahoma',
+        state: 'OK',
+        type: 'Single Point · Chevrolet',
+        category: 'franchise',
+        accentColor: '#FF7404',
+        tagline: 'Small-town staffing. Franchise-level speed.',
+        logo: '/images/brands/generic.png',
+        heroImage: '/images/dealership-hero.jpg',
+        title: 'A Single Oklahoma Chevrolet Store: $153k in 60 Days',
+        summary: 'A Chevrolet franchise in northeast Oklahoma deployed always-on AI to answer every lead across every channel instantly — closing $153k in attributed vehicle revenue from 355 AI-handled customer contacts over a 60-day window.',
         metrics: [
-            { value: '$47k', label: 'Revenue Recovered', icon: DollarSign },
-            { value: '12', label: 'Extra Units Sold', icon: TrendingUp },
-            { value: '9x', label: 'ROI Achieved', icon: BarChart3 },
-            { value: '24/7', label: 'Automated Coverage', icon: Zap },
+            { value: '$153k', label: 'Attributed Revenue', icon: DollarSign },
+            { value: '5', label: 'Confirmed Sales', icon: TrendingUp },
+            { value: '355', label: 'AI-Handled Contacts', icon: Users },
+            { value: '$30.6k', label: 'Avg Deal Value', icon: Target },
         ],
+        tableData: {
+            revenue: '$153k',
+            revenueNum: 153229,
+            sales: 5,
+            conversations: 355,
+            avgDeal: '$30.6k',
+            rooftops: 1,
+            brands: 'Chevrolet',
+        },
         challenge: {
-            title: 'The Challenge: Inefficient Lead Management',
+            title: 'The Challenge: Franchise-Level Pressure, Small-Town Staffing',
             content: [
-                "Seth Wadley Auto Group was facing significant challenges with response times for inbound leads.",
-                "Their service department was missing thousands of dollars in potential revenue due to unhandled inquiries.",
-                "The team was overwhelmed by the volume of interactions, leading to low conversion rates."
+                "A single Chevrolet rooftop in a smaller northeast Oklahoma market doesn't have the BDC headcount of a big-city franchise — but it has the same lead volume from aggregator sites and the same competitive pressure from nearby dealers.",
+                "Every lead mattered. Losing even one to a slow response meant losing real revenue to the next-closest dealer down the road.",
+                "The store needed franchise-level response speed without franchise-level staffing."
             ]
         },
         solution: {
-            title: 'The Solution: Full Suite Deployment',
+            title: 'The Solution: Always-On AI Across Every Channel',
             steps: [
                 {
-                    title: 'Lead Reactivation',
-                    description: 'Mining the CRM for dormant leads and using AI to re-engage them through personalized SMS campaigns.'
+                    title: 'Instant Response to Every Lead',
+                    description: "Manufacturer site leads, Cars.com, AutoTrader, CARFAX, and chat widget conversations are all picked up within seconds by the store's named AI agent."
                 },
                 {
-                    title: 'Speed-to-Lead Automation',
-                    description: 'Ensuring every web lead was contacted within 60 seconds regardless of the time of day.'
+                    title: 'Truck Buyer Prioritization',
+                    description: "The AI is tuned for truck-heavy inventory — recognizing buyer signals quickly and routing high-intent truck shoppers to the sales team with pre-qualified information in hand."
                 },
                 {
-                    title: 'Service Drive Integration',
-                    description: 'Automating the appointment setting process for the service department.'
+                    title: 'Database Reactivation',
+                    description: "Dormant CRM contacts — especially past truck buyers who might be ready to upgrade — are re-engaged with personalized outbound campaigns."
                 }
             ]
         },
         results: {
-            title: 'The Impact: Measurable Success',
-            content: "The implementation of VisQuanta's solutions led to an immediate and significant impact on the group's bottom line.",
+            title: 'The Impact: $153k in 60 Days',
+            content: "Over a 60-day window (February 10 to April 10, 2026), the AI handled 355 customer conversations for a single Chevrolet rooftop in a smaller Oklahoma market.",
             stats: [
-                "Recovered $47,000 in lost revenue within the first 60 days.",
-                "Sold 12 additional units directly attributed to AI engagement.",
-                "Achieved a 9x return on investment (ROI) within two months."
+                "$153,229 in attributed vehicle sales revenue over 60 days.",
+                "5 confirmed sales at an average transaction value of $30,646 per deal.",
+                "355 AI-handled customer contacts across every lead source, 24/7."
             ]
         },
         testimonial: {
-            quote: "The ROI was obvious within the first month. VisQuanta didn't just fix our lead response; it reactivated our entire CRM and stabilized our service drive.",
-            author: "Michael Rodriguez",
-            role: "Operations Manager, Seth Wadley Auto Group"
+            quote: "Oh definitely 5! The car is amazing, the staff are friendly, helpful, very knowledgeable! The whole process was quicker than expected!",
+            author: "Customer SMS reply",
+            role: "Northeast Oklahoma — February 2026"
+        }
+    },
+    'corwin-ford-nampa': {
+        client: 'Ford Dealership in Idaho\'s Treasure Valley',
+        location: 'Treasure Valley, Idaho',
+        state: 'ID',
+        type: 'Single Point · Ford',
+        category: 'franchise',
+        accentColor: '#FF7404',
+        tagline: '$41k average deal. Every lead answered instantly.',
+        logo: '/images/brands/generic.png',
+        heroImage: '/images/dealership-hero.jpg',
+        title: 'An Idaho Ford Store: $125k in 60 Days at $41k Average Deal',
+        summary: "A Ford franchise serving Idaho's Treasure Valley deployed always-on AI to handle inbound leads across every aggregator and channel — closing $125k in attributed revenue at over $41k average deal value, from 261 AI-handled customer contacts.",
+        metrics: [
+            { value: '$125k', label: 'Attributed Revenue', icon: DollarSign },
+            { value: '3', label: 'Confirmed Sales', icon: TrendingUp },
+            { value: '261', label: 'AI-Handled Contacts', icon: Users },
+            { value: '$41.8k', label: 'Avg Deal Value', icon: Target },
+        ],
+        tableData: {
+            revenue: '$125k',
+            revenueNum: 125494,
+            sales: 3,
+            conversations: 261,
+            avgDeal: '$41.8k',
+            rooftops: 1,
+            brands: 'Ford',
+        },
+        challenge: {
+            title: 'The Challenge: Holding Ground in a Growing Market',
+            content: [
+                "Idaho's Treasure Valley is growing fast, and so is the competition. A single Ford franchise has to hold its ground against multiple nearby stores, all bidding on the same aggregator leads.",
+                "With a small-town dealer BDC and a high-ticket, truck-heavy inventory, every lead lost to slow response was a deal worth tens of thousands of dollars.",
+                "The store needed to answer every lead instantly — no matter the time of day — without hiring a big-city-sized BDC."
+            ]
+        },
+        solution: {
+            title: 'The Solution: Always-On AI, Tuned for High-Ticket Sales',
+            steps: [
+                {
+                    title: 'Instant Speed-to-Lead',
+                    description: "Every inbound lead — from the Ford manufacturer site, Cars.com, AutoTrader, CARFAX, and the dealership's chat widget — is answered within seconds by the store's named AI agent."
+                },
+                {
+                    title: 'High-Value Deal Focus',
+                    description: "The AI is tuned for the store's truck-and-SUV-heavy inventory mix, recognizing serious buyer signals and escalating high-intent customers to the sales team with a full context handoff."
+                },
+                {
+                    title: 'Database Reactivation',
+                    description: "Dormant Ford and F-Series owners in the CRM are re-engaged with personalized upgrade offers, turning cold records into trade-in opportunities."
+                }
+            ]
+        },
+        results: {
+            title: 'The Impact: $125k at $41k Average Deal Value',
+            content: "Over a 60-day window (February 10 to April 10, 2026), the AI handled 261 customer conversations for a single Idaho Ford rooftop — closing three high-ticket deals at over $41,000 each.",
+            stats: [
+                "$125,494 in attributed vehicle sales revenue over 60 days.",
+                "3 confirmed sales at an average transaction value of $41,831 per deal.",
+                "261 AI-handled customer contacts across every lead source, 24/7."
+            ]
+        },
+        testimonial: {
+            quote: "Thank you so much. Very comfortable. I love it.",
+            author: "Customer SMS reply",
+            role: "Treasure Valley, Idaho — March 2026"
+        }
+    },
+    'grand-valley-auto': {
+        client: 'Independent Dealer in Western Colorado',
+        location: 'Western Colorado',
+        state: 'CO',
+        type: 'Independent · Pre-Owned',
+        category: 'independent',
+        accentColor: '#FF7404',
+        tagline: 'Rural independent. Franchise-grade results.',
+        logo: '/images/brands/generic.png',
+        heroImage: '/images/dealership-hero.jpg',
+        title: 'A Western Colorado Independent Dealer: $110k in 60 Days',
+        summary: 'An independent auto dealer in the Grand Valley region of western Colorado deployed always-on AI to compete with franchise stores on speed and consistency — closing $110k in attributed revenue from 189 AI-handled customer conversations over 60 days.',
+        metrics: [
+            { value: '$110k', label: 'Attributed Revenue', icon: DollarSign },
+            { value: '4', label: 'Confirmed Sales', icon: TrendingUp },
+            { value: '189', label: 'AI-Handled Contacts', icon: Users },
+            { value: '$27.7k', label: 'Avg Deal Value', icon: Target },
+        ],
+        tableData: {
+            revenue: '$110k',
+            revenueNum: 110799,
+            sales: 4,
+            conversations: 189,
+            avgDeal: '$27.7k',
+            rooftops: 1,
+            brands: 'Pre-Owned',
+        },
+        challenge: {
+            title: 'The Challenge: Independent Store, Franchise-Level Competition',
+            content: [
+                "Independent dealers in rural western Colorado compete against larger franchise stores along the Front Range that have bigger ad budgets and full-time BDC teams. Losing a single lead to slow response can mean losing a customer for years.",
+                "With a small team and a big service area, the store couldn't realistically answer every lead within a minute — let alone 24/7.",
+                "The dealer needed a way to match franchise-level response speed without franchise-level headcount."
+            ]
+        },
+        solution: {
+            title: 'The Solution: Franchise-Level Coverage, Independent-Level Cost',
+            steps: [
+                {
+                    title: 'Franchise-Level Response Speed',
+                    description: "Every inbound lead — from CarGurus, AutoTrader, Cars.com, Facebook Marketplace, and the dealership's own chat — is answered within seconds by the store's named AI agent, matching anything the franchise stores could do."
+                },
+                {
+                    title: 'Always-On Coverage',
+                    description: "Nights and weekends are no longer dead time. The AI handles every lead 24/7, making sure the independent store is first-to-contact even when the sales team is home."
+                },
+                {
+                    title: 'Inventory-Led Reactivation',
+                    description: "When fresh inventory arrives, the AI reaches back out to past shoppers whose wish-lists match — turning one-off browsers into closed sales."
+                }
+            ]
+        },
+        results: {
+            title: 'The Impact: $110k in 60 Days',
+            content: "Over a 60-day window (February 10 to April 10, 2026), the AI handled 189 customer conversations for an independent dealer in western Colorado — closing four deals at an average of $27,699.",
+            stats: [
+                "$110,799 in attributed vehicle sales revenue over 60 days.",
+                "4 confirmed sales at an average transaction value of $27,699 per deal.",
+                "189 AI-handled customer contacts across every lead source, 24/7."
+            ]
+        },
+        testimonial: {
+            quote: "Everything. I LOVE IT.",
+            author: "Customer SMS reply",
+            role: "Western Colorado — March 2026"
         }
     }
 };
 
-// Helper function to get case study by slug (for use in metadata)
+// Helper: get case study by slug
 export function getCaseStudy(slug: string): CaseStudyData | null {
     return caseStudies[slug] || null;
 }
 
-// Get all case study slugs (for sitemap/static params)
+// Helper: get all slugs (for sitemap / static params)
 export function getAllCaseStudySlugs(): string[] {
     return Object.keys(caseStudies);
+}
+
+// Helper: get related studies (same category first, then others)
+export function getRelatedStudies(currentSlug: string, count: number = 3): Array<{ slug: string } & CaseStudyData> {
+    const current = caseStudies[currentSlug];
+    if (!current) return [];
+    const allSlugs = Object.keys(caseStudies).filter(s => s !== currentSlug);
+    const sameCategory = allSlugs.filter(s => caseStudies[s].category === current.category);
+    const diffCategory = allSlugs.filter(s => caseStudies[s].category !== current.category);
+    return [...sameCategory, ...diffCategory]
+        .slice(0, count)
+        .map(slug => ({ slug, ...caseStudies[slug] }));
+}
+
+// Helper: compute aggregate stats across all studies
+export function getAggregateStats() {
+    const entries = Object.values(caseStudies);
+    const totalRevenue = entries.reduce((sum, s) => sum + s.tableData.revenueNum, 0);
+    const totalSales = entries.reduce((sum, s) => sum + s.tableData.sales, 0);
+    const totalConversations = entries.reduce((sum, s) => sum + s.tableData.conversations, 0);
+    const totalRooftops = entries.reduce((sum, s) => sum + s.tableData.rooftops, 0);
+    const avgDeal = Math.round(totalRevenue / totalSales);
+    const states = new Set(entries.map(s => s.state));
+    return {
+        totalRevenue: `$${(totalRevenue / 1_000_000).toFixed(2)}M`,
+        totalRevenueNum: totalRevenue,
+        totalSales,
+        totalConversations: totalConversations.toLocaleString(),
+        totalRooftops,
+        avgDeal: `$${(avgDeal / 1000).toFixed(1)}k`,
+        dealerCount: entries.length,
+        stateCount: states.size,
+    };
 }
