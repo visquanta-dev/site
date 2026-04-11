@@ -7,6 +7,8 @@ metaDescription: >-
   it...
 publishedAt: '2026-04-11'
 published: true
+image: /images/blog/service-drive-missed-calls-fix/hero.webp
+readingTime: 11
 category:
   slug: daily-seo
   title: Industry Insights
