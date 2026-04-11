@@ -5,6 +5,7 @@
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { CalendlyModalProvider } from "@/components/CalendlyModal";
 import SmoothScroll from "@/components/ui/SmoothScroll";
@@ -22,6 +23,8 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
 });
 
 // =============================================================================
@@ -173,62 +176,7 @@ export default function RootLayout({
           }}
         />
 
-        {/* Snitcher Analytics */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `!function(e){"use strict";var t=e&&e.namespace;if(t&&e.profileId&&e.cdn){var i=window[t];if(i&&Array.isArray(i)||(i=window[t]=[]),!i.initialized&&!i._loaded)if(i._loaded)console&&console.warn("[Radar] Duplicate initialization attempted");else{i._loaded=!0;["track","page","identify","group","alias","ready","debug","on","off","once","trackClick","trackSubmit","trackLink","trackForm","pageview","screen","reset","register","setAnonymousId","addSourceMiddleware","addIntegrationMiddleware","addDestinationMiddleware","giveCookieConsent"].forEach((function(e){var a;i[e]=(a=e,function(){var e=window[t];if(e.initialized)return e[a].apply(e,arguments);var i=[].slice.call(arguments);return i.unshift(a),e.push(i),e})})),-1===e.apiEndpoint.indexOf("http")&&(e.apiEndpoint="https://"+e.apiEndpoint),i.bootstrap=function(){var t,i=document.createElement("script");i.async=!0,i.type="text/javascript",i.id="__radar__",i.setAttribute("data-settings",JSON.stringify(e)),i.src=[-1!==(t=e.cdn).indexOf("http")?"":"https://",t,"/releases/latest/radar.min.js"].join("");var a=document.scripts[0];a.parentNode.insertBefore(i,a)},i.bootstrap()}}else"undefined"!=typeof console&&console.error("[Radar] Configuration incomplete")}({
-  "apiEndpoint": "radar.snitcher.com",
-  "cdn": "cdn.snitcher.com",
-  "namespace": "Snitcher",
-  "profileId": "8435754"
-});`
-          }}
-        />
-
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN5JZB2DW9"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-EN5JZB2DW9');
-            `
-          }}
-        />
-
-        {/* Ahrefs Analytics */}
-        <script src="https://analytics.ahrefs.com/analytics.js" data-key="Wu9ybf2aliQUBBh9UHxyGQ" async></script>
-
-        {/* Mouseflow Session Recording */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window._mfq = window._mfq || [];
-(function() {
-  var mf = document.createElement("script");
-  mf.type = "text/javascript"; mf.defer = true;
-  mf.src = "//cdn.mouseflow.com/projects/ca942256-0780-4566-94b2-e3bb83076045.js";
-  document.getElementsByTagName("head")[0].appendChild(mf);
-})();`
-          }}
-        />
-
-        {/* Meta Pixel Code */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1246022997658078');
-fbq('track', 'PageView');`
-          }}
-        />
+        {/* Snitcher, GA, Ahrefs, Mouseflow, Meta — moved to <ThirdPartyScripts /> with lazyOnload */}
       </head>
       <body className={inter.variable} style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif' }} suppressHydrationWarning>
         {/* Meta Pixel noscript fallback */}
@@ -247,11 +195,71 @@ fbq('track', 'PageView');`
               <Toaster />
               <SpeedInsights />
               <Analytics />
-
             </CalendlyModalProvider>
-
           </SmoothScroll>
         </I18nWrapper>
+        <Script
+          id="snitcher-radar"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `!function(e){"use strict";var t=e&&e.namespace;if(t&&e.profileId&&e.cdn){var i=window[t];if(i&&Array.isArray(i)||(i=window[t]=[]),!i.initialized&&!i._loaded)if(i._loaded)console&&console.warn("[Radar] Duplicate initialization attempted");else{i._loaded=!0;["track","page","identify","group","alias","ready","debug","on","off","once","trackClick","trackSubmit","trackLink","trackForm","pageview","screen","reset","register","setAnonymousId","addSourceMiddleware","addIntegrationMiddleware","addDestinationMiddleware","giveCookieConsent"].forEach((function(e){var a;i[e]=(a=e,function(){var e=window[t];if(e.initialized)return e[a].apply(e,arguments);var i=[].slice.call(arguments);return i.unshift(a),e.push(i),e})})),-1===e.apiEndpoint.indexOf("http")&&(e.apiEndpoint="https://"+e.apiEndpoint),i.bootstrap=function(){var t,i=document.createElement("script");i.async=!0,i.type="text/javascript",i.id="__radar__",i.setAttribute("data-settings",JSON.stringify(e)),i.src=[-1!==(t=e.cdn).indexOf("http")?"":"https://",t,"/releases/latest/radar.min.js"].join("");var a=document.scripts[0];a.parentNode.insertBefore(i,a)},i.bootstrap()}}else"undefined"!=typeof console&&console.error("[Radar] Configuration incomplete")}({
+  "apiEndpoint": "radar.snitcher.com",
+  "cdn": "cdn.snitcher.com",
+  "namespace": "Snitcher",
+  "profileId": "8435754"
+});`,
+          }}
+        />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EN5JZB2DW9"
+          strategy="lazyOnload"
+        />
+        <Script
+          id="google-analytics-init"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-EN5JZB2DW9');
+            `,
+          }}
+        />
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          strategy="lazyOnload"
+          data-key="Wu9ybf2aliQUBBh9UHxyGQ"
+        />
+        <Script
+          id="mouseflow"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `window._mfq = window._mfq || [];
+(function() {
+  var mf = document.createElement("script");
+  mf.type = "text/javascript"; mf.defer = true;
+  mf.src = "//cdn.mouseflow.com/projects/ca942256-0780-4566-94b2-e3bb83076045.js";
+  document.getElementsByTagName("head")[0].appendChild(mf);
+})();`,
+          }}
+        />
+        <Script
+          id="facebook-pixel"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1246022997658078');
+fbq('track', 'PageView');`,
+          }}
+        />
       </body>
     </html>
   );

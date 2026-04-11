@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
+    "dev:clean": "node -e \"try{require('fs').unlinkSync('.next/dev/lock')}catch(e){}\" && next dev --turbo",
+    "dev:3005": "next dev --turbo -p 3005",
+    "dev:browser": "next dev --turbo -p 3333 -H 127.0.0.1",
     "generate-map": "npx tsx scripts/generate-redirect-map.ts",
     "check-links": "npm run generate-map && npx tsx scripts/check-internal-links.ts",
     "audit-blog": "npx tsx scripts/crawl-blog.ts",

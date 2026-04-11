@@ -2,14 +2,25 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, Zap, PhoneCall, ShieldCheck, MessageSquare, ArrowRight, Play, AlertCircle } from 'lucide-react';
-import Link from 'next/link';
+import { X, CheckCircle2, Zap, PhoneCall, ShieldCheck, MessageSquare } from 'lucide-react';
+import { useCalendlyModal } from '@/components/CalendlyModal';
+import { Button } from '@/components/ui/button';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 const SESSION_KEY = 'visquanta_blog_modal_seen';
 
 export default function BlogExitModal() {
     const [isOpen, setIsOpen] = useState(false);
     const triggeredRef = useRef(false);
+    const { openModal: openCalendly } = useCalendlyModal();
+    const { t } = useLocale();
+
+    const handleScheduleDemo = () => {
+        sessionStorage.setItem(SESSION_KEY, 'true');
+        setIsOpen(false);
+        // Close exit layer first — Calendly modal uses lower z-index than this overlay.
+        window.setTimeout(() => openCalendly(), 0);
+    };
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
@@ -136,13 +147,14 @@ export default function BlogExitModal() {
                                 </div>
                             </div>
 
-                            {/* CTA */}
-                            <Link href="/book-demo" className="w-full">
-                                <button className="w-full py-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-bold text-lg rounded-xl shadow-[0_0_30px_-5px_rgba(245,158,11,0.4)] transition-all hover:shadow-[0_0_50px_-5px_rgba(245,158,11,0.6)] hover:-translate-y-0.5 flex items-center justify-center gap-2 group">
-                                    See How It Works
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </button>
-                            </Link>
+                            {/* CTA — same Calendly flow as site-wide Request Demo */}
+                            <Button
+                                type="button"
+                                onClick={handleScheduleDemo}
+                                className="w-full h-auto py-4 sm:py-5 rounded-xl font-black text-sm uppercase tracking-widest bg-[#FF7404] hover:bg-[#ff8a2b] text-black transition-all shadow-[0_20px_40px_-10px_rgba(255,116,4,0.4)] hover:shadow-[0_0_80px_-10px_rgba(255,116,4,0.6)]"
+                            >
+                                {t('common.schedule_cta')}
+                            </Button>
 
                             <div className="mt-4 flex items-center justify-center gap-2 text-zinc-500">
                                 <span className="text-[10px] uppercase tracking-widest">Trusted by 50+ Dealerships</span>

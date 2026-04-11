@@ -31,6 +31,8 @@ export default function Hero() {
           alt=""
           fill
           priority
+          sizes="100vw"
+          fetchPriority="high"
           className="object-cover opacity-50 scale-125 origin-center translate-x-[10%]"
           style={{ objectPosition: '60% center' }}
         />

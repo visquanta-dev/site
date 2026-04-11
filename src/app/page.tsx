@@ -3,6 +3,7 @@
 
 import type { Metadata } from 'next';
 import Script from "next/script";
+import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
 import Navigation from '@/components/Navigation';
@@ -12,9 +13,6 @@ import PainPointSection from '@/components/PainPointSection';
 import WhatIsAIDealerships from '@/components/home/WhatIsAIDealerships';
 import PlatformSection from '@/components/PlatformSection';
 import WhyVisquantaSection from '@/components/WhyVisquantaSection';
-import SeeItInAction from '@/components/SeeItInAction';
-import DealerServicesSection from '@/components/DealerServicesSection';
-import ResultsProof from '@/components/ResultsProof';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import IntegrationsSection from '@/components/IntegrationsSection';
 import FAQSection from '@/components/FAQSection';
@@ -23,6 +21,11 @@ import HomeHubStrip from '@/components/home/HomeHubStrip';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import { homepageSchema } from "@/lib/schema/homepage";
+
+/** Below-the-fold, animation-heavy — split to reduce initial JS parse (LCP / TBT). */
+const SeeItInAction = dynamic(() => import('@/components/SeeItInAction'), { ssr: true });
+const DealerServicesSection = dynamic(() => import('@/components/DealerServicesSection'), { ssr: true });
+const ResultsProof = dynamic(() => import('@/components/ResultsProof'), { ssr: true });
 
 // =============================================================================
 // HOMEPAGE METADATA
