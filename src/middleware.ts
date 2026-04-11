@@ -194,7 +194,21 @@ export function middleware(request: NextRequest) {
     const ACTIVE_LOCALE_PREFIXES: Record<string, string> = { 'en-CA': 'ca' };
 
     const bannerDismissed = request.cookies.get(GEO_BANNER_DISMISSED_COOKIE);
-    if (pathname === '/' && !localePreference && !bannerDismissed && detectedCountry && !isBot) {
+    // Never auto-redirect root on local dev — users test in a normal browser at localhost/127.0.0.1
+    const isLocalDevHost =
+        host?.includes('localhost') ||
+        host?.startsWith('127.') ||
+        host === '[::1]' ||
+        host?.startsWith('[::1]:');
+
+    if (
+        pathname === '/' &&
+        !localePreference &&
+        !bannerDismissed &&
+        detectedCountry &&
+        !isBot &&
+        !isLocalDevHost
+    ) {
         const targetLocale = countryToLocale[detectedCountry];
         if (targetLocale && ACTIVE_LOCALE_PREFIXES[targetLocale]) {
             const prefix = ACTIVE_LOCALE_PREFIXES[targetLocale];

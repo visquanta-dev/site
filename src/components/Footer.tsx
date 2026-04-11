@@ -56,6 +56,7 @@ const footerLinks = {
     { label: 'Dealer Success', href: '/dealer-success' },
   ],
   resources: [
+    { label: 'Case Studies', href: '/case-studies' },
     { label: 'FAQs', href: '/faqs' },
     { label: 'Blog', href: '/blog' },
     { label: 'AMS Info Sheets', href: '/ams-guides' },
@@ -81,7 +82,7 @@ export default function Footer() {
     phoneHref: 'tel:+18662858724',
     email: 'canada@visquanta.com'
   } : {
-    address: <>2222 Ponce de Leon Blvd<br />3rd Floor, Miami,<br />FL 33134 USA</>,
+    address: <>2001 Timberloch Place<br />Suite 500, The Woodlands,<br />TX 77380 USA</>,
     phoneDisplay: '+1 786-686-6554',
     phoneHref: 'tel:+17866866554',
     email: 'info@visquanta.com'

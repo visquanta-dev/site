@@ -16,10 +16,10 @@ type Location = 'canada' | 'uk' | null;
 
 const locations = {
     hq: {
-        city: 'Miami',
+        city: 'The Woodlands',
         badge: 'HQ',
-        timezone: 'EST',
-        address: ['2222 Ponce de Leon Blvd', '3rd Floor', 'Miami, FL 33134'],
+        timezone: 'CST',
+        address: ['2001 Timberloch Place', 'Suite 500', 'The Woodlands, TX 77380'],
         phone: '+1 786-686-6554',
         email: 'info@visquanta.com',
     },

@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import NotFoundClient from '@/components/NotFoundClient';
 
 export const metadata: Metadata = {
-    title: '404 | Page Not Found',
-    description: 'The page you are looking for does not exist.',
+    title: '404 — Page not found',
+    description:
+        'That URL is not in our system. Head back to VisQuanta — AI built for car dealerships — or book a walkthrough.',
     robots: {
         index: false,
         follow: true,

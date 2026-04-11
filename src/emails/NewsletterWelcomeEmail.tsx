@@ -85,7 +85,7 @@ export const NewsletterWelcomeEmail = ({
                         <Hr style={hr} />
                         <Text style={tinyText}>
                             © 2026 VisQuanta LLC. All rights reserved. <br />
-                            2222 Ponce de Leon Blvd, Miami, FL 33134.
+                            2001 Timberloch Place, Suite 500, The Woodlands, TX 77380.
                         </Text>
                         <Text style={tinyText}>
                             <Link href={unsubscribeUrl} style={footerLink}>

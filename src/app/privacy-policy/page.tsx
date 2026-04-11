@@ -302,8 +302,8 @@ export default function PrivacyPolicyPage() {
                                         <div>
                                             <div className="text-white font-black uppercase tracking-[0.2em] text-[10px] mb-2">Geo-Location</div>
                                             <div className="text-zinc-500 text-sm font-light leading-relaxed">
-                                                2222 Ponce de Leon Blvd, 3rd Floor, <br />
-                                                Miami, FL 33134
+                                                2001 Timberloch Place, Suite 500, <br />
+                                                The Woodlands, TX 77380
                                             </div>
                                         </div>
                                     </div>
