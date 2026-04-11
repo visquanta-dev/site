@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { getCaseStudy } from "@/lib/case-studies";
+import { getAllCaseStudySlugs, getCaseStudy } from "@/lib/case-studies";
+
+/** Pre-render all case study URLs at build time (fixes crawlers + ensures routes exist). */
+export function generateStaticParams(): { slug: string }[] {
+    return getAllCaseStudySlugs().map((slug) => ({ slug }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;

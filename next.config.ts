@@ -74,6 +74,12 @@ const nextConfig: NextConfig = {
         destination: '/:path*',
         permanent: true,
       },
+      // Canadian locale: /ca mirrors US marketing pages — no separate /ca/paid-campaigns route.
+      {
+        source: '/ca/paid-campaigns',
+        destination: '/paid-campaigns',
+        permanent: true,
+      },
       {
         source: '/visquanta-team',
         destination: '/team',

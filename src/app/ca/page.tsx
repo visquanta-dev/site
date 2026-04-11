@@ -45,12 +45,12 @@ export const metadata: Metadata = {
         "service department AI",
     ],
 
-    // Canonical URL
+    // Canonical URL (no trailing slash — matches Next.js default; avoids canonical → 308 redirect)
     alternates: {
-        canonical: "https://www.visquanta.com/ca/",
+        canonical: "https://www.visquanta.com/ca",
         languages: {
             'en-US': 'https://www.visquanta.com/',
-            'en-CA': 'https://www.visquanta.com/ca/',
+            'en-CA': 'https://www.visquanta.com/ca',
             'x-default': 'https://www.visquanta.com/',
         },
     },
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         locale: "en_CA",
-        url: "https://www.visquanta.com/ca/",
+        url: "https://www.visquanta.com/ca",
         siteName: "VisQuanta",
         title: "AI for Dealerships in Canada | Lead Reactivation & Speed to Lead",
         description:
@@ -105,7 +105,7 @@ const canadianLocalBusiness = {
     "@type": "LocalBusiness",
     "name": "VisQuanta Canada",
     "description": "AI service provider for Canadian car dealerships — lead reactivation, speed to lead, reputation management.",
-    "url": "https://www.visquanta.com/ca/",
+    "url": "https://www.visquanta.com/ca",
     "telephone": "+1-786-686-6554", // Using same placeholder/number as requested
     "email": "info@visquanta.com",
     "areaServed": {
@@ -131,7 +131,7 @@ const canadianHomepageSchema = {
                 return {
                     ...item,
                     "@id": "https://www.visquanta.com/ca/#webpage",
-                    "url": "https://www.visquanta.com/ca/",
+                    "url": "https://www.visquanta.com/ca",
                     "inLanguage": "en-CA",
                 };
             }

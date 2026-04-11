@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: 'Dealership AI Case Studies & Results',
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
     description: 'Real ROI from real dealerships. See how top operators use AI to recover lost leads, cut response times, and grow fixed ops revenue.',
     alternates: {
         canonical: 'https://www.visquanta.com/case-studies',

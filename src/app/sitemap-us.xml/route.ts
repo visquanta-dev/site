@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getAllPostsMeta } from '@/lib/seobot';
+import { getAllCaseStudySlugs } from '@/lib/case-studies';
+import { getAllPostsMetaFresh } from '@/lib/seobot';
 
 const BASE = 'https://www.visquanta.com';
 
-/** US marketing & product URLs (no /ca/). Blog posts come from getAllPostsMeta(). */
+/** US marketing & product URLs (no /ca/). Blog posts come from getAllPostsMeta(); case study detail URLs from getAllCaseStudySlugs(). */
 const STATIC_PAGES: { path: string; lastmod: string; priority: number }[] = [
   { path: '', lastmod: '2026-02-15', priority: 1.0 },
   { path: '/auto-master-suite', lastmod: '2026-02-15', priority: 0.9 },
@@ -46,11 +47,6 @@ const STATIC_PAGES: { path: string; lastmod: string; priority: number }[] = [
   { path: '/terms-conditions', lastmod: '2025-12-01', priority: 0.3 },
   { path: '/cookie-policy', lastmod: '2025-12-01', priority: 0.3 },
   { path: '/case-studies', lastmod: '2026-01-15', priority: 0.7 },
-  { path: '/case-studies/metro-motors', lastmod: '2026-01-15', priority: 0.7 },
-  { path: '/case-studies/bayside-honda', lastmod: '2026-01-15', priority: 0.7 },
-  { path: '/case-studies/prestige-imports', lastmod: '2026-01-15', priority: 0.7 },
-  { path: '/case-studies/freedom-independent', lastmod: '2026-01-15', priority: 0.7 },
-  { path: '/case-studies/seth-wadley', lastmod: '2026-01-15', priority: 0.7 },
   { path: '/blog', lastmod: '2026-02-19', priority: 0.7 },
 ];
 
@@ -60,7 +56,8 @@ function lastmodFromPost(iso: string | undefined): string {
   return /^\d{4}-\d{2}-\d{2}$/.test(d) ? d : '2026-04-02';
 }
 
-export const revalidate = 3600;
+/** Match blog post ISR (60s) so Google picks up new /blog/* URLs quickly after publish. */
+export const revalidate = 60;
 
 export async function GET() {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -71,11 +68,16 @@ export async function GET() {
     xml += `<url><loc>${loc}</loc><lastmod>${p.lastmod}</lastmod><priority>${p.priority}</priority></url>\n`;
   }
 
-  let posts: Awaited<ReturnType<typeof getAllPostsMeta>> = [];
+  const caseStudyLastmod = '2026-01-15';
+  for (const slug of getAllCaseStudySlugs()) {
+    xml += `<url><loc>${BASE}/case-studies/${slug}</loc><lastmod>${caseStudyLastmod}</lastmod><priority>0.7</priority></url>\n`;
+  }
+
+  let posts: Awaited<ReturnType<typeof getAllPostsMetaFresh>> = [];
   try {
-    posts = await getAllPostsMeta();
+    posts = await getAllPostsMetaFresh();
   } catch (e) {
-    console.error('[sitemap-us] getAllPostsMeta failed:', e);
+    console.error('[sitemap-us] getAllPostsMetaFresh failed:', e);
   }
 
   for (const post of posts) {
@@ -90,7 +92,7 @@ export async function GET() {
     status: 200,
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
+      'Cache-Control': 'public, max-age=60, s-maxage=60, stale-while-revalidate=300',
     },
   });
 }

@@ -196,17 +196,28 @@ function setCache<T>(key: string, data: T): void {
   cache.set(key, { data, timestamp: Date.now() });
 }
 
+async function buildAllPostsMeta(): Promise<BasePost[]> {
+  const local = localPostsMeta();
+  const remote = await fetchSeoBotMeta();
+  return mergeMeta(local, remote);
+}
+
 export async function getAllPostsMeta(): Promise<BasePost[]> {
   const cacheKey = 'all-posts-meta-hybrid';
   const cached = getCached<BasePost[]>(cacheKey);
   if (cached) return cached;
 
-  const local = localPostsMeta();
-  const remote = await fetchSeoBotMeta();
-  const merged = mergeMeta(local, remote);
-
+  const merged = await buildAllPostsMeta();
   setCache(cacheKey, merged);
   return merged;
+}
+
+/**
+ * Same merged list as getAllPostsMeta (local content/blog + remote index) but skips
+ * in-memory cache — use for sitemap generation so new posts appear on the next request.
+ */
+export async function getAllPostsMetaFresh(): Promise<BasePost[]> {
+  return buildAllPostsMeta();
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {

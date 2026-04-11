@@ -10,7 +10,7 @@ import { Database, Zap, ArrowRight, ShieldCheck, RefreshCw, Key } from 'lucide-r
 
 export const metadata: Metadata = {
     title: 'CRM Integrations for Dealerships',
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
     description: 'Seamlessly connect VisQuanta with VinSolutions, eLead, DealerSocket, CDK, and more. Sync data, automate follow-up, and increase conversion.',
     alternates: {
         canonical: 'https://www.visquanta.com/integrations',
