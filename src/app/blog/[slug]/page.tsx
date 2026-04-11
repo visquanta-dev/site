@@ -12,7 +12,9 @@ import { BlogArticleHeader } from '@/components/blog/BlogArticleHeader';
 import { BLOG_ENHANCEMENTS } from '@/data/blog-enhancements';
 import { BLOG_RELATED_PRODUCTS } from '@/data/blog-products';
 import RelatedProducts from '@/components/blog/RelatedProducts';
-import { ExpertInsight, KnowledgeCards, ProofPoint, MidArticleCTA, BottomConsultingCTA, BlogFAQAccordion } from '@/components/blog/BlogEnhancements'; import InlineNewsletter from '@/components/blog/InlineNewsletter';
+import { ExpertInsight, KnowledgeCards, ProofPoint, MidArticleCTA, BottomConsultingCTA, BlogFAQAccordion } from '@/components/blog/BlogEnhancements';
+import InlineNewsletter from '@/components/blog/InlineNewsletter';
+import BlogCalculatorEmbed, { parseCalculatorMarkers } from '@/components/blog/BlogCalculatorEmbed';
 import { getServerLocalePrefix } from '@/lib/server-locale';
 import { normalizeLinks } from '@/lib/link-normalization';
 
@@ -250,9 +252,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {post.image && (
                 <section className="relative pb-16 lg:pb-24">
                     <div className="container px-4 mx-auto">
-                        <div className="max-w-6xl mx-auto">
                             <BlogPostClient delay={0.1}>
-                                <div className="relative rounded-[20px] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/50 group featured-card-border">
+                                <div className="relative rounded-[20px] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/50 group">
                                     {/* Top shine effect */}
                                     <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
 
@@ -272,7 +273,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
                                 </div>
                             </BlogPostClient>
-                        </div>
                     </div>
                 </section>
             )}
@@ -302,6 +302,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
                                     // FIX ISSUE 2: Strip duplicate H1 from content (since template has one)
                                     let mainContentHtml = post.html.replace(/<h1[^>]*>.*?<\/h1>/i, '');
+
+                                    // Detect calculator markers and strip them from HTML
+                                    const calcMatches = [...mainContentHtml.matchAll(/(?:<p>)?\{\{(?:calculator|cta):([a-z-]+)\}\}(?:<\/p>)?/g)];
+                                    const calcTypes = calcMatches.map(m => m[1]);
+                                    mainContentHtml = mainContentHtml.replace(/(?:<p>)?\{\{(?:calculator|cta):[a-z-]+\}\}(?:<\/p>)?/g, '');
 
                                     let faqHtml = '';
 
@@ -358,6 +363,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                             />
 
                                             <MidArticleCTA />
+
+                                            {/* Calculator widgets from UltraPlan markers */}
+                                            {calcTypes.map((ct, i) => (
+                                                <BlogCalculatorEmbed key={i} type={ct} />
+                                            ))}
 
                                             <div
                                                 suppressHydrationWarning

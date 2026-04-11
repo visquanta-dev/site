@@ -2,7 +2,7 @@
 title: 70% of Dealers Will Run Automation by Year-End
 slug: 2026-technology-dealers
 metaDescription: >-
-  48% of dealers already run automation—70% will by 2027. Learn where stores see
+  48% of dealers already run automation - 70% will by 2027. Learn where stores see
   the fastest ROI and how to close the gap before competitors widen it.
 image: /images/blog/2026-technology-dealers/hero.webp
 readingTime: 13
