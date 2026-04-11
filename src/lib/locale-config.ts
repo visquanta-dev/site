@@ -37,7 +37,7 @@ export const locales: Record<Locale, LocaleConfig> = {
         currency: 'USD',
         phonePrefix: '+1',
         phone: '+1 786-686-6554',
-        address: '2222 Ponce de Leon Blvd, 3rd Floor Miami, FL 33134 USA',
+        address: '2001 Timberloch Place, Suite 500, The Woodlands, TX 77380 USA',
         flag: '🇺🇸',
         blogCta: {
             headline: 'Stop Losing Leads. Start Closing More Deals.',
@@ -60,7 +60,7 @@ export const locales: Record<Locale, LocaleConfig> = {
         currency: 'CAD',
         phonePrefix: '+1',
         phone: '+1 786-686-6554',
-        address: '2222 Ponce de Leon Blvd, 3rd Floor Miami, FL 33134 USA',
+        address: '2001 Timberloch Place, Suite 500, The Woodlands, TX 77380 USA',
         flag: '🇨🇦',
         blogCta: {
             headline: 'Canadian Dealerships Are Closing More Deals with AI',

@@ -65,7 +65,7 @@ export const NewsletterConfirmEmail = ({
                         </Text>
                         <Hr style={hr} />
                         <Text style={tinyText}>
-                            © 2026 VisQuanta LLC. 2222 Ponce de Leon Blvd, Miami, FL 33134. <br />
+                            © 2026 VisQuanta LLC. 2001 Timberloch Place, Suite 500, The Woodlands, TX 77380. <br />
                             If you didn't request this, you can ignore this email.
                         </Text>
                     </Section>

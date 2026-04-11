@@ -33,10 +33,10 @@ export const organizationSchema = {
     },
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "2222 Ponce de Leon Blvd, 3rd Floor",
-        "addressLocality": "Miami",
-        "addressRegion": "FL",
-        "postalCode": "33134",
+        "streetAddress": "2001 Timberloch Place, Suite 500",
+        "addressLocality": "The Woodlands",
+        "addressRegion": "TX",
+        "postalCode": "77380",
         "addressCountry": "US"
     },
     "contactPoint": [
@@ -146,10 +146,10 @@ export const baseSchema = {
             "foundingDate": "2023",
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "2222 Ponce de Leon Blvd, 3rd Floor",
-                "addressLocality": "Miami",
-                "addressRegion": "FL",
-                "postalCode": "33134",
+                "streetAddress": "2001 Timberloch Place, Suite 500",
+                "addressLocality": "The Woodlands",
+                "addressRegion": "TX",
+                "postalCode": "77380",
                 "addressCountry": "US"
             },
             "contactPoint": [
