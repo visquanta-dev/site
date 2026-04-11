@@ -13,7 +13,6 @@ category:
   slug: daily-seo
   title: Industry Insights
 author: VisQuanta Team
-readingTime: 11
 tags:
   - slug: dealership-operations
     title: Dealership Operations
