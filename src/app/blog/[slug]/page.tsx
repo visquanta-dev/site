@@ -252,6 +252,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {post.image && (
                 <section className="relative pb-16 lg:pb-24">
                     <div className="container px-4 mx-auto">
+                        <div className="max-w-6xl mx-auto">
                             <BlogPostClient delay={0.1}>
                                 <div className="relative rounded-[20px] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/50 group">
                                     {/* Top shine effect */}
@@ -273,6 +274,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
                                 </div>
                             </BlogPostClient>
+                        </div>
                     </div>
                 </section>
             )}
@@ -320,11 +322,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     // If text is short, just show it
                                     if (paragraphs.length < 8) {
                                         return (
-                                            <div
-                                                suppressHydrationWarning
-                                                className="blog-content"
-                                                dangerouslySetInnerHTML={{ __html: mainContentHtml }}
-                                            />
+                                            <>
+                                                <div
+                                                    suppressHydrationWarning
+                                                    className="blog-content"
+                                                    dangerouslySetInnerHTML={{ __html: mainContentHtml }}
+                                                />
+                                                {calcTypes.map((ct, i) => (
+                                                    <BlogCalculatorEmbed key={i} type={ct} />
+                                                ))}
+                                            </>
                                         );
                                     }
 
