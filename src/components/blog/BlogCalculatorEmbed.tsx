@@ -6,25 +6,34 @@ const ProfitCalculator = dynamic(() => import('@/components/lead-reactivation/Pr
 const SpeedLossCalculator = dynamic(() => import('@/components/speed-to-lead/SpeedLossCalculator'), { ssr: false });
 const ServiceCalculator = dynamic(() => import('@/components/service-drive/ServiceCalculator'), { ssr: false });
 
-const CALCULATOR_MAP: Record<string, React.ComponentType> = {
-  'lead-reactivation': ProfitCalculator,
-  'speed-to-lead': SpeedLossCalculator,
-  'service-roi': ServiceCalculator,
-  'roi': ProfitCalculator, // fallback to lead reactivation as the general ROI calc
-};
-
 interface BlogCalculatorEmbedProps {
   type: string;
 }
 
 export default function BlogCalculatorEmbed({ type }: BlogCalculatorEmbedProps) {
-  const Calculator = CALCULATOR_MAP[type];
-  if (!Calculator) return null;
+  const noop = () => {};
+
+  const renderCalculator = () => {
+    switch (type) {
+      case 'lead-reactivation':
+      case 'roi':
+        return <ProfitCalculator />;
+      case 'speed-to-lead':
+        return <SpeedLossCalculator onOpenCalculator={noop} />;
+      case 'service-roi':
+        return <ServiceCalculator />;
+      default:
+        return null;
+    }
+  };
+
+  const content = renderCalculator();
+  if (!content) return null;
 
   return (
     <div className="my-12" style={{ marginLeft: '-4rem', marginRight: '-4rem' }}>
       <div style={{ transform: 'scale(0.9)', transformOrigin: 'top center' }}>
-        <Calculator />
+        {content}
       </div>
     </div>
   );
