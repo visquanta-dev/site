@@ -1,0 +1,11 @@
+{
+  "gate_scores": {
+    "trace-back": 0.8314031155231867,
+    "slop-lexicon": 9,
+    "originality": 7,
+    "fact-recheck": 95
+  },
+  "retries": 2,
+  "image_count": 1,
+  "blocked_images": []
+}
