@@ -151,6 +151,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     const relatedArticles = await getRelatedArticles(post.category?.slug || 'industry-insights', slug, 2);
 
     // Article Schema
+    // Enhanced with E-E-A-T signals (Experience, Expertise, Authoritativeness,
+    // Trust) to improve both traditional SEO ranking and LLM citation rates.
+    // The author and publisher fields carry sameAs links and a description
+    // of expertise — Google and ChatGPT both use these signals to gauge
+    // whether content comes from a credible source.
     const articleSchema = {
         '@context': 'https://schema.org',
         '@type': 'Article',
@@ -164,22 +169,42 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         'author': {
             '@type': 'Organization',
             'name': 'VisQuanta',
-            'url': 'https://www.visquanta.com'
+            'url': 'https://www.visquanta.com',
+            'description': 'VisQuanta provides AI infrastructure for automotive dealerships, specializing in voice agents, lead reactivation, service-drive automation, and speed-to-lead response systems.',
+            'sameAs': [
+                'https://www.linkedin.com/company/visquanta',
+                'https://www.visquanta.com/about-visquanta',
+            ],
+            'knowsAbout': [
+                'Automotive dealership operations',
+                'AI voice agents',
+                'Fixed operations revenue',
+                'Service drive automation',
+                'Lead response time',
+                'Dealership reputation management',
+            ],
         },
         'publisher': {
             '@type': 'Organization',
             'name': 'VisQuanta',
+            'url': 'https://www.visquanta.com',
             'logo': {
                 '@type': 'ImageObject',
-                'url': 'https://www.visquanta.com/images/visquanta-logo-white.png'
-            }
+                'url': 'https://www.visquanta.com/images/visquanta-logo-white.png',
+                'width': 600,
+                'height': 60,
+            },
+            'sameAs': [
+                'https://www.linkedin.com/company/visquanta',
+            ],
         },
         'datePublished': post.createdAt,
         'dateModified': post.updatedAt || post.createdAt,
         'mainEntityOfPage': {
             '@type': 'WebPage',
             '@id': `https://www.visquanta.com/blog/${slug}`
-        }
+        },
+        'inLanguage': 'en-US',
     };
 
     // FAQPage Schema — extracted from post body HTML
