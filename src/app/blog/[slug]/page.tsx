@@ -182,6 +182,46 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         }
     };
 
+    // FAQPage Schema — extracted from post body HTML
+    //
+    // Parses any H2 section whose heading contains "Frequently Asked" or
+    // "FAQ", then walks its H3 siblings as questions and the following
+    // paragraph(s) as answers. The resulting FAQPage JSON-LD gives Google
+    // AI Overviews, ChatGPT, Perplexity, and Claude a structured handle
+    // on the Q&A content — without this, the FAQ prose is parseable but
+    // not authoritatively structured, which measurably lowers citation
+    // rates in AI answer surfaces. Silently skipped if no FAQ section
+    // is detected.
+    const faqSchema = ((): Record<string, unknown> | null => {
+        const html = post.html || '';
+        // Locate the "Frequently Asked" H2 and everything up to the next H2
+        const faqH2Match = html.match(/<h2[^>]*>[^<]*(?:Frequently Asked|FAQ)[^<]*<\/h2>([\s\S]*?)(?=<h2|$)/i);
+        if (!faqH2Match) return null;
+        const faqSection = faqH2Match[1];
+        // Pair up H3 questions with their first following paragraph
+        const qaPattern = /<h3[^>]*>([\s\S]*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
+        const qaPairs: Array<{ q: string; a: string }> = [];
+        let m: RegExpExecArray | null;
+        while ((m = qaPattern.exec(faqSection)) !== null) {
+            const q = m[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+            const a = m[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+            if (q && a) qaPairs.push({ q, a });
+        }
+        if (qaPairs.length === 0) return null;
+        return {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            'mainEntity': qaPairs.map(({ q, a }) => ({
+                '@type': 'Question',
+                'name': q,
+                'acceptedAnswer': {
+                    '@type': 'Answer',
+                    'text': a,
+                },
+            })),
+        };
+    })();
+
     // Breadcrumb Schema
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
@@ -214,6 +254,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
             />
+            {faqSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                />
+            )}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
