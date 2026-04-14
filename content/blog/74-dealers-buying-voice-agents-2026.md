@@ -4,7 +4,7 @@ slug: 74-dealers-buying-voice-agents-2026
 metaDescription: >-
   74% of dealers plan to invest in voice agents by 2026. See what's driving
   adoption, where budgets are going, and the cost of waiting.
-image: /images/blog/74-dealers-buying-voice-agents-2026/hero.webp
+image: /images/blog/74-dealers-buying-voice-agents-2026/hero.png
 readingTime: 15
 publishedAt: '2026-04-14'
 updatedAt: '2026-04-14'
