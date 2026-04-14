@@ -4,7 +4,7 @@ slug: buying-car-online-still-hits-wall-2026
 metaDescription: >-
   Nearly half of car shoppers expect to negotiate and finance online—yet most
   dealers still force phone screens. See where digital retailing stalls in 2026.
-image: /images/wireframes/6.jpeg
+image: /images/blog/buying-car-online-still-hits-wall-2026/hero.webp
 readingTime: 16
 publishedAt: '2026-04-14'
 updatedAt: '2026-04-14'
