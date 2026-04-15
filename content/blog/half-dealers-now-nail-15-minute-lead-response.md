@@ -5,7 +5,7 @@ metaDescription: >-
   51% of dealers now achieve a perfect 15-minute lead response across three
   channels. Learn the multichannel tactics and timing benchmarks driving
   faster...
-image: /images/wireframes/6.jpeg
+image: /images/blog/half-dealers-now-nail-15-minute-lead-response/hero.webp
 readingTime: 14
 publishedAt: '2026-04-15'
 updatedAt: '2026-04-15'
