@@ -102,7 +102,7 @@ Speed and personalization are the two levers that matter most. A quick, personal
 
 ---
 
-**78% of car buyers choose the first dealer to respond — and the industry average response time is 1 hour 38 minutes.** [See how Speed to Lead replies in under 60 seconds](https://www.visquanta.com/speed-to-lead): AI-powered SMS response that captures inbound leads 24/7 before your competitors can pick up the phone.
+**78% of car buyers choose the first dealer to respond - and the industry average response time is 1 hour 38 minutes.** [See how Speed to Lead replies in under 60 seconds](https://www.visquanta.com/speed-to-lead): automated SMS response that captures inbound leads 24/7 before your competitors can pick up the phone.
 
 ---
 
