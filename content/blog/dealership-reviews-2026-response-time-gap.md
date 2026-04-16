@@ -22,7 +22,7 @@ tags:
     title: Automation
 author: VisQuanta Team
 ---
-> **TL;DR:** Nearly 63% of customers expect a dealership review response within a week - yet most stores leave complaints unanswered during the exact window shoppers are deciding where to buy. Spreading reviews across platforms matters too, since 61% of car shoppers start on marketplaces like Cars.com, not Google.
+> **The Bottom Line:** Nearly 63% of customers expect a dealership review response within a week - yet most stores leave complaints unanswered during the exact window shoppers are deciding where to buy. Spreading reviews across platforms matters too, since 61% of car shoppers start on marketplaces like Cars.com, not Google.
 
 ## Why Do 63% of Customers Expect a Review Response Within a Week?
 

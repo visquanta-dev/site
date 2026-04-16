@@ -21,7 +21,7 @@ published: true
 
 # AI ROI for Dealerships: What the Numbers Actually Look Like After 90 Days
 
-**TL;DR:** 76% of dealers are increasing AI budgets in 2026. But most still can't answer "what's the ROI?" Here's what the data actually shows after 90 days — the wins, the misses, and a simple formula to calculate it yourself.
+**The Bottom Line:** 76% of dealers are increasing AI budgets in 2026. But most still can't answer "what's the ROI?" Here's what the data actually shows after 90 days — the wins, the misses, and a simple formula to calculate it yourself.
 
 ## The State of Play
 

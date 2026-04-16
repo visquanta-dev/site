@@ -21,7 +21,7 @@ tags:
     title: Automation
 author: VisQuanta Team
 ---
-> **TL;DR:** 74% of dealerships are directing capital toward voice agents in 2026 - making it the single highest-priority technology investment in the sector, outranking merchandising automation (68%), pricing analytics (62%), and sales development (54%) combined. With 76% of U.S. dealerships planning to increase automation budgets and projected 25% reductions in profit per vehicle retailed, the window for dealers still running manual workflows is closing fast.
+> **The Bottom Line:** 74% of dealerships are directing capital toward voice agents in 2026 - making it the single highest-priority technology investment in the sector, outranking merchandising automation (68%), pricing analytics (62%), and sales development (54%) combined. With 76% of U.S. dealerships planning to increase automation budgets and projected 25% reductions in profit per vehicle retailed, the window for dealers still running manual workflows is closing fast.
 
 ## What Is a Dealership Voice Agent?
 

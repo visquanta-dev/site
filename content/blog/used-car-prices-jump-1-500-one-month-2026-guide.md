@@ -22,7 +22,7 @@ tags:
     title: Automation
 author: VisQuanta Team
 ---
-> **TL;DR:** Used car transaction prices surged $1,500 in a single month to roughly $25,500, while the Manheim index hit a 2.5-year high at 215.3 - up 6.2% year over year. Auction conversion rates of 68.2% and sub-40 days' supply signal that dealers delaying acquisitions face a price floor that keeps ratcheting upward.
+> **The Bottom Line:** Used car transaction prices surged $1,500 in a single month to roughly $25,500, while the Manheim index hit a 2.5-year high at 215.3 - up 6.2% year over year. Auction conversion rates of 68.2% and sub-40 days' supply signal that dealers delaying acquisitions face a price floor that keeps ratcheting upward.
 
 ## Why Did Used Car Prices Spike $1,500 in a Single Month?
 

@@ -22,7 +22,7 @@ tags:
     title: Automation
 author: VisQuanta Team
 ---
-> **TL;DR:** Half of dealers now deliver a "perfect response" to internet leads within 15 minutes - double the rate from five years ago - yet nearly a quarter of leads still sit untouched for 24 hours. Dealerships losing ground on response speed can forfeit up to $2 million annually in missed sales and service revenue.
+> **The Bottom Line:** Half of dealers now deliver a "perfect response" to internet leads within 15 minutes - double the rate from five years ago - yet nearly a quarter of leads still sit untouched for 24 hours. Dealerships losing ground on response speed can forfeit up to $2 million annually in missed sales and service revenue.
 
 ## What Is a "Perfect Response" to an Internet Lead?
 
