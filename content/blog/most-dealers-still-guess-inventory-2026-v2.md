@@ -4,7 +4,7 @@ slug: most-dealers-still-guess-inventory-2026-v2
 metaDescription: >-
   Only 5.8% of dealers automate inventory management and pricing. Learn why most
   stores still guess on stocking decisions and how to close the gap.
-image: /images/blog/most-dealers-still-guess-inventory-2026-v2/most-dealers-still-guess-inventory-2026-v2-hero-b.jpg
+image: >-
   /images/blog/most-dealers-still-guess-inventory-2026-v2/most-dealers-still-guess-inventory-2026-v2-hero-b.jpg
 readingTime: 14
 publishedAt: '2026-04-17'
