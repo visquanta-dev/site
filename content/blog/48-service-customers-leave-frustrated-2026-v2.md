@@ -4,8 +4,7 @@ slug: 48-service-customers-leave-frustrated-2026-v2
 metaDescription: >-
   Nearly half of service customers leave frustrated — and with CSI now tied to
   incentive payouts, that's a direct hit to gross. Learn what's driving the gap.
-image: >-
-  /images/blog/48-service-customers-leave-frustrated-2026-v2/48-service-customers-leave-frustrated-2026-v2-hero-a-custom-overlay.jpg
+image: ''
 readingTime: 16
 publishedAt: '2026-04-17'
 updatedAt: '2026-04-17'
