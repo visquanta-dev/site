@@ -164,6 +164,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         '<h2$1 id="the-bottom-line" class="speakable-bottom-line">The Bottom Line</h2>',
       );
 
+    // Track which speakable sections are actually present in the rendered
+    // HTML. Emitting a cssSelector that matches nothing is a Rich Results
+    // validation error (".speakable-bullets — No matches found"), so only
+    // include selectors for sections that exist in this specific post.
+    // Legacy posts pre-Batch 1 don't have Key Takeaways bullets or a
+    // Bottom Line synthesis section, so those selectors are gated.
+    const speakableSelectors: string[] = [];
+    if (post.html.includes('class="speakable-takeaway"')) {
+      speakableSelectors.push('.speakable-takeaway');
+    }
+    if (post.html.includes('class="speakable-bullets"')) {
+      speakableSelectors.push('.speakable-bullets');
+    }
+    if (post.html.includes('class="speakable-bottom-line"')) {
+      speakableSelectors.push('.speakable-bottom-line');
+    }
+
     // Resolve the named author for byline + Person schema. Returns null for
     // legacy posts whose author field is unset or still the free-text
     // "VisQuanta Team" string — those posts retain the pre-existing
@@ -218,16 +235,30 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     // an anonymous "Organization" byline. This is the single highest-impact
     // EEAT change we can make — generic Organization authorship is what
     // quality raters downgrade content for.
+    // Structured data requires absolute URLs — post.image may be a relative
+    // path from frontmatter. Wrap in absolute URL + ImageObject so Google's
+    // Rich Results validator sees proper Article-image signal instead of
+    // rejecting a relative string.
+    const absoluteImageUrl = post.image.startsWith('http')
+        ? post.image
+        : `https://www.visquanta.com${post.image.startsWith('/') ? '' : '/'}${post.image}`;
+    const canonicalBlogUrl = `https://www.visquanta.com${localePrefix}/blog/${slug}`;
+
     const articleSchema = {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
-        '@id': `https://www.visquanta.com${localePrefix}/blog/${slug}#article`,
-        'isPartOf': {
-            '@id': `https://www.visquanta.com${localePrefix}/blog/${slug}#webpage`
-        },
+        '@id': `${canonicalBlogUrl}#article`,
+        // isPartOf was a dangling reference to a #webpage @id that no other
+        // graph entity declared — removed; mainEntityOfPage below is the
+        // canonical WebPage link.
         'headline': post.headline,
         'description': post.metaDescription,
-        'image': post.image,
+        'image': {
+            '@type': 'ImageObject',
+            'url': absoluteImageUrl,
+            'width': 1920,
+            'height': 823,
+        },
         'author': author
             ? {
                 '@type': 'Person',
@@ -283,20 +314,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         'dateModified': post.updatedAt || post.createdAt,
         'mainEntityOfPage': {
             '@type': 'WebPage',
-            '@id': `https://www.visquanta.com/blog/${slug}`
+            '@id': canonicalBlogUrl,
         },
+        'url': canonicalBlogUrl,
         'inLanguage': 'en-US',
         // SpeakableSpecification — flags the sections voice assistants and
-        // AI audio surfaces can safely read aloud. Very few sites implement
-        // this, so it's a low-effort differentiator.
-        'speakable': {
-            '@type': 'SpeakableSpecification',
-            'cssSelector': [
-                '.speakable-takeaway',
-                '.speakable-bullets',
-                '.speakable-bottom-line',
-            ],
-        },
+        // AI audio surfaces can safely read aloud. Selectors conditional
+        // on section presence so validator doesn't error on missing matches.
+        ...(speakableSelectors.length > 0 && {
+            'speakable': {
+                '@type': 'SpeakableSpecification',
+                'cssSelector': speakableSelectors,
+            },
+        }),
         // Entity linking — tells LLMs exactly which Wikipedia/Wikidata
         // entities this post is about, rather than forcing them to infer
         // from keywords.
