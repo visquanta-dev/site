@@ -5,7 +5,7 @@ metaDescription: >-
   Nearly half of service customers leave frustrated — and with CSI now tied to
   incentive payouts, that's a direct hit to gross. Learn what's driving the gap.
 image: >-
-  /images/blog/48-service-customers-leave-frustrated-2026-v2/48-service-customers-leave-frustrated-2026-v2-hero-a-custom-overlay.jpg
+  /images/blog/48-service-customers-leave-frustrated-2026-v2/48-service-customers-leave-frustrated-2026-v2-hero.jpg
 readingTime: 16
 publishedAt: '2026-04-17'
 updatedAt: '2026-04-17'
@@ -28,6 +28,7 @@ entities:
     sameAs: 'https://en.wikipedia.org/wiki/Customer_experience'
   - name: Customer retention
     sameAs: 'https://en.wikipedia.org/wiki/Customer_retention'
+hide_hero: true
 ---
 
 ### Key Takeaways
