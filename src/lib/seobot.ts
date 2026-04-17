@@ -29,6 +29,7 @@ export interface BlogPost {
     title: string;
   }>;
   author?: string;
+  hideHero?: boolean;
   entities?: Array<{ name: string; sameAs: string }>;
   relatedPosts?: BlogPost[];
 }
@@ -90,6 +91,7 @@ function parsePost(filename: string): BlogPost | null {
       category: data.category || { slug: 'general', title: 'General' },
       tags: data.tags || [],
       author: data.author || 'VisQuanta Team',
+      hideHero: data.hideHero === true || data.hide_hero === true,
       entities: Array.isArray(data.entities)
         ? (data.entities as Array<Record<string, unknown>>)
             .filter((e) => e && typeof e === 'object')
