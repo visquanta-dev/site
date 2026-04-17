@@ -19,7 +19,7 @@ tags:
     title: Service Drive
   - slug: automation
     title: Automation
-author: VisQuanta Team
+author: william-voyles
 ---
 > **The Bottom Line:** Half of dealers now achieve a "perfect" 15-minute, multi-channel lead response - doubling in five years - yet 49% still fail the test, with only 30% of replies linking to the exact vehicle a shopper asked about. Speed without substance is the new risk as automation scales.
 
