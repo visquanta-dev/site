@@ -21,7 +21,7 @@ tags:
     title: Service Drive
   - slug: automation
     title: Automation
-author: VisQuanta Team
+author: william-voyles
 ---
 > **The Bottom Line:** Fewer than 6% of dealers use automation for inventory management and pricing optimization - even though 95% of their buyers research digitally before stepping on a lot. Multi-rooftop groups centralizing inventory decisions are turning dead stock into retail opportunities, while the majority still negotiate blind against data-rich shoppers.
 
