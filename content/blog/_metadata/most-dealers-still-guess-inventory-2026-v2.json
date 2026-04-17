@@ -1,0 +1,14 @@
+{
+  "gate_scores": {
+    "trace-back": 0.8548452503674768,
+    "slop-lexicon": 9,
+    "originality": 7,
+    "fact-recheck": 80,
+    "seo-aeo": 95
+  },
+  "retries": 0,
+  "image_count": 1,
+  "blocked_images": [],
+  "hero_fallback_used": false,
+  "seo_aeo_score": 95
+}
