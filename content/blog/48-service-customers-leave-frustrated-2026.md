@@ -19,7 +19,7 @@ tags:
     title: Service Drive
   - slug: automation
     title: Automation
-author: VisQuanta Team
+author: william-voyles
 ---
 > **The Bottom Line:** Nearly 48% of service customers leave dealerships frustrated, yet top-performing stores close 39% of maintenance leads versus the 30% district average - a gap driven entirely by disciplined BDC outreach. Boosting retention by just 5% can lift profits up to 95%, making every missed follow-up call a direct revenue loss.
 
