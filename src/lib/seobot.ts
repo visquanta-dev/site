@@ -29,6 +29,7 @@ export interface BlogPost {
     title: string;
   }>;
   author?: string;
+  entities?: Array<{ name: string; sameAs: string }>;
   relatedPosts?: BlogPost[];
 }
 
@@ -89,6 +90,15 @@ function parsePost(filename: string): BlogPost | null {
       category: data.category || { slug: 'general', title: 'General' },
       tags: data.tags || [],
       author: data.author || 'VisQuanta Team',
+      entities: Array.isArray(data.entities)
+        ? (data.entities as Array<Record<string, unknown>>)
+            .filter((e) => e && typeof e === 'object')
+            .map((e) => ({
+              name: String(e.name ?? ''),
+              sameAs: String(e.sameAs ?? ''),
+            }))
+            .filter((e) => e.name && e.sameAs.startsWith('https://'))
+        : undefined,
     };
   } catch (error) {
     console.error(`[blog] Failed to parse ${filename}:`, error);

@@ -193,7 +193,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         'dealership-operations': { name: 'Car dealership', sameAs: 'https://en.wikipedia.org/wiki/Car_dealership' },
         'service-drive': { name: 'Automobile repair shop', sameAs: 'https://en.wikipedia.org/wiki/Automobile_repair_shop' },
     };
+    // Prefer the explicit entities[] array from the post's frontmatter when
+    // present — UltraPlan's enrich stage picks these per-post from a curated
+    // allow-list, so they reflect what the post is actually about. Legacy
+    // posts without the field fall back to the category/tag lookup against
+    // ENTITY_MAP below.
     const buildEntities = (): Array<{ '@type': 'Thing'; name: string; sameAs: string }> => {
+        if (post.entities && post.entities.length > 0) {
+            return post.entities.map((e) => ({
+                '@type': 'Thing',
+                name: e.name,
+                sameAs: e.sameAs,
+            }));
+        }
         const seen = new Set<string>();
         const results: Array<{ '@type': 'Thing'; name: string; sameAs: string }> = [];
         const tryAdd = (slug: string) => {
