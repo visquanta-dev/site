@@ -26,7 +26,7 @@ const AUTHORS: Record<string, Author> = {
     linkedin: 'https://www.linkedin.com/in/wvoyles/',
     profile_url: 'https://www.visquanta.com/team#william-voyles',
     credential_line:
-      'Helps dealership GMs across North America recover revenue from missed calls, slow lead follow-up, and cold CRM databases.',
+      'Helps dealership GMs across North America uncover hidden revenue in their existing operations.',
     bio: [
       'William Voyles is Co-Founder and Chief Sales Officer at VisQuanta, where he leads go-to-market strategy for the AutoMaster Suite. With years of hands-on experience in automotive sales leadership, William has firsthand experience running the lead-handling and customer acquisition processes he now helps dealerships automate.',
       '',
