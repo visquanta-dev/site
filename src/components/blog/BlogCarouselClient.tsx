@@ -3,8 +3,10 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ArrowRight, BookOpen, Calendar, Clock, User } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { BlogPost } from '@/lib/seobot';
+import { getAuthor } from '@/lib/authors';
 
 interface BlogCarouselClientProps {
     posts: BlogPost[];
@@ -132,15 +134,35 @@ export default function BlogCarouselClient({
                                                 </p>
                                                 <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/[0.04]">
                                                     <div className="flex items-center gap-4">
-                                                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF7404]/30 to-[#FF7404]/10 flex items-center justify-center overflow-hidden ring-2 ring-white/[0.05]">
-                                                            <div className="relative w-full h-full bg-[#111] flex items-center justify-center">
-                                                                <span className="text-sm font-bold text-[#FF7404]">VQ</span>
-                                                            </div>
-                                                        </div>
-                                                        <div className="text-xs text-white/40">
-                                                            <span className="block text-[10px] uppercase tracking-widest text-white/25 mb-0.5">Article by</span>
-                                                            <span className="text-white/60 font-medium">VisQuanta Team</span>
-                                                        </div>
+                                                        {(() => {
+                                                            const cardAuthor = getAuthor(post.author);
+                                                            if (cardAuthor) {
+                                                                return (
+                                                                    <>
+                                                                        <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-white/[0.05] bg-zinc-800">
+                                                                            <Image src={cardAuthor.photo} alt={`${cardAuthor.name} headshot`} fill className="object-cover" sizes="40px" />
+                                                                        </div>
+                                                                        <div className="text-xs text-white/40">
+                                                                            <span className="block text-[10px] uppercase tracking-widest text-white/25 mb-0.5">Article by</span>
+                                                                            <span className="text-white/80 font-medium">{cardAuthor.name}</span>
+                                                                        </div>
+                                                                    </>
+                                                                );
+                                                            }
+                                                            return (
+                                                                <>
+                                                                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF7404]/30 to-[#FF7404]/10 flex items-center justify-center overflow-hidden ring-2 ring-white/[0.05]">
+                                                                        <div className="relative w-full h-full bg-[#111] flex items-center justify-center">
+                                                                            <span className="text-sm font-bold text-[#FF7404]">VQ</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="text-xs text-white/40">
+                                                                        <span className="block text-[10px] uppercase tracking-widest text-white/25 mb-0.5">Article by</span>
+                                                                        <span className="text-white/60 font-medium">VisQuanta Team</span>
+                                                                    </div>
+                                                                </>
+                                                            );
+                                                        })()}
                                                     </div>
                                                     <button className="px-5 py-2.5 bg-gradient-to-r from-[#FF7404] to-[#FF8A3D] text-black text-xs font-bold rounded-full hover:shadow-[0_0_20px_-5px_#FF7404] transition-shadow duration-300">
                                                         Read
@@ -327,10 +349,27 @@ export default function BlogCarouselClient({
                                         </h3>
                                         <div className="flex items-center justify-between mt-auto">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-full bg-[#111] border border-white flex items-center justify-center overflow-hidden">
-                                                    <span className="text-xs font-bold text-[#FF7404]">VQ</span>
-                                                </div>
-                                                <span className="text-xs font-bold text-white/50">VisQuanta Team</span>
+                                                {(() => {
+                                                    const cardAuthor = getAuthor(post.author);
+                                                    if (cardAuthor) {
+                                                        return (
+                                                            <>
+                                                                <div className="relative w-10 h-10 rounded-full overflow-hidden border border-white/20 bg-zinc-800">
+                                                                    <Image src={cardAuthor.photo} alt={`${cardAuthor.name} headshot`} fill className="object-cover" sizes="40px" />
+                                                                </div>
+                                                                <span className="text-xs font-bold text-white/70">{cardAuthor.name}</span>
+                                                            </>
+                                                        );
+                                                    }
+                                                    return (
+                                                        <>
+                                                            <div className="w-10 h-10 rounded-full bg-[#111] border border-white flex items-center justify-center overflow-hidden">
+                                                                <span className="text-xs font-bold text-[#FF7404]">VQ</span>
+                                                            </div>
+                                                            <span className="text-xs font-bold text-white/50">VisQuanta Team</span>
+                                                        </>
+                                                    );
+                                                })()}
                                             </div>
                                             <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ff7404] group-hover:text-black group-hover:scale-110 shadow-lg">
                                                 <ArrowRight className="w-5 h-5" />

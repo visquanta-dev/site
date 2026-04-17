@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BlogArticle } from '@/lib/blog';
+import { getAuthor } from '@/lib/authors';
 
 interface HomeBlogBentoGridProps {
     posts: BlogArticle[];
@@ -107,13 +108,33 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
 
                                     <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-[10px] font-bold text-zinc-400">
-                                                VQ
-                                            </div>
-                                            <div className="text-xs">
-                                                <span className="block text-white font-medium">VisQuanta Team</span>
-                                                <span className="block text-zinc-500">{featured.readTime} min read</span>
-                                            </div>
+                                            {(() => {
+                                                const cardAuthor = getAuthor(featured.author);
+                                                if (cardAuthor) {
+                                                    return (
+                                                        <>
+                                                            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/10 bg-zinc-800">
+                                                                <Image src={cardAuthor.photo} alt={`${cardAuthor.name} headshot`} fill className="object-cover" sizes="32px" />
+                                                            </div>
+                                                            <div className="text-xs">
+                                                                <span className="block text-white font-medium">{cardAuthor.name}</span>
+                                                                <span className="block text-zinc-500">{featured.readTime} min read</span>
+                                                            </div>
+                                                        </>
+                                                    );
+                                                }
+                                                return (
+                                                    <>
+                                                        <div className="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-[10px] font-bold text-zinc-400">
+                                                            VQ
+                                                        </div>
+                                                        <div className="text-xs">
+                                                            <span className="block text-white font-medium">VisQuanta Team</span>
+                                                            <span className="block text-zinc-500">{featured.readTime} min read</span>
+                                                        </div>
+                                                    </>
+                                                );
+                                            })()}
                                         </div>
                                         <span className="text-[#ff7404] text-sm font-bold tracking-wide group-hover:translate-x-1 transition-transform inline-flex items-center gap-2">
                                             READ NOW →
