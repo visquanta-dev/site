@@ -387,11 +387,13 @@ export default function TeamPage() {
                                     >
                                         {layer.members.map((member, i) => {
                                             const isInteractive = !!(member.link || member.email || member.calendly);
+                                            const memberAnchor = member.name.toLowerCase().replace(/\s+/g, '-');
                                             return (
                                                 <motion.div
                                                     key={i}
+                                                    id={memberAnchor}
                                                     variants={itemVariants}
-                                                    className={`relative w-full md:w-[calc(50%-2rem)] ${layerIdx === 2 ? 'lg:w-[calc(33.333%-2rem)]' : ''} h-[280px] bg-[#0A0A0A] border border-white/5 rounded-[2.5rem] p-8 transition-all duration-700 overflow-hidden shadow-2xl ${isInteractive ? 'group hover:border-[#FF7404]/40 cursor-custom-pointer' : 'cursor-default'}`}
+                                                    className={`relative w-full md:w-[calc(50%-2rem)] ${layerIdx === 2 ? 'lg:w-[calc(33.333%-2rem)]' : ''} h-[280px] bg-[#0A0A0A] border border-white/5 rounded-[2.5rem] p-8 transition-all duration-700 overflow-hidden shadow-2xl scroll-mt-24 ${isInteractive ? 'group hover:border-[#FF7404]/40 cursor-custom-pointer' : 'cursor-default'}`}
                                                 >
                                                     {/* Advanced Hover Glow */}
                                                     <div className="absolute inset-0 bg-gradient-to-br from-[#FF7404]/0 via-[#FF7404]/[0.01] to-[#FF7404]/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

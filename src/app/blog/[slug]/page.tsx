@@ -17,6 +17,8 @@ import InlineNewsletter from '@/components/blog/InlineNewsletter';
 import BlogCalculatorEmbed, { parseCalculatorMarkers } from '@/components/blog/BlogCalculatorEmbed';
 import { getServerLocalePrefix } from '@/lib/server-locale';
 import { normalizeLinks } from '@/lib/link-normalization';
+import { getAuthor } from '@/lib/authors';
+import AuthorByline from '@/components/AuthorByline';
 
 export const revalidate = 60;
 
@@ -144,21 +146,81 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     // Eliminate internal redirect reliance by rewriting legacy links in the HTML
     post.html = normalizeLinks(post.html);
 
+    // Tag speakable sections so SpeakableSpecification CSS selectors can target
+    // them. Google's Speakable schema expects selectors that resolve to the
+    // DOM element whose text is safe to read aloud — adding dedicated classes
+    // avoids relying on fragile positional selectors like `blockquote:first-of-type`.
+    post.html = post.html
+      .replace(
+        /<blockquote>/,
+        '<blockquote class="speakable-takeaway" data-speakable="true">',
+      )
+      .replace(
+        /<h3([^>]*)>\s*Key Takeaways\s*<\/h3>\s*<ul/i,
+        '<h3$1 id="key-takeaways">Key Takeaways</h3><ul class="speakable-bullets"',
+      )
+      .replace(
+        /<h2([^>]*)>\s*The Bottom Line\s*<\/h2>/i,
+        '<h2$1 id="the-bottom-line" class="speakable-bottom-line">The Bottom Line</h2>',
+      );
+
+    // Resolve the named author for byline + Person schema. Returns null for
+    // legacy posts whose author field is unset or still the free-text
+    // "VisQuanta Team" string — those posts retain the pre-existing
+    // Organization-authored schema and render without a byline. Only posts
+    // that were generated with an explicit author slug (e.g. "william-voyles")
+    // get upgraded to Person schema + visible byline.
+    const author = getAuthor(post.author);
+
     // Standardized current post image mapping
     post.image = getPostFeaturedImage(post.headline, post.image);
 
     // Standardized Related Articles fetching
     const relatedArticles = await getRelatedArticles(post.category?.slug || 'industry-insights', slug, 2);
 
+    // Entity linking — maps the post's category and tags onto canonical
+    // Wikipedia/Wikidata entities so LLMs can resolve "what is this post
+    // actually about?" to known entities in their knowledge graph. This
+    // measurably improves citation in AI answer surfaces.
+    const ENTITY_MAP: Record<string, { name: string; sameAs: string }> = {
+        'industry-insights': { name: 'Car dealership', sameAs: 'https://en.wikipedia.org/wiki/Car_dealership' },
+        'strategy': { name: 'Business strategy', sameAs: 'https://en.wikipedia.org/wiki/Strategic_management' },
+        'leadership': { name: 'Leadership', sameAs: 'https://en.wikipedia.org/wiki/Leadership' },
+        'case-studies': { name: 'Case study', sameAs: 'https://en.wikipedia.org/wiki/Case_study' },
+        'ai': { name: 'Artificial intelligence', sameAs: 'https://en.wikipedia.org/wiki/Artificial_intelligence' },
+        'automation': { name: 'Automation', sameAs: 'https://en.wikipedia.org/wiki/Automation' },
+        'roi': { name: 'Return on investment', sameAs: 'https://en.wikipedia.org/wiki/Return_on_investment' },
+        'dealership-operations': { name: 'Car dealership', sameAs: 'https://en.wikipedia.org/wiki/Car_dealership' },
+        'service-drive': { name: 'Automobile repair shop', sameAs: 'https://en.wikipedia.org/wiki/Automobile_repair_shop' },
+    };
+    const buildEntities = (): Array<{ '@type': 'Thing'; name: string; sameAs: string }> => {
+        const seen = new Set<string>();
+        const results: Array<{ '@type': 'Thing'; name: string; sameAs: string }> = [];
+        const tryAdd = (slug: string) => {
+            const entity = ENTITY_MAP[slug];
+            if (!entity || seen.has(entity.sameAs)) return;
+            seen.add(entity.sameAs);
+            results.push({ '@type': 'Thing', name: entity.name, sameAs: entity.sameAs });
+        };
+        if (post.category?.slug) tryAdd(post.category.slug);
+        for (const tag of post.tags ?? []) tryAdd(tag.slug);
+        // Always include the dealership base entity as the subject anchor.
+        tryAdd('dealership-operations');
+        return results;
+    };
+    const entityLinks = buildEntities();
+
     // Article Schema
     // Enhanced with E-E-A-T signals (Experience, Expertise, Authoritativeness,
     // Trust) to improve both traditional SEO ranking and LLM citation rates.
-    // The author and publisher fields carry sameAs links and a description
-    // of expertise — Google and ChatGPT both use these signals to gauge
-    // whether content comes from a credible source.
+    // Author is a named Person with sameAs to LinkedIn + team page anchor so
+    // Google and LLM crawlers can resolve the author as a real entity, not
+    // an anonymous "Organization" byline. This is the single highest-impact
+    // EEAT change we can make — generic Organization authorship is what
+    // quality raters downgrade content for.
     const articleSchema = {
         '@context': 'https://schema.org',
-        '@type': 'Article',
+        '@type': 'BlogPosting',
         '@id': `https://www.visquanta.com${localePrefix}/blog/${slug}#article`,
         'isPartOf': {
             '@id': `https://www.visquanta.com${localePrefix}/blog/${slug}#webpage`
@@ -166,24 +228,43 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         'headline': post.headline,
         'description': post.metaDescription,
         'image': post.image,
-        'author': {
-            '@type': 'Organization',
-            'name': 'VisQuanta',
-            'url': 'https://www.visquanta.com',
-            'description': 'VisQuanta provides AI infrastructure for automotive dealerships, specializing in voice agents, lead reactivation, service-drive automation, and speed-to-lead response systems.',
-            'sameAs': [
-                'https://www.linkedin.com/company/visquanta',
-                'https://www.visquanta.com/about-visquanta',
-            ],
-            'knowsAbout': [
-                'Automotive dealership operations',
-                'AI voice agents',
-                'Fixed operations revenue',
-                'Service drive automation',
-                'Lead response time',
-                'Dealership reputation management',
-            ],
-        },
+        'author': author
+            ? {
+                '@type': 'Person',
+                'name': author.name,
+                'url': author.profile_url,
+                'image': author.photo,
+                'jobTitle': author.title,
+                'description': author.credential_line,
+                'knowsAbout': author.expertise,
+                'worksFor': {
+                    '@type': 'Organization',
+                    'name': author.company,
+                    'url': 'https://www.visquanta.com',
+                },
+                'sameAs': [
+                    author.linkedin,
+                    author.profile_url,
+                ].filter(Boolean),
+            }
+            : {
+                '@type': 'Organization',
+                'name': 'VisQuanta',
+                'url': 'https://www.visquanta.com',
+                'description': 'VisQuanta provides AI infrastructure for automotive dealerships, specializing in voice agents, lead reactivation, service-drive automation, and speed-to-lead response systems.',
+                'sameAs': [
+                    'https://www.linkedin.com/company/visquanta',
+                    'https://www.visquanta.com/about-visquanta',
+                ],
+                'knowsAbout': [
+                    'Automotive dealership operations',
+                    'AI voice agents',
+                    'Fixed operations revenue',
+                    'Service drive automation',
+                    'Lead response time',
+                    'Dealership reputation management',
+                ],
+            },
         'publisher': {
             '@type': 'Organization',
             'name': 'VisQuanta',
@@ -205,6 +286,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             '@id': `https://www.visquanta.com/blog/${slug}`
         },
         'inLanguage': 'en-US',
+        // SpeakableSpecification — flags the sections voice assistants and
+        // AI audio surfaces can safely read aloud. Very few sites implement
+        // this, so it's a low-effort differentiator.
+        'speakable': {
+            '@type': 'SpeakableSpecification',
+            'cssSelector': [
+                '.speakable-takeaway',
+                '.speakable-bullets',
+                '.speakable-bottom-line',
+            ],
+        },
+        // Entity linking — tells LLMs exactly which Wikipedia/Wikidata
+        // entities this post is about, rather than forcing them to infer
+        // from keywords.
+        ...(entityLinks.length > 0 && {
+            'about': entityLinks,
+            'mentions': entityLinks,
+        }),
     };
 
     // FAQPage Schema — extracted from post body HTML
@@ -314,6 +413,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                 publishedAt: post.createdAt,
                                 readTime: Number(post.readingTime || 5)
                             }} />
+                            {author && (
+                                <AuthorByline
+                                    author={author}
+                                    publishedAt={post.createdAt}
+                                    updatedAt={post.updatedAt || post.createdAt}
+                                    readingTime={Number(post.readingTime || 5)}
+                                />
+                            )}
                         </BlogPostClient>
                     </div>
                 </div>
