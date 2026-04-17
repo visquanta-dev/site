@@ -20,7 +20,7 @@ tags:
     title: Service Drive
   - slug: automation
     title: Automation
-author: VisQuanta Team
+author: william-voyles
 ---
 > **The Bottom Line:** Only 5.8% of dealers use automation for inventory management and pricing - yet the industry average days-to-turn sits at 37 days, with holding costs climbing every day unsold. Stores that adopt data-driven approaches are turning inventory 5 to 10 days faster, freeing capital and protecting gross profit.
 
