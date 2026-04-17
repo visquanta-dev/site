@@ -468,8 +468,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </div>
             </section>
 
-            {/* Hero Image Section */}
-            {post.image && (
+            {/* Hero Image Section — hideHero frontmatter flag lets a post opt out entirely */}
+            {post.image && !post.hideHero && (
                 <section className="relative pb-16 lg:pb-24">
                     <div className="container px-4 mx-auto">
                         <div className="max-w-6xl mx-auto">
