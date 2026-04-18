@@ -98,7 +98,7 @@ export function BlogArticleHeader({ article }: { article: Article }) {
             </Link>
 
             {/* Headline */}
-            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-white mt-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mt-6 leading-tight">
                 {article.title}
             </h1>
 
