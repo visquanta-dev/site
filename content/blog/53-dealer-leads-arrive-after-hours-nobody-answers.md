@@ -28,7 +28,9 @@ entities:
   - name: Business process automation
     sameAs: 'https://en.wikipedia.org/wiki/Business_process_automation'
 hide_hero: false
-image_alt: 53% in Inter Regular orange type on a black background.
+image_alt: >-
+  53% — the share of customer-initiated dealer leads that arrive outside weekday
+  business hours.
 image_credit: ''
 ---
 
