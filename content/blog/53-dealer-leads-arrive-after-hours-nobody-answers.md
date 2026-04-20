@@ -37,7 +37,7 @@ image_credit: ''
 ### Key Takeaways
 
 - Across 7,041 leads at 50 dealerships, 53% arrived outside weekday 9am-6pm when showrooms and BDCs were closed.
-- Five third-party providers (CarGurus, AutoTrader, CARFAX, Cars.com, Edmunds) drove 49% of all inbound lead volume in the study.
+- Five third-party providers ([CarGurus](https://www.cargurus.com/), [AutoTrader](https://www.autotrader.com/), [CARFAX](https://www.carfax.com/), [Cars.com](https://www.cars.com/), [Edmunds](https://www.edmunds.com/)) drove 49% of all inbound lead volume in the study.
 - After-hours traffic averages 75 new leads per dealership per month, totaling 3,743 unanswered leads across the 50-store sample.
 - Operationally, weekday evenings need same-session responses while weekend leads tolerate Monday callbacks, requiring two distinct playbooks.
 - Strategically, after-hours demand now exceeds any single marketing line item, meaning treating it as overflow misaligns the entire org chart.
