@@ -4,8 +4,7 @@ slug: 53-dealer-leads-arrive-after-hours-nobody-answers
 metaDescription: >-
   53% of dealer leads arrive after hours, per a 30-day sample of 7,041 inquiries
   across 50 rooftops. See where the BDC coverage gap costs you deals.
-image: >-
-  /images/blog/53-dealer-leads-arrive-after-hours-nobody-answers/hero-53-percent.png
+image: /images/blog/53-dealer-leads-arrive-after-hours-nobody-answers/hero-53.png
 readingTime: 11
 publishedAt: '2026-04-20'
 updatedAt: '2026-04-20'
@@ -29,9 +28,7 @@ entities:
   - name: Business process automation
     sameAs: 'https://en.wikipedia.org/wiki/Business_process_automation'
 hide_hero: false
-image_alt: >-
-  A 53% figure in orange italic on a black grid background, above the line "of
-  dealer leads arrive after hours" and the dataset metadata.
+image_alt: 53% in Inter Regular orange type on a black background.
 image_credit: ''
 ---
 
