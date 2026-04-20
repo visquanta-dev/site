@@ -27,7 +27,7 @@ entities:
     sameAs: 'https://en.wikipedia.org/wiki/Lead_generation'
   - name: Business process automation
     sameAs: 'https://en.wikipedia.org/wiki/Business_process_automation'
-hide_hero: false
+hide_hero: true
 image_alt: >-
   53% — the share of customer-initiated dealer leads that arrive outside weekday
   business hours.
