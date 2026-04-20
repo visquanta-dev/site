@@ -43,7 +43,6 @@ image_credit: ''
 - Strategically, after-hours demand now exceeds any single marketing line item, meaning treating it as overflow misaligns the entire org chart.
 - Dealers who automate response coverage in 2026 will capture the $400,000-plus annualized gross profit currently walking away per rooftop.
 
-![53% of dealer leads arrive after hours](/images/blog/53-dealer-leads-arrive-after-hours-nobody-answers/chart-hero.png)
 ## What 7,041 Leads Across 50 Dealerships Actually Showed
 
 In 2026, dealer leads are landing in inboxes and chat widgets around the clock. Most showrooms are still staffed for a workday that ended a decade ago. We pulled 30 days of platform data across 50 dealerships and counted 7,041 customer-initiated leads. Every one was a Speed-to-Lead form fill or a live chat inquiry. These are not tire kickers browsing in private mode. These are shoppers who typed their name, phone number, and intent into a dealer's own website ([according to Visquanta](https://www.visquanta.com/internal/operator-seed/pulled-30-days-of-data-across-50-dealerships-on-our-platform)).
