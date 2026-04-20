@@ -5,7 +5,7 @@ metaDescription: >-
   53% of dealer leads arrive after hours, per a 30-day sample of 7,041 inquiries
   across 50 rooftops. See where the BDC coverage gap costs you deals.
 image: >-
-  /images/blog/53-dealer-leads-arrive-after-hours-nobody-answers/hero-dealership-night.jpg
+  /images/blog/53-dealer-leads-arrive-after-hours-nobody-answers/hero-phone-at-night.jpg
 readingTime: 11
 publishedAt: '2026-04-20'
 updatedAt: '2026-04-20'
@@ -30,9 +30,10 @@ entities:
     sameAs: 'https://en.wikipedia.org/wiki/Business_process_automation'
 hide_hero: true
 image_alt: >-
-  Illuminated cars in a dealership lot at night — the hours when inbound leads
-  arrive but no one is staffed to respond.
-image_credit: Photo by Matheus Bertelli on Pexels
+  A person browsing on their phone at night — the 53% of dealer leads that
+  arrive after hours come from customers shopping on CarGurus, AutoTrader and
+  Cars.com from their sofas and beds.
+image_credit: Photo by cottonbro studio on Pexels
 ---
 
 ### Key Takeaways
