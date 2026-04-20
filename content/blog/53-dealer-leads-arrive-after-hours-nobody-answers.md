@@ -28,7 +28,7 @@ entities:
     sameAs: 'https://en.wikipedia.org/wiki/Lead_generation'
   - name: Business process automation
     sameAs: 'https://en.wikipedia.org/wiki/Business_process_automation'
-hide_hero: true
+hide_hero: false
 image_alt: >-
   A person browsing on their phone at night — the 53% of dealer leads that
   arrive after hours come from customers shopping on CarGurus, AutoTrader and
