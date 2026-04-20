@@ -85,7 +85,7 @@ Stack those five channels together and the concentration is striking. The five t
 
 ### Weekday Evenings Versus Weekends
 
-After-hours is not one shape of demand. It is two, and they need different playbooks. In our sample, Tuesday through Thursday nights produced noticeably more volume than Saturday and Sunday combined. That matters because weekday-evening shoppers behave like daytime shoppers who got home late. They are deeper in the funnel, comparing specific VINs, and expecting a same-session reply. Weekend shoppers skew earlier-funnel and more tolerant of a Monday callback. Staffing one bucket to cover both is how dealers end up with mediocre [response time](https://www.visquanta.com/speed-to-lead)s in the window that actually converts.
+After-hours is not one shape of demand. It is two, and they need different playbooks. In our sample, Tuesday through Thursday nights produced noticeably more volume than Saturday and Sunday combined. That matters because weekday-evening shoppers behave like daytime shoppers who got home late. They are deeper in the funnel, comparing specific VINs, and expecting a same-session reply. Weekend shoppers skew earlier-funnel and more tolerant of a Monday callback. Staffing one bucket to cover both is how dealers end up with mediocre [response times](https://www.visquanta.com/speed-to-lead) in the window that actually converts.
 
 Put that share in context against any other channel a dealer funds. Nothing else on the marketing spreadsheet accounts for a majority of inbound demand on its own - not a single third-party provider, not paid search, not direct traffic. [After-hours](https://www.visquanta.com/blog/why-your-service-department-needs-24-7-call-answering-not-just-voicemail) does. When a line item larger than your biggest vendor is treated as overflow, the org chart is wrong, not the data. The fix is not another night-shift experiment. It is recognizing that the dominant demand window deserves the same operational rigor as the 9-to-6 floor.
 
@@ -129,7 +129,7 @@ Across the rooftops we work with, the dollars compound fast once you apply stand
 
 ## Why Is Staffing the Traditional Fix a Losing Bet?
 
-### The [Staff](https://www.visquanta.com/blog/ai-isnt-replacing-car-dealership-jobs-its-transforming-them)ing Math Does Not Pencil
+### The [Staffing](https://www.visquanta.com/blog/ai-isnt-replacing-car-dealership-jobs-its-transforming-them) Math Does Not Pencil
 
 The instinct is to hire a night BDC rep. Run the numbers against the actual demand curve first. Our 30-day platform data shows 53% of leads arriving outside 9am to 6pm. That is not a trickle one agent can cover. It is more than half of the funnel spread across every evening and both weekend days, and the volume is not evenly distributed inside that window.
 
