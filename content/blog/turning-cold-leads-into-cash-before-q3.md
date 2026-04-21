@@ -4,7 +4,7 @@ slug: turning-cold-leads-into-cash-before-q3
 metaDescription: >-
   Your store is sitting on 4,000-11,000 dormant leads already paid for. Here's
   how to work that pile into Q3 deals before buying fresh traffic.
-image: /images/blog/turning-cold-leads-into-cash-before-q3/chart-hero.png
+image: /images/blog/turning-cold-leads-into-cash-before-q3/hero.jpg
 readingTime: 13
 publishedAt: '2026-04-21'
 updatedAt: '2026-04-21'
@@ -27,7 +27,7 @@ entities:
     sameAs: 'https://en.wikipedia.org/wiki/Customer_relationship_management'
   - name: Lead generation
     sameAs: 'https://en.wikipedia.org/wiki/Lead_generation'
-hide_hero: true
+hide_hero: false
 ---
 
 ### Key Takeaways
