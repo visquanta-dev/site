@@ -27,7 +27,7 @@ entities:
     sameAs: 'https://en.wikipedia.org/wiki/Customer_relationship_management'
   - name: Lead generation
     sameAs: 'https://en.wikipedia.org/wiki/Lead_generation'
-hide_hero: false
+hide_hero: true
 ---
 
 ### Key Takeaways
