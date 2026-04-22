@@ -409,6 +409,16 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // Allow the embed routes to be iframed from any origin.
+        source: '/embed/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors *",
+          },
+        ],
+      },
+      {
         source: '/guides/:path*.pdf',
         headers: [
           {
