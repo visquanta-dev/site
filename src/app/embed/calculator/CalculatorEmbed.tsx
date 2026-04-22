@@ -7,7 +7,7 @@ import { ArrowRight, Zap, RefreshCcw } from 'lucide-react';
 
 type CalculatorMode = 'reactivation' | 'speedToLead';
 
-const DEFAULT_CTA_URL = 'https://visquanta.com/book-demo';
+const DEFAULT_CTA_URL = 'https://www.scalewithvisquanta.com/powersport-calendar';
 
 export default function CalculatorEmbed() {
     const searchParams = useSearchParams();
