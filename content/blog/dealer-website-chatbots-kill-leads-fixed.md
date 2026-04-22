@@ -4,7 +4,7 @@ slug: dealer-website-chatbots-kill-leads-fixed
 metaDescription: >-
   Dealer website chatbots leak leads when flowcharts replace real conversations.
   See why decision trees fail and what actually converts shoppers into CRM...
-image: /images/blog/dealer-website-chatbots-kill-leads-fixed/chart-hero.png
+image: /images/blog/dealer-website-chatbots-kill-leads-fixed/hero.jpg
 readingTime: 12
 publishedAt: '2026-04-22'
 updatedAt: '2026-04-22'
