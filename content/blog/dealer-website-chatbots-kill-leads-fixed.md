@@ -45,7 +45,7 @@ Walk into any dealership BDC this quarter and ask what the website bot produced 
 
 The widget format isn't the problem. Blame the job description the old widgets were given - answering hours-of-operation at 2am and deflecting humans into a help article. A dealer principal doesn't need a robot librarian. What moves units is a phone number captured before the shopper has picked a menu option, and a BDC rep thumbing a reply from the couch while the laptop is still open. Anything that doesn't shorten the distance between shopper and salesperson is overhead. The widget either [hands off a captured lead to a real human in under a minute](https://www.visquanta.com/book-demo), or it's decoration.
 
-GMs who audited their chatbot transcripts this quarter found the same thing. Pages of scripted menus. Zero captured phone numbers. Zero handoffs to a human. The [CRM aged-lead pull](https://www.visquanta.com/blog/crm-database-reactivation-guide) shows a flat line where web chat leads should be, while the aged lead pile keeps growing in the sales manager's queue. That's not a chatbot problem in the abstract. That's a dealership losing real deals every day because the front door on its website is welded shut.
+GMs who audited their chatbot transcripts this quarter found the same thing. Pages of scripted menus. Zero captured phone numbers. Zero handoffs to a human. The [CRM aged-lead pull](https://www.visquanta.com/blog/crm-database-reactivation-guide) shows a flat line where web chat leads should be, while the aged lead pile keeps growing in the sales manager's queue. That's not a chatbot problem in the abstract. That's a dealership losing real deals every day because the front door on its website is welded shut. VisQuanta built an SMS-first chat widget to fix exactly this - phone number captured on message one, conversation handed to a human who replies by text within seconds, and the thread stays alive on the shopper's phone long after they close the tab.
 
 ## What Is an SMS-First Chat Widget?
 
@@ -53,11 +53,11 @@ GMs who audited their chatbot transcripts this quarter found the same thing. Pag
 
 An [SMS-first chat widget](https://www.visquanta.com/blog/5-reasons-car-buyers-prefer-sms-over-phone-calls-from-dealerships) is a website chat tool that routes every conversation into a two-way text thread and captures the customer's phone number on the first message. Instead of trapping the shopper inside a browser window with a scripted bot, the widget hands the conversation to a human who replies by SMS. The thread continues on the customer's phone after they leave the site. The dealer ends up in the shopper's pocket, not stranded on a tab that gets closed.
 
-That structural difference is the whole product. A legacy bot tries to keep the shopper on the page long enough to answer a question. An SMS-first widget treats the page as a launchpad and the text thread as the destination. Once the conversation moves to SMS, the rules change. The rep doesn't need the shopper to stay on the site. The shopper doesn't need to remember which tab they had open. The thread lives on a phone where the average person already checks notifications dozens of times a day - which is where car-buying decisions actually get made between dinner and bedtime, a pattern tracked in [Cox Automotive's Car Buyer Journey research](https://www.coxautoinc.com/market-insights/) year after year.
+That structural difference is the whole product. A legacy bot tries to keep the shopper on the page long enough to answer a question. An SMS-first widget treats the page as a launchpad and the text thread as the destination. Once the conversation moves to SMS, the rules change. The rep doesn't need the shopper to stay on the site. The shopper doesn't need to remember which tab they had open. The thread lives on a phone where the average person already checks notifications dozens of times a day - which is where car-buying decisions actually get made between dinner and bedtime, a pattern tracked in [Cox Automotive's Car Buyer Journey research](https://www.coxautoinc.com/market-insights/) year after year. The data in the rest of this post comes from the VisQuanta SMS-first chat widget running live across 41 franchise rooftops.
 
 ## What Happened Across 41 Rooftops in 10 Weeks?
 
-In the SMS-first deployments we've pushed live across 41 franchise rooftops through early 2026, every conversion event gets logged in the portal. Across roughly 10 weeks ending April 22, the tool generated 1,414 conversions tied to 1,302 distinct shoppers (VisQuanta portal data). That's a shade under 20 captured contacts per day group-wide, with 92 out of every 100 being a first-time contact - not the same tire-kicker bouncing back. For a [BDC director evaluating chat tools](https://www.visquanta.com/blog/ai-bdc-guide-for-car-dealerships) on vanity engagement metrics, the signal here is the uniqueness rate. The widget is pulling new humans into the funnel, not recycling the pipeline.
+In the VisQuanta SMS-first chat widget deployments across 41 franchise rooftops through early 2026, every conversion event gets logged in the portal. Across roughly 10 weeks ending April 22, the tool generated 1,414 conversions tied to 1,302 distinct shoppers (VisQuanta portal data). That's a shade under 20 captured contacts per day group-wide, with 92 out of every 100 being a first-time contact - not the same tire-kicker bouncing back. For a [BDC director evaluating chat tools](https://www.visquanta.com/blog/ai-bdc-guide-for-car-dealerships) on vanity engagement metrics, the signal here is the uniqueness rate. The widget is pulling new humans into the funnel, not recycling the pipeline.
 
 For a group running 41 rooftops, 20 conversions a day from the website alone is a structural shift. The BDC manager who used to see a handful of weak web-form submissions a week is now staffing a pipeline that fills on its own. A 92% unique-[contact rate](https://www.visquanta.com/blog/how-to-improve-first-contact-rates-in-dealerships) tells you the widget is reaching the top of the funnel, not recycling the same three tire-kickers. These are new humans with phone numbers, landing in an SMS thread, ready for a BDC rep to respond.
 
@@ -99,7 +99,7 @@ For a fixed ops director, the service number is the one to circle. 90 booked ROs
 
 ---
 
-**Most dealer websites convert under 2% of visitors — the rest bounce without leaving a name.** [Install the SMS First Widget](https://www.visquanta.com/website-widget): converts anonymous site visitors into SMS conversations in under 30 seconds, so you capture contact info before they click to a competitor.
+**Most dealer websites convert under 2% of visitors — the rest bounce without leaving a name.** [Install the VisQuanta SMS-First Chat Widget](https://www.visquanta.com/website-widget): converts anonymous site visitors into SMS conversations in under 30 seconds, so you capture contact info before they click to a competitor.
 
 ---
 
@@ -109,7 +109,7 @@ For a fixed ops director, the service number is the one to circle. 90 booked ROs
 
 ## How Much Attributed Revenue Did the Widget Produce?
 
-The revenue math is where the dealer principal leans in. Across those 41 rooftops in the February-through-April 2026 window, 45 of the SMS conversations closed as logged sales at an average transaction price of $42,048 (VisQuanta portal data). Stack them up: $1,892,160 in attributed sold value across 10 weeks, or roughly $46,000 per rooftop. That's before you account for the deals the stores never got around to marking sold in the portal. Anyone who's worked a sales desk knows the sold-column discipline is uneven at best, which means the real figure sits above the logged one. Even taken at face value, the number clears the bar for a line item most GMs currently treat as a website utility.
+The revenue math is where the dealer principal leans in. Across the 41 rooftops running the VisQuanta SMS-first chat widget in the February-through-April 2026 window, 45 of the SMS conversations closed as logged sales at an average transaction price of $42,048. Stack them up: $1,892,160 in attributed sold value across 10 weeks, or roughly $46,000 per rooftop. That's before you account for the deals the stores never got around to marking sold in the portal. Anyone who's worked a sales desk knows the sold-column discipline is uneven at best, which means the real figure sits above the logged one. Even taken at face value, the number clears the bar for a line item most GMs currently treat as a website utility.
 
 Spread that $1.89M across 41 rooftops and 10 weeks and you get a per-rooftop, per-week number any dealer group CFO can model. The more important read is the quality of the deal flow. These are sold units with a real average transaction price of $42,048, not show-floor walk-ins that evaporated at F&I. The widget didn't just fill the top of the funnel. It fed deals all the way through to the sold column, which is the only number the dealer principal cares about.
 
@@ -117,7 +117,7 @@ Spread that $1.89M across 41 rooftops and 10 weeks and you get a per-rooftop, pe
 
 ### The Two-Question Audit
 
-A GM doesn't need a 40-point rubric to evaluate the [chat widget](https://www.visquanta.com/website-widget) on the dealership website. The audit is two questions, and any BDC director can run it in five minutes on a laptop:
+A GM doesn't need a 40-point rubric to know whether the chat widget on their dealership website meets [the VisQuanta SMS-first standard](https://www.visquanta.com/website-widget) or is still a legacy FAQ bot. The audit is two questions, and any BDC director can run it in five minutes on a laptop:
 
 1. Does the widget capture a phone number on message one, before the shopper navigates a script?
 2. Does the conversation continue by SMS after the customer closes the browser tab?
@@ -131,7 +131,7 @@ Here's the honest framing for any dealer group reviewing web chat tooling this y
 
 ## The Bottom Line
 
-The legacy chatbot wasn't broken because of its format - it was broken because of its job description. Answering hours-of-operation questions and deflecting humans into help articles is overhead, not lead capture. An SMS-first widget rewrites the job to capture a phone number first and move the conversation into a text thread a human actually answers.
+The legacy chatbot wasn't broken because of its format - it was broken because of its job description. Answering hours-of-operation questions and deflecting humans into help articles is overhead, not lead capture. The VisQuanta SMS-first chat widget rewrites the job to capture a phone number first and move the conversation into a text thread a human actually answers.
 
 **What this means for dealerships in 2026:**
 
