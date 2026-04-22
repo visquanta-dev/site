@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Trust & Security at VisQuanta',
-    description: 'Enterprise-grade security, full data encryption, and 99.9% uptime to protect your dealership operations.',
+    title: 'Trust & Compliance — Visquanta',
+    description: "Visquanta's trust and compliance overview — data processing agreements, sub-processors, and AI data handling practices.",
     alternates: {
         canonical: 'https://www.visquanta.com/trust',
         languages: {
