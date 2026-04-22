@@ -15,6 +15,7 @@ import {
     ExternalLink,
     Search,
     Eye,
+    EyeOff,
     Database,
     Globe,
     ChevronRight,
@@ -24,6 +25,7 @@ import {
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import LegalDocsNav from '@/components/LegalDocsNav';
 import { subprocessors } from '@/data/subprocessors';
 
 // --- Data & Content ---
@@ -74,6 +76,7 @@ const TabButton = ({ active, label, onClick }: { active: boolean; label: string;
 const onPageLinks = [
     { title: 'DPA Intake', href: '#dpa', icon: FileText },
     { title: 'AI Data Handling', href: '#ai-data', icon: Database },
+    { title: 'PII Redaction', href: '#pii-redaction', icon: EyeOff },
     { title: 'Security Posture', href: '#security', icon: Shield },
 ];
 
@@ -165,15 +168,18 @@ const SubprocessorsView = () => (
     <div className="container-wide pb-20">
         <div className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8">
             <h2 className="text-2xl font-bold text-white mb-6">Service Providers</h2>
-            <p className="text-white/60 mb-8 max-w-3xl">
-                We rely on a small set of vetted sub-processors to operate our platform, process AI requests, and deliver messaging. Each is governed by a Data Processing Addendum or an equivalent customer-controlled arrangement, listed below.
+            <p className="text-white/60 mb-4 max-w-3xl">
+                We rely on a small set of vetted sub-processors to operate our platform, process AI requests, and deliver messaging.
+            </p>
+            <p className="text-white/60 mb-8 max-w-3xl text-sm">
+                Documentation for any specific vendor is available on request &mdash; <a href="mailto:compliance@visquanta.com" className="text-[#FF7404] hover:underline">compliance@visquanta.com</a>
             </p>
 
             <div className="border border-white/10 rounded-xl overflow-hidden">
                 <div className="bg-white/5 px-6 py-4 border-b border-white/10 grid grid-cols-12 text-xs font-bold uppercase tracking-wider text-white/50">
                     <div className="col-span-12 md:col-span-4">Provider</div>
                     <div className="col-span-12 md:col-span-5 hidden md:block">Function</div>
-                    <div className="col-span-4 md:col-span-3 text-right hidden md:block">Agreement</div>
+                    <div className="col-span-12 md:col-span-3 text-right hidden md:block">Status</div>
                 </div>
                 <div className="divide-y divide-white/5">
                     {subprocessors.map((sub, i) => (
@@ -190,17 +196,29 @@ const SubprocessorsView = () => (
                                     {sub.name} <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </span>
                             </div>
-                            <div className="col-span-6 md:col-span-12 lg:col-span-5 text-sm text-white/70 block md:hidden mb-1">
+                            <div className="col-span-12 md:col-span-5 text-sm text-white/70 block md:hidden mb-1">
                                 <span className="text-white/30 uppercase text-[10px] block mb-1">Function</span>
                                 {sub.service}
                             </div>
-                            <div className="col-span-6 md:col-span-12 lg:col-span-5 text-sm text-white/70 hidden md:block">{sub.service}</div>
+                            <div className="col-span-12 md:col-span-5 text-sm text-white/70 hidden md:block">{sub.service}</div>
 
-                            <div className="col-span-6 md:col-span-12 lg:col-span-3 text-left md:text-right text-xs md:text-sm text-white/50 block md:hidden">
-                                <span className="text-white/30 uppercase text-[10px] block mb-1">Agreement</span>
-                                {sub.agreement}
-                            </div>
-                            <div className="col-span-2 md:col-span-12 lg:col-span-3 text-right text-xs md:text-sm text-white/50 hidden md:block">{sub.agreement}</div>
+                            {sub.badge && (
+                                <div className="col-span-12 md:col-span-3 text-left md:text-right block md:hidden mt-1">
+                                    <span className="text-white/30 uppercase text-[10px] block mb-1">Status</span>
+                                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${sub.badge === 'DPA Executed' ? 'bg-[#FF7404]/10 border-[#FF7404]/40 text-[#FF7404]' : 'bg-white/5 border-white/10 text-white/60'}`}>
+                                        {sub.badge === 'DPA Executed' && <CheckCircle className="w-3 h-3" />}
+                                        {sub.badge}
+                                    </span>
+                                </div>
+                            )}
+                            {sub.badge && (
+                                <div className="col-span-12 md:col-span-3 text-right hidden md:block">
+                                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${sub.badge === 'DPA Executed' ? 'bg-[#FF7404]/10 border-[#FF7404]/40 text-[#FF7404]' : 'bg-white/5 border-white/10 text-white/60'}`}>
+                                        {sub.badge === 'DPA Executed' && <CheckCircle className="w-3 h-3" />}
+                                        {sub.badge}
+                                    </span>
+                                </div>
+                            )}
                         </a>
                     ))}
                 </div>
@@ -231,12 +249,9 @@ export default function TrustCenterPage() {
                             </p>
                             <p className="mt-4 text-xs text-white/40 uppercase tracking-wider">Last updated: April 2026</p>
                         </div>
-                        <div className="flex gap-4">
-                            <Link href="/privacy-policy" className="px-6 py-3 bg-[#FF7404] text-white font-bold rounded-xl hover:bg-[#ff8a3d] transition-colors shadow-[0_4px_20px_rgba(255,116,4,0.3)]">
-                                Review Privacy Policy
-                            </Link>
-                        </div>
                     </div>
+
+                    <LegalDocsNav active="trust" className="mb-10" />
 
                     {/* Sticky Nav */}
                     <div className="sticky top-20 z-40 bg-[#030303]/80 backdrop-blur-xl border-b border-white/10 flex items-center gap-2 overflow-x-auto no-scrollbar">
@@ -370,6 +385,22 @@ export default function TrustCenterPage() {
                                         </ul>
                                         <p className="text-sm text-white/50 leading-relaxed">
                                             Lead routing, dialing, and CRM storage all happen outside the AI layer.
+                                        </p>
+                                    </div>
+
+                                    {/* Automatic PII Redaction */}
+                                    <div id="pii-redaction" className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 scroll-mt-40">
+                                        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                            <EyeOff className="w-5 h-5 text-[#FF7404]" /> Automatic PII Redaction at the SMS Boundary
+                                        </h2>
+                                        <p className="text-white/60 leading-relaxed mb-4">
+                                            Sensitive personal data is automatically removed from every text message the moment it enters or leaves the Visquanta platform. Social Security numbers, credit and debit card numbers (validated to avoid false positives), bank account numbers, routing numbers, driver&apos;s license numbers, and dates of birth are replaced with redaction tokens before the message is written to any database, stored in any audit log, synced to any CRM, or seen by any AI model.
+                                        </p>
+                                        <p className="text-white/60 leading-relaxed mb-4">
+                                            Ordinary conversation data &mdash; names, phone numbers, email addresses, vehicle details, prices, and mileage &mdash; is preserved so conversations remain useful to your team. Every redaction is logged as an anonymous count (for example, &quot;one card number redacted&quot;); the original sensitive text is never retained, transmitted, or recoverable.
+                                        </p>
+                                        <p className="text-white/60 leading-relaxed">
+                                            This control is enforced at the single point of entry and exit on our SMS middleware, meaning it applies uniformly to every inbound and outbound message regardless of which downstream system consumes it. The operating principle is simple: Visquanta would rather miss context in a conversation than store regulated data unnecessarily.
                                         </p>
                                     </div>
 
