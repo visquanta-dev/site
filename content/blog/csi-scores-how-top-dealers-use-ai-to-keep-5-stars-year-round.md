@@ -9,7 +9,7 @@ image: >-
   https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/686f9972d72eb51f1f5afe92_studio-image%20(3).avif
 readingTime: 11
 publishedAt: '2025-10-31'
-updatedAt: '2025-10-31'
+updatedAt: '2026-04-15'
 published: true
 category:
   slug: sales-optimization
@@ -128,7 +128,7 @@ Performance tracking tools play a big role here, offering real-time feedback to 
 
 Building on AI-powered lead management, continuous monitoring of data ensures every customer touchpoint helps sustain five-star performance. Many successful dealerships use real-time dashboards to keep tabs on CSI scores, quickly identifying trends and addressing issues as they arise. For example, in Q3 2023, [AutoNation](https://www.autonation.com/) introduced a conversation intelligence tool that records and transcribes phone calls. This AI system analyzes speech patterns to highlight key phrases and performance indicators, helping teams improve employee interactions and address factors affecting CSI scores [\[5\]](https://www.invoca.com/blog/boost-automotive-dealership-csi-score-with-conversation-intelligence).
 
-Phone interactions are especially critical, as over 60% of consumers call dealerships during the car-buying process [\[5\]](https://www.invoca.com/blog/boost-automotive-dealership-csi-score-with-conversation-intelligence). Yet, common frustrations like long hold times or being transferred repeatedly can sour the experience. Smart [call management strategies](https://www.visquanta.com/blog/dealership-call-management-strategies) solve this by immediately addressing customer needs, reducing missed calls and improving satisfaction.
+Phone interactions are especially critical, as over 60% of consumers call dealerships during the car-buying process [\[5\]](https://www.invoca.com/blog/boost-automotive-dealership-csi-score-with-conversation-intelligence). Yet, common frustrations like long hold times or being transferred repeatedly can sour the experience. Smart [call management strategies](https://www.visquanta.com/blog/dealership-call-management-strategies) &mdash; including [voice AI service scheduling tools](https://www.visquanta.com/blog/voice-ai-service-scheduling-tools-dealership) that answer 24/7 &mdash; solve this by immediately addressing customer needs, reducing missed calls and improving satisfaction.
 
 Personalization also plays a huge role in building trust and loyalty. By combining data from CSI surveys, call recordings, online reviews, and customer feedback, managers can identify patterns and make targeted improvements before small issues snowball into bigger problems. This attention to detail shows customers they’re valued and keeps satisfaction levels high \[17\].
 
@@ -174,4 +174,16 @@ To tackle these challenges, dealerships should prioritize clear and actionable *
 AI-driven reputation management gives dealerships a competitive edge by keeping a close eye on customer reviews and responding to them instantly. This real-time engagement not only builds trust but also helps dealerships maintain a positive public image. By analyzing customer feedback and spotting patterns, these tools allow businesses to address concerns before they escalate, ultimately improving the overall customer experience.
 
 Taking a more personalized approach fosters stronger connections with customers, paving the way for repeat business and greater loyalty. Over time, these efforts don’t just enhance customer retention - they also drive higher revenue and set the stage for sustained success.
+:::
+
+::: faq
+### What CSI score do I need to qualify for manufacturer bonuses?
+
+Thresholds vary by manufacturer, but most OEM bonus programs require CSI scores in the 90+ range (the industry top tier), with specific sub-category requirements for service, sales, and facility satisfaction. Some manufacturers also require consistent performance across rolling 3-month or 6-month windows rather than single-month spikes. Check your specific OEM dealer agreement for the exact thresholds — they're tied to inventory allocation, co-op marketing, and year-end bonuses. Falling below 75 typically triggers OEM escalation, reduced inventory allocation, and in some cases franchise review.
+:::
+
+::: faq
+### How often should dealerships review CSI scores?
+
+Top-performing dealerships review CSI metrics monthly — 66% of them, per industry benchmarks — while 23% review quarterly. Real-time dashboards let you spot trends as they emerge rather than waiting for manufacturer scorecards. For granular improvement, split reviews into three tiers: daily monitoring of flagged negative feedback, weekly trend reviews with the service team, and monthly strategic reviews with leadership to address systemic issues. The stores that treat CSI as a daily operational metric rather than a monthly report card consistently outperform peers on manufacturer scorecards.
 :::

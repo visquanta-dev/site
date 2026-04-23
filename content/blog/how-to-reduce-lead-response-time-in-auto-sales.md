@@ -8,7 +8,7 @@ image: >-
   https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/686916d05db8016bfca757a2_studio-image%20(28).avif
 readingTime: 16
 publishedAt: '2025-06-26'
-updatedAt: '2025-10-31'
+updatedAt: '2026-04-01'
 published: true
 category:
   slug: sales-optimization
@@ -75,7 +75,7 @@ One study from the UK highlights how quick responses can dramatically improve re
 
 Dragging your feet on lead replies? You might as well be handing customers over to the lot down the road.
 
--   **Over 30% of sales leads at UK dealerships never get contacted at all**—that’s like chucking money straight in the bin.
+-   **Over 30% of sales leads at UK dealerships never get contacted at all**—that’s like chucking money straight in the bin. And a similar pattern shows up stateside, where [53% of dealer leads arrive after hours](https://www.visquanta.com/blog/53-dealer-leads-arrive-after-hours-nobody-answers) with no one to respond.
     
 -   If your team takes more than 5 minutes to reply, your chances of booking that test drive drop by 80%.
     
@@ -144,7 +144,7 @@ The difference between manual and automated workflows couldn’t be clearer. Her
 
 | Aspect | Manual Workflows | Automated Workflows |
 | --- | --- | --- |
-| **Aspect Manual Workflows Automated** to several hours | Under 1 minute |     |
+| **Response Time** | Minutes to several hours | Under 1 minute |
 | **Lead Assignment** | Error-prone and delayed | Instant, rule-based routing |
 | **After-Hours Coverage** | Limited to business hours | Operates 24/7 |
 | **Workload Distribution** | Uneven, based on availability | Balanced across the team |
@@ -280,4 +280,16 @@ These tools not only speed up response times but also help dealerships create mo
 Automation is reshaping how auto dealerships handle lead management by simplifying tasks and boosting efficiency. With automation, dealerships can respond to inquiries more quickly, prioritize leads effectively, and minimize manual errors. This ensures potential buyers get prompt and consistent follow-ups, fostering trust and engagement.
 
 Tasks like lead tracking, appointment scheduling, and personalized communication can be automated, freeing up staff to concentrate on closing sales instead of handling repetitive administrative duties. The benefits? A faster sales process, improved conversion rates, and happier customers. In the end, automation helps dealerships save time, work smarter, and drive better sales results.
+:::
+
+::: faq
+### What is a good lead response time for car dealerships?
+
+The industry benchmark is under 5 minutes from lead submission to first contact. Responding within that window makes a dealership 21 times more likely to qualify the lead and 100 times more likely to connect with the buyer than waiting 30 minutes. Top-performing stores respond within 60 seconds on high-intent inquiries like test drive requests or financing questions. The average dealership, by contrast, takes nearly 47 hours — which is why the first dealer to respond typically wins the sale.
+:::
+
+::: faq
+### How do I measure lead response time in my CRM?
+
+Modern CRMs timestamp every lead event: inquiry submitted, first outreach attempt, first contact, first meaningful conversation. Subtract the submission time from the first contact time to get your average lead response time. Build a real-time dashboard that breaks this down by rep, lead source, and time of day. Useful targets: a sub-5-minute median response time, 90% of leads contacted inside 30 minutes, and zero leads untouched after 24 hours. Review weekly and tie the metric to rep performance reviews so the whole team feels accountable.
 :::
