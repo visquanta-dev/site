@@ -448,22 +448,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050505] pointer-events-none" />
 
                 <div className="container px-4 mx-auto relative z-10">
-                    <div className="max-w-4xl mx-auto">
-                        <BlogPostClient delay={0}>
-                            <BlogArticleHeader article={{
-                                title: post.headline,
-                                publishedAt: post.createdAt,
-                                readTime: Number(post.readingTime || 5)
-                            }} />
-                            {author && (
-                                <AuthorByline
-                                    author={author}
-                                    publishedAt={post.createdAt}
-                                    updatedAt={post.updatedAt || post.createdAt}
-                                    readingTime={Number(post.readingTime || 5)}
-                                />
-                            )}
-                        </BlogPostClient>
+                    <div className="max-w-6xl mx-auto grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-16">
+                        <div className="max-w-4xl">
+                            <BlogPostClient delay={0}>
+                                <BlogArticleHeader article={{
+                                    title: post.headline,
+                                    publishedAt: post.createdAt,
+                                    readTime: Number(post.readingTime || 5)
+                                }} />
+                                {author && (
+                                    <AuthorByline
+                                        author={author}
+                                        publishedAt={post.createdAt}
+                                        updatedAt={post.updatedAt || post.createdAt}
+                                        readingTime={Number(post.readingTime || 5)}
+                                    />
+                                )}
+                            </BlogPostClient>
+                        </div>
+                        <div className="hidden xl:block" aria-hidden="true" />
                     </div>
                 </div>
             </section>
