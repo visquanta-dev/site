@@ -6,7 +6,7 @@ metaDescription: >-
   Ford dealership in Spokane logged 331 reviews in six weeks, replied to 93%
   of them, and why response velocity is the real flywheel behind dealership
   review growth.
-image: /images/blog/5-easy-ways-to-get-more-5-star-reviews-at-your-dealership/hero.jpg
+image: /images/blog/5-easy-ways-to-get-more-5-star-reviews-at-your-dealership/hero.png
 readingTime: 10
 publishedAt: '2026-04-24'
 updatedAt: '2026-04-24'
