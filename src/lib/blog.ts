@@ -79,7 +79,7 @@ export async function getArticles(options?: {
         readTime: post.readingTime,
         publishedAt: post.createdAt,
         excerpt: post.metaDescription,
-        author: 'VisQuanta Team'
+        author: post.author
     }));
 }
 
