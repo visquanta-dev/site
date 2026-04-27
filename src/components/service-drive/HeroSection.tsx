@@ -51,7 +51,7 @@ export default function HeroSection() {
                     >
                         <span className="block">The #1 Voice AI for</span>
                         <span className="block mt-2 bg-gradient-to-r from-[#FF7404] via-[#FF8A3D] to-[#FF5500] bg-clip-text text-transparent filter drop-shadow-[0_0_30px_rgba(255,116,4,0.3)] uppercase">
-                            Car Dealership Service Departments
+                            Service Departments
                         </span>
                     </motion.h1>
 
