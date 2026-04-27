@@ -117,6 +117,7 @@ export default function TermsConditionsPage() {
                     </motion.div>
 
                     <LegalDocsNav active="terms" className="mt-12" />
+                    {/* TODO(compliance legal review): Add a clause requiring dealers to comply with TCPA and related call/SMS rules using VisQuanta's available controls after counsel approves the wording. */}
                 </div>
             </section>
 

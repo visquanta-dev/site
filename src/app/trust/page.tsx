@@ -21,7 +21,8 @@ import {
     ChevronRight,
     Mail,
     MessageSquare,
-    Cookie
+    Cookie,
+    ClipboardCheck
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -33,6 +34,7 @@ import { subprocessors } from '@/data/subprocessors';
 const policies = [
     { title: 'Privacy Policy', type: 'Link', href: '/privacy-policy', icon: Lock, description: 'How we collect, use, and protect personal data.' },
     { title: 'Terms & Conditions', type: 'Link', href: '/terms-conditions', icon: FileText, description: 'The terms governing use of the VisQuanta platform.' },
+    { title: 'TCPA Compliance', type: 'Link', href: '/compliance', icon: ClipboardCheck, description: 'Suppression, opt-out, consent, and audit controls for dealer-operated voice and SMS workflows.' },
     { title: 'Cookie Policy', type: 'Link', href: '/cookie-policy', icon: Cookie, description: 'How and why we use cookies on our websites.' },
 ];
 
