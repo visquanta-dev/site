@@ -95,7 +95,7 @@ image: /images/blog/how-to-move-aged-inventory-without-discounting/hero.webp
       "@type": "HowToStep",
       "position": 1,
       "name": "Pull the Right List, Not the Whole Database",
-      "text": "The instinct on a reactivation campaign is to blast everyone. That is the first mistake. Mass outreach trains your dormant contacts to ignore you a second time, and it burns through the messaging credits you should be spending on the right people."
+      "text": "The instinct on a reactivation campaign is to blast everyone. That is the first mistake. Mass outreach trains your dormant contacts to ignore you a second time, and it burns through the messaging credits you should be spending on the right people. (We've broken the segmentation logic down further in [7 CRM strategies to revive dormant leads](https://www.visquanta.com/blog/7-crm-strategies-to-revive-dormant-leads).)"
     },
     {
       "@type": "HowToStep",
@@ -107,19 +107,19 @@ image: /images/blog/how-to-move-aged-inventory-without-discounting/hero.webp
       "@type": "HowToStep",
       "position": 3,
       "name": "Lead With SMS, Not Email or Voicemail",
-      "text": "The default reactivation channel for most stores is email. Email's open rate on dormant contacts is 12-18% on a good day. Reply rate is closer to 1%. Voicemail is worse: 8-12% callback rate, and most managers know how that conversation goes when the customer does call back cold."
+      "text": "The default reactivation channel for most stores is email. [Email's open rate on dormant contacts is 12-18% on a good day, and re-engagement campaigns recover only about 14% of inactive subscribers](https://mailchimp.com/resources/email-marketing-benchmarks/). Reply rate is closer to 1%. Voicemail is worse: 8-12% callback rate, and most managers know how that conversation goes when the customer does call back cold."
     },
     {
       "@type": "HowToStep",
       "position": 4,
       "name": "Sequence the Message — Three Touches, Three Reasons",
-      "text": "A reactivation message that converts has three sequential touches across seven to ten days, each with a different reason for the contact to engage."
+      "text": "A reactivation message that converts has [three sequential touches across seven to ten days](https://www.visquanta.com/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2026), each with a different reason for the contact to engage."
     },
     {
       "@type": "HowToStep",
       "position": 5,
       "name": "Measure What Closed, Not What Got Sent",
-      "text": "The metric that matters on a reactivation campaign is not messages sent, not response rate, not even appointment-set. It is **closed deals attributable to dormant contacts**, measured against floorplan days saved on the units those deals moved."
+      "text": "The metric that matters on a reactivation campaign is not messages sent, not response rate, not even appointment-set. It is **[closed deals attributable to dormant contacts](https://www.visquanta.com/speed-to-lead)**, measured against floorplan days saved on the units those deals moved."
     }
   ]
 }
@@ -185,13 +185,13 @@ When a unit crosses 60, 75, then 90 days on the lot, most stores reach for the s
 
 A 5% sticker reduction on a $32,000 unit is $1,600 of front-end gross — gone before the customer walks in. A dealer trade typically nets a 3-7% loss against book. An auction return arrives a week later at wholesale, minus the fees, minus the floorplan interest you were paying the whole time the unit was hung up.
 
-Floorplan interest alone is the silent margin tax. At current rates, a $30,000 vehicle accrues roughly $5-$7 a day in carrying cost. A unit that sits 90 days has already eaten $450-$630 in pure interest before any of those three "solutions" gets executed. The math is brutal: by the time a dealer reaches the discount-or-auction decision, they have already lost the equivalent of the discount they are about to apply.
+Floorplan interest alone is the silent margin tax. At current rates, a $30,000 vehicle accrues roughly [$5-$7 a day in carrying cost](https://www.coxautoinc.com/insights/three-floor-plan-finance-formulas-every-dealer-know/). A unit that sits 90 days has already eaten $450-$630 in pure interest before any of those three "solutions" gets executed — and [Q2 2025 data shows net floor-plan expense per vehicle has risen by roughly 39% year-over-year](https://www.cbtnews.com/dealers-experts-discuss-inventory-holding-cost-erosion/). The math is brutal: by the time a dealer reaches the discount-or-auction decision, they have already lost the equivalent of the discount they are about to apply.
 
 The frame most stores miss is that none of those three levers actually find a buyer. They are pricing decisions, not demand decisions. They surrender margin to attract a buyer the store does not currently have. But there is a fourth lever almost no one pulls in a structured way — and it is the one that finds the buyer who already exists.
 
 ## Your CRM Already Has the Buyer
 
-Run the math on a typical store's CRM. Twelve to twenty-four months of inbound activity. Test drives that did not close. Trade-ins that walked. Service-only customers approaching the equity window. Lease-end customers six to nine months out. Internet leads tagged "lost" because they did not respond to two emails and a voicemail in 2024.
+Run the math on a typical store's CRM. Twelve to twenty-four months of inbound activity. Test drives that did not close. Trade-ins that walked. [Service-only customers approaching the equity window](https://www.visquanta.com/service-drive). [Lease-end customers six to nine months out](https://www.visquanta.com/blog/lead-generation-car-sales-dealership-playbook). [Internet leads tagged "lost"](https://www.visquanta.com/blog/ai-revives-dormant-crm-data) because they did not respond to two emails and a voicemail in 2024.
 
 That database — the one most stores treat as inert — is the largest concentration of pre-qualified, store-loyal, vehicle-aware buyers anywhere in your market. It is more valuable than any third-party lead list, more responsive than any cold mailer, and the cost to mine it is materially lower than the cost of every discount you are about to consider.
 
@@ -203,7 +203,7 @@ The playbook below removes that conflict. It runs the reactivation work in paral
 
 ### Step 1: Pull the Right List, Not the Whole Database
 
-The instinct on a reactivation campaign is to blast everyone. That is the first mistake. Mass outreach trains your dormant contacts to ignore you a second time, and it burns through the messaging credits you should be spending on the right people.
+The instinct on a reactivation campaign is to blast everyone. That is the first mistake. Mass outreach trains your dormant contacts to ignore you a second time, and it burns through the messaging credits you should be spending on the right people. (We've broken the segmentation logic down further in [7 CRM strategies to revive dormant leads](https://www.visquanta.com/blog/7-crm-strategies-to-revive-dormant-leads).)
 
 Pull a segmented list against four criteria:
 
@@ -224,15 +224,15 @@ The list from Step 1 gets segmented again — this time per unit, not per campai
 
 ### Step 3: Lead With SMS, Not Email or Voicemail
 
-The default reactivation channel for most stores is email. Email's open rate on dormant contacts is 12-18% on a good day. Reply rate is closer to 1%. Voicemail is worse: 8-12% callback rate, and most managers know how that conversation goes when the customer does call back cold.
+The default reactivation channel for most stores is email. [Email's open rate on dormant contacts is 12-18% on a good day, and re-engagement campaigns recover only about 14% of inactive subscribers](https://mailchimp.com/resources/email-marketing-benchmarks/). Reply rate is closer to 1%. Voicemail is worse: 8-12% callback rate, and most managers know how that conversation goes when the customer does call back cold.
 
-SMS changes the math. Open rates on SMS hover around 95% within the first hour. Response rates from a relevant, well-written first message run 15-25% on dormant lists in the dealer space. The medium is tighter, faster, and matches how most pre-owned and new shoppers actually want to communicate.
+SMS changes the math. [Open rates on SMS run as high as 98%, with most messages read within the first three minutes of delivery](https://www.omnisend.com/blog/sms-marketing-statistics/). Response rates from a relevant, well-written first message run 15-25% on dormant lists in the dealer space. The medium is tighter, faster, and matches how most pre-owned and new shoppers actually want to communicate.
 
 The catch is that SMS done badly burns the channel permanently. One bulk-blast and the entire opt-in list is gone. A reactivation playbook that leads with SMS has to be conversational, short, named, and one-to-one — not "Hi {{first_name}}, we have great deals."
 
 ### Step 4: Sequence the Message — Three Touches, Three Reasons
 
-A reactivation message that converts has three sequential touches across seven to ten days, each with a different reason for the contact to engage.
+A reactivation message that converts has [three sequential touches across seven to ten days](https://www.visquanta.com/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2026), each with a different reason for the contact to engage.
 
 - **Touch 1 — Specific:** "Hey [Name], it's [Advisor] over at [Store]. The 2024 [Model] you looked at last spring just came back from lease — is now a better time to get back into the search?" One unit, one named human, one open question.
 - **Touch 2 — Equity:** "Quick one — your [Trade] is showing about $3K more equity than this time last year. That changes what you can do on a trade. Worth a 10-minute call this week?" Equity is the unlock most dormant contacts have not done the math on themselves.
@@ -242,7 +242,7 @@ Three touches across ten days, then the contact falls back into a 90-day nurture
 
 ### Step 5: Measure What Closed, Not What Got Sent
 
-The metric that matters on a reactivation campaign is not messages sent, not response rate, not even appointment-set. It is **closed deals attributable to dormant contacts**, measured against floorplan days saved on the units those deals moved.
+The metric that matters on a reactivation campaign is not messages sent, not response rate, not even appointment-set. It is **[closed deals attributable to dormant contacts](https://www.visquanta.com/speed-to-lead)**, measured against floorplan days saved on the units those deals moved.
 
 The full funnel:
 
@@ -257,7 +257,7 @@ Stores that track only step 1 or step 2 think they are running a reactivation pr
 
 ## What We've Actually Seen: $48M and the Hours Behind It
 
-Across VisQuanta's dealer partners, this playbook has produced **$48 million in additional retail revenue** — revenue those stores would not have captured if their CRM had stayed inert. Every dollar of that figure represents a unit moved through reactivation rather than discount, a customer found rather than imported, a conversation that started with a piece of dormant data the store had already paid to acquire.
+Across [VisQuanta's dealer partners](https://www.visquanta.com/book-demo), this playbook has produced **$48 million in additional retail revenue** — revenue those stores would not have captured if their CRM had stayed inert. Every dollar of that figure represents a unit moved through reactivation rather than discount, a customer found rather than imported, a conversation that started with a piece of dormant data the store had already paid to acquire.
 
 The dollar number is the headline. The hidden second number is the team time those campaigns would have required at scale if the store had run them manually. A typical 1,500-contact reactivation campaign with three sequenced touches per contact represents 4,500 outbound messages. At a sustainable pace for a human BDC rep — call it 80 personalized outbound messages per day — that is roughly **eleven full work days** of one person's time, per campaign, per aged-unit cohort. Most stores do not have that headcount available, which is why the dormant data stays dormant.
 
@@ -273,7 +273,7 @@ This playbook is not a universal solvent. Worth being honest about where the lim
 
 **It works less well when:** The CRM is brand new (under 6 months of data), the dormant contacts have already been hit with three or four blast campaigns and are conditioned to ignore your number, or the store insists on running reactivation through email-only because "that's how we've always done it." Channel selection is not a preference. It is a constraint on the math.
 
-**It does not replace:** A clean acquisition strategy, accurate pricing on the front end, or a service drive that generates referral traffic. Reactivation recovers margin you would otherwise surrender. It does not fix a store that is mispricing acquisition or mismanaging service.
+**It does not replace:** A clean acquisition strategy, accurate pricing on the front end, or a [service drive that generates referral traffic](https://www.visquanta.com/service-drive). Reactivation recovers margin you would otherwise surrender. It does not fix a store that is mispricing acquisition or mismanaging service.
 
 For dealers operating inside the working zone, the question is no longer whether the dormant data has buyers in it. The question is whether the store will work that data this quarter or keep paying floorplan interest while it sits.
 
