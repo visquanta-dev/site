@@ -6,7 +6,7 @@ metaDescription: >-
   those units are already in your CRM. Here is the 5-step playbook VisQuanta
   dealers have used to recover $48M in revenue without cutting price.
 publishedAt: '2026-04-27'
-published: false
+published: true
 category:
   slug: inventory
   title: Inventory & Pricing
