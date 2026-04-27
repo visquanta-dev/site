@@ -43,6 +43,7 @@ const STATIC_PAGES: { path: string; lastmod: string; priority: number }[] = [
   { path: '/integrations/drivecentric', lastmod: '2026-01-15', priority: 0.6 },
   { path: '/integrations/dealertrack', lastmod: '2026-01-15', priority: 0.6 },
   { path: '/integrations/automate', lastmod: '2026-01-15', priority: 0.6 },
+  { path: '/compliance', lastmod: '2025-12-17', priority: 0.3 },
   { path: '/privacy-policy', lastmod: '2025-12-01', priority: 0.3 },
   { path: '/terms-conditions', lastmod: '2025-12-01', priority: 0.3 },
   { path: '/cookie-policy', lastmod: '2025-12-01', priority: 0.3 },
