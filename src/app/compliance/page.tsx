@@ -18,7 +18,7 @@ import LegalDocsNav from '@/components/LegalDocsNav';
 
 export const metadata: Metadata = {
     title: 'TCPA Compliance & Suppression Controls | Visquanta LLC',
-    description: 'How Visquanta LLC provides platform controls for dealer-managed TCPA, opt-out, suppression, consent, and call/SMS compliance workflows.',
+    description: 'How Visquanta LLC provides platform controls for business-managed TCPA, opt-out, suppression, consent, and call/SMS compliance workflows.',
     alternates: {
         canonical: 'https://www.visquanta.com/compliance',
     },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     },
 };
 
-const dealerResponsibilities = [
+const businessResponsibilities = [
     'Capture and document consent before outreach.',
     'Maintain opt-in records and consent sources.',
     'Configure suppression rules for each program.',
@@ -47,7 +47,7 @@ const platformControls = [
     'Suppression controls across pre-contact, at-contact, and cross-channel workflows.',
     'Audit logs for suppression and opt-out events.',
     'Opt-out propagation between supported voice and SMS workflows.',
-    'Recording and transcript retention controls configured by the dealer.',
+    'Recording and transcript retention controls configured by the business.',
     'Contact record fields for consent timestamp and source.',
 ];
 
@@ -57,9 +57,9 @@ const suppressionTiers = [
         title: 'Pre-contact suppression',
         icon: FileSearch,
         items: [
-            'Dealer-specific suppression list checks before outreach.',
-            'Dealer-configured DNC suppression workflows, including federal and state lists where supported and required by the dealer program.',
-            'Reassigned-number check workflows where supported and configured by the dealer.',
+            'Business-specific suppression list checks before outreach.',
+            'Business-configured DNC suppression workflows, including federal and state lists where supported and required by the business program.',
+            'Reassigned-number check workflows where supported and configured by the business.',
             'Quiet-hours enforcement with a default 8am-9pm consumer local time policy.',
         ],
     },
@@ -80,7 +80,7 @@ const suppressionTiers = [
         items: [
             'A voice opt-out suppresses supported SMS workflows for that number, and an SMS opt-out suppresses supported voice workflows.',
             'Every suppression event is timestamped and logged.',
-            'Audit log retention is configured by the dealer contract and compliance policy.',
+            'Audit log retention is configured by the business contract and compliance policy.',
         ],
     },
 ];
@@ -89,22 +89,22 @@ const additionalControls = [
     {
         title: 'SMS and A2P readiness',
         icon: PhoneCall,
-        text: 'Visquanta LLC provides configuration fields and workflow controls that support dealer-managed SMS programs, including campaign setup inputs, message templates, opt-out handling, and contact-record visibility. Dealers remain responsible for program approvals, message content, and applicable messaging rules.',
+        text: 'Visquanta LLC provides configuration fields and workflow controls that support business-managed SMS programs, including campaign setup inputs, message templates, opt-out handling, and contact-record visibility. Businesses remain responsible for program approvals, message content, and applicable messaging rules.',
     },
     {
         title: 'Consent source visibility',
         icon: ClipboardCheck,
-        text: 'Dealers configure consent sources such as web forms, in-store capture, prior-business-relationship records, or imported CRM fields. The platform surfaces the available consent timestamp and source on each supported contact record.',
+        text: 'Businesses configure consent sources such as web forms, in-store capture, prior-business-relationship records, or imported CRM fields. The platform surfaces the available consent timestamp and source on each supported contact record.',
     },
     {
         title: 'Recording disclosure controls',
         icon: Mic,
-        text: 'Calls may be recorded for quality, training, and operational review where a dealer enables recording. Dealers configure disclosure language and should consult counsel for state-specific two-party-consent requirements.',
+        text: 'Calls may be recorded for quality, training, and operational review where a business enables recording. Businesses configure disclosure language and should consult counsel for state-specific two-party-consent requirements.',
     },
     {
         title: 'Operational review trail',
         icon: SlidersHorizontal,
-        text: 'Visquanta LLC provides workflow-level visibility into suppression events, contact attempts, opt-out propagation, and transcript availability so dealer teams can review how controls were configured and applied.',
+        text: 'Visquanta LLC provides workflow-level visibility into suppression events, contact attempts, opt-out propagation, and transcript availability so business teams can review how controls were configured and applied.',
     },
 ];
 
@@ -148,7 +148,7 @@ export default function CompliancePage() {
                             TCPA Compliance & Suppression Controls
                         </h1>
                         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/60 md:text-xl">
-                            Visquanta LLC is a platform provider for dealer-operated voice agent and SMS workflows; dealers are the caller of record and own consent, policy configuration, and campaign operation.
+                            Visquanta LLC is a platform provider for business-operated voice agent and SMS workflows; businesses are the caller of record and own consent, policy configuration, and campaign operation.
                         </p>
                         <p className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-white/35">
                             Last updated: December 17, 2025
@@ -163,15 +163,15 @@ export default function CompliancePage() {
                         <SectionLabel>Responsibility Model</SectionLabel>
                         <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">How responsibility is split</h2>
                         <p className="mt-4 text-white/55">
-                            The dealer decides when and why a consumer is contacted. Visquanta LLC provides controls that help the dealer configure, operate, and review those workflows.
+                            The business decides when and why a consumer is contacted. Visquanta LLC provides controls that help the business configure, operate, and review those workflows.
                         </p>
                     </div>
 
                     <div className="grid gap-6 lg:grid-cols-2">
                         <GlassCard>
-                            <h3 className="mb-5 text-xl font-black text-white">Dealer is responsible for</h3>
+                            <h3 className="mb-5 text-xl font-black text-white">Business is responsible for</h3>
                             <ul className="space-y-3">
-                                {dealerResponsibilities.map((item) => (
+                                {businessResponsibilities.map((item) => (
                                     <li key={item} className="flex gap-3 text-sm leading-6 text-white/65">
                                         <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#FF7404]" />
                                         {item}
@@ -201,7 +201,7 @@ export default function CompliancePage() {
                         <SectionLabel>Suppression Stack</SectionLabel>
                         <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">Three tiers of suppression</h2>
                         <p className="mt-4 text-white/55">
-                            Dealers configure suppression policies for each program. The platform applies those configured controls across supported contact workflows.
+                            Businesses configure suppression policies for each program. The platform applies those configured controls across supported contact workflows.
                         </p>
                     </div>
 
@@ -229,7 +229,7 @@ export default function CompliancePage() {
                         <SectionLabel>Additional Controls</SectionLabel>
                         <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">Related compliance workflows</h2>
                         <p className="mt-4 text-white/55">
-                            TCPA compliance usually sits beside SMS, recording, consent, and audit controls. Visquanta LLC keeps these workflows visible for dealer operators without replacing legal review.
+                            TCPA compliance usually sits beside SMS, recording, consent, and audit controls. Visquanta LLC keeps these workflows visible for business operators without replacing legal review.
                         </p>
                     </div>
 
@@ -253,10 +253,10 @@ export default function CompliancePage() {
                     </div>
                     <div className="space-y-6 text-base leading-8 text-white/60">
                         <p>
-                            Dealers configure consent sources, including web forms, in-store capture, prior-business-relationship records, and imported CRM fields. Visquanta LLC surfaces the available consent timestamp and source on supported contact records so dealer teams can review the basis for outreach.
+                            Businesses configure consent sources, including web forms, in-store capture, prior-business-relationship records, and imported CRM fields. Visquanta LLC surfaces the available consent timestamp and source on supported contact records so business teams can review the basis for outreach.
                         </p>
                         <p>
-                            Calls may be recorded for quality, training, and operational review where the dealer enables recording. Dealers configure disclosure language, and state-specific recording requirements should be reviewed with counsel.
+                            Calls may be recorded for quality, training, and operational review where the business enables recording. Businesses configure disclosure language, and state-specific recording requirements should be reviewed with counsel.
                         </p>
                     </div>
                 </div>
@@ -271,7 +271,7 @@ export default function CompliancePage() {
                             </div>
                             <h2 className="text-3xl font-black tracking-tight text-white">Opt-out & escalation contact</h2>
                             <p className="mt-4 max-w-3xl text-sm leading-7 text-white/60">
-                                If a consumer believes an opt-out request was not honored by a dealer-operated workflow, the consumer can escalate the request by email or through the contact form. Visquanta LLC can route the request for review against the relevant dealer configuration and suppression record.
+                                If a consumer believes an opt-out request was not honored by a business-operated workflow, the consumer can escalate the request by email or through the contact form. Visquanta LLC can route the request for review against the relevant business configuration and suppression record.
                             </p>
                         </div>
                         <div className="flex flex-col gap-3">

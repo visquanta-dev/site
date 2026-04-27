@@ -34,7 +34,7 @@ import { subprocessors } from '@/data/subprocessors';
 const policies = [
     { title: 'Privacy Policy', type: 'Link', href: '/privacy-policy', icon: Lock, description: 'How we collect, use, and protect personal data.' },
     { title: 'Terms & Conditions', type: 'Link', href: '/terms-conditions', icon: FileText, description: 'The terms governing use of the VisQuanta platform.' },
-    { title: 'TCPA Compliance', type: 'Link', href: '/compliance', icon: ClipboardCheck, description: 'Suppression, opt-out, consent, and audit controls for dealer-operated voice and SMS workflows.' },
+    { title: 'TCPA Compliance', type: 'Link', href: '/compliance', icon: ClipboardCheck, description: 'Suppression, opt-out, consent, and audit controls for business-operated voice and SMS workflows.' },
     { title: 'Cookie Policy', type: 'Link', href: '/cookie-policy', icon: Cookie, description: 'How and why we use cookies on our websites.' },
 ];
 
@@ -333,7 +333,7 @@ export default function TrustCenterPage() {
                                         </p>
                                     </div>
 
-                                    {/* Dealer Value Prop */}
+                                    {/* Business Value Prop */}
                                     <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8">
                                         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                                             <Shield className="w-5 h-5 text-[#FF7404]" /> What This Means for Your Business
