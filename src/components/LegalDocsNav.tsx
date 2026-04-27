@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { Shield, Lock, FileText, Cookie, type LucideIcon } from 'lucide-react';
+import { ClipboardCheck, Shield, Lock, FileText, Cookie, type LucideIcon } from 'lucide-react';
 
-export type LegalDoc = 'trust' | 'privacy' | 'terms' | 'cookies';
+export type LegalDoc = 'trust' | 'compliance' | 'privacy' | 'terms' | 'cookies';
 
 type NavItem = {
     key: LegalDoc;
@@ -12,6 +12,7 @@ type NavItem = {
 
 const docs: NavItem[] = [
     { key: 'trust', label: 'Trust', href: '/trust', icon: Shield },
+    { key: 'compliance', label: 'Compliance', href: '/compliance', icon: ClipboardCheck },
     { key: 'privacy', label: 'Privacy', href: '/privacy-policy', icon: Lock },
     { key: 'terms', label: 'Terms', href: '/terms-conditions', icon: FileText },
     { key: 'cookies', label: 'Cookies', href: '/cookie-policy', icon: Cookie },

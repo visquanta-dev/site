@@ -67,6 +67,7 @@ const footerLinks = {
     { label: 'Our Team', href: '/team' },
     { label: 'Careers', href: '/careers' },
     { label: 'Trust Center', href: '/trust' },
+    { label: 'Compliance', href: '/compliance' },
     { label: 'Contact Us', href: '/contact' },
     { label: 'Book a Demo', href: '/book-demo' },
   ],
@@ -356,6 +357,8 @@ export default function Footer() {
               <Link href={localeLink('/terms-conditions', locale)} className="hover:text-white transition-colors">Terms & Conditions</Link>
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <Link href={localeLink('/trust', locale)} className="hover:text-white transition-colors">Trust Center</Link>
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <Link href={localeLink('/compliance', locale)} className="hover:text-white transition-colors">Compliance</Link>
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <Link href={localeLink('/cookie-policy', locale)} className="hover:text-white transition-colors">Cookies</Link>
             </motion.div>

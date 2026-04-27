@@ -32,6 +32,7 @@ const STATIC_PAGES: { path: string; lastmod: string; priority: number }[] = [
   { path: '/careers', lastmod: '2026-01-10', priority: 0.5 },
   { path: '/faqs', lastmod: '2026-01-10', priority: 0.5 },
   { path: '/trust', lastmod: '2026-01-10', priority: 0.5 },
+  { path: '/compliance', lastmod: '2025-12-17', priority: 0.5 },
   { path: '/resources', lastmod: '2026-01-10', priority: 0.5 },
   { path: '/ams-guides', lastmod: '2026-01-10', priority: 0.5 },
   { path: '/integrations', lastmod: '2026-01-10', priority: 0.5 },

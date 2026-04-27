@@ -130,6 +130,7 @@ const navItems: NavItem[] = [
       { label: 'Our Team', href: '/team', description: 'The people behind the platform', icon: HeartHandshake },
       { label: 'Careers', href: '/careers', description: 'Help shape the future', icon: Target },
       { label: 'Trust Center', href: '/trust', description: 'Privacy & data handling', icon: Shield },
+      { label: 'Compliance', href: '/compliance', description: 'Controls, consent & audit trails', icon: Shield },
       { label: 'Chat with VisQuanta', href: '/book-demo', description: 'Schedule a discovery session', icon: MessageSquare },
       { label: 'Contact Us', href: '/contact', description: 'Get in touch directly', icon: Zap },
     ]
