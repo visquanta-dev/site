@@ -18,7 +18,7 @@ import LegalDocsNav from '@/components/LegalDocsNav';
 
 export const metadata: Metadata = {
     title: 'TCPA Compliance & Suppression Controls | Visquanta LLC',
-    description: 'How Visquanta LLC provides platform controls for business-managed TCPA, opt-out, suppression, consent, and SMS/call compliance workflows.',
+    description: 'How Visquanta LLC provides platform controls for business-managed TCPA, opt-out, suppression, consent, and SMS compliance workflows.',
     alternates: {
         canonical: 'https://www.visquanta.com/compliance',
     },
@@ -40,14 +40,14 @@ const businessResponsibilities = [
     'Maintain opt-in records and consent sources.',
     'Configure suppression rules for each program.',
     'Set calling-time policy and contact cadence.',
-    'Configure recording disclosures where required.',
+    'Configure required SMS disclosure language where applicable.',
 ];
 
 const platformControls = [
     'Suppression controls across pre-contact, at-contact, and cross-channel workflows.',
     'Audit logs for suppression and opt-out events.',
-    'Opt-out propagation between supported SMS and voice workflows.',
-    'Recording and transcript retention controls configured by the business.',
+    'SMS opt-out propagation across supported SMS workflows and connected contact records.',
+    'Message and transcript retention controls configured by the business.',
     'Contact record fields for consent timestamp and source.',
 ];
 
@@ -68,9 +68,9 @@ const suppressionTiers = [
         title: 'At-contact opt-out',
         icon: MessageSquareOff,
         items: [
-            'Real-time detection of opt-out language such as stop, remove me, do not call, and unsubscribe in supported SMS and voice workflows.',
+            'Real-time detection of SMS opt-out language such as stop, remove me, do not call, and unsubscribe in supported SMS workflows.',
             'Immediate write to the suppression store when an opt-out is captured.',
-            'No further contact attempts queued by the platform for that number after suppression is recorded.',
+            'No further SMS contact attempts are queued by the platform for that number after suppression is recorded.',
         ],
     },
     {
@@ -78,7 +78,7 @@ const suppressionTiers = [
         title: 'Cross-channel propagation and audit',
         icon: ListChecks,
         items: [
-            'An SMS opt-out suppresses supported voice workflows for that number, and a voice opt-out suppresses supported SMS workflows.',
+            'An SMS opt-out suppresses supported SMS workflows for that number and writes the event to the suppression audit log.',
             'Every suppression event is timestamped and logged.',
             'Audit log retention is configured by the business contract and compliance policy.',
         ],
@@ -97,9 +97,9 @@ const additionalControls = [
         text: 'Businesses configure consent sources such as web forms, in-store capture, prior-business-relationship records, or imported CRM fields. The platform surfaces the available consent timestamp and source on each supported contact record.',
     },
     {
-        title: 'Recording disclosure controls',
+        title: 'SMS disclosure controls',
         icon: Mic,
-        text: 'Calls may be recorded for quality, training, and operational review where a business enables recording. Businesses configure disclosure language and should consult counsel for state-specific two-party-consent requirements.',
+        text: 'SMS workflows may require sender identification, opt-out language, and other disclosures depending on the program. Businesses configure message disclosure language and should consult counsel for state-specific requirements.',
     },
     {
         title: 'Operational review trail',
@@ -148,7 +148,7 @@ export default function CompliancePage() {
                             TCPA Compliance & Suppression Controls
                         </h1>
                         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/60 md:text-xl">
-                            Visquanta LLC is a platform provider for business-operated SMS and voice agent workflows; businesses are the caller of record and own consent, policy configuration, and campaign operation.
+                            Visquanta LLC is a platform provider for business-operated SMS workflows; businesses are the caller of record and own consent, policy configuration, and campaign operation.
                         </p>
                         <p className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-white/35">
                             Last updated: December 17, 2025
@@ -229,7 +229,7 @@ export default function CompliancePage() {
                         <SectionLabel>Additional Controls</SectionLabel>
                         <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">Related compliance workflows</h2>
                         <p className="mt-4 text-white/55">
-                            TCPA compliance usually sits beside SMS, recording, consent, and audit controls. Visquanta LLC keeps these workflows visible for business operators without replacing legal review.
+                            TCPA compliance usually sits beside SMS consent, suppression, disclosure, and audit controls. Visquanta LLC keeps these workflows visible for business operators without replacing legal review.
                         </p>
                     </div>
 
@@ -256,7 +256,7 @@ export default function CompliancePage() {
                             Businesses configure consent sources, including web forms, in-store capture, prior-business-relationship records, and imported CRM fields. Visquanta LLC surfaces the available consent timestamp and source on supported contact records so business teams can review the basis for outreach.
                         </p>
                         <p>
-                            Calls may be recorded for quality, training, and operational review where the business enables recording. Businesses configure disclosure language, and state-specific recording requirements should be reviewed with counsel.
+                            SMS workflows may require sender identification, opt-out language, and other disclosures depending on the program. Businesses configure message disclosure language, and state-specific requirements should be reviewed with counsel.
                         </p>
                     </div>
                 </div>
@@ -296,7 +296,7 @@ export default function CompliancePage() {
                 </div>
             </section>
 
-            {/* TODO(compliance legal review): Confirm whether state-specific recording disclosure language needs additional state-by-state notices. Consult counsel before adding jurisdiction-specific claims. */}
+            {/* TODO(compliance legal review): Confirm whether state-specific SMS disclosure language needs additional state-by-state notices. Consult counsel before adding jurisdiction-specific claims. */}
             {/* TODO(compliance legal review): Confirm TCPA, DNC, RND, and SMS retention periods before publishing any specific retention duration. */}
             <Footer />
         </main>
