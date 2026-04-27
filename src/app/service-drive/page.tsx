@@ -196,6 +196,7 @@ export default function ServiceDrivePage() {
             <Navigation />
             <main>
                 <HeroSection />
+                <CallExamples />
                 <OpportunityCheck />
 
                 <VoiceAIDefinitionSection />
@@ -205,7 +206,6 @@ export default function ServiceDrivePage() {
                     title="Never miss a service appointment again."
                     subtitle="80% of service calls happen when your advisors are busiest. Our AI answers them all."
                 />
-                <CallExamples />
                 <StatisticsSection />
                 <ServiceCalculator />
                 <WorkflowSection />
