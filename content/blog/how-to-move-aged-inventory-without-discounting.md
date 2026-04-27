@@ -17,8 +17,9 @@ tags:
     title: Lead Reactivation
   - slug: crm
     title: CRM
-author: William Voyles
+author: william-voyles
 image: /images/blog/how-to-move-aged-inventory-without-discounting/hero.webp
+hide_hero: true
 ---
 
 
