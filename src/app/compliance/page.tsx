@@ -17,8 +17,8 @@ import Footer from '@/components/Footer';
 import LegalDocsNav from '@/components/LegalDocsNav';
 
 export const metadata: Metadata = {
-    title: 'TCPA Compliance & Suppression Controls | VisQuanta',
-    description: 'How VisQuanta provides platform controls for dealer-managed TCPA, opt-out, suppression, consent, and call/SMS compliance workflows.',
+    title: 'TCPA Compliance & Suppression Controls | Visquanta LLC',
+    description: 'How Visquanta LLC provides platform controls for dealer-managed TCPA, opt-out, suppression, consent, and call/SMS compliance workflows.',
     alternates: {
         canonical: 'https://www.visquanta.com/compliance',
     },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
                 url: 'https://www.visquanta.com/images/og-image.png',
                 width: 1200,
                 height: 630,
-                alt: 'VisQuanta',
+                alt: 'Visquanta LLC',
             },
         ],
     },
@@ -58,8 +58,8 @@ const suppressionTiers = [
         icon: FileSearch,
         items: [
             'Dealer-specific suppression list checks before outreach.',
-            'Federal DNC list and state DNC list workflows where required by the dealer program.',
-            'FCC Reassigned Numbers Database check workflow where configured.',
+            'Dealer-configured DNC suppression workflows, including federal and state lists where supported and required by the dealer program.',
+            'Reassigned-number check workflows where supported and configured by the dealer.',
             'Quiet-hours enforcement with a default 8am-9pm consumer local time policy.',
         ],
     },
@@ -89,7 +89,7 @@ const additionalControls = [
     {
         title: 'SMS and A2P readiness',
         icon: PhoneCall,
-        text: 'VisQuanta provides configuration fields and workflow controls that support dealer-managed SMS programs, including campaign setup inputs, message templates, opt-out handling, and contact-record visibility. Dealers remain responsible for program approvals, message content, and applicable messaging rules.',
+        text: 'Visquanta LLC provides configuration fields and workflow controls that support dealer-managed SMS programs, including campaign setup inputs, message templates, opt-out handling, and contact-record visibility. Dealers remain responsible for program approvals, message content, and applicable messaging rules.',
     },
     {
         title: 'Consent source visibility',
@@ -104,7 +104,7 @@ const additionalControls = [
     {
         title: 'Operational review trail',
         icon: SlidersHorizontal,
-        text: 'VisQuanta provides workflow-level visibility into suppression events, contact attempts, opt-out propagation, and transcript availability so dealer teams can review how controls were configured and applied.',
+        text: 'Visquanta LLC provides workflow-level visibility into suppression events, contact attempts, opt-out propagation, and transcript availability so dealer teams can review how controls were configured and applied.',
     },
 ];
 
@@ -148,10 +148,10 @@ export default function CompliancePage() {
                             TCPA Compliance & Suppression Controls
                         </h1>
                         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/60 md:text-xl">
-                            VisQuanta is a platform provider for dealer-operated voice agent and SMS workflows; dealers are the caller of record and own consent, policy configuration, and campaign operation.
+                            Visquanta LLC is a platform provider for dealer-operated voice agent and SMS workflows; dealers are the caller of record and own consent, policy configuration, and campaign operation.
                         </p>
                         <p className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-white/35">
-                            Last updated: April 27, 2026
+                            Last updated: December 17, 2025
                         </p>
                     </div>
                 </div>
@@ -163,7 +163,7 @@ export default function CompliancePage() {
                         <SectionLabel>Responsibility Model</SectionLabel>
                         <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">How responsibility is split</h2>
                         <p className="mt-4 text-white/55">
-                            The dealer decides when and why a consumer is contacted. VisQuanta provides controls that help the dealer configure, operate, and review those workflows.
+                            The dealer decides when and why a consumer is contacted. Visquanta LLC provides controls that help the dealer configure, operate, and review those workflows.
                         </p>
                     </div>
 
@@ -181,7 +181,7 @@ export default function CompliancePage() {
                         </GlassCard>
 
                         <GlassCard>
-                            <h3 className="mb-5 text-xl font-black text-white">VisQuanta provides</h3>
+                            <h3 className="mb-5 text-xl font-black text-white">Visquanta LLC provides</h3>
                             <ul className="space-y-3">
                                 {platformControls.map((item) => (
                                     <li key={item} className="flex gap-3 text-sm leading-6 text-white/65">
@@ -229,7 +229,7 @@ export default function CompliancePage() {
                         <SectionLabel>Additional Controls</SectionLabel>
                         <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">Related compliance workflows</h2>
                         <p className="mt-4 text-white/55">
-                            TCPA compliance usually sits beside SMS, recording, consent, and audit controls. VisQuanta keeps these workflows visible for dealer operators without replacing legal review.
+                            TCPA compliance usually sits beside SMS, recording, consent, and audit controls. Visquanta LLC keeps these workflows visible for dealer operators without replacing legal review.
                         </p>
                     </div>
 
@@ -253,7 +253,7 @@ export default function CompliancePage() {
                     </div>
                     <div className="space-y-6 text-base leading-8 text-white/60">
                         <p>
-                            Dealers configure consent sources, including web forms, in-store capture, prior-business-relationship records, and imported CRM fields. VisQuanta surfaces the available consent timestamp and source on supported contact records so dealer teams can review the basis for outreach.
+                            Dealers configure consent sources, including web forms, in-store capture, prior-business-relationship records, and imported CRM fields. Visquanta LLC surfaces the available consent timestamp and source on supported contact records so dealer teams can review the basis for outreach.
                         </p>
                         <p>
                             Calls may be recorded for quality, training, and operational review where the dealer enables recording. Dealers configure disclosure language, and state-specific recording requirements should be reviewed with counsel.
@@ -271,12 +271,12 @@ export default function CompliancePage() {
                             </div>
                             <h2 className="text-3xl font-black tracking-tight text-white">Opt-out & escalation contact</h2>
                             <p className="mt-4 max-w-3xl text-sm leading-7 text-white/60">
-                                If a consumer believes an opt-out request was not honored by a dealer-operated workflow, the consumer can escalate the request by email or through the contact form. VisQuanta will route the request for review against the relevant dealer configuration and suppression record.
+                                If a consumer believes an opt-out request was not honored by a dealer-operated workflow, the consumer can escalate the request by email or through the contact form. Visquanta LLC can route the request for review against the relevant dealer configuration and suppression record.
                             </p>
                         </div>
                         <div className="flex flex-col gap-3">
-                            <a href="mailto:{{compliance_contact_email}}" className="rounded-xl bg-[#FF7404] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-black transition hover:bg-[#ff8a2d]">
-                                {'{{compliance_contact_email}}'}
+                            <a href="mailto:compliance@visquanta.com" className="rounded-xl bg-[#FF7404] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-black transition hover:bg-[#ff8a2d]">
+                                {'compliance@visquanta.com'}
                             </a>
                             <Link href="/contact?topic=compliance" className="rounded-xl border border-white/10 bg-white/[0.03] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-white/70 transition hover:border-[#FF7404]/40 hover:text-white">
                                 Contact Form
@@ -288,7 +288,7 @@ export default function CompliancePage() {
 
             <section className="relative z-10 px-6 pb-20">
                 <div className="mx-auto flex max-w-6xl flex-col gap-4 border-t border-white/10 pt-8 text-sm text-white/40 md:flex-row md:items-center md:justify-between">
-                    <p>Last updated April 27, 2026. This page describes platform controls and is not legal advice.</p>
+                    <p>Last updated December 17, 2025. This page describes platform controls and is not legal advice.</p>
                     <div className="flex gap-4">
                         <Link href="/privacy-policy" className="text-white/60 hover:text-white">Privacy Policy</Link>
                         <Link href="/terms-conditions" className="text-white/60 hover:text-white">Terms & Conditions</Link>
