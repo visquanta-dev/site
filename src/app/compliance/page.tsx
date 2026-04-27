@@ -18,7 +18,7 @@ import LegalDocsNav from '@/components/LegalDocsNav';
 
 export const metadata: Metadata = {
     title: 'TCPA Compliance & Suppression Controls | Visquanta LLC',
-    description: 'How Visquanta LLC provides platform controls for business-managed TCPA, opt-out, suppression, consent, and call/SMS compliance workflows.',
+    description: 'How Visquanta LLC provides platform controls for business-managed TCPA, opt-out, suppression, consent, and SMS/call compliance workflows.',
     alternates: {
         canonical: 'https://www.visquanta.com/compliance',
     },
@@ -46,7 +46,7 @@ const businessResponsibilities = [
 const platformControls = [
     'Suppression controls across pre-contact, at-contact, and cross-channel workflows.',
     'Audit logs for suppression and opt-out events.',
-    'Opt-out propagation between supported voice and SMS workflows.',
+    'Opt-out propagation between supported SMS and voice workflows.',
     'Recording and transcript retention controls configured by the business.',
     'Contact record fields for consent timestamp and source.',
 ];
@@ -68,7 +68,7 @@ const suppressionTiers = [
         title: 'At-contact opt-out',
         icon: MessageSquareOff,
         items: [
-            'Real-time detection of opt-out language such as stop, remove me, do not call, and unsubscribe in supported voice and SMS workflows.',
+            'Real-time detection of opt-out language such as stop, remove me, do not call, and unsubscribe in supported SMS and voice workflows.',
             'Immediate write to the suppression store when an opt-out is captured.',
             'No further contact attempts queued by the platform for that number after suppression is recorded.',
         ],
@@ -78,7 +78,7 @@ const suppressionTiers = [
         title: 'Cross-channel propagation and audit',
         icon: ListChecks,
         items: [
-            'A voice opt-out suppresses supported SMS workflows for that number, and an SMS opt-out suppresses supported voice workflows.',
+            'An SMS opt-out suppresses supported voice workflows for that number, and a voice opt-out suppresses supported SMS workflows.',
             'Every suppression event is timestamped and logged.',
             'Audit log retention is configured by the business contract and compliance policy.',
         ],
@@ -148,7 +148,7 @@ export default function CompliancePage() {
                             TCPA Compliance & Suppression Controls
                         </h1>
                         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/60 md:text-xl">
-                            Visquanta LLC is a platform provider for business-operated voice agent and SMS workflows; businesses are the caller of record and own consent, policy configuration, and campaign operation.
+                            Visquanta LLC is a platform provider for business-operated SMS and voice agent workflows; businesses are the caller of record and own consent, policy configuration, and campaign operation.
                         </p>
                         <p className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-white/35">
                             Last updated: December 17, 2025
