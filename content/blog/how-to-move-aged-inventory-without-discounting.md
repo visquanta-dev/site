@@ -119,7 +119,7 @@ image: /images/blog/how-to-move-aged-inventory-without-discounting/hero.webp
       "@type": "HowToStep",
       "position": 5,
       "name": "Measure What Closed, Not What Got Sent",
-      "text": "The metric that matters on a reactivation campaign is not messages sent, not response rate, not even appointment-set. It is **[closed deals attributable to dormant contacts](https://www.visquanta.com/speed-to-lead)**, measured against floorplan days saved on the units those deals moved."
+      "text": "The metric that matters on a [lead reactivation campaign](https://www.visquanta.com/lead-reactivation) is not messages sent, not response rate, not even appointment-set. It is **closed deals attributable to dormant contacts**, measured against floorplan days saved on the units those deals moved."
     }
   ]
 }
@@ -177,7 +177,7 @@ image: /images/blog/how-to-move-aged-inventory-without-discounting/hero.webp
 
 *A 5-step playbook from $48M in dealer revenue we've helped recover — without a single discount conversation.*
 
-**TL;DR:** Aged inventory is rarely an inventory problem. It is a CRM problem dressed up as one. The buyers for the units sitting on your lot have already raised their hand at your store — most are in your CRM with a status of "lost," "dead," or no status at all. VisQuanta dealers using a structured reactivation playbook have generated **$48M in additional revenue** from contacts they would have written off, without dropping a sticker price or calling auction. The five steps below are the playbook.
+**TL;DR:** Aged inventory is rarely an inventory problem. It is a CRM problem dressed up as one. The buyers for the units sitting on your lot have already raised their hand at your store — most are in your CRM with a status of "lost," "dead," or no status at all. VisQuanta dealers using a [structured lead reactivation playbook](https://www.visquanta.com/lead-reactivation) have generated **$48M in additional revenue** from contacts they would have written off, without dropping a sticker price or calling auction. The five steps below are the playbook.
 
 ## The Aged Inventory Math Most Dealers Miscount
 
@@ -197,7 +197,7 @@ That database — the one most stores treat as inert — is the largest concentr
 
 The reason it stays inert is structural, not motivational. Sales teams cannot run a structured outbound campaign on dormant data while also working live floor traffic and live ups. The math does not work on a five-figure salary. So the dormant data sits, the aged inventory sits, and the store reaches for the discount lever instead.
 
-The playbook below removes that conflict. It runs the reactivation work in parallel with the showroom, surfaces the buyers your aged units fit, and hands the conversation to your team only when it is ready to close.
+The playbook below removes that conflict. It runs the [lead reactivation work](https://www.visquanta.com/lead-reactivation) in parallel with the showroom, surfaces the buyers your aged units fit, and hands the conversation to your team only when it is ready to close.
 
 ## The 5-Step Playbook
 
@@ -242,7 +242,7 @@ Three touches across ten days, then the contact falls back into a 90-day nurture
 
 ### Step 5: Measure What Closed, Not What Got Sent
 
-The metric that matters on a reactivation campaign is not messages sent, not response rate, not even appointment-set. It is **[closed deals attributable to dormant contacts](https://www.visquanta.com/speed-to-lead)**, measured against floorplan days saved on the units those deals moved.
+The metric that matters on a [lead reactivation campaign](https://www.visquanta.com/lead-reactivation) is not messages sent, not response rate, not even appointment-set. It is **closed deals attributable to dormant contacts**, measured against floorplan days saved on the units those deals moved.
 
 The full funnel:
 
@@ -261,7 +261,7 @@ Across [VisQuanta's dealer partners](https://www.visquanta.com/book-demo), this 
 
 The dollar number is the headline. The hidden second number is the team time those campaigns would have required at scale if the store had run them manually. A typical 1,500-contact reactivation campaign with three sequenced touches per contact represents 4,500 outbound messages. At a sustainable pace for a human BDC rep — call it 80 personalized outbound messages per day — that is roughly **eleven full work days** of one person's time, per campaign, per aged-unit cohort. Most stores do not have that headcount available, which is why the dormant data stays dormant.
 
-The $48M figure is what happens when the labor constraint comes off. Stores stop choosing between "work the floor" and "work the database" and start doing both in parallel.
+The $48M figure is what happens when the labor constraint comes off. Stores stop choosing between "work the floor" and "work the database" and start doing both in parallel — that is what [lead reactivation as a system](https://www.visquanta.com/lead-reactivation) is built to deliver.
 
 **How we calculated it:** This figure aggregates closed-deal attribution across VisQuanta dealer partners between platform deployment and Q1 2026, where the closing contact entered a reactivation sequence and the unit moved within 90 days of the first reactivation touch. Floorplan days saved are tracked per-unit but not included in the headline dollar number — that is recovered margin, not retail revenue, and we report it separately to GMs who want to see total margin impact.
 
@@ -308,4 +308,4 @@ The playbook can run through an existing BDC if you protect the BDC's time. The 
 
 ---
 
-*Want to see what your aged inventory and dormant CRM look like through this lens? [Book a 20-minute walkthrough](https://www.visquanta.com/book-demo) and we'll model the recoverable revenue from your specific data.*
+*See [how VisQuanta's lead reactivation system runs this playbook for you](https://www.visquanta.com/lead-reactivation) — or [book a 20-minute walkthrough](https://www.visquanta.com/book-demo) and we'll model the recoverable revenue from your specific data.*
