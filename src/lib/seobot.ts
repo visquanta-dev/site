@@ -51,6 +51,7 @@ export interface BasePost {
     slug: string;
     title: string;
   }>;
+  author?: string;
 }
 
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
@@ -132,6 +133,7 @@ function seoIndexToBase(entry: SeoIndexEntry): BasePost {
       ? { slug: entry.category.slug, title: entry.category.title }
       : { slug: 'general', title: 'General' },
     tags: (entry.tags || []).map((t) => ({ slug: t.slug, title: t.title })),
+    author: (entry as { author?: string }).author,
   };
 }
 
