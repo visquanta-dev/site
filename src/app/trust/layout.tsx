@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Trust & Compliance — Visquanta',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/trust',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/trust',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/trust',
+        title: 'Trust & Compliance — Visquanta',
+        description:
+            "Visquanta's trust and compliance overview — data processing agreements, sub-processors, and AI data handling practices.",
+    }),
 };
 
 export default function TrustLayout({

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import BookingWizard from '@/components/book-demo/BookingWizard';
@@ -16,17 +17,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/book-demo',
         },
     },
-    openGraph: {
-        url: "https://www.visquanta.com/book-demo",
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: "https://www.visquanta.com/book-demo",
+        title: "Book a 15-Min Revenue Analysis | VisQuanta",
+        description:
+            "Get a custom revenue projection for your dealership. See exactly how AI automates lead recovery, speeds up response times, and grows fixed ops.",
+    }),
 };
 
 

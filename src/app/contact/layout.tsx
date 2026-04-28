@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Contact VisQuanta — Sales & Support',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/contact',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/contact',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/contact',
+        title: 'Contact VisQuanta — Sales & Support',
+        description:
+            'Talk to our team about AI for your dealership. Get a custom revenue projection, onboarding details, or answers to technical questions.',
+    }),
 };
 
 export default function ContactLayout({

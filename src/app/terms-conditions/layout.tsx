@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Terms & Conditions — Visquanta',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/terms-conditions',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/terms-conditions',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/terms-conditions',
+        title: 'Terms & Conditions — Visquanta',
+        description:
+            'Service agreements, user responsibilities, and legal framework governing use of the Visquanta AI platform and services.',
+    }),
 };
 
 export default function TermsConditionsLayout({

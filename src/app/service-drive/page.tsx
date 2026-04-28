@@ -17,12 +17,15 @@ import ServiceInsights from '@/components/service-drive/ServiceInsights';
 import MidPageCTA from '@/components/MidPageCTA';
 import RelatedSolutions from '@/components/shared/RelatedSolutions';
 import RelatedCaseStudies from '@/components/shared/RelatedCaseStudies';
+import type { Metadata } from 'next';
+import { openGraphTwitterPack } from '@/lib/metadata';
 
 
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'Voice AI for Dealership Service Drives',
-    description: 'Answer 100% of service calls 24/7 with Voice AI. Book appointments directly into your DMS. No missed calls, no voicemail, no lost revenue.',
+    description:
+        'Answer 100% of service calls 24/7 with Voice AI. Book appointments directly into your DMS. No missed calls, no voicemail, no lost revenue.',
     alternates: {
         canonical: 'https://www.visquanta.com/service-drive',
         languages: {
@@ -30,17 +33,12 @@ export const metadata = {
             'en-CA': 'https://www.visquanta.com/ca/service-drive',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/service-drive',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/service-drive',
+        title: 'Voice AI for Dealership Service Drives | VisQuanta',
+        description:
+            'Answer 100% of service calls 24/7 with Voice AI. Book appointments directly into your DMS. No missed calls, no voicemail, no lost revenue.',
+    }),
 };
 
 export default function ServiceDrivePage() {
@@ -196,6 +194,7 @@ export default function ServiceDrivePage() {
             <Navigation />
             <main>
                 <HeroSection />
+                <CallExamples />
                 <OpportunityCheck />
 
                 <VoiceAIDefinitionSection />
@@ -205,7 +204,6 @@ export default function ServiceDrivePage() {
                     title="Never miss a service appointment again."
                     subtitle="80% of service calls happen when your advisors are busiest. Our AI answers them all."
                 />
-                <CallExamples />
                 <StatisticsSection />
                 <ServiceCalculator />
                 <WorkflowSection />

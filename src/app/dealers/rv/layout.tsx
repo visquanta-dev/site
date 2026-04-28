@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'AI for RV Dealerships',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/dealers/rv',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/dealers/rv',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/dealers/rv',
+        title: 'AI for RV Dealerships | VisQuanta',
+        description:
+            'Optimize RV sales cycles with AI-powered lead reactivation and automated service scheduling. Built for the unique demands of RV retail.',
+    }),
 };
 
 export default function RVLayout({

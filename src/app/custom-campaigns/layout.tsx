@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'AI SMS Campaigns for Car Dealerships',
@@ -10,20 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/custom-campaigns',
         },
     },
-    openGraph: {
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/custom-campaigns',
         title: 'AI SMS Campaigns for Car Dealerships | VisQuanta',
-        description: 'Run high-converting dealership SMS campaigns at scale. Lease pull-aheads, aged inventory, and service specials that book.',
-        url: 'https://www.visquanta.com/custom-campaigns',
-        type: 'website',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+        description:
+            'Run high-converting dealership SMS campaigns at scale. Lease pull-aheads, aged inventory, and service specials that book.',
+    }),
 };
 
 

@@ -71,3 +71,49 @@ export function generatePageMetadata({
         },
     };
 }
+
+/** Full OG + Twitter for share previews; aligns with canonical so Ahrefs / parsers don’t inherit root defaults. */
+export function openGraphTwitterPack(options: {
+    canonicalUrl: string;
+    title: string;
+    description: string;
+    imagePath?: string;
+    type?: 'website' | 'article';
+    /** OG locale token, e.g. en_US, en_CA */
+    locale?: string;
+}): Pick<Metadata, 'openGraph' | 'twitter'> {
+    const baseUrl = 'https://www.visquanta.com';
+    const imagePath = options.imagePath ?? '/images/og-image.png';
+    const imageUrl = imagePath.startsWith('http')
+        ? imagePath
+        : `${baseUrl}${imagePath.startsWith('/') ? imagePath : `/${imagePath}`}`;
+    const locale = options.locale ?? 'en_US';
+
+    return {
+        openGraph: {
+            type: options.type ?? 'website',
+            url: options.canonicalUrl,
+            siteName: 'VisQuanta',
+            locale,
+            title: options.title,
+            description: options.description,
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: options.title,
+                    type: 'image/png',
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            site: '@VisQuanta',
+            creator: '@VisQuanta',
+            title: options.title,
+            description: options.description,
+            images: [imageUrl],
+        },
+    };
+}

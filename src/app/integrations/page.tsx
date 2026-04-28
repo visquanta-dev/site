@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { openGraphTwitterPack } from '@/lib/metadata';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import IntegrationHero from '@/components/integrations/IntegrationHero';
@@ -19,17 +20,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/integrations',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/integrations',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/integrations',
+        title: 'CRM Integrations for Dealerships | VisQuanta',
+        description:
+            'Seamlessly connect VisQuanta with VinSolutions, eLead, DealerSocket, CDK, and more. Sync data, automate follow-up, and increase conversion.',
+    }),
 };
 
 export default function IntegrationsHubPage() {

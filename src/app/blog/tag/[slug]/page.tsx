@@ -5,6 +5,7 @@ import { ArrowRight, Tag } from 'lucide-react';
 import { getBlogPostsByTag, getAllTags } from '@/lib/seobot';
 import BlogPageClient from '../../BlogPageClient';
 import type { Metadata } from 'next';
+import { openGraphTwitterPack } from '@/lib/metadata';
 import { getServerLocalePrefix } from '@/lib/server-locale';
 
 export const revalidate = 60;
@@ -21,19 +22,27 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     const { tag, total } = await getBlogPostsByTag(slug, 0, 1);
 
     const titleSuffix = page > 0 ? ` (Page ${page + 1})` : '';
+    const title = tag ? `Posts about ${tag.title}${titleSuffix} | VisQuanta Blog` : 'Tag | VisQuanta Blog';
+    const description = `Explore articles tagged with "${tag?.title || 'this topic'}".${titleSuffix} Practical guides and analysis for modern automotive retail operations.`;
+    const canonical = `https://www.visquanta.com/blog/tag/${slug}`;
 
     return {
-        title: tag ? `Posts about ${tag.title}${titleSuffix} | VisQuanta Blog` : 'Tag | VisQuanta Blog',
-        description: `Explore articles tagged with "${tag?.title || 'this topic'}".${titleSuffix} Practical guides and analysis for modern automotive retail operations.`,
+        title,
+        description,
         // CRAWL BUDGET PROTECTION: Noindex tags with very few posts
         robots: total < 2 ? 'noindex, follow' : 'index, follow',
         alternates: {
-            canonical: `https://www.visquanta.com/blog/tag/${slug}`,
+            canonical,
             languages: {
                 'en-US': `https://www.visquanta.com/blog/tag/${slug}`,
                 'x-default': `https://www.visquanta.com/blog/tag/${slug}`,
             },
         },
+        ...openGraphTwitterPack({
+            canonicalUrl: canonical,
+            title,
+            description,
+        }),
     };
 }
 

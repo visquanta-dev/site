@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'AI Website Chat Widget for Dealerships',
@@ -10,20 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/website-widget',
         },
     },
-    openGraph: {
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/website-widget',
         title: 'AI Website Chat Widget for Dealerships | VisQuanta',
-        description: 'Convert website visitors into showroom appointments 24/7. Intelligent conversational AI with CRM integration.',
-        url: 'https://www.visquanta.com/website-widget',
-        type: 'website',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+        description:
+            'Convert website visitors into showroom appointments 24/7. Intelligent conversational AI with CRM integration.',
+    }),
 };
 
 export default function WebsiteWidgetLayout({

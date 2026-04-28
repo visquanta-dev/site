@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Dealership AI Case Studies & Results',
@@ -11,17 +12,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/case-studies',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/case-studies',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/case-studies',
+        title: 'Dealership AI Case Studies & Results | VisQuanta',
+        description:
+            'Real ROI from real dealerships. See how top operators use AI to recover lost leads, cut response times, and grow fixed ops revenue.',
+    }),
 };
 
 export default function CaseStudiesLayout({

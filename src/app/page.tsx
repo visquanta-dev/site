@@ -2,6 +2,7 @@
 // UPDATED: Homepage with keyword-optimized metadata and page-specific schema
 
 import type { Metadata } from 'next';
+import { openGraphTwitterPack } from '@/lib/metadata';
 import Script from "next/script";
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
@@ -33,6 +34,13 @@ const ResultsProof = dynamic(() => import('@/components/ResultsProof'), { ssr: t
 // =============================================================================
 export const metadata: Metadata = {
   // Title & Description inherited from src/app/layout.tsx to ensure consistency (#1 AI Platform...)
+
+  ...openGraphTwitterPack({
+    canonicalUrl: 'https://www.visquanta.com/',
+    title: '#1 AI Platform for Car Dealerships | VisQuanta',
+    description:
+      'The #1 AI platform for serious dealerships. Stop losing leads, win speed-to-lead, and turn CRM data into measurable revenue.',
+  }),
 
   // Page-specific keywords
   keywords: [

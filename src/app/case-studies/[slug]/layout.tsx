@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from '@/lib/metadata';
 import { getAllCaseStudySlugs, getCaseStudy } from "@/lib/case-studies";
 
 /** Pre-render all case study URLs at build time (fixes crawlers + ensures routes exist). */
@@ -20,32 +21,27 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
+    const canonical = `https://www.visquanta.com/case-studies/${slug}`;
+    const description =
+        caseStudy.summary.length > 155 ? caseStudy.summary.substring(0, 152) + '...' : caseStudy.summary;
+    const title = `How ${caseStudy.client} Improved Results with AI`;
+
     return {
-        title: `How ${caseStudy.client} Improved Results with AI`,
-        description: caseStudy.summary.length > 155
-            ? caseStudy.summary.substring(0, 152) + '...'
-            : caseStudy.summary,
+        title,
+        description,
         alternates: {
-            canonical: `https://www.visquanta.com/case-studies/${slug}`,
+            canonical,
             languages: {
                 'en-US': `https://www.visquanta.com/case-studies/${slug}`,
                 'en-CA': `https://www.visquanta.com/ca/case-studies/${slug}`,
             },
         },
-        openGraph: {
-            title: `How ${caseStudy.client} Improved Results with AI`,
-            description: caseStudy.summary,
+        ...openGraphTwitterPack({
+            canonicalUrl: canonical,
+            title: `${title} | VisQuanta`,
+            description,
             type: 'article',
-            url: `https://www.visquanta.com/case-studies/${slug}`,
-            images: [
-                {
-                    url: 'https://www.visquanta.com/images/og-image.png',
-                    width: 1200,
-                    height: 630,
-                    alt: 'VisQuanta',
-                }
-            ],
-        },
+        }),
     };
 }
 

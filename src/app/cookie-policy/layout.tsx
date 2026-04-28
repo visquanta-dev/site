@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Cookie Policy',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/cookie-policy',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/cookie-policy',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/cookie-policy',
+        title: 'Cookie Policy | VisQuanta',
+        description:
+            'How VisQuanta uses cookies to improve your experience, analyze traffic, and provide secure platform functionality.',
+    }),
 };
 
 export default function CookiePolicyLayout({

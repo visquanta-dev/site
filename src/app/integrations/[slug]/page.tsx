@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { openGraphTwitterPack } from '@/lib/metadata';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
@@ -32,17 +33,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         };
     }
 
+    const titleBase = `${integration.name} Integration for Dealerships`;
+    const longDescription = `Connect ${integration.name} with VisQuanta. Sync leads, automate follow-up, and increase conversion without extra manual work.`;
+    const canonicalUrl = `https://www.visquanta.com/integrations/${slug}`;
+
     return {
-        title: `${integration.name} Integration for Dealerships`,
+        title: titleBase,
         robots: { index: true, follow: true },
-        description: `Connect ${integration.name} with VisQuanta. Sync leads, automate follow-up, and increase conversion without extra manual work.`.substring(0, 155).trim(),
+        description: longDescription.substring(0, 155).trim(),
         alternates: {
-            canonical: `https://www.visquanta.com/integrations/${slug}`,
+            canonical: canonicalUrl,
             languages: {
                 'en-US': `https://www.visquanta.com/integrations/${slug}`,
                 'en-CA': `https://www.visquanta.com/ca/integrations/${slug}`,
             },
         },
+        ...openGraphTwitterPack({
+            canonicalUrl,
+            title: `${titleBase} | VisQuanta`,
+            description: longDescription,
+        }),
     };
 }
 

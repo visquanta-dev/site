@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Meet Our Leadership Team',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/team',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/team',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/team',
+        title: 'Meet Our Leadership Team | VisQuanta',
+        description:
+            "Automotive veterans and AI technologists building the industry's most advanced dealership platform. Decades of retail experience in one team.",
+    }),
 };
 
 export default function TeamLayout({

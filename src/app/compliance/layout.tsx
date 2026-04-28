@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: "Compliance Controls",
@@ -7,22 +8,16 @@ export const metadata: Metadata = {
         canonical: "https://www.visquanta.com/compliance",
         languages: {
             "en-US": "https://www.visquanta.com/compliance",
-            "en-CA": "https://www.visquanta.com/ca/compliance",
+            "en-CA": "https://www.visquanta.com/compliance",
+            "x-default": "https://www.visquanta.com/compliance",
         },
     },
-    openGraph: {
+    ...openGraphTwitterPack({
+        canonicalUrl: "https://www.visquanta.com/compliance",
         title: "Compliance Controls | VisQuanta",
-        description: "Concrete compliance controls for dealership messaging, consent capture, PII redaction, audit trails, electronic signatures, and carrier readiness.",
-        url: "https://www.visquanta.com/compliance",
-        images: [
-            {
-                url: "https://www.visquanta.com/images/og-image.png",
-                width: 1200,
-                height: 630,
-                alt: "VisQuanta Compliance Controls",
-            },
-        ],
-    },
+        description:
+            "Concrete compliance controls for dealership messaging, consent capture, PII redaction, audit trails, electronic signatures, and carrier readiness.",
+    }),
 };
 
 export default function ComplianceLayout({

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'AI for Franchise Dealerships',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/dealers/franchise',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/dealers/franchise',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/dealers/franchise',
+        title: 'AI for Franchise Dealerships | VisQuanta',
+        description:
+            'Hit OEM targets and grow fixed ops with AI-powered lead recovery and sub-60s response times. Built for high-volume franchise operations.',
+    }),
 };
 
 export default function FranchiseLayout({

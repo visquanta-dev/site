@@ -10,10 +10,13 @@ import SuccessStories from '@/components/dealer-success/SuccessStories';
 import DealerFAQ from '@/components/dealer-success/DealerFAQ';
 import MidPageCTA from '@/components/MidPageCTA';
 import SeeAlso from '@/components/shared/SeeAlso';
+import type { Metadata } from 'next';
+import { openGraphTwitterPack } from '@/lib/metadata';
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'Dealer Success — AI with a Human Touch',
-    description: 'White-glove AI service with human-in-the-loop monitoring. Built by car people, for car people, to ensure every lead is maximized.',
+    description:
+        'White-glove AI service with human-in-the-loop monitoring. Built by car people, for car people, to ensure every lead is maximized.',
     alternates: {
         canonical: 'https://www.visquanta.com/dealer-success',
         languages: {
@@ -21,17 +24,12 @@ export const metadata = {
             'en-CA': 'https://www.visquanta.com/ca/dealer-success',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/dealer-success',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/dealer-success',
+        title: 'Dealer Success — AI with a Human Touch | VisQuanta',
+        description:
+            'White-glove AI service with human-in-the-loop monitoring. Built by car people, for car people, to ensure every lead is maximized.',
+    }),
 };
 
 export default function DealerSuccessPage() {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'AI for Independent Dealerships',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/dealers/independent',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/dealers/independent',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/dealers/independent',
+        title: 'AI for Independent Dealerships | VisQuanta',
+        description:
+            'Compete with franchise stores using AI-powered lead management and automated customer engagement. Scale without scaling headcount.',
+    }),
 };
 
 export default function IndependentDealerLayout({

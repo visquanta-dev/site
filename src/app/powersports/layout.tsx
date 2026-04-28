@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Powersports Dealer Growth Tools — Sell More Units | VisQuanta',
@@ -11,25 +12,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/powersports',
         },
     },
-    openGraph: {
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/powersports',
         title: 'Powersports Dealer Growth Tools — Sell More Units | VisQuanta',
-        description: 'Motorcycle, ATV, UTV, and marine dealers use VisQuanta to respond to leads faster, reactivate dormant shoppers, and fill the sales calendar year-round.',
-        url: 'https://www.visquanta.com/powersports',
-        type: 'website',
-        images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta for Powersports',
-            }
-        ],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Powersports Dealer Growth Tools | VisQuanta',
-        description: 'Tools that help powersports dealers make more money — without adding headcount.',
-    }
+        description:
+            'Motorcycle, ATV, UTV, and marine dealers use VisQuanta to respond to leads faster, reactivate dormant shoppers, and fill the sales calendar year-round.',
+    }),
 };
 
 export default function PowerLayout({

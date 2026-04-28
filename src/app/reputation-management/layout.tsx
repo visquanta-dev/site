@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Dealership Reputation Management',
@@ -10,20 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/reputation-management',
         },
     },
-    openGraph: {
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/reputation-management',
         title: 'Dealership Reputation Management | VisQuanta',
-        description: 'Automate review generation and resolve negatives via SMS. Protect OEM scores and grow Google ratings.',
-        url: 'https://www.visquanta.com/reputation-management',
-        type: 'website',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+        description:
+            'Automate review generation and resolve negatives via SMS. Protect OEM scores and grow Google ratings.',
+    }),
 };
 
 export default function ReputationManagementLayout({

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'AI-Powered Dealer Services',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/dealer-services',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/dealer-services',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/dealer-services',
+        title: 'AI-Powered Dealer Services | VisQuanta',
+        description:
+            'From lead recovery to reputation protection. AI-powered services that transform how your dealership engages customers and drives measurable revenue.',
+    }),
 };
 
 export default function DealerServicesLayout({

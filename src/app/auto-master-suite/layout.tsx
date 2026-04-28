@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'The AutoMaster Suite for Dealerships',
@@ -18,20 +19,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/auto-master-suite',
         },
     },
-    openGraph: {
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/auto-master-suite',
         title: 'The AutoMaster Suite for Dealerships | VisQuanta',
-        description: 'The complete AI revenue ecosystem. Lead reactivation, speed-to-lead, Voice AI, and reputation management in one platform.',
-        url: 'https://www.visquanta.com/auto-master-suite',
-        type: 'website',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+        description:
+            'The complete AI revenue ecosystem. Lead reactivation, speed-to-lead, Voice AI, and reputation management in one platform.',
+    }),
 };
 
 export default function AMSLayout({

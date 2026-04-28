@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Dealership AI FAQ',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/faqs',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/faqs',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/faqs',
+        title: 'Dealership AI FAQ | VisQuanta',
+        description:
+            'Answers to common questions about VisQuanta, CRM integrations, onboarding timelines, and pricing. Everything your dealership needs to get started.',
+    }),
 };
 
 export default function FAQLayout({

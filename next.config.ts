@@ -80,6 +80,12 @@ const nextConfig: NextConfig = {
         destination: '/paid-campaigns',
         permanent: true,
       },
+      // CA compliance: single canonical page at /compliance (same legal copy).
+      {
+        source: '/ca/compliance',
+        destination: '/compliance',
+        permanent: true,
+      },
       {
         source: '/visquanta-team',
         destination: '/team',

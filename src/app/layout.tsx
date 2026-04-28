@@ -100,7 +100,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.visquanta.com",
+    // Omit url — child routes must set og:url via page/layout metadata or every share card points at /
     siteName: "VisQuanta",
     title: "#1 AI Platform for Car Dealerships | VisQuanta",
     description: "The #1 AI platform for serious dealerships. Stop losing leads, win speed-to-lead, and turn CRM data into measurable revenue.",

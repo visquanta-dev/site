@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Lead Reactivation for Car Dealerships',
@@ -11,25 +12,13 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/lead-reactivation',
         },
     },
-    openGraph: {
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/lead-reactivation',
         title: 'Lead Reactivation for Car Dealerships | VisQuanta',
-        description: 'Recover revenue from dead CRM leads. AI-powered SMS re-engages old prospects with 39%+ response rates.',
-        url: 'https://www.visquanta.com/lead-reactivation',
-        type: 'website',
-        images: [
-            {
-                url: 'https://www.visquanta.com/og/lead-reactivation.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta - Lead Reactivation for Car Dealerships'
-            }
-        ]
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Lead Reactivation for Car Dealerships | VisQuanta',
-        description: 'Recover revenue from dead CRM leads. AI re-engages old prospects. No new ad spend required.',
-    }
+        description:
+            'Recover revenue from dead CRM leads. AI-powered SMS re-engages old prospects with 39%+ response rates.',
+        imagePath: '/og/lead-reactivation.png',
+    }),
 };
 
 

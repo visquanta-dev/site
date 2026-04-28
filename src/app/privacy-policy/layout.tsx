@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Privacy Policy',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/privacy-policy',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/privacy-policy',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/privacy-policy',
+        title: 'Privacy Policy | VisQuanta',
+        description:
+            'How VisQuanta handles and protects your dealership data. Full transparency on data collection, storage, and third-party sharing.',
+    }),
 };
 
 export default function PrivacyPolicyLayout({

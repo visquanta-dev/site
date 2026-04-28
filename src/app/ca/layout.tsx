@@ -4,7 +4,17 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    robots: { index: false, follow: false },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
+    },
     icons: {
         icon: [
             { url: "/favicon-ca.png", sizes: "32x32", type: "image/png" },

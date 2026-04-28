@@ -3,12 +3,17 @@ import Footer from '@/components/Footer';
 import BlogRedesignClient from '@/components/blog-redesign/BlogRedesignClient';
 import { getAllCategories } from '@/lib/seobot';
 import { getArticles } from '@/lib/blog';
+import { openGraphTwitterPack } from '@/lib/metadata';
 
 export const revalidate = 60;
 
+const BLOG_TITLE = 'Automotive AI Blog & Insights';
+const BLOG_DESC =
+    'Expert insights on car dealership AI, speed-to-lead strategies, and fixed ops revenue. Stay ahead of automotive retail trends.';
+
 export const metadata = {
-    title: 'Automotive AI Blog & Insights',
-    description: 'Expert insights on car dealership AI, speed-to-lead strategies, and fixed ops revenue. Stay ahead of automotive retail trends.',
+    title: BLOG_TITLE,
+    description: BLOG_DESC,
     alternates: {
         canonical: 'https://www.visquanta.com/blog',
         languages: {
@@ -17,17 +22,11 @@ export const metadata = {
             'x-default': 'https://www.visquanta.com/blog',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/blog',
-        images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/blog',
+        title: `${BLOG_TITLE} | VisQuanta`,
+        description: BLOG_DESC,
+    }),
 };
 
 export default async function BlogPage() {

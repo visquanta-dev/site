@@ -5,6 +5,7 @@ import { ArrowRight, LayoutGrid } from 'lucide-react';
 import { getBlogPostsByCategory, getAllCategories } from '@/lib/seobot';
 import BlogPageClient from '../../BlogPageClient';
 import type { Metadata } from 'next';
+import { openGraphTwitterPack } from '@/lib/metadata';
 import { getServerLocalePrefix } from '@/lib/server-locale';
 
 export const revalidate = 60;
@@ -21,16 +22,24 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     const { category } = await getBlogPostsByCategory(slug, 0, 1);
 
     const titleSuffix = page > 0 ? ` (Page ${page + 1})` : '';
+    const title = category ? `${category.title} for Dealerships${titleSuffix} | VisQuanta Blog` : 'Category | VisQuanta Blog';
+    const description = `Read the latest ${category?.title || 'Automotive AI'} articles for car dealerships.${titleSuffix} Data-driven strategies to automate sales and service revenue.`;
+    const canonical = `https://www.visquanta.com/blog/category/${slug}`;
 
     return {
-        title: category ? `${category.title} for Dealerships${titleSuffix} | VisQuanta Blog` : 'Category | VisQuanta Blog',
-        description: `Read the latest ${category?.title || 'Automotive AI'} articles for car dealerships.${titleSuffix} Data-driven strategies to automate sales and service revenue.`,
+        title,
+        description,
         alternates: {
-            canonical: `https://www.visquanta.com/blog/category/${slug}`,
+            canonical,
             languages: {
                 'en-US': `https://www.visquanta.com/blog/category/${slug}`,
             },
         },
+        ...openGraphTwitterPack({
+            canonicalUrl: canonical,
+            title,
+            description,
+        }),
     };
 }
 

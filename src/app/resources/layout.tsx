@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Dealership AI Resource Center',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/resources',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/resources',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/resources',
+        title: 'Dealership AI Resource Center | VisQuanta',
+        description:
+            'Guides, case studies, and industry articles to help your dealership maximize revenue with AI. Technical docs and strategic playbooks.',
+    }),
 };
 
 export default function ResourcesLayout({

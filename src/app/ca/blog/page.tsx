@@ -33,8 +33,17 @@ export const metadata: Metadata = {
                 width: 1200,
                 height: 630,
                 alt: 'VisQuanta Canada',
+                type: 'image/png',
             }
         ],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        site: '@VisQuanta',
+        creator: '@VisQuanta',
+        title: locale.blogMeta.indexTitle,
+        description: locale.blogMeta.indexDescription,
+        images: ['https://www.visquanta.com/images/og-image.png'],
     },
 };
 

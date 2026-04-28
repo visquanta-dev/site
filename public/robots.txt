@@ -44,3 +44,4 @@ Allow: /llms.txt
 Allow: /llms-full.txt
 
 Sitemap: https://www.visquanta.com/sitemap-us.xml
+Sitemap: https://www.visquanta.com/sitemap-ca.xml

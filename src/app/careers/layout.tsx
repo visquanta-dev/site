@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Careers at VisQuanta',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/careers',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/careers',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/careers',
+        title: 'Careers at VisQuanta',
+        description:
+            "Join the team transforming automotive retail with AI. We're hiring engineers, strategists, and operators who want to build what's next.",
+    }),
 };
 
 export default function CareersLayout({

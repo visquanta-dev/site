@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'Company — Our Mission & Philosophy',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/company',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/company',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/company',
+        title: 'Company — Our Mission & Philosophy | VisQuanta',
+        description:
+            'The operational philosophy behind automotive AI that works. We help dealerships stop leaking revenue and start scaling profitably.',
+    }),
 };
 
 export default function CompanyLayout({

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
     title: 'AI Solutions by Dealer Type',
@@ -10,17 +11,12 @@ export const metadata: Metadata = {
             'en-CA': 'https://www.visquanta.com/ca/dealers',
         },
     },
-    openGraph: {
-        url: 'https://www.visquanta.com/dealers',
-            images: [
-            {
-                url: 'https://www.visquanta.com/images/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'VisQuanta',
-            }
-        ],
-    },
+    ...openGraphTwitterPack({
+        canonicalUrl: 'https://www.visquanta.com/dealers',
+        title: 'AI Solutions by Dealer Type | VisQuanta',
+        description:
+            'Tailored AI for franchise groups, independents, auto groups, RV, and pre-owned dealers. See which VisQuanta modules fit your operation.',
+    }),
 };
 
 export default function DealersLayout({
