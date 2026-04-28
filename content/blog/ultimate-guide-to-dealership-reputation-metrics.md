@@ -2,13 +2,14 @@
 title: Ultimate Guide to Dealership Reputation Metrics
 slug: ultimate-guide-to-dealership-reputation-metrics
 metaDescription: >-
-  Explore essential metrics that impact dealership reputation and learn how to
-  enhance customer engagement and retention through strategic practices.
+  91% of car buyers read reviews before they walk in. A 150-point Reputation
+  Score lift is worth 10% in sales. Here are the dealership reputation metrics
+  worth tracking in 2026 — and the ones that just look good on a slide.
 image: >-
   /images/blog/ultimate-guide-to-dealership-reputation-metrics/688ad23d0d660161d1d153e7-1753933920033.jpg
 readingTime: 17
 publishedAt: '2025-10-09'
-updatedAt: '2025-10-09'
+updatedAt: '2026-04-30'
 published: true
 category:
   slug: sales-optimization
@@ -20,8 +21,23 @@ tags:
     title: Lead Response
   - slug: sales-efficiency
     title: Sales Efficiency
-author: VisQuanta Team
+author: william-voyles
+entities:
+  - name: Reputation management
+    sameAs: 'https://en.wikipedia.org/wiki/Reputation_management'
+  - name: Net Promoter Score
+    sameAs: 'https://en.wikipedia.org/wiki/Net_Promoter_Score'
+  - name: Customer experience
+    sameAs: 'https://en.wikipedia.org/wiki/Customer_experience'
 ---
+### Key Takeaways
+
+- 91% of buyers consult online reviews before stepping on a lot — your Google/DealerRater profile is the new front window.
+- Each half-star rating bump lifts lead conversion 7-12%; each full star lifts revenue up to 9%.
+- 88% of consumers prefer dealers that respond to every review — yet most stores reply selectively, leaving easy ranking signal on the table.
+- NPS above 70 puts you in best-in-class territory; below 33 is a churn warning, not a "watch this" metric.
+- Sub-10-minute lead response correlates with a 391% conversion lift — reputation and speed-to-lead compound, not compete.
+
 # Ultimate Guide to Dealership Reputation Metrics
 
 Your dealership's reputation isn’t just about looking good - it directly impacts sales, customer loyalty, and long-term growth. Here’s what you need to know:
@@ -254,6 +270,10 @@ While reactive measures like resolving complaints are important, the real game-c
 Technology is becoming an essential ally in these efforts. AI tools can analyze customer feedback, detect trends through sentiment analysis, and flag potential issues before they escalate [\[3\]](https://overfuel.com/resources/blog/what-is-reputation-management-for-dealerships-a-complete-guide). For example, VisQuanta's AutoMaster Suite automates tasks like review follow-ups and sentiment analysis, helping dealerships respond quickly and improve customer feedback.
 
 Data is your strongest ally in reputation management. By tracking metrics such as Customer Satisfaction Scores (CSAT), Net Promoter Score (NPS), online reviews, and social media engagement [\[3\]](https://overfuel.com/resources/blog/what-is-reputation-management-for-dealerships-a-complete-guide), you’re not just managing your reputation - you’re building a competitive edge. When integrated into daily operations, these data-driven strategies attract new customers, retain loyal ones, and drive steady growth, ensuring your dealership stays ahead in a competitive market.
+
+### Bottom Line
+
+Reputation isn't a marketing line item — it's the input that determines whether your lead-gen budget converts at industry baseline or 2x baseline. The four metrics that move the needle: review velocity, response rate, NPS trend, and lead-response time. Pick those four, instrument them weekly, ignore the rest of the dashboard. Dealers who treat reputation as a measured operations function (not a quarterly report) outsell their MSA peers consistently.
 
 ## FAQs
 
