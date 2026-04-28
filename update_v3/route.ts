@@ -96,7 +96,7 @@ const blogPosts: { slug: string; lastmod: string }[] = [
   { slug: 'third-party-lead-providers-dealerships', lastmod: '2025-12-01' },
   { slug: 'ai-revives-dormant-crm-data', lastmod: '2025-11-14' },
   { slug: 'the-9pm-problem-dealership-revenue-leak', lastmod: '2025-10-24' },
-  { slug: 'lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it', lastmod: '2025-10-09' },
+  { slug: 'why-dealerships-lose-leads-and-how-to-stop-the-bleed', lastmod: '2026-04-28' },
   { slug: 'how-to-reduce-lead-response-time-in-auto-sales', lastmod: '2025-10-31' },
 ];
 

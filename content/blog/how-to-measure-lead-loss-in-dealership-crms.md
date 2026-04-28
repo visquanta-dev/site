@@ -51,7 +51,7 @@ To fix this, you need to:
 ::: @iframe https://www.youtube.com/embed/dgCUS7Fb78A
 ::: 
 
-This case study highlights how effective tracking can prevent missed opportunities, a core component of [lead loss mitigation](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it) for modern dealerships.
+This case study highlights how effective tracking can prevent missed opportunities, a core component of [stopping lead loss](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed) for modern dealerships.
 
 ## What Is Lead Loss in Dealership CRMs
 

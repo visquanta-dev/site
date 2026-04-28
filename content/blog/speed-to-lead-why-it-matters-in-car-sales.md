@@ -56,7 +56,7 @@ Despite these numbers, most dealerships fall short. Only **7%** manage to respon
 
 ### The Cost of Being Slow
 
-If fast responses boost sales, slow ones can do the opposite - and the numbers paint a grim picture. More than **66% of dealership leads** don’t receive a response within 24 hours, and **37%** are either [mishandled or completely lost](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it) [\[4\]](https://www.spyne.ai/blogs/speed-to-lead). Even worse, **27% of leads** are ignored altogether [\[5\]](https://www.autocorp.ai/blog/how-ai-for-car-dealerships-converts-leads-into-loyal-buyers-around-the-clock)[\[6\]](https://www.cbtnews.com/why-fast-lead-responses-are-the-key-to-winning-conversions-in-a-competitive-market).
+If fast responses boost sales, slow ones can do the opposite - and the numbers paint a grim picture. More than **66% of dealership leads** don’t receive a response within 24 hours, and **37%** are either [mishandled or completely lost](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed) [\[4\]](https://www.spyne.ai/blogs/speed-to-lead). Even worse, **27% of leads** are ignored altogether [\[5\]](https://www.autocorp.ai/blog/how-ai-for-car-dealerships-converts-leads-into-loyal-buyers-around-the-clock)[\[6\]](https://www.cbtnews.com/why-fast-lead-responses-are-the-key-to-winning-conversions-in-a-competitive-market).
 
 Timing is everything. After the optimal response window passes, the chance of reaching a customer drops by a factor of eight. These delays don’t just hurt conversion rates - they can cripple overall sales performance.
 

@@ -90,7 +90,7 @@ Today's consumers expect instant responses at any time of day. Conversational AI
 
 ## Benefits of Using Conversational AI for Lead Reactivation
 
-Using conversational AI to recover dormant leads can significantly boost [lead recovery rates](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it), speed up response times, and improve operational efficiency.
+Using conversational AI to recover dormant leads can significantly boost [lead recovery rates](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed), speed up response times, and improve operational efficiency.
 
 ### Database Reactivation and Lead Nurturing
 

@@ -101,7 +101,7 @@ For dealership leaders focused on boosting revenue and efficiency, the AutoMaste
 -   **Combine Automation with Human Oversight**: Leverage live monitoring to ensure no lead falls through the cracks.
 -   **Invest in Ongoing Support**: Partner with a system that offers continuous training, coaching, and process refinement.
 
-By addressing [lead loss](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it), inefficiency, and customer engagement gaps, the AutoMaster Suite provides dealerships with a scalable solution to [sell more vehicles](https://streetsmartautobrokers.com), streamline operations, and achieve consistent growth.
+By addressing [lead loss](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed), inefficiency, and customer engagement gaps, the AutoMaster Suite provides dealerships with a scalable solution to [sell more vehicles](https://streetsmartautobrokers.com), streamline operations, and achieve consistent growth.
 
 ## The Bottom Line: Reimagine Your Dealership’s Potential
 

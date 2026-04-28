@@ -141,6 +141,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it',
+        destination: '/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed',
+        permanent: true,
+      },
+      {
         source: '/enterprise-groups',
         destination: '/dealers/auto-groups',
         permanent: true,

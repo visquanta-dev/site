@@ -127,7 +127,7 @@ VisQuanta's AutoMaster makes AI SMS better with a tool made just for lead work. 
 
 The AutoMaster has four key tools to stop leads from slipping away:
 
--   **[Lead Loss Mitigation (LLM)](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it):** Gets back leads that have gone cold and brings them into your sales line again [\[7\]](https://www.visquanta.com/lead-loss-mitigation).
+-   **[Lead Recovery](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed):** Gets back leads that have gone cold and brings them into your sales line again [\[7\]](https://www.visquanta.com/lead-loss-mitigation).
     
 -   **Speed 2 Lead (S2L):** Answers fast on all ways, so no sales chances are lost with slow replies [\[7\]](https://visquanta.com/speed-to-lead).
     

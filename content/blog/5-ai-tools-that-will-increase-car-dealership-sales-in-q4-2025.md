@@ -47,7 +47,7 @@ Dealerships using these tools see a 32% increase in lead-to-sale conversions, re
 
 Here's how these five tools can help you close more deals today:
 
--   **[Lead Loss Mitigation](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it)**: Revive dormant leads with personalized, automated follow-ups.
+-   **[Lead Recovery](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed)**: Revive dormant leads with personalized, automated follow-ups.
     
 -   **Speed to Lead**: Engage customers instantly with 24/7 chatbots.
     

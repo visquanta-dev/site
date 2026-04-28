@@ -220,7 +220,7 @@ The message is clear: adopting AI is no longer optional. As one industry expert 
 
 With direct-to-consumer sales models gaining traction, dealerships must evolve. AI enables faster service, more personalized customer experiences, and streamlined operations that meet modern expectations. A [CDK](https://www.cdkglobal.com/) study even found that 31% of respondents would rather book with an AI assistant than talk to someone on the phone [\[22\]](https://www.cdkglobal.com/insights/how-dealership-ai-tools-can-help-service-team-productivity).
 
-Forward-thinking dealership leaders are already implementing AI strategies, like CRM automation, [mitigating lead loss](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it), [reputation control](https://www.visquanta.com/blog/feedback-impacts-dealership-reputation), and enhanced staff training. They know that success with AI requires constant monitoring, regular audits, and ongoing adjustments to stay competitive.
+Forward-thinking dealership leaders are already implementing AI strategies, like CRM automation, [stopping lead loss](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed), [reputation control](https://www.visquanta.com/blog/feedback-impacts-dealership-reputation), and enhanced staff training. They know that success with AI requires constant monitoring, regular audits, and ongoing adjustments to stay competitive.
 
 The dealerships that succeed in the years ahead will be the ones that see AI as a long-term investment. By integrating AI into their operations, empowering their teams, and delivering standout customer experiences, they’ll set themselves apart in the market.
 

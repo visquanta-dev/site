@@ -128,7 +128,7 @@ VisQuanta's system keeps everything updated in real time - reviews, responses, a
 
 AI also supports your team during live interactions. For example, when a service advisor engages with a customer, they can view past reviews and tailor their approach accordingly. This added layer of insight enhances the customer experience and builds trust.
 
-Integrating reputation management data into your follow-up strategies helps [mitigate lead loss](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it). Customers who leave positive reviews can be identified as potential referral sources, while those with resolved complaints might be ideal candidates for loyalty programs or exclusive offers.
+Integrating reputation management data into your follow-up strategies helps [stop the lead bleed](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed). Customers who leave positive reviews can be identified as potential referral sources, while those with resolved complaints might be ideal candidates for loyalty programs or exclusive offers.
 
 This connected approach transforms reputation management from a reactive chore into a **strategic tool** that strengthens relationships, boosts customer satisfaction, and drives growth for your dealership.
 

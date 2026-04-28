@@ -56,7 +56,7 @@ First contact is your chance to set the tone for the entire customer experience.
 
 Before you can fix issues, you need to figure out where things are going wrong. For instance, research shows that **27.5% of calls go unlogged**, **11.7% of leads never make it into the system**, and **65.4% of returning qualified leads face delayed follow-ups** [\[5\]](https://www.pamhq.com/blog/automotive-lead-management)[\[7\]](https://www.linkedin.com/pulse/4-lead-management-problems-auto-dealers-must-solve-clarity-voice). These aren't minor hiccups - they represent real revenue slipping through the cracks.
 
-Here’s the silver lining: once you pinpoint these bottlenecks, you can tackle them step by step. As sales expert Lestraundra Alfred explains, **"In sales, a bottleneck is an issue that causes a slow-down or blockage in your sales process"** [\[3\]](https://blog.hubspot.com/sales/sales-bottleneck). The challenge is knowing where to focus and what to measure. Start by thoroughly reviewing your lead management process to uncover [lead management inefficiencies](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it).
+Here’s the silver lining: once you pinpoint these bottlenecks, you can tackle them step by step. As sales expert Lestraundra Alfred explains, **"In sales, a bottleneck is an issue that causes a slow-down or blockage in your sales process"** [\[3\]](https://blog.hubspot.com/sales/sales-bottleneck). The challenge is knowing where to focus and what to measure. Start by thoroughly reviewing your lead management process to uncover [lead management inefficiencies](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed).
 
 ### Reviewing Your Lead Management Process
 
