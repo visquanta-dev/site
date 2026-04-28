@@ -67,7 +67,7 @@ OpenMic.AI simplifies scheduling with [intelligent voice agents](https://www.vis
 
 ![Spyne](/images/blog/voice-ai-service-scheduling-tools-dealership/edff48f494063b17f13d298aad3562ec.jpg)
 
-Spyne combines voice automation with image recognition, enhancing scheduling and [lead management](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it). It handles complex tasks like checking technician availability and upselling based on customer data. Its voice agents operate 24/7, ensuring no service inquiries are missed.
+Spyne combines voice automation with image recognition, enhancing scheduling and [lead management](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed). It handles complex tasks like checking technician availability and upselling based on customer data. Its voice agents operate 24/7, ensuring no service inquiries are missed.
 
 ## [Botphonic AI](https://botphonic.ai/)
 

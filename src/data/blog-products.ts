@@ -25,6 +25,6 @@ export const BLOG_RELATED_PRODUCTS: Record<string, string[]> = {
     '5-ai-tools-that-will-increase-car-dealership-sales-in-q4-2025': ['auto-master-suite', 'speed-to-lead'],
     'ai-revives-dormant-crm-data': ['lead-reactivation', 'custom-campaigns'],
     'the-9pm-problem-dealership-revenue-leak': ['speed-to-lead', 'service-drive'],
-    'lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it': ['speed-to-lead', 'lead-reactivation'],
+    'why-dealerships-lose-leads-and-how-to-stop-the-bleed': ['speed-to-lead', 'lead-reactivation'],
     'how-to-reduce-lead-response-time-in-auto-sales': ['speed-to-lead', 'lead-reactivation']
 };

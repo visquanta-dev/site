@@ -1,46 +1,76 @@
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 import {
     Archive,
-    CheckCircle,
     ClipboardCheck,
     Database,
     FileSignature,
-    FileText,
+    FileSearch,
     KeyRound,
+    ListChecks,
     Lock,
     Mail,
     MessageSquareOff,
+    Mic,
     PhoneCall,
     RadioTower,
-    Shield,
     ShieldCheck,
-    Siren,
+    SlidersHorizontal,
     TableProperties,
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import LegalDocsNav from '@/components/LegalDocsNav';
 
-const responsibilityControls = [
-    'Pre-send DNC and suppression checks on every outbound SMS and voice attempt, blocked before carrier handoff',
-    'Real-time inbound opt-out detection across 9 keywords: stop, unsubscribe, cancel, quit, end, opt out, opt-out, remove, delete',
-    'Cross-channel opt-out propagation: SMS opt-outs suppress voice and voice opt-outs suppress SMS',
-    'Carrier-aware phone intelligence: landline detection, non-SMS carrier blocking, ported number flagging, and VoIP awareness before spending a message',
-    'Three-tier suppression engine: global, location-scoped, and transient suppression with auto-expiry on temporary failures',
-    'Automatic intent classification on every outbound SMS for quiet-hours auditability',
-    'PII redaction at ingress and egress for SSNs, credit cards, bank accounts, routing numbers, driver licenses, and dates of birth',
-    'Immutable audit logs for opt-outs, DNC blocks, suppressions, PII redactions, consent captures, and signing events',
-    'Consent capture infrastructure storing server-side timestamp, IP, user agent, exact disclosure text, and policy URLs per submission',
-    'Cryptographic webhook signature verification with replay protection on inbound carrier traffic',
-    'TLS in transit and AES-256 at rest, with signatures encrypted using AES-256-GCM in server-side functions',
-    'Role-based access control scoped per location, with agency and sub-account boundaries',
+export const metadata: Metadata = {
+    title: 'TCPA Compliance & Suppression Controls',
+    description: 'How Visquanta LLC provides platform controls for business-managed TCPA, opt-out, suppression, consent, and SMS compliance workflows.',
+    alternates: {
+        canonical: 'https://www.visquanta.com/compliance',
+    },
+    openGraph: {
+        url: 'https://www.visquanta.com/compliance',
+        images: [
+            {
+                url: 'https://www.visquanta.com/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'Visquanta LLC',
+            },
+        ],
+    },
+};
+
+const businessResponsibilities = [
+    'Capture and document consent before outreach.',
+    'Maintain opt-in records and consent sources.',
+    'Configure suppression rules for each program.',
+    'Set calling-time policy and contact cadence.',
+    'Configure required SMS disclosure language where applicable.',
+];
+
+const platformControls = [
+    'Pre-send DNC and suppression checks on every outbound SMS and voice attempt, blocked before carrier handoff.',
+    'Real-time inbound opt-out detection across 9 keywords: stop, unsubscribe, cancel, quit, end, opt out, opt-out, remove, delete.',
+    'Cross-channel opt-out propagation: SMS opt-outs suppress voice and voice opt-outs suppress SMS.',
+    'Carrier-aware phone intelligence: landline detection, non-SMS carrier blocking, ported number flagging, and VoIP awareness before spending a message.',
+    'Three-tier suppression engine: global, location-scoped, and transient suppression with auto-expiry on temporary failures.',
+    'Automatic intent classification on every outbound SMS for quiet-hours auditability.',
+    'PII redaction at ingress and egress for SSNs, credit cards, bank accounts, routing numbers, driver licenses, and dates of birth.',
+    'Immutable audit logs for opt-outs, DNC blocks, suppressions, PII redactions, consent captures, and signing events.',
+    'Consent capture infrastructure storing server-side timestamp, IP, user agent, exact disclosure text, and policy URLs per submission.',
+    'Cryptographic webhook signature verification with replay protection on inbound carrier traffic.',
+    'TLS in transit and AES-256 at rest, with signatures encrypted using AES-256-GCM in server-side functions.',
+    'Role-based access control scoped per location, with agency and sub-account boundaries.',
 ];
 
 const suppressionTiers = [
     {
-        title: 'Tier 1 - Pre-contact suppression',
-        icon: MessageSquareOff,
-        points: [
+        tier: 'Tier 1',
+        title: 'Pre-contact suppression',
+        icon: FileSearch,
+        items: [
             'Per-business DNC store checked on every send via a single RPC.',
             'Carrier-tier suppression: global 90-day for unreachable or invalid numbers, location-scoped 90-day for configuration failures, and transient 7-day for temporary carrier issues.',
             'Phone intelligence pre-send validation catches landlines with 180-day suppression, non-SMS carriers with permanent suppression, and invalid formats with 90-day suppression.',
@@ -48,18 +78,20 @@ const suppressionTiers = [
         ],
     },
     {
-        title: 'Tier 2 - At-contact opt-out',
-        icon: Siren,
-        points: [
+        tier: 'Tier 2',
+        title: 'At-contact opt-out',
+        icon: MessageSquareOff,
+        items: [
             'Inbound SMS is scanned for 9 opt-out keywords before any CRM push.',
             'On match, the platform writes immediately to the suppression store, tags the message as opt_out_received, and protects the contact from in-flight cadence activity.',
             'Email opt-outs are distinguished from bounces: self_unsubscribed, hard_bounce, and soft_bounce each carry their own suppression policy, with indefinite retention for explicit opt-outs.',
         ],
     },
     {
-        title: 'Tier 3 - Cross-channel propagation and audit',
-        icon: Archive,
-        points: [
+        tier: 'Tier 3',
+        title: 'Cross-channel propagation and audit',
+        icon: ListChecks,
+        items: [
             'SMS opt-out suppresses voice; voice opt-out suppresses SMS.',
             'Every suppression and opt-out event is written to structured audit logs with actor, action, location, timestamp, and reason code.',
             'Audit logs are append-only: no record edits, only appends.',
@@ -76,6 +108,15 @@ const piiRows = [
     ['Dates of birth', 'Dates near DOB keywords', '[REDACTED_DOB]'],
 ];
 
+const recordingControls = [
+    'Per-number controls for recording on/off, transcription on/off, and consent mode.',
+    'Verbal consent mode: disclosure spoken at the start of the call.',
+    'Auto-beep mode: audible tone with IVR-delivered disclosure for jurisdictions requiring two-party consent.',
+    'Recording URL, recording duration, and transcription confidence captured per call.',
+    'Status badge surfaces current configuration to the operator, such as Recording active, Verbal consent, Transcription on.',
+    "State-specific disclosure language remains the business's responsibility in consultation with counsel; the platform provides controls and audit trail.",
+];
+
 const auditStores = [
     ['Messaging audit log', 'Every opt-out, DNC block, auto-suppression, and PII redaction event with structured detail.'],
     ['MPI consent records', 'JSONB consent record per trade-in submission, including IP, user agent, and exact disclosure text.'],
@@ -85,317 +126,395 @@ const auditStores = [
 ];
 
 const signatureControls = [
-    'Email OTP verification: 6-digit code, 10-minute expiry, and 5-attempt rate limit',
-    'ESIGN Act disclosure: signer must explicitly accept before any signature is captured',
-    'Cryptographically secure access tokens: 64-character hex generated via crypto.getRandomValues with 30-day expiry',
-    'Document integrity: SHA-256 hash verified on document load and again before signing; signing is blocked on mismatch',
-    'Signature encryption: AES-256-GCM in a server-side Edge Function, with the key never exposed to the client',
-    'Per-signer audit trail: IP address, geolocation, user agent, and timestamps for sent, viewed, signed, and declined events',
+    'Email OTP verification: 6-digit code, 10-minute expiry, and 5-attempt rate limit.',
+    'ESIGN Act disclosure: signer must explicitly accept before any signature is captured.',
+    'Cryptographically secure access tokens: 64-character hex generated via crypto.getRandomValues with 30-day expiry.',
+    'Document integrity: SHA-256 hash verified on document load and again before signing; signing is blocked on mismatch.',
+    'Signature encryption: AES-256-GCM in a server-side Edge Function, with the key never exposed to the client.',
+    'Per-signer audit trail: IP address, geolocation, user agent, and timestamps for sent, viewed, signed, and declined events.',
 ];
 
 const carrierControls = [
-    'All sending numbers registered under A2P 10DLC with brand and campaign vetting',
-    'Carrier-aware routing: line type and carrier name retrieved on every new number, cached for 90 days, and used to route or suppress',
-    'Auto-suppression on permanent failure: permanent carrier errors automatically suppress the number with the appropriate TTL',
-    'Webhook signature verification: every carrier callback is cryptographically verified with a timestamp window for replay protection',
+    'All sending numbers registered under A2P 10DLC with brand and campaign vetting.',
+    'Carrier-aware routing: line type and carrier name retrieved on every new number, cached for 90 days, and used to route or suppress.',
+    'Auto-suppression on permanent failure: permanent carrier errors automatically suppress the number with the appropriate TTL.',
+    'Webhook signature verification: every carrier callback is cryptographically verified with a timestamp window for replay protection.',
 ];
 
 const securityControls = [
-    'Encryption in transit: TLS on all customer, VisQuanta, and partner traffic',
-    'Encryption at rest: platform-managed database encryption, with AES-256-GCM for signatures',
-    'Credential management: environment-scoped credentials, never committed to source, with service-role keys kept server-side only',
-    'Access control: role-based and location-scoped, with a documented Access Control Policy',
-    'Documented policies available on request: SMS PII Handling Policy, Security Controls Inventory, Access Control Policy, and Incident Response Plan',
+    'Encryption in transit: TLS on all customer, Visquanta, and partner traffic.',
+    'Encryption at rest: platform-managed database encryption, with AES-256-GCM for signatures.',
+    'Credential management: environment-scoped credentials, never committed to source, with service-role keys kept server-side only.',
+    'Access control: role-based and location-scoped, with a documented Access Control Policy.',
+    'Documented policies available on request: SMS PII Handling Policy, Security Controls Inventory, Access Control Policy, and Incident Response Plan.',
 ];
 
-const pageLinks = [
-    ['Responsibility Model', '#responsibility'],
-    ['Suppression Stack', '#suppression'],
-    ['Consent Records', '#consent'],
-    ['PII Redaction', '#pii-redaction'],
-    ['Recording Controls', '#recording'],
-    ['Audit Trail', '#audit'],
-    ['Electronic Signature', '#signature'],
-    ['Carrier Compliance', '#carrier'],
-    ['Security Posture', '#security'],
-    ['Contact', '#contact'],
+const additionalControls = [
+    {
+        title: 'SMS and A2P readiness',
+        icon: PhoneCall,
+        text: 'Visquanta LLC provides configuration fields and workflow controls that support business-managed SMS programs, including campaign setup inputs, message templates, opt-out handling, and contact-record visibility. Businesses remain responsible for program approvals, message content, and applicable messaging rules.',
+    },
+    {
+        title: 'Consent source visibility',
+        icon: ClipboardCheck,
+        text: 'Businesses configure consent sources such as web forms, in-store capture, prior-business-relationship records, or imported CRM fields. The platform surfaces the available consent timestamp and source on each supported contact record.',
+    },
+    {
+        title: 'SMS disclosure controls',
+        icon: Mic,
+        text: 'SMS workflows may require sender identification, opt-out language, and other disclosures depending on the program. Businesses configure message disclosure language and should consult counsel for state-specific requirements.',
+    },
+    {
+        title: 'Operational review trail',
+        icon: SlidersHorizontal,
+        text: 'Visquanta LLC provides workflow-level visibility into suppression events, contact attempts, opt-out propagation, and transcript availability so business teams can review how controls were configured and applied.',
+    },
 ];
 
-function SectionShell({
-    id,
-    icon: Icon,
-    eyebrow,
-    title,
-    children,
-}: {
-    id: string;
-    icon: typeof Shield;
-    eyebrow: string;
-    title: string;
-    children: React.ReactNode;
-}) {
+function SectionLabel({ children }: { children: ReactNode }) {
     return (
-        <section id={id} className="scroll-mt-32 rounded-3xl border border-white/10 bg-[#080808] p-6 md:p-8">
-            <div className="mb-6 flex items-start gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#FF7404]/30 bg-[#FF7404]/10 text-[#FF7404]">
-                    <Icon className="h-5 w-5" />
-                </div>
-                <div>
-                    <p className="mb-2 text-[10px] font-black uppercase tracking-[0.35em] text-[#FF7404]">{eyebrow}</p>
-                    <h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">{title}</h2>
-                </div>
-            </div>
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#FF7404]/25 bg-[#FF7404]/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-[#FF7404]">
+            <ShieldCheck className="h-3.5 w-3.5" />
             {children}
-        </section>
+        </div>
     );
 }
 
-function CheckList({ items }: { items: string[] }) {
+function GlassCard({ children, className = '' }: { children: ReactNode; className?: string }) {
     return (
-        <ul className="space-y-3">
-            {items.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-white/65">
-                    <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#FF7404]" />
-                    <span>{item}</span>
-                </li>
-            ))}
-        </ul>
+        <div className={`rounded-2xl border border-white/10 bg-white/[0.035] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-sm ${className}`}>
+            {children}
+        </div>
     );
 }
 
 export default function CompliancePage() {
     return (
-        <main className="min-h-screen overflow-x-hidden bg-[#020202] text-white selection:bg-[#FF7404] selection:text-black">
+        <main className="min-h-screen overflow-hidden bg-[#020202] text-white selection:bg-[#FF7404] selection:text-black">
             <Navigation />
 
-            <div className="fixed inset-0 pointer-events-none">
+            <div className="pointer-events-none fixed inset-0 z-0">
                 <div className="absolute inset-0 bg-enterprise-grid opacity-[0.035]" />
-                <div className="absolute left-1/2 top-0 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-[#FF7404]/10 blur-[180px]" />
-                <div className="absolute bottom-0 right-0 h-[560px] w-[560px] rounded-full bg-emerald-500/5 blur-[150px]" />
+                <div className="absolute left-1/2 top-0 h-[520px] w-[1100px] -translate-x-1/2 rounded-full bg-[#FF7404]/10 blur-[170px]" />
+                <div className="absolute bottom-0 right-0 h-[600px] w-[600px] rounded-full bg-white/[0.025] blur-[150px]" />
             </div>
 
-            <section className="relative z-10 border-b border-white/5 pt-36 pb-16 md:pt-52 md:pb-24">
-                <div className="container-wide">
+            <section className="relative z-10 border-b border-white/5 px-6 pb-20 pt-36 md:pb-28 md:pt-48">
+                <div className="mx-auto max-w-6xl">
+                    <div className="mb-12 flex justify-center">
+                        <LegalDocsNav active="compliance" />
+                    </div>
+
                     <div className="mx-auto max-w-4xl text-center">
-                        <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-3xl border border-white/10 bg-black shadow-[0_0_60px_rgba(255,116,4,0.18)]">
-                            <ClipboardCheck className="h-10 w-10 text-[#FF7404]" />
-                        </div>
-                        <p className="mb-6 text-[10px] font-black uppercase tracking-[0.42em] text-[#FF7404]">
-                            Public Control Inventory
-                        </p>
-                        <h1 className="mb-6 text-5xl font-black uppercase leading-[0.9] tracking-tighter text-white md:text-7xl lg:text-8xl">
-                            Compliance <br />
-                            <span className="text-transparent border-text">Controls</span>
+                        <SectionLabel>Trust Center Compliance</SectionLabel>
+                        <h1 className="mt-8 text-5xl font-black uppercase leading-[0.92] tracking-[-0.04em] text-white md:text-7xl lg:text-8xl">
+                            TCPA Compliance & Suppression Controls
                         </h1>
-                        <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/60 md:text-lg">
-                            Concrete controls VisQuanta uses to support dealership messaging, consent records, data handling, auditability, electronic signatures, and carrier readiness.
+                        <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/60 md:text-xl">
+                            Visquanta LLC is a platform provider for business-operated SMS workflows; businesses are the caller of record and own consent, policy configuration, and campaign operation.
                         </p>
-                        <p className="mt-5 text-xs uppercase tracking-widest text-white/35">Last updated: December 17, 2025</p>
-                        <LegalDocsNav active="compliance" className="mt-10" />
+                        <p className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-white/35">
+                            Last updated: December 17, 2025
+                        </p>
                     </div>
                 </div>
             </section>
 
-            <section className="relative z-10 py-12 md:py-20">
-                <div className="container-wide grid gap-8 lg:grid-cols-12">
-                    <aside className="lg:col-span-3">
-                        <div className="sticky top-28 rounded-3xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl">
-                            <p className="mb-4 text-[10px] font-black uppercase tracking-[0.3em] text-white/40">On this page</p>
-                            <nav className="space-y-1" aria-label="Compliance sections">
-                                {pageLinks.map(([label, href]) => (
-                                    <a
-                                        key={href}
-                                        href={href}
-                                        className="block rounded-xl px-3 py-2 text-sm text-white/55 transition-colors hover:bg-white/[0.04] hover:text-white"
-                                    >
-                                        {label}
-                                    </a>
+            <section className="relative z-10 px-6 py-20">
+                <div className="mx-auto max-w-6xl">
+                    <div className="mb-10 max-w-3xl">
+                        <SectionLabel>Responsibility Model</SectionLabel>
+                        <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">How responsibility is split</h2>
+                        <p className="mt-4 text-white/55">
+                            The business decides when and why a consumer is contacted. Visquanta LLC provides controls that help the business configure, operate, and review those workflows.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-6 lg:grid-cols-2">
+                        <GlassCard>
+                            <h3 className="mb-5 text-xl font-black text-white">Business is responsible for</h3>
+                            <ul className="space-y-3">
+                                {businessResponsibilities.map((item) => (
+                                    <li key={item} className="flex gap-3 text-sm leading-6 text-white/65">
+                                        <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#FF7404]" />
+                                        {item}
+                                    </li>
                                 ))}
-                            </nav>
-                            <div className="mt-6 border-t border-white/10 pt-5">
-                                <a href="mailto:compliance@visquanta.com" className="inline-flex items-center gap-2 text-sm font-bold text-[#FF7404] hover:underline">
-                                    <Mail className="h-4 w-4" />
-                                    compliance@visquanta.com
-                                </a>
-                            </div>
-                        </div>
-                    </aside>
+                            </ul>
+                        </GlassCard>
 
-                    <div className="space-y-8 lg:col-span-9">
-                        <SectionShell id="responsibility" icon={ShieldCheck} eyebrow="Section 1" title="Responsibility Model">
-                            <p className="mb-6 text-sm leading-relaxed text-white/60">
-                                VisQuanta provides platform controls that help businesses manage contact eligibility, consent evidence, suppression, redaction, and audit trails before messages, calls, or signatures move downstream.
-                            </p>
-                            <CheckList items={responsibilityControls} />
-                        </SectionShell>
-
-                        <SectionShell id="suppression" icon={MessageSquareOff} eyebrow="Section 2" title="Suppression Stack">
-                            <div className="grid gap-4">
-                                {suppressionTiers.map((tier) => (
-                                    <div key={tier.title} className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
-                                        <div className="mb-4 flex items-center gap-3">
-                                            <tier.icon className="h-5 w-5 text-[#FF7404]" />
-                                            <h3 className="font-bold text-white">{tier.title}</h3>
-                                        </div>
-                                        <CheckList items={tier.points} />
-                                    </div>
+                        <GlassCard>
+                            <h3 className="mb-5 text-xl font-black text-white">Visquanta LLC provides</h3>
+                            <ul className="space-y-3">
+                                {platformControls.map((item) => (
+                                    <li key={item} className="flex gap-3 text-sm leading-6 text-white/65">
+                                        <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-white/45" />
+                                        {item}
+                                    </li>
                                 ))}
-                            </div>
-                        </SectionShell>
+                            </ul>
+                        </GlassCard>
+                    </div>
+                </div>
+            </section>
 
-                        <SectionShell id="consent" icon={FileText} eyebrow="Section 3" title="Consent Capture & Records">
-                            <p className="mb-5 text-sm leading-relaxed text-white/60">Every consent record captured by the platform stores:</p>
-                            <CheckList
-                                items={[
-                                    'The exact disclosure text shown to the consumer at the moment of capture',
-                                    'Channels consented to: SMS, voice, and email tracked separately',
-                                    'Privacy Policy URL and Terms & Conditions URL linked at time of capture',
-                                    'Client-side timestamp plus authoritative server-side timestamp',
-                                    'IP address from x-forwarded-for',
-                                    'User agent',
-                                    'Immutable JSONB storage, queryable for compliance review',
-                                ]}
-                            />
-                            <div className="mt-6 rounded-2xl border border-[#FF7404]/25 bg-[#FF7404]/5 p-5">
-                                <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#FF7404]">Example: Trade-In Tool Consent Capture</p>
-                                <blockquote className="border-l-2 border-[#FF7404] pl-4 text-sm italic leading-relaxed text-white/75">
-                                    "By submitting, I agree to be contacted by [dealership] about this trade-in via phone calls, SMS/text, and email, including via automated means. Message & data rates may apply. Consent is not a condition of purchase. Reply STOP to opt out of texts."
-                                </blockquote>
-                                <p className="mt-4 text-sm leading-relaxed text-white/60">
-                                    This language is TCPA and CAN-SPAM aligned: express written consent for automated calls and texts, the "not a condition of purchase" carve-out, and STOP acknowledgement. Privacy Policy and Terms URLs are stored once at the business level and propagated to every consent point.
-                                </p>
-                            </div>
-                        </SectionShell>
+            <section className="relative z-10 border-y border-white/5 bg-white/[0.015] px-6 py-20">
+                <div className="mx-auto max-w-6xl">
+                    <div className="mb-10 max-w-3xl">
+                        <SectionLabel>Suppression Stack</SectionLabel>
+                        <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">Three tiers of suppression</h2>
+                        <p className="mt-4 text-white/55">
+                            Businesses configure suppression policies for each program. The platform applies those configured controls across supported contact workflows.
+                        </p>
+                    </div>
 
-                        <SectionShell id="pii-redaction" icon={Database} eyebrow="Section 4" title="Data Handling & PII Redaction">
-                            <p className="mb-6 text-sm leading-relaxed text-white/60">
-                                All inbound and outbound SMS pass through a single redaction chokepoint before storage or downstream forwarding.
+                    <div className="grid gap-6 lg:grid-cols-3">
+                        {suppressionTiers.map((tier) => (
+                            <GlassCard key={tier.title} className="relative overflow-hidden">
+                                <div className="absolute right-4 top-4 text-6xl font-black text-white/[0.03]">{tier.tier}</div>
+                                <tier.icon className="mb-6 h-9 w-9 text-[#FF7404]" />
+                                <p className="mb-2 text-xs font-black uppercase tracking-[0.22em] text-[#FF7404]">{tier.tier}</p>
+                                <h3 className="mb-5 text-xl font-black text-white">{tier.title}</h3>
+                                <ul className="space-y-3">
+                                    {tier.items.map((item) => (
+                                        <li key={item} className="text-sm leading-6 text-white/60">{item}</li>
+                                    ))}
+                                </ul>
+                            </GlassCard>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="relative z-10 px-6 py-20">
+                <div className="mx-auto max-w-6xl">
+                    <div className="mb-10 max-w-3xl">
+                        <SectionLabel>Additional Controls</SectionLabel>
+                        <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">Related compliance workflows</h2>
+                        <p className="mt-4 text-white/55">
+                            TCPA compliance usually sits beside SMS consent, suppression, disclosure, and audit controls. Visquanta LLC keeps these workflows visible for business operators without replacing legal review.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-6 md:grid-cols-2">
+                        {additionalControls.map((control) => (
+                            <GlassCard key={control.title}>
+                                <control.icon className="mb-5 h-8 w-8 text-[#FF7404]" />
+                                <h3 className="mb-3 text-xl font-black text-white">{control.title}</h3>
+                                <p className="text-sm leading-7 text-white/60">{control.text}</p>
+                            </GlassCard>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="relative z-10 border-y border-white/5 bg-[#080808] px-6 py-20">
+                <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+                    <div>
+                        <SectionLabel>Consent Capture</SectionLabel>
+                        <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">Consent records stay visible</h2>
+                    </div>
+                    <div className="space-y-6 text-base leading-8 text-white/60">
+                        <p>
+                            Every consent record captured by the platform stores the exact disclosure text shown to the consumer, the channels consented to, the Privacy Policy and Terms URLs linked at time of capture, client-side timestamp, authoritative server-side timestamp, IP address from x-forwarded-for, and user agent.
+                        </p>
+                        <p>
+                            Consent records are stored as immutable JSONB and remain queryable for compliance review. Privacy Policy and Terms URLs are stored once at the business level and propagated to every consent point.
+                        </p>
+                        <div className="rounded-2xl border border-[#FF7404]/25 bg-[#FF7404]/5 p-6">
+                            <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#FF7404]">Trade-In Tool Consent Capture</p>
+                            <blockquote className="border-l-2 border-[#FF7404] pl-4 text-sm italic leading-7 text-white/75">
+                                "By submitting, I agree to be contacted by [dealership] about this trade-in via phone calls, SMS/text, and email, including via automated means. Message & data rates may apply. Consent is not a condition of purchase. Reply STOP to opt out of texts."
+                            </blockquote>
+                            <p className="mt-4 text-sm leading-7 text-white/60">
+                                This language is TCPA and CAN-SPAM aligned: express written consent for automated calls and texts, the "not a condition of purchase" carve-out, and STOP acknowledgement.
                             </p>
-                            <div className="overflow-hidden rounded-2xl border border-white/10">
-                                <table className="w-full min-w-[680px] text-left text-sm">
-                                    <thead className="bg-white/[0.05] text-xs uppercase tracking-widest text-white/45">
-                                        <tr>
-                                            <th className="px-5 py-4">Data Type</th>
-                                            <th className="px-5 py-4">Detection</th>
-                                            <th className="px-5 py-4">Replacement</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-white/10 text-white/65">
-                                        {piiRows.map(([type, detection, replacement]) => (
-                                            <tr key={type} className="bg-white/[0.015]">
-                                                <td className="px-5 py-4 font-medium text-white/85">{type}</td>
-                                                <td className="px-5 py-4">{detection}</td>
-                                                <td className="px-5 py-4 font-mono text-xs text-[#FF7404]">{replacement}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="mt-6 grid gap-4 md:grid-cols-2">
-                                <p className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 text-sm leading-relaxed text-white/60">
-                                    URLs, vehicle VINs, prices, names, and addresses are preserved so legitimate dealership conversation flow is not impacted.
-                                </p>
-                                <p className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 text-sm leading-relaxed text-white/60">
-                                    When redaction fires, the audit log captures type and count only. Raw values are never written to logs, never stored, and never forwarded to third parties.
-                                </p>
-                            </div>
-                            <p className="mt-5 text-xs uppercase tracking-widest text-white/35">
-                                Validated with 81 unit tests and a 247,000-message dry-run before production rollout.
-                            </p>
-                        </SectionShell>
-
-                        <SectionShell id="recording" icon={PhoneCall} eyebrow="Section 5" title="Recording Disclosure Controls">
-                            <CheckList
-                                items={[
-                                    'Per-number controls for recording on/off, transcription on/off, and consent mode',
-                                    'Verbal consent mode: disclosure spoken at the start of the call',
-                                    'Auto-beep mode: audible tone with IVR-delivered disclosure for jurisdictions requiring two-party consent',
-                                    'Recording URL, recording duration, and transcription confidence captured per call',
-                                    'Status badge surfaces current configuration to the operator, such as Recording active, Verbal consent, Transcription on',
-                                    "State-specific disclosure language remains the business's responsibility in consultation with counsel; the platform provides controls and audit trail",
-                                ]}
-                            />
-                        </SectionShell>
-
-                        <SectionShell id="audit" icon={TableProperties} eyebrow="Section 6" title="Audit Trail & Retention">
-                            <p className="mb-6 text-sm leading-relaxed text-white/60">The platform writes to dedicated, append-only audit stores:</p>
-                            <div className="grid gap-3">
-                                {auditStores.map(([title, detail]) => (
-                                    <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
-                                        <h3 className="mb-2 font-bold text-white">{title}</h3>
-                                        <p className="text-sm leading-relaxed text-white/60">{detail}</p>
-                                    </div>
-                                ))}
-                            </div>
-                            <p className="mt-6 text-sm leading-relaxed text-white/60">
-                                All change-management activity is tracked through a dated, append-only changelog discipline with 250+ documented production changes, giving auditors a reconstruction path for any feature or control.
-                            </p>
-                        </SectionShell>
-
-                        <SectionShell id="signature" icon={FileSignature} eyebrow="Section 7" title="Identity Verification for Electronic Signature">
-                            <p className="mb-5 text-sm leading-relaxed text-white/60">
-                                Documents requiring electronic signature go through VQSign, built to ESIGN Act and UETA standards.
-                            </p>
-                            <CheckList items={signatureControls} />
-                        </SectionShell>
-
-                        <SectionShell id="carrier" icon={RadioTower} eyebrow="Section 8" title="Carrier & A2P Compliance">
-                            <CheckList items={carrierControls} />
-                        </SectionShell>
-
-                        <SectionShell id="security" icon={Lock} eyebrow="Section 9" title="Platform Security Posture">
-                            <CheckList items={securityControls} />
-                            <div className="mt-6 rounded-2xl border border-white/10 bg-black/30 p-5 text-sm leading-relaxed text-white/55">
-                                <p>
-                                    VisQuanta does not currently represent itself as SOC 2 certified. Enterprise customers and auditors can request supporting control documentation through the compliance contact below.
-                                </p>
-                            </div>
-                        </SectionShell>
-
-                        <SectionShell id="contact" icon={Mail} eyebrow="Section 10" title="Opt-out & Escalation Contact">
-                            <div className="grid gap-4 md:grid-cols-2">
-                                <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
-                                    <p className="mb-2 text-xs font-bold uppercase tracking-widest text-white/40">Compliance Contact</p>
-                                    <a href="mailto:compliance@visquanta.com" className="text-lg font-bold text-[#FF7404] hover:underline">
-                                        compliance@visquanta.com
-                                    </a>
-                                </div>
-                                <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
-                                    <p className="mb-2 text-xs font-bold uppercase tracking-widest text-white/40">Escalation Form</p>
-                                    <Link href="/contact?topic=compliance" className="text-lg font-bold text-[#FF7404] hover:underline">
-                                        /contact?topic=compliance
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.025] p-5">
-                                <CheckList
-                                    items={[
-                                        'Response SLA: acknowledgement within 1 business day',
-                                        'Documentation requests: PII handling, security controls, access control, and incident response documents available to enterprise customers and auditors on request',
-                                    ]}
-                                />
-                            </div>
-                        </SectionShell>
-
-                        <div className="rounded-3xl border border-[#FF7404]/25 bg-[#FF7404]/10 p-6 md:p-8">
-                            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                                <div>
-                                    <p className="mb-2 text-[10px] font-black uppercase tracking-[0.35em] text-[#FF7404]">Need documentation?</p>
-                                    <h2 className="text-2xl font-black text-white">Request compliance materials</h2>
-                                </div>
-                                <a
-                                    href="mailto:compliance@visquanta.com?subject=Compliance%20Documentation%20Request"
-                                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF7404] px-6 py-3 text-sm font-black uppercase tracking-wider text-black transition-transform hover:scale-[1.02]"
-                                >
-                                    <KeyRound className="h-4 w-4" />
-                                    Request Docs
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <section className="relative z-10 px-6 py-20">
+                <div className="mx-auto max-w-6xl">
+                    <div className="mb-10 max-w-3xl">
+                        <SectionLabel>Data Handling</SectionLabel>
+                        <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">PII redaction at the SMS boundary</h2>
+                        <p className="mt-4 text-white/55">
+                            All inbound and outbound SMS pass through a single redaction chokepoint before storage or downstream forwarding.
+                        </p>
+                    </div>
+
+                    <div className="overflow-hidden rounded-2xl border border-white/10">
+                        <table className="w-full min-w-[720px] text-left text-sm">
+                            <thead className="bg-white/[0.05] text-xs uppercase tracking-widest text-white/45">
+                                <tr>
+                                    <th className="px-5 py-4">Data Type</th>
+                                    <th className="px-5 py-4">Detection</th>
+                                    <th className="px-5 py-4">Replacement</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-white/10 text-white/65">
+                                {piiRows.map(([type, detection, replacement]) => (
+                                    <tr key={type} className="bg-white/[0.015]">
+                                        <td className="px-5 py-4 font-bold text-white/85">{type}</td>
+                                        <td className="px-5 py-4">{detection}</td>
+                                        <td className="px-5 py-4 font-mono text-xs text-[#FF7404]">{replacement}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div className="mt-6 grid gap-6 md:grid-cols-3">
+                        <GlassCard>
+                            <Database className="mb-5 h-8 w-8 text-[#FF7404]" />
+                            <h3 className="mb-3 text-xl font-black text-white">Conversation context preserved</h3>
+                            <p className="text-sm leading-7 text-white/60">URLs, vehicle VINs, prices, names, and addresses are preserved so legitimate dealership conversations are not impacted.</p>
+                        </GlassCard>
+                        <GlassCard>
+                            <Archive className="mb-5 h-8 w-8 text-[#FF7404]" />
+                            <h3 className="mb-3 text-xl font-black text-white">Raw values never logged</h3>
+                            <p className="text-sm leading-7 text-white/60">When redaction fires, the audit log captures type and count only. Raw values are never written to logs, never stored, and never forwarded to third parties.</p>
+                        </GlassCard>
+                        <GlassCard>
+                            <ShieldCheck className="mb-5 h-8 w-8 text-[#FF7404]" />
+                            <h3 className="mb-3 text-xl font-black text-white">Production validated</h3>
+                            <p className="text-sm leading-7 text-white/60">Validated with 81 unit tests and a 247,000-message dry-run before production rollout.</p>
+                        </GlassCard>
+                    </div>
+                </div>
+            </section>
+
+            <section className="relative z-10 border-y border-white/5 bg-white/[0.015] px-6 py-20">
+                <div className="mx-auto max-w-6xl">
+                    <div className="mb-10 max-w-3xl">
+                        <SectionLabel>Call Recording</SectionLabel>
+                        <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">Recording disclosure controls</h2>
+                    </div>
+                    <div className="grid gap-6 md:grid-cols-2">
+                        {recordingControls.map((item) => (
+                            <GlassCard key={item}>
+                                <Mic className="mb-5 h-8 w-8 text-[#FF7404]" />
+                                <p className="text-sm leading-7 text-white/65">{item}</p>
+                            </GlassCard>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="relative z-10 px-6 py-20">
+                <div className="mx-auto max-w-6xl">
+                    <div className="mb-10 max-w-3xl">
+                        <SectionLabel>Audit Trail</SectionLabel>
+                        <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">Dedicated append-only audit stores</h2>
+                    </div>
+                    <div className="grid gap-6 md:grid-cols-2">
+                        {auditStores.map(([title, text]) => (
+                            <GlassCard key={title}>
+                                <TableProperties className="mb-5 h-8 w-8 text-[#FF7404]" />
+                                <h3 className="mb-3 text-xl font-black text-white">{title}</h3>
+                                <p className="text-sm leading-7 text-white/60">{text}</p>
+                            </GlassCard>
+                        ))}
+                    </div>
+                    <p className="mt-8 max-w-4xl text-sm leading-7 text-white/55">
+                        All change-management activity is tracked through a dated, append-only changelog discipline with 250+ documented production changes, giving auditors a reconstruction path for any feature or control.
+                    </p>
+                </div>
+            </section>
+
+            <section className="relative z-10 border-y border-white/5 bg-[#080808] px-6 py-20">
+                <div className="mx-auto max-w-6xl">
+                    <div className="mb-10 max-w-3xl">
+                        <SectionLabel>Electronic Signature</SectionLabel>
+                        <h2 className="mt-6 text-3xl font-black tracking-tight text-white md:text-5xl">VQSign identity verification</h2>
+                        <p className="mt-4 text-white/55">Documents requiring electronic signature go through VQSign, built to ESIGN Act and UETA standards.</p>
+                    </div>
+                    <div className="grid gap-6 md:grid-cols-2">
+                        {signatureControls.map((item) => (
+                            <GlassCard key={item}>
+                                <FileSignature className="mb-5 h-8 w-8 text-[#FF7404]" />
+                                <p className="text-sm leading-7 text-white/65">{item}</p>
+                            </GlassCard>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="relative z-10 px-6 py-20">
+                <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
+                    <GlassCard>
+                        <SectionLabel>Carrier & A2P</SectionLabel>
+                        <h2 className="mt-6 text-3xl font-black tracking-tight text-white">Carrier compliance controls</h2>
+                        <ul className="mt-6 space-y-4">
+                            {carrierControls.map((item) => (
+                                <li key={item} className="flex gap-3 text-sm leading-7 text-white/65">
+                                    <RadioTower className="mt-1 h-4 w-4 flex-none text-[#FF7404]" />
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </GlassCard>
+
+                    <GlassCard>
+                        <SectionLabel>Security Posture</SectionLabel>
+                        <h2 className="mt-6 text-3xl font-black tracking-tight text-white">Platform security posture</h2>
+                        <ul className="mt-6 space-y-4">
+                            {securityControls.map((item) => (
+                                <li key={item} className="flex gap-3 text-sm leading-7 text-white/65">
+                                    <Lock className="mt-1 h-4 w-4 flex-none text-[#FF7404]" />
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                        <p className="mt-6 border-t border-white/10 pt-5 text-xs leading-6 text-white/40">
+                            Visquanta does not currently represent itself as SOC 2 certified. Enterprise customers and auditors can request supporting control documentation through the compliance contact below.
+                        </p>
+                    </GlassCard>
+                </div>
+            </section>
+
+            <section className="relative z-10 px-6 py-20">
+                <div className="mx-auto max-w-6xl">
+                    <GlassCard className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
+                        <div>
+                            <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-[#FF7404]/30 bg-[#FF7404]/10">
+                                <Mail className="h-5 w-5 text-[#FF7404]" />
+                            </div>
+                            <h2 className="text-3xl font-black tracking-tight text-white">Opt-out & escalation contact</h2>
+                            <p className="mt-4 max-w-3xl text-sm leading-7 text-white/60">
+                                If a consumer believes an opt-out request was not honored by a business-operated workflow, the consumer can escalate the request by email or through the contact form. Visquanta LLC can route the request for review against the relevant business configuration and suppression record.
+                            </p>
+                        </div>
+                        <div className="flex flex-col gap-3">
+                            <a href="mailto:compliance@visquanta.com" className="rounded-xl bg-[#FF7404] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-black transition hover:bg-[#ff8a2d]">
+                                {'compliance@visquanta.com'}
+                            </a>
+                            <Link href="/contact?topic=compliance" className="rounded-xl border border-white/10 bg-white/[0.03] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-white/70 transition hover:border-[#FF7404]/40 hover:text-white">
+                                Contact Form
+                            </Link>
+                            <a href="mailto:compliance@visquanta.com?subject=Compliance%20Documentation%20Request" className="rounded-xl border border-[#FF7404]/30 bg-[#FF7404]/10 px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-[#FF7404] transition hover:bg-[#FF7404]/15">
+                                <KeyRound className="mr-2 inline h-4 w-4" />
+                                Request Docs
+                            </a>
+                        </div>
+                    </GlassCard>
+                </div>
+            </section>
+
+            <section className="relative z-10 px-6 pb-20">
+                <div className="mx-auto flex max-w-6xl flex-col gap-4 border-t border-white/10 pt-8 text-sm text-white/40 md:flex-row md:items-center md:justify-between">
+                    <p>Last updated December 17, 2025.</p>
+                    <div className="flex gap-4">
+                        <Link href="/privacy-policy" className="text-white/60 hover:text-white">Privacy Policy</Link>
+                        <Link href="/terms-conditions" className="text-white/60 hover:text-white">Terms & Conditions</Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* TODO(compliance legal review): Confirm whether state-specific SMS disclosure language needs additional state-by-state notices. Consult counsel before adding jurisdiction-specific claims. */}
+            {/* TODO(compliance legal review): Confirm TCPA, DNC, RND, and SMS retention periods before publishing any specific retention duration. */}
             <Footer />
         </main>
     );

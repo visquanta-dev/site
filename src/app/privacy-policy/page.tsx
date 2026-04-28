@@ -115,6 +115,7 @@ export default function PrivacyPolicyPage() {
                         </motion.div>
 
                         <LegalDocsNav active="privacy" className="mt-12" />
+                        {/* TODO(compliance legal review): Add a one-line reference to /compliance for call and SMS suppression controls after counsel approves the wording. */}
                     </div>
                 </div>
             </section>

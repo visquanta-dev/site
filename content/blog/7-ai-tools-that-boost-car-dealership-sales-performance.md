@@ -183,7 +183,7 @@ One of Drivee's strengths lies in its ability to prioritize leads and send follo
 
 > "Drivee's AI sales agent acts like your best salesperson, instantly responding to inquiries 24/7 and following up with leads using strategies proven to boost re-engagement." - Drivee [\[12\]](https://drivee.ai/ai-sales-agent)
 
-Drivee also helps [reduce appointment no-shows](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it) through automated follow-ups and confirmations, cutting no-show rates by 40% [\[12\]](https://drivee.ai/ai-sales-agent). This not only boosts completed sales but also ensures dealerships make the most of their resources. All of these follow-ups align seamlessly with broader CRM strategies, making the entire process smooth and efficient.
+Drivee also helps [reduce appointment no-shows](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed) through automated follow-ups and confirmations, cutting no-show rates by 40% [\[12\]](https://drivee.ai/ai-sales-agent). This not only boosts completed sales but also ensures dealerships make the most of their resources. All of these follow-ups align seamlessly with broader CRM strategies, making the entire process smooth and efficient.
 
 ### Seamless CRM Integration and Reactivating Old Leads
 

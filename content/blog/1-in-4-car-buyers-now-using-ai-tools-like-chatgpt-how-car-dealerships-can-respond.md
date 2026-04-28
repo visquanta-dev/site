@@ -195,7 +195,7 @@ As dealerships refine their approach to [lead management with AI](https://www.vi
 
 ### Finding and Fixing Sales Problems with AI
 
-AI analytics are a game-changer when it comes to identifying [inefficiencies in the sales funnel](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it) - issues that might otherwise remain hidden [\[18\]](https://www.autosuccessonline.com/ai-data-reshaping-dealership-success). Instead of relying on quarterly reviews, dealerships can now detect bottlenecks in real time and address them immediately.
+AI analytics are a game-changer when it comes to identifying [inefficiencies in the sales funnel](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed) - issues that might otherwise remain hidden [\[18\]](https://www.autosuccessonline.com/ai-data-reshaping-dealership-success). Instead of relying on quarterly reviews, dealerships can now detect bottlenecks in real time and address them immediately.
 
 Some common issues that AI can highlight include long hold times, misrouted calls, and missed follow-ups [\[18\]](https://www.autosuccessonline.com/ai-data-reshaping-dealership-success). For instance, if AI notices that customers calling about financing are being transferred multiple times before reaching the right department, it can flag this problem and suggest better routing solutions.
 

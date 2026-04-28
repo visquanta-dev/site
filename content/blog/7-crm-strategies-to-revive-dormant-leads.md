@@ -50,7 +50,7 @@ What makes dormant leads so important is that you’ve already paid to acquire t
 
 ### Why Leads Become Dormant
 
-Dormant leads don’t just disappear; they often fall through the cracks due to operational challenges. For instance, one in three leads never gets contacted or is lost due to poor [lead loss mitigation](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it) amid the daily hustle of dealership operations [\[1\]](https://visquanta.com/).
+Dormant leads don’t just disappear; they often fall through the cracks due to operational challenges. For instance, one in three leads never gets contacted or is lost due to poor [lead recovery](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed) amid the daily hustle of dealership operations [\[1\]](https://visquanta.com/).
 
 High sales staff turnover plays a major role as well. With turnover rates in automotive sales reaching 67% annually [\[5\]](https://getsmartagents.com/blog/transforming-dormant-auto-leads-into-sales/), relationships with potential buyers are often disrupted. When a salesperson leaves, their leads may be reassigned or forgotten, leaving promising opportunities to stagnate.
 

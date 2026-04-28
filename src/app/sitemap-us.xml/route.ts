@@ -8,7 +8,7 @@ import {
 
 const BASE = 'https://www.visquanta.com';
 
-/** US marketing & product URLs (no /ca/). Blog from getAllPostsMetaFresh(); case studies from getAllCaseStudySlugs(). */
+/** US marketing & product URLs (no /ca/). Shared list in sitemap-shared.ts; blog via getAllPostsMetaFresh(); case studies via getAllCaseStudySlugs(). */
 /** Match blog post ISR (60s) so Google picks up new /blog/* URLs quickly after publish. */
 export const revalidate = 60;
 

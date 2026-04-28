@@ -62,7 +62,7 @@ This combination of scoring and follow-up doesn’t just improve current lead ma
 
 ### Reactivating Old Leads in Your Database
 
-Every dealership has dormant leads - prospects who showed interest but never made a purchase. Tools like VisQuanta’s [lead loss mitigation](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it) AI can re-engage these leads by analyzing past interactions, segmenting them effectively, and tailoring outreach efforts [\[5\]](https://www.visquanta.com/lead-loss-mitigation). AI starts by grouping cold leads based on demographics, prior behavior, or content they interacted with. From there, it creates targeted campaigns and determines the best times to engage each group.
+Every dealership has dormant leads - prospects who showed interest but never made a purchase. Tools like VisQuanta’s [lead recovery](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed) AI can re-engage these leads by analyzing past interactions, segmenting them effectively, and tailoring outreach efforts [\[5\]](https://www.visquanta.com/lead-loss-mitigation). AI starts by grouping cold leads based on demographics, prior behavior, or content they interacted with. From there, it creates targeted campaigns and determines the best times to engage each group.
 
 Platforms like VisQuanta’s AutoMaster Suite specialize in this process. By integrating with existing CRMs, they tap into dormant data and turn it into actionable opportunities. Using omnichannel engagement - email, social media, phone calls, and messaging apps - these tools reach prospects on their preferred platforms.
 

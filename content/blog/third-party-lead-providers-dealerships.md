@@ -233,7 +233,7 @@ To evaluate ROI, request case studies or performance benchmarks, as conversion r
 
 ### Support and Compliance
 
-Compliance is non-negotiable. Ensure SmartLeads uses double opt-in processes and maintains detailed audit trails to meet TCPA and data privacy standards. Ask if they offer indemnification or liability protection to shield your dealership from legal risks. Transparency about how consumer information is collected, verified, and safeguarded is essential to avoid issues like [lead fraud](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it) or duplicate submissions.
+Compliance is non-negotiable. Ensure SmartLeads uses double opt-in processes and maintains detailed audit trails to meet TCPA and data privacy standards. Ask if they offer indemnification or liability protection to shield your dealership from legal risks. Transparency about how consumer information is collected, verified, and safeguarded is essential to avoid issues like [lead fraud](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed) or duplicate submissions.
 
 Beyond compliance, evaluate the level of support SmartLeads provides. Does the platform offer dedicated account managers, live phone support, or guaranteed response times? Are there training resources available for your team? A strong support system can help resolve integration issues, improve lead quality, and maximize your investment through regular performance reviews and tailored recommendations. Real-time dashboards tracking lead volume, conversion rates, cost per lead, and ROI are also valuable tools for monitoring success.
 

@@ -28,7 +28,7 @@ author: VisQuanta Team
 
 Here’s what matters most:
 
--   **Why leads go dormant:** [Missed follow-ups](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it), impersonal outreach, or poor timing during life or financial changes.
+-   **Why leads go dormant:** [Missed follow-ups](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed), impersonal outreach, or poor timing during life or financial changes.
     
 -   **Key timing opportunities:** Life events (e.g., job changes, growing families), seasonal factors, vehicle lifecycle milestones, or market shifts like rising gas prices.
     

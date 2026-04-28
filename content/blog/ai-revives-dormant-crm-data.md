@@ -88,7 +88,7 @@ AI scores the leads on its own. Each lead gets a top spot or not, which shows yo
 
 With groups and scores done, AI can write notes that feel warm and real, but sends them out fast, like a machine. Email, text, or chat - it picks what works best. AI sees if past talks did well and uses that too.
 
-Say a person asked about a truck, AI will not send news about cars they do not want. If that person likes to get texts, it will text, not call. This detail pays off - VisQuanta’s [lead-saving plan](https://www.visquanta.com/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it) won back over 30% of the lost leads [\[1\]](https://visquanta.com/). AI's way of sending the right note does much better than old "send it to all" ways. It can talk to many at once, but keeps things feeling close and real.
+Say a person asked about a truck, AI will not send news about cars they do not want. If that person likes to get texts, it will text, not call. This detail pays off - VisQuanta’s [lead-saving plan](https://www.visquanta.com/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed) won back over 30% of the lost leads [\[1\]](https://visquanta.com/). AI's way of sending the right note does much better than old "send it to all" ways. It can talk to many at once, but keeps things feeling close and real.
 
 ### Works With Your CRM, No Fuss
 
@@ -174,7 +174,7 @@ Car shops all over the U.S. are turning old, sleeping data into sales with VisQu
 
 #### Main Things AutoMaster Suite Does
 
-AutoMaster Suite takes quiet data and makes it work with smart tools built just for car shops in the U.S. One big thing is [Lead Loss Mitigation](https://www.visquanta.com/blog/how-to-measure-lead-loss-in-dealership-crms). It talks to cold leads again with custom text messages and follows all U.S. laws for texting. This one part alone has turned more than 30% of lost leads into new chances for sales.
+AutoMaster Suite takes quiet data and makes it work with smart tools built just for car shops in the U.S. One big thing is [Lead Recovery](https://www.visquanta.com/blog/how-to-measure-lead-loss-in-dealership-crms). It talks to cold leads again with custom text messages and follows all U.S. laws for texting. This one part alone has turned more than 30% of lost leads into new chances for sales.
 
 It can link to more than 40 shop CRM and DMS systems, giving up-to-date info and making jobs like setting times for meetings easier. The system takes care of follow-ups, reminders, and checking in after a sale. That means less work for your team. A live panel shows chats, sales stats, and money made from old leads that came back - all in one spot.
 

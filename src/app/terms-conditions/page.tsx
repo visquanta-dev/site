@@ -117,6 +117,7 @@ export default function TermsConditionsPage() {
                     </motion.div>
 
                     <LegalDocsNav active="terms" className="mt-12" />
+                    {/* TODO(compliance legal review): Add a clause requiring businesses to comply with TCPA and related SMS rules using Visquanta's available controls after counsel approves the wording. */}
                 </div>
             </section>
 
@@ -339,7 +340,7 @@ export default function TermsConditionsPage() {
                                         Your use of third-party services is subject to the terms and privacy practices of the respective providers, for which we are not responsible. If a third-party service becomes unavailable or changes its terms in a manner that materially affects our ability to provide the Services, we may modify, replace, or discontinue the affected functionality.
                                     </p>
                                     <p className="text-zinc-400 text-base leading-relaxed font-light">
-                                        Where you connect your own account on a third-party platform (for example, your dealership&apos;s CRM), you are responsible for the configuration, permissions, and compliance of that account.
+                                        Where you connect your own account on a third-party platform (for example, your business&apos;s CRM), you are responsible for the configuration, permissions, and compliance of that account.
                                     </p>
                                 </div>
                             </motion.div>
