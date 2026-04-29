@@ -119,7 +119,7 @@ export default function LeadReactivationPage() {
 
             {/* 6.7 PROOF: Related Case Studies */}
             <RelatedCaseStudies
-                caseStudySlugs={['metro-motors', 'seth-wadley']}
+                caseStudySlugs={['grand-valley-auto', 'seth-wadley']}
             />
 
             {/* 7. RESOURCES: Blog & Case Studies */}

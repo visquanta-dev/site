@@ -70,11 +70,13 @@ const pages: { loc: string; lastmod: string; priority: number }[] = [
   { loc: `${BASE}/terms-conditions`, lastmod: '2025-12-01', priority: 0.3 },
   { loc: `${BASE}/cookie-policy`, lastmod: '2025-12-01', priority: 0.3 },
 
-  // ── Case studies ──
-  { loc: `${BASE}/case-studies/metro-motors`, lastmod: '2026-01-15', priority: 0.7 },
-  { loc: `${BASE}/case-studies/bayside-honda`, lastmod: '2026-01-15', priority: 0.7 },
-  { loc: `${BASE}/case-studies/prestige-imports`, lastmod: '2026-01-15', priority: 0.7 },
-  { loc: `${BASE}/case-studies/freedom-independent`, lastmod: '2026-01-15', priority: 0.7 },
+  // ── Case studies (live slugs only — see src/lib/case-studies.ts) ──
+  { loc: `${BASE}/case-studies/brookshire-hyundai`, lastmod: '2026-01-15', priority: 0.7 },
+  { loc: `${BASE}/case-studies/corwin-ford-nampa`, lastmod: '2026-01-15', priority: 0.7 },
+  { loc: `${BASE}/case-studies/drive-n-motion-colorado`, lastmod: '2026-01-15', priority: 0.7 },
+  { loc: `${BASE}/case-studies/grand-valley-auto`, lastmod: '2026-01-15', priority: 0.7 },
+  { loc: `${BASE}/case-studies/kansas-city-hyundai`, lastmod: '2026-01-15', priority: 0.7 },
+  { loc: `${BASE}/case-studies/patriot-chevrolet`, lastmod: '2026-01-15', priority: 0.7 },
   { loc: `${BASE}/case-studies/seth-wadley`, lastmod: '2026-01-15', priority: 0.7 },
 
   // ── Integrations ──

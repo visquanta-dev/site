@@ -173,7 +173,7 @@ export default function CustomCampaignsPage() {
                 />
 
                 <RelatedCaseStudies
-                    caseStudySlugs={['metro-motors', 'freedom-independent']}
+                    caseStudySlugs={['grand-valley-auto', 'patriot-chevrolet']}
                 />
 
                 <FinalCTA />

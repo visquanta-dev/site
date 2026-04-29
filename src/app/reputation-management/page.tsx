@@ -84,7 +84,7 @@ export default function ReputationManagementPage() {
                 />
 
                 <RelatedCaseStudies
-                    caseStudySlugs={['bayside-honda', 'prestige-imports']}
+                    caseStudySlugs={['kansas-city-hyundai', 'drive-n-motion-colorado']}
                 />
 
                 <div className="py-12 text-center">

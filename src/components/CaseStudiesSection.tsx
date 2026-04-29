@@ -62,6 +62,13 @@ const caseStudies: CaseStudy[] = [
   }
 ];
 
+/** Live case study detail URLs (see `src/lib/case-studies.ts`). */
+const CASE_DETAIL_HREFS = [
+  "/case-studies/seth-wadley",
+  "/case-studies/kansas-city-hyundai",
+  "/case-studies/patriot-chevrolet",
+] as const;
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -159,7 +166,7 @@ export default function CaseStudiesSection() {
                 </div>
               )}
 
-              <Link href="/case-studies/seth-wadley-auto-group" className="case-study-link">
+              <Link href={CASE_DETAIL_HREFS[index]} className="case-study-link">
                 <span>Read Full Case Study</span>
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

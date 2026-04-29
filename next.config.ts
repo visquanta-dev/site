@@ -127,6 +127,31 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/case-studies/metro-motors',
+        destination: '/case-studies/grand-valley-auto',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/bayside-honda',
+        destination: '/case-studies/kansas-city-hyundai',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/prestige-imports',
+        destination: '/case-studies/drive-n-motion-colorado',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/freedom-independent',
+        destination: '/case-studies/patriot-chevrolet',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/seth-wadley-auto-group',
+        destination: '/case-studies/seth-wadley',
+        permanent: true,
+      },
+      {
         source: '/blog/:page(\\d+)',
         destination: '/blog',
         permanent: true,
