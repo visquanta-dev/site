@@ -58,7 +58,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/blog-details/:slug',
-        destination: 'https://www.visquanta.com/blog/:slug',
+        destination: '/blog/:slug',
         permanent: true,
       },
 
@@ -302,6 +302,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/blogs-3289',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
         source: '/blogs-3289/:path*',
         destination: '/blog',
         permanent: true,
@@ -372,6 +377,21 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/ai-powered-emails',
+        destination: '/speed-to-lead',
+        permanent: true,
+      },
+      {
+        source: '/home660906',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/product/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
         source: '/advertising-lead-generation',
         destination: '/custom-campaigns',
         permanent: true,
@@ -403,16 +423,26 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/post/:slug',
-        destination: '/blog',
+        destination: '/blog/:slug',
         permanent: true,
       },
       {
-        source: '/post/:slug/:rest',
-        destination: '/blog',
+        source: '/post/:slug/:path+',
+        destination: '/blog/:slug',
         permanent: true,
       },
       {
         source: '/blogs/tag/:tag',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blogs',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blogs/:path+',
         destination: '/blog',
         permanent: true,
       },
