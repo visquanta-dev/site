@@ -76,8 +76,7 @@ Pull your inbound lead and call data and ask: what percentage arrives outside yo
 
 Multiply: after-hours lead volume × the conversion delta × your average front-end gross. That number is the annualized revenue your store is leaving on the table without coverage. It is also the ceiling on what any after-hours tool can recover for you.
 
-> **Run the numbers on your store**
-> Use our [Speed-to-Lead Calculator](https://www.visquanta.com/speed-to-lead) to size your store's after-hours opportunity cost in real dollars. Plug in your monthly lead volume, current response time, and average front-end gross — get the recovered-margin estimate in under a minute.
+{{calculator:speed-to-lead}}
 
 ### 2. Time recovered from staff
 
@@ -93,8 +92,7 @@ Most CRMs hold tens of thousands of customer records. Most of those records are 
 
 The math is straightforward: dormant lead pool × reactivation engagement rate × close rate × average front-end gross. The reactivation engagement rate is what you measure to know the tool is doing its job — but the gross dollars are what you measure to know it's earning its subscription. See our [breakdown on lead reactivation systems](https://www.visquanta.com/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2026) for the operational side, and our [reactivating old leads guide](https://www.visquanta.com/blog/reactivating-old-leads-timing-tips-for-dealers) for the timing rules that actually move close rates.
 
-> **Size your dormant pool's revenue potential**
-> Our [Lead Reactivation Calculator](https://www.visquanta.com/lead-reactivation) walks through the math on what a 12-month dormant pool is worth at typical engagement and close rates — the answer is almost always larger than dealer principals expect.
+{{calculator:lead-reactivation}}
 
 ### 4. Reputation lift translated into store visits
 
@@ -108,8 +106,7 @@ Service is where most stores quietly lose six-figure revenue. A missed service c
 
 The numbers are dealer-specific but the size is consistent across our portfolio. A [rural independent rooftop](https://www.visquanta.com/case-studies/grand-valley-auto) closed $110k in 60 days. A [small-town Chevrolet store](https://www.visquanta.com/case-studies/patriot-chevrolet) generated $153k in the same window with thin staffing. A [single Hyundai rooftop in Texas](https://www.visquanta.com/case-studies/brookshire-hyundai) returned $238k. Numbers in that range are normal once service-call coverage and equity routing are running.
 
-> **Calculate your service-drive recovery**
-> Our [Service Drive Calculator](https://www.visquanta.com/service-drive) shows what missed service calls and untriggered equity contacts are costing you per month. Pulled directly from the same model behind the case study results above.
+{{calculator:service-roi}}
 
 ## Real numbers: what 41 rooftops produced
 
