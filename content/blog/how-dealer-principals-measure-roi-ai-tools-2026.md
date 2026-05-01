@@ -83,7 +83,7 @@ Multiply: after-hours lead volume × the conversion delta × your average front-
 
 Every minute a salesperson, advisor, or BDC rep spends on data entry, routing, or chasing routine status calls is a minute they aren't selling or servicing. Quantify it.
 
-A traditional BDC requiring 2–3 hours of daily manual lead-entry and follow-up admin per rep costs a 10-person team **$50,000–75,000 a year** in labor overhead, before you count the opportunity cost of the deals those reps didn't work. Tools that capture that overhead — autonomous lead capture, automated follow-up sequences, voice agents handling status calls — recover that labor as either reduced headcount or redeployed selling time. Our [Seth Wadley case study](https://www.visquanta.com/case-studies/seth-wadley) shows how one 5-rooftop group handled 2,059 customer conversations in 60 days without adding BDC headcount, which is the time-recovered metric in concrete form.
+A traditional BDC requiring 2–3 hours of daily manual lead-entry and follow-up admin per rep costs a 10-person team **$50,000–75,000 a year** in labor overhead, before you count the opportunity cost of the deals those reps didn't work. Tools that capture that overhead — autonomous lead capture, automated follow-up sequences, voice agents handling status calls — recover that labor as either reduced headcount or redeployed selling time. One [5-rooftop auto group in central Oklahoma](https://www.visquanta.com/case-studies/seth-wadley) we work with handled 2,059 customer conversations in 60 days without adding BDC headcount — the time-recovered metric in concrete form.
 
 Multiply recovered hours by fully-loaded hourly cost. Cut it in half if you're being conservative. It's still a real number on your bottom line.
 
@@ -106,7 +106,7 @@ Track three things over a 90-day window after deploying a [reputation system](ht
 
 Service is where most stores quietly lose six-figure revenue. A missed service call at 7:45 a.m. before the advisor is on the floor is a customer who calls a competitor next. Equity contacts triggered from service appointments — the service-to-sales bridge — is another vein most stores leave underexploited.
 
-The numbers are dealer-specific but the size is consistent across our portfolio. Our [Grand Valley Auto case study](https://www.visquanta.com/case-studies/grand-valley-auto) closed $110k in 60 days at a single rural rooftop. [Patriot Chevrolet](https://www.visquanta.com/case-studies/patriot-chevrolet) generated $153k in the same window with small-town staffing. [Brookshire Hyundai](https://www.visquanta.com/case-studies/brookshire-hyundai) returned $238k from a single Texas rooftop. Numbers in that range are normal once service-call coverage and equity routing are running.
+The numbers are dealer-specific but the size is consistent across our portfolio. A [rural independent rooftop](https://www.visquanta.com/case-studies/grand-valley-auto) closed $110k in 60 days. A [small-town Chevrolet store](https://www.visquanta.com/case-studies/patriot-chevrolet) generated $153k in the same window with thin staffing. A [single Hyundai rooftop in Texas](https://www.visquanta.com/case-studies/brookshire-hyundai) returned $238k. Numbers in that range are normal once service-call coverage and equity routing are running.
 
 > **Calculate your service-drive recovery**
 > Our [Service Drive Calculator](https://www.visquanta.com/service-drive) shows what missed service calls and untriggered equity contacts are costing you per month. Pulled directly from the same model behind the case study results above.
@@ -127,10 +127,10 @@ Cumulative across the [full client base](https://www.visquanta.com/case-studies)
 
 Compare this against named outcomes from stores running the [Auto Master Suite](https://www.visquanta.com/auto-master-suite) bundle:
 
-- **[Seth Wadley Auto Group](https://www.visquanta.com/case-studies/seth-wadley)** — 5 rooftops in central Oklahoma: $1.29M attributed revenue, 37 confirmed sales, 2,059 AI-handled customer conversations across Chevrolet and Ford franchises (60-day window).
-- **[Kansas City Hyundai](https://www.visquanta.com/case-studies/kansas-city-hyundai)** — single rooftop in one of the most competitive Hyundai metros in the Midwest: $271k revenue, 11 sales, 722 AI-handled contacts (60 days).
-- **[Drive 'n Motion](https://www.visquanta.com/case-studies/drive-n-motion-colorado)** — 3 independent Colorado rooftops, proof the playbook works off-franchise: $228k revenue, 13 sales (60 days).
-- **[Corwin Ford Nampa](https://www.visquanta.com/case-studies/corwin-ford-nampa)** — single Idaho Ford store: $125k revenue at a $41k average deal value (60 days).
+- **[5-rooftop auto group in central Oklahoma](https://www.visquanta.com/case-studies/seth-wadley)** — Chevrolet and Ford franchises running on one playbook: $1.29M attributed revenue, 37 confirmed sales, 2,059 AI-handled customer conversations (60-day window).
+- **[Hyundai rooftop in Kansas City](https://www.visquanta.com/case-studies/kansas-city-hyundai)** — single store in one of the most competitive Hyundai metros in the Midwest: $271k revenue, 11 sales, 722 AI-handled contacts (60 days).
+- **[3 independent Colorado rooftops](https://www.visquanta.com/case-studies/drive-n-motion-colorado)** — proof the playbook works off-franchise: $228k revenue, 13 sales (60 days).
+- **[Ford store in Nampa, Idaho](https://www.visquanta.com/case-studies/corwin-ford-nampa)** — single rooftop, every lead answered instantly: $125k revenue at a $41k average deal value (60 days).
 
 The pattern is consistent. The dollar amounts are not theoretical.
 
