@@ -106,6 +106,8 @@ Service is where most stores quietly lose six-figure revenue. A missed service c
 
 The numbers are dealer-specific but the size is consistent across our portfolio. A [rural independent rooftop](https://www.visquanta.com/case-studies/grand-valley-auto) closed $110k in 60 days. A [small-town Chevrolet store](https://www.visquanta.com/case-studies/patriot-chevrolet) generated $153k in the same window with thin staffing. A [single Hyundai rooftop in Texas](https://www.visquanta.com/case-studies/brookshire-hyundai) returned $238k. Numbers in that range are normal once service-call coverage and equity routing are running.
 
+If you want to hear what a service-call coverage tool actually sounds like answering an inbound call, the [service drive page](https://www.visquanta.com/service-drive) has a live voice agent widget — click it, talk to it, and you'll hear the same agent your customers would.
+
 {{calculator:service-roi}}
 
 ## Real numbers: what 41 rooftops produced
