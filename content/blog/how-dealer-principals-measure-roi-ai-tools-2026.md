@@ -144,7 +144,7 @@ The full stack:
 
 For a mid-size store, total cost runs **3–5× the stated subscription** when everything is accounted for. A tool with a $1,500/month invoice often lands at $60,000–90,000 a year in fully-loaded cost. That is your real baseline. The annual value side has to clear it cleanly to justify renewal — and a bundled platform like the [Auto Master Suite](https://www.visquanta.com/auto-master-suite), where speed-to-lead, reactivation, reputation, and service coverage share one integration and one admin overhead, often clears it more easily than four separate point tools.
 
-## The four-step calculator: run this on Monday morning
+## How to calculate AI tool ROI in four steps
 
 You do not need a finance team or a quarter of clean data to run this. You need four numbers, an hour, and a spreadsheet.
 
@@ -172,17 +172,22 @@ Five financial metrics — incremental revenue, time recovered, reactivation rev
 
 ## Frequently Asked Questions
 
-**How long does it take to measure tool ROI accurately?**
+### How long does it take to measure tool ROI accurately?
+
 A defensible first-pass calculation needs 90 days of lead and conversion data and roughly an hour to build the spreadsheet. A confident steady-state read takes two full quarters of data — one quarter to baseline before the tool, one to measure with it deployed. After that, the math holds and you only need to refresh inputs quarterly.
 
-**What's the most common mistake dealerships make when calculating ROI?**
+### What's the most common mistake dealerships make when calculating ROI?
+
 Anchoring on subscription fee as total cost. The subscription is typically 20–35% of fully-loaded cost once you add integration, training, internal admin time, and oversight. Skipping those line items makes any tool look more profitable than it actually is.
 
-**Should I trust vendor-reported ROI numbers?**
+### Should I trust vendor-reported ROI numbers?
+
 Use them as directional, not as truth. Vendor case studies select for their best customers and best outcomes. Run your own math on your own data before signing or renewing. Our published [case studies](https://www.visquanta.com/case-studies) are full deployments at named rooftops — you can see the inputs and the numbers and apply the same model to your store.
 
-**Which tool category usually has the strongest ROI for a mid-size dealership?**
+### Which tool category usually has the strongest ROI for a mid-size dealership?
+
 Coverage tools — the ones that close after-hours and overflow gaps — almost always lead, because the after-hours lead volume at most stores is 35–45% of inbound and the conversion gap between fast and slow response is steep. [Reactivation engines](https://www.visquanta.com/lead-reactivation) come second when there's a dormant lead pool to work. [Reputation tools](https://www.visquanta.com/reputation-management) and [service-side recovery](https://www.visquanta.com/service-drive) tend to be slower-burn but durable.
 
-**How is this different from measuring CRM ROI?**
+### How is this different from measuring CRM ROI?
+
 Same framework, different scope. CRM ROI usually compares system cost against incremental sales attributable to the platform itself. Layered tools — voice agents, chat widgets, reactivation engines, reputation managers — sit on top of the CRM and produce revenue the CRM alone wouldn't. Apply the five metrics to each tool individually rather than to your stack as one bundle, or evaluate a unified platform like the [Auto Master Suite](https://www.visquanta.com/auto-master-suite) as a single line on your tool stack.

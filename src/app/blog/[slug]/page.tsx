@@ -388,6 +388,51 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         };
     })();
 
+    // HowTo Schema — extracted from post body HTML
+    //
+    // Parses any H2 section whose heading begins with "How to", then walks the
+    // following ordered list (<ol><li>...</li></ol>) and emits each <li> as
+    // a HowToStep. AI Overviews, Perplexity, and ChatGPT cite HowTo schema
+    // disproportionately when answering procedural queries — making numbered
+    // step content machine-readable directly improves citation surface.
+    // Silently skipped if no "How to" section + ordered list pair is present.
+    const howToSchema = ((): Record<string, unknown> | null => {
+        const html = post.html || '';
+        const howToMatch = html.match(/<h2[^>]*>([^<]*How to[^<]*)<\/h2>([\s\S]*?)(?=<h2|$)/i);
+        if (!howToMatch) return null;
+        const howToName = howToMatch[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+        const howToSection = howToMatch[2];
+        const olMatch = howToSection.match(/<ol[^>]*>([\s\S]*?)<\/ol>/i);
+        if (!olMatch) return null;
+        const liPattern = /<li[^>]*>([\s\S]*?)<\/li>/gi;
+        const steps: Array<{ name: string; text: string }> = [];
+        let m: RegExpExecArray | null;
+        let idx = 0;
+        while ((m = liPattern.exec(olMatch[1])) !== null) {
+            idx += 1;
+            const raw = m[1].trim();
+            // Use the first <strong> (or sentence) as the step name; full text as the body.
+            const strongMatch = raw.match(/<strong[^>]*>([\s\S]*?)<\/strong>/i);
+            const stepName = strongMatch
+                ? strongMatch[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
+                : raw.replace(/<[^>]+>/g, '').split(/[.!?]/)[0].trim().slice(0, 110) || `Step ${idx}`;
+            const stepText = raw.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+            if (stepText) steps.push({ name: stepName, text: stepText });
+        }
+        if (steps.length === 0) return null;
+        return {
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            'name': howToName,
+            'step': steps.map((s, i) => ({
+                '@type': 'HowToStep',
+                'position': i + 1,
+                'name': s.name,
+                'text': s.text,
+            })),
+        };
+    })();
+
     // Breadcrumb Schema
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
@@ -424,6 +469,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                />
+            )}
+            {howToSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
                 />
             )}
             <script
