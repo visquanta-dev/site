@@ -525,54 +525,90 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                 {(() => {
                                     const faqMatch = post.html.match(/<h2 id="faqs"[^>]*>.*?<\/h2>([\s\S]*)/i);
 
-                                    // FIX ISSUE 2: Strip duplicate H1 from content (since template has one)
+                                    // Strip duplicate H1 from content (template has one)
                                     let mainContentHtml = post.html.replace(/<h1[^>]*>.*?<\/h1>/i, '');
 
-                                    // Detect calculator markers and strip them from HTML
-                                    const calcMatches = [...mainContentHtml.matchAll(/(?:<p>)?\{\{(?:calculator|cta):([a-z-]+)\}\}(?:<\/p>)?/g)];
-                                    const calcTypes = calcMatches.map(m => m[1]);
-                                    mainContentHtml = mainContentHtml.replace(/(?:<p>)?\{\{(?:calculator|cta):[a-z-]+\}\}(?:<\/p>)?/g, '');
-
                                     let faqHtml = '';
-
                                     if (faqMatch) {
                                         mainContentHtml = mainContentHtml.substring(0, faqMatch.index);
                                         faqHtml = faqMatch[1];
                                     }
 
-                                    const paragraphs = mainContentHtml.split('</p>');
+                                    // Split content at calculator markers using the parser.
+                                    // Returns interleaved html/calculator segments in DOM order.
+                                    const segments = parseCalculatorMarkers(mainContentHtml);
+                                    const hasInlineMarkers = segments.some(s => s.type === 'calculator');
 
-                                    // If text is short, just show it
-                                    if (paragraphs.length < 8) {
-                                        return (
-                                            <>
+                                    if (hasInlineMarkers) {
+                                        // Per-section inline placement. Newsletter injects at paragraph 6
+                                        // of the first html segment if long enough. RelatedProducts at end.
+                                        // MidArticleCTA omitted — calculators are the mid-article hooks.
+                                        const rendered = segments.flatMap((seg, i) => {
+                                            if (seg.type === 'calculator') {
+                                                return [
+                                                    <BlogCalculatorEmbed key={`calc-${i}`} type={seg.calcType} />
+                                                ];
+                                            }
+                                            const segContent = seg.content;
+                                            if (i === 0) {
+                                                const segParagraphs = segContent.split('</p>');
+                                                if (segParagraphs.length > 7) {
+                                                    const before = segParagraphs.slice(0, 6).join('</p>') + '</p>';
+                                                    const after = segParagraphs.slice(6).join('</p>');
+                                                    return [
+                                                        <div
+                                                            key={`html-${i}-a`}
+                                                            suppressHydrationWarning
+                                                            className="blog-content"
+                                                            dangerouslySetInnerHTML={{ __html: before }}
+                                                        />,
+                                                        <InlineNewsletter key={`newsletter-${i}`} />,
+                                                        <div
+                                                            key={`html-${i}-b`}
+                                                            suppressHydrationWarning
+                                                            className="blog-content"
+                                                            dangerouslySetInnerHTML={{ __html: after }}
+                                                        />,
+                                                    ];
+                                                }
+                                            }
+                                            return [
                                                 <div
+                                                    key={`html-${i}`}
                                                     suppressHydrationWarning
                                                     className="blog-content"
-                                                    dangerouslySetInnerHTML={{ __html: mainContentHtml }}
+                                                    dangerouslySetInnerHTML={{ __html: segContent }}
                                                 />
-                                                {calcTypes.map((ct, i) => (
-                                                    <BlogCalculatorEmbed key={i} type={ct} />
-                                                ))}
+                                            ];
+                                        });
+
+                                        return (
+                                            <>
+                                                {rendered}
+                                                {BLOG_RELATED_PRODUCTS[slug] && (
+                                                    <RelatedProducts productSlugs={BLOG_RELATED_PRODUCTS[slug]} />
+                                                )}
                                             </>
                                         );
                                     }
 
-                                    // Injection Logic
-                                    // 1. Newsletter after paragraph 6
-                                    // 2. MidPageCTA at roughly 60% mark
+                                    // No markers — existing chunk logic (unchanged behavior)
+                                    const paragraphs = mainContentHtml.split('</p>');
+
+                                    if (paragraphs.length < 8) {
+                                        return (
+                                            <div
+                                                suppressHydrationWarning
+                                                className="blog-content"
+                                                dangerouslySetInnerHTML={{ __html: mainContentHtml }}
+                                            />
+                                        );
+                                    }
 
                                     const newsletterIndex = 6;
                                     const midPointIndex = Math.floor(paragraphs.length * 0.6);
-
-                                    // Create chunks
-                                    // 1. Start to Newsletter
                                     const chunk1 = paragraphs.slice(0, newsletterIndex).join('</p>') + '</p>';
-
-                                    // 2. Newsletter to Midpoint
                                     const chunk2 = paragraphs.slice(newsletterIndex, midPointIndex).join('</p>') + '</p>';
-
-                                    // 3. Midpoint to End
                                     const chunk3 = paragraphs.slice(midPointIndex).join('</p>');
 
                                     return (
@@ -582,30 +618,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                                 className="blog-content"
                                                 dangerouslySetInnerHTML={{ __html: chunk1 }}
                                             />
-
-                                            {/* INLINE NEWSLETTER */}
                                             <InlineNewsletter />
-
                                             <div
                                                 suppressHydrationWarning
                                                 className="blog-content"
                                                 dangerouslySetInnerHTML={{ __html: chunk2 }}
                                             />
-
                                             <MidArticleCTA />
-
-                                            {/* Calculator widgets from UltraPlan markers */}
-                                            {calcTypes.map((ct, i) => (
-                                                <BlogCalculatorEmbed key={i} type={ct} />
-                                            ))}
-
                                             <div
                                                 suppressHydrationWarning
                                                 className="blog-content"
                                                 dangerouslySetInnerHTML={{ __html: chunk3 }}
                                             />
-
-                                            {/* CONTEXTUAL PRODUCT CROSS-LINKING */}
                                             {BLOG_RELATED_PRODUCTS[slug] && (
                                                 <RelatedProducts productSlugs={BLOG_RELATED_PRODUCTS[slug]} />
                                             )}
