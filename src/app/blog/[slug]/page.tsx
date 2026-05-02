@@ -534,9 +534,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                         faqHtml = faqMatch[1];
                                     }
 
-                                    // Split content at calculator markers using the parser.
-                                    // Returns interleaved html/calculator segments in DOM order.
-                                    const segments = parseCalculatorMarkers(mainContentHtml);
+                                    // Inline parser: split at {{calculator:*}} / {{cta:*}} markers.
+                                    // Inlined here (not imported from BlogCalculatorEmbed) because that
+                                    // module is 'use client' — calling its exported util from a server
+                                    // component crosses the client boundary and throws at runtime.
+                                    const markerPattern = /(?:<p>)?\{\{(?:calculator|cta):([a-z-]+)\}\}(?:<\/p>)?/g;
+                                    type Segment = { type: 'html'; content: string } | { type: 'calculator'; calcType: string };
+                                    const segments: Segment[] = [];
+                                    let lastIndex = 0;
+                                    let match: RegExpExecArray | null;
+                                    while ((match = markerPattern.exec(mainContentHtml)) !== null) {
+                                        if (match.index > lastIndex) {
+                                            segments.push({ type: 'html', content: mainContentHtml.slice(lastIndex, match.index) });
+                                        }
+                                        segments.push({ type: 'calculator', calcType: match[1] });
+                                        lastIndex = match.index + match[0].length;
+                                    }
+                                    if (lastIndex < mainContentHtml.length) {
+                                        segments.push({ type: 'html', content: mainContentHtml.slice(lastIndex) });
+                                    }
+                                    if (segments.length === 0) {
+                                        segments.push({ type: 'html', content: mainContentHtml });
+                                    }
                                     const hasInlineMarkers = segments.some(s => s.type === 'calculator');
 
                                     if (hasInlineMarkers) {
