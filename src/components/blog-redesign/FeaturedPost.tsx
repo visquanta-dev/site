@@ -11,29 +11,39 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
     const { locale } = useLocale();
     if (!post) return null;
 
+    const useImageBackground = Boolean(post.featuredImage) && !post.hideHero;
+
     return (
         <Link href={localeLink(`/blog/${post.slug}`, locale)} className="group relative block w-full mb-32 h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
-            {/* Image Background with Parallax scale */}
-            <motion.div
-                className="absolute inset-0 z-0"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            >
-                <Image
-                    src={post.featuredImage}
-                    alt={post.title}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    className="opacity-80 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                    priority
-                    sizes="100vw"
-                />
-            </motion.div>
+            {useImageBackground ? (
+                <motion.div
+                    className="absolute inset-0 z-0"
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                >
+                    <Image
+                        src={post.featuredImage}
+                        alt={post.title}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        className="opacity-80 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                        priority
+                        sizes="100vw"
+                    />
+                </motion.div>
+            ) : (
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,116,4,0.18),transparent_32%),radial-gradient(circle_at_82%_22%,rgba(255,255,255,0.08),transparent_26%),linear-gradient(135deg,#050505_0%,#0d0a08_48%,#020202_100%)]" />
+                    <div className="absolute left-12 top-12 h-20 w-20 rounded-full border border-[#FF7404]/25" />
+                    <div className="absolute right-16 top-16 h-px w-64 bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
+                    <div className="absolute bottom-20 left-16 h-px w-80 bg-gradient-to-r from-[#FF7404]/50 via-white/10 to-transparent" />
+                </div>
+            )}
 
             {/* Subtle Gradient Overlays - Lightened */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#020202] via-transparent to-transparent group-hover:opacity-70 transition-opacity duration-700" />
-            <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#020202]/50 via-transparent to-transparent group-hover:opacity-50 transition-opacity duration-700" />
-            <div className="absolute inset-0 z-5 bg-[#020202]/20 group-hover:opacity-0 transition-opacity duration-700" />
+            <div className={`absolute inset-0 z-10 bg-gradient-to-t from-[#020202] transition-opacity duration-700 ${useImageBackground ? 'via-transparent to-transparent group-hover:opacity-70' : 'via-[#020202]/30 to-transparent'}`} />
+            <div className={`absolute inset-0 z-10 bg-gradient-to-r from-[#020202]/50 via-transparent to-transparent transition-opacity duration-700 ${useImageBackground ? 'group-hover:opacity-50' : ''}`} />
+            {useImageBackground && <div className="absolute inset-0 z-5 bg-[#020202]/20 group-hover:opacity-0 transition-opacity duration-700" />}
 
             {/* Noise Texture */}
             <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />

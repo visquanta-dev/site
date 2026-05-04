@@ -52,6 +52,7 @@ export interface BasePost {
     title: string;
   }>;
   author?: string;
+  hideHero?: boolean;
 }
 
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');

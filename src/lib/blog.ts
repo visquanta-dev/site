@@ -13,6 +13,7 @@ export interface BlogArticle {
     publishedAt: string;
     excerpt?: string;
     author?: string;
+    hideHero?: boolean;
 }
 
 // Single source of truth for post images to avoid visual drift
@@ -79,7 +80,8 @@ export async function getArticles(options?: {
         readTime: post.readingTime,
         publishedAt: post.createdAt,
         excerpt: post.metaDescription,
-        author: post.author
+        author: post.author,
+        hideHero: post.hideHero,
     }));
 }
 
