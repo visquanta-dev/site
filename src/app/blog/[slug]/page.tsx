@@ -727,19 +727,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     <div className="relative p-10 md:p-16 text-center">
                                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 mb-8">
                                             <TrendingUp className="w-4 h-4 text-[#FF7404]" />
-                                            <span className="text-[#FF7404] text-xs font-bold uppercase tracking-widest">Transform Your Dealership</span>
+                                            <span className="text-[#FF7404] text-xs font-bold uppercase tracking-widest">Audit Your Follow-Up</span>
                                         </div>
 
                                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 tracking-tight">
-                                            Ready to see it in action?
+                                            Find the revenue hiding in your lead process
                                         </h2>
                                         <p className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-                                            Join hundreds of high-performance dealerships using VisQuanta to automate their growth and maximize revenue.
+                                            See which leads are waiting too long, which follow-up tasks should be automated, and where your team should stay human.
                                         </p>
                                         <Link href={`${localePrefix}/book-demo`}>
                                             <button className="group px-10 py-5 bg-[#FF7404] hover:bg-[#ff8a2b] text-black font-black uppercase tracking-widest rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-[0_0_60px_-15px_rgba(255,116,4,0.5)] hover:shadow-[0_0_80px_-10px_rgba(255,116,4,0.6)]">
                                                 <span className="flex items-center gap-3">
-                                                    Request a Strategy Call
+                                                    Get a Follow-Up Audit
                                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                                 </span>
                                             </button>
