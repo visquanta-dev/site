@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { BlogArticle } from '@/lib/blog';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Clock, DollarSign, TimerReset } from 'lucide-react';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
 
@@ -37,6 +37,22 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                     <div className="absolute left-12 top-12 h-20 w-20 rounded-full border border-[#FF7404]/25" />
                     <div className="absolute right-16 top-16 h-px w-64 bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent" />
                     <div className="absolute bottom-20 left-16 h-px w-80 bg-gradient-to-r from-[#FF7404]/50 via-white/10 to-transparent" />
+                    <div className="absolute right-14 top-24 hidden w-[360px] lg:block">
+                        <div className="grid grid-cols-6 gap-3 opacity-45">
+                            {Array.from({ length: 30 }).map((_, i) => (
+                                <div
+                                    key={i}
+                                    className="h-px bg-gradient-to-r from-[#FF7404]/70 to-transparent"
+                                    style={{
+                                        opacity: 0.2 + ((i % 5) * 0.12),
+                                        transform: `translateY(${(i % 6) * 3}px)`,
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <div className="absolute right-20 top-36 hidden h-28 w-28 rounded-full border border-white/[0.07] lg:block" />
+                    <div className="absolute right-44 top-56 hidden h-2 w-2 rounded-full bg-[#FF7404] shadow-[0_0_24px_rgba(255,116,4,0.8)] lg:block" />
                 </div>
             )}
 
@@ -49,7 +65,7 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
             <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
             {/* Content Container */}
-            <div className="relative z-20 h-full flex flex-col justify-end p-8 md:p-16 max-w-[1400px] mx-auto">
+            <div className={`relative z-20 h-full flex flex-col p-8 md:p-16 max-w-[1400px] mx-auto ${useImageBackground ? 'justify-end' : 'justify-center pt-24 md:pt-20'}`}>
                 <div className="max-w-4xl">
                     {/* Badge */}
                     <motion.div
@@ -66,8 +82,31 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                         </span>
                     </motion.div>
 
+                    {!useImageBackground && (
+                        <div className="mb-7 flex flex-wrap gap-3">
+                            {[
+                                { label: 'BDC Cost Range', value: '$180K-$300K', icon: DollarSign },
+                                { label: 'Response Window', value: '60 sec', icon: TimerReset },
+                                { label: 'Read Time', value: `${post.readTime} min`, icon: Clock },
+                            ].map((metric) => (
+                                <span
+                                    key={metric.label}
+                                    className="inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-black/25 px-4 py-2.5 backdrop-blur-sm"
+                                >
+                                    <metric.icon className="h-4 w-4 text-[#FF7404]" />
+                                    <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500">
+                                        {metric.label}
+                                    </span>
+                                    <span className="text-sm font-bold text-white">
+                                        {metric.value}
+                                    </span>
+                                </span>
+                            ))}
+                        </div>
+                    )}
+
                     {/* Headline */}
-                    <h2 className="text-4xl md:text-6xl lg:text-[80px] font-bold text-white leading-[0.95] tracking-[-0.03em] mb-8 group-hover:text-[#FF7404] transition-colors duration-500">
+                    <h2 className={`${useImageBackground ? 'text-4xl md:text-6xl lg:text-[80px]' : 'text-4xl md:text-6xl lg:text-[72px]'} font-bold text-white leading-[0.98] tracking-[-0.03em] mb-8 group-hover:text-[#FF7404] transition-colors duration-500`}>
                         {post.title}
                     </h2>
 
@@ -76,9 +115,9 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                             {post.excerpt}
                         </p>
 
-                        <div className="flex items-center gap-3">
-                            <span className="text-sm font-bold uppercase tracking-[0.2em] text-white group-hover:text-[#FF7404] transition-colors">Read Article</span>
-                            <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#FF7404] group-hover:border-[#FF7404] group-hover:text-black transition-all duration-300">
+                        <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 transition-all duration-300 group-hover:border-[#FF7404]/45 group-hover:bg-[#FF7404]/10">
+                            <span className="text-sm font-bold uppercase tracking-[0.18em] text-white group-hover:text-[#FF7404] transition-colors">Read Article</span>
+                            <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#FF7404] group-hover:border-[#FF7404] group-hover:text-black transition-all duration-300">
                                 <ArrowUpRight className="w-5 h-5 transition-transform group-hover:rotate-45" />
                             </div>
                         </div>
