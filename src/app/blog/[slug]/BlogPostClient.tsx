@@ -70,11 +70,38 @@ export function ReadingProgress() {
 // --- Table of Contents Component ---
 export function TableOfContents() {
     const [headings, setHeadings] = useState<{ id: string; text: string; level: number }[]>([]);
+    const [sources, setSources] = useState<{ href: string; label: string; host: string }[]>([]);
     const [activeId, setActiveId] = useState<string>('');
 
     useEffect(() => {
-        // Parse headings from the content - updated selector to match page.tsx
-        const elements = Array.from(document.querySelectorAll('.blog-content h2, .blog-content h3'));
+        // Keep the rail editorial. H3-level detail made generated posts look
+        // like a debug outline instead of a readable article guide.
+        const elements = Array.from(document.querySelectorAll('.blog-content h2'));
+
+        const seenSourceUrls = new Set<string>();
+        const sourceData = Array.from(document.querySelectorAll('.blog-content a'))
+            .map((elem) => elem as HTMLAnchorElement)
+            .filter((anchor) => {
+                try {
+                    return anchor.hostname && anchor.hostname !== window.location.hostname;
+                } catch {
+                    return false;
+                }
+            })
+            .map((anchor) => {
+                const host = anchor.hostname.replace(/^www\./, '');
+                return {
+                    href: anchor.href,
+                    label: (anchor.textContent || host).replace(/\s+/g, ' ').trim(),
+                    host,
+                };
+            })
+            .filter((source) => {
+                if (seenSourceUrls.has(source.href)) return false;
+                seenSourceUrls.add(source.href);
+                return true;
+            })
+            .slice(0, 5);
 
         // Add IDs if missing
         const headingData = elements.map((elem, index) => {
@@ -94,6 +121,7 @@ export function TableOfContents() {
         });
 
         setHeadings(headingData);
+        setSources(sourceData);
 
         // Scroll Spy Logic
         const handleScroll = () => {
@@ -119,15 +147,16 @@ export function TableOfContents() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    if (headings.length === 0) return null;
+    if (headings.length === 0 && sources.length === 0) return null;
 
     return (
-        <div className="sticky top-32 pl-8 border-l border-white/5 hidden xl:block">
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-[#FF7404] mb-6 flex items-center gap-2">
-                <BarChart3 className="w-3 h-3" />
-                Report Structure
-            </h4>
-            <nav className="flex flex-col gap-3">
+        <div className="sticky top-32 hidden xl:block">
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.025] p-5 shadow-2xl shadow-black/20">
+                <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#FF7404] mb-4 flex items-center gap-2">
+                    <BarChart3 className="w-3.5 h-3.5" />
+                    Article Map
+                </h4>
+                <nav className="flex flex-col gap-2.5">
                 {headings.map((heading) => (
                     <button
                         key={heading.id}
@@ -135,14 +164,10 @@ export function TableOfContents() {
                             document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
                             setActiveId(heading.id);
                         }}
-                        className={`text-left text-sm transition-all duration-300 relative pl-4 ${activeId === heading.id
+                        className={`text-left text-[13px] leading-snug transition-all duration-300 relative pl-4 ${activeId === heading.id
                             ? 'text-white font-medium translate-x-1'
-                            : 'text-zinc-600 hover:text-zinc-400'
+                            : 'text-zinc-500 hover:text-zinc-300'
                             }`}
-                        style={{
-                            marginLeft: heading.level === 3 ? '12px' : '0px',
-                            fontSize: heading.level === 3 ? '13px' : '14px'
-                        }}
                     >
                         {activeId === heading.id && (
                             <motion.div
@@ -153,7 +178,35 @@ export function TableOfContents() {
                         {heading.text}
                     </button>
                 ))}
-            </nav>
+                </nav>
+
+                {sources.length > 0 && (
+                    <div className="mt-6 border-t border-white/[0.08] pt-5">
+                        <h4 className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-400">
+                            <ExternalLink className="h-3.5 w-3.5 text-[#FF7404]" />
+                            Sources Used
+                        </h4>
+                        <div className="flex flex-col gap-3">
+                            {sources.map((source) => (
+                                <a
+                                    key={source.href}
+                                    href={source.href}
+                                    target="_blank"
+                                    rel="nofollow noopener noreferrer"
+                                    className="group rounded-lg border border-white/[0.06] bg-black/20 px-3 py-2.5 transition-colors hover:border-[#FF7404]/30 hover:bg-[#FF7404]/[0.04]"
+                                >
+                                    <span className="block text-[12px] leading-snug text-zinc-300 group-hover:text-white">
+                                        {source.label}
+                                    </span>
+                                    <span className="mt-1 block truncate text-[11px] text-zinc-600 group-hover:text-zinc-500">
+                                        {source.host}
+                                    </span>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
