@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { ReactNode, useEffect, useState } from 'react';
+import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { CheckCircle2, ChevronRight, BarChart3, Clock, ArrowDown, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import { createRoot } from 'react-dom/client';
@@ -214,7 +214,8 @@ export function TableOfContents() {
 // --- Executive Summary Card ---
 // --- Executive Summary Card (Rotational Logic) ---
 interface ExecutiveSummaryProps {
-    summary: string; // fallback in case no random match (not really used in this new logic but good for prop compatibility)
+    summary: string;
+    slug?: string;
 }
 
 const BRIEF_VARIATIONS = [
@@ -300,81 +301,133 @@ const BRIEF_VARIATIONS = [
     }
 ];
 
-export function ExecutiveSummary({ summary }: ExecutiveSummaryProps) {
-    const [brief, setBrief] = useState(BRIEF_VARIATIONS[0]);
+const BRIEF_CTA_BY_ID: Record<number, { label: string; href: string }> = {
+    1: { label: "Explore Lead Reactivation", href: "/lead-reactivation" },
+    2: { label: "Fix Speed to Lead", href: "/speed-to-lead" },
+    3: { label: "Audit Service Calls", href: "/service-drive" },
+    4: { label: "Review Sales Automation", href: "/auto-master-suite" },
+    5: { label: "Tighten Response Time", href: "/speed-to-lead" },
+    6: { label: "Protect Reputation", href: "/reputation-management" },
+    7: { label: "Capture After Hours", href: "/website-widget" },
+    8: { label: "See AutoMaster Suite", href: "/auto-master-suite" },
+    9: { label: "Book Revenue Audit", href: "/book-demo" },
+    10: { label: "Measure Your Gap", href: "/book-demo" },
+};
+
+function stableBriefIndex(seed: string): number {
+    let hash = 0;
+    for (let i = 0; i < seed.length; i += 1) {
+        hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+    }
+    return hash % BRIEF_VARIATIONS.length;
+}
+
+export function ExecutiveSummary({ summary, slug = '' }: ExecutiveSummaryProps) {
+    const initialIndex = useMemo(
+        () => stableBriefIndex(`${slug}:${summary}`),
+        [slug, summary]
+    );
+    const [activeIndex, setActiveIndex] = useState(initialIndex);
+    const brief = BRIEF_VARIATIONS[activeIndex];
+    const cta = BRIEF_CTA_BY_ID[brief.id] ?? { label: "Book Revenue Audit", href: "/book-demo" };
+    const body = brief.id === 6
+        ? "4.8-star dealerships close 23% more sales. AI monitors and responds to reviews instantly across all platforms, protecting CSI and converting satisfied customers into advocates."
+        : brief.body;
 
     useEffect(() => {
-        // Simple random rotation on mount
-        const randomIndex = Math.floor(Math.random() * BRIEF_VARIATIONS.length);
-        setBrief(BRIEF_VARIATIONS[randomIndex]);
+        setActiveIndex(initialIndex);
+    }, [initialIndex]);
+
+    useEffect(() => {
+        const timer = window.setInterval(() => {
+            setActiveIndex((current) => (current + 1) % BRIEF_VARIATIONS.length);
+        }, 4000);
+
+        return () => window.clearInterval(timer);
     }, []);
 
     return (
-        <motion.div
+        <motion.aside
+            aria-label="Related dealership revenue opportunity"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mb-16 relative overflow-hidden rounded-[20px] bg-[#0F0F0F] border border-white/[0.06] p-8 md:p-10 shadow-2xl"
+            className="mb-16 relative overflow-hidden rounded-[20px] bg-[#0F0F0F] border border-white/[0.06] p-6 md:p-10 shadow-2xl"
         >
-            {/* Top glass gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
 
-            {/* Animated graphic in top right */}
             <div className="absolute top-0 right-0 p-8 opacity-20 pointer-events-none">
                 <div className="flex items-end gap-1 h-16">
-                    <motion.div
-                        animate={{ height: ["40%", "80%", "40%"] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-2 bg-[#FF7404] rounded-t-sm"
-                    />
-                    <motion.div
-                        animate={{ height: ["60%", "30%", "60%"] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                        className="w-2 bg-[#FF7404]/50 rounded-t-sm"
-                    />
-                    <motion.div
-                        animate={{ height: ["30%", "90%", "30%"] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                        className="w-2 bg-[#FF7404]/30 rounded-t-sm"
-                    />
+                    {[0, 1, 2].map((bar) => (
+                        <motion.div
+                            key={bar}
+                            animate={{ height: bar === 1 ? ["60%", "30%", "60%"] : ["35%", "85%", "35%"] }}
+                            transition={{ duration: 3.5 + bar, repeat: Infinity, ease: "easeInOut", delay: bar * 0.4 }}
+                            className="w-2 rounded-t-sm bg-[#FF7404]"
+                            style={{ opacity: 0.8 - bar * 0.2 }}
+                        />
+                    ))}
                 </div>
             </div>
 
             <div className="relative z-10 text-left">
-                <div className="flex items-center gap-3 mb-6">
-                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#FF7404]/10 text-[#FF7404] ring-1 ring-[#FF7404]/20">
-                        <CheckCircle2 className="w-4 h-4" />
-                    </span>
-                    <h3 className="text-xl md:text-2xl font-serif font-semibold text-white tracking-tight">
-                        {brief.title.replace('Executive Brief: ', '')}
-                    </h3>
-                </div>
-
-                <div className="space-y-6">
-                    <p className="text-lg md:text-xl text-zinc-300 leading-relaxed font-light max-w-2xl">
-                        {brief.body}
-                    </p>
-
-                    <div className="pt-6 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        <div className="flex flex-col gap-1">
-                            <span className="text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-semibold">Impact Area</span>
-                            <span className="text-sm font-medium text-white">{brief.impactArea}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-semibold">Implementation</span>
-                            <span className="text-sm font-medium text-white">{brief.implementation}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-semibold">ROI Timeline</span>
-                            <span className="text-sm font-bold text-[#FF7404]">{brief.roiTimeline}</span>
-                        </div>
+                <div className="mb-6 flex items-center gap-3">
+                    <div className="flex items-center gap-3">
+                        <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#FF7404]/10 text-[#FF7404] ring-1 ring-[#FF7404]/20">
+                            <CheckCircle2 className="w-4 h-4" />
+                        </span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#FF7404]">
+                            Dealership Growth System
+                        </span>
                     </div>
                 </div>
+
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={brief.id}
+                        initial={{ opacity: 0, y: 14 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -12 }}
+                        transition={{ duration: 0.45, ease: "easeOut" }}
+                        className="min-h-[250px] space-y-6"
+                    >
+                        <div className="space-y-4">
+                            <h3 className="text-xl md:text-2xl font-serif font-semibold text-white tracking-tight leading-tight">
+                                {brief.title.replace('Executive Brief: ', '')}
+                            </h3>
+                            <p className="text-base md:text-xl text-zinc-300 leading-relaxed font-light max-w-2xl">
+                                {body}
+                            </p>
+                        </div>
+
+                        <div className="pt-6 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <div className="flex flex-col gap-1">
+                                <span className="text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-semibold">Impact Area</span>
+                                <span className="text-sm font-medium text-white">{brief.impactArea}</span>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <span className="text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-semibold">Implementation</span>
+                                <span className="text-sm font-medium text-white">{brief.implementation}</span>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <span className="text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-semibold">ROI Timeline</span>
+                                <span className="text-sm font-bold text-[#FF7404]">{brief.roiTimeline}</span>
+                            </div>
+                        </div>
+
+                        <a
+                            href={cta.href}
+                            className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-[#FF7404]/30 bg-[#FF7404]/10 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#FF7404] transition-all hover:border-[#FF7404] hover:bg-[#FF7404] hover:text-black sm:w-auto sm:justify-start sm:text-xs sm:tracking-[0.14em]"
+                        >
+                            {cta.label}
+                            <ChevronRight className="h-3.5 w-3.5" />
+                        </a>
+                    </motion.div>
+                </AnimatePresence>
             </div>
 
-            {/* Bottom orange accent line */}
             <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#FF7404] via-[#FF7404]/20 to-transparent opacity-80" />
-        </motion.div>
+        </motion.aside>
     );
 }
 
