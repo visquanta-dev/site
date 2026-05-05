@@ -42,6 +42,30 @@ const AUTHORS: Record<string, Author> = {
       'Voice AI for sales use cases',
     ],
   },
+  'clint-annis': {
+    slug: 'clint-annis',
+    name: 'Clint Annis',
+    title: 'Service Drive Director of Implementations',
+    short_title: 'Service Drive Director of Implementations',
+    company: 'VisQuanta',
+    photo: '/team/clint-annis.png',
+    linkedin: '',
+    profile_url: 'https://www.visquanta.com/team#clint-annis',
+    credential_line:
+      'Service Drive Director of Implementations at VisQuanta. Contact: cannis@visquanta.com.',
+    bio: [
+      'Clint Annis is Service Drive Director of Implementations at VisQuanta, where he helps dealerships deploy service-drive workflows, voice-agent coverage, and fixed-ops automation in live rooftop environments.',
+      '',
+      'Clint works with service managers and implementation teams to turn missed-call, appointment, and follow-up gaps into measurable operating processes.',
+    ].join('\n'),
+    expertise: [
+      'Service drive implementation',
+      'Fixed operations workflows',
+      'Voice AI deployment',
+      'Dealership service operations',
+      'Customer follow-up process design',
+    ],
+  },
 };
 
 /**

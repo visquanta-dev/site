@@ -19,7 +19,7 @@ tags:
     title: Service Drive
   - slug: automation
     title: Automation
-author: william-voyles
+author: clint-annis
 entities:
   - name: Car dealership
     sameAs: 'https://en.wikipedia.org/wiki/Car_dealership'
@@ -29,8 +29,6 @@ entities:
     sameAs: 'https://en.wikipedia.org/wiki/Customer_experience'
 hide_hero: true
 ---
-![Service advisor desk inside a busy dealership service department](/images/service-center.jpg)
-
 Service departments rarely lose revenue because advisors do not care. They lose it because inbound demand arrives faster than a human desk can absorb it. Phones ring while advisors are writing repair orders. Customers ask for status updates while technicians need approvals. Follow-up work gets pushed behind the next person standing at the counter.
 
 That is the service capacity leak. It is not one missed call or one delayed message. It is the repeatable gap between the service demand your store creates and the bandwidth your team has available to capture it.
