@@ -1,0 +1,42 @@
+{
+  "minimums": {
+    "usableSources": 3,
+    "externalSourceLinks": 2,
+    "internalLinks": 2,
+    "faqQuestions": 3,
+    "freshnessMonths": 24
+  },
+  "internalHosts": [
+    "visquanta.com",
+    "www.visquanta.com"
+  ],
+  "genericAnchors": [
+    "click here",
+    "read more",
+    "learn more",
+    "source",
+    "here"
+  ],
+  "disallowedImageHints": [
+    "chart-hero",
+    "black-orange",
+    "text-only"
+  ],
+  "competitors": [
+    {
+      "label": "Numa",
+      "names": [
+        "Numa"
+      ],
+      "domains": [
+        "numa.com",
+        "www.numa.com",
+        "mynuma.com",
+        "www.mynuma.com",
+        "numa.ai",
+        "www.numa.ai"
+      ]
+    }
+  ]
+}
+
