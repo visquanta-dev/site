@@ -197,11 +197,12 @@ export default async function CABlogPostPage({ params }: PageProps) {
             )}
 
             {/* Main Content */}
-            <article className="relative pb-24 px-4">
+            <section className="relative pb-24 px-4">
                 <div className="max-w-6xl mx-auto grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-16">
                     <div className="max-w-4xl">
-                        <ExecutiveSummary summary={post.metaDescription} />
+                        <ExecutiveSummary summary={post.metaDescription} slug={slug} />
 
+                        <article>
                         <BlogPostClient delay={0.2}>
                             {enhancement?.executivePoV && (
                                 <ExpertInsight {...enhancement.executivePoV} />
@@ -271,6 +272,7 @@ export default async function CABlogPostPage({ params }: PageProps) {
                                 ))}
                             </div>
                         )}
+                        </article>
 
                         {/* Canadian Featured CTA Section */}
                         <div className="mt-24 relative overflow-hidden rounded-[2.5rem] border border-red-500/20 group">
@@ -336,7 +338,7 @@ export default async function CABlogPostPage({ params }: PageProps) {
                         </div>
                     </aside>
                 </div>
-            </article>
+            </section>
 
             <Footer />
         </main>

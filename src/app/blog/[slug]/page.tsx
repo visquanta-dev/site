@@ -503,7 +503,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             )}
 
             {/* Main Content Section */}
-            <article className="relative pb-20">
+            <section className="relative pb-20">
                 {/* Subtle ambient glow */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#FF7404]/[0.02] rounded-[100%] blur-[120px] pointer-events-none" />
 
@@ -512,9 +512,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         {/* Main Content Column */}
                         <div className="max-w-4xl">
                             {/* Executive Summary */}
-                            <ExecutiveSummary summary={post.metaDescription} />
+                            <ExecutiveSummary summary={post.metaDescription} slug={slug} />
 
                             {/* Article Body */}
+                            <article>
                             <BlogPostClient delay={0.2}>
                                 {enhancement?.executivePoV && (
                                     <ExpertInsight
@@ -713,6 +714,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     </div>
                                 </BlogPostClient>
                             )}
+                            </article>
 
                             {/* Premium CTA Section */}
                             <BlogPostClient delay={0.4}>
@@ -791,7 +793,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         </aside>
                     </div>
                 </div>
-            </article>
+            </section>
 
             <Footer />
         </main>
