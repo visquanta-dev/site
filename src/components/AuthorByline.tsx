@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Linkedin } from 'lucide-react';
+import { Mail, Linkedin } from 'lucide-react';
 import type { Author } from '@/lib/authors';
 
 interface AuthorBylineProps {
@@ -56,9 +56,22 @@ export default function AuthorByline({
           >
             {author.name}
           </a>
-          <span className="text-white/60 text-sm">
-            , {author.short_title} at {author.company}
+          <span className="text-white/30 text-sm" aria-hidden="true">
+            /
           </span>
+          <span className="text-white/60 text-sm">
+            {author.short_title}, {author.company}
+          </span>
+          {author.email && (
+            <a
+              href={`mailto:${author.email}`}
+              title={`Email ${author.name}`}
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-white/60 hover:border-[#FF7404]/60 hover:bg-[#FF7404]/10 hover:text-[#FF7404] transition-all"
+            >
+              <Mail className="w-3 h-3" />
+              {author.email}
+            </a>
+          )}
           {author.linkedin && (
             <a
               href={author.linkedin}

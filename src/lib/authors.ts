@@ -6,6 +6,7 @@ export interface Author {
   company: string;
   photo: string;
   linkedin: string;
+  email?: string;
   profile_url: string;
   credential_line: string;
   bio: string;
@@ -50,9 +51,10 @@ const AUTHORS: Record<string, Author> = {
     company: 'VisQuanta',
     photo: '/team/clint-annis.png',
     linkedin: '',
+    email: 'cannis@visquanta.com',
     profile_url: 'https://www.visquanta.com/team#clint-annis',
     credential_line:
-      'Service Drive Director of Implementations at VisQuanta. Contact: cannis@visquanta.com.',
+      'Leads service-drive implementations for dealership fixed-ops teams.',
     bio: [
       'Clint Annis is Service Drive Director of Implementations at VisQuanta, where he helps dealerships deploy service-drive workflows, voice-agent coverage, and fixed-ops automation in live rooftop environments.',
       '',
