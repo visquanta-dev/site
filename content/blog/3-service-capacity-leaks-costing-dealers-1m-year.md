@@ -4,7 +4,7 @@ slug: 3-service-capacity-leaks-costing-dealers-1m-year
 metaDescription: >-
   Only 17 of 100 service calls reach an advisor. See the 3 capacity leaks
   quietly costing franchise dealers $1M a year - and how to spot them.
-image: /images/blog/3-service-capacity-leaks-costing-dealers-1m-year/chart-hero.png
+image: /images/service-center.jpg
 readingTime: 15
 publishedAt: '2026-05-05'
 updatedAt: '2026-05-05'
