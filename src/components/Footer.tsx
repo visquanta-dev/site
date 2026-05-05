@@ -360,8 +360,6 @@ export default function Footer() {
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <Link href={localeLink('/trust', locale)} className="hover:text-white transition-colors">Trust Center</Link>
               <span className="w-1 h-1 rounded-full bg-white/20" />
-              <Link href={localeLink('/compliance', locale)} className="hover:text-white transition-colors">Compliance</Link>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
               <Link href={localeLink('/cookie-policy', locale)} className="hover:text-white transition-colors">Cookies</Link>
             </motion.div>
           </div>
