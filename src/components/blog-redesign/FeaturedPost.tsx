@@ -11,7 +11,10 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
     const { locale } = useLocale();
     if (!post) return null;
 
-    const useImageBackground = Boolean(post.featuredImage) && !post.hideHero;
+    // hideHero only suppresses the image inside the article page. The blog hub
+    // still needs the editorial photo behind the featured card.
+    const imageSrc = post.featuredImage || '/images/blog/default.jpg';
+    const useImageBackground = Boolean(imageSrc);
 
     return (
         <Link href={localeLink(`/blog/${post.slug}`, locale)} className="group relative block w-full mb-32 h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
@@ -22,11 +25,11 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                     <Image
-                        src={post.featuredImage}
+                        src={imageSrc}
                         alt={post.title}
                         fill
-                        style={{ objectFit: 'cover' }}
-                        className="opacity-80 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        className="opacity-100 saturate-[0.96] brightness-[0.92] transition-all duration-700 group-hover:scale-[1.015] group-hover:saturate-110 group-hover:brightness-100"
                         priority
                         sizes="100vw"
                     />
@@ -57,9 +60,9 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
             )}
 
             {/* Subtle Gradient Overlays - Lightened */}
-            <div className={`absolute inset-0 z-10 bg-gradient-to-t from-[#020202] transition-opacity duration-700 ${useImageBackground ? 'via-transparent to-transparent group-hover:opacity-70' : 'via-[#020202]/30 to-transparent'}`} />
-            <div className={`absolute inset-0 z-10 bg-gradient-to-r from-[#020202]/50 via-transparent to-transparent transition-opacity duration-700 ${useImageBackground ? 'group-hover:opacity-50' : ''}`} />
-            {useImageBackground && <div className="absolute inset-0 z-5 bg-[#020202]/20 group-hover:opacity-0 transition-opacity duration-700" />}
+            <div className={`absolute inset-0 z-10 bg-gradient-to-t transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/32 to-transparent' : 'from-[#020202] via-[#020202]/30 to-transparent'}`} />
+            <div className={`absolute inset-0 z-10 bg-gradient-to-r transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/42 to-transparent' : 'from-[#020202]/50 via-transparent to-transparent'}`} />
+            {useImageBackground && <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_82%_28%,transparent_0%,rgba(2,2,2,0.08)_46%,rgba(2,2,2,0.38)_100%)]" />}
 
             {/* Noise Texture */}
             <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
