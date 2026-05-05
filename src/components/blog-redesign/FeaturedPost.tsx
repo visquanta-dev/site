@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { BlogArticle } from '@/lib/blog';
-import { ArrowUpRight, Clock, DollarSign, TimerReset } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
 
@@ -11,10 +11,12 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
     const { locale } = useLocale();
     if (!post) return null;
 
-    const useImageBackground = Boolean(post.featuredImage) && !post.hideHero;
+    // hideHero only suppresses the image inside the article page. The hub still
+    // needs a strong editorial visual for the featured card.
+    const useImageBackground = Boolean(post.featuredImage);
 
     return (
-        <Link href={localeLink(`/blog/${post.slug}`, locale)} className="group relative block w-full mb-32 h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
+        <Link href={localeLink(`/blog/${post.slug}`, locale)} className="group relative block w-full mb-32 h-[78vh] min-h-[560px] max-h-[820px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
             {useImageBackground ? (
                 <motion.div
                     className="absolute inset-0 z-0"
@@ -25,8 +27,8 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                         src={post.featuredImage}
                         alt={post.title}
                         fill
-                        style={{ objectFit: 'cover' }}
-                        className="opacity-80 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        className="opacity-80 saturate-[0.9] transition-all duration-700 group-hover:opacity-95 group-hover:saturate-100"
                         priority
                         sizes="100vw"
                     />
@@ -56,10 +58,10 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                 </div>
             )}
 
-            {/* Subtle Gradient Overlays - Lightened */}
-            <div className={`absolute inset-0 z-10 bg-gradient-to-t from-[#020202] transition-opacity duration-700 ${useImageBackground ? 'via-transparent to-transparent group-hover:opacity-70' : 'via-[#020202]/30 to-transparent'}`} />
-            <div className={`absolute inset-0 z-10 bg-gradient-to-r from-[#020202]/50 via-transparent to-transparent transition-opacity duration-700 ${useImageBackground ? 'group-hover:opacity-50' : ''}`} />
-            {useImageBackground && <div className="absolute inset-0 z-5 bg-[#020202]/20 group-hover:opacity-0 transition-opacity duration-700" />}
+            {/* Editorial overlays: keep the photo visible while protecting text contrast. */}
+            <div className={`absolute inset-0 z-10 bg-gradient-to-t transition-opacity duration-700 ${useImageBackground ? 'from-[#020202] via-[#020202]/55 to-[#020202]/10' : 'from-[#020202] via-[#020202]/30 to-transparent'}`} />
+            <div className={`absolute inset-0 z-10 bg-gradient-to-r transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/95 via-[#020202]/72 to-[#020202]/20' : 'from-[#020202]/50 via-transparent to-transparent'}`} />
+            {useImageBackground && <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_78%_28%,transparent_0%,rgba(2,2,2,0.25)_42%,rgba(2,2,2,0.72)_100%)]" />}
 
             {/* Noise Texture */}
             <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -72,41 +74,21 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="flex items-center gap-4 mb-8"
+                        className="flex flex-wrap items-center gap-4 mb-8"
                     >
                         <span className="px-4 py-2 rounded-full bg-white text-black text-[11px] font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                             Featured Story
+                        </span>
+                        <span className="text-[#FF7404] text-[11px] font-bold uppercase tracking-[0.18em]">
+                            {post.category?.title || 'Industry Insights'}
                         </span>
                         <span className="text-white/60 text-sm font-medium tracking-wide">
                             {post.readTime} min read
                         </span>
                     </motion.div>
 
-                    {!useImageBackground && (
-                        <div className="mb-7 flex flex-wrap gap-3">
-                            {[
-                                { label: 'BDC Cost Range', value: '$180K-$300K', icon: DollarSign },
-                                { label: 'Response Window', value: '60 sec', icon: TimerReset },
-                                { label: 'Read Time', value: `${post.readTime} min`, icon: Clock },
-                            ].map((metric) => (
-                                <span
-                                    key={metric.label}
-                                    className="inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-black/25 px-4 py-2.5 backdrop-blur-sm"
-                                >
-                                    <metric.icon className="h-4 w-4 text-[#FF7404]" />
-                                    <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500">
-                                        {metric.label}
-                                    </span>
-                                    <span className="text-sm font-bold text-white">
-                                        {metric.value}
-                                    </span>
-                                </span>
-                            ))}
-                        </div>
-                    )}
-
                     {/* Headline */}
-                    <h2 className={`${useImageBackground ? 'text-4xl md:text-6xl lg:text-[80px]' : 'text-4xl md:text-6xl lg:text-[72px]'} font-bold text-white leading-[0.98] tracking-[-0.03em] mb-8 group-hover:text-[#FF7404] transition-colors duration-500`}>
+                    <h2 className={`${useImageBackground ? 'text-4xl md:text-6xl lg:text-[76px]' : 'text-4xl md:text-6xl lg:text-[72px]'} font-bold text-white leading-[0.98] tracking-[-0.03em] mb-8 max-w-5xl transition-colors duration-500 group-hover:text-[#FF7404]`}>
                         {post.title}
                     </h2>
 
