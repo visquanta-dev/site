@@ -341,7 +341,7 @@ export function ExecutiveSummary({ summary, slug = '' }: ExecutiveSummaryProps) 
     useEffect(() => {
         const timer = window.setInterval(() => {
             setActiveIndex((current) => (current + 1) % BRIEF_VARIATIONS.length);
-        }, 7000);
+        }, 4000);
 
         return () => window.clearInterval(timer);
     }, []);
@@ -352,7 +352,7 @@ export function ExecutiveSummary({ summary, slug = '' }: ExecutiveSummaryProps) 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mb-16 relative overflow-hidden rounded-[20px] bg-[#0F0F0F] border border-white/[0.06] p-8 md:p-10 shadow-2xl"
+            className="mb-16 relative overflow-hidden rounded-[20px] bg-[#0F0F0F] border border-white/[0.06] p-6 md:p-10 shadow-2xl"
         >
             <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
 
@@ -371,7 +371,7 @@ export function ExecutiveSummary({ summary, slug = '' }: ExecutiveSummaryProps) 
             </div>
 
             <div className="relative z-10 text-left">
-                <div className="mb-6 flex items-center justify-between gap-4">
+                <div className="mb-6 flex items-center gap-3">
                     <div className="flex items-center gap-3">
                         <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#FF7404]/10 text-[#FF7404] ring-1 ring-[#FF7404]/20">
                             <CheckCircle2 className="w-4 h-4" />
@@ -379,22 +379,6 @@ export function ExecutiveSummary({ summary, slug = '' }: ExecutiveSummaryProps) 
                         <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#FF7404]">
                             Dealership Growth System
                         </span>
-                    </div>
-
-                    <div className="flex items-center gap-1.5" aria-label="Brief carousel controls">
-                        {BRIEF_VARIATIONS.map((item, index) => (
-                            <button
-                                key={item.id}
-                                type="button"
-                                aria-label={`Show ${item.title.replace('Executive Brief: ', '')}`}
-                                aria-current={activeIndex === index ? 'true' : undefined}
-                                onClick={() => setActiveIndex(index)}
-                                className={`h-1.5 rounded-full transition-all ${activeIndex === index
-                                    ? 'w-6 bg-[#FF7404]'
-                                    : 'w-1.5 bg-white/20 hover:bg-white/40'
-                                    }`}
-                            />
-                        ))}
                     </div>
                 </div>
 
@@ -408,10 +392,10 @@ export function ExecutiveSummary({ summary, slug = '' }: ExecutiveSummaryProps) 
                         className="min-h-[250px] space-y-6"
                     >
                         <div className="space-y-4">
-                            <h3 className="text-xl md:text-2xl font-serif font-semibold text-white tracking-tight">
+                            <h3 className="text-xl md:text-2xl font-serif font-semibold text-white tracking-tight leading-tight">
                                 {brief.title.replace('Executive Brief: ', '')}
                             </h3>
-                            <p className="text-lg md:text-xl text-zinc-300 leading-relaxed font-light max-w-2xl">
+                            <p className="text-base md:text-xl text-zinc-300 leading-relaxed font-light max-w-2xl">
                                 {body}
                             </p>
                         </div>
@@ -433,7 +417,7 @@ export function ExecutiveSummary({ summary, slug = '' }: ExecutiveSummaryProps) 
 
                         <a
                             href={cta.href}
-                            className="inline-flex items-center gap-2 rounded-full border border-[#FF7404]/30 bg-[#FF7404]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-[#FF7404] transition-all hover:border-[#FF7404] hover:bg-[#FF7404] hover:text-black"
+                            className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-[#FF7404]/30 bg-[#FF7404]/10 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#FF7404] transition-all hover:border-[#FF7404] hover:bg-[#FF7404] hover:text-black sm:w-auto sm:justify-start sm:text-xs sm:tracking-[0.14em]"
                         >
                             {cta.label}
                             <ChevronRight className="h-3.5 w-3.5" />
