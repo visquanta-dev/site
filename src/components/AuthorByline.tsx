@@ -36,7 +36,7 @@ export default function AuthorByline({
       <a
         href={author.profile_url}
         className="block w-12 h-12 rounded-full overflow-hidden bg-zinc-800 flex-shrink-0 ring-1 ring-white/10 hover:ring-[#FF7404] transition-all"
-        aria-label={`${author.name} — ${author.short_title}`}
+        aria-label={`${author.name} - ${author.short_title}`}
       >
         <Image
           src={author.photo}
@@ -60,18 +60,8 @@ export default function AuthorByline({
             /
           </span>
           <span className="text-white/60 text-sm">
-            {author.short_title}, {author.company}
+            {author.short_title}
           </span>
-          {author.email && (
-            <a
-              href={`mailto:${author.email}`}
-              title={`Email ${author.name}`}
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-white/60 hover:border-[#FF7404]/60 hover:bg-[#FF7404]/10 hover:text-[#FF7404] transition-all"
-            >
-              <Mail className="w-3 h-3" />
-              {author.email}
-            </a>
-          )}
           {author.linkedin && (
             <a
               href={author.linkedin}
@@ -87,11 +77,30 @@ export default function AuthorByline({
         <p className="text-white/50 text-xs mt-1 leading-snug">
           {author.credential_line}
         </p>
-        <p className="text-white/40 text-xs mt-2">
-          Published {published}
-          {wasUpdated && ` · Updated ${updated}`}
-          {` · ${readingTime} min read`}
-        </p>
+        <div className="mt-2 flex items-center gap-2 text-xs text-white/40">
+          <span>Published {published}</span>
+          {wasUpdated && (
+            <>
+              <span className="text-white/20" aria-hidden="true">&middot;</span>
+              <span>Updated {updated}</span>
+            </>
+          )}
+          <span className="text-white/20" aria-hidden="true">&middot;</span>
+          <span>{readingTime} min read</span>
+          {author.email && (
+            <>
+              <span className="text-white/20" aria-hidden="true">&middot;</span>
+              <a
+                href={`mailto:${author.email}`}
+                title={`Email ${author.name}`}
+                aria-label={`Email ${author.name}`}
+                className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/45 transition-all hover:border-[#FF7404]/60 hover:bg-[#FF7404]/10 hover:text-[#FF7404]"
+              >
+                <Mail className="h-3.5 w-3.5" />
+              </a>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
