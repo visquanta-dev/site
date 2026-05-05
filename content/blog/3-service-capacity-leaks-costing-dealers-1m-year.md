@@ -1,9 +1,9 @@
 ---
-title: 3 Service Capacity Leaks Costing Dealers Revenue
+title: 3 Service Capacity Leaks Costing Dealers $1M a Year
 slug: 3-service-capacity-leaks-costing-dealers-1m-year
 metaDescription: >-
-  Service advisors are not the leak. See the 3 capacity gaps that cost fixed
-  ops revenue when phones, follow-up, and triage outrun the team.
+  NADA-cited research says dealers can lose about $1M a year from voicemail and
+  transfer failures. See the 3 service capacity leaks behind it.
 image: /images/service-center.jpg
 readingTime: 8
 publishedAt: '2026-05-05'
@@ -32,6 +32,8 @@ hide_hero: true
 Service departments rarely lose revenue because advisors do not care. They lose it because inbound demand arrives faster than a human desk can absorb it. Phones ring while advisors are writing repair orders. Customers ask for status updates while technicians need approvals. Follow-up work gets pushed behind the next person standing at the counter.
 
 That is the service capacity leak. It is not one missed call or one delayed message. It is the repeatable gap between the service demand your store creates and the bandwidth your team has available to capture it.
+
+NADA has cited research finding that dealerships lose about $1 million a year when voicemail follow-up and call transfers break down. That number is not just a phone problem. It is a capacity problem hiding inside the service drive. [NADA's service department analysis](https://www.nada.org/index.php/nada/nada-headlines/why-service-largest-single-influence-publics-perception-your-dealership) gives the source context.
 
 ### Key Takeaways
 
