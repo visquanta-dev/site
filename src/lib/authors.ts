@@ -47,7 +47,7 @@ const AUTHORS: Record<string, Author> = {
     slug: 'clint-annis',
     name: 'Clint Annis',
     title: 'Service Drive Director of Implementations',
-    short_title: 'Service Drive Director of Implementations',
+    short_title: 'Service Drive Implementation Lead',
     company: 'VisQuanta',
     photo: '/team/clint-annis.png',
     linkedin: '',
