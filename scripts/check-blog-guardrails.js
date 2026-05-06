@@ -163,6 +163,26 @@ function addIssue(issues, severity, guardrail, message) {
   issues.push({ severity, guardrail, message });
 }
 
+function getSourcePolicy(audit) {
+  const value = String(audit?.data?.source_policy || audit?.data?.sourcePolicy || '').toLowerCase();
+  return value.replace(/_/g, '-').trim();
+}
+
+function isLowSourcePolicy(audit) {
+  const policy = getSourcePolicy(audit);
+  return config.lowSourcePolicies.includes(policy);
+}
+
+function visibleNumericClaims(content) {
+  return content
+    .split(/\r?\n/)
+    .filter((line) => /\d/.test(line))
+    .filter((line) => !/\]\(https?:\/\//.test(line))
+    .filter((line) => !/^\s*[-*]\s*\[[ x]\]/i.test(line))
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
 function checkCompetitors({ content, frontmatter, links, audit, issues }) {
   const visibleText = [
     frontmatter.title,
@@ -237,7 +257,7 @@ function checkFrontmatter({ frontmatter, issues }) {
   }
 }
 
-function checkContent({ content, links, issues }) {
+function checkContent({ content, links, audit, issues }) {
   if (/^#\s+/m.test(content)) {
     addIssue(
       issues,
@@ -262,22 +282,49 @@ function checkContent({ content, links, issues }) {
     );
   }
 
-  if (sourceLinks.length < config.minimums.usableSources) {
+  const lowSourceAllowed = isLowSourcePolicy(audit);
+  const sourceMinimum = lowSourceAllowed
+    ? config.minimums.lowSourceExternalLinks
+    : config.minimums.usableSources;
+  const externalLinkMinimum = lowSourceAllowed
+    ? config.minimums.lowSourceExternalLinks
+    : config.minimums.externalSourceLinks;
+
+  if (sourceLinks.length < sourceMinimum) {
     addIssue(
       issues,
       'hard',
       'sources:count',
-      `Only ${sourceLinks.length} external source links found; minimum usable source count is ${config.minimums.usableSources}`
+      `Only ${sourceLinks.length} external source links found; minimum is ${sourceMinimum}`
+    );
+  } else if (lowSourceAllowed && sourceLinks.length < config.minimums.externalSourceLinks) {
+    addIssue(
+      issues,
+      'warn',
+      'sources:low-source-policy',
+      `Low-source policy "${getSourcePolicy(audit)}" allows ${sourceLinks.length} external source link(s); avoid unsupported numeric claims`
     );
   }
 
-  if (sourceLinks.length < config.minimums.externalSourceLinks) {
+  if (sourceLinks.length < externalLinkMinimum) {
     addIssue(
       issues,
       'hard',
       'links:external',
-      `Only ${sourceLinks.length} external source links found; minimum is ${config.minimums.externalSourceLinks}`
+      `Only ${sourceLinks.length} external source links found; minimum is ${externalLinkMinimum}`
     );
+  }
+
+  if (lowSourceAllowed && sourceLinks.length < config.minimums.externalSourceLinks) {
+    const numericClaims = visibleNumericClaims(content);
+    if (numericClaims.length > 0 && !hasOverride(audit, 'unsupported-numeric-claims')) {
+      addIssue(
+        issues,
+        'hard',
+        'claims:numeric',
+        `Low-source post contains numeric claims without visible source links or override: ${numericClaims.slice(0, 3).join(' | ')}`
+      );
+    }
   }
 
   for (const link of links) {
@@ -332,12 +379,33 @@ function checkAudit({ frontmatter, audit, issues }) {
   }
 
   const sources = Array.isArray(audit.data.sources) ? audit.data.sources : [];
-  if (sources.length < config.minimums.usableSources) {
+  const lowSourceAllowed = isLowSourcePolicy(audit);
+  const publicSources = sources.filter((source) => source.source_type !== 'competitor-research-only');
+  const sourceMinimum = lowSourceAllowed ? config.minimums.lowSourceExternalLinks : config.minimums.usableSources;
+
+  if (publicSources.length < sourceMinimum) {
     addIssue(
       issues,
       'hard',
       'sources:audit-count',
-      `Audit lists ${sources.length} sources; minimum is ${config.minimums.usableSources}`
+      `Audit lists ${publicSources.length} public source(s); minimum is ${sourceMinimum}`
+    );
+  } else if (lowSourceAllowed && publicSources.length < config.minimums.usableSources) {
+    const policy = getSourcePolicy(audit);
+    const competitorSignals = sources.filter((source) => source.source_type === 'competitor-research-only');
+    if (policy === 'competitor-signal' && competitorSignals.length === 0) {
+      addIssue(
+        issues,
+        'hard',
+        'sources:competitor-signal',
+        'Audit source_policy is competitor-signal but no source is marked competitor-research-only'
+      );
+    }
+    addIssue(
+      issues,
+      'warn',
+      'sources:low-source-policy',
+      `Audit uses source_policy "${policy}" with ${publicSources.length} public source(s)`
     );
   }
 
@@ -345,6 +413,10 @@ function checkAudit({ frontmatter, audit, issues }) {
   freshnessCutoff.setMonth(freshnessCutoff.getMonth() - config.minimums.freshnessMonths);
 
   for (const source of sources) {
+    if (source.source_type === 'competitor-research-only') {
+      continue;
+    }
+
     if (!source.published_at) {
       addIssue(
         issues,
@@ -383,7 +455,7 @@ function checkPost(filePath) {
 
   checkFrontmatter({ frontmatter, issues });
   checkCompetitors({ content, frontmatter, links, audit, issues });
-  checkContent({ content, links, issues });
+  checkContent({ content, links, audit, issues });
   checkAudit({ frontmatter, audit, issues });
 
   return {

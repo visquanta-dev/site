@@ -45,6 +45,15 @@
         "blocked"
       ]
     },
+    "source_policy": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "competitor-signal",
+        "operator-pov",
+        "strategic-pov"
+      ]
+    },
     "created_at": {
       "type": "string",
       "format": "date-time"
@@ -55,7 +64,6 @@
     },
     "sources": {
       "type": "array",
-      "minItems": 3,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -272,4 +280,3 @@
     }
   }
 }
-

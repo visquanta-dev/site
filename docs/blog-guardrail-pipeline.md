@@ -14,6 +14,7 @@ review the failure patterns, then wire the stable version into the portal.
    - Collect at least 3 usable non-competitor sources.
    - Default freshness window is 24 months.
    - Older sources require an explicit override when they are official benchmarks, regulatory/legal pages, evergreen definitions, historical context, or first-party docs with no newer equivalent.
+   - Exception: competitor-signal, operator-POV, and strategic-POV posts may publish with fewer public sources when the audit sets `source_policy` accordingly and the public draft avoids unsupported numeric claims.
 
 3. Source QA
    - Each source must support the topic, not merely contain one matching word.
@@ -28,6 +29,7 @@ review the failure patterns, then wire the stable version into the portal.
 5. Competitor guardrail
    - Research mode may use competitor material for ideas.
    - Publish mode must not include competitor links, competitor names, competitor screenshots, competitor image assets, or competitor citations.
+   - Competitor content may be stored in the audit as `source_type: competitor-research-only` when it is only a topic signal.
    - Competitor leakage is a hard fail unless manually approved.
 
 6. Content quality guardrail
@@ -42,6 +44,7 @@ review the failure patterns, then wire the stable version into the portal.
 8. Link guardrail
    - Require at least 2 internal links, with 3-5 preferred.
    - Require at least 2 external source links.
+   - Exception: low-source `source_policy` posts may have 0-1 public external links, but numeric/statistical claims must be visibly sourced or explicitly overridden.
    - Competitor links are a hard fail.
    - Broken links, weak affiliate links, and unrelated source links are hard fails.
    - Rewrite generic anchors like `click here`, `read more`, or `source`.
@@ -91,7 +94,7 @@ review the failure patterns, then wire the stable version into the portal.
 ## Publish Blockers
 
 - Competitor name, link, screenshot, image asset, or citation in publish output.
-- Fewer than 3 usable sources.
+- Fewer than 3 usable public sources unless the audit sets an allowed low-source `source_policy`.
 - Source older than 24 months without override.
 - Unsupported numeric claim.
 - Missing FAQ.
@@ -99,4 +102,3 @@ review the failure patterns, then wire the stable version into the portal.
 - Missing internal links.
 - Missing audit record.
 - Broken live page, failed build, failed deployment check, or missing post-publish verification.
-
