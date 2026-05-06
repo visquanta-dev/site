@@ -4,7 +4,7 @@ slug: best-crm-independent-used-car-dealers-2026
 metaDescription: >-
   78% of buyers purchase from the dealer that responds first. Compare CRM
   options for independent used car dealers closing 20-200 units a month in 2026.
-image: /images/wireframes/6.jpeg
+image: /images/platform/unified-dashboard.png
 readingTime: 15
 publishedAt: '2026-05-06'
 updatedAt: '2026-05-06'
