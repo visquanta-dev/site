@@ -1,0 +1,108 @@
+{
+  "slug": "best-crm-independent-used-car-dealers-2026",
+  "topic_lane": "dealership-operations",
+  "status": "approved",
+  "source_policy": "competitor-signal",
+  "created_at": "2026-05-06T16:53:56.355Z",
+  "updated_at": "2026-05-06T16:53:56.355Z",
+  "sources": [
+    {
+      "title": "How Used Car Dealers Can Benefit from CRM Software | CDK Global",
+      "url": "https://www.cdkglobal.com/insights/how-used-car-dealers-can-benefit-crm-software",
+      "domain": "cdkglobal.com",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "Share This ![CDK Global](https://www.cdkglobal.com/_next/image?url=https%3A%2F%2Fcms.cdkglobal.com%2Fsites%2Fdefault%2Ffiles%2F2022-12%2Fcdk_icon.png&w=256&q=75) ByCDK Global Staff ### Recent Insights [![Dealership Loyalty Programs.",
+      "relevance_reason": "Used by UltraPlan as source src_001 for best-crm-independent-used-car-dealers-2026; 8 quote anchors were extracted for draft generation."
+    },
+    {
+      "title": "Best CRM for Independent Used Car Dealers (2026)",
+      "url": "https://owini.ai/post/best-crm-independent-used-car-dealers-2026",
+      "domain": "owini.ai",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "According to industry data, [78% of car buyers purchase from the first dealership that responds](https://owini.ai/post/car-dealer-lead-response-time-statistics-comprehensive-data-guide-2026).",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_002 for best-crm-independent-used-car-dealers-2026; not intended as a published outbound citation."
+    }
+  ],
+  "guardrails": {
+    "sources": {
+      "status": "warn",
+      "score": 33,
+      "notes": "competitor-signal policy: 1 public source and 1 research-only competitor signal included in the audit record."
+    },
+    "links": {
+      "status": "pass",
+      "notes": "12 internal links and 1 external source link detected in rendered markdown."
+    },
+    "visual": {
+      "status": "pass",
+      "notes": "Hero image was generated or selected by the image pipeline."
+    },
+    "seo_aeo": {
+      "status": "pass",
+      "score": 96,
+      "notes": "SEO/AEO gate score: 96."
+    },
+    "trace-back": {
+      "status": "pass",
+      "score": 0.8211337146302281,
+      "notes": "All 19 paragraphs traceable; avg rephrase distance 0.821"
+    },
+    "vertical-discipline": {
+      "status": "pass",
+      "notes": "opening anchors: dealer, dealership, sales floor, salesperson (+6)"
+    },
+    "anonymization": {
+      "status": "pass",
+      "notes": "0 client name leaks across 19 paragraphs + meta"
+    },
+    "slop-lexicon": {
+      "status": "pass",
+      "score": 8,
+      "notes": "regex: 0 hits across 19 paragraphs | slop-in-spirit: 8/10"
+    },
+    "originality": {
+      "status": "pass",
+      "score": 7,
+      "notes": "n-gram: worst 18% (< 20%) | originality judge: 7/10"
+    },
+    "fact-recheck": {
+      "status": "pass",
+      "score": 100,
+      "notes": "19/19 claims supported (100% >= 100%)"
+    }
+  },
+  "approvals": {
+    "sources": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-06T16:53:56.355Z",
+      "notes": "Source approval is generated from the UltraPlan research bundle and source resolver."
+    },
+    "draft": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-06T16:53:56.355Z",
+      "notes": "Draft approval is generated after the hard gate retry loop returns a passed report."
+    },
+    "seo_aeo": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-06T16:53:56.355Z",
+      "notes": "SEO/AEO approval is generated from the deterministic SEO/AEO gate result."
+    },
+    "visual": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-06T16:53:56.355Z",
+      "notes": "Visual approval is generated from the image pipeline output."
+    },
+    "final_publish": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-06T16:53:56.355Z",
+      "notes": "Automated publish gate passed for PR checks. Human publish approval still occurs by GitHub PR review and merge."
+    }
+  }
+}
