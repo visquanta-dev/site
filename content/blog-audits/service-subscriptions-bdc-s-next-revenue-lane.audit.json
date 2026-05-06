@@ -1,0 +1,109 @@
+{
+  "slug": "service-subscriptions-bdc-s-next-revenue-lane",
+  "topic_lane": "service-drive",
+  "status": "approved",
+  "source_policy": "competitor-signal",
+  "created_at": "2026-05-06T17:11:20.035Z",
+  "updated_at": "2026-05-06T17:11:20.035Z",
+  "sources": [
+    {
+      "title": "4 Ways To Turn Fixed Ops Challenges Into Financial Opportunities | CDK Global",
+      "url": "https://www.cdkglobal.com/insights/4-ways-turn-fixed-ops-challenges-financial-opportunities",
+      "domain": "cdkglobal.com",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "Many dealerships are shocked to discover as many as [16% of calls](https://www.cdkglobal.com/insights/4-ways-turn-fixed-ops-challenges-financial-opportunities#) are never answered, according to mobile advertising company Marchex.",
+      "relevance_reason": "Used by UltraPlan as source src_001 for subscription-services-fixed-ops-new-bdc-opportunities; 8 quote anchors were extracted for draft generation."
+    },
+    {
+      "title": "Subscription Services Automotive Industry Trends 2025 | BDC Guide | Strolid",
+      "url": "https://strolid.com/learn/subscription-services-fixed-ops-new-bdc-opportunities",
+      "domain": "strolid.com",
+      "published_at": "2026-01-12",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "Most service marketing delivers poor returns: **Direct Mail Campaigns:** Typically cost $1-2 per piece with 0.5-2% response rates, resulting in $50-200 cost per appointment.",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_002 for subscription-services-fixed-ops-new-bdc-opportunities; not intended as a published outbound citation."
+    }
+  ],
+  "guardrails": {
+    "sources": {
+      "status": "warn",
+      "score": 33,
+      "notes": "competitor-signal policy: 1 public source and 1 research-only competitor signal included in the audit record."
+    },
+    "links": {
+      "status": "pass",
+      "notes": "8 internal links and 1 external source link detected in rendered markdown."
+    },
+    "visual": {
+      "status": "pass",
+      "notes": "Hero image was generated or selected by the image pipeline."
+    },
+    "seo_aeo": {
+      "status": "pass",
+      "score": 96,
+      "notes": "SEO/AEO gate score: 96."
+    },
+    "trace-back": {
+      "status": "pass",
+      "score": 0.8795085685903927,
+      "notes": "All 15 paragraphs traceable; avg rephrase distance 0.880"
+    },
+    "vertical-discipline": {
+      "status": "pass",
+      "notes": "opening anchors: dealer, dealership, dealer principal, BDC (+5)"
+    },
+    "anonymization": {
+      "status": "pass",
+      "notes": "0 client name leaks across 15 paragraphs + meta"
+    },
+    "slop-lexicon": {
+      "status": "pass",
+      "score": 8,
+      "notes": "regex: 0 hits across 15 paragraphs | slop-in-spirit: 8/10"
+    },
+    "originality": {
+      "status": "pass",
+      "score": 7,
+      "notes": "n-gram: worst 13% (< 20%) | originality judge: 7/10"
+    },
+    "fact-recheck": {
+      "status": "pass",
+      "score": 100,
+      "notes": "15/15 claims supported (100% >= 100%)"
+    }
+  },
+  "approvals": {
+    "sources": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-06T17:11:20.035Z",
+      "notes": "Source approval is generated from the UltraPlan research bundle and source resolver."
+    },
+    "draft": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-06T17:11:20.035Z",
+      "notes": "Draft approval is generated after the hard gate retry loop returns a passed report."
+    },
+    "seo_aeo": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-06T17:11:20.035Z",
+      "notes": "SEO/AEO approval is generated from the deterministic SEO/AEO gate result."
+    },
+    "visual": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-06T17:11:20.035Z",
+      "notes": "Visual approval is generated from the image pipeline output."
+    },
+    "final_publish": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-06T17:11:20.035Z",
+      "notes": "Automated publish gate passed for PR checks. Human publish approval still occurs by GitHub PR review and merge."
+    }
+  }
+}
