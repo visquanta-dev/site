@@ -17,12 +17,14 @@ export interface BlogArticle {
 }
 
 // Single source of truth for post images to avoid visual drift
+const DEFAULT_BLOG_IMAGE = '/images/platform/unified-dashboard.png';
+
 export function getPostFeaturedImage(headline: string, defaultImage: string): string {
     if (defaultImage) return defaultImage;
 
     const h = headline || '';
     if (h.includes('CRM Database Reactivation')) {
-        return '/images/wireframes/ultimate-guide-crm-reactivation.jpeg';
+        return DEFAULT_BLOG_IMAGE;
     }
     if (h.includes('Third-Party Lead Providers')) {
         return '/images/wireframes/7_lead_providers.jpeg';
@@ -30,9 +32,9 @@ export function getPostFeaturedImage(headline: string, defaultImage: string): st
     if (h.includes('First Contact Rates') ||
         h.includes('AI in Auto Sales') ||
         h.includes('Lead Response Time')) {
-        return '/images/wireframes/6.jpeg';
+        return DEFAULT_BLOG_IMAGE;
     }
-    return '/images/blog/default.jpg';
+    return DEFAULT_BLOG_IMAGE;
 }
 
 // Single source of truth for fetching articles

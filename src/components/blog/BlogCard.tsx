@@ -24,7 +24,7 @@ interface BlogCardProps {
     className?: string; // Add className to props interface
 }
 
-const FALLBACK_IMAGE = '/images/wireframes/6.jpeg'; // High-quality automotive wireframe as default
+const FALLBACK_IMAGE = '/images/platform/unified-dashboard.png';
 
 const CATEGORY_MAPPING: Record<string, string> = {
     'Strategy': 'Strategy',

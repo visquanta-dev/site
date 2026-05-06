@@ -11,6 +11,10 @@ const config = JSON.parse(
 const args = process.argv.slice(2);
 const publishMode = args.includes('--publish');
 const allMode = args.includes('--all');
+const INTERNAL_DRAFT_ARTIFACTS = [
+  { pattern: /^###\s+Evidence Map\b/im, label: 'Evidence Map section' },
+  { pattern: /^\|\s*Dealer question\s*\|\s*Evidence anchor\s*\|\s*Source\s*\|/im, label: 'Evidence Map table' }
+];
 
 function readArg(name) {
   const index = args.indexOf(name);
@@ -258,6 +262,17 @@ function checkFrontmatter({ frontmatter, issues }) {
 }
 
 function checkContent({ content, links, audit, issues }) {
+  for (const artifact of INTERNAL_DRAFT_ARTIFACTS) {
+    if (artifact.pattern.test(content)) {
+      addIssue(
+        issues,
+        'hard',
+        'content:internal-artifact',
+        `Publish output contains internal drafting artifact: ${artifact.label}`
+      );
+    }
+  }
+
   if (/^#\s+/m.test(content)) {
     addIssue(
       issues,
