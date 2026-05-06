@@ -1,11 +1,17 @@
 {
   "minimums": {
     "usableSources": 3,
+    "lowSourceExternalLinks": 0,
     "externalSourceLinks": 2,
     "internalLinks": 2,
     "faqQuestions": 3,
     "freshnessMonths": 24
   },
+  "lowSourcePolicies": [
+    "competitor-signal",
+    "operator-pov",
+    "strategic-pov"
+  ],
   "internalHosts": [
     "visquanta.com",
     "www.visquanta.com"
@@ -39,4 +45,3 @@
     }
   ]
 }
-
