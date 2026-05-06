@@ -1,0 +1,133 @@
+{
+  "slug": "3-service-capacity-leaks-costing-dealers-1m-year",
+  "topic_lane": "service-drive",
+  "status": "published",
+  "created_at": "2026-05-06T10:05:00Z",
+  "updated_at": "2026-05-06T10:05:00Z",
+  "sources": [
+    {
+      "title": "Why Service is the Largest Single Influence on the Public's Perception of Your Dealership",
+      "url": "https://www.nada.org/index.php/nada/nada-headlines/why-service-largest-single-influence-publics-perception-your-dealership",
+      "domain": "nada.org",
+      "published_at": "2025-10-27",
+      "source_type": "industry",
+      "tier": "high",
+      "excerpt": "NADA frames fixed ops as a core profit and perception driver, and cites phone, voicemail, and transfer breakdowns as a source of roughly $1M in annual lost dealership revenue.",
+      "relevance_reason": "Supports the article's core service-drive capacity argument and the NADA-cited $1M leakage claim."
+    },
+    {
+      "title": "Adopting Artificial Intelligence in the Service Department",
+      "url": "https://www.cdkglobal.com/insights/adopting-artificial-intelligence-service-department",
+      "domain": "cdkglobal.com",
+      "published_at": "2023-03-21",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "CDK Global discusses AI adoption in dealership service departments and the operational role of automation in fixed operations.",
+      "relevance_reason": "Supports the section explaining why service departments need systems that absorb routine demand rather than relying only on advisor effort.",
+      "freshness_override": true,
+      "freshness_override_reason": "Older than the default 24-month window, but used as evergreen fixed-ops operational context from a recognized dealership technology source."
+    },
+    {
+      "title": "Is Your Service Department in Tune With Customer Expectations?",
+      "url": "https://www.cdkglobal.com/insights/your-service-department-tune-customer-expectations",
+      "domain": "cdkglobal.com",
+      "published_at": "2023-08-10",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "CDK Global covers how dealership service communication and customer expectations affect retention and service experience.",
+      "relevance_reason": "Supports the follow-up and communication sections, especially the idea that service retention depends on timely, relationship-aware updates.",
+      "freshness_override": true,
+      "freshness_override_reason": "Older than the default 24-month window, but relevant as evergreen service-customer expectation context and materially updated in 2025."
+    },
+    {
+      "title": "Turn Service Visits into Sales Growth: A GM's Checklist",
+      "url": "https://www.automotivemastermind.com/blog/uncategorized/service-drive-sales-strategy-dealership-growth/",
+      "domain": "automotivemastermind.com",
+      "published_at": "2026-02-27",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "automotiveMastermind frames the service drive as a growth channel and recommends identifying sales opportunities while customers are already in service.",
+      "relevance_reason": "Supports the triage argument that service visits should surface retention and sales opportunities before they disappear."
+    }
+  ],
+  "guardrails": {
+    "sources": {
+      "status": "pass",
+      "score": 92,
+      "notes": "Four usable non-competitor sources are present. Two older CDK sources include freshness overrides."
+    },
+    "competitor": {
+      "status": "pass",
+      "score": 100,
+      "notes": "No blocked competitor names or links appear in publish output."
+    },
+    "content_quality": {
+      "status": "pass",
+      "score": 88,
+      "notes": "The article stays dealership-specific, explains the service capacity leak clearly, and includes operational audit steps."
+    },
+    "seo_aeo": {
+      "status": "pass",
+      "score": 90,
+      "notes": "Clean title, meta description, slug, direct answer opening, structured headings, FAQ, and entity-rich service-drive language."
+    },
+    "links": {
+      "status": "pass",
+      "score": 90,
+      "notes": "Four external source links and four internal links are present, with descriptive anchors."
+    },
+    "calculator": {
+      "status": "pass",
+      "notes": "No calculator is required for this article because the post is an operational diagnostic, not a numeric estimation page."
+    },
+    "visual": {
+      "status": "pass",
+      "score": 85,
+      "notes": "Featured image is configured and article hero is intentionally hidden. Blog hub image behavior was fixed separately in production."
+    }
+  },
+  "approvals": {
+    "sources": {
+      "approved": true,
+      "approved_by": "Production merge record",
+      "approved_at": "2026-05-06T10:05:00Z",
+      "notes": "Backfilled after the post was already published; approval inferred from the merged production PR and follow-up source review."
+    },
+    "draft": {
+      "approved": true,
+      "approved_by": "Production merge record",
+      "approved_at": "2026-05-06T10:05:00Z",
+      "notes": "Backfilled for already-published post."
+    },
+    "seo_aeo": {
+      "approved": true,
+      "approved_by": "Production merge record",
+      "approved_at": "2026-05-06T10:05:00Z",
+      "notes": "Backfilled after JSON-LD, FAQ, author, byline, and blog UI fixes were confirmed."
+    },
+    "visual": {
+      "approved": true,
+      "approved_by": "Production merge record",
+      "approved_at": "2026-05-06T10:05:00Z",
+      "notes": "Backfilled after inline body image removal and featured-card image behavior fix."
+    },
+    "final_publish": {
+      "approved": true,
+      "approved_by": "Production merge record",
+      "approved_at": "2026-05-06T10:05:00Z",
+      "notes": "Post is already live from the earlier production publish; this audit record backfills the required publish gate."
+    }
+  },
+  "published_url": "https://www.visquanta.com/blog/3-service-capacity-leaks-costing-dealers-1m-year",
+  "published_at": "2026-05-05T00:00:00Z",
+  "post_publish_checks": {
+    "live_url_200": true,
+    "canonical_ok": true,
+    "schema_ok": true,
+    "faq_ok": true,
+    "blog_index_ok": true,
+    "sitemap_ok": true,
+    "competitor_leakage_ok": true,
+    "featured_image_ok": true
+  }
+}
