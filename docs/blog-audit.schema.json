@@ -1,0 +1,275 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.visquanta.com/schemas/blog-audit.schema.json",
+  "title": "VisQuanta Blog Audit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "topic_lane",
+    "status",
+    "sources",
+    "guardrails",
+    "approvals"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "minLength": 1
+    },
+    "topic_lane": {
+      "type": "string",
+      "enum": [
+        "service-drive",
+        "fixed-ops",
+        "lead-reactivation",
+        "database-reactivation",
+        "speed-to-lead",
+        "reputation-management",
+        "reviews-csi",
+        "crm",
+        "bdc",
+        "dealership-operations",
+        "automotive-industry",
+        "car-dealerships",
+        "paid-campaigns"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "needs-review",
+        "approved",
+        "published",
+        "blocked"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "url",
+          "domain",
+          "source_type",
+          "relevance_reason"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "domain": {
+            "type": "string",
+            "minLength": 1
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "official",
+              "industry",
+              "vendor",
+              "research",
+              "regulatory",
+              "news",
+              "competitor-research-only",
+              "other"
+            ]
+          },
+          "tier": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "excerpt": {
+            "type": "string"
+          },
+          "relevance_reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "freshness_override": {
+            "type": "boolean"
+          },
+          "freshness_override_reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "guardrails": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "warn",
+              "fail",
+              "overridden"
+            ]
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "notes": {
+            "type": "string"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "approvals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sources": {
+          "$ref": "#/$defs/approval"
+        },
+        "draft": {
+          "$ref": "#/$defs/approval"
+        },
+        "seo_aeo": {
+          "$ref": "#/$defs/approval"
+        },
+        "visual": {
+          "$ref": "#/$defs/approval"
+        },
+        "final_publish": {
+          "$ref": "#/$defs/approval"
+        }
+      }
+    },
+    "overrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "guardrail",
+          "reason",
+          "approved_by",
+          "approved_at"
+        ],
+        "properties": {
+          "guardrail": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "approved_by": {
+            "type": "string",
+            "minLength": 1
+          },
+          "approved_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "published_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "post_publish_checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "live_url_200": {
+          "type": "boolean"
+        },
+        "canonical_ok": {
+          "type": "boolean"
+        },
+        "schema_ok": {
+          "type": "boolean"
+        },
+        "faq_ok": {
+          "type": "boolean"
+        },
+        "blog_index_ok": {
+          "type": "boolean"
+        },
+        "sitemap_ok": {
+          "type": "boolean"
+        },
+        "competitor_leakage_ok": {
+          "type": "boolean"
+        },
+        "featured_image_ok": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "approved",
+        "approved_by",
+        "approved_at"
+      ],
+      "properties": {
+        "approved": {
+          "type": "boolean"
+        },
+        "approved_by": {
+          "type": "string"
+        },
+        "approved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+

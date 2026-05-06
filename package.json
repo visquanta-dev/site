@@ -10,6 +10,7 @@
     "generate-map": "npx tsx scripts/generate-redirect-map.ts",
     "check-links": "npm run generate-map && npx tsx scripts/check-internal-links.ts",
     "audit-blog": "npx tsx scripts/crawl-blog.ts",
+    "guard:blog": "node scripts/check-blog-guardrails.js",
     "build": "next build"
   },
   "dependencies": {

@@ -1,0 +1,84 @@
+name: Blog Guardrails
+
+on:
+  pull_request:
+    paths:
+      - "content/blog/**/*.md"
+      - "content/blog-audits/**"
+      - "docs/blog-audit.schema.json"
+      - "docs/blog-guardrail-pipeline.md"
+      - "scripts/blog-guardrails.config.json"
+      - "scripts/check-blog-guardrails.js"
+      - "package.json"
+      - "package-lock.json"
+  workflow_dispatch:
+    inputs:
+      post:
+        description: "Optional post path, for example content/blog/example.md"
+        required: false
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run blog guardrails for changed posts and audits
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git diff --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" -- \
+            'content/blog/**/*.md' \
+            'content/blog/*.md' \
+            'content/blog-audits/*.audit.json' \
+            | while IFS= read -r changed; do
+                case "$changed" in
+                  content/blog/*.md)
+                    echo "$changed"
+                    ;;
+                  content/blog-audits/*.audit.json)
+                    slug="$(basename "$changed" .audit.json)"
+                    post="content/blog/$slug.md"
+                    if [ -f "$post" ]; then
+                      echo "$post"
+                    else
+                      echo "::error file=$changed::Audit file has no matching blog post at $post"
+                      exit 1
+                    fi
+                    ;;
+                esac
+              done | sort -u > changed-blog-posts.txt
+
+          if [ ! -s changed-blog-posts.txt ]; then
+            echo "No changed top-level blog posts or matching audit records found; guardrail publish check skipped."
+            exit 0
+          fi
+
+          while IFS= read -r post; do
+            echo "Checking $post"
+            npm run guard:blog -- --post "$post" --publish
+          done < changed-blog-posts.txt
+
+      - name: Run blog guardrails for selected post
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.post != ''
+        run: npm run guard:blog -- --post "${{ github.event.inputs.post }}" --publish
+
+      - name: Manual run without post
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.post == ''
+        run: |
+          echo "No post input supplied. Re-run with post=content/blog/example.md."
