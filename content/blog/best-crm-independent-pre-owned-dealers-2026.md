@@ -4,7 +4,7 @@ slug: best-crm-independent-pre-owned-dealers-2026
 metaDescription: >-
   78% of buyers purchase from the dealer that responds first. Compare CRM
   options for independent pre-owned dealers closing 20-200 units a month in 2026.
-image: /images/platform/unified-dashboard.png
+image: /images/blog/best-crm-independent-pre-owned-dealers-2026/featured.png
 readingTime: 15
 publishedAt: '2026-05-06'
 updatedAt: '2026-05-06'
