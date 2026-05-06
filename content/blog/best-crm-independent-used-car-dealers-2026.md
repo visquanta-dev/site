@@ -4,7 +4,7 @@ slug: best-crm-independent-used-car-dealers-2026
 metaDescription: >-
   78% of buyers purchase from the dealer that responds first. Compare CRM
   options for independent used car dealers closing 20-200 units a month in 2026.
-image: /images/blog/best-crm-independent-used-car-dealers-2026/chart-hero.png
+image: /images/wireframes/6.jpeg
 readingTime: 15
 publishedAt: '2026-05-06'
 updatedAt: '2026-05-06'
@@ -40,7 +40,6 @@ The best CRM for an independent pre-owned dealer in 2026 is the one that gets a 
 - ### Lead capture, follow-up, and reactivation as one stack The math CDK Global lays out is brutal for anyone running a generic sales tool.
 - ### Closing-rate visibility by lead source Response time is only half the scorecard.
 
-![78% of buyers pick the first dealer to respond](/images/blog/best-crm-independent-used-car-dealers-2026/chart-hero.png)
 ## Why Does CRM Choice Decide Whether Independent Dealers Survive 2026?
 
 ### The first-response rule that decides every web lead
