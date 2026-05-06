@@ -1,9 +1,9 @@
 ---
-title: Best CRM for Independent Used Car Dealers in 2026
-slug: best-crm-independent-used-car-dealers-2026
+title: Best CRM for Independent Pre-Owned Dealers in 2026
+slug: best-crm-independent-pre-owned-dealers-2026
 metaDescription: >-
   78% of buyers purchase from the dealer that responds first. Compare CRM
-  options for independent used car dealers closing 20-200 units a month in 2026.
+  options for independent pre-owned dealers closing 20-200 units a month in 2026.
 image: /images/platform/unified-dashboard.png
 readingTime: 15
 publishedAt: '2026-05-06'
@@ -53,13 +53,13 @@ Having sold cars on the floor myself, the pattern we see across our rooftops is 
 | --- | --- | --- |
 | Why Does CRM Choice Decide Whether Independent Dealers Survive 2026? | The best CRM for an independent pre-owned dealer in 2026 is the one that gets a salesperson to the first inbound web lead before anyone else does. | Owini |
 | Why Does CRM Choice Decide Whether Independent Dealers Survive 2026? | Having sold cars on the floor myself, the pattern we see across our rooftops is simple. | Cdkglobal |
-| What Is a Used-Car Dealer CRM, and How Is It Different from Generic Sales Software? | A pre-owned dealer CRM is the system of record. | Cdkglobal |
-| What Is a Used-Car Dealer CRM, and How Is It Different from Generic Sales Software? | The math CDK Global lays out is brutal for anyone running a generic sales tool. | Cdkglobal |
+| What Is a Pre-Owned Dealer CRM, and How Is It Different from Generic Sales Software? | A pre-owned dealer CRM is the system of record. | Cdkglobal |
+| What Is a Pre-Owned Dealer CRM, and How Is It Different from Generic Sales Software? | The math CDK Global lays out is brutal for anyone running a generic sales tool. | Cdkglobal |
 | Why Are Independents Walking Away from VinSolutions, DealerSocket, and Elead? | The legacy CRM bill is not the real problem. | Owini |
 | Why Are Independents Walking Away from VinSolutions, DealerSocket, and Elead? | DriveCentric: the legacy CRM with a modern face DriveCentric is what an independent picks when ripping out VinSolutions feels worse than the bill. | Owini |
 
 
-## What Is a Used-Car Dealer CRM, and How Is It Different from Generic Sales Software?
+## What Is a Pre-Owned Dealer CRM, and How Is It Different from Generic Sales Software?
 
 ### The 10x database rule most independents miss
 
@@ -132,7 +132,7 @@ The reactivation math compounds on top. Owini's 2026 breakdown notes that even a
 Service retention is where the CRM math stops being a sales story and becomes a dealership story. Owini's 2026 breakdown puts the lifetime value of a retained service customer at more than $3,000 over five years. Multiply that across every buyer you close this year and the CRM stops being overhead. It becomes the retention system that funds [fixed ops](https://www.visquanta.com/service-drive). Owini also flags the ceiling: losing 70% or more of service customers by year three is the industry norm. Most legacy CRMs treat service as a separate module with a separate fee. A modern dealer CRM treats the sold customer and the service customer as one record, because they are.
 
 
-## Which CRM Should an Independent Used-Car Dealer Pick in 2026?
+## Which CRM Should an Independent Pre-Owned Dealer Pick in 2026?
 
 ### Pick DriveCentric if you want a polished legacy CRM
 
@@ -161,7 +161,7 @@ The demo screen that decides the CRM is the rep-level response-time dashboard, l
 
 ## Frequently Asked Questions
 
-### What should dealers take from best crm independent used car?
+### What should dealers take from best CRM for independent pre-owned dealers?
 
 The best CRM for an independent pre-owned dealer in 2026 is the one that gets a salesperson to the first inbound web lead before anyone else does.
 
@@ -186,4 +186,4 @@ Having sold cars on the floor myself, the pattern we see across our rooftops is 
 
 - [CRM reactivation guide](https://www.visquanta.com/blog/crm-database-reactivation-guide)
 - [why buyers prefer SMS](https://www.visquanta.com/blog/5-reasons-car-buyers-prefer-sms-over-phone-calls-from-dealerships)
-- [must-have AI tools for used car dealers](https://www.visquanta.com/blog/ai-tools-that-used-car-dealerships-cant-afford-to-ignore)
+- [must-have AI tools for pre-owned dealers](https://www.visquanta.com/blog/ai-tools-that-used-car-dealerships-cant-afford-to-ignore)
