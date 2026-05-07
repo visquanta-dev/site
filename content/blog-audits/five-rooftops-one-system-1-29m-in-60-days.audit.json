@@ -72,7 +72,7 @@
     "links": {
       "status": "pass",
       "score": 90,
-      "notes": "The post includes three internal VisQuanta links and four external contextual source links with descriptive anchors."
+      "notes": "The post includes internal VisQuanta links, contextual source links, and external channel links with descriptive anchors."
     },
     "calculator": {
       "status": "pass",
@@ -81,7 +81,7 @@
     "visual": {
       "status": "pass",
       "score": 85,
-      "notes": "Featured image is configured using the platform dashboard asset."
+      "notes": "The article hero is hidden and the post now uses an inline rooftop revenue chart instead of the platform dashboard screenshot."
     }
   },
   "approvals": {
@@ -107,7 +107,7 @@
       "approved": true,
       "approved_by": "Production publish review",
       "approved_at": "2026-05-07T00:00:00Z",
-      "notes": "Existing platform dashboard image is suitable for the case-study card."
+      "notes": "Dashboard screenshot was removed from the article view and replaced with a purpose-built rooftop revenue chart."
     },
     "final_publish": {
       "approved": true,

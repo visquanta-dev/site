@@ -2,11 +2,12 @@
 title: "Five Rooftops. One System. $1.29M in 60 Days."
 slug: "five-rooftops-one-system-1-29m-in-60-days"
 metaDescription: "An Oklahoma dealer group case study: five rooftops, 2,059 AI-handled contacts, 37 confirmed sales, and $1.29M in attributed revenue over 60 days."
-image: "/images/platform/unified-dashboard.png"
+image: "/images/blog/five-rooftops-one-system-1-29m-in-60-days/rooftop-revenue-visual.png"
 readingTime: 9
 publishedAt: "2026-05-07"
 updatedAt: "2026-05-07"
 published: true
+hide_hero: true
 category:
   slug: "case-studies"
   title: "Case Studies"
@@ -93,6 +94,8 @@ The public version of the case study labels the rooftops as R1 through R5.
 | R5 | Ford | 117 | 3 | $43,484 |
 | **Total** | **Mixed group** | **2,059** | **37** | **$1,295,924** |
 
+![60-day revenue by rooftop for the Oklahoma dealer group](/images/blog/five-rooftops-one-system-1-29m-in-60-days/rooftop-revenue-visual.png)
+
 The spread is important.
 
 This was not one store carrying the whole result. The two Chevrolet rooftops generated the largest share of revenue, but all five stores produced confirmed sales. The Ford rooftops also converted, even with different contact volume and different sales counts.
@@ -110,12 +113,12 @@ Those channels matter, but they do not solve the operating bottleneck by themsel
 In this case, the group was already receiving opportunities from the channels most dealerships recognize:
 
 - Manufacturer website forms.
-- Cars.com.
-- AutoTrader.
-- CARFAX.
-- Edmunds.
-- Facebook lead ads.
-- Website chat.
+- [Cars.com](https://www.cars.com/).
+- [AutoTrader](https://www.autotrader.com/cars-for-sale).
+- [CARFAX](https://www.carfax.com/cars-for-sale).
+- [Edmunds](https://www.edmunds.com/industry/support/ad-solutions.html).
+- [Facebook lead ads](https://www.facebook.com/business/ads/ad-objectives/lead-generation).
+- [Website chat](https://www.visquanta.com/website-widget).
 - Database reactivation campaigns.
 
 The win came from tightening the response layer underneath those channels.
