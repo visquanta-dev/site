@@ -26,5 +26,6 @@ export const BLOG_RELATED_PRODUCTS: Record<string, string[]> = {
     'ai-revives-dormant-crm-data': ['lead-reactivation', 'custom-campaigns'],
     'the-9pm-problem-dealership-revenue-leak': ['speed-to-lead', 'service-drive'],
     'why-dealerships-lose-leads-and-how-to-stop-the-bleed': ['speed-to-lead', 'lead-reactivation'],
-    'how-to-reduce-lead-response-time-in-auto-sales': ['speed-to-lead', 'lead-reactivation']
+    'how-to-reduce-lead-response-time-in-auto-sales': ['speed-to-lead', 'lead-reactivation'],
+    'five-rooftops-one-system-1-29m-in-60-days': ['lead-reactivation', 'speed-to-lead', 'auto-master-suite']
 };

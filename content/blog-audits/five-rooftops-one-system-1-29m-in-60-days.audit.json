@@ -1,0 +1,131 @@
+{
+  "slug": "five-rooftops-one-system-1-29m-in-60-days",
+  "topic_lane": "case-study",
+  "status": "publish-ready",
+  "created_at": "2026-05-07T00:00:00Z",
+  "updated_at": "2026-05-07T00:00:00Z",
+  "sources": [
+    {
+      "title": "Study finds many dealers fall short on key lead processes",
+      "url": "https://dastechnology.com/press/study-finds-many-dealers-fall-short-on-key-lead-processes",
+      "domain": "dastechnology.com",
+      "published_at": "2025-01-28",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "DAS Technology coverage of the 2025 Lead Response Study notes that many dealerships still respond slowly or miss basic lead-process steps.",
+      "relevance_reason": "Supports the article's broader context that response gaps and follow-up inconsistency remain a dealership operating problem."
+    },
+    {
+      "title": "2025 Automotive Dealer Benchmarks Report",
+      "url": "https://www.foureyes.io/blog/2025-automotive-dealer-benchmarks-report",
+      "domain": "foureyes.io",
+      "published_at": "2025-02-25",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "Foureyes analyzes dealership website and lead-process data, including CRM logging issues, mishandled leads, and follow-up timing.",
+      "relevance_reason": "Supports the article's argument that CRM discipline and follow-up consistency create measurable leakage in dealership sales processes."
+    },
+    {
+      "title": "New Study: How Dealership Communication Drives Financial Success",
+      "url": "https://www.cdkglobal.com/insights/new-study-how-dealership-communication-drives-financial-success",
+      "domain": "cdkglobal.com",
+      "published_at": "2026-04-14",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "CDK Global frames communication, KPI visibility, and cross-rooftop consistency as drivers of dealership financial performance.",
+      "relevance_reason": "Supports the article's multi-rooftop operating angle around shared standards, consistent communication, and group-level visibility."
+    },
+    {
+      "title": "The Short Life of Online Sales Leads",
+      "url": "https://hbr.org/2011/03/the-short-life-of-online-sales-leads",
+      "domain": "hbr.org",
+      "published_at": "2011-03-01",
+      "source_type": "research",
+      "tier": "high",
+      "excerpt": "Harvard Business Review summarizes research showing that many companies do not respond quickly enough to online sales inquiries.",
+      "relevance_reason": "Supports the speed-to-lead context behind the case study's instant-response operating layer.",
+      "freshness_override": true,
+      "freshness_override_reason": "Older than the default 24-month window, but used as evergreen foundational response-speed research rather than a current market-size claim."
+    }
+  ],
+  "guardrails": {
+    "sources": {
+      "status": "pass",
+      "score": 90,
+      "notes": "Four public contextual sources are listed and linked in the article. The proprietary revenue and contact figures are identified as VisQuanta internal conversion-tracking data."
+    },
+    "competitor": {
+      "status": "pass",
+      "score": 100,
+      "notes": "No blocked competitor names or competitor links appear in the publish output."
+    },
+    "content_quality": {
+      "status": "pass",
+      "score": 90,
+      "notes": "The article stays focused on the Oklahoma five-rooftop operating story, includes old-lead reactivation detail, and avoids exposing dealer identities."
+    },
+    "seo_aeo": {
+      "status": "pass",
+      "score": 88,
+      "notes": "Clean title, descriptive meta description, case-study category, entity-rich automotive language, methodology, and FAQ are present."
+    },
+    "links": {
+      "status": "pass",
+      "score": 90,
+      "notes": "The post includes three internal VisQuanta links and four external contextual source links with descriptive anchors."
+    },
+    "calculator": {
+      "status": "pass",
+      "notes": "No calculator is required for this case study because the post reports an anonymized observed deployment result."
+    },
+    "visual": {
+      "status": "pass",
+      "score": 85,
+      "notes": "Featured image is configured using the platform dashboard asset."
+    }
+  },
+  "approvals": {
+    "sources": {
+      "approved": true,
+      "approved_by": "Production publish review",
+      "approved_at": "2026-05-07T00:00:00Z",
+      "notes": "External sources are used only for public industry context; case-study results are internal platform-tracking figures."
+    },
+    "draft": {
+      "approved": true,
+      "approved_by": "Production publish review",
+      "approved_at": "2026-05-07T00:00:00Z",
+      "notes": "Draft reviewed after the wording change from playbook to system."
+    },
+    "seo_aeo": {
+      "approved": true,
+      "approved_by": "Production publish review",
+      "approved_at": "2026-05-07T00:00:00Z",
+      "notes": "FAQ, methodology, internal links, external source links, and product relevance are present."
+    },
+    "visual": {
+      "approved": true,
+      "approved_by": "Production publish review",
+      "approved_at": "2026-05-07T00:00:00Z",
+      "notes": "Existing platform dashboard image is suitable for the case-study card."
+    },
+    "final_publish": {
+      "approved": true,
+      "approved_by": "Production publish review",
+      "approved_at": "2026-05-07T00:00:00Z",
+      "notes": "Approved for PR merge once GitHub checks pass."
+    }
+  },
+  "published_url": "https://www.visquanta.com/blog/five-rooftops-one-system-1-29m-in-60-days",
+  "published_at": "2026-05-07T00:00:00Z",
+  "post_publish_checks": {
+    "live_url_200": false,
+    "canonical_ok": false,
+    "schema_ok": false,
+    "faq_ok": false,
+    "blog_index_ok": false,
+    "sitemap_ok": false,
+    "competitor_leakage_ok": true,
+    "featured_image_ok": true
+  }
+}
