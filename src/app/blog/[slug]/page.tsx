@@ -46,8 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
-    // Use standardized featured image mapping to avoid visual drift in social previews
-    const featuredImage = getPostFeaturedImage(post.headline, post.image);
+    const featuredImage = post.socialImage || getPostFeaturedImage(post.headline, post.image);
 
     // Ensure image URL is absolute
     const imageUrl = featuredImage?.startsWith('http')
@@ -95,10 +94,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             images: [
                 {
                     url: imageUrl,
-                    width: 1200,
-                    height: 630,
+                    width: 1600,
+                    height: 823,
                     alt: post.headline,
-                    type: 'image/jpeg',
+                    type: imageUrl.endsWith('.png') ? 'image/png' : 'image/jpeg',
                 }
             ],
             // Article-specific OG properties
@@ -251,9 +250,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     // path from frontmatter. Wrap in absolute URL + ImageObject so Google's
     // Rich Results validator sees proper Article-image signal instead of
     // rejecting a relative string.
-    const absoluteImageUrl = post.image.startsWith('http')
-        ? post.image
-        : `https://www.visquanta.com${post.image.startsWith('/') ? '' : '/'}${post.image}`;
+    const schemaImage = post.socialImage || post.image;
+    const absoluteImageUrl = schemaImage.startsWith('http')
+        ? schemaImage
+        : `https://www.visquanta.com${schemaImage.startsWith('/') ? '' : '/'}${schemaImage}`;
     const canonicalBlogUrl = `https://www.visquanta.com${localePrefix}/blog/${slug}`;
 
     const articleSchema = {

@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         const post = await getBlogPost(slug);
         if (!post) return {};
 
-        const featuredImage = getPostFeaturedImage(post.headline, post.image);
+        const featuredImage = post.socialImage || getPostFeaturedImage(post.headline, post.image);
         const imageUrl = featuredImage?.startsWith('http')
             ? featuredImage
             : featuredImage
@@ -79,7 +79,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
                 siteName: 'VisQuanta',
                 locale: 'en_CA',
                 type: 'article',
-                images: [{ url: imageUrl, width: 1200, height: 630 }],
+                images: [{
+                    url: imageUrl,
+                    width: 1600,
+                    height: 823,
+                    type: imageUrl.endsWith('.png') ? 'image/png' : 'image/jpeg',
+                }],
                 publishedTime: post.createdAt,
                 modifiedTime: post.updatedAt || post.createdAt,
                 authors: ['VisQuanta'],
@@ -116,9 +121,10 @@ export default async function CABlogPostPage({ params }: PageProps) {
     const relatedArticles = await getRelatedArticles(post.category?.slug || 'industry-insights', slug, 2);
     const author = getAuthor(post.author);
     const canonicalBlogUrl = `${baseUrl}/ca/blog/${slug}`;
-    const absoluteImageUrl = post.image.startsWith('http')
-        ? post.image
-        : `${baseUrl}${post.image.startsWith('/') ? '' : '/'}${post.image}`;
+    const schemaImage = post.socialImage || post.image;
+    const absoluteImageUrl = schemaImage.startsWith('http')
+        ? schemaImage
+        : `${baseUrl}${schemaImage.startsWith('/') ? '' : '/'}${schemaImage}`;
 
     const articleSchema = {
         '@context': 'https://schema.org',

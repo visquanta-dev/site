@@ -16,6 +16,7 @@ export interface BlogPost {
   metaDescription: string;
   html: string;
   image: string;
+  socialImage?: string;
   readingTime: number;
   createdAt: string;
   updatedAt: string;
@@ -40,6 +41,7 @@ export interface BasePost {
   headline: string;
   metaDescription: string;
   image: string;
+  socialImage?: string;
   readingTime: number;
   createdAt: string;
   updatedAt: string;
@@ -82,6 +84,7 @@ function parsePost(filename: string): BlogPost | null {
       metaDescription: data.metaDescription || '',
       html,
       image: data.image || '/images/blog/default.jpg',
+      socialImage: data.socialImage || data.social_image || data.ogImage || data.og_image,
       readingTime: data.readingTime || Math.ceil(content.split(/\s+/).length / 200),
       createdAt: data.publishedAt ? new Date(data.publishedAt).toISOString() : new Date().toISOString(),
       updatedAt: data.updatedAt
@@ -127,6 +130,7 @@ function seoIndexToBase(entry: SeoIndexEntry): BasePost {
     headline: entry.headline,
     metaDescription: entry.metaDescription,
     image: entry.image,
+    socialImage: (entry as { socialImage?: string }).socialImage,
     readingTime: entry.readingTime,
     createdAt: entry.createdAt,
     updatedAt: entry.updatedAt,
@@ -147,6 +151,7 @@ function seoArticleToPost(article: SeoArticle): BlogPost | null {
     metaDescription: article.metaDescription,
     html: article.html,
     image: article.image,
+    socialImage: (article as { socialImage?: string }).socialImage,
     readingTime: article.readingTime,
     createdAt: article.createdAt,
     updatedAt: article.updatedAt,
