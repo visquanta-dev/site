@@ -81,7 +81,7 @@
     "visual": {
       "status": "pass",
       "score": 85,
-      "notes": "The article hero is hidden and the post now uses an inline rooftop revenue chart instead of the platform dashboard screenshot."
+      "notes": "The article hero is hidden. The blog card uses a clean abstract five-rooftop visual, while the article body uses an inline rooftop revenue chart."
     }
   },
   "approvals": {
@@ -107,7 +107,7 @@
       "approved": true,
       "approved_by": "Production publish review",
       "approved_at": "2026-05-07T00:00:00Z",
-      "notes": "Dashboard screenshot was removed from the article view and replaced with a purpose-built rooftop revenue chart."
+      "notes": "Dashboard screenshot was removed. The card/social image is a text-free visual and the article body keeps the detailed rooftop revenue chart."
     },
     "final_publish": {
       "approved": true,
