@@ -2,7 +2,7 @@
 title: "Five Rooftops. One System. $1.29M in 60 Days."
 slug: "five-rooftops-one-system-1-29m-in-60-days"
 metaDescription: "An Oklahoma dealer group case study: five rooftops, 2,059 AI-handled contacts, 37 confirmed sales, and $1.29M in attributed revenue over 60 days."
-image: "/images/blog/five-rooftops-one-system-1-29m-in-60-days/featured-visual.png"
+image: "/images/blog/five-rooftops-one-system-1-29m-in-60-days/rooftop-revenue-visual.png"
 socialImage: "/images/blog/five-rooftops-one-system-1-29m-in-60-days/rooftop-revenue-visual.png"
 readingTime: 9
 publishedAt: "2026-05-07"
