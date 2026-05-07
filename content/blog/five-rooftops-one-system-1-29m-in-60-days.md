@@ -1,7 +1,7 @@
 ---
 title: "Five Rooftops. One System. $1.29M in 60 Days."
 slug: "five-rooftops-one-system-1-29m-in-60-days"
-metaDescription: "An anonymized Oklahoma dealer group case study: five rooftops, 2,059 AI-handled contacts, 37 confirmed sales, and $1.29M in attributed revenue over 60 days."
+metaDescription: "An Oklahoma dealer group case study: five rooftops, 2,059 AI-handled contacts, 37 confirmed sales, and $1.29M in attributed revenue over 60 days."
 image: "/images/platform/unified-dashboard.png"
 readingTime: 9
 publishedAt: "2026-05-07"
@@ -35,7 +35,7 @@ Web leads arrive from OEM sites, third-party marketplaces, Facebook lead ads, th
 
 Now multiply that by five rooftops.
 
-That was the operating problem for an anonymized family-owned auto group in Oklahoma. The group ran five Chevrolet and Ford rooftops across Norman, Oklahoma City, and Tulsa. Each store had its own lead flow, inboxes, website traffic, chats, appointment requests, and follow-up needs.
+That was the operating problem for an Oklahoma dealer group. The group ran five Chevrolet and Ford rooftops across Norman, Oklahoma City, and Tulsa. Each store had its own lead flow, inboxes, website traffic, chats, appointment requests, and follow-up needs.
 
 The group did not need a more complicated process. It needed [one consistent response system](https://www.visquanta.com/dealers/auto-groups) that could work across every rooftop without forcing the BDC to manually hold the whole machine together.
 
@@ -82,7 +82,7 @@ For a dealer group, the question is not whether someone on the team *could* work
 
 ## How the rooftops performed
 
-The public version of the case study keeps the rooftops anonymized as R1 through R5.
+The public version of the case study labels the rooftops as R1 through R5.
 
 | Rooftop | Brand | Contacts | Confirmed sales | Revenue |
 |---|---|---:|---:|---:|
@@ -171,7 +171,7 @@ How much revenue is already inside the lead flow you have, if every rooftop resp
 
 Revenue figures are pulled from the platform's conversion-tracking database and represent confirmed vehicle sales where VisQuanta's AI agents were the primary touchpoint on the customer's path to purchase.
 
-The performance window covered February 10 through April 9, 2026. Database reactivation figures are filtered to DBR-labeled conversion events inside the same window. The public version anonymizes dealer names, location IDs, and store identifiers. Rooftops are labeled R1 through R5 for readability.
+The performance window covered February 10 through April 9, 2026. Database reactivation figures are filtered to DBR-labeled conversion events inside the same window. Dealer names, location IDs, and store identifiers are withheld in the public version. Rooftops are labeled R1 through R5 for readability.
 
 For industry context, this case study is informed by DAS Technology's coverage of the [2025 Lead Response Study](https://dastechnology.com/press/study-finds-many-dealers-fall-short-on-key-lead-processes), Foureyes' [2025 Automotive Dealer Benchmarks Report](https://www.foureyes.io/blog/2025-automotive-dealer-benchmarks-report), CDK Global's study on [dealership communication and financial performance](https://www.cdkglobal.com/insights/new-study-how-dealership-communication-drives-financial-success), and Harvard Business Review's research on [online sales lead response speed](https://hbr.org/2011/03/the-short-life-of-online-sales-leads). Those sources support the broader operating context around lead handling, CRM discipline, and response consistency; the Oklahoma revenue and contact figures above come from VisQuanta's internal conversion tracking.
 
