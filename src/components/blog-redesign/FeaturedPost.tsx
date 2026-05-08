@@ -71,9 +71,10 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
             )}
 
             {/* Noise Texture */}
-            <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+            {!isWideGraphic && <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />}
 
             {/* Content Container */}
+            {!isWideGraphic && (
             <div className={`relative z-20 h-full flex flex-col p-8 md:p-16 max-w-[1400px] mx-auto ${useImageBackground ? 'justify-end' : 'justify-center pt-24 md:pt-20'}`}>
                 <div className="max-w-4xl">
                     {/* Badge */}
@@ -133,6 +134,7 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                     </div>
                 </div>
             </div>
+            )}
         </Link>
     )
 }
