@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
+import { getBlogImageObjectFit, getBlogImageObjectPosition, isReviewRepliesPost } from '@/lib/blog-image-presentation';
 
 interface BlogCardProps {
     article: {
@@ -42,6 +43,8 @@ const normalizeCategory = (cat?: string) => {
 
 export function BlogCard({ article, variant = 'default', className }: BlogCardProps) {
     const { locale } = useLocale();
+    const isWideGraphic = isReviewRepliesPost(article.slug, article.featuredImage);
+
     return (
         <Link href={localeLink(`/blog/${article.slug}`, locale)} className={cn("group block h-full", className)}>
             <article className={cn(
@@ -62,14 +65,21 @@ export function BlogCard({ article, variant = 'default', className }: BlogCardPr
                         src={article.featuredImage || FALLBACK_IMAGE}
                         alt={article.title}
                         fill
-                        style={{ objectFit: 'cover' }}
-                        className="opacity-80 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                        style={{
+                            objectFit: getBlogImageObjectFit(article.slug, article.featuredImage),
+                            objectPosition: getBlogImageObjectPosition(article.slug, article.featuredImage),
+                        }}
+                        className={`${isWideGraphic ? 'opacity-100' : 'opacity-80 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105'} transition-all duration-700`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
 
                     {/* Subtle Overlay - Lightened */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent z-10 group-hover:opacity-60 transition-opacity duration-700" />
-                    <div className="absolute inset-0 bg-[#020202]/10 group-hover:opacity-0 transition-opacity duration-700 z-5" />
+                    {!isWideGraphic && (
+                        <>
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent z-10 group-hover:opacity-60 transition-opacity duration-700" />
+                            <div className="absolute inset-0 bg-[#020202]/10 group-hover:opacity-0 transition-opacity duration-700 z-5" />
+                        </>
+                    )}
 
                     {/* Category Badge - Keep absolute only for horizontal/featured/compact if needed, or unify. 
                         Moving to body for default to match ServiceInsights */}

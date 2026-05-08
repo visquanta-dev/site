@@ -6,6 +6,7 @@ import { BlogArticle } from '@/lib/blog';
 import { ArrowUpRight, Clock, DollarSign, TimerReset } from 'lucide-react';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
+import { getBlogImageObjectFit, getBlogImageObjectPosition, isReviewRepliesPost } from '@/lib/blog-image-presentation';
 
 export default function FeaturedPost({ post }: { post: BlogArticle }) {
     const { locale } = useLocale();
@@ -15,6 +16,56 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
     // still needs the editorial photo behind the featured card.
     const imageSrc = post.featuredImage || '/images/blog/default.jpg';
     const useImageBackground = Boolean(imageSrc);
+    const isWideGraphic = isReviewRepliesPost(post.slug, imageSrc);
+    const isImageOnlyHero = isWideGraphic || post.title.toLowerCase().includes('review replies');
+
+    if (isImageOnlyHero) {
+        const categoryTitle = typeof post.category === 'object' ? post.category.title : post.category;
+        const date = post.publishedAt ? new Date(post.publishedAt) : null;
+        const formattedDate = date && !isNaN(date.getTime())
+            ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+            : null;
+
+        return (
+            <Link
+                href={localeLink(`/blog/${post.slug}`, locale)}
+                aria-label={`Read article: ${post.title}`}
+                className="group block w-full mb-32 overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08] transition-colors duration-500 hover:border-[#FF7404]/35"
+            >
+                <div className="relative aspect-[21/9] overflow-hidden">
+                    <Image
+                        src={imageSrc}
+                        alt={post.title}
+                        fill
+                        style={{ objectFit: getBlogImageObjectFit(post.slug, imageSrc), objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
+                        className="opacity-100 transition-transform duration-700"
+                        priority
+                        sizes="100vw"
+                    />
+                </div>
+                <div className="flex flex-col gap-5 border-t border-white/[0.08] p-6 md:flex-row md:items-center md:justify-between md:p-8">
+                    <div>
+                        <div className="mb-3 flex flex-wrap items-center gap-3">
+                            <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#FF7404]">
+                                {categoryTitle || 'Featured Story'}
+                            </span>
+                            {formattedDate && <span className="text-sm text-white/35">{formattedDate}</span>}
+                            <span className="text-sm text-white/35">{post.readTime} min read</span>
+                        </div>
+                        <h2 className="max-w-4xl text-2xl font-bold leading-tight text-white md:text-3xl">
+                            {post.title}
+                        </h2>
+                    </div>
+                    <span className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.18em] text-[#FF7404]">
+                        Read Article
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-all duration-300 group-hover:border-[#FF7404] group-hover:bg-[#FF7404] group-hover:text-black">
+                            <ArrowUpRight className="h-5 w-5" />
+                        </span>
+                    </span>
+                </div>
+            </Link>
+        );
+    }
 
     return (
         <Link href={localeLink(`/blog/${post.slug}`, locale)} className="group relative block w-full mb-32 h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
@@ -28,8 +79,8 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                         src={imageSrc}
                         alt={post.title}
                         fill
-                        style={{ objectFit: 'cover', objectPosition: 'center' }}
-                        className="opacity-100 saturate-[0.96] brightness-[0.92] transition-all duration-700 group-hover:scale-[1.015] group-hover:saturate-110 group-hover:brightness-100"
+                        style={{ objectFit: getBlogImageObjectFit(post.slug, imageSrc), objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
+                        className={`${isImageOnlyHero ? 'opacity-100' : 'opacity-100 saturate-[0.96] brightness-[0.92] group-hover:scale-[1.015] group-hover:saturate-110 group-hover:brightness-100'} transition-all duration-700`}
                         priority
                         sizes="100vw"
                     />
@@ -60,14 +111,19 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
             )}
 
             {/* Subtle Gradient Overlays - Lightened */}
-            <div className={`absolute inset-0 z-10 bg-gradient-to-t transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/32 to-transparent' : 'from-[#020202] via-[#020202]/30 to-transparent'}`} />
-            <div className={`absolute inset-0 z-10 bg-gradient-to-r transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/42 to-transparent' : 'from-[#020202]/50 via-transparent to-transparent'}`} />
-            {useImageBackground && <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_82%_28%,transparent_0%,rgba(2,2,2,0.08)_46%,rgba(2,2,2,0.38)_100%)]" />}
+            {!isImageOnlyHero && (
+                <>
+                    <div className={`absolute inset-0 z-10 bg-gradient-to-t transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/32 to-transparent' : 'from-[#020202] via-[#020202]/30 to-transparent'}`} />
+                    <div className={`absolute inset-0 z-10 bg-gradient-to-r transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/42 to-transparent' : 'from-[#020202]/50 via-transparent to-transparent'}`} />
+                    {useImageBackground && <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_82%_28%,transparent_0%,rgba(2,2,2,0.08)_46%,rgba(2,2,2,0.38)_100%)]" />}
+                </>
+            )}
 
             {/* Noise Texture */}
-            <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+            {!isImageOnlyHero && <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />}
 
             {/* Content Container */}
+            {!isImageOnlyHero && (
             <div className={`relative z-20 h-full flex flex-col p-8 md:p-16 max-w-[1400px] mx-auto ${useImageBackground ? 'justify-end' : 'justify-center pt-24 md:pt-20'}`}>
                 <div className="max-w-4xl">
                     {/* Badge */}
@@ -127,6 +183,7 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                     </div>
                 </div>
             </div>
+            )}
         </Link>
     )
 }

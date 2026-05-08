@@ -7,6 +7,7 @@ import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '@/lib/seobot';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
+import { getBlogImageObjectFit, getBlogImageObjectPosition, isReviewRepliesPost } from '@/lib/blog-image-presentation';
 
 interface BlogPageClientProps {
     posts: BlogPost[];
@@ -34,7 +35,10 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
 
     return (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            {posts.map((post, i) => (
+            {posts.map((post, i) => {
+                const isWideGraphic = isReviewRepliesPost(post.slug, post.image);
+
+                return (
                 <motion.article
                     key={post.id}
                     initial={{ opacity: 0, y: 20 }}
@@ -46,8 +50,12 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                     <Link href={localeLink(`/blog/${post.slug}`, locale)} className="block">
                         <div className="h-56 bg-zinc-950 relative overflow-hidden">
                             {/* Cinematic Overlay - Service Drive Style */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
-                            <div className="absolute inset-0 bg-black/20 z-1" />
+                            {!isWideGraphic && (
+                                <>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
+                                    <div className="absolute inset-0 bg-black/20 z-1" />
+                                </>
+                            )}
 
                             {post.image ? (
                                 <Image
@@ -55,10 +63,11 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                                     alt={post.headline}
                                     fill
                                     style={{
-                                        objectFit: 'cover',
-                                        filter: 'grayscale(100%) contrast(1.1) brightness(0.6)'
+                                        objectFit: getBlogImageObjectFit(post.slug, post.image),
+                                        objectPosition: getBlogImageObjectPosition(post.slug, post.image),
+                                        filter: isWideGraphic ? 'none' : 'grayscale(100%) contrast(1.1) brightness(0.6)'
                                     }}
-                                    className="opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000"
+                                    className={`${isWideGraphic ? 'opacity-100' : 'opacity-50 group-hover:opacity-100 group-hover:scale-105'} transition-all duration-1000`}
                                 />
                             ) : (
                                 <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
@@ -106,7 +115,8 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                         </Link>
                     </div>
                 </motion.article>
-            ))}
+                );
+            })}
         </div>
     );
 }
