@@ -20,21 +20,49 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
     const isImageOnlyHero = isWideGraphic || post.title.toLowerCase().includes('review replies');
 
     if (isImageOnlyHero) {
+        const categoryTitle = typeof post.category === 'object' ? post.category.title : post.category;
+        const date = post.publishedAt ? new Date(post.publishedAt) : null;
+        const formattedDate = date && !isNaN(date.getTime())
+            ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+            : null;
+
         return (
             <Link
                 href={localeLink(`/blog/${post.slug}`, locale)}
                 aria-label={`Read article: ${post.title}`}
-                className="group relative block w-full mb-32 aspect-[21/9] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08] transition-colors duration-500 hover:border-[#FF7404]/35"
+                className="group block w-full mb-32 overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08] transition-colors duration-500 hover:border-[#FF7404]/35"
             >
-                <Image
-                    src={imageSrc}
-                    alt={post.title}
-                    fill
-                    style={{ objectFit: getBlogImageObjectFit(post.slug, imageSrc), objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
-                    className="opacity-100 transition-transform duration-700"
-                    priority
-                    sizes="100vw"
-                />
+                <div className="relative aspect-[21/9] overflow-hidden">
+                    <Image
+                        src={imageSrc}
+                        alt={post.title}
+                        fill
+                        style={{ objectFit: getBlogImageObjectFit(post.slug, imageSrc), objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
+                        className="opacity-100 transition-transform duration-700"
+                        priority
+                        sizes="100vw"
+                    />
+                </div>
+                <div className="flex flex-col gap-5 border-t border-white/[0.08] p-6 md:flex-row md:items-center md:justify-between md:p-8">
+                    <div>
+                        <div className="mb-3 flex flex-wrap items-center gap-3">
+                            <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#FF7404]">
+                                {categoryTitle || 'Featured Story'}
+                            </span>
+                            {formattedDate && <span className="text-sm text-white/35">{formattedDate}</span>}
+                            <span className="text-sm text-white/35">{post.readTime} min read</span>
+                        </div>
+                        <h2 className="max-w-4xl text-2xl font-bold leading-tight text-white md:text-3xl">
+                            {post.title}
+                        </h2>
+                    </div>
+                    <span className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.18em] text-[#FF7404]">
+                        Read Article
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-all duration-300 group-hover:border-[#FF7404] group-hover:bg-[#FF7404] group-hover:text-black">
+                            <ArrowUpRight className="h-5 w-5" />
+                        </span>
+                    </span>
+                </div>
             </Link>
         );
     }
