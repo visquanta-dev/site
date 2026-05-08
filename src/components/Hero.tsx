@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { RequestDemoButton } from './CalendlyModal';
 import { Button } from "@/components/ui/button";
 import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
 import HeroDashboardPreview from './mobile/HeroDashboardPreview';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 
@@ -162,21 +161,6 @@ export default function Hero() {
                 {t('hero.cta_microcopy')}
               </motion.p>
             </div>
-
-            {/* Micro-Trust Signal */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-6 flex items-center gap-4"
-            >
-              <div className="flex gap-0.5">
-                {[1, 2, 3, 4, 5].map(i => (
-                  <Star key={i} className="w-4 h-4 text-[#FF7404] fill-[#FF7404]" />
-                ))}
-              </div>
-              <span className="text-sm text-white/60 font-medium">{t('hero.trusted_by')} <span className="text-white">{t('hero.trusted_count')}</span> {t('hero.trusted_suffix')}</span>
-            </motion.div>
 
             {/* Trust Signal */}
             <motion.div
