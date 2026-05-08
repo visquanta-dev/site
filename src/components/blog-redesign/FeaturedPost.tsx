@@ -19,6 +19,68 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
     const isWideGraphic = isReviewRepliesPost(post.slug, imageSrc);
     const isImageOnlyHero = isWideGraphic || post.title.toLowerCase().includes('review replies');
 
+    if (isImageOnlyHero) {
+        const categoryTitle = typeof post.category === 'object' ? post.category.title : post.category;
+        const date = post.publishedAt ? new Date(post.publishedAt) : null;
+        const formattedDate = date && !isNaN(date.getTime())
+            ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+            : null;
+
+        return (
+            <Link
+                href={localeLink(`/blog/${post.slug}`, locale)}
+                className="group relative block w-full mb-32 overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08] transition-colors duration-500 hover:border-[#FF7404]/35"
+            >
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <div className="relative aspect-[21/9] lg:aspect-auto lg:min-h-[540px] overflow-hidden bg-[#020202] border-b lg:border-b-0 lg:border-r border-white/[0.06]">
+                        <Image
+                            src={imageSrc}
+                            alt={post.title}
+                            fill
+                            style={{ objectFit: getBlogImageObjectFit(post.slug, imageSrc), objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
+                            className="opacity-100 transition-transform duration-700"
+                            priority
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                    </div>
+
+                    <div className="p-8 md:p-12 lg:p-14 flex flex-col justify-center">
+                        <div className="mb-6 flex flex-wrap items-center gap-3">
+                            <span className="px-3 py-1.5 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/25 text-[11px] font-bold uppercase tracking-[0.16em] text-[#FF7404]">
+                                {categoryTitle || 'Featured Story'}
+                            </span>
+                            {formattedDate && (
+                                <span className="text-sm font-medium text-white/40">
+                                    {formattedDate}
+                                </span>
+                            )}
+                            <span className="text-sm font-medium text-white/40">
+                                {post.readTime} min read
+                            </span>
+                        </div>
+
+                        <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-[1.04] mb-7 group-hover:text-[#FF7404] transition-colors duration-500">
+                            {post.title}
+                        </h2>
+
+                        <p className="text-lg text-white/55 leading-relaxed mb-10 max-w-2xl">
+                            {post.excerpt}
+                        </p>
+
+                        <div className="mt-auto pt-8 border-t border-white/[0.08] flex items-center justify-between gap-6">
+                            <span className="text-sm font-bold uppercase tracking-[0.18em] text-[#FF7404]">
+                                Read Article
+                            </span>
+                            <div className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-white transition-all duration-300 group-hover:bg-[#FF7404] group-hover:border-[#FF7404] group-hover:text-black">
+                                <ArrowUpRight className="w-5 h-5" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Link>
+        );
+    }
+
     return (
         <Link href={localeLink(`/blog/${post.slug}`, locale)} className="group relative block w-full mb-32 h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
             {useImageBackground ? (
