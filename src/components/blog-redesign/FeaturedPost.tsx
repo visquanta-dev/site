@@ -17,6 +17,7 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
     const imageSrc = post.featuredImage || '/images/blog/default.jpg';
     const useImageBackground = Boolean(imageSrc);
     const isWideGraphic = isReviewRepliesPost(post.slug, imageSrc);
+    const isImageOnlyHero = isWideGraphic || post.title.toLowerCase().includes('review replies');
 
     return (
         <Link href={localeLink(`/blog/${post.slug}`, locale)} className="group relative block w-full mb-32 h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
@@ -31,7 +32,7 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                         alt={post.title}
                         fill
                         style={{ objectFit: getBlogImageObjectFit(post.slug, imageSrc), objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
-                        className={`${isWideGraphic ? 'opacity-100' : 'opacity-100 saturate-[0.96] brightness-[0.92] group-hover:scale-[1.015] group-hover:saturate-110 group-hover:brightness-100'} transition-all duration-700`}
+                        className={`${isImageOnlyHero ? 'opacity-100' : 'opacity-100 saturate-[0.96] brightness-[0.92] group-hover:scale-[1.015] group-hover:saturate-110 group-hover:brightness-100'} transition-all duration-700`}
                         priority
                         sizes="100vw"
                     />
@@ -62,7 +63,7 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
             )}
 
             {/* Subtle Gradient Overlays - Lightened */}
-            {!isWideGraphic && (
+            {!isImageOnlyHero && (
                 <>
                     <div className={`absolute inset-0 z-10 bg-gradient-to-t transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/32 to-transparent' : 'from-[#020202] via-[#020202]/30 to-transparent'}`} />
                     <div className={`absolute inset-0 z-10 bg-gradient-to-r transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/42 to-transparent' : 'from-[#020202]/50 via-transparent to-transparent'}`} />
@@ -71,10 +72,10 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
             )}
 
             {/* Noise Texture */}
-            {!isWideGraphic && <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />}
+            {!isImageOnlyHero && <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />}
 
             {/* Content Container */}
-            {!isWideGraphic && (
+            {!isImageOnlyHero && (
             <div className={`relative z-20 h-full flex flex-col p-8 md:p-16 max-w-[1400px] mx-auto ${useImageBackground ? 'justify-end' : 'justify-center pt-24 md:pt-20'}`}>
                 <div className="max-w-4xl">
                     {/* Badge */}
