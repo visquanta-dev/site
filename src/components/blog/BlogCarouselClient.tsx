@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BlogPost } from '@/lib/seobot';
 import { getAuthor } from '@/lib/authors';
+import { getBlogImageObjectFit, getBlogImageObjectPosition, shouldHideBlogImageOverlay } from '@/lib/blog-image-presentation';
 
 interface BlogCarouselClientProps {
     posts: BlogPost[];
@@ -98,7 +99,18 @@ export default function BlogCarouselClient({
                             className="flex gap-8 overflow-x-auto scrollbar-hide px-8 lg:px-20 pb-4 snap-x snap-mandatory no-scrollbar"
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
-                            {posts.map((post, index) => (
+                            {posts.map((post, index) => {
+                                const imagePresentation = {
+                                    slug: post.slug,
+                                    title: post.headline,
+                                    image: post.image,
+                                    imageMode: post.imageMode,
+                                    imageFocalPoint: post.imageFocalPoint,
+                                    hideImageOverlay: post.hideImageOverlay,
+                                };
+                                const isImageOnly = shouldHideBlogImageOverlay(imagePresentation);
+
+                                return (
                                 <motion.article
                                     key={post.id}
                                     initial={{ opacity: 0, x: 40 }}
@@ -114,12 +126,16 @@ export default function BlogCarouselClient({
                                                 <img
                                                     src={post.image}
                                                     alt={post.headline}
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                                                    style={{
+                                                        objectFit: getBlogImageObjectFit(imagePresentation),
+                                                        objectPosition: getBlogImageObjectPosition(imagePresentation)
+                                                    }}
+                                                    className={`${isImageOnly ? '' : 'group-hover:scale-110'} w-full h-full transition-transform duration-700 ease-out`}
                                                 />
                                                 <div className="absolute top-5 right-5 px-4 py-2 bg-black/70 backdrop-blur-xl rounded-full border border-white/10">
                                                     <span className="text-[11px] font-medium text-white/90">{post.readingTime} min read</span>
                                                 </div>
-                                                <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/20 to-transparent" />
+                                                {!isImageOnly && <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/20 to-transparent" />}
                                             </div>
 
                                             <div className="p-8 relative flex-1 flex flex-col">
@@ -172,7 +188,8 @@ export default function BlogCarouselClient({
                                         </div>
                                     </Link>
                                 </motion.article>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -318,19 +335,38 @@ export default function BlogCarouselClient({
 
                 <div className="relative w-full mask-linear-fade">
                     <div className="flex gap-6 animate-infinite-scroll-slow w-max hover:[animation-play-state:paused] cursor-pointer py-4 no-scrollbar overflow-x-auto lg:overflow-visible">
-                        {[...posts, ...posts].map((post, i) => (
+                        {[...posts, ...posts].map((post, i) => {
+                            const imagePresentation = {
+                                slug: post.slug,
+                                title: post.headline,
+                                image: post.image,
+                                imageMode: post.imageMode,
+                                imageFocalPoint: post.imageFocalPoint,
+                                hideImageOverlay: post.hideImageOverlay,
+                            };
+                            const isImageOnly = shouldHideBlogImageOverlay(imagePresentation);
+
+                            return (
                             <motion.div
                                 key={`${post.id}-${i}`}
                                 className="flex-shrink-0 w-[300px] md:w-[450px]"
                             >
                                 <Link href={`/blog/${post.slug}`} className="group block">
                                     <div className="relative h-[250px] rounded-t-[2.5rem] overflow-hidden border-x border-t border-white/5 shadow-2xl">
-                                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent pointer-events-none z-10" />
+                                        {!isImageOnly && (
+                                            <>
+                                                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent pointer-events-none z-10" />
+                                            </>
+                                        )}
                                         <img
                                             src={post.image}
                                             alt={post.headline}
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                            style={{
+                                                objectFit: getBlogImageObjectFit(imagePresentation),
+                                                objectPosition: getBlogImageObjectPosition(imagePresentation)
+                                            }}
+                                            className={`${isImageOnly ? '' : 'group-hover:scale-110'} w-full h-full transition-transform duration-700`}
                                         />
                                         <div className="absolute top-6 left-6 z-20">
                                             <span className="px-3 py-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-black text-[#ff7404] uppercase tracking-widest">
@@ -378,7 +414,8 @@ export default function BlogCarouselClient({
                                     </div>
                                 </Link>
                             </motion.div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </div>

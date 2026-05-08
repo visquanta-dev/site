@@ -5,6 +5,10 @@ export interface BlogArticle {
     slug: string;
     title: string;
     featuredImage: string;        // ALWAYS include
+    imageMode?: string;
+    imageAspect?: string;
+    imageFocalPoint?: string;
+    hideImageOverlay?: boolean;
     category: {
         slug: string;
         title: string;
@@ -13,15 +17,18 @@ export interface BlogArticle {
     publishedAt: string;
     excerpt?: string;
     author?: string;
+    hideHero?: boolean;
 }
 
 // Single source of truth for post images to avoid visual drift
+const DEFAULT_BLOG_IMAGE = '/images/platform/unified-dashboard.png';
+
 export function getPostFeaturedImage(headline: string, defaultImage: string): string {
     if (defaultImage) return defaultImage;
 
     const h = headline || '';
     if (h.includes('CRM Database Reactivation')) {
-        return '/images/wireframes/ultimate-guide-crm-reactivation.jpeg';
+        return DEFAULT_BLOG_IMAGE;
     }
     if (h.includes('Third-Party Lead Providers')) {
         return '/images/wireframes/7_lead_providers.jpeg';
@@ -29,9 +36,9 @@ export function getPostFeaturedImage(headline: string, defaultImage: string): st
     if (h.includes('First Contact Rates') ||
         h.includes('AI in Auto Sales') ||
         h.includes('Lead Response Time')) {
-        return '/images/wireframes/6.jpeg';
+        return DEFAULT_BLOG_IMAGE;
     }
-    return '/images/blog/default.jpg';
+    return DEFAULT_BLOG_IMAGE;
 }
 
 // Single source of truth for fetching articles
@@ -72,6 +79,10 @@ export async function getArticles(options?: {
         slug: post.slug,
         title: post.headline,
         featuredImage: getPostFeaturedImage(post.headline, post.image),
+        imageMode: post.imageMode,
+        imageAspect: post.imageAspect,
+        imageFocalPoint: post.imageFocalPoint,
+        hideImageOverlay: post.hideImageOverlay,
         category: {
             slug: post.category.slug,
             title: post.category.title
@@ -79,7 +90,8 @@ export async function getArticles(options?: {
         readTime: post.readingTime,
         publishedAt: post.createdAt,
         excerpt: post.metaDescription,
-        author: post.author
+        author: post.author,
+        hideHero: post.hideHero,
     }));
 }
 

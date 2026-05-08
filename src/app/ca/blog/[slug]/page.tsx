@@ -21,6 +21,7 @@ import { ExpertInsight, KnowledgeCards, ProofPoint, MidArticleCTA, BottomConsult
 import InlineNewsletter from '@/components/blog/InlineNewsletter';
 import { normalizeLinks } from '@/lib/link-normalization';
 import BlogExitModal from '@/components/blog/BlogExitModal';
+import { getAuthor } from '@/lib/authors';
 
 const locale = locales.ca;
 const baseUrl = 'https://www.visquanta.com';
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         const post = await getBlogPost(slug);
         if (!post) return {};
 
-        const featuredImage = getPostFeaturedImage(post.headline, post.image);
+        const featuredImage = post.socialImage || getPostFeaturedImage(post.headline, post.image);
         const imageUrl = featuredImage?.startsWith('http')
             ? featuredImage
             : featuredImage
@@ -78,7 +79,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
                 siteName: 'VisQuanta',
                 locale: 'en_CA',
                 type: 'article',
-                images: [{ url: imageUrl, width: 1200, height: 630 }],
+                images: [{
+                    url: imageUrl,
+                    width: 1600,
+                    height: 823,
+                    type: imageUrl.endsWith('.png') ? 'image/png' : 'image/jpeg',
+                }],
                 publishedTime: post.createdAt,
                 modifiedTime: post.updatedAt || post.createdAt,
                 authors: ['VisQuanta'],
@@ -113,9 +119,143 @@ export default async function CABlogPostPage({ params }: PageProps) {
 
     // Standardized Related Articles fetching
     const relatedArticles = await getRelatedArticles(post.category?.slug || 'industry-insights', slug, 2);
+    const author = getAuthor(post.author);
+    const canonicalBlogUrl = `${baseUrl}/ca/blog/${slug}`;
+    const schemaImage = post.socialImage || post.image;
+    const absoluteImageUrl = schemaImage.startsWith('http')
+        ? schemaImage
+        : `${baseUrl}${schemaImage.startsWith('/') ? '' : '/'}${schemaImage}`;
+
+    const articleSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        '@id': `${canonicalBlogUrl}#article`,
+        'headline': post.headline,
+        'description': post.metaDescription,
+        'image': {
+            '@type': 'ImageObject',
+            'url': absoluteImageUrl,
+            'width': 1920,
+            'height': 823,
+        },
+        'author': author
+            ? {
+                '@type': 'Person',
+                'name': author.name,
+                'url': author.profile_url,
+                'image': author.photo,
+                'jobTitle': author.title,
+                'description': author.credential_line,
+                'knowsAbout': author.expertise,
+                'worksFor': {
+                    '@type': 'Organization',
+                    'name': author.company,
+                    'url': baseUrl,
+                },
+                'sameAs': [
+                    author.linkedin,
+                    author.profile_url,
+                ].filter(Boolean),
+            }
+            : {
+                '@type': 'Organization',
+                'name': 'VisQuanta',
+                'url': baseUrl,
+            },
+        'publisher': {
+            '@type': 'Organization',
+            'name': 'VisQuanta',
+            'url': baseUrl,
+            'logo': {
+                '@type': 'ImageObject',
+                'url': `${baseUrl}/images/visquanta-logo-white.png`,
+                'width': 600,
+                'height': 60,
+            },
+            'sameAs': [
+                'https://www.linkedin.com/company/visquanta',
+            ],
+        },
+        'datePublished': post.createdAt,
+        'dateModified': post.updatedAt || post.createdAt,
+        'mainEntityOfPage': {
+            '@type': 'WebPage',
+            '@id': canonicalBlogUrl,
+        },
+        'url': canonicalBlogUrl,
+        'inLanguage': 'en-CA',
+    };
+
+    const faqSchema = ((): Record<string, unknown> | null => {
+        const html = post.html || '';
+        const faqH2Match = html.match(/<h2[^>]*>[^<]*(?:Frequently Asked|FAQ)[^<]*<\/h2>([\s\S]*?)(?=<h2|$)/i);
+        if (!faqH2Match) return null;
+
+        const qaPattern = /<h3[^>]*>([\s\S]*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
+        const qaPairs: Array<{ q: string; a: string }> = [];
+        let match: RegExpExecArray | null;
+        while ((match = qaPattern.exec(faqH2Match[1])) !== null) {
+            const q = match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+            const a = match[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+            if (q && a) qaPairs.push({ q, a });
+        }
+
+        if (qaPairs.length === 0) return null;
+        return {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            'mainEntity': qaPairs.map(({ q, a }) => ({
+                '@type': 'Question',
+                'name': q,
+                'acceptedAnswer': {
+                    '@type': 'Answer',
+                    'text': a,
+                },
+            })),
+        };
+    })();
+
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Canada',
+                'item': `${baseUrl}/ca`,
+            },
+            {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Blog',
+                'item': `${baseUrl}/ca/blog`,
+            },
+            {
+                '@type': 'ListItem',
+                'position': 3,
+                'name': post.headline,
+                'item': canonicalBlogUrl,
+            },
+        ],
+    };
 
     return (
         <main className="bg-[#050505] min-h-screen selection:bg-[#ff7404] selection:text-black font-sans">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
+            {faqSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                />
+            )}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <Navigation />
             <ReadingProgress />
             <BlogExitModal />
@@ -197,11 +337,12 @@ export default async function CABlogPostPage({ params }: PageProps) {
             )}
 
             {/* Main Content */}
-            <article className="relative pb-24 px-4">
+            <section className="relative pb-24 px-4">
                 <div className="max-w-6xl mx-auto grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-16">
                     <div className="max-w-4xl">
-                        <ExecutiveSummary summary={post.metaDescription} />
+                        <ExecutiveSummary summary={post.metaDescription} slug={slug} />
 
+                        <article>
                         <BlogPostClient delay={0.2}>
                             {enhancement?.executivePoV && (
                                 <ExpertInsight {...enhancement.executivePoV} />
@@ -271,6 +412,7 @@ export default async function CABlogPostPage({ params }: PageProps) {
                                 ))}
                             </div>
                         )}
+                        </article>
 
                         {/* Canadian Featured CTA Section */}
                         <div className="mt-24 relative overflow-hidden rounded-[2.5rem] border border-red-500/20 group">
@@ -336,7 +478,7 @@ export default async function CABlogPostPage({ params }: PageProps) {
                         </div>
                     </aside>
                 </div>
-            </article>
+            </section>
 
             <Footer />
         </main>

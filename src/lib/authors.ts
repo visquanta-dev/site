@@ -6,6 +6,7 @@ export interface Author {
   company: string;
   photo: string;
   linkedin: string;
+  email?: string;
   profile_url: string;
   credential_line: string;
   bio: string;
@@ -40,6 +41,31 @@ const AUTHORS: Record<string, Author> = {
       'CRM optimization and lead reactivation',
       'Automotive retail operations',
       'Voice AI for sales use cases',
+    ],
+  },
+  'clint-annis': {
+    slug: 'clint-annis',
+    name: 'Clint Annis',
+    title: 'Service Drive Director of Implementations',
+    short_title: 'Service Drive Implementation Lead',
+    company: 'VisQuanta',
+    photo: '/team/clint-annis.png',
+    linkedin: '',
+    email: 'cannis@visquanta.com',
+    profile_url: 'https://www.visquanta.com/team#clint-annis',
+    credential_line:
+      'Leads service-drive implementations for dealership fixed-ops teams.',
+    bio: [
+      'Clint Annis is Service Drive Director of Implementations at VisQuanta, where he helps dealerships deploy service-drive workflows, voice-agent coverage, and fixed-ops automation in live rooftop environments.',
+      '',
+      'Clint works with service managers and implementation teams to turn missed-call, appointment, and follow-up gaps into measurable operating processes.',
+    ].join('\n'),
+    expertise: [
+      'Service drive implementation',
+      'Fixed operations workflows',
+      'Voice AI deployment',
+      'Dealership service operations',
+      'Customer follow-up process design',
     ],
   },
 };

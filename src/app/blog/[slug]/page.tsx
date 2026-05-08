@@ -46,8 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
-    // Use standardized featured image mapping to avoid visual drift in social previews
-    const featuredImage = getPostFeaturedImage(post.headline, post.image);
+    const featuredImage = post.socialImage || getPostFeaturedImage(post.headline, post.image);
 
     // Ensure image URL is absolute
     const imageUrl = featuredImage?.startsWith('http')
@@ -95,10 +94,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             images: [
                 {
                     url: imageUrl,
-                    width: 1200,
-                    height: 630,
+                    width: 1600,
+                    height: 823,
                     alt: post.headline,
-                    type: 'image/jpeg',
+                    type: imageUrl.endsWith('.png') ? 'image/png' : 'image/jpeg',
                 }
             ],
             // Article-specific OG properties
@@ -251,9 +250,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     // path from frontmatter. Wrap in absolute URL + ImageObject so Google's
     // Rich Results validator sees proper Article-image signal instead of
     // rejecting a relative string.
-    const absoluteImageUrl = post.image.startsWith('http')
-        ? post.image
-        : `https://www.visquanta.com${post.image.startsWith('/') ? '' : '/'}${post.image}`;
+    const schemaImage = post.socialImage || post.image;
+    const absoluteImageUrl = schemaImage.startsWith('http')
+        ? schemaImage
+        : `https://www.visquanta.com${schemaImage.startsWith('/') ? '' : '/'}${schemaImage}`;
     const canonicalBlogUrl = `https://www.visquanta.com${localePrefix}/blog/${slug}`;
 
     const articleSchema = {
@@ -503,7 +503,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             )}
 
             {/* Main Content Section */}
-            <article className="relative pb-20">
+            <section className="relative pb-20">
                 {/* Subtle ambient glow */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#FF7404]/[0.02] rounded-[100%] blur-[120px] pointer-events-none" />
 
@@ -512,9 +512,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         {/* Main Content Column */}
                         <div className="max-w-4xl">
                             {/* Executive Summary */}
-                            <ExecutiveSummary summary={post.metaDescription} />
+                            <ExecutiveSummary summary={post.metaDescription} slug={slug} />
 
                             {/* Article Body */}
+                            <article>
                             <BlogPostClient delay={0.2}>
                                 {enhancement?.executivePoV && (
                                     <ExpertInsight
@@ -525,54 +526,109 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                 {(() => {
                                     const faqMatch = post.html.match(/<h2 id="faqs"[^>]*>.*?<\/h2>([\s\S]*)/i);
 
-                                    // FIX ISSUE 2: Strip duplicate H1 from content (since template has one)
+                                    // Strip duplicate H1 from content (template has one)
                                     let mainContentHtml = post.html.replace(/<h1[^>]*>.*?<\/h1>/i, '');
 
-                                    // Detect calculator markers and strip them from HTML
-                                    const calcMatches = [...mainContentHtml.matchAll(/(?:<p>)?\{\{(?:calculator|cta):([a-z-]+)\}\}(?:<\/p>)?/g)];
-                                    const calcTypes = calcMatches.map(m => m[1]);
-                                    mainContentHtml = mainContentHtml.replace(/(?:<p>)?\{\{(?:calculator|cta):[a-z-]+\}\}(?:<\/p>)?/g, '');
-
                                     let faqHtml = '';
-
                                     if (faqMatch) {
                                         mainContentHtml = mainContentHtml.substring(0, faqMatch.index);
                                         faqHtml = faqMatch[1];
                                     }
 
-                                    const paragraphs = mainContentHtml.split('</p>');
+                                    // Inline parser: split at {{calculator:*}} / {{cta:*}} markers.
+                                    // Inlined here (not imported from BlogCalculatorEmbed) because that
+                                    // module is 'use client' — calling its exported util from a server
+                                    // component crosses the client boundary and throws at runtime.
+                                    const markerPattern = /(?:<p>)?\{\{(?:calculator|cta):([a-z-]+)\}\}(?:<\/p>)?/g;
+                                    type Segment = { type: 'html'; content: string } | { type: 'calculator'; calcType: string };
+                                    const segments: Segment[] = [];
+                                    let lastIndex = 0;
+                                    let match: RegExpExecArray | null;
+                                    while ((match = markerPattern.exec(mainContentHtml)) !== null) {
+                                        if (match.index > lastIndex) {
+                                            segments.push({ type: 'html', content: mainContentHtml.slice(lastIndex, match.index) });
+                                        }
+                                        segments.push({ type: 'calculator', calcType: match[1] });
+                                        lastIndex = match.index + match[0].length;
+                                    }
+                                    if (lastIndex < mainContentHtml.length) {
+                                        segments.push({ type: 'html', content: mainContentHtml.slice(lastIndex) });
+                                    }
+                                    if (segments.length === 0) {
+                                        segments.push({ type: 'html', content: mainContentHtml });
+                                    }
+                                    const hasInlineMarkers = segments.some(s => s.type === 'calculator');
 
-                                    // If text is short, just show it
-                                    if (paragraphs.length < 8) {
-                                        return (
-                                            <>
+                                    if (hasInlineMarkers) {
+                                        // Per-section inline placement. Newsletter injects at paragraph 6
+                                        // of the first html segment if long enough. RelatedProducts at end.
+                                        // MidArticleCTA omitted — calculators are the mid-article hooks.
+                                        const rendered = segments.flatMap((seg, i) => {
+                                            if (seg.type === 'calculator') {
+                                                return [
+                                                    <BlogCalculatorEmbed key={`calc-${i}`} type={seg.calcType} />
+                                                ];
+                                            }
+                                            const segContent = seg.content;
+                                            if (i === 0) {
+                                                const segParagraphs = segContent.split('</p>');
+                                                if (segParagraphs.length > 7) {
+                                                    const before = segParagraphs.slice(0, 6).join('</p>') + '</p>';
+                                                    const after = segParagraphs.slice(6).join('</p>');
+                                                    return [
+                                                        <div
+                                                            key={`html-${i}-a`}
+                                                            suppressHydrationWarning
+                                                            className="blog-content"
+                                                            dangerouslySetInnerHTML={{ __html: before }}
+                                                        />,
+                                                        <InlineNewsletter key={`newsletter-${i}`} />,
+                                                        <div
+                                                            key={`html-${i}-b`}
+                                                            suppressHydrationWarning
+                                                            className="blog-content"
+                                                            dangerouslySetInnerHTML={{ __html: after }}
+                                                        />,
+                                                    ];
+                                                }
+                                            }
+                                            return [
                                                 <div
+                                                    key={`html-${i}`}
                                                     suppressHydrationWarning
                                                     className="blog-content"
-                                                    dangerouslySetInnerHTML={{ __html: mainContentHtml }}
+                                                    dangerouslySetInnerHTML={{ __html: segContent }}
                                                 />
-                                                {calcTypes.map((ct, i) => (
-                                                    <BlogCalculatorEmbed key={i} type={ct} />
-                                                ))}
+                                            ];
+                                        });
+
+                                        return (
+                                            <>
+                                                {rendered}
+                                                {BLOG_RELATED_PRODUCTS[slug] && (
+                                                    <RelatedProducts productSlugs={BLOG_RELATED_PRODUCTS[slug]} />
+                                                )}
                                             </>
                                         );
                                     }
 
-                                    // Injection Logic
-                                    // 1. Newsletter after paragraph 6
-                                    // 2. MidPageCTA at roughly 60% mark
+                                    // No markers — existing chunk logic (unchanged behavior)
+                                    const paragraphs = mainContentHtml.split('</p>');
+
+                                    if (paragraphs.length < 8) {
+                                        return (
+                                            <div
+                                                suppressHydrationWarning
+                                                className="blog-content"
+                                                dangerouslySetInnerHTML={{ __html: mainContentHtml }}
+                                            />
+                                        );
+                                    }
 
                                     const newsletterIndex = 6;
                                     const midPointIndex = Math.floor(paragraphs.length * 0.6);
-
-                                    // Create chunks
-                                    // 1. Start to Newsletter
                                     const chunk1 = paragraphs.slice(0, newsletterIndex).join('</p>') + '</p>';
-
-                                    // 2. Newsletter to Midpoint
                                     const chunk2 = paragraphs.slice(newsletterIndex, midPointIndex).join('</p>') + '</p>';
-
-                                    // 3. Midpoint to End
                                     const chunk3 = paragraphs.slice(midPointIndex).join('</p>');
 
                                     return (
@@ -582,30 +638,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                                 className="blog-content"
                                                 dangerouslySetInnerHTML={{ __html: chunk1 }}
                                             />
-
-                                            {/* INLINE NEWSLETTER */}
                                             <InlineNewsletter />
-
                                             <div
                                                 suppressHydrationWarning
                                                 className="blog-content"
                                                 dangerouslySetInnerHTML={{ __html: chunk2 }}
                                             />
-
                                             <MidArticleCTA />
-
-                                            {/* Calculator widgets from UltraPlan markers */}
-                                            {calcTypes.map((ct, i) => (
-                                                <BlogCalculatorEmbed key={i} type={ct} />
-                                            ))}
-
                                             <div
                                                 suppressHydrationWarning
                                                 className="blog-content"
                                                 dangerouslySetInnerHTML={{ __html: chunk3 }}
                                             />
-
-                                            {/* CONTEXTUAL PRODUCT CROSS-LINKING */}
                                             {BLOG_RELATED_PRODUCTS[slug] && (
                                                 <RelatedProducts productSlugs={BLOG_RELATED_PRODUCTS[slug]} />
                                             )}
@@ -670,6 +714,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     </div>
                                 </BlogPostClient>
                             )}
+                            </article>
 
                             {/* Premium CTA Section */}
                             <BlogPostClient delay={0.4}>
@@ -684,19 +729,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     <div className="relative p-10 md:p-16 text-center">
                                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7404]/10 border border-[#FF7404]/20 mb-8">
                                             <TrendingUp className="w-4 h-4 text-[#FF7404]" />
-                                            <span className="text-[#FF7404] text-xs font-bold uppercase tracking-widest">Transform Your Dealership</span>
+                                            <span className="text-[#FF7404] text-xs font-bold uppercase tracking-widest">Audit Your Follow-Up</span>
                                         </div>
 
                                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 tracking-tight">
-                                            Ready to see it in action?
+                                            Find the revenue hiding in your lead process
                                         </h2>
                                         <p className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-                                            Join hundreds of high-performance dealerships using VisQuanta to automate their growth and maximize revenue.
+                                            See which leads are waiting too long, which follow-up tasks should be automated, and where your team should stay human.
                                         </p>
                                         <Link href={`${localePrefix}/book-demo`}>
                                             <button className="group px-10 py-5 bg-[#FF7404] hover:bg-[#ff8a2b] text-black font-black uppercase tracking-widest rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-[0_0_60px_-15px_rgba(255,116,4,0.5)] hover:shadow-[0_0_80px_-10px_rgba(255,116,4,0.6)]">
                                                 <span className="flex items-center gap-3">
-                                                    Request a Strategy Call
+                                                    Get a Follow-Up Audit
                                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                                 </span>
                                             </button>
@@ -748,7 +793,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         </aside>
                     </div>
                 </div>
-            </article>
+            </section>
 
             <Footer />
         </main>

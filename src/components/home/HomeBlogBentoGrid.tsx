@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BlogArticle } from '@/lib/blog';
 import { getAuthor } from '@/lib/authors';
+import { getBlogImageObjectFit, getBlogImageObjectPosition, shouldHideBlogImageOverlay } from '@/lib/blog-image-presentation';
 
 interface HomeBlogBentoGridProps {
     posts: BlogArticle[];
@@ -16,6 +17,15 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
     // We take the first as featured, and the next 3 for the bottom grid
     const featured = posts[0];
     const gridPosts = posts.slice(1, 4);
+    const featuredImagePresentation = {
+        slug: featured?.slug,
+        title: featured?.title,
+        image: featured?.featuredImage,
+        imageMode: featured?.imageMode,
+        imageFocalPoint: featured?.imageFocalPoint,
+        hideImageOverlay: featured?.hideImageOverlay,
+    };
+    const featuredIsImageOnly = shouldHideBlogImageOverlay(featuredImagePresentation);
 
     // Helper for date formatting
     const formatDate = (dateString: string) => {
@@ -76,11 +86,19 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                                             src={featured.featuredImage}
                                             alt={featured.title}
                                             fill
-                                            className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                            style={{
+                                                objectFit: getBlogImageObjectFit(featuredImagePresentation),
+                                                objectPosition: getBlogImageObjectPosition(featuredImagePresentation)
+                                            }}
+                                            className={`${featuredIsImageOnly ? 'opacity-100' : 'grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105'} transition-all duration-700`}
                                         />
                                     )}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-10" />
-                                    <div className="absolute inset-0 bg-black/20 z-1" />
+                                    {!featuredIsImageOnly && (
+                                        <>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-10" />
+                                            <div className="absolute inset-0 bg-black/20 z-1" />
+                                        </>
+                                    )}
 
                                     {/* Data Tab Overlay - Only visible if it's the specific CRM article or we want it on all featured */}
                                     {/* Data Tab Overlay Removed */}
@@ -105,7 +123,6 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                                     <p className="text-lg text-zinc-400 leading-relaxed mb-8 line-clamp-3">
                                         {featured.excerpt}
                                     </p>
-
                                     <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
                                         <div className="flex items-center gap-3">
                                             {(() => {
@@ -184,6 +201,15 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
             year: 'numeric'
         });
     };
+    const imagePresentation = {
+        slug: post.slug,
+        title: post.title,
+        image: post.featuredImage,
+        imageMode: post.imageMode,
+        imageFocalPoint: post.imageFocalPoint,
+        hideImageOverlay: post.hideImageOverlay,
+    };
+    const isImageOnly = shouldHideBlogImageOverlay(imagePresentation);
 
     return (
         <motion.div
@@ -199,11 +225,19 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
                             src={post.featuredImage}
                             alt={post.title}
                             fill
-                            className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                            style={{
+                                objectFit: getBlogImageObjectFit(imagePresentation),
+                                objectPosition: getBlogImageObjectPosition(imagePresentation)
+                            }}
+                            className={`${isImageOnly ? 'opacity-100' : 'grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105'} transition-all duration-700`}
                         />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
-                    <div className="absolute inset-0 bg-black/20 z-1" />
+                    {!isImageOnly && (
+                        <>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
+                            <div className="absolute inset-0 bg-black/20 z-1" />
+                        </>
+                    )}
                 </div>
 
                 <div className="p-8 flex-1 flex flex-col">
