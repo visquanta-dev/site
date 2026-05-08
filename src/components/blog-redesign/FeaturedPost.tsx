@@ -6,6 +6,7 @@ import { BlogArticle } from '@/lib/blog';
 import { ArrowUpRight, Clock, DollarSign, TimerReset } from 'lucide-react';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
+import { getBlogImageObjectPosition } from '@/lib/blog-image-presentation';
 
 export default function FeaturedPost({ post }: { post: BlogArticle }) {
     const { locale } = useLocale();
@@ -28,7 +29,7 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                         src={imageSrc}
                         alt={post.title}
                         fill
-                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        style={{ objectFit: 'cover', objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
                         className="opacity-100 saturate-[0.96] brightness-[0.92] transition-all duration-700 group-hover:scale-[1.015] group-hover:saturate-110 group-hover:brightness-100"
                         priority
                         sizes="100vw"

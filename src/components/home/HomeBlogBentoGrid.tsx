@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BlogArticle } from '@/lib/blog';
 import { getAuthor } from '@/lib/authors';
+import { getBlogImageObjectPosition } from '@/lib/blog-image-presentation';
 
 interface HomeBlogBentoGridProps {
     posts: BlogArticle[];
@@ -76,6 +77,7 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                                             src={featured.featuredImage}
                                             alt={featured.title}
                                             fill
+                                            style={{ objectPosition: getBlogImageObjectPosition(featured.slug, featured.featuredImage) }}
                                             className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                                         />
                                     )}
@@ -199,6 +201,7 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
                             src={post.featuredImage}
                             alt={post.title}
                             fill
+                            style={{ objectPosition: getBlogImageObjectPosition(post.slug, post.featuredImage) }}
                             className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                         />
                     )}

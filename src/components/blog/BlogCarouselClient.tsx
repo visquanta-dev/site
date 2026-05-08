@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BlogPost } from '@/lib/seobot';
 import { getAuthor } from '@/lib/authors';
+import { getBlogImageObjectPosition } from '@/lib/blog-image-presentation';
 
 interface BlogCarouselClientProps {
     posts: BlogPost[];
@@ -114,6 +115,7 @@ export default function BlogCarouselClient({
                                                 <img
                                                     src={post.image}
                                                     alt={post.headline}
+                                                    style={{ objectPosition: getBlogImageObjectPosition(post.slug, post.image) }}
                                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                                                 />
                                                 <div className="absolute top-5 right-5 px-4 py-2 bg-black/70 backdrop-blur-xl rounded-full border border-white/10">
@@ -330,6 +332,7 @@ export default function BlogCarouselClient({
                                         <img
                                             src={post.image}
                                             alt={post.headline}
+                                            style={{ objectPosition: getBlogImageObjectPosition(post.slug, post.image) }}
                                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                         />
                                         <div className="absolute top-6 left-6 z-20">

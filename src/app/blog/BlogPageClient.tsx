@@ -7,6 +7,7 @@ import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '@/lib/seobot';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
+import { getBlogImageObjectPosition } from '@/lib/blog-image-presentation';
 
 interface BlogPageClientProps {
     posts: BlogPost[];
@@ -56,6 +57,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                                     fill
                                     style={{
                                         objectFit: 'cover',
+                                        objectPosition: getBlogImageObjectPosition(post.slug, post.image),
                                         filter: 'grayscale(100%) contrast(1.1) brightness(0.6)'
                                     }}
                                     className="opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000"
