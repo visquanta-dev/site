@@ -1,0 +1,128 @@
+{
+  "slug": "63-car-buyers-judge-dealers-review-replies",
+  "topic_lane": "dealership-operations",
+  "status": "approved",
+  "source_policy": "standard",
+  "created_at": "2026-05-08T12:34:25.451Z",
+  "updated_at": "2026-05-08T12:34:25.451Z",
+  "sources": [
+    {
+      "title": "Make your dealership's online reputation your MVP - Cars Commerce",
+      "url": "https://www.carscommerce.inc/car-dealer-online-reputation-best-practices/",
+      "domain": "carscommerce.inc",
+      "published_at": "2025-07-24",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "In fact, 63% of customers expect businesses to respond to negative reviews within 2-7 days8.",
+      "relevance_reason": "Used by UltraPlan as source src_002 for reputation-reviews; 8 quote anchors were extracted for draft generation."
+    },
+    {
+      "title": "Add AI to the List of Reasons You Can't Trust Online Car Dealer Reviews",
+      "url": "https://www.thedrive.com/news/add-ai-to-the-list-of-reasons-you-cant-trust-online-car-dealer-reviews",
+      "domain": "thedrive.com",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "See more Reply 2 Share 1 reply - J JCAM 3 December, 2025 I'm trying to convince ChatGPT and Perplexity to write sharp, witty and overwhelmingly-reasoned screeds against AI slop.",
+      "relevance_reason": "Used by UltraPlan as source src_003 for reputation-reviews; 8 quote anchors were extracted for draft generation."
+    },
+    {
+      "title": "CallRevu | How Online Reviews Shape Dealership Reputation & Retention",
+      "url": "https://www.callrevu.com/2025/05/08/why-online-reviews-are-the-front-line-of-dealership-reputation/",
+      "domain": "callrevu.com",
+      "published_at": "2025-05-08",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "Even a less-than-stellar review can be turned around because it gives your dealership a chance to shine by providing responsive solutions to make things right.",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_004 for reputation-reviews; not intended as a published outbound citation."
+    },
+    {
+      "title": "Widewail founder Murray steps aside as new CEO begins ‘new era’ of reputation management | Auto Remarketing",
+      "url": "https://www.autoremarketing.com/ar/technology/widewail-founder-murray-steps-aside-as-new-ceo-begins-new-era-of-reputation-management/",
+      "domain": "autoremarketing.com",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "Cuyler comes on board following almost three years as chief revenue officer of TrustRadius, a software review company he led as it doubled its business, positioning it for a successful 2025 exit, Widewail said.",
+      "relevance_reason": "Used by UltraPlan as source src_005 for reputation-reviews; 8 quote anchors were extracted for draft generation."
+    }
+  ],
+  "guardrails": {
+    "sources": {
+      "status": "pass",
+      "score": 100,
+      "notes": "3 link-safe public sources included in the audit record."
+    },
+    "links": {
+      "status": "pass",
+      "notes": "12 internal links and 4 external source links detected in rendered markdown."
+    },
+    "visual": {
+      "status": "pass",
+      "notes": "Hero image was generated or selected by the image pipeline."
+    },
+    "seo_aeo": {
+      "status": "pass",
+      "score": 100,
+      "notes": "SEO/AEO gate score: 100."
+    },
+    "trace-back": {
+      "status": "pass",
+      "score": 0.8316958344154318,
+      "notes": "All 19 paragraphs traceable; avg rephrase distance 0.832"
+    },
+    "vertical-discipline": {
+      "status": "pass",
+      "notes": "opening anchors: dealer, dealership, dealer principal, BDC (+5)"
+    },
+    "anonymization": {
+      "status": "pass",
+      "notes": "0 client name leaks across 19 paragraphs + meta"
+    },
+    "slop-lexicon": {
+      "status": "pass",
+      "score": 8,
+      "notes": "regex: 0 hits across 19 paragraphs | slop-in-spirit: 8/10"
+    },
+    "originality": {
+      "status": "pass",
+      "score": 7,
+      "notes": "n-gram: worst 12% (< 20%) | originality judge: 7/10"
+    },
+    "fact-recheck": {
+      "status": "pass",
+      "score": 100,
+      "notes": "19/19 claims supported (100% >= 100%)"
+    }
+  },
+  "approvals": {
+    "sources": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-08T12:34:25.451Z",
+      "notes": "Source approval is generated from the UltraPlan research bundle and source resolver."
+    },
+    "draft": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-08T12:34:25.451Z",
+      "notes": "Draft approval is generated after the hard gate retry loop returns a passed report."
+    },
+    "seo_aeo": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-08T12:34:25.451Z",
+      "notes": "SEO/AEO approval is generated from the deterministic SEO/AEO gate result."
+    },
+    "visual": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-08T12:34:25.451Z",
+      "notes": "Visual approval is generated from the image pipeline output."
+    },
+    "final_publish": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-08T12:34:25.451Z",
+      "notes": "Automated publish gate passed for PR checks. Human publish approval still occurs by GitHub PR review and merge."
+    }
+  }
+}
