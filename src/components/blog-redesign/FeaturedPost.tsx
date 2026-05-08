@@ -6,7 +6,7 @@ import { BlogArticle } from '@/lib/blog';
 import { ArrowUpRight, Clock, DollarSign, TimerReset } from 'lucide-react';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
-import { getBlogImageObjectFit, getBlogImageObjectPosition, isReviewRepliesPost } from '@/lib/blog-image-presentation';
+import { getBlogImageObjectFit, getBlogImageObjectPosition, shouldHideBlogImageOverlay } from '@/lib/blog-image-presentation';
 
 export default function FeaturedPost({ post }: { post: BlogArticle }) {
     const { locale } = useLocale();
@@ -16,8 +16,15 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
     // still needs the editorial photo behind the featured card.
     const imageSrc = post.featuredImage || '/images/blog/default.jpg';
     const useImageBackground = Boolean(imageSrc);
-    const isWideGraphic = isReviewRepliesPost(post.slug, imageSrc);
-    const isImageOnlyHero = isWideGraphic || post.title.toLowerCase().includes('review replies');
+    const imagePresentation = {
+        slug: post.slug,
+        title: post.title,
+        image: imageSrc,
+        imageMode: post.imageMode,
+        imageFocalPoint: post.imageFocalPoint,
+        hideImageOverlay: post.hideImageOverlay,
+    };
+    const isImageOnlyHero = shouldHideBlogImageOverlay(imagePresentation);
 
     if (isImageOnlyHero) {
         const categoryTitle = typeof post.category === 'object' ? post.category.title : post.category;
@@ -37,7 +44,7 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                         src={imageSrc}
                         alt={post.title}
                         fill
-                        style={{ objectFit: getBlogImageObjectFit(post.slug, imageSrc), objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
+                        style={{ objectFit: getBlogImageObjectFit(imagePresentation), objectPosition: getBlogImageObjectPosition(imagePresentation) }}
                         className="opacity-100 transition-transform duration-700"
                         priority
                         sizes="100vw"
@@ -79,7 +86,7 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                         src={imageSrc}
                         alt={post.title}
                         fill
-                        style={{ objectFit: getBlogImageObjectFit(post.slug, imageSrc), objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
+                        style={{ objectFit: getBlogImageObjectFit(imagePresentation), objectPosition: getBlogImageObjectPosition(imagePresentation) }}
                         className={`${isImageOnlyHero ? 'opacity-100' : 'opacity-100 saturate-[0.96] brightness-[0.92] group-hover:scale-[1.015] group-hover:saturate-110 group-hover:brightness-100'} transition-all duration-700`}
                         priority
                         sizes="100vw"
