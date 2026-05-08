@@ -6,7 +6,7 @@ import { BlogArticle } from '@/lib/blog';
 import { ArrowUpRight, Clock, DollarSign, TimerReset } from 'lucide-react';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
-import { getBlogImageObjectPosition } from '@/lib/blog-image-presentation';
+import { getBlogImageObjectFit, getBlogImageObjectPosition, isReviewRepliesPost } from '@/lib/blog-image-presentation';
 
 export default function FeaturedPost({ post }: { post: BlogArticle }) {
     const { locale } = useLocale();
@@ -16,6 +16,7 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
     // still needs the editorial photo behind the featured card.
     const imageSrc = post.featuredImage || '/images/blog/default.jpg';
     const useImageBackground = Boolean(imageSrc);
+    const isWideGraphic = isReviewRepliesPost(post.slug, imageSrc);
 
     return (
         <Link href={localeLink(`/blog/${post.slug}`, locale)} className="group relative block w-full mb-32 h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden rounded-[2.5rem] bg-[#020202] border border-white/[0.08]">
@@ -29,8 +30,8 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
                         src={imageSrc}
                         alt={post.title}
                         fill
-                        style={{ objectFit: 'cover', objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
-                        className="opacity-100 saturate-[0.96] brightness-[0.92] transition-all duration-700 group-hover:scale-[1.015] group-hover:saturate-110 group-hover:brightness-100"
+                        style={{ objectFit: getBlogImageObjectFit(post.slug, imageSrc), objectPosition: getBlogImageObjectPosition(post.slug, imageSrc) }}
+                        className={`${isWideGraphic ? 'opacity-100' : 'opacity-100 saturate-[0.96] brightness-[0.92] group-hover:scale-[1.015] group-hover:saturate-110 group-hover:brightness-100'} transition-all duration-700`}
                         priority
                         sizes="100vw"
                     />
@@ -61,9 +62,13 @@ export default function FeaturedPost({ post }: { post: BlogArticle }) {
             )}
 
             {/* Subtle Gradient Overlays - Lightened */}
-            <div className={`absolute inset-0 z-10 bg-gradient-to-t transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/32 to-transparent' : 'from-[#020202] via-[#020202]/30 to-transparent'}`} />
-            <div className={`absolute inset-0 z-10 bg-gradient-to-r transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/42 to-transparent' : 'from-[#020202]/50 via-transparent to-transparent'}`} />
-            {useImageBackground && <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_82%_28%,transparent_0%,rgba(2,2,2,0.08)_46%,rgba(2,2,2,0.38)_100%)]" />}
+            {!isWideGraphic && (
+                <>
+                    <div className={`absolute inset-0 z-10 bg-gradient-to-t transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/32 to-transparent' : 'from-[#020202] via-[#020202]/30 to-transparent'}`} />
+                    <div className={`absolute inset-0 z-10 bg-gradient-to-r transition-opacity duration-700 ${useImageBackground ? 'from-[#020202]/88 via-[#020202]/42 to-transparent' : 'from-[#020202]/50 via-transparent to-transparent'}`} />
+                    {useImageBackground && <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_82%_28%,transparent_0%,rgba(2,2,2,0.08)_46%,rgba(2,2,2,0.38)_100%)]" />}
+                </>
+            )}
 
             {/* Noise Texture */}
             <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />

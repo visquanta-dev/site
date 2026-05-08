@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BlogArticle } from '@/lib/blog';
 import { getAuthor } from '@/lib/authors';
-import { getBlogImageObjectPosition } from '@/lib/blog-image-presentation';
+import { getBlogImageObjectFit, getBlogImageObjectPosition, isReviewRepliesPost } from '@/lib/blog-image-presentation';
 
 interface HomeBlogBentoGridProps {
     posts: BlogArticle[];
@@ -17,6 +17,7 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
     // We take the first as featured, and the next 3 for the bottom grid
     const featured = posts[0];
     const gridPosts = posts.slice(1, 4);
+    const featuredIsWideGraphic = isReviewRepliesPost(featured?.slug, featured?.featuredImage);
 
     // Helper for date formatting
     const formatDate = (dateString: string) => {
@@ -77,12 +78,19 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                                             src={featured.featuredImage}
                                             alt={featured.title}
                                             fill
-                                            style={{ objectPosition: getBlogImageObjectPosition(featured.slug, featured.featuredImage) }}
-                                            className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                            style={{
+                                                objectFit: getBlogImageObjectFit(featured.slug, featured.featuredImage),
+                                                objectPosition: getBlogImageObjectPosition(featured.slug, featured.featuredImage)
+                                            }}
+                                            className={`${featuredIsWideGraphic ? 'opacity-100' : 'grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105'} transition-all duration-700`}
                                         />
                                     )}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-10" />
-                                    <div className="absolute inset-0 bg-black/20 z-1" />
+                                    {!featuredIsWideGraphic && (
+                                        <>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-10" />
+                                            <div className="absolute inset-0 bg-black/20 z-1" />
+                                        </>
+                                    )}
 
                                     {/* Data Tab Overlay - Only visible if it's the specific CRM article or we want it on all featured */}
                                     {/* Data Tab Overlay Removed */}
@@ -186,6 +194,7 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
             year: 'numeric'
         });
     };
+    const isWideGraphic = isReviewRepliesPost(post.slug, post.featuredImage);
 
     return (
         <motion.div
@@ -201,12 +210,19 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
                             src={post.featuredImage}
                             alt={post.title}
                             fill
-                            style={{ objectPosition: getBlogImageObjectPosition(post.slug, post.featuredImage) }}
-                            className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                            style={{
+                                objectFit: getBlogImageObjectFit(post.slug, post.featuredImage),
+                                objectPosition: getBlogImageObjectPosition(post.slug, post.featuredImage)
+                            }}
+                            className={`${isWideGraphic ? 'opacity-100' : 'grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105'} transition-all duration-700`}
                         />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
-                    <div className="absolute inset-0 bg-black/20 z-1" />
+                    {!isWideGraphic && (
+                        <>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
+                            <div className="absolute inset-0 bg-black/20 z-1" />
+                        </>
+                    )}
                 </div>
 
                 <div className="p-8 flex-1 flex flex-col">
