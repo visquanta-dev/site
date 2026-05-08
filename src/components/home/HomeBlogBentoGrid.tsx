@@ -70,9 +70,9 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                         {/* Moving Border Light (The "Motion") - Handled by CSS class 'featured-card-border' below */}
 
                         <Link href={`/blog/${featured.slug}`} className="relative z-10 group block w-full bg-black rounded-[2rem] overflow-hidden border border-white/[0.05] hover:border-[#ff7404]/50 hover:bg-white/[0.04] transition-all duration-500 featured-card-border">
-                            <div className={`grid grid-cols-1 ${featuredIsWideGraphic ? '' : 'lg:grid-cols-2'}`}>
+                            <div className="grid grid-cols-1 lg:grid-cols-2">
                                 {/* Image Section - Large & Cinematic */}
-                                <div className={`relative overflow-hidden border-b border-white/[0.06] bg-[#020202] ${featuredIsWideGraphic ? 'aspect-[21/9]' : 'aspect-video lg:aspect-auto lg:h-full lg:border-b-0 lg:border-r'}`}>
+                                <div className="relative aspect-video lg:aspect-auto lg:h-full overflow-hidden border-b lg:border-b-0 lg:border-r border-white/[0.06] bg-[#020202]">
                                     {featured.featuredImage && (
                                         <Image
                                             src={featured.featuredImage}
@@ -97,8 +97,7 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                                 </div>
 
                                 {/* Content Section */}
-                                <div className={`p-8 md:p-10 lg:p-12 flex flex-col justify-center ${featuredIsWideGraphic ? 'lg:grid lg:grid-cols-[1fr_auto] lg:items-end lg:gap-10' : ''}`}>
-                                    <div>
+                                <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
                                     <div className="mb-6 flex items-center gap-3">
                                         <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#ff7404] bg-[#ff7404]/10 px-3 py-1.5 rounded-full border border-[#ff7404]/20">
                                             {typeof featured.category === 'object' ? featured.category.title : (featured.category || 'Featured')}
@@ -116,9 +115,7 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                                     <p className="text-lg text-zinc-400 leading-relaxed mb-8 line-clamp-3">
                                         {featured.excerpt}
                                     </p>
-                                    </div>
-
-                                    <div className={`flex items-center justify-between mt-auto pt-6 border-t border-white/5 ${featuredIsWideGraphic ? 'lg:min-w-[260px]' : ''}`}>
+                                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
                                         <div className="flex items-center gap-3">
                                             {(() => {
                                                 const cardAuthor = getAuthor(featured.author);

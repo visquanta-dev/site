@@ -6,7 +6,7 @@ export function isReviewRepliesPost(slug?: string, image?: string) {
 
 export function getBlogImageObjectPosition(slug?: string, image?: string): string {
   if (isReviewRepliesPost(slug, image)) {
-    return 'center center';
+    return 'left center';
   }
 
   return 'center center';
@@ -14,7 +14,7 @@ export function getBlogImageObjectPosition(slug?: string, image?: string): strin
 
 export function getBlogImageObjectFit(slug?: string, image?: string): 'cover' | 'contain' {
   if (isReviewRepliesPost(slug, image)) {
-    return 'contain';
+    return 'cover';
   }
 
   return 'cover';
