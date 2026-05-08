@@ -5,6 +5,10 @@ metaDescription: >-
   63% of car buyers expect dealers to respond to negative reviews within 2-7
   days. See how review replies shape showroom traffic and lost deals.
 image: /images/blog/63-car-buyers-judge-dealers-review-replies/hero.jpg
+imageMode: text_graphic
+imageAspect: '21:9'
+imageFocalPoint: center
+hideImageOverlay: true
 readingTime: 12
 publishedAt: '2026-05-08'
 updatedAt: '2026-05-08'

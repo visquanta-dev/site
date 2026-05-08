@@ -167,6 +167,298 @@ function addIssue(issues, severity, guardrail, message) {
   issues.push({ severity, guardrail, message });
 }
 
+function isHttpUrl(value) {
+  return /^https?:\/\//i.test(String(value || ''));
+}
+
+function resolvePublicImagePath(image) {
+  const value = String(image || '').trim();
+  if (!value || isHttpUrl(value)) return null;
+
+  const normalized = value.replace(/\\/g, '/');
+  if (normalized.startsWith('/')) {
+    return path.join(root, 'public', normalized.slice(1));
+  }
+  if (normalized.startsWith('public/')) {
+    return path.join(root, normalized);
+  }
+  return path.join(root, 'public', normalized);
+}
+
+function readUInt24LE(buffer, offset) {
+  return buffer[offset] + (buffer[offset + 1] << 8) + (buffer[offset + 2] << 16);
+}
+
+function readPngDimensions(buffer) {
+  if (
+    buffer.length >= 24 &&
+    buffer[0] === 0x89 &&
+    buffer[1] === 0x50 &&
+    buffer[2] === 0x4e &&
+    buffer[3] === 0x47
+  ) {
+    return {
+      width: buffer.readUInt32BE(16),
+      height: buffer.readUInt32BE(20)
+    };
+  }
+  return null;
+}
+
+function readJpegDimensions(buffer) {
+  if (buffer.length < 4 || buffer[0] !== 0xff || buffer[1] !== 0xd8) return null;
+
+  let offset = 2;
+  while (offset < buffer.length) {
+    while (offset < buffer.length && buffer[offset] !== 0xff) offset += 1;
+    while (offset < buffer.length && buffer[offset] === 0xff) offset += 1;
+    if (offset >= buffer.length) break;
+
+    const marker = buffer[offset];
+    offset += 1;
+
+    if (marker === 0xd9 || marker === 0xda) break;
+    if (offset + 2 > buffer.length) break;
+
+    const length = buffer.readUInt16BE(offset);
+    if (length < 2 || offset + length > buffer.length) break;
+
+    const isSof =
+      marker >= 0xc0 &&
+      marker <= 0xcf &&
+      ![0xc4, 0xc8, 0xcc].includes(marker);
+
+    if (isSof && length >= 7) {
+      return {
+        height: buffer.readUInt16BE(offset + 3),
+        width: buffer.readUInt16BE(offset + 5)
+      };
+    }
+
+    offset += length;
+  }
+
+  return null;
+}
+
+function readWebpDimensions(buffer) {
+  if (
+    buffer.length < 20 ||
+    buffer.toString('ascii', 0, 4) !== 'RIFF' ||
+    buffer.toString('ascii', 8, 12) !== 'WEBP'
+  ) {
+    return null;
+  }
+
+  let offset = 12;
+  while (offset + 8 <= buffer.length) {
+    const chunk = buffer.toString('ascii', offset, offset + 4);
+    const size = buffer.readUInt32LE(offset + 4);
+    const dataOffset = offset + 8;
+
+    if (dataOffset + size > buffer.length) break;
+
+    if (chunk === 'VP8X' && size >= 10) {
+      return {
+        width: readUInt24LE(buffer, dataOffset + 4) + 1,
+        height: readUInt24LE(buffer, dataOffset + 7) + 1
+      };
+    }
+
+    if (chunk === 'VP8 ' && size >= 10) {
+      return {
+        width: buffer.readUInt16LE(dataOffset + 6) & 0x3fff,
+        height: buffer.readUInt16LE(dataOffset + 8) & 0x3fff
+      };
+    }
+
+    if (chunk === 'VP8L' && size >= 5 && buffer[dataOffset] === 0x2f) {
+      const bits = buffer.readUInt32LE(dataOffset + 1);
+      return {
+        width: (bits & 0x3fff) + 1,
+        height: ((bits >> 14) & 0x3fff) + 1
+      };
+    }
+
+    offset = dataOffset + size + (size % 2);
+  }
+
+  return null;
+}
+
+function readImageDimensions(filePath) {
+  const buffer = fs.readFileSync(filePath);
+  return readPngDimensions(buffer) || readJpegDimensions(buffer) || readWebpDimensions(buffer);
+}
+
+function parseAspectRatio(value) {
+  const raw = String(value || '').trim();
+  const match = raw.match(/^(\d+(?:\.\d+)?)\s*:\s*(\d+(?:\.\d+)?)$/);
+  if (!match) return null;
+
+  const width = Number(match[1]);
+  const height = Number(match[2]);
+  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return null;
+  return width / height;
+}
+
+function checkFeaturedImageContract({ frontmatter, issues }) {
+  const imageMode = String(frontmatter.imageMode || frontmatter.image_mode || '').trim();
+  const imageAspect = String(frontmatter.imageAspect || frontmatter.image_aspect || '').trim();
+  const imageFocalPoint = String(frontmatter.imageFocalPoint || frontmatter.image_focal_point || '').trim();
+  const hideImageOverlay =
+    frontmatter.hideImageOverlay === true ||
+    frontmatter.hide_image_overlay === true;
+
+  const validModes = new Set(['editorial_photo', 'text_graphic', 'data_visual']);
+  const validFocalPoints = new Set([
+    'center',
+    'left',
+    'right',
+    'top',
+    'bottom',
+    'left center',
+    'right center',
+    'center top',
+    'center bottom'
+  ]);
+
+  if (!imageMode) {
+    addIssue(
+      issues,
+      'warn',
+      'visual:image-contract',
+      'Missing imageMode frontmatter; use editorial_photo, text_graphic, or data_visual'
+    );
+  } else if (!validModes.has(imageMode)) {
+    addIssue(
+      issues,
+      'hard',
+      'visual:image-contract',
+      `Invalid imageMode "${imageMode}"; expected editorial_photo, text_graphic, or data_visual`
+    );
+  }
+
+  if (!imageAspect) {
+    addIssue(
+      issues,
+      'warn',
+      'visual:image-contract',
+      'Missing imageAspect frontmatter; set the generated hero ratio such as 16:9 or 21:9'
+    );
+  } else if (!parseAspectRatio(imageAspect)) {
+    addIssue(
+      issues,
+      'hard',
+      'visual:image-contract',
+      `Invalid imageAspect "${imageAspect}"; expected a ratio like 16:9 or 21:9`
+    );
+  }
+
+  if (!imageFocalPoint) {
+    addIssue(
+      issues,
+      'warn',
+      'visual:image-contract',
+      'Missing imageFocalPoint frontmatter; use center unless the hero needs a deliberate crop anchor'
+    );
+  } else if (!validFocalPoints.has(imageFocalPoint.toLowerCase())) {
+    addIssue(
+      issues,
+      'hard',
+      'visual:image-contract',
+      `Invalid imageFocalPoint "${imageFocalPoint}"`
+    );
+  }
+
+  if (imageMode === 'text_graphic' && !hideImageOverlay) {
+    addIssue(
+      issues,
+      'hard',
+      'visual:image-overlay',
+      'text_graphic images must set hideImageOverlay: true so article text is not placed over text baked into the image'
+    );
+  }
+
+  if (imageMode !== 'text_graphic' && hideImageOverlay) {
+    addIssue(
+      issues,
+      'warn',
+      'visual:image-overlay',
+      'hideImageOverlay is true on a non-text graphic image; confirm the card still has a readable article CTA'
+    );
+  }
+}
+
+function checkFeaturedImageFile({ frontmatter, issues }) {
+  const image = String(frontmatter.image || '').trim();
+  if (!image) return;
+
+  if (isHttpUrl(image)) {
+    addIssue(
+      issues,
+      'warn',
+      'visual:image-file',
+      `Featured image is remote and cannot be dimension-checked by guardrails: ${image}`
+    );
+    return;
+  }
+
+  const imagePath = resolvePublicImagePath(image);
+  if (!imagePath || !fs.existsSync(imagePath)) {
+    addIssue(issues, 'hard', 'visual:image-file', `Featured image file does not exist: ${image}`);
+    return;
+  }
+
+  const extension = path.extname(imagePath).toLowerCase();
+  if (extension === '.svg') {
+    const imageMode = String(frontmatter.imageMode || frontmatter.image_mode || '').trim();
+    addIssue(
+      issues,
+      imageMode === 'text_graphic' ? 'hard' : 'warn',
+      'visual:image-file',
+      `Featured image is SVG; use a real raster hero image for generated blog cards: ${image}`
+    );
+    return;
+  }
+
+  let dimensions = null;
+  try {
+    dimensions = readImageDimensions(imagePath);
+  } catch (error) {
+    addIssue(issues, 'hard', 'visual:image-file', `Could not read featured image dimensions: ${error.message}`);
+    return;
+  }
+
+  if (!dimensions) {
+    addIssue(issues, 'hard', 'visual:image-file', `Unsupported or invalid featured image file: ${image}`);
+    return;
+  }
+
+  if (dimensions.width < 1200 || dimensions.height < 600) {
+    addIssue(
+      issues,
+      'warn',
+      'visual:image-size',
+      `Featured image is ${dimensions.width}x${dimensions.height}; target at least 1200x600 for blog cards`
+    );
+  }
+
+  const expectedAspect = parseAspectRatio(frontmatter.imageAspect || frontmatter.image_aspect);
+  if (expectedAspect) {
+    const actualAspect = dimensions.width / dimensions.height;
+    const delta = Math.abs(actualAspect - expectedAspect);
+    if (delta > 0.06) {
+      addIssue(
+        issues,
+        'hard',
+        'visual:image-aspect',
+        `Featured image is ${dimensions.width}x${dimensions.height} (${actualAspect.toFixed(3)}), but imageAspect is ${frontmatter.imageAspect || frontmatter.image_aspect}`
+      );
+    }
+  }
+}
+
 function getSourcePolicy(audit) {
   const value = String(audit?.data?.source_policy || audit?.data?.sourcePolicy || '').toLowerCase();
   return value.replace(/_/g, '-').trim();
@@ -248,6 +540,9 @@ function checkFrontmatter({ frontmatter, issues }) {
         );
       }
     }
+
+    checkFeaturedImageContract({ frontmatter, issues });
+    checkFeaturedImageFile({ frontmatter, issues });
   }
 
   const meta = String(frontmatter.metaDescription || '');

@@ -5,6 +5,10 @@ export interface BlogArticle {
     slug: string;
     title: string;
     featuredImage: string;        // ALWAYS include
+    imageMode?: string;
+    imageAspect?: string;
+    imageFocalPoint?: string;
+    hideImageOverlay?: boolean;
     category: {
         slug: string;
         title: string;
@@ -75,6 +79,10 @@ export async function getArticles(options?: {
         slug: post.slug,
         title: post.headline,
         featuredImage: getPostFeaturedImage(post.headline, post.image),
+        imageMode: post.imageMode,
+        imageAspect: post.imageAspect,
+        imageFocalPoint: post.imageFocalPoint,
+        hideImageOverlay: post.hideImageOverlay,
         category: {
             slug: post.category.slug,
             title: post.category.title

@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BlogPost } from '@/lib/seobot';
 import { getAuthor } from '@/lib/authors';
-import { getBlogImageObjectFit, getBlogImageObjectPosition, isReviewRepliesPost } from '@/lib/blog-image-presentation';
+import { getBlogImageObjectFit, getBlogImageObjectPosition, shouldHideBlogImageOverlay } from '@/lib/blog-image-presentation';
 
 interface BlogCarouselClientProps {
     posts: BlogPost[];
@@ -100,7 +100,15 @@ export default function BlogCarouselClient({
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
                             {posts.map((post, index) => {
-                                const isWideGraphic = isReviewRepliesPost(post.slug, post.image);
+                                const imagePresentation = {
+                                    slug: post.slug,
+                                    title: post.headline,
+                                    image: post.image,
+                                    imageMode: post.imageMode,
+                                    imageFocalPoint: post.imageFocalPoint,
+                                    hideImageOverlay: post.hideImageOverlay,
+                                };
+                                const isImageOnly = shouldHideBlogImageOverlay(imagePresentation);
 
                                 return (
                                 <motion.article
@@ -119,15 +127,15 @@ export default function BlogCarouselClient({
                                                     src={post.image}
                                                     alt={post.headline}
                                                     style={{
-                                                        objectFit: getBlogImageObjectFit(post.slug, post.image),
-                                                        objectPosition: getBlogImageObjectPosition(post.slug, post.image)
+                                                        objectFit: getBlogImageObjectFit(imagePresentation),
+                                                        objectPosition: getBlogImageObjectPosition(imagePresentation)
                                                     }}
-                                                    className={`${isWideGraphic ? '' : 'group-hover:scale-110'} w-full h-full transition-transform duration-700 ease-out`}
+                                                    className={`${isImageOnly ? '' : 'group-hover:scale-110'} w-full h-full transition-transform duration-700 ease-out`}
                                                 />
                                                 <div className="absolute top-5 right-5 px-4 py-2 bg-black/70 backdrop-blur-xl rounded-full border border-white/10">
                                                     <span className="text-[11px] font-medium text-white/90">{post.readingTime} min read</span>
                                                 </div>
-                                                {!isWideGraphic && <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/20 to-transparent" />}
+                                                {!isImageOnly && <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/20 to-transparent" />}
                                             </div>
 
                                             <div className="p-8 relative flex-1 flex flex-col">
@@ -328,7 +336,15 @@ export default function BlogCarouselClient({
                 <div className="relative w-full mask-linear-fade">
                     <div className="flex gap-6 animate-infinite-scroll-slow w-max hover:[animation-play-state:paused] cursor-pointer py-4 no-scrollbar overflow-x-auto lg:overflow-visible">
                         {[...posts, ...posts].map((post, i) => {
-                            const isWideGraphic = isReviewRepliesPost(post.slug, post.image);
+                            const imagePresentation = {
+                                slug: post.slug,
+                                title: post.headline,
+                                image: post.image,
+                                imageMode: post.imageMode,
+                                imageFocalPoint: post.imageFocalPoint,
+                                hideImageOverlay: post.hideImageOverlay,
+                            };
+                            const isImageOnly = shouldHideBlogImageOverlay(imagePresentation);
 
                             return (
                             <motion.div
@@ -337,7 +353,7 @@ export default function BlogCarouselClient({
                             >
                                 <Link href={`/blog/${post.slug}`} className="group block">
                                     <div className="relative h-[250px] rounded-t-[2.5rem] overflow-hidden border-x border-t border-white/5 shadow-2xl">
-                                        {!isWideGraphic && (
+                                        {!isImageOnly && (
                                             <>
                                                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10" />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent pointer-events-none z-10" />
@@ -347,10 +363,10 @@ export default function BlogCarouselClient({
                                             src={post.image}
                                             alt={post.headline}
                                             style={{
-                                                objectFit: getBlogImageObjectFit(post.slug, post.image),
-                                                objectPosition: getBlogImageObjectPosition(post.slug, post.image)
+                                                objectFit: getBlogImageObjectFit(imagePresentation),
+                                                objectPosition: getBlogImageObjectPosition(imagePresentation)
                                             }}
-                                            className={`${isWideGraphic ? '' : 'group-hover:scale-110'} w-full h-full transition-transform duration-700`}
+                                            className={`${isImageOnly ? '' : 'group-hover:scale-110'} w-full h-full transition-transform duration-700`}
                                         />
                                         <div className="absolute top-6 left-6 z-20">
                                             <span className="px-3 py-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-black text-[#ff7404] uppercase tracking-widest">

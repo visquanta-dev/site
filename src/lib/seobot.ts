@@ -17,6 +17,10 @@ export interface BlogPost {
   html: string;
   image: string;
   socialImage?: string;
+  imageMode?: string;
+  imageAspect?: string;
+  imageFocalPoint?: string;
+  hideImageOverlay?: boolean;
   readingTime: number;
   createdAt: string;
   updatedAt: string;
@@ -42,6 +46,10 @@ export interface BasePost {
   metaDescription: string;
   image: string;
   socialImage?: string;
+  imageMode?: string;
+  imageAspect?: string;
+  imageFocalPoint?: string;
+  hideImageOverlay?: boolean;
   readingTime: number;
   createdAt: string;
   updatedAt: string;
@@ -85,6 +93,10 @@ function parsePost(filename: string): BlogPost | null {
       html,
       image: data.image || '/images/blog/default.jpg',
       socialImage: data.socialImage || data.social_image || data.ogImage || data.og_image,
+      imageMode: data.imageMode || data.image_mode,
+      imageAspect: data.imageAspect || data.image_aspect,
+      imageFocalPoint: data.imageFocalPoint || data.image_focal_point,
+      hideImageOverlay: data.hideImageOverlay === true || data.hide_image_overlay === true,
       readingTime: data.readingTime || Math.ceil(content.split(/\s+/).length / 200),
       createdAt: data.publishedAt ? new Date(data.publishedAt).toISOString() : new Date().toISOString(),
       updatedAt: data.updatedAt

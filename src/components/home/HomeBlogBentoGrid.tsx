@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BlogArticle } from '@/lib/blog';
 import { getAuthor } from '@/lib/authors';
-import { getBlogImageObjectFit, getBlogImageObjectPosition, isReviewRepliesPost } from '@/lib/blog-image-presentation';
+import { getBlogImageObjectFit, getBlogImageObjectPosition, shouldHideBlogImageOverlay } from '@/lib/blog-image-presentation';
 
 interface HomeBlogBentoGridProps {
     posts: BlogArticle[];
@@ -17,7 +17,15 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
     // We take the first as featured, and the next 3 for the bottom grid
     const featured = posts[0];
     const gridPosts = posts.slice(1, 4);
-    const featuredIsWideGraphic = isReviewRepliesPost(featured?.slug, featured?.featuredImage);
+    const featuredImagePresentation = {
+        slug: featured?.slug,
+        title: featured?.title,
+        image: featured?.featuredImage,
+        imageMode: featured?.imageMode,
+        imageFocalPoint: featured?.imageFocalPoint,
+        hideImageOverlay: featured?.hideImageOverlay,
+    };
+    const featuredIsImageOnly = shouldHideBlogImageOverlay(featuredImagePresentation);
 
     // Helper for date formatting
     const formatDate = (dateString: string) => {
@@ -79,13 +87,13 @@ export default function HomeBlogBentoGrid({ posts }: HomeBlogBentoGridProps) {
                                             alt={featured.title}
                                             fill
                                             style={{
-                                                objectFit: getBlogImageObjectFit(featured.slug, featured.featuredImage),
-                                                objectPosition: getBlogImageObjectPosition(featured.slug, featured.featuredImage)
+                                                objectFit: getBlogImageObjectFit(featuredImagePresentation),
+                                                objectPosition: getBlogImageObjectPosition(featuredImagePresentation)
                                             }}
-                                            className={`${featuredIsWideGraphic ? 'opacity-100' : 'grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105'} transition-all duration-700`}
+                                            className={`${featuredIsImageOnly ? 'opacity-100' : 'grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105'} transition-all duration-700`}
                                         />
                                     )}
-                                    {!featuredIsWideGraphic && (
+                                    {!featuredIsImageOnly && (
                                         <>
                                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-10" />
                                             <div className="absolute inset-0 bg-black/20 z-1" />
@@ -193,7 +201,15 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
             year: 'numeric'
         });
     };
-    const isWideGraphic = isReviewRepliesPost(post.slug, post.featuredImage);
+    const imagePresentation = {
+        slug: post.slug,
+        title: post.title,
+        image: post.featuredImage,
+        imageMode: post.imageMode,
+        imageFocalPoint: post.imageFocalPoint,
+        hideImageOverlay: post.hideImageOverlay,
+    };
+    const isImageOnly = shouldHideBlogImageOverlay(imagePresentation);
 
     return (
         <motion.div
@@ -210,13 +226,13 @@ function StandardCard({ post, delay }: { post: BlogArticle, delay: number }) {
                             alt={post.title}
                             fill
                             style={{
-                                objectFit: getBlogImageObjectFit(post.slug, post.featuredImage),
-                                objectPosition: getBlogImageObjectPosition(post.slug, post.featuredImage)
+                                objectFit: getBlogImageObjectFit(imagePresentation),
+                                objectPosition: getBlogImageObjectPosition(imagePresentation)
                             }}
-                            className={`${isWideGraphic ? 'opacity-100' : 'grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105'} transition-all duration-700`}
+                            className={`${isImageOnly ? 'opacity-100' : 'grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105'} transition-all duration-700`}
                         />
                     )}
-                    {!isWideGraphic && (
+                    {!isImageOnly && (
                         <>
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
                             <div className="absolute inset-0 bg-black/20 z-1" />
