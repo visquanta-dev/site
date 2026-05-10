@@ -1,0 +1,129 @@
+{
+  "slug": "bdc-kpis-actually-move-dealer-gross-profit",
+  "topic_lane": "speed-to-lead",
+  "status": "approved",
+  "source_policy": "competitor-signal",
+  "created_at": "2026-05-10T16:46:18.742Z",
+  "updated_at": "2026-05-10T16:46:18.742Z",
+  "sources": [
+    {
+      "title": "Sales BDC Performance Metrics: KPIs That Drive Revenue | Strolid",
+      "url": "https://strolid.com/learn/sales-bdc-performance-metrics-kpis-that-matter",
+      "domain": "strolid.com",
+      "published_at": "2025-12-29",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "The difference between a 30% appointment-to-sale rate and 40% rate is $300,000-$500,000 in annual gross profit for a typical dealership.",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_001 for sales-bdc-performance-metrics-kpis-that-matter; not intended as a published outbound citation."
+    },
+    {
+      "title": "BDC KPIs That Matter: 15 Metrics to Track Daily | Strolid | Strolid",
+      "url": "https://strolid.com/learn/bdc-kpis-that-actually-matter-15-metrics-to-track-daily",
+      "domain": "strolid.com",
+      "published_at": "2026-02-11",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "ROI appears quickly - a $600 monthly technology investment that improves appointment rate by 5 percentage points generates $15,000-$25,000 additional annual gross profit.",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_002 for sales-bdc-performance-metrics-kpis-that-matter; not intended as a published outbound citation."
+    },
+    {
+      "title": "3 Metrics to Measure Automotive BDC Performance | CDK Global",
+      "url": "https://www.cdkglobal.com/insights/3-metrics-measure-automotive-bdc-performance",
+      "domain": "cdkglobal.com",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "[View More Insights](https://www.cdkglobal.com/insights) 4 Min Read • February 27, 2019 # 3 Metrics to Measure Automotive BDC Performance ![Automotive BDC](https://www.cdkglobal.com/_next/image?url=https%3A%2F%2Fcms.cdkglobal.com%2Fsites%2Fdefault%2Ffiles%2F2023-06%2F3-Metrics-to-Measure-Automotive-BDC-Performancee.jpg&w=3840&q=75) Does your dealership use an external BDC for sales calls?",
+      "relevance_reason": "Used by UltraPlan as source src_003 for sales-bdc-performance-metrics-kpis-that-matter; 8 quote anchors were extracted for draft generation."
+    },
+    {
+      "title": "BDC Metrics Glossary: KPIs, Conversion Rates & Benchmarks | Strolid",
+      "url": "https://strolid.com/learn/bdc-metrics-glossary-kpis-conversion-rates-benchmarks",
+      "domain": "strolid.com",
+      "published_at": "2026-01-20",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "According to industry research, dealerships that track the right BDC metrics see conversion rates improve by 40-60% within the first year \\[Source: Automotive News, 2024\\].",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_004 for sales-bdc-performance-metrics-kpis-that-matter; not intended as a published outbound citation."
+    }
+  ],
+  "guardrails": {
+    "sources": {
+      "status": "warn",
+      "score": 33,
+      "notes": "competitor-signal policy: 1 public source and 3 research-only competitor signals included in the audit record."
+    },
+    "links": {
+      "status": "pass",
+      "notes": "13 internal links and 2 external source links detected in rendered markdown."
+    },
+    "visual": {
+      "status": "pass",
+      "notes": "Hero image was generated or selected by the image pipeline."
+    },
+    "seo_aeo": {
+      "status": "pass",
+      "score": 98,
+      "notes": "SEO/AEO gate score: 98."
+    },
+    "trace-back": {
+      "status": "pass",
+      "score": 0.8670147194403793,
+      "notes": "All 22 paragraphs traceable; avg rephrase distance 0.867"
+    },
+    "vertical-discipline": {
+      "status": "pass",
+      "notes": "opening anchors: dealer, dealership, dealerships, dealer principal (+3)"
+    },
+    "anonymization": {
+      "status": "pass",
+      "notes": "0 client name leaks across 22 paragraphs + meta"
+    },
+    "slop-lexicon": {
+      "status": "pass",
+      "score": 8,
+      "notes": "regex: 0 hits across 22 paragraphs | slop-in-spirit: 8/10"
+    },
+    "originality": {
+      "status": "pass",
+      "score": 7,
+      "notes": "n-gram: worst 17% (< 20%) | originality judge: 7/10"
+    },
+    "fact-recheck": {
+      "status": "pass",
+      "score": 100,
+      "notes": "22/22 claims supported (100% >= 100%)"
+    }
+  },
+  "approvals": {
+    "sources": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-10T16:46:18.742Z",
+      "notes": "Source approval is generated from the UltraPlan research bundle and source resolver."
+    },
+    "draft": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-10T16:46:18.742Z",
+      "notes": "Draft approval is generated after the hard gate retry loop returns a passed report."
+    },
+    "seo_aeo": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-10T16:46:18.742Z",
+      "notes": "SEO/AEO approval is generated from the deterministic SEO/AEO gate result."
+    },
+    "visual": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-10T16:46:18.742Z",
+      "notes": "Visual approval is generated from the image pipeline output."
+    },
+    "final_publish": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-10T16:46:18.742Z",
+      "notes": "Automated publish gate passed for PR checks. Human publish approval still occurs by GitHub PR review and merge."
+    }
+  }
+}
