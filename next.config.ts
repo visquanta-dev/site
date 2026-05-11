@@ -502,6 +502,16 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Hashed chunk URLs are not search landing pages (noindex). They stay crawlable so Google can load them when rendering.
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, follow',
+          },
+        ],
+      },
     ];
   },
 };
