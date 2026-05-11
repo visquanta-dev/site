@@ -1,0 +1,162 @@
+{
+  "slug": "after-hours-calls-6-5m-service-revenue-leak",
+  "topic_lane": "service-drive",
+  "status": "approved",
+  "source_policy": "competitor-signal",
+  "created_at": "2026-05-11T18:03:38.406Z",
+  "updated_at": "2026-05-11T18:03:38.406Z",
+  "sources": [
+    {
+      "title": "How After Hours AI Coverage Turns Missed Calls into Dealership Revenue | Mia",
+      "url": "https://www.mia.inc/blog/after-hours-ai-coverage-missed-calls-into-dealership-revenue",
+      "domain": "mia.inc",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "One report from [CallSource](https://www.callsource.com/blog/13-notable-inbound-phone-call-automotive-stats-for-dealers/) found that more than half of inbound dealership calls represent real revenue opportunities, and about 75% of those calls relate to fixed ops, such as service and parts. ‍ The challenge?",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_001 for after-hours-ai-coverage-missed-calls-into-dealership-revenue; not intended as a published outbound citation."
+    },
+    {
+      "title": "Put Missed Calls on Hold and Turn Rings into Revenue | Reynolds and Reynolds",
+      "url": "https://www.reyrey.com/resources/blog/put-missed-calls-hold-and-turn-rings-revenue",
+      "domain": "reyrey.com",
+      "source_type": "industry",
+      "tier": "medium",
+      "excerpt": "Research shows 27 to 35 percent of calls happen after hours.",
+      "relevance_reason": "Used by UltraPlan as source src_002 for after-hours-ai-coverage-missed-calls-into-dealership-revenue; 8 quote anchors were extracted for draft generation."
+    },
+    {
+      "title": "How to Choose an After Hours Answering Service | Numa",
+      "url": "https://www.numa.com/blog/after-hours-answering-service",
+      "domain": "numa.com",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "No matter how many people call or how many texts Numa sends to serve them, that’s all you pay. ## Serve your customers 24/7 Every after hours call is an opportunity to earn someone’s business.",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_003 for after-hours-ai-coverage-missed-calls-into-dealership-revenue; not intended as a published outbound citation."
+    },
+    {
+      "title": "How Dealerships Lose Millions of Revenue to Missed Calls & 5 Ways to Fix It | Numa",
+      "url": "https://www.numa.com/blog/dealership-missed-calls-cost",
+      "domain": "numa.com",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "This is especially critical during [the morning rush (8-11:30 a.m.), when 50% of all appointment-related calls occur](https://www.cbtnews.com/numas-2024-insights-reveal-1-17m-in-lost-revenue-from-missed-service-calls/). **Why it works:** It guarantees 100% call capture.",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_004 for after-hours-ai-coverage-missed-calls-into-dealership-revenue; not intended as a published outbound citation."
+    },
+    {
+      "title": "How Numa Handles Missed Calls at Automotive Dealerships | Numa",
+      "url": "https://www.numa.com/blog/how-numa-handles-missed-calls-at-automotive-dealerships",
+      "domain": "numa.com",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "With 75% of voicemail callers never calling back and an average RO value of $450, the annual revenue at risk exceeds $6.5 million. **Q: How does Numa compare to other missed-call or texting tools?** A: Most point solutions address one moment in the communication loop.",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_005 for after-hours-ai-coverage-missed-calls-into-dealership-revenue; not intended as a published outbound citation."
+    },
+    {
+      "title": "The Real Cost of a Missed Call at a Car Dealership (And What to Do About It) | Numa",
+      "url": "https://www.numa.com/blog/cost-of-missed-calls-car-dealership",
+      "domain": "numa.com",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "In the peak afternoon window — roughly 2PM to 5PM — up to 75% of inbound calls are status requests.",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_006 for after-hours-ai-coverage-missed-calls-into-dealership-revenue; not intended as a published outbound citation."
+    },
+    {
+      "title": "How Numa Recovers Missed Revenue for Automotive Dealerships | Numa",
+      "url": "https://www.numa.com/blog/how-numa-recovers-missed-revenue-for-automotive-dealerships",
+      "domain": "numa.com",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "With 75% of callers who go to voicemail never calling back and an average repair order value of $450, this can lead to over $6.5 million in lost revenue annually.",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_007 for after-hours-ai-coverage-missed-calls-into-dealership-revenue; not intended as a published outbound citation."
+    },
+    {
+      "title": "The 4 ways dealerships leak revenue every day (and why adding staff doesn't fix it) | Numa",
+      "url": "https://www.numa.com/blog/stop-dealership-missed-revenue-leaks-ai-communication",
+      "domain": "numa.com",
+      "source_type": "competitor-research-only",
+      "tier": "low",
+      "excerpt": "A dealership doing 80 appointments per day loses roughly $180,000 per month from the 20% that don't show and never hear back. **Leak 3 — Departments that don't talk:** The intro appointment that sales promised but service never received.",
+      "relevance_reason": "Used by UltraPlan as research-only competitor topic signal src_008 for after-hours-ai-coverage-missed-calls-into-dealership-revenue; not intended as a published outbound citation."
+    }
+  ],
+  "guardrails": {
+    "sources": {
+      "status": "warn",
+      "score": 33,
+      "notes": "competitor-signal policy: 1 public source and 7 research-only competitor signals included in the audit record."
+    },
+    "links": {
+      "status": "pass",
+      "notes": "13 internal links and 1 external source link detected in rendered markdown."
+    },
+    "visual": {
+      "status": "pass",
+      "notes": "Hero image was generated or selected by the image pipeline."
+    },
+    "seo_aeo": {
+      "status": "pass",
+      "score": 96,
+      "notes": "SEO/AEO gate score: 96."
+    },
+    "trace-back": {
+      "status": "pass",
+      "score": 0.8452540279036904,
+      "notes": "All 25 paragraphs traceable; avg rephrase distance 0.845"
+    },
+    "vertical-discipline": {
+      "status": "pass",
+      "notes": "opening anchors: dealer, dealership, dealerships, dealer principal (+4)"
+    },
+    "anonymization": {
+      "status": "pass",
+      "notes": "0 client name leaks across 25 paragraphs + meta"
+    },
+    "slop-lexicon": {
+      "status": "pass",
+      "score": 8,
+      "notes": "regex: 0 hits across 25 paragraphs | slop-in-spirit: 8/10"
+    },
+    "originality": {
+      "status": "pass",
+      "score": 7,
+      "notes": "n-gram: worst 18% (< 20%) | originality judge: 7/10"
+    },
+    "fact-recheck": {
+      "status": "pass",
+      "score": 100,
+      "notes": "25/25 claims supported (100% >= 100%)"
+    }
+  },
+  "approvals": {
+    "sources": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-11T18:03:38.406Z",
+      "notes": "Source approval is generated from the UltraPlan research bundle and source resolver."
+    },
+    "draft": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-11T18:03:38.406Z",
+      "notes": "Draft approval is generated after the hard gate retry loop returns a passed report."
+    },
+    "seo_aeo": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-11T18:03:38.406Z",
+      "notes": "SEO/AEO approval is generated from the deterministic SEO/AEO gate result."
+    },
+    "visual": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-11T18:03:38.406Z",
+      "notes": "Visual approval is generated from the image pipeline output."
+    },
+    "final_publish": {
+      "approved": true,
+      "approved_by": "UltraPlan automated gate suite",
+      "approved_at": "2026-05-11T18:03:38.406Z",
+      "notes": "Automated publish gate passed for PR checks. Human publish approval still occurs by GitHub PR review and merge."
+    }
+  }
+}
