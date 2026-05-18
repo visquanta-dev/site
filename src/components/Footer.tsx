@@ -72,10 +72,6 @@ const footerLinks = {
   trustCompliance: [
     { label: 'Trust Centre', href: '/trust' },
     { label: 'Subprocessors', href: '/subprocessors' },
-    { label: 'AI Data Handling', href: '/trust#enterprise-ai-data-controls' },
-    { label: 'Security', href: '/trust#security-posture' },
-    { label: 'DPA Requests', href: '/trust#dpa-requests' },
-    { label: 'Vendor Review', href: '/trust#security-compliance-documentation' },
     { label: 'Compliance', href: '/compliance' },
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Terms & Conditions', href: '/terms-conditions' },
