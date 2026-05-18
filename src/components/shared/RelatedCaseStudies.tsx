@@ -10,51 +10,63 @@ interface RelatedCaseStudyProps {
     title?: string;
 }
 
+/** Slugs and copy align with `src/lib/case-studies.ts` (live case study pages only). */
 const allCaseStudies = [
     {
-        id: 'metro-motors',
-        client: 'Metro Auto Group',
-        title: 'Added 32 Cars/Mo with Reactivation',
-        metric: '+32',
-        metricLabel: 'Monthly Sales',
+        id: 'grand-valley-auto',
+        client: 'Independent · Western Colorado',
+        title: '$110k in 60 Days — Lead Reactivation',
+        metric: '$110k',
+        metricLabel: 'Attributed revenue',
         icon: TrendingUp,
         color: 'from-orange-500/20 to-red-500/20',
         image: '/images/suite-bg/llm-bg.png',
-        link: '/case-studies/metro-motors'
+        link: '/case-studies/grand-valley-auto',
     },
     {
-        id: 'bayside-honda',
-        client: 'Bayside Honda',
-        title: '98% Reduction in Response Time',
-        metric: '-98%',
-        metricLabel: 'Response Time',
+        id: 'kansas-city-hyundai',
+        client: 'Hyundai · Kansas City',
+        title: '$271k in 60 Days — Speed-to-Lead',
+        metric: '$271k',
+        metricLabel: 'Attributed revenue',
         icon: Zap,
         color: 'from-blue-500/20 to-cyan-500/20',
         image: '/images/suite-bg/s2l-bg.png',
-        link: '/case-studies/bayside-honda'
+        link: '/case-studies/kansas-city-hyundai',
     },
     {
-        id: 'prestige-imports',
-        client: 'Prestige Imports',
-        title: '300% ROI on Service Drive',
-        metric: '300%',
-        metricLabel: 'ROI',
+        id: 'drive-n-motion-colorado',
+        client: '3 Rooftops · Colorado Front Range',
+        title: '$228k Across 3 Stores',
+        metric: '$228k',
+        metricLabel: 'Attributed revenue',
         icon: BarChart3,
         color: 'from-emerald-500/20 to-green-500/20',
         image: '/images/suite-bg/ds-bg.png',
-        link: '/case-studies/prestige-imports'
+        link: '/case-studies/drive-n-motion-colorado',
     },
     {
-        id: 'freedom-independent',
-        client: 'Freedom Independent',
-        title: 'Inventory Turn Reduced to 18 Days',
-        metric: '18 Days',
-        metricLabel: 'Turn Time',
+        id: 'patriot-chevrolet',
+        client: 'Chevrolet · Northeast Oklahoma',
+        title: '$153k in 60 Days',
+        metric: '$153k',
+        metricLabel: 'Attributed revenue',
         icon: Target,
         color: 'from-purple-500/20 to-indigo-500/20',
         image: '/images/suite-bg/ds-bg.png',
-        link: '/case-studies/freedom-independent'
-    }
+        link: '/case-studies/patriot-chevrolet',
+    },
+    {
+        id: 'seth-wadley',
+        client: '5 Rooftops · Central Oklahoma',
+        title: '$1.29M in 60 Days',
+        metric: '$1.29M',
+        metricLabel: 'Attributed revenue',
+        icon: TrendingUp,
+        color: 'from-orange-500/20 to-amber-500/20',
+        image: '/images/suite-bg/llm-bg.png',
+        link: '/case-studies/seth-wadley',
+    },
 ];
 
 export default function RelatedCaseStudies({

@@ -66,10 +66,20 @@ const footerLinks = {
     { label: 'About VisQuanta', href: '/about-visquanta' },
     { label: 'Our Team', href: '/team' },
     { label: 'Careers', href: '/careers' },
-    { label: 'Trust Center', href: '/trust' },
-    { label: 'Compliance', href: '/compliance' },
     { label: 'Contact Us', href: '/contact' },
     { label: 'Book a Demo', href: '/book-demo' },
+  ],
+  trustCompliance: [
+    { label: 'Trust Centre', href: '/trust' },
+    { label: 'Subprocessors', href: '/subprocessors' },
+    { label: 'AI Data Handling', href: '/trust#enterprise-ai-data-controls' },
+    { label: 'Security', href: '/trust#security-posture' },
+    { label: 'DPA Requests', href: '/trust#dpa-requests' },
+    { label: 'Vendor Review', href: '/trust#security-compliance-documentation' },
+    { label: 'Compliance', href: '/compliance' },
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Terms & Conditions', href: '/terms-conditions' },
+    { label: 'Cookie Policy', href: '/cookie-policy' },
   ],
 };
 
@@ -169,7 +179,7 @@ export default function Footer() {
             <div className="lg:col-span-8 flex flex-col justify-between gap-12">
 
               {/* Links Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 lg:gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-10 lg:gap-6">
                 {/* Auto Master Suite */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -280,6 +290,35 @@ export default function Footer() {
                         </Link>
                       </li>
                     ))}
+                  </ul>
+                </motion.div>
+
+                {/* Trust & Compliance */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="space-y-6"
+                >
+                  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+                    <Link href={localeLink('/trust', locale)} className="hover:text-[#FF7404] transition-colors">Trust &amp; Compliance</Link>
+                  </h4>
+                  <ul className="space-y-4">
+                    {footerLinks.trustCompliance.map((link, i) => {
+                      const isHashLink = link.href.includes('#');
+                      const href = isHashLink ? link.href : localeLink(link.href, locale);
+                      return (
+                        <li key={i}>
+                          <Link
+                            href={href}
+                            className="group text-sm text-white/40 hover:text-white transition-colors duration-300"
+                          >
+                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-300">{link.label}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </motion.div>
               </div>

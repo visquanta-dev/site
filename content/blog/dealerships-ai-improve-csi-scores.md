@@ -196,7 +196,7 @@ These strategies not only improve CSI scores but also deepen customer loyalty, p
 
 How quickly you adopt AI will shape your competitive position. Dealerships already leveraging these tools are seeing measurable gains in customer satisfaction and operational performance.
 
-**VisQuanta's AutoMaster Suite** provides a reliable solution for dealerships ready to embrace AI. With [AI-powered CRM integration](https://www.visquanta.com/blog/ai-powered-crm-vs-traditional-systems-advantage-us-dealerships), this platform reactivates dormant leads, [shortens lead response times](https://www.visquanta.com/case-studies/bayside-honda), and automates reputation management - all while adhering to industry regulations.
+**VisQuanta's AutoMaster Suite** provides a reliable solution for dealerships ready to embrace AI. With [AI-powered CRM integration](https://www.visquanta.com/blog/ai-powered-crm-vs-traditional-systems-advantage-us-dealerships), this platform reactivates dormant leads, [shortens lead response times](https://www.visquanta.com/case-studies/kansas-city-hyundai), and automates reputation management - all while adhering to industry regulations.
 
 The numbers speak volumes: VisQuanta has helped dealership clients across the U.S. generate over **$9.5 million in additional revenue**. This success highlights how targeted AI solutions can transform dealership operations.
 

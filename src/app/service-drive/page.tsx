@@ -226,7 +226,7 @@ export default function ServiceDrivePage() {
                 />
 
                 <RelatedCaseStudies
-                    caseStudySlugs={['prestige-imports', 'seth-wadley']}
+                    caseStudySlugs={['drive-n-motion-colorado', 'seth-wadley']}
                 />
 
                 <VoiceAgent />

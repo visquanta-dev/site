@@ -3,6 +3,7 @@
 User-agent: *
 Allow: /
 Allow: /ca/
+# /_next/static/ is allowed so Google can load JS/CSS for rendering; those URLs use X-Robots-Tag: noindex.
 Disallow: /api/
 Disallow: /admin/
 Disallow: /portal/
@@ -11,6 +12,9 @@ Disallow: /portal/
 User-agent: Googlebot
 Allow: /
 Allow: /ca/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /portal/
 
 # AI crawler access for LLM retrieval
 User-agent: GPTBot

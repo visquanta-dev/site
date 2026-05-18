@@ -127,7 +127,7 @@ export default function SpeedToLeadPage() {
 
             {/* 8.7 PROOF: Related Case Studies */}
             <RelatedCaseStudies
-                caseStudySlugs={['bayside-honda', 'seth-wadley']}
+                caseStudySlugs={['kansas-city-hyundai', 'seth-wadley']}
             />
 
             {/* 9. RESOURCES: Relevant Articles */}

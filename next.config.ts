@@ -58,7 +58,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/blog-details/:slug',
-        destination: 'https://www.visquanta.com/blog/:slug',
+        destination: '/blog/:slug',
         permanent: true,
       },
 
@@ -124,6 +124,31 @@ const nextConfig: NextConfig = {
       {
         source: '/case-studies/westline-motors',
         destination: '/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/metro-motors',
+        destination: '/case-studies/grand-valley-auto',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/bayside-honda',
+        destination: '/case-studies/kansas-city-hyundai',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/prestige-imports',
+        destination: '/case-studies/drive-n-motion-colorado',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/freedom-independent',
+        destination: '/case-studies/patriot-chevrolet',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/seth-wadley-auto-group',
+        destination: '/case-studies/seth-wadley',
         permanent: true,
       },
       {
@@ -277,6 +302,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/blogs-3289',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
         source: '/blogs-3289/:path*',
         destination: '/blog',
         permanent: true,
@@ -347,6 +377,21 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/ai-powered-emails',
+        destination: '/speed-to-lead',
+        permanent: true,
+      },
+      {
+        source: '/home660906',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/product/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
         source: '/advertising-lead-generation',
         destination: '/custom-campaigns',
         permanent: true,
@@ -378,16 +423,26 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/post/:slug',
-        destination: '/blog',
+        destination: '/blog/:slug',
         permanent: true,
       },
       {
-        source: '/post/:slug/:rest',
-        destination: '/blog',
+        source: '/post/:slug/:path+',
+        destination: '/blog/:slug',
         permanent: true,
       },
       {
         source: '/blogs/tag/:tag',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blogs',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blogs/:path+',
         destination: '/blog',
         permanent: true,
       },
@@ -444,6 +499,16 @@ const nextConfig: NextConfig = {
           {
             key: 'X-Robots-Tag',
             value: 'noindex',
+          },
+        ],
+      },
+      // Hashed chunk URLs are not search landing pages (noindex). They stay crawlable so Google can load them when rendering.
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, follow',
           },
         ],
       },

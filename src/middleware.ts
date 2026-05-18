@@ -129,6 +129,12 @@ export function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
+    // Malformed links (e.g. pasted URLs ending with "&") — consolidate to canonical www home.
+    if (pathname === "/&") {
+        const protocol = request.headers.get("x-forwarded-proto") || "https";
+        return NextResponse.redirect(new URL("/", `${protocol}://www.visquanta.com`), 301);
+    }
+
     const host = request.headers.get("host");
 
     // Bot detection early
