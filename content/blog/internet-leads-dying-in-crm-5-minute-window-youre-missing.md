@@ -39,7 +39,7 @@ Let’s dive into how you can fix this and stop letting leads die in your CRM.
 ::: @figure ![5-Minute Lead Response Rule: Conversion Rates and Revenue Impact](/images/blog/internet-leads-dying-in-crm-5-minute-window-youre-missing/69cbe3b21b352ff267ccd30d-1774972827969.jpg){5-Minute Lead Response Rule: Conversion Rates and Revenue Impact}
 :::
 
-Research from [MIT](https://www.mit.edu/) and [InsideSales.com](https://www.visquanta.com/blog/stop-losing-leads-response-time) has cemented the importance of the "5-Minute Rule." This study highlights that the first five minutes after a lead submits an inquiry are critical for qualification. Beyond this window, the chances of converting that lead drop sharply. Let’s break down just how much is at stake.
+Research from [MIT](https://www.mit.edu/) and [lead response time research](https://www.visquanta.com/blog/how-to-reduce-lead-response-time-in-auto-sales) has cemented the importance of the "5-Minute Rule." This study highlights that the first five minutes after a lead submits an inquiry are critical for qualification. Beyond this window, the chances of converting that lead drop sharply. Let’s break down just how much is at stake.
 
 ### Conversion Rates Drop After 5 Minutes
 

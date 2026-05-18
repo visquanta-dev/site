@@ -127,7 +127,7 @@ Before committing new dollars, start with a focused self-assessment. A practical
 
 1. Audit your current contracts - especially non-prime portfolios - to understand where risk sits and which structures actually perform
 2. Identify one or two specific pain points - slow funding turnaround, inconsistent lender approvals - that automation can address immediately
-3. Evaluate potential partners on [integration](https://www.visquanta.com/blog/promax-visquanta-partnership-dealership-growth) depth and ongoing support, not just feature lists
+3. Evaluate potential partners on [integration](https://www.visquanta.com/integrations) depth and ongoing support, not just feature lists
 
 Step one - the contract audit - deserves special emphasis because it sets the foundation for every decision that follows. Without a clear read on how your existing book is performing, any [new technology](https://www.visquanta.com/blog/emerging-ai-innovations-for-car-dealerships-to-increase-sales-in-2026) investment is a guess. Dealers who map risk and return across their current portfolio will know exactly where automation moves the needle. The business case becomes self-evident.
 
@@ -219,6 +219,6 @@ Missing paperwork, repeated calls between the desk and the lender, and vague sta
 
 ## Related Reading
 
-- [ProMax x VisQuanta partnership](https://www.visquanta.com/blog/promax-visquanta-partnership-dealership-growth)
+- [VisQuanta CRM integrations](https://www.visquanta.com/integrations)
 - [CRM integrations](https://www.visquanta.com/integrations)
 - [emerging AI innovations for 2026](https://www.visquanta.com/blog/emerging-ai-innovations-for-car-dealerships-to-increase-sales-in-2026)

@@ -172,6 +172,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/blog/promax-visquanta-partnership-dealership-growth',
+        destination: '/integrations',
+        permanent: true,
+      },
+      {
+        source: '/blog/stop-losing-leads-response-time',
+        destination: '/blog/how-to-reduce-lead-response-time-in-auto-sales',
+        permanent: true,
+      },
+      {
         source: '/blog/lead-loss-mitigation-what-dealers-get-wrong-and-how-to-fix-it',
         destination: '/blog/why-dealerships-lose-leads-and-how-to-stop-the-bleed',
         permanent: true,
