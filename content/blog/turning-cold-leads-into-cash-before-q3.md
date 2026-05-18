@@ -42,7 +42,7 @@ hide_hero: true
 ![$79,808 recovered revenue per month from 1,247 dormant leads](/images/blog/turning-cold-leads-into-cash-before-q3/chart-hero.png)
 ## What Is Sitting In Your CRM Right Now?
 
-Pull the dormant-lead report across 81 VisQuanta rooftops and one pattern jumps out. The typical store is carrying between 4,000 and 11,000 contacts who went quiet in the last 18 months. The range is wide because franchise mix and ad spend vary. The shape is the same everywhere. Every one of those records cost money to acquire, sat through a working shift, then got shelved. Before you budget another dime for Q3 fresh-lead buys, count what's already on the books ([according to Visquanta](https://www.visquanta.com/internal/operator-seed/across-81-dealerships-on-visquantas-platform-the-average-sto)).
+Pull the dormant-lead report across 81 VisQuanta rooftops and one pattern jumps out. The typical store is carrying between 4,000 and 11,000 contacts who went quiet in the last 18 months. The range is wide because franchise mix and ad spend vary. The shape is the same everywhere. Every one of those records cost money to acquire, sat through a working shift, then got shelved. Before you budget another dime for Q3 fresh-lead buys, count what's already on the books (according to VisQuanta platform data).
 
 Most GMs know the number is big. Very few know exactly how big. Pull a report tonight filtered on leads older than 90 days with no activity. The count will surprise you. At a mid-size store it lands near 4,200. At a high-volume franchise it can clear 11,000. That is the pile.
 

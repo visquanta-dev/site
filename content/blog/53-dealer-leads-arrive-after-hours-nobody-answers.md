@@ -45,7 +45,7 @@ image_credit: ''
 
 ## What 7,041 Leads Across 50 Dealerships Actually Showed
 
-In 2026, dealer leads are landing in inboxes and chat widgets around the clock. Most showrooms are still staffed for a workday that ended a decade ago. We pulled 30 days of platform data across 50 dealerships and counted 7,041 customer-initiated leads. Every one was a Speed-to-Lead form fill or a live chat inquiry. These are not tire kickers browsing in private mode. These are shoppers who typed their name, phone number, and intent into a dealer's own website ([according to Visquanta](https://www.visquanta.com/internal/operator-seed/pulled-30-days-of-data-across-50-dealerships-on-our-platform)).
+In 2026, dealer leads are landing in inboxes and chat widgets around the clock. Most showrooms are still staffed for a workday that ended a decade ago. We pulled 30 days of platform data across 50 dealerships and counted 7,041 customer-initiated leads. Every one was a Speed-to-Lead form fill or a live chat inquiry. These are not tire kickers browsing in private mode. These are shoppers who typed their name, phone number, and intent into a dealer's own website (according to VisQuanta platform data).
 
 Here's the disconnect. Per our 30-day platform sample, 53% of those 7,041 leads arrived outside weekday 9am to 6pm local time. More than half of every dealer's inbound demand showed up when the lights were off and the [BDC](https://www.visquanta.com/blog/ai-bdc-guide-for-car-dealerships) was home. Having sold cars on the floor myself, the pattern we see across our rooftops is uncomfortable but clean: dealers are paying full retail for lead volume they are not staffed to answer.
 

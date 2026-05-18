@@ -217,4 +217,4 @@ Online dealer reviews have become so unreliable that even obviously satirical pr
 
 - [24/7 call answering](https://www.visquanta.com/blog/why-your-service-department-needs-24-7-call-answering-not-just-voicemail)
 - [AI in auto sales FAQ](https://www.visquanta.com/blog/ai-in-auto-sales-frequently-asked-questions)
-- [ProMax x VisQuanta partnership](https://www.visquanta.com/blog/promax-visquanta-partnership-dealership-growth)
+- [VisQuanta CRM integrations](https://www.visquanta.com/integrations)
