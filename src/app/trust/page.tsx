@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import {
     Shield,
     Lock,
@@ -13,16 +12,20 @@ import {
     CheckCircle,
     Download,
     ExternalLink,
-    Search,
-    Eye,
     EyeOff,
     Database,
-    Globe,
     ChevronRight,
     Mail,
-    MessageSquare,
     Cookie,
-    ClipboardCheck
+    ClipboardCheck,
+    ScrollText,
+    GitBranch,
+    Cpu,
+    Inbox,
+    PhoneCall,
+    BookOpen,
+    AlertTriangle,
+    BadgeCheck,
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -43,22 +46,122 @@ const policyCards = [
     { title: 'Data Processing Addendum', type: 'Mailto', href: 'mailto:compliance@visquanta.com?subject=DPA%20Request', icon: Download, description: 'Our customer-facing DPA, available on request for enterprise clients.' },
 ];
 
-const dataPractices = [
+const trustPrinciples = [
     {
-        title: 'Data Collection',
-        content: 'We only collect data necessary for the operation of our services. This includes business account information, user contact details, and operational data required to power our AI tools.',
-        icon: Database
+        title: 'Data Minimisation',
+        copy: 'We design workflows to collect and process only the information needed to deliver the configured service.',
+        icon: Database,
     },
     {
-        title: 'Data Usage',
-        content: 'Your data is used exclusively to provide, maintain, and improve our services. We do not sell your data to third parties.',
-        icon: Server
+        title: 'AI Data Controls',
+        copy: 'AI workflows are configured to minimise the data sent to model providers and apply enterprise controls where available.',
+        icon: Cpu,
     },
     {
-        title: 'Access Control',
-        content: 'Access to customer data is limited to authorized personnel who require it to support the platform or respond to customer requests.',
-        icon: Users
-    }
+        title: 'Consent & Opt-Out Handling',
+        copy: 'Supported workflows include consent visibility, opt-out detection, suppression checks, and campaign-specific messaging controls.',
+        icon: ClipboardCheck,
+    },
+    {
+        title: 'CRM & Workflow Security',
+        copy: 'Customer records, workflow activity, and integrations are managed through controlled systems with role-based access and audit visibility.',
+        icon: Lock,
+    },
+    {
+        title: 'Audit Readiness',
+        copy: 'We preserve operational records that help customers review consent events, opt-outs, blocked sends, redactions, and workflow activity.',
+        icon: ScrollText,
+    },
+];
+
+const subprocessorCategories = [
+    {
+        category: 'AI model providers',
+        purpose: 'Generate AI-assisted responses and workflow outputs',
+        example: 'Limited conversation context and workflow instructions',
+        icon: Cpu,
+    },
+    {
+        category: 'Cloud hosting providers',
+        purpose: 'Host application services and infrastructure',
+        example: 'Application traffic, logs, and platform data',
+        icon: Server,
+    },
+    {
+        category: 'Database providers',
+        purpose: 'Store platform records and workflow data',
+        example: 'Customer records, message metadata, audit records',
+        icon: Database,
+    },
+    {
+        category: 'Messaging and voice providers',
+        purpose: 'Send SMS, route calls, manage phone numbers',
+        example: 'Phone numbers, message/call metadata, delivery status',
+        icon: PhoneCall,
+    },
+    {
+        category: 'CRM and integration providers',
+        purpose: 'Sync records into customer systems',
+        example: 'Lead records, conversation summaries, appointment data',
+        icon: GitBranch,
+    },
+    {
+        category: 'Analytics and monitoring providers',
+        purpose: 'Monitor site and platform performance',
+        example: 'Usage events, diagnostics, error logs',
+        icon: Inbox,
+    },
+];
+
+const documentationItems = [
+    'Data Processing Addendum',
+    'Subprocessor list',
+    'Security controls summary',
+    'SMS PII handling policy',
+    'Access control policy',
+    'Incident response overview',
+    'AI data handling summary',
+    'Messaging compliance controls summary',
+    'Vendor/security questionnaire responses',
+];
+
+const securityControls = [
+    'Encryption in transit using TLS',
+    'Encryption at rest where supported by infrastructure providers',
+    'Role-based access control',
+    'Limited internal access based on operational need',
+    'Environment-level access controls',
+    'Audit logging for key operational events',
+    'Secure integration handling',
+    'Internal incident escalation procedures',
+    'Subprocessor review for key infrastructure providers',
+];
+
+const dataAvoided = [
+    'Full CRM records',
+    'Payment information',
+    'Government identifiers',
+    'Financial account data',
+    'Sensitive personal information',
+    'Internal customer notes not required for the workflow',
+    'Unnecessary contact fields',
+    'Full lead history where limited context is sufficient',
+];
+
+const onPageLinks: { title: string; href: string; icon: React.ComponentType<{ className?: string }> }[] = [
+    { title: 'Executive Summary', href: '#executive-summary', icon: BookOpen },
+    { title: 'Trust Principles', href: '#trust-principles', icon: Shield },
+    { title: 'Data Processing', href: '#data-processing-agreements', icon: FileText },
+    { title: 'Shared Responsibility', href: '#shared-responsibility', icon: Users },
+    { title: 'Enterprise AI Controls', href: '#enterprise-ai-data-controls', icon: Cpu },
+    { title: 'AI Data Handling', href: '#ai-data-handling', icon: Database },
+    { title: 'PII Redaction', href: '#pii-redaction', icon: EyeOff },
+    { title: 'Messaging Compliance', href: '#messaging-compliance', icon: PhoneCall },
+    { title: 'Consent & Audit Trail', href: '#consent-audit-trail', icon: ClipboardCheck },
+    { title: 'Security Posture', href: '#security-posture', icon: Lock },
+    { title: 'Service Providers', href: '#service-providers', icon: Server },
+    { title: 'Documentation', href: '#security-compliance-documentation', icon: ScrollText },
+    { title: 'Request DPA', href: '#dpa-requests', icon: Mail },
 ];
 
 // --- Components ---
@@ -75,12 +178,24 @@ const TabButton = ({ active, label, onClick }: { active: boolean; label: string;
     </button>
 );
 
-const onPageLinks = [
-    { title: 'DPA Intake', href: '#dpa', icon: FileText },
-    { title: 'AI Data Handling', href: '#ai-data', icon: Database },
-    { title: 'PII Redaction', href: '#pii-redaction', icon: EyeOff },
-    { title: 'Security Posture', href: '#security', icon: Shield },
-];
+const SectionCard = ({
+    id,
+    icon: Icon,
+    title,
+    children,
+}: {
+    id?: string;
+    icon: React.ComponentType<{ className?: string }>;
+    title: string;
+    children: React.ReactNode;
+}) => (
+    <div id={id} className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 scroll-mt-40">
+        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <Icon className="w-5 h-5 text-[#FF7404]" /> {title}
+        </h2>
+        <div className="space-y-4 text-white/70 leading-relaxed">{children}</div>
+    </div>
+);
 
 const PolicyList = ({ onShowSubprocessors }: { onShowSubprocessors: () => void }) => (
     <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
@@ -99,7 +214,7 @@ const PolicyList = ({ onShowSubprocessors }: { onShowSubprocessors: () => void }
 
         <div className="border-t border-white/10 pt-6 mt-6">
             <h3 className="text-sm font-bold uppercase tracking-wider text-white/50 mb-4">On This Page</h3>
-            <div className="space-y-3 mb-2">
+            <div className="space-y-2 mb-2">
                 {onPageLinks.map((link, i) => (
                     <a key={i} href={link.href} className="flex items-center justify-between group p-2 rounded hover:bg-white/[0.02] transition-colors cursor-pointer">
                         <div className="flex items-center gap-3 overflow-hidden">
@@ -112,7 +227,7 @@ const PolicyList = ({ onShowSubprocessors }: { onShowSubprocessors: () => void }
                 <button type="button" onClick={onShowSubprocessors} className="w-full flex items-center justify-between group p-2 rounded hover:bg-white/[0.02] transition-colors cursor-pointer text-left">
                     <div className="flex items-center gap-3 overflow-hidden">
                         <Server className="w-4 h-4 text-white/20 flex-shrink-0 group-hover:text-[#FF7404] transition-colors" />
-                        <span className="text-sm text-white/70 truncate group-hover:text-white transition-colors">Sub-processor List</span>
+                        <span className="text-sm text-white/70 truncate group-hover:text-white transition-colors">Full Sub-processor List</span>
                     </div>
                     <ChevronRight className="w-3.5 h-3.5 text-white/20 group-hover:text-[#FF7404]" />
                 </button>
@@ -247,9 +362,9 @@ export default function TrustCenterPage() {
                                 <span className="text-white/40">Built on Transparency.</span>
                             </h1>
                             <p className="text-lg text-white/60 leading-relaxed max-w-xl">
-                                We believe in being open about how we handle your data. Explore our privacy policies, data handling practices, and service providers.
+                                VisQuanta helps businesses operate customer communication workflows with clear data handling, AI processing controls, consent visibility, and audit-ready compliance practices across SMS, voice, CRM, and automation.
                             </p>
-                            <p className="mt-4 text-xs text-white/40 uppercase tracking-wider">Last updated: April 2026</p>
+                            <p className="mt-4 text-xs text-white/40 uppercase tracking-wider">Last updated: May 2026</p>
                         </div>
                     </div>
 
@@ -283,189 +398,321 @@ export default function TrustCenterPage() {
                             {/* Main Column */}
                             <div className="lg:col-span-8 space-y-8">
 
-                                {/* Transparency Narrative */}
-                                <div className="space-y-6">
-                                    <div className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8">
-                                        <h2 className="text-xl font-bold text-white mb-4">Our Approach to Data</h2>
-                                        <div className="space-y-4 text-white/60 leading-relaxed">
-                                            <p>
-                                                At VisQuanta, we understand that data privacy is critical for your business. We operate with a transparency-first approach, ensuring you know exactly what data we collect and how it is used.
-                                            </p>
-                                            <p>
-                                                We do not sell your data. Every piece of information collected is used strictly to power the services you have subscribed to, improve platform performance, and provide customer support.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {/* Data Processing Agreements */}
-                                    <div id="dpa" className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 scroll-mt-40">
-                                        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                                            <FileText className="w-5 h-5 text-[#FF7404]" /> Data Processing Agreements
-                                        </h2>
-                                        <p className="text-white/60 leading-relaxed">
-                                            We execute Data Processing Addendums with every enterprise client. Our customer-facing DPA is available on request. All sub-processors that handle customer data are themselves governed by executed DPAs.
-                                        </p>
-                                    </div>
-
-                                    {/* Data Practices Grid */}
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        {dataPractices.map((practice, i) => (
-                                            <div key={i} className="bg-white/[0.03] border border-white/10 rounded-xl p-6">
-                                                <div className="p-2 rounded-lg bg-black/40 border border-white/10 text-[#FF7404] w-fit mb-4">
-                                                    <practice.icon className="w-5 h-5" />
-                                                </div>
-                                                <h3 className="font-bold text-white mb-2">{practice.title}</h3>
-                                                <p className="text-xs text-white/50 leading-relaxed">
-                                                    {practice.content}
-                                                </p>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Data Retention & Deletion */}
-                                    <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8">
-                                        <h3 className="text-lg font-bold text-white mb-4">Data Retention & Deletion</h3>
-                                        <p className="text-sm text-white/50 leading-relaxed mb-4">
-                                            We retain data only for as long as necessary to operate the platform or meet legal obligations.
-                                        </p>
-                                        <p className="text-sm text-white/50 leading-relaxed">
-                                            Requests for data deletion can be made in accordance with our Privacy Policy.
-                                        </p>
-                                    </div>
-
-                                    {/* Business Value Prop */}
-                                    <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8">
-                                        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                                            <Shield className="w-5 h-5 text-[#FF7404]" /> What This Means for Your Business
-                                        </h3>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                                            <div>
-                                                <h4 className="font-bold text-white mb-2">Clear Ownership</h4>
-                                                <p className="text-white/50">You retain ownership of your business&apos;s data. We act as a processor, handling data only on your behalf and in accordance with our agreements.</p>
-                                            </div>
-                                            <div>
-                                                <h4 className="font-bold text-white mb-2">Operational Integrity</h4>
-                                                <p className="text-white/50">Our internal policies ensure that only authorized team members involved in support or technical maintenance have access to your environment.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* What We Send to AI Models */}
-                                    <div id="ai-data" className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 scroll-mt-40">
-                                        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                                            <Database className="w-5 h-5 text-[#FF7404]" /> What We Send to AI Models
-                                        </h2>
-                                        <p className="text-white/60 leading-relaxed mb-4">
-                                            Our SMS campaign agents are built on OpenAI&apos;s API. The only customer data passed to the AI model is:
-                                        </p>
-                                        <ul className="space-y-2 mb-6 text-white/70">
-                                            <li className="flex items-start gap-3">
-                                                <CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-1" />
-                                                <span>The prospect&apos;s <strong className="text-white">first name</strong></span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-1" />
-                                                <span>The prospect&apos;s own in-conversation messages (voluntarily provided during SMS exchange)</span>
-                                            </li>
-                                        </ul>
-                                        <p className="text-white/60 leading-relaxed mb-4">
-                                            We <strong className="text-white">do not</strong> send the following to AI sub-processors:
-                                        </p>
-                                        <ul className="space-y-2 mb-6 text-white/70">
-                                            <li className="flex items-start gap-3">
-                                                <span className="text-[#FF7404] flex-shrink-0 mt-1">&times;</span>
-                                                <span>Phone numbers, email addresses, last names, physical addresses</span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <span className="text-[#FF7404] flex-shrink-0 mt-1">&times;</span>
-                                                <span>CRM custom fields, lead source, lead notes</span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <span className="text-[#FF7404] flex-shrink-0 mt-1">&times;</span>
-                                                <span>Any other personal identifying information provided to us by the client</span>
-                                            </li>
-                                        </ul>
-                                        <p className="text-sm text-white/50 leading-relaxed">
-                                            Lead routing, dialing, and CRM storage all happen outside the AI layer.
-                                        </p>
-                                    </div>
-
-                                    {/* Automatic PII Redaction */}
-                                    <div id="pii-redaction" className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 scroll-mt-40">
-                                        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                                            <EyeOff className="w-5 h-5 text-[#FF7404]" /> Automatic PII Redaction at the SMS Boundary
-                                        </h2>
-                                        <p className="text-white/60 leading-relaxed mb-4">
-                                            Sensitive personal data is automatically removed from every text message the moment it enters or leaves the Visquanta platform. Social Security numbers, credit and debit card numbers (validated to avoid false positives), bank account numbers, routing numbers, driver&apos;s license numbers, and dates of birth are replaced with redaction tokens before the message is written to any database, stored in any audit log, synced to any CRM, or seen by any AI model.
-                                        </p>
-                                        <p className="text-white/60 leading-relaxed mb-4">
-                                            Ordinary conversation data &mdash; names, phone numbers, email addresses, vehicle details, prices, and mileage &mdash; is preserved so conversations remain useful to your team. Every redaction is logged as an anonymous count (for example, &quot;one card number redacted&quot;); the original sensitive text is never retained, transmitted, or recoverable.
-                                        </p>
-                                        <p className="text-white/60 leading-relaxed">
-                                            This control is enforced at the single point of entry and exit on our SMS middleware, meaning it applies uniformly to every inbound and outbound message regardless of which downstream system consumes it. The operating principle is simple: Visquanta would rather miss context in a conversation than store regulated data unnecessarily.
-                                        </p>
-                                    </div>
-
-                                    {/* Security Posture */}
-                                    <div id="security" className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 scroll-mt-40">
-                                        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                                            <Lock className="w-5 h-5 text-[#FF7404]" /> Security Posture
-                                        </h2>
-                                        <ul className="space-y-3 text-white/70 mb-6">
-                                            <li className="flex items-start gap-3">
-                                                <CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-1" />
-                                                <span>Data encrypted <strong className="text-white">in transit</strong> (TLS 1.2+) and <strong className="text-white">at rest</strong> (AES-256)</span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-1" />
-                                                <span>Role-based access control on all customer data</span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-1" />
-                                                <span>Our sub-processors (AWS, Vercel, OpenAI, and others) maintain their own SOC 2 Type 2 and ISO 27001 certifications. Their compliance documentation is available to enterprise clients under NDA.</span>
-                                            </li>
-                                        </ul>
-                                        <p className="text-xs text-white/40 leading-relaxed border-t border-white/5 pt-4">
-                                            Visquanta does not currently hold its own third-party security certifications and does not represent itself as SOC 2 or ISO 27001 certified. We maintain strict internal policies to protect customer data and rely on compliant sub-processors for infrastructure.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Subprocessors Preview */}
-                                <div className="pt-8">
-                                    <div className="flex items-center justify-between mb-6">
-                                        <h2 className="text-xl font-bold text-white">Service Providers</h2>
-                                        <button onClick={() => setActiveTab('Service Providers')} className="text-xs text-[#FF7404] cursor-pointer hover:underline">View full list</button>
-                                    </div>
-                                    <div className="bg-white/[0.02] border border-white/10 rounded-xl p-6 flex flex-wrap gap-4">
-                                        {subprocessors.slice(0, 5).map((sub, i) => (
-                                            <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/5 text-xs text-white/60">
-                                                {sub.logo ? (
-                                                    <Image src={sub.logo} alt={sub.name} width={16} height={16} className="rounded-sm object-cover bg-white/10" />
-                                                ) : (
-                                                    <sub.icon className="w-3 h-3 text-[#FF7404]" />
-                                                )}
-                                                {sub.name}
-                                            </div>
-                                        ))}
-                                        <span className="text-xs text-white/30 self-center">+ {subprocessors.length - 5} more</span>
-                                    </div>
-                                </div>
-
-                                {/* Compliance Contact */}
-                                <div className="pt-8 pb-4">
-                                    <h2 className="text-xl font-bold text-white mb-4">DPA Requests & Compliance Questions</h2>
-                                    <p className="text-white/60 mb-6 max-w-2xl">
-                                        For DPA requests, security questionnaires, or sub-processor compliance documentation:
+                                {/* 2. Executive Trust Summary */}
+                                <SectionCard id="executive-summary" icon={BookOpen} title="Executive Trust Summary">
+                                    <p>
+                                        VisQuanta is built for businesses that handle customer conversations, lead records, appointment data, CRM-connected workflows, SMS outreach, and voice activity at scale.
                                     </p>
-                                    <div className="flex flex-wrap items-center gap-2 text-white/70">
-                                        <Mail className="w-4 h-4 text-[#FF7404]" />
-                                        <a href="mailto:compliance@visquanta.com" className="text-white hover:text-[#FF7404] underline underline-offset-4 decoration-white/30 transition-colors">
-                                            compliance@visquanta.com
+                                    <p>
+                                        Our trust model is based on five principles: collect only what is needed, keep customer data inside controlled workflows, minimise what is sent to AI providers, maintain clear consent and opt-out controls, and provide audit visibility for messaging, voice, and CRM activity.
+                                    </p>
+                                    <p>
+                                        We support customers with documented controls across AI data handling, SMS compliance, data minimisation, access control, subprocessor review, and security documentation. Customers remain responsible for their own campaign configuration, consent sources, message content, legal review, and customer relationship decisions.
+                                    </p>
+                                </SectionCard>
+
+                                {/* 3. Trust Principles / Control Pillars */}
+                                <div id="trust-principles" className="scroll-mt-40">
+                                    <div className="flex items-center gap-2 mb-6">
+                                        <Shield className="w-5 h-5 text-[#FF7404]" />
+                                        <h2 className="text-xl font-bold text-white">Trust Principles & Control Pillars</h2>
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {trustPrinciples.map((p, i) => (
+                                            <div key={i} className="bg-white/[0.03] border border-white/10 rounded-xl p-6 hover:border-[#FF7404]/30 transition-colors">
+                                                <div className="p-2 rounded-lg bg-black/40 border border-white/10 text-[#FF7404] w-fit mb-4">
+                                                    <p.icon className="w-5 h-5" />
+                                                </div>
+                                                <h3 className="font-bold text-white mb-2">{p.title}</h3>
+                                                <p className="text-sm text-white/60 leading-relaxed">{p.copy}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* 4. Data Processing Agreements */}
+                                <SectionCard id="data-processing-agreements" icon={FileText} title="Data Processing Agreements">
+                                    <p>
+                                        We can support enterprise customers and vendor review teams with appropriate data-processing documentation, including a customer-facing Data Processing Addendum where required.
+                                    </p>
+                                    <p>
+                                        Where our service providers process personal data on our behalf, we require appropriate contractual protections, such as a Data Processing Addendum or equivalent data-processing terms.
+                                    </p>
+                                </SectionCard>
+
+                                {/* 5. Shared Responsibility Model */}
+                                <SectionCard id="shared-responsibility" icon={Users} title="Shared Responsibility Model">
+                                    <p>
+                                        VisQuanta provides the platform, controls, workflow infrastructure, and audit visibility used to operate SMS, voice, CRM, and AI-assisted communication workflows.
+                                    </p>
+                                    <p>
+                                        Our customers remain responsible for deciding who they contact, why they are contacted, what consent basis applies, what campaign language is used, and whether a particular campaign is appropriate for their business, jurisdiction, and customer relationship.
+                                    </p>
+                                    <p>
+                                        VisQuanta helps support responsible operation through configurable controls such as opt-out detection, suppression checks, consent capture, quiet-hours configuration, role-based access, audit logs, AI data minimisation, and workflow-level guardrails.
+                                    </p>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                                        <div className="bg-white/[0.03] border border-white/10 rounded-xl p-5">
+                                            <h4 className="text-xs font-bold uppercase tracking-wider text-[#FF7404] mb-3">VisQuanta provides</h4>
+                                            <ul className="space-y-2 text-sm text-white/70">
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Platform, workflow infrastructure, and audit visibility</li>
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Configurable consent, opt-out, and suppression controls</li>
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> AI data minimisation and workflow-level guardrails</li>
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Role-based access and operational audit logs</li>
+                                            </ul>
+                                        </div>
+                                        <div className="bg-white/[0.03] border border-white/10 rounded-xl p-5">
+                                            <h4 className="text-xs font-bold uppercase tracking-wider text-white/60 mb-3">Customer remains responsible for</h4>
+                                            <ul className="space-y-2 text-sm text-white/70">
+                                                <li className="flex items-start gap-2"><ChevronRight className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" /> Who they contact and why</li>
+                                                <li className="flex items-start gap-2"><ChevronRight className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" /> Consent basis and consent source</li>
+                                                <li className="flex items-start gap-2"><ChevronRight className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" /> Campaign language and message content</li>
+                                                <li className="flex items-start gap-2"><ChevronRight className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" /> Legal review for their jurisdiction and customer base</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </SectionCard>
+
+                                {/* 6. Enterprise AI Data Controls */}
+                                <SectionCard id="enterprise-ai-data-controls" icon={Cpu} title="Enterprise AI Data Controls">
+                                    <p>
+                                        VisQuanta uses enterprise-grade AI model infrastructure for supported messaging, voice, and workflow automation use cases.
+                                    </p>
+                                    <p>
+                                        For eligible enterprise AI workflows, customer content is not used to train model-provider systems by default. Where configured and supported, Zero Data Retention controls can be applied so eligible customer content is excluded from model-provider abuse monitoring logs.
+                                    </p>
+                                    <p>
+                                        AI data controls are applied based on the workflow, endpoint, model capability, feature set, and customer deployment configuration. Some files, images, tool calls, application state, third-party integrations, or non-AI systems may have separate retention behaviour.
+                                    </p>
+                                    <p>
+                                        Because of this, VisQuanta designs each deployment to minimise the data sent to AI providers and to avoid sending unnecessary CRM fields, sensitive personal information, or full customer records where they are not required.
+                                    </p>
+                                    <div className="bg-[#FF7404]/[0.06] border border-[#FF7404]/30 rounded-xl p-5 flex items-start gap-3 mt-2">
+                                        <AlertTriangle className="w-5 h-5 text-[#FF7404] flex-shrink-0 mt-0.5" />
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-wider text-[#FF7404] mb-1">Important</p>
+                                            <p className="text-sm text-white/70 leading-relaxed">
+                                                ZDR and regional processing controls are workflow and endpoint dependent. They should not be described as applying automatically to every system, feature, or integration.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </SectionCard>
+
+                                {/* 7. What We Send to AI Providers */}
+                                <SectionCard id="ai-data-handling" icon={Database} title="What We Send to AI Providers">
+                                    <p>
+                                        For standard SMS campaign workflows, VisQuanta minimises the data sent to AI model providers. The default configuration is designed to pass only the conversation context required to generate a useful response, such as the prospect&apos;s first name, the messages they provide, and limited workflow instructions required for the campaign.
+                                    </p>
+                                    <p>
+                                        We do not intentionally send full CRM records, unnecessary contact fields, payment information, government identifiers, financial account data, or sensitive personal information to AI model providers.
+                                    </p>
+                                    <p>
+                                        Lead routing, dialing, CRM storage, consent records, suppression records, customer account administration, and operational reporting occur outside the AI model layer.
+                                    </p>
+                                    <div className="pt-2">
+                                        <h4 className="text-xs font-bold uppercase tracking-wider text-white/60 mb-3">Examples of data we avoid sending where not required</h4>
+                                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
+                                            {dataAvoided.map((item, i) => (
+                                                <li key={i} className="flex items-start gap-3 text-sm text-white/70">
+                                                    <span className="text-[#FF7404] flex-shrink-0 mt-0.5">&times;</span>
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </SectionCard>
+
+                                {/* 8. Data Minimisation & PII Redaction */}
+                                <SectionCard id="pii-redaction" icon={EyeOff} title="Data Minimisation & PII Redaction">
+                                    <p>
+                                        For supported SMS workflows, messages pass through a redaction layer designed to detect and replace regulated personal data before downstream storage, CRM sync, or AI processing.
+                                    </p>
+                                    <p>
+                                        This redaction layer is designed to identify data types such as Social Security numbers, credit and debit card numbers, bank account numbers, routing numbers, driver&apos;s license numbers, and dates of birth. When a redaction event occurs, the platform records the type and count of the redaction for audit purposes without retaining the original regulated value.
+                                    </p>
+                                    <p>
+                                        Ordinary business conversation context, such as names, vehicle details, appointment information, prices, mileage, and general enquiry details, may be preserved where needed to keep the workflow useful for the customer.
+                                    </p>
+                                </SectionCard>
+
+                                {/* 9. US & Canadian Messaging Compliance Support */}
+                                <SectionCard id="messaging-compliance" icon={PhoneCall} title="US & Canadian Messaging Compliance Support">
+                                    <p>
+                                        VisQuanta supports business-operated SMS and voice workflows across the United States and Canada.
+                                    </p>
+                                    <p>
+                                        Our platform is designed to support responsible messaging operations through consent visibility, sender identification, opt-out handling, suppression controls, quiet-hours configuration, campaign-specific disclosures, and audit records.
+                                    </p>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                                        <div className="bg-white/[0.03] border border-white/10 rounded-xl p-5">
+                                            <div className="flex items-center gap-2 mb-3">
+                                                <span className="text-xs font-bold uppercase tracking-wider text-[#FF7404]">United States &mdash; TCPA-aware</span>
+                                            </div>
+                                            <ul className="space-y-2 text-sm text-white/70">
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Consent review and capture</li>
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Opt-out handling</li>
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Do Not Contact suppression</li>
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Contact cadence controls</li>
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Call &amp; text auditability</li>
+                                            </ul>
+                                        </div>
+                                        <div className="bg-white/[0.03] border border-white/10 rounded-xl p-5">
+                                            <div className="flex items-center gap-2 mb-3">
+                                                <span className="text-xs font-bold uppercase tracking-wider text-[#FF7404]">Canada &mdash; CASL-aware</span>
+                                            </div>
+                                            <ul className="space-y-2 text-sm text-white/70">
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Evidence of consent</li>
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Sender identification in messages</li>
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Unsubscribe mechanisms in communications</li>
+                                                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" /> Suppression and opt-out logging</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p className="text-sm text-white/50 leading-relaxed pt-2 border-t border-white/5 mt-4">
+                                        VisQuanta does not replace legal counsel. Customers remain responsible for confirming that their campaigns, consent sources, message content, and operating procedures meet the requirements that apply to their business.
+                                    </p>
+                                </SectionCard>
+
+                                {/* 10. Consent Evidence & Audit Trail */}
+                                <SectionCard id="consent-audit-trail" icon={ClipboardCheck} title="Consent Evidence & Audit Trail">
+                                    <p>
+                                        VisQuanta is designed to preserve evidence around how communication workflows were configured and operated.
+                                    </p>
+                                    <p>
+                                        Where consent is captured through supported VisQuanta forms or workflows, the platform can record the disclosure text shown to the consumer, timestamp, IP address, user agent, consented channels, linked policy URLs, and related submission metadata.
+                                    </p>
+                                    <p>
+                                        Operational audit records may include opt-out events, suppression decisions, blocked sends, redaction events, delivery status, call recording configuration, and workflow activity. These records help customers review how a campaign was configured and how platform controls were applied.
+                                    </p>
+                                </SectionCard>
+
+                                {/* 11. Security Posture */}
+                                <SectionCard id="security-posture" icon={Lock} title="Security Posture">
+                                    <p>
+                                        VisQuanta applies technical and organisational controls designed to protect customer workflows, platform access, and operational data.
+                                    </p>
+                                    <h4 className="text-xs font-bold uppercase tracking-wider text-white/60 mt-2">Controls may include</h4>
+                                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
+                                        {securityControls.map((item, i) => (
+                                            <li key={i} className="flex items-start gap-3 text-sm text-white/70">
+                                                <CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" />
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <p className="text-xs text-white/50 leading-relaxed border-t border-white/5 pt-4 mt-2">
+                                        VisQuanta does not currently claim to hold its own SOC 2 or ISO 27001 certification. We rely on vetted infrastructure and service providers with established security programs while maintaining internal policies, operational controls, and customer-facing documentation appropriate to our current stage.
+                                    </p>
+                                </SectionCard>
+
+                                {/* 12. Subprocessors & Service Providers */}
+                                <div id="service-providers" className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 scroll-mt-40">
+                                    <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                        <Server className="w-5 h-5 text-[#FF7404]" /> Subprocessors & Service Providers
+                                    </h2>
+                                    <p className="text-white/60 leading-relaxed mb-6">
+                                        VisQuanta relies on a small set of vetted infrastructure, AI, messaging, and CRM service providers to operate the platform. The summary below describes the categories and what types of data are typically processed by each.
+                                    </p>
+
+                                    <div className="border border-white/10 rounded-xl overflow-hidden">
+                                        <div className="bg-white/5 px-6 py-4 border-b border-white/10 grid grid-cols-12 text-[10px] font-bold uppercase tracking-wider text-white/50 gap-4">
+                                            <div className="col-span-12 md:col-span-3">Provider Category</div>
+                                            <div className="col-span-12 md:col-span-4 hidden md:block">Purpose</div>
+                                            <div className="col-span-12 md:col-span-5 hidden md:block">Example Data Processed</div>
+                                        </div>
+                                        <div className="divide-y divide-white/5">
+                                            {subprocessorCategories.map((cat, i) => (
+                                                <div key={i} className="px-6 py-5 grid grid-cols-12 items-start gap-4 hover:bg-white/[0.02] transition-colors">
+                                                    <div className="col-span-12 md:col-span-3 flex items-center gap-3">
+                                                        <div className="w-9 h-9 rounded-lg bg-black/40 border border-white/10 flex items-center justify-center text-[#FF7404] flex-shrink-0">
+                                                            <cat.icon className="w-4 h-4" />
+                                                        </div>
+                                                        <span className="font-bold text-white text-sm">{cat.category}</span>
+                                                    </div>
+                                                    <div className="col-span-12 md:col-span-4 text-sm text-white/70">
+                                                        <span className="text-white/30 uppercase text-[10px] block mb-1 md:hidden">Purpose</span>
+                                                        {cat.purpose}
+                                                    </div>
+                                                    <div className="col-span-12 md:col-span-5 text-sm text-white/60">
+                                                        <span className="text-white/30 uppercase text-[10px] block mb-1 md:hidden">Example Data</span>
+                                                        {cat.example}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-wrap items-center gap-4 mt-6">
+                                        <Link
+                                            href="/subprocessors"
+                                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#FF7404]/10 border border-[#FF7404]/30 text-sm font-bold text-[#FF7404] hover:bg-[#FF7404]/20 transition-colors"
+                                        >
+                                            View full subprocessor list <ChevronRight className="w-4 h-4" />
+                                        </Link>
+                                        <button
+                                            onClick={() => setActiveTab('Service Providers')}
+                                            className="text-xs text-white/50 hover:text-white transition-colors cursor-pointer"
+                                        >
+                                            Or browse providers in this page &rarr;
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* 13. Security & Compliance Documentation */}
+                                <SectionCard id="security-compliance-documentation" icon={BadgeCheck} title="Security & Compliance Documentation">
+                                    <p>
+                                        Enterprise customers, dealership groups, and vendor review teams can request supporting documentation where appropriate.
+                                    </p>
+                                    <div className="pt-2">
+                                        <h4 className="text-xs font-bold uppercase tracking-wider text-white/60 mb-3">Available materials may include</h4>
+                                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
+                                            {documentationItems.map((item, i) => (
+                                                <li key={i} className="flex items-start gap-3 text-sm text-white/70">
+                                                    <CheckCircle className="w-4 h-4 text-[#FF7404] flex-shrink-0 mt-0.5" />
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <p className="text-sm text-white/50 leading-relaxed border-t border-white/5 pt-4 mt-2">
+                                        Certain documents may be provided under NDA or as part of an enterprise onboarding process.
+                                    </p>
+                                </SectionCard>
+
+                                {/* 14. DPA Requests & Compliance Questions */}
+                                <div id="dpa-requests" className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 scroll-mt-40">
+                                    <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                        <Mail className="w-5 h-5 text-[#FF7404]" /> DPA Requests & Compliance Questions
+                                    </h2>
+                                    <p className="text-white/60 leading-relaxed mb-6 max-w-2xl">
+                                        For DPA requests, vendor review, security questionnaires, privacy questions, AI data handling reviews, or subprocessor documentation, contact:
+                                    </p>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <a
+                                            href="mailto:compliance@visquanta.com"
+                                            className="flex items-center justify-between gap-3 p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#FF7404]/40 hover:bg-[#FF7404]/[0.04] group transition-all"
+                                        >
+                                            <div className="flex items-center gap-3 min-w-0">
+                                                <Mail className="w-5 h-5 text-[#FF7404] flex-shrink-0" />
+                                                <div className="min-w-0">
+                                                    <div className="text-xs uppercase tracking-wider text-white/40 mb-0.5">Compliance & Vendor Review</div>
+                                                    <div className="text-sm font-bold text-white truncate">compliance@visquanta.com</div>
+                                                </div>
+                                            </div>
+                                            <ExternalLink className="w-4 h-4 text-white/30 group-hover:text-[#FF7404] flex-shrink-0" />
                                         </a>
-                                        <span className="text-white/40">or</span>
-                                        <a href="mailto:info@visquanta.com" className="text-white/70 hover:text-[#FF7404] underline underline-offset-4 decoration-white/20 transition-colors">
-                                            info@visquanta.com
+                                        <a
+                                            href="mailto:info@visquanta.com"
+                                            className="flex items-center justify-between gap-3 p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#FF7404]/40 hover:bg-[#FF7404]/[0.04] group transition-all"
+                                        >
+                                            <div className="flex items-center gap-3 min-w-0">
+                                                <Mail className="w-5 h-5 text-[#FF7404] flex-shrink-0" />
+                                                <div className="min-w-0">
+                                                    <div className="text-xs uppercase tracking-wider text-white/40 mb-0.5">General Enquiries</div>
+                                                    <div className="text-sm font-bold text-white truncate">info@visquanta.com</div>
+                                                </div>
+                                            </div>
+                                            <ExternalLink className="w-4 h-4 text-white/30 group-hover:text-[#FF7404] flex-shrink-0" />
                                         </a>
                                     </div>
                                 </div>

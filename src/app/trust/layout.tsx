@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { openGraphTwitterPack } from "@/lib/metadata";
 
+const description =
+    "VisQuanta Trust Centre — enterprise AI data controls, US & Canadian messaging compliance support, PII redaction, consent and audit trail, subprocessors, security posture, and DPA requests for dealership groups, service businesses, and vendor review teams.";
+
 export const metadata: Metadata = {
-    title: 'Trust & Compliance — Visquanta',
-    description: "Visquanta's trust and compliance overview — data processing agreements, sub-processors, and AI data handling practices.",
+    title: 'Trust Centre — VisQuanta',
+    description,
     alternates: {
         canonical: 'https://www.visquanta.com/trust',
         languages: {
@@ -13,9 +16,8 @@ export const metadata: Metadata = {
     },
     ...openGraphTwitterPack({
         canonicalUrl: 'https://www.visquanta.com/trust',
-        title: 'Trust & Compliance — Visquanta',
-        description:
-            "Visquanta's trust and compliance overview — data processing agreements, sub-processors, and AI data handling practices.",
+        title: 'Trust Centre — VisQuanta',
+        description,
     }),
 };
 
