@@ -20,7 +20,6 @@ import RelatedSolutions from '@/components/shared/RelatedSolutions';
 export default function WebsiteWidgetContent() {
     return (
         <main className="bg-[#050505] min-h-screen selection:bg-orange-500 selection:text-white">
-{/* JSON-LD SoftwareApplication with isRelatedTo */}            <script                type="application/ld+json"                dangerouslySetInnerHTML={{ __html: JSON.stringify({                    "@context": "https://schema.org",                    "@type": "SoftwareApplication",                    "name": "VisQuanta Website Widget",                    "applicationCategory": "BusinessApplication",                    "operatingSystem": "Web",                    "url": "https://www.visquanta.com/website-widget",                    "provider": {                        "@type": "Organization",                        "name": "VisQuanta",                        "url": "https://www.visquanta.com"                    },                    "isRelatedTo": [                        {                            "@type": "SoftwareApplication",                            "name": "VisQuanta Speed to Lead",                            "url": "https://www.visquanta.com/speed-to-lead"                        }                    ]                }) }}            />
             <Navigation />
             <HeroSection />
             <OpportunityCheck />

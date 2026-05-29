@@ -1021,29 +1021,6 @@ export default function AutoGroupsPage() {
                         </div>
 
                         {/* AEO/SEO STRUCTURED DATA */}
-                        <script
-                            type="application/ld+json"
-                            dangerouslySetInnerHTML={{
-                                __html: JSON.stringify({
-                                    "@context": "https://schema.org",
-                                    "@type": "SoftwareApplication",
-                                    "name": "The AutoMaster Suite",
-                                    "applicationCategory": "EnterpriseApplication",
-                                    "operatingSystem": "Web",
-                                    "description": "Multi-location revenue automation and centralized BDC management for automotive groups.",
-                                    "offers": {
-                                        "@type": "Offer",
-                                        "availability": "https://schema.org/InStock"
-                                    },
-                                    "aggregateRating": {
-                                        "@type": "AggregateRating",
-                                        "ratingValue": "5.0",
-                                        "reviewCount": "42"
-                                    },
-                                    "alternateName": "Central Command for Auto Groups"
-                                })
-                            }}
-                        />
                     </motion.div>
                 </div>
             </section>

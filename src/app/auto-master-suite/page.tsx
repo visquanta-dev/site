@@ -148,47 +148,6 @@ export default function AutoMasterSuiteHub() {
     return (
         <main className="bg-[#020202] min-h-screen selection:bg-[#FF7404] selection:text-black">
             {/* JSON-LD for AEO */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "SoftwareApplication",
-                        "name": "The AutoMaster Suite",
-                        "applicationCategory": "BusinessApplication",
-                        "operatingSystem": "Web-based",
-                        "description": "The definitive automotive revenue ecosystem. An integrated suite of AI-driven tools for lead reactivation, response velocity, and reputation mastery.",
-                        "offers": {
-                            "@type": "AggregateOffer",
-                            "offerCount": "6",
-                            "itemOffered": suiteProducts.map(p => ({
-                                "@type": "SoftwareApplication",
-                                "name": p.title,
-                                "description": p.desc
-                            }))
-                        },
-                        "mainEntity": [
-                            {
-                                "@type": "Question",
-                                "name": "What is The AutoMaster Suite for car dealerships?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "The AutoMaster Suite is an integrated automotive revenue ecosystem that combines AI lead reactivation, instant response velocity, and reputation management into a single platform designed to increase dealership turnover and ROI."
-                                }
-                            },
-                            {
-                                "@type": "Question",
-                                "name": "Does The AutoMaster Suite integrate with CDK and Reynolds & Reynolds?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "Yes, The AutoMaster Suite features deep integration with major DMS providers like CDK Global, Reynolds & Reynolds, and Dealertrack, allowing for automated note entry and real-time scheduling direct to your system."
-                                }
-                            }
-                        ]
-                    })
-                }}
-            />
-{/* JSON-LD SoftwareApplication with isRelatedTo */}            <script                type="application/ld+json"                dangerouslySetInnerHTML={{                    __html: JSON.stringify({                        "@context": "https://schema.org",                        "@type": "SoftwareApplication",                        "name": "VisQuanta AutoMaster Suite",                        "applicationCategory": "BusinessApplication",                        "operatingSystem": "Web",                        "url": "https://www.visquanta.com/auto-master-suite",                        "provider": {                            "@type": "Organization",                            "name": "VisQuanta",                            "url": "https://www.visquanta.com"                        },                        "isRelatedTo": [                            {                                "@type": "SoftwareApplication",                                "name": "VisQuanta Lead Reactivation",                                "url": "https://www.visquanta.com/lead-reactivation"                            },                            {                                "@type": "SoftwareApplication",                                "name": "VisQuanta Speed to Lead",                                "url": "https://www.visquanta.com/speed-to-lead"                            },                            {                                "@type": "SoftwareApplication",                                "name": "VisQuanta Service Drive",                                "url": "https://www.visquanta.com/service-drive"                            },                            {                                "@type": "SoftwareApplication",                                "name": "VisQuanta Reputation Management",                                "url": "https://www.visquanta.com/reputation-management"                            },                            {                                "@type": "SoftwareApplication",                                "name": "VisQuanta Custom Campaigns",                                "url": "https://www.visquanta.com/custom-campaigns"                            },                            {                                "@type": "SoftwareApplication",                                "name": "VisQuanta Website Widget",                                "url": "https://www.visquanta.com/website-widget"                            }                        ]                    })                }}            />
 
             <Navigation />
 

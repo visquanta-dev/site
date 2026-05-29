@@ -196,24 +196,6 @@ export default async function IntegrationPage({ params }: PageProps) {
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "SoftwareApplication",
-                        "name": `VisQuanta ${integration.name} Integration`,
-                        "applicationCategory": "BusinessApplication",
-                        "operatingSystem": "Web",
-                        "offers": {
-                            "@type": "Offer",
-                            "price": "0",
-                            "priceCurrency": "USD"
-                        },
-                        "description": integration.description
-                    })
-                }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
                         "@type": "BreadcrumbList",
                         "itemListElement": [
                             {
