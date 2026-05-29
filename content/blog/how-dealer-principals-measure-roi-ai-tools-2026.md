@@ -6,8 +6,7 @@ metaDescription: >-
   dollars. Here's the 5-metric framework we use across 41 rooftops, with real
   portal data, named case studies, and three calculators you can run on your
   own numbers Monday morning.
-image: >-
-  /images/blog/how-dealer-principals-measure-roi-ai-tools-2026/hero.jpg
+image: /images/blog/real-cost-3-person-bdc-2026/chart-hero.png
 readingTime: 11
 publishedAt: '2026-05-02'
 updatedAt: '2026-05-02'
