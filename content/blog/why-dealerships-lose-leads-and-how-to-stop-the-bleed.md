@@ -1,10 +1,7 @@
 ---
 title: Why Dealerships Lose Leads (And How to Stop the Bleed)
 slug: why-dealerships-lose-leads-and-how-to-stop-the-bleed
-metaDescription: >-
-  A dealership generating 500 leads a month at $200 each wastes $360,000 a year
-  to slow follow-up, messy CRM data, and broken multi-channel outreach. Here's
-  what to fix first.
+metaDescription: "500 leads a month at $200 each means $360K a year lost to slow follow-up, messy CRM data, and broken outreach. Here's what to fix first."
 image: >-
   https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/686912eb0249694b1db9e503_studio-image%20(24).jpg
 readingTime: 13

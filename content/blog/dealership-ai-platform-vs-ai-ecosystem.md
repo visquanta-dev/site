@@ -1,10 +1,7 @@
 ---
 title: Dealership AI Platform vs Dealership AI Ecosystem
 slug: dealership-ai-platform-vs-ai-ecosystem
-metaDescription: >-
-  Your chat widget doesn't know your voice agent, and that's why hot leads go
-  cold. The difference between a dealership AI platform and a real ecosystem —
-  plus four questions every dealer principal should ask the next vendor.
+metaDescription: "Your chat widget doesn't know your voice agent, so hot leads go cold. Platform vs. ecosystem — plus four questions to ask your next AI vendor."
 image: /images/blog/dealership-ai-platform-vs-ai-ecosystem/hero.jpg
 readingTime: 14
 publishedAt: '2026-04-23'

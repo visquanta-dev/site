@@ -1,10 +1,7 @@
 ---
 title: 'SMS vs Email vs AI Chatbot: The Ultimate Guide for Dealerships'
 slug: sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-dealerships
-metaDescription: >-
-  SMS opens at 98%. Email returns $42 per dollar. Chatbots handle 90% of
-  routine asks 24/7. Here's exactly when to use each — and how dealerships in
-  2026 are stitching all three into one CRM-backed conversation.
+metaDescription: "SMS opens at 98%, email returns $42 per $1, chatbots handle 90% of asks 24/7. When to use each — and how dealers combine all three in one CRM."
 image: >-
   /images/blog/sms-vs-email-vs-ai-chatbot-the-ultimate-guide-for-dealerships/6881b0b9b61d5c7265401e99-1753332754518.jpg
 readingTime: 20

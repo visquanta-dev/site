@@ -1,10 +1,7 @@
 ---
 title: How to Move Aged Inventory Without Discounting
 slug: how-to-move-aged-inventory-without-discounting
-metaDescription: >-
-  Aged inventory eats floorplan interest and pressures margin. The buyers for
-  those units are already in your CRM. Here is the 5-step playbook VisQuanta
-  dealers have used to recover $48M in revenue without cutting price.
+metaDescription: "Aged units eat floorplan interest, and the buyers are already in your CRM. The 5-step playbook dealers used to recover $48M without cutting price."
 publishedAt: '2026-04-27'
 published: true
 category:

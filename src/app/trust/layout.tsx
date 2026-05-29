@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { openGraphTwitterPack } from "@/lib/metadata";
 
 const description =
-    "VisQuanta Trust Centre — enterprise AI data controls, US & Canadian messaging compliance support, PII redaction, consent and audit trail, subprocessors, security posture, and DPA requests for dealership groups, service businesses, and vendor review teams.";
+    "VisQuanta Trust Centre: enterprise AI data controls, US and Canadian messaging compliance, PII redaction, consent and audit trails, and DPA requests.";
 
 export const metadata: Metadata = {
     title: 'Trust Centre — VisQuanta',

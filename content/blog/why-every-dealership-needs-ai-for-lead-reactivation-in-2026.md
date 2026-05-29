@@ -1,10 +1,7 @@
 ---
 title: Why Every Dealership Needs AI for Lead Reactivation in 2026
 slug: why-every-dealership-needs-ai-for-lead-reactivation-in-2026
-metaDescription: >-
-  AI lead reactivation helps dealerships recover $50K-$200K monthly from dormant
-  CRM data. Discover why 2026 is the year to automate lead recovery with tools
-  like VisQuanta's AutoMaster Suite.
+metaDescription: "AI lead reactivation recovers $50K-$200K a month from dormant CRM data. Why 2026 is the year to automate lead recovery with VisQuanta's AutoMaster Suite."
 image: >-
   /images/blog/why-every-dealership-needs-ai-for-lead-reactivation-in-2026/6885074041261bdf48a37c86-1753550496118.jpg
 readingTime: 1
