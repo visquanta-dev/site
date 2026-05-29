@@ -1,11 +1,7 @@
 ---
 title: 5 Easy Ways to Get More 5-Star Reviews at Your Dealership
 slug: 5-easy-ways-to-get-more-5-star-reviews-at-your-dealership
-metaDescription: >-
-  Generic review-request advice breaks at a dealership. See how a leading
-  Ford dealership in Spokane logged 331 reviews in six weeks, replied to 93%
-  of them, and why response velocity is the real flywheel behind dealership
-  review growth.
+metaDescription: "How a Ford dealership logged 331 reviews in six weeks, replied to 93%, and why response velocity is the real flywheel behind review growth."
 image: /images/blog/5-easy-ways-to-get-more-5-star-reviews-at-your-dealership/hero.jpg
 readingTime: 10
 publishedAt: '2026-04-24'

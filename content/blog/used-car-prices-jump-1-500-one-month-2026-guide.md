@@ -1,10 +1,7 @@
 ---
 title: 'Pre-Owned Car Prices Jump $1,500 in One Month: 2026 Guide'
 slug: used-car-prices-jump-1-500-one-month-2026-guide
-metaDescription: >-
-  Pre-owned car prices surged $1,500 in one month, pushing the Manheim Index to a
-  2.5-year high. Learn how dealers can adjust acquisition and margin strategies
-  in...
+metaDescription: "Pre-owned prices surged $1,500 in a month, pushing the Manheim Index to a 2.5-year high. How dealers should adjust acquisition and margin strategy."
 image: /images/blog/used-car-prices-jump-1-500-one-month-2026-guide/hero.jpg
 readingTime: 15
 publishedAt: '2026-04-16'

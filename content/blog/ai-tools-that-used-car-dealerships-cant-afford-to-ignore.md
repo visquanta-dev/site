@@ -1,10 +1,7 @@
 ---
 title: AI Tools That Pre-Owned Dealerships Can’t Afford to Ignore
 slug: ai-tools-that-used-car-dealerships-cant-afford-to-ignore
-metaDescription: >-
-  The pre-owned segment moves on margin and turn rate. These six AI tools
-  cover the entire 2026 pre-owned playbook — from lead routing to dormant CRM
-  reactivation, predictive pricing, and TCPA-clean outbound.
+metaDescription: "Six AI tools that cover the 2026 pre-owned playbook: lead routing, dormant CRM reactivation, predictive pricing, and TCPA-clean outbound."
 image: >-
   /images/blog/ai-tools-that-used-car-dealerships-cant-afford-to-ignore/68cf3eb17b5c01ae368b38b2-1758415058445.jpg
 readingTime: 10

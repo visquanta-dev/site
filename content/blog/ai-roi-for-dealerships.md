@@ -1,7 +1,7 @@
 ---
 title: "AI ROI for Dealerships: What the Numbers Actually Look Like After 90 Days"
 slug: ai-roi-for-dealerships
-metaDescription: "76% of dealers are increasing AI budgets in 2026. But what's the actual ROI? Here's what the data shows after 90 days — wins, misses, and a formula to calculate it yourself."
+metaDescription: "76% of dealers are raising AI budgets in 2026 — but what's the real ROI? What the data shows after 90 days, plus a formula to calculate it yourself."
 image: /images/blog/car-dealership-roi-calculator/68af8bf168bb5e38327a9b4b-1756335182796.jpg
 readingTime: 10
 publishedAt: "2026-03-31"

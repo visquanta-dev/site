@@ -1,10 +1,7 @@
 ---
 title: Ultimate Guide to Dealership Reputation Metrics
 slug: ultimate-guide-to-dealership-reputation-metrics
-metaDescription: >-
-  91% of car buyers read reviews before they walk in. A 150-point Reputation
-  Score lift is worth 10% in sales. Here are the dealership reputation metrics
-  worth tracking in 2026 — and the ones that just look good on a slide.
+metaDescription: "91% of buyers read reviews first, and a 150-point Reputation Score lift is worth 10% in sales. The dealership reputation metrics worth tracking in 2026."
 image: >-
   /images/blog/ultimate-guide-to-dealership-reputation-metrics/688ad23d0d660161d1d153e7-1753933920033.jpg
 readingTime: 17

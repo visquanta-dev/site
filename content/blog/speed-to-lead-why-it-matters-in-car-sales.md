@@ -1,10 +1,7 @@
 ---
 title: 'Speed to Lead: Why It Matters in Car Sales'
 slug: speed-to-lead-why-it-matters-in-car-sales
-metaDescription: >-
-  Replying to a car-buyer inquiry within 5 minutes makes a sale 100× more
-  likely. Here's why speed to lead beats every other tactic — and how U.S.
-  dealerships are operationalizing it in 2026.
+metaDescription: "Replying to a car-buyer inquiry within 5 minutes makes a sale 100x more likely. Why speed to lead beats every other tactic — and how dealers win in 2026."
 image: >-
   /images/blog/speed-to-lead-why-it-matters-in-car-sales/68af8bc068bb5e38327a3ffe-1756336661653.jpg
 readingTime: 11
