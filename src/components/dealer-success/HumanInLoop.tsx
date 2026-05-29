@@ -45,7 +45,7 @@ export default function HumanInLoop() {
             <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center opacity-[0.04]">
                 <motion.img
                     src="/images/car-wireframe-complete.png"
-                    alt=""
+                    alt="Wireframe illustration of a car"
                     initial={{ scale: 1.1, opacity: 0, rotate: -2 }}
                     whileInView={{ scale: 1.3, opacity: 1, rotate: 0 }}
                     transition={{ duration: 2.5, ease: "easeOut" }}

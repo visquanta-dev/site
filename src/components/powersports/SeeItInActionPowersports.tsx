@@ -378,7 +378,7 @@ const ChatBubble = ({ message, onPlay }: { message: Message; onPlay?: (id: strin
       </div>
       {isAgent && (
         <div className="w-6 h-6 rounded-full shrink-0 overflow-hidden border border-[#FF7404]/30 bg-[#111] shadow-[0_0_8px_-2px_rgba(255,116,4,0.3)]">
-          <img src="/images/avatars/dealer-2.png" alt="" className="w-full h-full object-cover" />
+          <img src="/images/avatars/dealer-2.png" alt="Powersports dealer" className="w-full h-full object-cover" />
         </div>
       )}
     </div>
@@ -648,7 +648,7 @@ export default function SeeItInActionPowersports() {
                         ) : activeScenario.id === 'service' ? (
                           <PhoneIncoming className="w-5 h-5 text-green-500 animate-pulse" />
                         ) : (
-                          <img src="/images/avatars/dealer-2.png" alt="" className="w-full h-full object-cover" />
+                          <img src="/images/avatars/dealer-2.png" alt="Powersports dealer" className="w-full h-full object-cover" />
                         )}
                       </div>
                       <div>

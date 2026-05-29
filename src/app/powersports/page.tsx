@@ -612,21 +612,21 @@ export default function PowerPage() {
                 {/* Wireframe vehicles as background atmosphere — inverted + screen blend removes white bg */}
                 <img
                     src="/images/wireframe-dirtbike.jpg"
-                    alt=""
+                    alt="Wireframe illustration of a dirt bike"
                     width={700}
                     height={500}
                     className="absolute top-[25%] left-[-10%] w-[700px] h-auto opacity-[0.06] invert mix-blend-screen rotate-[6deg]"
                 />
                 <img
                     src="/images/wireframe-atv-real.jpg"
-                    alt=""
+                    alt="Wireframe illustration of an ATV"
                     width={750}
                     height={500}
                     className="absolute top-[48%] right-[-12%] w-[750px] h-auto opacity-[0.07] invert mix-blend-screen rotate-[-3deg]"
                 />
                 <img
                     src="/images/wireframe-yacht.jpg"
-                    alt=""
+                    alt="Wireframe illustration of a yacht"
                     width={900}
                     height={600}
                     className="absolute top-[58%] left-1/2 -translate-x-1/2 w-[900px] h-auto opacity-[0.08] invert mix-blend-screen"

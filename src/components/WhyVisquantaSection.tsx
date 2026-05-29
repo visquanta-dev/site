@@ -50,7 +50,7 @@ export default function WhyVisquantaSection() {
             <div className="absolute -right-40 top-0 w-3/4 h-full opacity-[0.05] pointer-events-none select-none hidden lg:block">
                 <img
                     src="/assets/dark-car-schematic.jpg"
-                    alt=""
+                    alt="Schematic illustration of a car"
                     className="w-full h-full object-contain"
                 />
             </div>
