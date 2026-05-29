@@ -27,7 +27,7 @@ export default function Hero() {
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <Image
           src="/images/wireframes/6.jpeg"
-          alt=""
+          alt="Wireframe illustration of a car"
           fill
           priority
           sizes="100vw"

@@ -71,7 +71,7 @@ export default function PainPointSection() {
             >
                 <img
                     src="/assets/suv-wireframe.png"
-                    alt=""
+                    alt="Wireframe illustration of an SUV"
                     className="w-full h-full object-contain"
                 />
             </motion.div>

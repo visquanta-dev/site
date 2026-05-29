@@ -137,7 +137,7 @@ Segmentation follows from clean data, not the other way around. Once the records
 
 ## How VisQuanta Helps Dealers Stop Losing Leads
 
-![](https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/686a5efb3c6c59ff5f82f8bd_d9a5a703-8614-4108-b157-757b118f3555.avif)
+![Why dealerships lose leads and how to stop the bleed](https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/686a5efb3c6c59ff5f82f8bd_d9a5a703-8614-4108-b157-757b118f3555.avif)
 
 Managing leads effectively demands the right mix of tools and expertise. VisQuanta tackles the lead-loss problem with a blend of automation and training, packaged in its AutoMaster Suite. This solution is tailored to help U.S. dealerships recover and convert missed opportunities into measurable gains.
 

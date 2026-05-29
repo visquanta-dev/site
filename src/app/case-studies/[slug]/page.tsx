@@ -163,7 +163,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
                 >
                     <img
                         src="/images/wireframe-car-2.svg"
-                        alt=""
+                        alt="Car wireframe illustration"
                         className="w-full h-auto"
                         style={{ filter: 'invert(1)' }}
                     />
@@ -434,7 +434,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
                 >
                     <img
                         src="/images/wireframe-car-1.svg"
-                        alt=""
+                        alt="Car wireframe illustration"
                         className="w-full h-auto"
                         style={{ filter: 'invert(1)' }}
                     />
@@ -669,7 +669,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
                             <div className="absolute -bottom-10 -right-16 w-[400px] pointer-events-none opacity-[0.06] hidden md:block">
                                 <img
                                     src="/images/wireframe-car-1.svg"
-                                    alt=""
+                                    alt="Car wireframe illustration"
                                     className="w-full h-auto"
                                     style={{ filter: 'invert(1) sepia(1) saturate(5) hue-rotate(-10deg) brightness(1.1)' }}
                                 />

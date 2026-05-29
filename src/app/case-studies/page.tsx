@@ -195,7 +195,7 @@ function FeaturedCard({ slug }: { slug: string }) {
                     <div className="absolute bottom-0 right-0 w-[500px] pointer-events-none opacity-[0.04] group-hover:opacity-[0.07] transition-opacity duration-700">
                         <img
                             src="/images/wireframe-car-1.svg"
-                            alt=""
+                            alt="Car wireframe illustration"
                             className="w-full h-auto"
                             style={{ filter: 'invert(1)' }}
                         />
@@ -493,7 +493,7 @@ export default function CaseStudiesPage() {
                 >
                     <img
                         src="/images/wireframe-car-1.svg"
-                        alt=""
+                        alt="Car wireframe illustration"
                         className="w-full h-auto invert"
                         style={{ filter: 'invert(1)' }}
                     />
@@ -506,7 +506,7 @@ export default function CaseStudiesPage() {
                 >
                     <img
                         src="/images/wireframe-car-2.svg"
-                        alt=""
+                        alt="Car wireframe illustration"
                         className="w-full h-auto"
                         style={{ filter: 'invert(1)', transform: 'scaleX(-1)' }}
                     />
@@ -825,7 +825,7 @@ export default function CaseStudiesPage() {
                             >
                                 <img
                                     src="/images/wireframe-car-2.svg"
-                                    alt=""
+                                    alt="Car wireframe illustration"
                                     className="w-full h-auto"
                                     style={{ filter: 'invert(1) sepia(1) saturate(5) hue-rotate(-10deg) brightness(1.1)' }}
                                 />

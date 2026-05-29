@@ -118,7 +118,7 @@ What sets these systems apart is their ability to go beyond simple filters like 
 
 ### Automated Follow-[Ups](https://www.ups.com/us/en/Home.page) and Marketing Campaigns
 
-![](https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/687e40f56cdc4f8321477d92_8350b0af-94bf-4841-957d-7a7ebc9027c5.avif)
+![Emerging AI innovations for car dealerships](https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/687e40f56cdc4f8321477d92_8350b0af-94bf-4841-957d-7a7ebc9027c5.avif)
 
 Timing is everything in automotive sales, and AI automation ensures no lead slips through the cracks. Multi-channel reminders—via email, SMS, and social media—help reduce delays and boost appointment rates. For example, a dealership in Florida cut its lead response time by 70%, resulting in a 40% increase in appointments [\[17\]](https://www.spyne.ai/blogs/ai-lead-generation-for-car-dealerships).
 
