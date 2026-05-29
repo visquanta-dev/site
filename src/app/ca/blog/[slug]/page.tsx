@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         const alternateUrls = getAlternateUrls(`/blog/${slug}`);
 
         return {
-            title,
+            title: { absolute: title },
             description,
             alternates: {
                 canonical: url,

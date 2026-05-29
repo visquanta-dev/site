@@ -70,7 +70,7 @@ export const locales: Record<Locale, LocaleConfig> = {
         },
         blogMeta: {
             titleSuffix: ' | VisQuanta Canada',
-            indexTitle: 'AI for Canadian Car Dealerships — Blog & Insights | VisQuanta',
+            indexTitle: 'AI for Canadian Car Dealerships — Blog & Insights | VisQuanta Canada',
             indexDescription: 'Expert insights on AI for Canadian car dealerships. Learn how dealers across Canada use automation to reduce lead loss, respond faster, and grow revenue.',
         },
     },
