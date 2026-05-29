@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { openGraphTwitterPack } from "@/lib/metadata";
 
 export const metadata: Metadata = {
-    title: 'Powersports Dealer Growth Tools — Sell More Units | VisQuanta',
+    title: 'Powersports Dealer Growth Tools — Sell More Units',
     description: 'VisQuanta helps motorcycle, ATV, UTV, and marine dealers respond to leads in under 60 seconds, reactivate past shoppers, automate review management, and run seasonal campaigns — without adding staff.',
     keywords: 'powersports dealer tools, motorcycle dealer lead response, ATV dealer automation, UTV dealer software, marine dealer lead management, powersports reputation management, powersports lead reactivation, powersports seasonal marketing, Polaris dealer tools, Harley dealer lead follow-up',
     alternates: {

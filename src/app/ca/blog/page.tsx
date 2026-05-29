@@ -12,7 +12,7 @@ const locale = locales.ca;
 const baseUrl = 'https://www.visquanta.com';
 
 export const metadata: Metadata = {
-    title: locale.blogMeta.indexTitle,
+    title: { absolute: locale.blogMeta.indexTitle },
     description: locale.blogMeta.indexDescription,
     alternates: {
         canonical: `${baseUrl}/ca/blog`,
