@@ -70,38 +70,6 @@ export default function CustomCampaignsPage() {
         ]
     };
 
-    const softwareSchema = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "VisQuanta Custom Campaigns",
-        "applicationCategory": "Marketing Automation Software",
-        "operatingSystem": "Web",
-        "description": "AI-powered car dealership campaign platform that creates custom SMS marketing campaigns for automotive dealerships. Handles campaign creation, list management, SMS delivery, and appointment booking.",
-        "offers": {
-            "@type": "Offer",
-            "category": "Enterprise Software",
-            "availability": "https://schema.org/InStock"
-        },
-        "featureList": [
-            "AI-Powered SMS Outreach",
-            "Campaign Asset Creation",
-            "Automated Appointment Booking",
-            "CRM Integration (VinSolutions, eLeads)",
-            "DMS Integration",
-            "Scale from 1K to 1M+ contacts",
-            "Lease Pull-Ahead Campaigns",
-            "Aged Inventory Marketing",
-            "Service Drive Campaigns",
-            "Lead Reactivation",
-            "Conversational AI",
-            "TCPA Compliance Management"
-        ],
-        "provider": {
-            "@type": "Organization",
-            "name": "VisQuanta",
-            "url": "https://www.visquanta.com"
-        }
-    };
 
     const breadcrumbSchema = {
         "@context": "https://schema.org",
@@ -131,13 +99,8 @@ export default function CustomCampaignsPage() {
             />
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-            />
-            <script
-                type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
-{/* JSON-LD SoftwareApplication with isRelatedTo */}            <script                type="application/ld+json"                dangerouslySetInnerHTML={{ __html: JSON.stringify({                    "@context": "https://schema.org",                    "@type": "SoftwareApplication",                    "name": "VisQuanta Custom Campaigns",                    "applicationCategory": "BusinessApplication",                    "operatingSystem": "Web",                    "url": "https://www.visquanta.com/custom-campaigns",                    "provider": {                        "@type": "Organization",                        "name": "VisQuanta",                        "url": "https://www.visquanta.com"                    },                    "isRelatedTo": [                        {                            "@type": "SoftwareApplication",                            "name": "VisQuanta Lead Reactivation",                            "url": "https://www.visquanta.com/lead-reactivation"                        }                    ]                }) }}            />
 
             {/* Global Premium Skin Elements */}
             <div className="fixed inset-0 pointer-events-none z-0">

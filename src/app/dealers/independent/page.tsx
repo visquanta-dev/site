@@ -476,29 +476,6 @@ export default function IndependentDealersPage() {
     return (
         <main className="bg-black min-h-screen">
             {/* JSON-LD Structured Data for AEO */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "SoftwareApplication",
-                        "name": "The AutoMaster Suite for Independent Dealers",
-                        "operatingSystem": "Web-based",
-                        "applicationCategory": "BusinessApplication",
-                        "description": "Revenue automation system designed specifically for independent car dealerships to optimize lead response and inventory turnover.",
-                        "offers": {
-                            "@type": "Offer",
-                            "price": "Contact for pricing",
-                            "priceCurrency": "USD"
-                        },
-                        "aggregateRating": {
-                            "@type": "AggregateRating",
-                            "ratingValue": "4.9",
-                            "reviewCount": "128"
-                        }
-                    })
-                }}
-            />
 
             <Navigation />
 

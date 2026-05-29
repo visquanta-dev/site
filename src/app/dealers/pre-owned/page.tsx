@@ -1033,28 +1033,6 @@ export default function PreOwnedPage() {
             </section>
 
             {/* AEO/SEO STRUCTURED DATA */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "SoftwareApplication",
-                        "name": "The AutoMaster Suite",
-                        "applicationCategory": "BusinessApplication",
-                        "operatingSystem": "Web",
-                        "description": "Enterprise AI for automotive lead reactivation and speed-to-lead automation.",
-                        "offers": {
-                            "@type": "Offer",
-                            "availability": "https://schema.org/InStock"
-                        },
-                        "aggregateRating": {
-                            "@type": "AggregateRating",
-                            "ratingValue": "4.9",
-                            "reviewCount": "128"
-                        }
-                    })
-                }}
-            />
 
             <DealerTypeCrossLinks currentPath="/dealers/pre-owned" />
             <Footer />

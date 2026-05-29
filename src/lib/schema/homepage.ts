@@ -48,78 +48,7 @@ export const homepageSchema = {
             }
         },
 
-        // SoftwareApplication - AutoMaster Suite
-        {
-            "@type": "SoftwareApplication",
-            "@id": "https://www.visquanta.com/#software",
-            "name": "The AutoMaster Suite",
-            "alternateName": ["The AutoMaster Suite", "VisQuanta AMS", "AutoMaster Suite"],
-            "applicationCategory": "BusinessApplication",
-            "applicationSubCategory": "Automotive Dealership Management",
-            "operatingSystem": "Web-based",
-            "description": "The complete AI platform for car dealerships. The AutoMaster Suite combines lead reactivation, speed-to-lead automation, Voice AI for service departments, SMS-first website chat, and reputation management in one integrated system.",
-            "url": "https://www.visquanta.com/auto-master-suite",
-            "downloadUrl": "https://www.visquanta.com/book-demo",
-            "installUrl": "https://www.visquanta.com/book-demo",
-            "provider": {
-                "@id": "https://www.visquanta.com/#organization"
-            },
-            "author": {
-                "@id": "https://www.visquanta.com/#organization"
-            },
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD",
-                "description": "Custom pricing based on dealership size and modules selected. Contact for quote.",
-                "availability": "https://schema.org/InStock",
-                "seller": {
-                    "@id": "https://www.visquanta.com/#organization"
-                }
-            },
-            "featureList": [
-                "Lead Reactivation: Re-engage dormant CRM leads via conversational SMS AI with 30%+ re-engagement rates",
-                "Speed to Lead: Respond to every inbound lead in under 60 seconds, 24/7/365",
-                "Voice AI for Service: Answer 100% of service calls, book appointments, handle after-hours inquiries",
-                "SMS-First Website Widget: Convert website visitors to SMS conversations, capture real phone numbers",
-                "Reputation Management: Automate review requests, intercept negative feedback, maintain 4.8+ star ratings",
-                "DMS Integration: CDK Global, Reynolds & Reynolds, Tekion, Dealertrack, Frazer",
-                "CRM Integration: VinSolutions, DriveCentric, eLead, DealerSocket",
-                "24/7 Automated Coverage: Never miss a lead or call regardless of business hours"
-            ],
-            "screenshot": [
-                {
-                    "@type": "ImageObject",
-                    "url": "https://www.visquanta.com/images/dashboard-preview.png",
-                    "caption": "The AutoMaster Suite Dashboard"
-                }
-            ],
-            "softwareVersion": "2.0",
-            "releaseNotes": "https://www.visquanta.com/changelog",
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "ratingCount": "47",
-                "reviewCount": "47",
-                "bestRating": "5",
-                "worstRating": "1"
-            },
-            "review": [
-                {
-                    "@type": "Review",
-                    "reviewRating": {
-                        "@type": "Rating",
-                        "ratingValue": "5",
-                        "bestRating": "5"
-                    },
-                    "author": {
-                        "@type": "Person",
-                        "name": "Dealership GM"
-                    },
-                    "reviewBody": "ROI in 30 days. The difference is night and day."
-                }
-            ]
-        },
+
 
         // FAQPage - Homepage specific
         {

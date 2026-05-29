@@ -493,24 +493,6 @@ export default function FranchisePage() {
     return (
         <main className="bg-[#020202] min-h-screen selection:bg-[#FF7404] selection:text-black overflow-x-hidden">
             {/* JSON-LD Structured Data for AEO */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "SoftwareApplication",
-                        "name": "The AutoMaster Suite for Franchise Dealerships",
-                        "operatingSystem": "Web-based",
-                        "applicationCategory": "BusinessApplication",
-                        "description": "OEM-compliant automotive automation suite designed for franchise dealerships to meet response mandates and protect CSI scores.",
-                        "offers": {
-                            "@type": "Offer",
-                            "price": "Contact for pricing",
-                            "priceCurrency": "USD"
-                        }
-                    })
-                }}
-            />
             <Navigation />
 
             {/* 1. HERO SECTION */}
