@@ -114,7 +114,7 @@ export default function BookingWizard() {
             name: "Mike Mammoser",
             role: "Sales & Research Manager",
             image: "/team/mike-mammoser.png",
-            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo",
+            calendly: "https://calendly.com/m-mammoser-visquanta",
             duration: "30-Min"
         },
         CHARLES: {
