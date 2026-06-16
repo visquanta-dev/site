@@ -11,7 +11,7 @@ import Image from 'next/image';
 interface TeamMember {
     name: string;
     role: string;
-    image: string;
+    image?: string;
     link?: string;
     email?: string;
     calendly?: string;
@@ -21,6 +21,16 @@ interface TeamLayer {
     title: string;
     badge: string;
     members: TeamMember[];
+}
+
+function getInitials(name: string): string {
+    return name
+        .split(' ')
+        .filter(Boolean)
+        .map((part) => part[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
 }
 
 const teamLayers: TeamLayer[] = [
@@ -145,6 +155,11 @@ const teamLayers: TeamLayer[] = [
 
             },
             {
+                name: "Lauren Sloan",
+                role: "Account Operations",
+                email: "lsloan@visquanta.com",
+            },
+            {
                 name: "Ellison Riviera",
                 role: "Client Account Lead",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/6850416b0314723f40a489d0_Ellison_Riviera-removebg-preview-modified.avif",
@@ -202,7 +217,9 @@ export default function TeamPage() {
                                 "@type": "Person",
                                 "name": member.name,
                                 "jobTitle": member.role,
-                                "image": member.image.startsWith('http') ? member.image : `https://www.visquanta.com${member.image}`,
+                                ...(member.image ? {
+                                    "image": member.image.startsWith('http') ? member.image : `https://www.visquanta.com${member.image}`,
+                                } : {}),
                                 "email": member.email || "info@visquanta.com",
                                 "url": `https://www.visquanta.com/team#${member.name.toLowerCase().replace(/\s+/g, '-')}`,
                                 "sameAs": member.link && member.link !== "#" ? [member.link] : [],
@@ -449,11 +466,19 @@ export default function TeamPage() {
                                                             <div className="absolute inset-[-6px] rounded-full border border-[#FF7404]/40 opacity-0 group-hover:opacity-100 transition-all duration-700" />
 
                                                             <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-white/10 bg-zinc-900 relative z-10 shadow-2xl transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-2">
-                                                                <img
-                                                                    src={member.image}
-                                                                    alt={member.name}
-                                                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000 ease-out"
-                                                                />
+                                                                {member.image ? (
+                                                                    <img
+                                                                        src={member.image}
+                                                                        alt={member.name}
+                                                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000 ease-out"
+                                                                    />
+                                                                ) : (
+                                                                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#FF7404]/20 via-zinc-900 to-zinc-950">
+                                                                        <span className="text-xl md:text-2xl font-black text-[#FF7404] tracking-tight">
+                                                                            {getInitials(member.name)}
+                                                                        </span>
+                                                                    </div>
+                                                                )}
                                                             </div>
 
                                                             {/* Corner Accents */}
