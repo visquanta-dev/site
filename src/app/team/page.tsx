@@ -103,7 +103,7 @@ const teamLayers: TeamLayer[] = [
         members: [
             {
                 name: "Clint Annis",
-                role: "Implementation Lead",
+                role: "Director of Implementations",
                 image: "/team/clint-annis.png",
                 link: "#",
                 email: "cannis@visquanta.com",
