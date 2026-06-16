@@ -100,7 +100,7 @@ export default function BookingWizard() {
             name: "Dwayne Roemer",
             role: "Director of Canadian Operations",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4cd9a69563d82a59b270f_WhatsApp_Image_2025-10-07_at_01.28.06_8f1c8935-modified-removebg-preview.avif",
-            calendly: "https://calendly.com/droemer-visquanta/30min",
+            calendly: "https://calendly.com/droemer-visquanta/30-minute-meeting",
             duration: "30-Min"
         },
         WILLIAM: {
@@ -109,13 +109,6 @@ export default function BookingWizard() {
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
             calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo",
             duration: "30-Min"
-        },
-        SIA: {
-            name: "Sia Small",
-            role: "Director of Business Growth",
-            image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif",
-            calendly: "https://calendly.com/ssmall-visquanta/book-a-product-demo-45-min",
-            duration: "45-Min"
         },
         CHARLES: {
             name: "Charles Snodgrass",
@@ -158,7 +151,7 @@ export default function BookingWizard() {
             isTeam: true,
             images: [
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
-                "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif"
+                "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61f76c1b77bb770b669_christopher%2Cwilson%2Cheadshot%2Cvisquanta.webp"
             ],
             calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo", // Placeholder for Round Robin
             duration: "45-Min"
@@ -244,7 +237,6 @@ export default function BookingWizard() {
                 if (rep === 'SalesTeam') setTargetCalendlyUrl(REP_DETAILS.SALES_TEAM.calendly);
                 else if (rep === 'SuccessTeam') setTargetCalendlyUrl(REP_DETAILS.SUCCESS_TEAM.calendly);
                 else if (rep === 'William') setTargetCalendlyUrl(REP_DETAILS.WILLIAM.calendly);
-                else if (rep === 'Sia') setTargetCalendlyUrl(REP_DETAILS.SIA.calendly);
                 else if (rep === 'Charles') setTargetCalendlyUrl(REP_DETAILS.CHARLES.calendly);
                 else if (rep === 'Clint') setTargetCalendlyUrl(REP_DETAILS.CLINT.calendly);
                 else if (rep === 'Matt') setTargetCalendlyUrl(REP_DETAILS.MATT.calendly);
@@ -273,7 +265,6 @@ export default function BookingWizard() {
         if (rep === 'SalesTeam') return REP_DETAILS.SALES_TEAM;
         if (rep === 'SuccessTeam') return REP_DETAILS.SUCCESS_TEAM;
         if (rep === 'William') return REP_DETAILS.WILLIAM;
-        if (rep === 'Sia') return REP_DETAILS.SIA;
         if (rep === 'Charles') return REP_DETAILS.CHARLES;
         if (rep === 'Clint') return REP_DETAILS.CLINT;
         if (rep === 'Matt') return REP_DETAILS.MATT;
