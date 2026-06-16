@@ -75,20 +75,12 @@ const teamLayers: TeamLayer[] = [
                 calendly: "https://calendly.com/csnodgrass-visquanta/visquanta-discovery-call"
             },
             {
-                name: "Sia Small",
-                role: "Director of Business Growth",
-                image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif",
-                link: "https://www.linkedin.com/in/sia-small-256329198/",
-                email: "ssmall@visquanta.com",
-                calendly: "https://calendly.com/ssmall-visquanta/discovery"
-            },
-            {
                 name: "Dwayne Roemer",
                 role: "Director of Canadian Operations",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4cd9a69563d82a59b270f_WhatsApp_Image_2025-10-07_at_01.28.06_8f1c8935-modified-removebg-preview.avif",
                 link: "https://www.linkedin.com/in/dwayne-roemer-ba29a79/",
                 email: "droemer@visquanta.com",
-                calendly: "https://calendly.com/droemer-visquanta/30min"
+                calendly: "https://calendly.com/droemer-visquanta/30-minute-meeting"
             },
             {
                 name: "Murray Wilkinson",
