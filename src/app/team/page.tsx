@@ -103,7 +103,9 @@ const teamLayers: TeamLayer[] = [
                 name: "Mike Mammoser",
                 role: "Sales & Research Manager",
                 image: "/team/mike-mammoser.png",
-                email: "m.mammoser@visquanta.com"
+                link: "https://www.linkedin.com/in/mike-mammoser-1b639812/",
+                email: "m.mammoser@visquanta.com",
+                calendly: "https://calendly.com/m-mammoser-visquanta"
             }
         ]
     },
