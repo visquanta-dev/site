@@ -37,7 +37,7 @@ export default function SalesRepSelectionStep() {
                         onClick={() => setValue('salesRep', 'SalesTeam', { shouldValidate: true })}
                         images={[
                             "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
-                            "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61f76c1b77bb770b669_christopher%2Cwilson%2Cheadshot%2Cvisquanta.webp"
+                            "/team/mike-mammoser.png"
                         ]}
                     />
                 )}
@@ -111,11 +111,11 @@ export default function SalesRepSelectionStep() {
                             image="https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp"
                         />
                         <SalesRepCard
-                            name="Christopher Wilson"
-                            role="Co-Founder & COO"
-                            selected={salesRep === 'Christopher'}
-                            onClick={() => setValue('salesRep', 'Christopher', { shouldValidate: true })}
-                            image="https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61f76c1b77bb770b669_christopher%2Cwilson%2Cheadshot%2Cvisquanta.webp"
+                            name="Mike Mammoser"
+                            role="Sales & Research Manager"
+                            selected={salesRep === 'Mike'}
+                            onClick={() => setValue('salesRep', 'Mike', { shouldValidate: true })}
+                            image="/team/mike-mammoser.png"
                         />
                     </>
                 )}
