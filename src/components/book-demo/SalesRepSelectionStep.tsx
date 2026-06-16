@@ -95,7 +95,7 @@ export default function SalesRepSelectionStep() {
                         />
                         <SalesRepCard
                             name="Clint Annis"
-                            role="Implementation Lead"
+                            role="Director of Implementations"
                             selected={salesRep === 'Clint'}
                             onClick={() => setValue('salesRep', 'Clint', { shouldValidate: true })}
                             image="/team/clint-annis.png"
