@@ -110,6 +110,13 @@ export default function BookingWizard() {
             calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo",
             duration: "30-Min"
         },
+        MIKE: {
+            name: "Mike Mammoser",
+            role: "Sales & Research Manager",
+            image: "/team/mike-mammoser.png",
+            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo",
+            duration: "30-Min"
+        },
         CHARLES: {
             name: "Charles Snodgrass",
             role: "Director of Client Success",
@@ -151,7 +158,7 @@ export default function BookingWizard() {
             isTeam: true,
             images: [
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
-                "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61f76c1b77bb770b669_christopher%2Cwilson%2Cheadshot%2Cvisquanta.webp"
+                "/team/mike-mammoser.png"
             ],
             calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo", // Placeholder for Round Robin
             duration: "45-Min"
@@ -237,6 +244,7 @@ export default function BookingWizard() {
                 if (rep === 'SalesTeam') setTargetCalendlyUrl(REP_DETAILS.SALES_TEAM.calendly);
                 else if (rep === 'SuccessTeam') setTargetCalendlyUrl(REP_DETAILS.SUCCESS_TEAM.calendly);
                 else if (rep === 'William') setTargetCalendlyUrl(REP_DETAILS.WILLIAM.calendly);
+                else if (rep === 'Mike') setTargetCalendlyUrl(REP_DETAILS.MIKE.calendly);
                 else if (rep === 'Charles') setTargetCalendlyUrl(REP_DETAILS.CHARLES.calendly);
                 else if (rep === 'Clint') setTargetCalendlyUrl(REP_DETAILS.CLINT.calendly);
                 else if (rep === 'Matt') setTargetCalendlyUrl(REP_DETAILS.MATT.calendly);
@@ -265,6 +273,7 @@ export default function BookingWizard() {
         if (rep === 'SalesTeam') return REP_DETAILS.SALES_TEAM;
         if (rep === 'SuccessTeam') return REP_DETAILS.SUCCESS_TEAM;
         if (rep === 'William') return REP_DETAILS.WILLIAM;
+        if (rep === 'Mike') return REP_DETAILS.MIKE;
         if (rep === 'Charles') return REP_DETAILS.CHARLES;
         if (rep === 'Clint') return REP_DETAILS.CLINT;
         if (rep === 'Matt') return REP_DETAILS.MATT;
