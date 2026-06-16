@@ -117,17 +117,17 @@ const teamLayers: TeamLayer[] = [
                 email: "dlopez@visquanta.com",
             },
             {
+                name: "Kyle Roath",
+                role: "Director of Systems Engineering",
+                image: "/team/kyle-roath.png",
+                email: "kroath@visquanta.com"
+            },
+            {
                 name: "Herman Sullivan",
                 role: "Client Success Manager",
                 image: "/team/herman-sullivan.jpg",
                 email: "hsullivan@visquanta.com",
 
-            },
-            {
-                name: "Kyle Roath",
-                role: "Systems Engineer",
-                image: "/team/kyle-roath.png",
-                email: "kroath@visquanta.com"
             },
             {
                 name: "Chloe Johncock",
