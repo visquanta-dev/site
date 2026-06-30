@@ -1,3 +1,4 @@
+import { stripLocalePrefix } from '@/lib/i18n/config';
 
 /**
  * Generates versioned internal links based on the provided locale.
@@ -9,7 +10,7 @@
  * @param locale The current locale (e.g., 'en-US', 'en-CA', 'en-GB')
  */
 export function localeLink(path: string, locale?: string): string {
-    if (!locale || locale === 'en-US' || path.startsWith('/blog')) {
+    if (!locale || locale === 'en-US') {
         return path;
     }
 
@@ -19,11 +20,9 @@ export function localeLink(path: string, locale?: string): string {
 
     if (!prefix) return path;
 
-    // Ensure path starts with /
-    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    const cleanPath = stripLocalePrefix(path.startsWith('/') ? path : `/${path}`);
 
-    // Avoid double slashes if path is just /
-    if (cleanPath === '/' && prefix) return prefix + '/';
+    if (cleanPath === '/') return `${prefix}/`;
 
     return `${prefix}${cleanPath}`;
 }

@@ -2,6 +2,7 @@
 // This ensures og:url matches the canonical URL for each page
 
 import { Metadata } from 'next';
+import { stripLocalePrefix } from '@/lib/i18n/config';
 import { getHreflangTags } from './hreflang';
 
 interface PageMetadataOptions {
@@ -24,12 +25,12 @@ export function generatePageMetadata({
     locale = 'en-US',
 }: PageMetadataOptions): Metadata {
     const baseUrl = 'https://www.visquanta.com';
-    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    const cleanPath = stripLocalePrefix(path.startsWith('/') ? path : `/${path}`);
 
     // Construct full URL based on locale
     // Only en-CA has an active locale route (/ca). en-GB (/uk) has no route handler.
     let fullUrl = `${baseUrl}${cleanPath}`;
-    if (locale === 'en-CA' && !cleanPath.startsWith('/ca')) {
+    if (locale === 'en-CA') {
         fullUrl = `${baseUrl}/ca${cleanPath === '/' ? '' : cleanPath}`;
     }
     // en-GB visitors see US content (no /uk routes exist)

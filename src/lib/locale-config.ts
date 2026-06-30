@@ -85,8 +85,10 @@ export function getLocaleFromPath(pathname: string): Locale {
 
 export function getAlternateUrls(path: string): { hreflang: string; href: string }[] {
     const baseUrl = 'https://www.visquanta.com';
-    // Strip leading /ca if present to get the base path
-    const basePath = path.replace(/^\/ca/, '') || '/';
+    let basePath = path.startsWith('/') ? path : `/${path}`;
+    while (basePath.startsWith('/ca/') || basePath === '/ca') {
+        basePath = basePath === '/ca' ? '/' : basePath.slice(3);
+    }
     const cleanPath = basePath === '/' ? '' : basePath;
 
     return [

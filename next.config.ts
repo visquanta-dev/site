@@ -62,6 +62,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // Collapse accidental double /ca prefix (e.g. /ca/ca/contact → /ca/contact).
+      {
+        source: '/ca/ca',
+        destination: '/ca',
+        permanent: true,
+      },
+      {
+        source: '/ca/ca/:path*',
+        destination: '/ca/:path*',
+        permanent: true,
+      },
+
       // UK locale cleanup — no /uk route handler exists.
       // 301 redirect all /uk/* to root equivalents to fix Ahrefs 404s.
       {

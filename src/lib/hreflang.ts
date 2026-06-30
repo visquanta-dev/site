@@ -1,3 +1,4 @@
+import { stripLocalePrefix } from '@/lib/i18n/config';
 
 const BASE_URL = 'https://www.visquanta.com';
 
@@ -11,12 +12,7 @@ const BASE_URL = 'https://www.visquanta.com';
  * @param pathname The current path (can include locale prefix like /ca)
  */
 export function getHreflangTags(pathname: string) {
-    // Strip /ca/ prefix to get the base path
-    let basePath = pathname.replace(/^\/ca/, '');
-    if (!basePath) basePath = '/';
-
-    // Ensure path starts with /
-    const cleanPath = basePath.startsWith('/') ? basePath : `/${basePath}`;
+    const cleanPath = stripLocalePrefix(pathname.startsWith('/') ? pathname : `/${pathname}`);
     const isRoot = cleanPath === '/';
 
     return {

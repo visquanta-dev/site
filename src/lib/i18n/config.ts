@@ -63,6 +63,17 @@ export function getLocaleFromPath(pathname: string): Locale {
     return defaultLocale;
 }
 
+/** Strip all leading locale URL prefixes (/ca, /uk) to get the marketing path. */
+export function stripLocalePrefix(pathname: string): string {
+    const segments = pathname.split('/').filter(Boolean);
+
+    while (segments.length > 0 && prefixToLocale[segments[0]]) {
+        segments.shift();
+    }
+
+    return segments.length === 0 ? '/' : `/${segments.join('/')}`;
+}
+
 // Get URL prefix for a locale
 export function getUrlPrefix(locale: Locale): string {
     return localeConfig[locale].urlPrefix || '';
@@ -70,22 +81,14 @@ export function getUrlPrefix(locale: Locale): string {
 
 // Convert a path to a localized path
 export function localizePathname(pathname: string, targetLocale: Locale): string {
-    // Remove any existing locale prefix
-    const segments = pathname.split('/').filter(Boolean);
-    const firstSegment = segments[0];
-
-    if (firstSegment && prefixToLocale[firstSegment]) {
-        segments.shift(); // Remove existing locale prefix
-    }
-
-    const basePath = '/' + segments.join('/');
+    const basePath = stripLocalePrefix(pathname);
     const prefix = getUrlPrefix(targetLocale);
 
     if (prefix) {
         return `/${prefix}${basePath === '/' ? '' : basePath}`;
     }
 
-    return basePath || '/';
+    return basePath;
 }
 
 // Cookie name for locale preference

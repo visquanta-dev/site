@@ -78,9 +78,9 @@ export function normalizeLinks(html: string): string {
         // Ensure we handle '/' root correctly
         if (normalizedUrl === '') normalizedUrl = '/';
 
-        // 4. Handle /ca prefix (prevent mirroring as per previous requirements)
-        if (normalizedUrl.startsWith('/ca/blog')) {
-            normalizedUrl = normalizedUrl.replace('/ca/blog', '/blog');
+        // 4. Collapse double /ca prefix and normalize blog paths
+        while (normalizedUrl.startsWith('/ca/ca')) {
+            normalizedUrl = normalizedUrl.replace('/ca/ca', '/ca');
         }
 
         // 5. Handle /blog-details/:slug pattern

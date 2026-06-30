@@ -135,6 +135,13 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL("/", `${protocol}://www.visquanta.com`), 301);
     }
 
+    // Collapse double /ca prefix before any page handler runs.
+    if (pathname === '/ca/ca' || pathname.startsWith('/ca/ca/')) {
+        const url = request.nextUrl.clone();
+        url.pathname = pathname.replace(/^\/ca\/ca(?=\/|$)/, '/ca') || '/ca';
+        return NextResponse.redirect(url, 301);
+    }
+
     const host = request.headers.get("host");
 
     // Bot detection early
