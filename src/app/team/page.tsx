@@ -98,14 +98,6 @@ const teamLayers: TeamLayer[] = [
                 image: "/team/murray.png",
                 link: "https://www.linkedin.com/in/murraywilkinsonaisalesenablement/",
                 email: "mwilkinson@visquanta.com"
-            },
-            {
-                name: "Mike Mammoser",
-                role: "Sales & Research Manager",
-                image: "/team/mike-mammoser.png",
-                link: "https://www.linkedin.com/in/mike-mammoser-1b639812/",
-                email: "m.mammoser@visquanta.com",
-                calendly: "https://calendly.com/m-mammoser-visquanta"
             }
         ]
     },
@@ -133,6 +125,14 @@ const teamLayers: TeamLayer[] = [
                 role: "Director of Systems Engineering",
                 image: "/team/kyle-roath.png",
                 email: "kroath@visquanta.com"
+            },
+            {
+                name: "Mike Mammoser",
+                role: "Sales & Research Manager",
+                image: "/team/mike-mammoser.png",
+                link: "https://www.linkedin.com/in/mike-mammoser-1b639812/",
+                email: "m.mammoser@visquanta.com",
+                calendly: "https://calendly.com/m-mammoser-visquanta"
             },
             {
                 name: "Herman Sullivan",
