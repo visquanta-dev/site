@@ -1,5 +1,7 @@
 'use client';
 import Link from 'next/link';
+import { localeLink } from '@/lib/locale-link';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { ArrowRight, BookOpen, FileText, HelpCircle, MessageSquare, Zap, LayoutGrid } from 'lucide-react';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
@@ -57,6 +59,8 @@ const resourceLinks = [
 ];
 
 export default function ResourcesHubPage() {
+    const { locale } = useLocale();
+    const localePrefix = locale === 'en-CA' ? '/ca' : '';
     return (
         <main className="min-h-screen bg-[#050505] pt-32 pb-20 relative overflow-hidden">
 
@@ -126,14 +130,14 @@ export default function ResourcesHubPage() {
                                 Expert analysis on the intersection of artificial intelligence and automotive retail.
                             </p>
                         </div>
-                        <Link href="/blog" className="text-xs font-bold text-[#FF7404] uppercase tracking-widest border-b border-[#FF7404]/30 pb-1 hover:border-[#FF7404] transition-all">
+                        <Link href={localeLink("/blog", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-xs font-bold text-[#FF7404] uppercase tracking-widest border-b border-[#FF7404]/30 pb-1 hover:border-[#FF7404] transition-all">
                             Browse All Articles
                         </Link>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <a
-                            href="/blog/car-dealership-roi-calculator"
+                            href={localeLink("/blog/car-dealership-roi-calculator", localePrefix === '/ca' ? 'en-CA' : 'en-US')}
                             className="group p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#FF7404]/30 transition-all flex flex-col h-full"
                         >
                             <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest mb-3">Financial Impact</div>
@@ -145,7 +149,7 @@ export default function ResourcesHubPage() {
                         </a>
 
                         <a
-                            href="/blog/top-pitfalls-when-car-dealerships-rush-to-adopt-ai-solutions"
+                            href={localeLink("/blog/top-pitfalls-when-car-dealerships-rush-to-adopt-ai-solutions", localePrefix === '/ca' ? 'en-CA' : 'en-US')}
                             className="group p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#FF7404]/30 transition-all flex flex-col h-full"
                         >
                             <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest mb-3">Risk Assessment</div>
@@ -157,7 +161,7 @@ export default function ResourcesHubPage() {
                         </a>
 
                         <a
-                            href="/blog/ultimate-guide-to-dealership-reputation-metrics"
+                            href={localeLink("/blog/ultimate-guide-to-dealership-reputation-metrics", localePrefix === '/ca' ? 'en-CA' : 'en-US')}
                             className="group p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#FF7404]/30 transition-all flex flex-col h-full"
                         >
                             <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest mb-3">Digital Health</div>
@@ -169,7 +173,7 @@ export default function ResourcesHubPage() {
                         </a>
 
                         <a
-                            href="/blog/ai-isnt-replacing-car-dealership-jobs-its-transforming-them"
+                            href={localeLink("/blog/ai-isnt-replacing-car-dealership-jobs-its-transforming-them", localePrefix === '/ca' ? 'en-CA' : 'en-US')}
                             className="group p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#FF7404]/30 transition-all flex flex-col h-full"
                         >
                             <div className="text-[10px] font-bold text-[#FF7404] uppercase tracking-widest mb-3">Future of Work</div>

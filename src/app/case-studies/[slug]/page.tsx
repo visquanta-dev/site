@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { notFound } from 'next/navigation';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 import {
     ArrowLeft,
     ArrowUpRight,
@@ -18,6 +19,7 @@ import {
     BarChart3,
 } from 'lucide-react';
 import Link from 'next/link';
+import { localeLink } from '@/lib/locale-link';
 import { use, useRef } from 'react';
 import { caseStudies, getRelatedStudies } from '@/lib/case-studies';
 import { useCalendlyModal } from '@/components/CalendlyModal';
@@ -109,6 +111,8 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = use(params);
     const data = caseStudies[slug as keyof typeof caseStudies];
+    const { locale } = useLocale();
+    const localePrefix = locale === 'en-CA' ? '/ca' : '';
 
     if (!data) return notFound();
 
@@ -178,7 +182,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
                         className="flex items-center gap-3 mb-12"
                     >
                         <Link
-                            href="/case-studies"
+                            href={localeLink("/case-studies", localePrefix === '/ca' ? 'en-CA' : 'en-US')}
                             className="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm group"
                         >
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
@@ -598,7 +602,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.1, duration: 0.7, ease }}
                                 >
-                                    <Link href={`/case-studies/${r.slug}`} className="block group">
+                                    <Link href={localeLink(`/case-studies/${r.slug}`, localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="block group">
                                         <div className="relative bg-[#0A0A0A] border border-white/[0.06] rounded-2xl overflow-hidden p-6 hover:border-white/[0.12] hover:translate-y-[-2px] hover:shadow-[0_20px_60px_-15px_rgba(255,116,4,0.06)] transition-all duration-500 h-full flex flex-col">
                                             {/* Accent line top */}
                                             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF7404]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -685,7 +689,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
                                     </p>
                                 </div>
                                 <div className="flex gap-4 shrink-0">
-                                    <Link href="/case-studies">
+                                    <Link href={localeLink("/case-studies", localePrefix === '/ca' ? 'en-CA' : 'en-US')}>
                                         <button className="px-6 py-3.5 rounded-xl border border-white/10 text-zinc-400 hover:text-white hover:border-white/20 transition-all text-sm font-medium">
                                             More Case Studies
                                         </button>

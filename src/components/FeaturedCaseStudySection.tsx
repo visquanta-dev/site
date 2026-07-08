@@ -1,11 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { TrendingUp, Car, DollarSign, ArrowRight, Quote } from 'lucide-react';
 import Link from 'next/link';
+import { localeLink } from '@/lib/locale-link';
 import Image from 'next/image';
 
 export default function FeaturedCaseStudySection() {
+    const { locale } = useLocale();
+    const localePrefix = locale === 'en-CA' ? '/ca' : '';
     return (
         <section className="py-32 bg-[#080808] relative overflow-hidden">
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#ff7404]/30 to-transparent" />
@@ -68,7 +72,7 @@ export default function FeaturedCaseStudySection() {
                             </div>
 
                             <Link
-                                href="/case-studies/seth-wadley"
+                                href={localeLink("/case-studies/seth-wadley", localePrefix === '/ca' ? 'en-CA' : 'en-US')}
                                 className="inline-flex items-center gap-2 text-[#ff7404] font-bold hover:text-white transition-colors group"
                             >
                                 Read Full Case Study
