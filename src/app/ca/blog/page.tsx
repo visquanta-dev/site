@@ -5,7 +5,6 @@ import { Metadata } from 'next';
 import { locales, getAlternateUrls } from '@/lib/locale-config';
 import { getArticles } from '@/lib/blog';
 import Link from 'next/link';
-import { localeLink } from '@/lib/locale-link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
@@ -80,7 +79,7 @@ export default async function CABlogPage() {
                             {locale.blogCta.buttonText}
                         </Link>
                         <Link
-                            href={localeLink('/contact', localePrefix === '/ca' ? 'en-CA' : 'en-US')}
+                            href="/ca/contact"
                             className="inline-flex items-center justify-center rounded-xl bg-white/5 px-8 py-4 text-sm font-bold text-white ring-1 ring-inset ring-white/10 hover:bg-white/10 transition-all duration-200"
                         >
                             Contact Us
@@ -108,7 +107,7 @@ export default async function CABlogPage() {
                     <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                         {posts.map((post) => (
                             <article key={post.slug} className="group flex flex-col">
-                                <Link href={localeLink(`/blog/${post.slug}`, localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="flex flex-col h-full">
+                                <Link href={`/ca/blog/${post.slug}`} className="flex flex-col h-full">
                                     <div className="aspect-[16/9] overflow-hidden rounded-2xl bg-slate-800 mb-6 border border-white/5 shadow-2xl relative">
                                         <img
                                             src={post.featuredImage}

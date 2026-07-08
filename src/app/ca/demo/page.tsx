@@ -4,7 +4,6 @@ import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { RefreshCcw, Mic, PhoneOff, ShieldCheck } from "lucide-react"
 import Link from "next/link"
-import { localeLink } from '@/lib/locale-link';
 import Image from "next/image"
 import { RetellWebClient } from "retell-client-js-sdk"
 
@@ -334,7 +333,7 @@ export default function AutoShowDemo() {
       {/* Navbar */}
       <header className="flex h-20 items-center justify-between border-b border-white/5 bg-black/40 backdrop-blur-xl px-6 md:px-12 relative z-20">
         <div className="flex items-center space-x-4">
-          <Link href={localeLink('/', localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="relative h-6 w-40 flex items-center">
+          <Link href="/ca" className="relative h-6 w-40 flex items-center">
             <Image 
               src="/images/visquanta-logo-white.png" 
               alt="VisQuanta Logo" 

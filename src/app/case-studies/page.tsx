@@ -15,7 +15,7 @@ import {
     Hash,
 } from 'lucide-react';
 import Link from 'next/link';
-import { getServerLocalePrefix } from '@/lib/server-locale';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 import { localeLink } from '@/lib/locale-link';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
@@ -435,8 +435,9 @@ function ComparisonTable() {
 
 // ─── Page ────────────────────────────────────────────────────────────────────
 
-export default async function CaseStudiesPage() {
-    const localePrefix = await getServerLocalePrefix();
+export default function CaseStudiesPage() {
+    const { locale } = useLocale();
+    const localePrefix = locale === 'en-CA' ? '/ca' : '';
     const [activeCategory, setActiveCategory] = useState('all');
     const { openModal } = useCalendlyModal();
     const heroRef = useRef<HTMLDivElement>(null);
