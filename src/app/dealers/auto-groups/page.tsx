@@ -11,6 +11,7 @@ import PerformanceGlassGrid from '@/components/dealers/auto-groups/upgrades/Perf
 import ScalingTimeline from '@/components/dealers/auto-groups/upgrades/ScalingTimeline';
 import HeroDashboard from '@/components/dealers/auto-groups/upgrades/HeroDashboard';
 import CommandCenterPanel from '@/components/dealers/auto-groups/upgrades/CommandCenterPanel';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 import {
     Users,
     LayoutGrid,
@@ -54,6 +55,7 @@ import {
 import MinimalQuote from '@/components/ui/MinimalQuote';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import Link from 'next/link';
+import { localeLink } from '@/lib/locale-link';
 import { useRef, useState, useEffect } from 'react';
 import { RequestDemoButton } from '@/components/CalendlyModal';
 import { CapabilityTabs, CapabilityFeatureDisplay } from '@/components';
@@ -426,6 +428,8 @@ const featuresData: Feature[] = [
 ];
 
 export default function AutoGroupsPage() {
+    const { locale } = useLocale();
+    const localePrefix = locale === 'en-CA' ? '/ca' : '';
     const heroRef = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
     const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
@@ -547,7 +551,7 @@ export default function AutoGroupsPage() {
                                 variants={itemVariants}
                                 className="text-xl text-zinc-400 leading-relaxed max-w-xl mb-12 font-medium"
                             >
-                                Eliminate decentralized inefficiency. The <Link href="/auto-master-suite" className="text-[#FF7404] hover:underline underline-offset-2">AutoMaster Suite</Link> unifies your entire portfolio under a single, high-performance revenue engine, standardizing BDC success from your flagship to your latest acquisition.
+                                  Eliminate decentralized inefficiency. The <Link href={localeLink("/auto-master-suite", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-[#FF7404] hover:underline underline-offset-2">AutoMaster Suite</Link> unifies your entire portfolio under a single, high-performance revenue engine, standardizing BDC success from your flagship to your latest acquisition.
                             </motion.p>
 
                             <motion.div
@@ -566,14 +570,14 @@ export default function AutoGroupsPage() {
                                 </RequestDemoButton>
                                 <p className="text-[10px] sm:text-xs text-white/40 uppercase tracking-[0.15em] font-bold">
                                     15-min 1:1 • Get an exact revenue-lift projection for your group
-                                </p>
+                                  </p>
                                 <div className="flex flex-wrap gap-4 mt-2">
-                                    <Link href="/case-studies" className="text-sm text-zinc-400 hover:text-[#FF7404] transition-colors flex items-center gap-1.5 group">
+                                    <Link href={localeLink("/case-studies", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-sm text-zinc-400 hover:text-[#FF7404] transition-colors flex items-center gap-1.5 group">
                                         <BookOpen className="w-4 h-4" />
                                         View Case Studies
                                         <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                                     </Link>
-                                    <Link href="/book-demo" className="text-sm text-zinc-400 hover:text-[#FF7404] transition-colors flex items-center gap-1.5 group">
+                                    <Link href={localeLink("/book-demo", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-sm text-zinc-400 hover:text-[#FF7404] transition-colors flex items-center gap-1.5 group">
                                         <Calendar className="w-4 h-4" />
                                         Book a Demo
                                         <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
@@ -617,7 +621,7 @@ export default function AutoGroupsPage() {
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7404] to-[#FF9040]">Zero Friction.</span>
                                 </h2>
                                 <p className="text-lg text-zinc-400 mb-10 leading-relaxed">
-                                    The <Link href="/auto-master-suite" className="text-[#FF7404] hover:underline underline-offset-2">AutoMaster Suite&apos;s</Link> Central Command acts as a high-altitude control tower for your entire portfolio. Manage Store level access, push group-level marketing cadences, and benchmark every rooftop against your gold standard: all from a single dashboard.
+                                    The <Link href={localeLink("/auto-master-suite", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-[#FF7404] hover:underline underline-offset-2">AutoMaster Suite&apos;s</Link> Central Command acts as a high-altitude control tower for your entire portfolio. Manage Store level access, push group-level marketing cadences, and benchmark every rooftop against your gold standard: all from a single dashboard.
                                 </p>
 
                                 <div className="space-y-4">
@@ -803,7 +807,7 @@ export default function AutoGroupsPage() {
                                     Executives struggle with group-level visibility, while store managers are too bogged down in daily operations to implement group-wide initiatives.
                                 </motion.p>
                                 <motion.p variants={itemVariants}>
-                                    <strong className="text-white">The result:</strong> Inconsistent performance across rooftops, high regional overhead, and millions in lost revenue due to fragmented <Link href="/lead-reactivation" className="text-[#FF7404] hover:underline underline-offset-2">lead management</Link> and slow <Link href="/speed-to-lead" className="text-[#FF7404] hover:underline underline-offset-2">speed to lead</Link>.
+                                    <strong className="text-white">The result:</strong> Inconsistent performance across rooftops, high regional overhead, and millions in lost revenue due to fragmented <Link href={localeLink("/lead-reactivation", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-[#FF7404] hover:underline underline-offset-2">lead management</Link> and slow <Link href={localeLink("/speed-to-lead", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-[#FF7404] hover:underline underline-offset-2">speed to lead</Link>.
                                 </motion.p>
                             </motion.div>
                         </motion.div>
@@ -998,24 +1002,24 @@ export default function AutoGroupsPage() {
                         </RequestDemoButton>
 
                         <div className="flex flex-wrap justify-center gap-6 mt-8">
-                            <Link href="/auto-master-suite" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                            <Link href={localeLink("/auto-master-suite", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
                                 <Layers className="w-4 h-4" />
                                 Explore the AutoMaster Suite
                                 <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                             </Link>
-                            <Link href="/speed-to-lead" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                            <Link href={localeLink("/speed-to-lead", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
                                 <Zap className="w-4 h-4" />
                                 Speed to Lead
                                 <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                             </Link>
-                            <Link href="/lead-reactivation" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                            <Link href={localeLink("/lead-reactivation", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
                                 <RefreshCw className="w-4 h-4" />
                                 Lead Reactivation
                                 <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                             </Link>
-                            <Link href="/case-studies" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
-                                <BookOpen className="w-4 h-4" />
-                                Case Studies
+                              <Link href={localeLink("/case-studies", localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                                  <BookOpen className="w-4 h-4" />
+                                  Case Studies
                                 <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                             </Link>
                         </div>

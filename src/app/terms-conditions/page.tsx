@@ -8,7 +8,7 @@ import {
     FileText, Shield, Mail, Phone,
     Scale, AlertTriangle, ScrollText,
     Bookmark, Lock, Globe, Zap, Cpu, RefreshCcw,
-    Users, CreditCard, Power, Server, Briefcase
+    Users, CreditCard, Power, Server, Briefcase, Gavel
 } from 'lucide-react';
 import { useRef } from 'react';
 
@@ -26,7 +26,8 @@ const sections = [
     { id: '11', label: 'Indemnification', icon: Briefcase },
     { id: '12', label: 'General Provisions', icon: FileText },
     { id: '13', label: 'Governing Law', icon: Scale },
-    { id: '14', label: 'Contact', icon: Mail },
+    { id: '14', label: 'Dispute Resolution & Arbitration', icon: Gavel },
+    { id: '15', label: 'Contact', icon: Mail },
 ];
 
 export default function TermsConditionsPage() {
@@ -461,8 +462,45 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 14 - Contact */}
+                            {/* 14 - Dispute Resolution & Arbitration */}
+                            {/* TODO(compliance legal review): Arbitration + class-action waiver drafted for counsel review. Confirm administrator (AAA vs JAMS), seat, opt-out window, and enforceability under the chosen governing-law state before relying on this clause. */}
                             <motion.div id="section-14" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
+                                    <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
+                                        <Gavel className="w-6 h-6 text-[#FF7404]" />
+                                    </div>
+                                    Dispute Resolution & Arbitration
+                                </h2>
+                                <div className="p-12 rounded-[2.5rem] bg-white/[0.01] border border-white/5 backdrop-blur-md space-y-4">
+                                    <p className="text-zinc-300 text-base leading-relaxed font-medium">
+                                        Please read this section carefully. It requires most disputes to be resolved by binding individual arbitration and waives your right to a jury trial and to participate in a class action.
+                                    </p>
+                                    <p className="text-zinc-400 text-base leading-relaxed font-light">
+                                        <span className="text-white font-semibold">Informal resolution first.</span> Before starting an arbitration, you agree to first try to resolve the dispute informally by sending a written notice describing the dispute and the relief sought to <span className="text-[#FF7404]">info@visquanta.com</span>. The parties will attempt in good faith to resolve the dispute for thirty (30) days after such notice. If the dispute is not resolved within that period, either party may commence arbitration.
+                                    </p>
+                                    <p className="text-zinc-400 text-base leading-relaxed font-light">
+                                        <span className="text-white font-semibold">Binding arbitration.</span> Except for the carve-outs below, any dispute, claim, or controversy arising out of or relating to these Terms or the Services will be resolved by final and binding arbitration administered by the American Arbitration Association (AAA) under its Commercial Arbitration Rules. The Federal Arbitration Act governs the interpretation and enforcement of this section. The arbitration will be seated in Travis County, Texas, and may proceed by written submissions, telephone, or video where permitted by the rules. The arbitrator&apos;s award may be entered as a judgment in any court of competent jurisdiction.
+                                    </p>
+                                    <p className="text-zinc-300 text-base leading-relaxed font-medium pt-2">
+                                        Class Action &amp; Jury Trial Waiver.
+                                    </p>
+                                    <p className="text-zinc-400 text-base leading-relaxed font-light">
+                                        To the fullest extent permitted by law, disputes will be arbitrated only on an individual basis. You and Visquanta each waive any right to a jury trial and agree that neither party may bring or participate in a class, collective, consolidated, or representative action. The arbitrator may not consolidate more than one person&apos;s claims and may not preside over any form of class or representative proceeding. If this class-action waiver is found unenforceable as to a particular claim, that claim (and only that claim) will be severed and heard in court, while all other claims remain in arbitration.
+                                    </p>
+                                    <p className="text-zinc-400 text-base leading-relaxed font-light">
+                                        <span className="text-white font-semibold">Carve-outs.</span> Either party may (a) bring an individual claim in small-claims court if it qualifies, and (b) seek injunctive or other equitable relief in court to protect its intellectual property or confidential information. Seeking such relief does not waive this section as to any other dispute.
+                                    </p>
+                                    <p className="text-zinc-400 text-base leading-relaxed font-light">
+                                        <span className="text-white font-semibold">Your right to opt out.</span> You may opt out of this Dispute Resolution &amp; Arbitration section by emailing <span className="text-[#FF7404]">info@visquanta.com</span> with your name, account, and a clear statement that you decline arbitration, within thirty (30) days of first accepting these Terms. Opting out will not affect any other part of these Terms. If you opt out, or where this section does not apply, disputes are resolved in the courts identified in the Governing Law &amp; Jurisdiction section above.
+                                    </p>
+                                    <p className="text-zinc-400 text-base leading-relaxed font-light">
+                                        This section survives termination of these Terms. If any portion of this section (other than the class-action waiver, which is governed above) is found unenforceable, the remainder will continue to apply.
+                                    </p>
+                                </div>
+                            </motion.div>
+
+                            {/* 15 - Contact */}
+                            <motion.div id="section-15" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <Mail className="w-6 h-6 text-[#FF7404]" />

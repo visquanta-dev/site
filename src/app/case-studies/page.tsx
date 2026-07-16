@@ -15,6 +15,8 @@ import {
     Hash,
 } from 'lucide-react';
 import Link from 'next/link';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
+import { localeLink } from '@/lib/locale-link';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { caseStudies, getAggregateStats } from '@/lib/case-studies';
@@ -172,7 +174,7 @@ function BlueprintGrid({ className }: { className?: string }) {
 
 // ─── Featured Card ─────────────────────────────────────────────────────────
 
-function FeaturedCard({ slug }: { slug: string }) {
+function FeaturedCard({ slug, localePrefix }: { slug: string, localePrefix: string }) {
     const study = caseStudies[slug];
     if (!study) return null;
 
@@ -183,7 +185,7 @@ function FeaturedCard({ slug }: { slug: string }) {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="group relative mb-4"
         >
-            <Link href={`/case-studies/${slug}`} className="block">
+            <Link href={localeLink(`/case-studies/${slug}`, localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="block">
                 <div className="relative bg-[#0A0A0A] border border-white/[0.06] rounded-2xl overflow-hidden transition-all duration-500 hover:border-white/[0.12] hover:bg-[#0D0D0D]">
                     {/* Accent gradient top */}
                     <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF7404] to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
@@ -269,7 +271,7 @@ function FeaturedCard({ slug }: { slug: string }) {
 
 // ─── Standard Card ──────────────────────────────────────────────────────────
 
-function CaseStudyCard({ slug, index }: { slug: string; index: number }) {
+function CaseStudyCard({ slug, index, localePrefix }: { slug: string; index: number, localePrefix: string }) {
     const study = caseStudies[slug];
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: '-80px' });
@@ -289,7 +291,7 @@ function CaseStudyCard({ slug, index }: { slug: string; index: number }) {
             }}
             className="group relative"
         >
-            <Link href={`/case-studies/${slug}`} className="block h-full">
+            <Link href={localeLink(`/case-studies/${slug}`, localePrefix === '/ca' ? 'en-CA' : 'en-US')} className="block h-full">
                 <div className="relative h-full bg-[#0A0A0A] border border-white/[0.06] rounded-2xl overflow-hidden transition-all duration-500 hover:border-white/[0.12] hover:bg-[#0D0D0D] hover:translate-y-[-2px] hover:shadow-[0_20px_60px_-15px_rgba(255,116,4,0.08)]">
                     {/* Accent line */}
                     <div className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-[#FF7404] to-transparent" />
@@ -434,6 +436,8 @@ function ComparisonTable() {
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function CaseStudiesPage() {
+    const { locale } = useLocale();
+    const localePrefix = locale === 'en-CA' ? '/ca' : '';
     const [activeCategory, setActiveCategory] = useState('all');
     const { openModal } = useCalendlyModal();
     const heroRef = useRef<HTMLDivElement>(null);
@@ -647,7 +651,7 @@ export default function CaseStudiesPage() {
                     {/* ── Featured + Grid ──────────────────────────────────── */}
                     <AnimatePresence mode="popLayout">
                         {featuredSlug && (
-                            <FeaturedCard key={featuredSlug} slug={featuredSlug} />
+                            <FeaturedCard key={featuredSlug} slug={featuredSlug} localePrefix={localePrefix} />
                         )}
 
                         <motion.div
@@ -655,7 +659,7 @@ export default function CaseStudiesPage() {
                             className="grid grid-cols-1 md:grid-cols-2 gap-4"
                         >
                             {gridSlugs.map((slug, index) => (
-                                <CaseStudyCard key={slug} slug={slug} index={index} />
+                                <CaseStudyCard key={slug} slug={slug} index={index} localePrefix={localePrefix} />
                             ))}
                         </motion.div>
                     </AnimatePresence>

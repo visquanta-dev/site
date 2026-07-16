@@ -112,12 +112,11 @@ export default function BookingWizard() {
             calendly: CALENDLY_URL,
             duration: "30-Min"
         },
-        SIA: {
-            name: "Sia Small",
-            role: "Director of Business Growth",
-            image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif",
-            // Sia's Calendly profile is inactive; route product demos to Dwayne
-            calendly: CALENDLY_URL,
+        MIKE: {
+            name: "Mike Mammoser",
+            role: "Sales & Research Manager",
+            image: "/team/mike-mammoser.png",
+            calendly: "https://calendly.com/m-mammoser-visquanta",
             duration: "30-Min"
         },
         CHARLES: {
@@ -150,7 +149,7 @@ export default function BookingWizard() {
         },
         CLINT: {
             name: "Clint Annis",
-            role: "Implementation Lead",
+            role: "Director of Implementations",
             image: "/team/clint-annis.png",
             calendly: "https://calendly.com/cannis-visquanta/30min",
             duration: "30-Min"
@@ -161,7 +160,7 @@ export default function BookingWizard() {
             isTeam: true,
             images: [
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
-                "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif"
+                "/team/mike-mammoser.png"
             ],
             calendly: CALENDLY_URL, // Team round-robin dead; Dwayne until restored
             duration: "30-Min"
@@ -247,7 +246,7 @@ export default function BookingWizard() {
                 if (rep === 'SalesTeam') setTargetCalendlyUrl(REP_DETAILS.SALES_TEAM.calendly);
                 else if (rep === 'SuccessTeam') setTargetCalendlyUrl(REP_DETAILS.SUCCESS_TEAM.calendly);
                 else if (rep === 'William') setTargetCalendlyUrl(REP_DETAILS.WILLIAM.calendly);
-                else if (rep === 'Sia') setTargetCalendlyUrl(REP_DETAILS.SIA.calendly);
+                else if (rep === 'Mike') setTargetCalendlyUrl(REP_DETAILS.MIKE.calendly);
                 else if (rep === 'Charles') setTargetCalendlyUrl(REP_DETAILS.CHARLES.calendly);
                 else if (rep === 'Clint') setTargetCalendlyUrl(REP_DETAILS.CLINT.calendly);
                 else if (rep === 'Matt') setTargetCalendlyUrl(REP_DETAILS.MATT.calendly);
@@ -276,7 +275,7 @@ export default function BookingWizard() {
         if (rep === 'SalesTeam') return REP_DETAILS.SALES_TEAM;
         if (rep === 'SuccessTeam') return REP_DETAILS.SUCCESS_TEAM;
         if (rep === 'William') return REP_DETAILS.WILLIAM;
-        if (rep === 'Sia') return REP_DETAILS.SIA;
+        if (rep === 'Mike') return REP_DETAILS.MIKE;
         if (rep === 'Charles') return REP_DETAILS.CHARLES;
         if (rep === 'Clint') return REP_DETAILS.CLINT;
         if (rep === 'Matt') return REP_DETAILS.MATT;

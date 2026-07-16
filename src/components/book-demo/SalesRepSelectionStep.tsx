@@ -37,7 +37,7 @@ export default function SalesRepSelectionStep() {
                         onClick={() => setValue('salesRep', 'SalesTeam', { shouldValidate: true })}
                         images={[
                             "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
-                            "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif"
+                            "/team/mike-mammoser.png"
                         ]}
                     />
                 )}
@@ -95,7 +95,7 @@ export default function SalesRepSelectionStep() {
                         />
                         <SalesRepCard
                             name="Clint Annis"
-                            role="Implementation Lead"
+                            role="Director of Implementations"
                             selected={salesRep === 'Clint'}
                             onClick={() => setValue('salesRep', 'Clint', { shouldValidate: true })}
                             image="/team/clint-annis.png"
@@ -111,11 +111,11 @@ export default function SalesRepSelectionStep() {
                             image="https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp"
                         />
                         <SalesRepCard
-                            name="Sia Small"
-                            role="Director of Business Growth"
-                            selected={salesRep === 'Sia'}
-                            onClick={() => setValue('salesRep', 'Sia', { shouldValidate: true })}
-                            image="https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif"
+                            name="Mike Mammoser"
+                            role="Sales & Research Manager"
+                            selected={salesRep === 'Mike'}
+                            onClick={() => setValue('salesRep', 'Mike', { shouldValidate: true })}
+                            image="/team/mike-mammoser.png"
                         />
                     </>
                 )}

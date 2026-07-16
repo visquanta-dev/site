@@ -22,6 +22,10 @@ export function localeLink(path: string, locale?: string): string {
     // Ensure path starts with /
     const cleanPath = path.startsWith('/') ? path : `/${path}`;
 
+    if (cleanPath.startsWith(`${prefix}/`) || cleanPath === prefix) {
+        return cleanPath;
+    }
+
     // Avoid double slashes if path is just /
     if (cleanPath === '/' && prefix) return prefix + '/';
 

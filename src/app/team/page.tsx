@@ -11,7 +11,7 @@ import Image from 'next/image';
 interface TeamMember {
     name: string;
     role: string;
-    image: string;
+    image?: string;
     link?: string;
     email?: string;
     calendly?: string;
@@ -21,6 +21,16 @@ interface TeamLayer {
     title: string;
     badge: string;
     members: TeamMember[];
+}
+
+function getInitials(name: string): string {
+    return name
+        .split(' ')
+        .filter(Boolean)
+        .map((part) => part[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
 }
 
 const teamLayers: TeamLayer[] = [
@@ -75,14 +85,6 @@ const teamLayers: TeamLayer[] = [
                 calendly: "https://calendly.com/csnodgrass-visquanta/visquanta-discovery-call"
             },
             {
-                name: "Sia Small",
-                role: "Director of Business Growth",
-                image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif",
-                link: "https://www.linkedin.com/in/sia-small-256329198/",
-                email: "ssmall@visquanta.com",
-                calendly: "https://calendly.com/droemer-visquanta/30-minute-meeting"
-            },
-            {
                 name: "Dwayne Roemer",
                 role: "Director of Canadian Operations",
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4cd9a69563d82a59b270f_WhatsApp_Image_2025-10-07_at_01.28.06_8f1c8935-modified-removebg-preview.avif",
@@ -105,7 +107,7 @@ const teamLayers: TeamLayer[] = [
         members: [
             {
                 name: "Clint Annis",
-                role: "Implementation Lead",
+                role: "Director of Implementations",
                 image: "/team/clint-annis.png",
                 link: "#",
                 email: "cannis@visquanta.com",
@@ -119,17 +121,25 @@ const teamLayers: TeamLayer[] = [
                 email: "dlopez@visquanta.com",
             },
             {
+                name: "Kyle Roath",
+                role: "Director of Systems Engineering",
+                image: "/team/kyle-roath.png",
+                email: "kroath@visquanta.com"
+            },
+            {
+                name: "Mike Mammoser",
+                role: "Sales & Research Manager",
+                image: "/team/mike-mammoser.png",
+                link: "https://www.linkedin.com/in/mike-mammoser-1b639812/",
+                email: "m.mammoser@visquanta.com",
+                calendly: "https://calendly.com/m-mammoser-visquanta"
+            },
+            {
                 name: "Herman Sullivan",
                 role: "Client Success Manager",
                 image: "/team/herman-sullivan.jpg",
                 email: "hsullivan@visquanta.com",
 
-            },
-            {
-                name: "Kyle Roath",
-                role: "Systems Engineer",
-                image: "/team/kyle-roath.png",
-                email: "kroath@visquanta.com"
             },
             {
                 name: "Chloe Johncock",
@@ -145,6 +155,11 @@ const teamLayers: TeamLayer[] = [
                 image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4d024bdd582aff727d7f8_Screenshot_2025-08-28_180752-removebg-preview.avif",
                 email: "mueland@visquanta.com",
 
+            },
+            {
+                name: "Lauren Sloan",
+                role: "Account Operations",
+                email: "lsloan@visquanta.com",
             },
             {
                 name: "Ellison Riviera",
@@ -204,7 +219,9 @@ export default function TeamPage() {
                                 "@type": "Person",
                                 "name": member.name,
                                 "jobTitle": member.role,
-                                "image": member.image.startsWith('http') ? member.image : `https://www.visquanta.com${member.image}`,
+                                ...(member.image ? {
+                                    "image": member.image.startsWith('http') ? member.image : `https://www.visquanta.com${member.image}`,
+                                } : {}),
                                 "email": member.email || "info@visquanta.com",
                                 "url": `https://www.visquanta.com/team#${member.name.toLowerCase().replace(/\s+/g, '-')}`,
                                 "sameAs": member.link && member.link !== "#" ? [member.link] : [],
@@ -451,11 +468,19 @@ export default function TeamPage() {
                                                             <div className="absolute inset-[-6px] rounded-full border border-[#FF7404]/40 opacity-0 group-hover:opacity-100 transition-all duration-700" />
 
                                                             <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-white/10 bg-zinc-900 relative z-10 shadow-2xl transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-2">
-                                                                <img
-                                                                    src={member.image}
-                                                                    alt={member.name}
-                                                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000 ease-out"
-                                                                />
+                                                                {member.image ? (
+                                                                    <img
+                                                                        src={member.image}
+                                                                        alt={member.name}
+                                                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000 ease-out"
+                                                                    />
+                                                                ) : (
+                                                                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#FF7404]/20 via-zinc-900 to-zinc-950">
+                                                                        <span className="text-xl md:text-2xl font-black text-[#FF7404] tracking-tight">
+                                                                            {getInitials(member.name)}
+                                                                        </span>
+                                                                    </div>
+                                                                )}
                                                             </div>
 
                                                             {/* Corner Accents */}

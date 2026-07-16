@@ -184,7 +184,7 @@ export default function HeroSection() {
                             [
                                 {
                                     name: "Clint Annis",
-                                    role: "Implementation Lead",
+                                    role: "Director of Implementations",
                                     image: "/team/clint-annis.png",
                                     badge: "Tech Ops"
                                 },
