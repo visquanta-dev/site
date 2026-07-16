@@ -5,7 +5,10 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Loader2 } from 'lucide-react';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
-import { CALENDLY_URL as DEFAULT_CALENDLY_URL } from '@/lib/calendly';
+import {
+    CALENDLY_URL as DEFAULT_CALENDLY_URL,
+    buildCalendlyEmbedUrl,
+} from '@/lib/calendly';
 
 // Context for managing modal state
 interface CalendlyModalContextType {
@@ -83,8 +86,8 @@ function CalendlyModal({ isOpen, onClose, calendlyUrl }: CalendlyModalProps) {
         };
     }, [isOpen]);
 
-    // Build the Calendly URL with customization parameters
-    const embedUrl = `${calendlyUrl}?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=0a0a0a&text_color=ffffff&primary_color=ff7404`;
+    // Light embed theme: dark text on white inputs (dark theme was white-on-white)
+    const embedUrl = buildCalendlyEmbedUrl(calendlyUrl);
 
     return (
         <AnimatePresence>
@@ -130,13 +133,13 @@ function CalendlyModal({ isOpen, onClose, calendlyUrl }: CalendlyModalProps) {
                                 </button>
                             </div>
 
-                            {/* Calendly Embed Container */}
-                            <div className="flex-1 relative bg-[#0a0a0a] overflow-hidden">
+                            {/* Calendly Embed Container — light bg for readable form inputs */}
+                            <div className="flex-1 relative bg-white overflow-hidden">
                                 {/* Loading State */}
                                 {isLoading && (
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0a0a0a] z-10">
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-10">
                                         <Loader2 className="w-8 h-8 text-[#ff7404] animate-spin mb-4" />
-                                        <p className="text-white/50 text-sm">Loading scheduler...</p>
+                                        <p className="text-zinc-500 text-sm">Loading scheduler...</p>
                                     </div>
                                 )}
 
@@ -147,11 +150,11 @@ function CalendlyModal({ isOpen, onClose, calendlyUrl }: CalendlyModalProps) {
                                     height="100%"
                                     frameBorder="0"
                                     title="Schedule a Demo"
-                                    className="w-full h-full"
+                                    className="w-full h-full bg-white"
                                     onLoad={() => setIsLoading(false)}
                                     style={{
                                         minHeight: '500px',
-                                        background: '#0a0a0a'
+                                        background: '#ffffff'
                                     }}
                                 />
                             </div>
