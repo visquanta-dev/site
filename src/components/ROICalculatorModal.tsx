@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, Database, Zap, RefreshCcw } from 'lucide-react';
 import Link from 'next/link';
@@ -15,6 +16,11 @@ type CalculatorMode = 'reactivation' | 'speedToLead';
 
 export default function ROICalculatorModal({ isOpen, onClose, initialMode = 'reactivation' }: ROICalculatorModalProps) {
     const [mode, setMode] = useState<CalculatorMode>(initialMode);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Update mode when initialMode changes or modal opens
     useEffect(() => {
@@ -37,19 +43,30 @@ export default function ROICalculatorModal({ isOpen, onClose, initialMode = 'rea
     // Speed to Lead: 0.35% conversion lift * 12 months
     const speedRecovery = Math.round(monthlyLeads * 0.0035 * speedGross * 12);
 
-    // Prevent scrolling
+    // Prevent scrolling + Escape to close
     useEffect(() => {
-        if (isOpen) document.body.style.overflow = 'hidden';
-        else document.body.style.overflow = 'unset';
-        return () => { document.body.style.overflow = 'unset'; };
-    }, [isOpen]);
+        if (!isOpen) return;
+        document.body.style.overflow = 'hidden';
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', onKey);
+        return () => {
+            document.body.style.overflow = 'unset';
+            window.removeEventListener('keydown', onKey);
+        };
+    }, [isOpen, onClose]);
 
     const modalRef = useRef<HTMLDivElement>(null);
 
     const formatCurrency = (val: number) =>
         new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
 
-    return (
+    // Portal to body so fixed positioning isn't broken by parent
+    // overflow-hidden / transform / filter (e.g. DealerServicesSection).
+    if (!mounted) return null;
+
+    return createPortal(
         <AnimatePresence>
             {isOpen && (
                 <>
@@ -58,7 +75,10 @@ export default function ROICalculatorModal({ isOpen, onClose, initialMode = 'rea
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100] flex items-center justify-center p-4"
+                        className="fixed inset-0 bg-black/80 backdrop-blur-md z-[200] flex items-center justify-center p-4"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Profit Calculator"
                     >
                         <motion.div
                             ref={modalRef}
@@ -280,6 +300,7 @@ export default function ROICalculatorModal({ isOpen, onClose, initialMode = 'rea
                     </motion.div>
                 </>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 }
