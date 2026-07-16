@@ -14,12 +14,10 @@ export const CALENDLY_CA =
   'https://calendly.com/droemer-visquanta/30-minute-meeting';
 
 /**
- * Primary US walkthrough CTA.
- * TODO: replace with the official US sales / team scheduling link when ready.
- * Interim: William Voyles discovery call (active, sales-facing).
+ * Primary US walkthrough CTA (team discovery call).
  */
 export const CALENDLY_US =
-  'https://calendly.com/william-visquanta/visquanta-discovery-call';
+  'https://calendly.com/d/cn4j-v36-b87/visquanta-discovery-call';
 
 /** @deprecated Prefer CALENDLY_US — kept as alias for existing imports */
 export const CALENDLY_URL = CALENDLY_US;
