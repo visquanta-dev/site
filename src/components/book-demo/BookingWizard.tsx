@@ -16,6 +16,7 @@ import SalesRepSelectionStep from './SalesRepSelectionStep';
 import SalesRepCard from './SalesRepCard';
 import CalendlyEmbed from './CalendlyEmbed';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CALENDLY_DWAYNE, CALENDLY_URL } from '@/lib/calendly';
 
 // Schema
 const schema = z.object({
@@ -100,22 +101,24 @@ export default function BookingWizard() {
             name: "Dwayne Roemer",
             role: "Director of Canadian Operations",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68e4cd9a69563d82a59b270f_WhatsApp_Image_2025-10-07_at_01.28.06_8f1c8935-modified-removebg-preview.avif",
-            calendly: "https://calendly.com/droemer-visquanta/30min",
+            calendly: CALENDLY_DWAYNE,
             duration: "30-Min"
         },
         WILLIAM: {
             name: "William Voyles",
             role: "Co-Founder & CSO",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
-            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo",
+            // Primary US sales booking → Dwayne until team round-robin is restored
+            calendly: CALENDLY_URL,
             duration: "30-Min"
         },
         SIA: {
             name: "Sia Small",
             role: "Director of Business Growth",
             image: "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif",
-            calendly: "https://calendly.com/ssmall-visquanta/book-a-product-demo-45-min",
-            duration: "45-Min"
+            // Sia's Calendly profile is inactive; route product demos to Dwayne
+            calendly: CALENDLY_URL,
+            duration: "30-Min"
         },
         CHARLES: {
             name: "Charles Snodgrass",
@@ -160,8 +163,8 @@ export default function BookingWizard() {
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61ef7f05cf2726e525e_william%2Cvoyles%2Cheadshot%2Cvisquanta.webp",
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/68cfc815d913fc58d63cc49d_Sia_Small.avif"
             ],
-            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo", // Placeholder for Round Robin
-            duration: "45-Min"
+            calendly: CALENDLY_URL, // Team round-robin dead; Dwayne until restored
+            duration: "30-Min"
         },
         SUCCESS_TEAM: {
             name: "Client Success Team",
@@ -171,7 +174,7 @@ export default function BookingWizard() {
                 "https://cdn.prod.website-files.com/67f4e135760df55ea3128ae5/684ac61fc9b8fa6d06815ceb_charles%2Csnodgrass%2Cheadshot%2Cvisquanta.webp",
                 "/team/clint-annis.png"
             ],
-            calendly: "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo", // Placeholder
+            calendly: CALENDLY_URL, // Team round-robin dead; Dwayne until restored
             duration: "30-Min"
         }
     };

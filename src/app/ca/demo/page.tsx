@@ -271,7 +271,7 @@ function VoiceDemo() {
 
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-md">
             <Button asChild className="group flex-1">
-              <a href="https://calendly.com/droemer-visquanta/30min" target="_blank" rel="nofollow noopener noreferrer">
+              <a href="https://calendly.com/droemer-visquanta/30-minute-meeting" target="_blank" rel="nofollow noopener noreferrer">
                 Book a Demo
               </a>
             </Button>
@@ -525,7 +525,7 @@ export default function AutoShowDemo() {
           Get a 15-minute walkthrough with Dwayne Roemer, Director of Canadian Operations. See a revenue-lift projection built on your dealership's actual numbers.
         </p>
         <a 
-          href="https://calendly.com/droemer-visquanta/30min" 
+          href="https://calendly.com/droemer-visquanta/30-minute-meeting" 
           target="_blank" 
           rel="nofollow noopener noreferrer"
           className="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full bg-white px-8 md:px-10 text-[15px] font-semibold text-black transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_40px_-10px_rgba(255,255,255,0.2)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.4)]"

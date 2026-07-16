@@ -47,3 +47,5 @@ next-env.d.ts
 google-credentials.json
 service-account-key.json
 .env*.local
+.calendly-token.tmp
+scripts/calendly-event-types.out.json

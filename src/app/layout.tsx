@@ -16,6 +16,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import I18nWrapper from "@/components/i18n/I18nWrapper";
 import GeoSuggestionBanner from "@/components/i18n/GeoSuggestionBanner";
+import { CALENDLY_URL, CALENDLY_LOCALE_OVERRIDES } from "@/lib/calendly";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "";
 function isGtmConfigured(): boolean {
@@ -147,12 +148,6 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: "#FF7404",
-};
-
-// Calendly URL for demo scheduling
-const CALENDLY_URL = "https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo";
-const CALENDLY_LOCALE_OVERRIDES: Record<string, string> = {
-  'en-CA': 'https://calendly.com/droemer-visquanta/30min',
 };
 
 export default function RootLayout({

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Loader2 } from 'lucide-react';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
+import { CALENDLY_URL as DEFAULT_CALENDLY_URL } from '@/lib/calendly';
 
 // Context for managing modal state
 interface CalendlyModalContextType {
@@ -31,7 +32,7 @@ interface CalendlyModalProviderProps {
 
 export function CalendlyModalProvider({
     children,
-    calendlyUrl = 'https://calendly.com/d/cn5m-s6d-whf/visquanta-ams-demo',
+    calendlyUrl = DEFAULT_CALENDLY_URL,
     localeOverrides = {}
 }: CalendlyModalProviderProps) {
     const [isOpen, setIsOpen] = useState(false);
