@@ -24,6 +24,16 @@
         "success_desc": "Thank you for your enquiry. A member of our UK team will be in touch shortly.",
         "error_message": "Something went wrong. Please try again.",
         "privacy_note": "By submitting, you agree to our <link>Privacy & data handling</link> practices.",
+        "legal_heading": "Terms & Privacy Confirmations",
+        "legal_intro": "Before submitting, please review and confirm VisQuanta's legal documents. These confirmations are separate from optional SMS consent.",
+        "terms_label": "I have read and agree to the Terms & Conditions (required).",
+        "privacy_label": "I have read and agree to the Privacy Policy (required).",
+        "terms_required": "You must agree to the Terms & Conditions to submit this form.",
+        "privacy_required": "You must agree to the Privacy Policy to submit this form.",
+        "sms_heading": "SMS Communications Consent",
+        "sms_disclosure": "By checking this optional SMS consent box and submitting this form, you agree to receive recurring customer care text messages from Visquanta LLC (DBA VisQuanta), including appointment confirmations, demo booking updates, reminders, rescheduling updates, and account-related service notifications. Message frequency varies based on your requests. Message and data rates may apply. Reply HELP for help. Reply STOP to unsubscribe. Consent is not a condition of purchase. We will not share your SMS opt-in or consent status with third parties for purposes unrelated to providing these messaging services.",
+        "sms_checkbox_label": "Optional: I agree to receive recurring customer care text messages from Visquanta LLC (DBA VisQuanta) at the phone number provided. Message frequency varies. Message and data rates may apply. Reply HELP for help. Reply STOP to unsubscribe. Checking this box is not required to submit this form.",
+        "sms_footer_note": "Checking this box is optional and is not required to submit this form. We will only send SMS messages to the phone number provided if you opt in. SMS consent is separate from the Terms and Privacy confirmations above.",
         "states": [
             {
                 "value": "AL",

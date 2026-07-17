@@ -26,13 +26,25 @@ export async function POST(request: NextRequest) {
             locale = 'en-US',
             region = 'US',
             stateProvince,
-            postalCode
+            postalCode,
+            termsAccepted,
+            privacyAccepted,
+            smsConsent,
+            policyUrls,
+            smsDisclosure,
         } = body;
 
         // Basic validation
         if (!email || !message || !name) {
             return NextResponse.json(
                 { error: 'Missing required fields' },
+                { status: 400 }
+            );
+        }
+
+        if (termsAccepted !== true || privacyAccepted !== true) {
+            return NextResponse.json(
+                { error: 'Terms and Privacy Policy must be accepted' },
                 { status: 400 }
             );
         }
@@ -65,6 +77,11 @@ export async function POST(request: NextRequest) {
                 stateProvince={stateProvince}
                 postalCode={postalCode}
                 timestamp={timestamp}
+                termsAccepted={termsAccepted === true}
+                privacyAccepted={privacyAccepted === true}
+                smsConsent={smsConsent === true}
+                policyUrls={policyUrls}
+                smsDisclosure={typeof smsDisclosure === 'string' ? smsDisclosure : undefined}
             />,
         });
 

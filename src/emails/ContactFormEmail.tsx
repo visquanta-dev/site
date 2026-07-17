@@ -24,6 +24,14 @@ interface ContactFormEmailProps {
     stateProvince?: string;
     postalCode?: string;
     timestamp?: string;
+    termsAccepted?: boolean;
+    privacyAccepted?: boolean;
+    smsConsent?: boolean;
+    policyUrls?: {
+        terms?: string;
+        privacy?: string;
+    };
+    smsDisclosure?: string;
 }
 
 export const ContactFormEmail = ({
@@ -38,6 +46,11 @@ export const ContactFormEmail = ({
     stateProvince,
     postalCode,
     timestamp,
+    termsAccepted,
+    privacyAccepted,
+    smsConsent,
+    policyUrls,
+    smsDisclosure,
 }: ContactFormEmailProps) => {
     const isCanadian = locale === 'en-CA';
     const regionBadge = isCanadian ? '🇨🇦 CANADA' : '🇺🇸 USA';
@@ -103,6 +116,24 @@ export const ContactFormEmail = ({
                     <Section style={section}>
                         <Text style={label}>Message:</Text>
                         <Text style={messageText}>{message}</Text>
+                    </Section>
+
+                    <Hr style={hr} />
+
+                    <Section style={section}>
+                        <Text style={label}>Consent &amp; Legal Confirmations:</Text>
+                        <Text style={value}>Terms accepted: {termsAccepted ? 'Yes' : 'No'}</Text>
+                        <Text style={value}>Privacy accepted: {privacyAccepted ? 'Yes' : 'No'}</Text>
+                        <Text style={value}>SMS consent: {smsConsent ? 'Yes (opted in)' : 'No (not opted in)'}</Text>
+                        {policyUrls?.terms && (
+                            <Text style={footer}>Terms URL: {policyUrls.terms}</Text>
+                        )}
+                        {policyUrls?.privacy && (
+                            <Text style={footer}>Privacy URL: {policyUrls.privacy}</Text>
+                        )}
+                        {smsConsent && smsDisclosure && (
+                            <Text style={messageText}>SMS disclosure shown: {smsDisclosure}</Text>
+                        )}
                     </Section>
 
                     <Hr style={hr} />

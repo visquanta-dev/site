@@ -54,7 +54,7 @@ const phoneRegexUS = /^\+?1?\s*\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
 const postalRegexUS = /^\d{5}(-\d{4})?$/;
 const postalRegexCA = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
 
-const createFormSchema = (region: string) => z.object({
+const createFormSchema = (region: string, copy: { termsRequired: string; privacyRequired: string }) => z.object({
     name: z.string().min(2, { message: "Name must be at least 2 characters." }),
     email: z.string().email({ message: "Please enter a valid email address." }),
     phone: z.string().optional().refine(val => !val || val.length > 5, { message: "Invalid phone number" }), // Basic checking for now
@@ -63,6 +63,9 @@ const createFormSchema = (region: string) => z.object({
     message: z.string().min(10, { message: "Message must be at least 10 characters." }),
     stateProvince: region === 'CA' ? z.string().optional() : z.string().min(1, { message: "Required" }),
     postalCode: region === 'CA' ? z.string().optional() : z.string().regex(postalRegexUS, { message: "Invalid ZIP Code" }),
+    termsAccepted: z.boolean().refine((val) => val === true, { message: copy.termsRequired }),
+    privacyAccepted: z.boolean().refine((val) => val === true, { message: copy.privacyRequired }),
+    smsConsent: z.boolean().optional(),
 });
 
 export default function ContactPage() {
@@ -142,7 +145,14 @@ export default function ContactPage() {
     // --- Form Logic ---
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const formSchema = useMemo(() => createFormSchema(region), [region]);
+    const formSchema = useMemo(
+        () =>
+            createFormSchema(region, {
+                termsRequired: t('form.terms_required'),
+                privacyRequired: t('form.privacy_required'),
+            }),
+        [region, t],
+    );
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -151,9 +161,13 @@ export default function ContactPage() {
             email: "",
             phone: "",
             dealership: "",
+            inquiryType: "",
             message: "",
             stateProvince: "",
             postalCode: "",
+            termsAccepted: false,
+            privacyAccepted: false,
+            smsConsent: false,
         },
     });
 
@@ -169,8 +183,16 @@ export default function ContactPage() {
         try {
             const payload = {
                 ...values,
+                termsAccepted: values.termsAccepted === true,
+                privacyAccepted: values.privacyAccepted === true,
+                smsConsent: values.smsConsent === true,
                 locale,
                 region,
+                policyUrls: {
+                    terms: 'https://www.visquanta.com/terms-conditions',
+                    privacy: 'https://www.visquanta.com/privacy-policy',
+                },
+                smsDisclosure: t('form.sms_disclosure'),
             };
 
             const response = await fetch('/api/contact', {
@@ -192,26 +214,6 @@ export default function ContactPage() {
             toast.error(error.message || t('form.error_message'));
         }
     }
-
-    // Parse privacy link
-    const renderPrivacyNote = () => {
-        const note = t('form.privacy_note');
-        if (note.includes('<link>')) {
-            const parts = note.split(/<link>(.*?)<\/link>/);
-            return (
-                <p className="text-center text-zinc-600 text-[10px] uppercase tracking-widest leading-relaxed">
-                    {parts[0]}
-                    <Link href="/trust" className="text-[#FF7404] hover:underline font-bold">{parts[1]}</Link>
-                    {parts[2]}
-                </p>
-            );
-        }
-        return (
-            <p className="text-center text-zinc-600 text-[10px] uppercase tracking-widest leading-relaxed">
-                {note}
-            </p>
-        );
-    };
 
     // --- Animations ---
     const containerVariants = {
@@ -608,6 +610,129 @@ export default function ContactPage() {
                                                         )}
                                                     />
 
+                                                    {/* Required Terms & Privacy confirmations */}
+                                                    <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-6 space-y-4">
+                                                        <div>
+                                                            <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mb-2">
+                                                                {t('form.legal_heading')}
+                                                            </p>
+                                                            <p className="text-sm text-zinc-500 leading-relaxed">
+                                                                {t('form.legal_intro')}
+                                                            </p>
+                                                            <p className="mt-3 text-sm">
+                                                                <Link href="/privacy-policy" className="text-[#FF7404] hover:underline font-medium">
+                                                                    Privacy Policy
+                                                                </Link>
+                                                                <span className="text-zinc-600"> | </span>
+                                                                <Link href="/terms-conditions" className="text-[#FF7404] hover:underline font-medium">
+                                                                    Terms &amp; Conditions
+                                                                </Link>
+                                                            </p>
+                                                        </div>
+
+                                                        <FormField
+                                                            control={form.control}
+                                                            name="termsAccepted"
+                                                            render={({ field }) => (
+                                                                <FormItem className="flex flex-row items-start gap-3 space-y-0 rounded-xl border border-white/5 bg-black/20 p-4">
+                                                                    <FormControl>
+                                                                        <input
+                                                                            type="checkbox"
+                                                                            checked={field.value}
+                                                                            onChange={(e) => field.onChange(e.target.checked)}
+                                                                            onBlur={field.onBlur}
+                                                                            name={field.name}
+                                                                            ref={field.ref}
+                                                                            className="mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border-white/20 bg-transparent accent-[#FF7404]"
+                                                                        />
+                                                                    </FormControl>
+                                                                    <div className="space-y-1 leading-none">
+                                                                        <FormLabel className="text-sm font-normal text-zinc-300 leading-relaxed cursor-pointer">
+                                                                            {t('form.terms_label')}
+                                                                        </FormLabel>
+                                                                        <FormMessage />
+                                                                    </div>
+                                                                </FormItem>
+                                                            )}
+                                                        />
+
+                                                        <FormField
+                                                            control={form.control}
+                                                            name="privacyAccepted"
+                                                            render={({ field }) => (
+                                                                <FormItem className="flex flex-row items-start gap-3 space-y-0 rounded-xl border border-white/5 bg-black/20 p-4">
+                                                                    <FormControl>
+                                                                        <input
+                                                                            type="checkbox"
+                                                                            checked={field.value}
+                                                                            onChange={(e) => field.onChange(e.target.checked)}
+                                                                            onBlur={field.onBlur}
+                                                                            name={field.name}
+                                                                            ref={field.ref}
+                                                                            className="mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border-white/20 bg-transparent accent-[#FF7404]"
+                                                                        />
+                                                                    </FormControl>
+                                                                    <div className="space-y-1 leading-none">
+                                                                        <FormLabel className="text-sm font-normal text-zinc-300 leading-relaxed cursor-pointer">
+                                                                            {t('form.privacy_label')}
+                                                                        </FormLabel>
+                                                                        <FormMessage />
+                                                                    </div>
+                                                                </FormItem>
+                                                            )}
+                                                        />
+                                                    </div>
+
+                                                    {/* Optional SMS consent — not bundled with legal acceptances */}
+                                                    <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-6 space-y-4">
+                                                        <div>
+                                                            <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mb-2">
+                                                                {t('form.sms_heading')}
+                                                            </p>
+                                                            <p className="text-sm text-zinc-500 leading-relaxed">
+                                                                {t('form.sms_disclosure')}
+                                                            </p>
+                                                            <p className="mt-3 text-sm">
+                                                                <Link href="/privacy-policy" className="text-[#FF7404] hover:underline font-medium">
+                                                                    Privacy Policy
+                                                                </Link>
+                                                                <span className="text-zinc-600"> | </span>
+                                                                <Link href="/terms-conditions" className="text-[#FF7404] hover:underline font-medium">
+                                                                    Terms &amp; Conditions
+                                                                </Link>
+                                                            </p>
+                                                        </div>
+
+                                                        <FormField
+                                                            control={form.control}
+                                                            name="smsConsent"
+                                                            render={({ field }) => (
+                                                                <FormItem className="flex flex-row items-start gap-3 space-y-0 rounded-xl border border-white/5 bg-black/20 p-4">
+                                                                    <FormControl>
+                                                                        <input
+                                                                            type="checkbox"
+                                                                            checked={field.value === true}
+                                                                            onChange={(e) => field.onChange(e.target.checked)}
+                                                                            onBlur={field.onBlur}
+                                                                            name={field.name}
+                                                                            ref={field.ref}
+                                                                            className="mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border-white/20 bg-transparent accent-[#FF7404]"
+                                                                        />
+                                                                    </FormControl>
+                                                                    <div className="space-y-1 leading-none">
+                                                                        <FormLabel className="text-sm font-normal text-zinc-300 leading-relaxed cursor-pointer">
+                                                                            {t('form.sms_checkbox_label')}
+                                                                        </FormLabel>
+                                                                        <FormMessage />
+                                                                    </div>
+                                                                </FormItem>
+                                                            )}
+                                                        />
+                                                        <p className="text-xs text-zinc-600 leading-relaxed">
+                                                            {t('form.sms_footer_note')}
+                                                        </p>
+                                                    </div>
+
                                                     {/* Submit Button */}
                                                     <Button
                                                         type="submit"
@@ -627,8 +752,9 @@ export default function ContactPage() {
                                                         )}
                                                     </Button>
 
-                                                    {/* Privacy Note */}
-                                                    {renderPrivacyNote()}
+                                                    <p className="text-center text-zinc-600 text-[10px] uppercase tracking-widest leading-relaxed">
+                                                        Required: Terms &amp; Privacy. SMS is optional.
+                                                    </p>
                                                 </form>
                                             </Form>
                                         </div>
