@@ -23,11 +23,6 @@ const locations = {
         phone: '+1 786-686-6554',
         email: 'info@visquanta.com',
     },
-    texas: {
-        city: 'The Woodlands',
-        timezone: 'CST',
-        address: ['2001 Timberloch Place', 'Suite 500', 'The Woodlands, TX 77380'],
-    },
     canada: {
         id: 'canada',
         label: 'Canada',
@@ -105,28 +100,6 @@ export default function GlobalPresence() {
                             </div>
                             <div className="text-[10px] font-mono text-zinc-600 bg-white/5 px-2 py-1 rounded">
                                 {locations.hq.timezone}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Texas Section (Always Visible) */}
-                <div className="mb-6 relative mt-6">
-                    <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-white/20" />
-                    <div className="pl-6">
-                        <div className="flex items-start justify-between">
-                            <div>
-                                <div className="flex items-center gap-2 mb-2">
-                                    <span className="text-white font-bold text-lg">{locations.texas.city}</span>
-                                </div>
-                                <div className="text-zinc-500 text-sm leading-relaxed mb-3">
-                                    {locations.texas.address.map((line, i) => (
-                                        <div key={i}>{line}</div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="text-[10px] font-mono text-zinc-600 bg-white/5 px-2 py-1 rounded">
-                                {locations.texas.timezone}
                             </div>
                         </div>
                     </div>
