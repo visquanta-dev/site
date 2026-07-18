@@ -18,16 +18,17 @@ const sections = [
     { id: '03', label: 'Eligibility & Accounts', icon: Users },
     { id: '04', label: 'Acceptable Use', icon: Shield },
     { id: '05', label: 'Customer Data & Privacy', icon: Lock },
-    { id: '06', label: 'Fees & Billing', icon: CreditCard },
-    { id: '07', label: 'Term & Termination', icon: Power },
-    { id: '08', label: 'Intellectual Property', icon: Bookmark },
-    { id: '09', label: 'Third-Party Services', icon: Globe },
-    { id: '10', label: 'Warranties & Liability', icon: AlertTriangle },
-    { id: '11', label: 'Indemnification', icon: Briefcase },
-    { id: '12', label: 'General Provisions', icon: FileText },
-    { id: '13', label: 'Governing Law', icon: Scale },
-    { id: '14', label: 'Dispute Resolution & Arbitration', icon: Gavel },
-    { id: '15', label: 'Contact', icon: Mail },
+    { id: '06', label: 'SMS / Text Messaging Program', icon: Phone },
+    { id: '07', label: 'Fees & Billing', icon: CreditCard },
+    { id: '08', label: 'Term & Termination', icon: Power },
+    { id: '09', label: 'Intellectual Property', icon: Bookmark },
+    { id: '10', label: 'Third-Party Services', icon: Globe },
+    { id: '11', label: 'Warranties & Liability', icon: AlertTriangle },
+    { id: '12', label: 'Indemnification', icon: Briefcase },
+    { id: '13', label: 'General Provisions', icon: FileText },
+    { id: '14', label: 'Governing Law', icon: Scale },
+    { id: '15', label: 'Dispute Resolution & Arbitration', icon: Gavel },
+    { id: '16', label: 'Contact', icon: Mail },
 ];
 
 export default function TermsConditionsPage() {
@@ -259,8 +260,31 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 06 - Fees & Billing */}
+                            {/* 06 - SMS / Text Messaging Program */}
                             <motion.div id="section-06" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
+                                    <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
+                                        <Phone className="w-6 h-6 text-[#FF7404]" />
+                                    </div>
+                                    SMS / Text Messaging Program
+                                </h2>
+                                <div className="p-12 rounded-[2.5rem] bg-white/[0.01] border border-white/5 backdrop-blur-md space-y-4">
+                                    <ol className="text-zinc-400 text-base leading-relaxed font-light space-y-3 list-decimal list-inside pl-2">
+                                        <li>This SMS program sends recurring automated appointment confirmations, demo booking updates, reminders, rescheduling notifications, and other account-related customer care updates from Visquanta LLC (DBA VisQuanta) (website: <span className="text-white">www.visquanta.com</span>) to customers who have opted in through the website contact form. No promotional or marketing messages are sent under this program.</li>
+                                        <li>You can cancel at any time by replying STOP.</li>
+                                        <li>If you experience issues, reply HELP for assistance, call <span className="text-[#FF7404]">+1 786-686-6554</span>, or email <span className="text-[#FF7404]">info@visquanta.com</span>.</li>
+                                        <li>Carriers are not liable for delayed or undelivered messages.</li>
+                                        <li>Message frequency may vary. Message and data rates may apply.</li>
+                                        <li>For privacy-related inquiries, please refer to our <a href="/privacy-policy" className="text-[#FF7404] underline underline-offset-4 decoration-[#FF7404]/40 hover:decoration-[#FF7404]">Privacy Policy</a>.</li>
+                                    </ol>
+                                    <p className="text-zinc-400 text-base leading-relaxed font-light">
+                                        SMS consent is optional and is collected separately from required acknowledgements of these Terms and the Privacy Policy. You may submit a website form without opting in to SMS.
+                                    </p>
+                                </div>
+                            </motion.div>
+
+                            {/* 07 - Fees & Billing */}
+                            <motion.div id="section-07" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <CreditCard className="w-6 h-6 text-[#FF7404]" />
@@ -280,8 +304,8 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 07 - Term & Termination */}
-                            <motion.div id="section-07" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                            {/* 08 - Term & Termination */}
+                            <motion.div id="section-08" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <Power className="w-6 h-6 text-[#FF7404]" />
@@ -301,8 +325,8 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 08 - Intellectual Property */}
-                            <motion.div id="section-08" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                            {/* 09 - Intellectual Property */}
+                            <motion.div id="section-09" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <Bookmark className="w-6 h-6 text-[#FF7404]" />
@@ -325,8 +349,8 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 09 - Third-Party Services */}
-                            <motion.div id="section-09" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                            {/* 10 - Third-Party Services */}
+                            <motion.div id="section-10" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <Globe className="w-6 h-6 text-[#FF7404]" />
@@ -346,8 +370,8 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 10 - Warranties & Liability */}
-                            <motion.div id="section-10" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                            {/* 11 - Warranties & Liability */}
+                            <motion.div id="section-11" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <AlertTriangle className="w-6 h-6 text-[#FF7404]" />
@@ -373,8 +397,8 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 11 - Indemnification */}
-                            <motion.div id="section-11" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                            {/* 12 - Indemnification */}
+                            <motion.div id="section-12" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <Briefcase className="w-6 h-6 text-[#FF7404]" />
@@ -394,8 +418,8 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 12 - General Provisions */}
-                            <motion.div id="section-12" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                            {/* 13 - General Provisions */}
+                            <motion.div id="section-13" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <FileText className="w-6 h-6 text-[#FF7404]" />
@@ -430,8 +454,8 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 13 - Governing Law */}
-                            <motion.div id="section-13" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                            {/* 14 - Governing Law */}
+                            <motion.div id="section-14" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <Scale className="w-6 h-6 text-[#FF7404]" />
@@ -462,9 +486,9 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 14 - Dispute Resolution & Arbitration */}
+                            {/* 15 - Dispute Resolution & Arbitration */}
                             {/* TODO(compliance legal review): Arbitration + class-action waiver drafted for counsel review. Confirm administrator (AAA vs JAMS), seat, opt-out window, and enforceability under the chosen governing-law state before relying on this clause. */}
-                            <motion.div id="section-14" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                            <motion.div id="section-15" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <Gavel className="w-6 h-6 text-[#FF7404]" />
@@ -499,8 +523,8 @@ export default function TermsConditionsPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 15 - Contact */}
-                            <motion.div id="section-15" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                            {/* 16 - Contact */}
+                            <motion.div id="section-16" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h2 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 flex items-center gap-6">
                                     <div className="w-12 h-12 rounded-2xl bg-[#FF7404]/10 flex items-center justify-center border border-[#FF7404]/20">
                                         <Mail className="w-6 h-6 text-[#FF7404]" />

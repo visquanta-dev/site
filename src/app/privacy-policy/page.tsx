@@ -19,14 +19,15 @@ const sections = [
     { id: '04', label: 'How We Use Information', icon: Cpu },
     { id: '05', label: 'Legal Basis (GDPR)', icon: Scale },
     { id: '06', label: 'How We Share Information', icon: Share2 },
-    { id: '07', label: 'International Transfers', icon: Globe },
-    { id: '08', label: 'Data Retention', icon: Clock },
-    { id: '09', label: 'Security', icon: Lock },
-    { id: '10', label: 'Your Privacy Rights', icon: UserCheck },
-    { id: '11', label: 'Cookies', icon: Cookie },
-    { id: '12', label: 'Children’s Privacy', icon: ShieldAlert },
-    { id: '13', label: 'Changes to This Policy', icon: RefreshCcw },
-    { id: '14', label: 'Contact', icon: Mail },
+    { id: '07', label: 'SMS / Text Messaging Program', icon: Phone },
+    { id: '08', label: 'International Transfers', icon: Globe },
+    { id: '09', label: 'Data Retention', icon: Clock },
+    { id: '10', label: 'Security', icon: Lock },
+    { id: '11', label: 'Your Privacy Rights', icon: UserCheck },
+    { id: '12', label: 'Cookies', icon: Cookie },
+    { id: '13', label: 'Children’s Privacy', icon: ShieldAlert },
+    { id: '14', label: 'Changes to This Policy', icon: RefreshCcw },
+    { id: '15', label: 'Contact', icon: Mail },
 ];
 
 export default function PrivacyPolicyPage() {
@@ -246,6 +247,7 @@ export default function PrivacyPolicyPage() {
                                         <li>Respond to support requests and sales inquiries;</li>
                                         <li>Secure, monitor, and improve the Services, including fraud prevention and abuse detection;</li>
                                         <li>Send operational and administrative communications (such as security alerts, billing notices, and service updates);</li>
+                                        <li>With your optional SMS consent, send customer care text messages related to appointments, demo bookings, reminders, and account notifications;</li>
                                         <li>With your consent, send product news and marketing communications, which you can unsubscribe from at any time;</li>
                                         <li>Comply with legal obligations, enforce our <Link href="/terms-conditions" className="text-[#FF7404] underline underline-offset-4 decoration-[#FF7404]/40 hover:decoration-[#FF7404]">Terms &amp; Conditions</Link>, and protect the rights, property, or safety of Visquanta, our customers, or others.</li>
                                     </ul>
@@ -296,12 +298,39 @@ export default function PrivacyPolicyPage() {
                                         <li><span className="text-white font-semibold">Business transfers</span> — in connection with a merger, acquisition, financing, or sale of assets, subject to equivalent privacy protections.</li>
                                         <li><span className="text-white font-semibold">With your consent</span> — in any other case where you direct us to share your information.</li>
                                     </ul>
+                                    <p className="text-zinc-300 text-base leading-relaxed font-medium pt-2">
+                                        We do not sell, rent, or share mobile phone numbers, SMS opt-in data, or SMS consent status with third parties or affiliates for their marketing or promotional purposes. We may share this information with messaging carriers, connectivity providers, and vendors only as needed to deliver and support the text messages you requested.
+                                    </p>
                                 </div>
                             </motion.div>
 
-                            {/* 07 - International Transfers */}
+                            {/* 07 - SMS / Text Messaging Program */}
                             <motion.div id="section-07" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_07</div>
+                                <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 flex items-end gap-4">
+                                    SMS / Text Messaging Program
+                                    <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent mb-2" />
+                                </h2>
+                                <div className="p-10 rounded-3xl bg-white/[0.02] border border-white/5 backdrop-blur-sm space-y-4">
+                                    <p className="text-zinc-400 text-base leading-relaxed font-light">
+                                        When you provide your mobile phone number through a form on this website (including the contact form at <Link href="/contact" className="text-[#FF7404] underline underline-offset-4 decoration-[#FF7404]/40 hover:decoration-[#FF7404]">visquanta.com/contact</Link>) and check the optional SMS consent box, you agree to receive recurring customer care text messages from Visquanta LLC (DBA VisQuanta). Message types may include appointment confirmations, demo booking updates, reminders, rescheduling updates, and account-related service notifications. Consent is not a condition of purchase.
+                                    </p>
+                                    <ul className="text-zinc-400 text-base leading-relaxed font-light space-y-3 list-disc list-inside pl-2">
+                                        <li><span className="text-white font-semibold">Message frequency</span> — varies based on your requests and interactions with us.</li>
+                                        <li><span className="text-white font-semibold">Costs</span> — message and data rates may apply. Check with your mobile carrier for details.</li>
+                                        <li><span className="text-white font-semibold">Help</span> — reply HELP for help, call <a href="tel:+17866866554" className="text-[#FF7404] underline underline-offset-4 decoration-[#FF7404]/40 hover:decoration-[#FF7404]">+1 786-686-6554</a>, or email <a href="mailto:info@visquanta.com" className="text-[#FF7404] underline underline-offset-4 decoration-[#FF7404]/40 hover:decoration-[#FF7404]">info@visquanta.com</a>.</li>
+                                        <li><span className="text-white font-semibold">Opt-out</span> — reply STOP to unsubscribe at any time. After unsubscribing, you may receive one confirmation message and no further customer care texts from this program.</li>
+                                        <li><span className="text-white font-semibold">Privacy of mobile information</span> — mobile phone numbers, SMS opt-in data, and SMS consent status will not be sold, rented, or shared with third parties or affiliates for their marketing or promotional purposes. We may share this information with vendors that help provide messaging services only as needed to deliver and support the messages you requested.</li>
+                                    </ul>
+                                    <p className="text-zinc-400 text-base leading-relaxed font-light">
+                                        SMS consent is optional and is collected separately from required Terms &amp; Conditions and Privacy Policy acknowledgements on our forms. You may submit a form without opting in to SMS.
+                                    </p>
+                                </div>
+                            </motion.div>
+
+                            {/* 08 - International Transfers */}
+                            <motion.div id="section-08" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_08</div>
                                 <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 flex items-end gap-4">
                                     International Transfers
                                     <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent mb-2" />
@@ -316,9 +345,9 @@ export default function PrivacyPolicyPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 08 - Data Retention */}
-                            <motion.div id="section-08" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_08</div>
+                            {/* 09 - Data Retention */}
+                            <motion.div id="section-09" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_09</div>
                                 <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 flex items-end gap-4">
                                     Data Retention
                                     <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent mb-2" />
@@ -336,9 +365,9 @@ export default function PrivacyPolicyPage() {
                                 </div>
                             </motion.div>
 
-                            {/* 09 - Security */}
-                            <motion.div id="section-09" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_09</div>
+                            {/* 10 - Security */}
+                            <motion.div id="section-10" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_10</div>
                                 <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 flex items-end gap-4">
                                     Security
                                     <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent mb-2" />
@@ -361,8 +390,8 @@ export default function PrivacyPolicyPage() {
                             </motion.div>
 
                             {/* 10 - Your Privacy Rights */}
-                            <motion.div id="section-10" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_10</div>
+                            <motion.div id="section-11" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_11</div>
                                 <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 flex items-end gap-4">
                                     Your Privacy Rights
                                     <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent mb-2" />
@@ -410,8 +439,8 @@ export default function PrivacyPolicyPage() {
                             </motion.div>
 
                             {/* 11 - Cookies */}
-                            <motion.div id="section-11" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_11</div>
+                            <motion.div id="section-12" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_12</div>
                                 <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 flex items-end gap-4">
                                     Cookies
                                     <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent mb-2" />
@@ -427,8 +456,8 @@ export default function PrivacyPolicyPage() {
                             </motion.div>
 
                             {/* 12 - Children's Privacy */}
-                            <motion.div id="section-12" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_12</div>
+                            <motion.div id="section-13" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_13</div>
                                 <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 flex items-end gap-4">
                                     Children&apos;s Privacy
                                     <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent mb-2" />
@@ -444,8 +473,8 @@ export default function PrivacyPolicyPage() {
                             </motion.div>
 
                             {/* 13 - Changes to This Policy */}
-                            <motion.div id="section-13" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_13</div>
+                            <motion.div id="section-14" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_14</div>
                                 <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 flex items-end gap-4">
                                     Changes to This Policy
                                     <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent mb-2" />
@@ -461,8 +490,8 @@ export default function PrivacyPolicyPage() {
                             </motion.div>
 
                             {/* 14 - Contact */}
-                            <motion.div id="section-14" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_14</div>
+                            <motion.div id="section-15" className="scroll-mt-32" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <div className="text-[10px] font-mono text-[#FF7404] mb-4 tracking-[0.3em] font-bold">SECTION_15</div>
                                 <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 flex items-end gap-4">
                                     Contact
                                     <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent mb-2" />
